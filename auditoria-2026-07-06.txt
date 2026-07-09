@@ -1,0 +1,191 @@
+╔══════════════════════════════════════════════════════════════╗
+║           INFORME DE AUDITORÍA — JOKO LAB                   ║
+║           Fecha: 2026-07-06 20:51                           ║
+║           Auditor: Hermes Agent                            ║
+╚══════════════════════════════════════════════════════════════╝
+
+════════════════════════════════════════════════════════════════
+  1. ESTADO GENERAL DEL LABORATORIO
+════════════════════════════════════════════════════════════════
+
+  Skills totales       : 8 (2 completas, 1 poblada, 5 vacías)
+  Servicios Docker     : 4/4 activos
+  Automatización       : 3 cron jobs funcionando
+  Backups              : 1 realizado (n8n, 419 MB)
+  Documentación        : 9 archivos, 5 secciones HERMES.md pendientes
+  GPU                  : NVIDIA RTX A2000 12 GB — 43°C, 6-13% uso
+  Disco /              : 28% usado (320 GB libres)
+  Disco /mnt/ssd_ia..  : 60% usado (170 GB libres)
+  Decisiones registradas : 7
+
+
+════════════════════════════════════════════════════════════════
+  2. SKILLS — ESTADO DETALLADO
+════════════════════════════════════════════════════════════════
+
+  COMPLETAS (etapa 4):
+  ┌───────────────┬─────────┬─────────────────────────────────┐
+  │ Skill         │ Versión │ Archivos                        │
+  ├───────────────┼─────────┼─────────────────────────────────┤
+  │ docker-admin  │ v0.4.0  │ 9 base + 6 scripts + logs + cron│
+  │ hermes-expert │ v0.3.0  │ 15 base + 1 script              │
+  └───────────────┴─────────┴─────────────────────────────────┘
+  ✔ Comprobado: healthcheck OK, backup OK, cron OK
+
+  POBLADA:
+  ┌───────────────┬──────────────────────────────────────────┐
+  │ joko-lab      │ SKILL.md (4135 chars) — descripción      │
+  └───────────────┴──────────────────────────────────────────┘
+
+  VACÍAS (solo esqueleto genérico):
+  ┌───────────────┬──────────────────────────────────────────┐
+  │ n8n-admin     │ Servicio crítico sin skill operativa     │
+  │ ai-router     │ Sin progreso                             │
+  │ betterbird    │ Sin progreso                             │
+  │ evolution     │ Sin progreso                             │
+  │ perfumes      │ Sin progreso                             │
+  └───────────────┴──────────────────────────────────────────┘
+
+  SKILLS QUE NO EXISTEN (servicios reales sin skill):
+    - pdf-cleaner  (servicio activo, puerto 8000)
+    - lm-studio    (herramienta instalada, API localhost:1234)
+    - stirling-pdf (servicio activo, puerto 8081)
+
+
+════════════════════════════════════════════════════════════════
+  3. SERVICIOS DOCKER — HEALTHCHECK
+════════════════════════════════════════════════════════════════
+
+  Servicio       Puerto   HTTP   Estado
+  ────────────────────────────────────────────
+  n8n            5678     200    ✔ Up
+  Ollama         11434    200    ✔ Up
+  Stirling-PDF   8081     200    ✔ Healthy
+  pdf-cleaner    8000     404    ✔ Up (esperado)
+
+  Resultado: 4/4 servicios OK
+
+
+════════════════════════════════════════════════════════════════
+  4. AUTOMATIZACIÓN — CRON JOBS
+════════════════════════════════════════════════════════════════
+
+  Tarea             Horario             Log                  Estado
+  ──────────────────────────────────────────────────────────────────
+  Healthcheck       Cada hora (min 5)   healthcheck.log      Pendiente
+  Backup n8n        Diario 3:00         backup-n8n.log       Pendiente
+  Backup ollama     Diario 3:30         backup-ollama.log    Pendiente
+
+  Nota: Los cron jobs se instalaron el 2026-07-06 a las 20:43.
+  Primera ejecución del healthcheck: 2026-07-06 a las 21:05.
+
+
+════════════════════════════════════════════════════════════════
+  5. BACKUPS
+════════════════════════════════════════════════════════════════
+
+  Backup     Fecha                Tamaño    Ruta
+  ──────────────────────────────────────────────────────────
+  n8n        2026-07-06 19:43     419 MB    /mnt/ssd_ia_datos/backups/
+                                           n8n-20260706_203839/
+
+  Pendiente: Primer backup automático de ollama y refresco de n8n.
+
+
+════════════════════════════════════════════════════════════════
+  6. DOCUMENTACIÓN — COBERTURA
+════════════════════════════════════════════════════════════════
+
+  Archivo                         Estado     Observación
+  ──────────────────────────────────────────────────────────
+  HERMES.md                       ⚠ 5/10     Faltan secciones 4,6,7,8,9
+  docs/estado-real.md             ✔          Actualizado 2026-07-06
+  docs/arquitectura.md            ⚠          Incompleto (3 huecos)
+  docs/hermes-internals.md        ✔          Con contenido
+  docs/hermes-notes.md            ⚠          Posiblemente desactualizado
+  docs/joko-lab-principles.md     ✗ VACÍO    Archivo de 0 bytes
+  docs/metodologia.md             ✔          Con contenido
+  docs/decisiones/                ✔          7 + README, todos con contenido
+  docs/hypothesis/                ✔          1 entrada (model-router)
+
+
+════════════════════════════════════════════════════════════════
+  7. HERMES AGENT — SALUD
+════════════════════════════════════════════════════════════════
+
+  Componente         Estado     Detalle
+  ──────────────────────────────────────────────────────
+  Python             ✔         3.11.15 (virtualenv activo)
+  SSL CA             ✔         Válido
+  state.db           ✔         19 MB, 78 sesiones, 3140 mensajes
+  agent.log          ✔         8431 líneas
+  errors.log         ✔         773 líneas
+  update.log         ✔         147 líneas
+  .env               ✔         14 variables activas, API key presente
+  Skills instaladas  ✔         18 totales, 4 con SKILL.md
+  Permisos           ✔         Propietario: jokoalmi
+  Espacio .hermes    ✔         1.4 GB
+
+
+════════════════════════════════════════════════════════════════
+  8. HARDWARE
+════════════════════════════════════════════════════════════════
+
+  Componente          Estado     Valor
+  ────────────────────────────────────────────
+  CPU                 ✔         Intel Core i5-9500
+  RAM                 ✔         32 GB
+  GPU                 ✔         RTX A2000 12 GB — 43°C, 6-13%
+  Disco /             ✔         320 GB libres (28%)
+  Disco datos         ⚠         170 GB libres (60%) — monitorizar
+  Red                 ✔         Puertos 5678, 11434, 8000, 8081
+
+
+════════════════════════════════════════════════════════════════
+  9. PROBLEMAS DETECTADOS
+════════════════════════════════════════════════════════════════
+
+  #  Tipo          Descripción                                Prioridad
+  ──────────────────────────────────────────────────────────────────────
+  1  Documentación HERMES.md — 5 secciones vacías              Media
+                  (Organización, Flujo, Convenciones,
+                  Buenas prácticas, Skills previstas)
+  2  Documentación docs/joko-lab-principles.md — vacío         Baja
+  3  Documentación docs/arquitectura.md — 3 huecos             Media
+  4  Documentación docs/hermes-notes.md — posible obsoleto     Baja
+  5  Skills        5 skills vacías (n8n-admin, ai-router,      Media
+                  betterbird, evolution, perfumes)
+  6  Skills        3 servicios sin skill (pdf-cleaner,         Baja
+                  lm-studio, stirling-pdf)
+  7  Automatización Logs de cron vacíos (1ª ejecución         Info
+                  pendiente)
+  8  Disco         /mnt/ssd_ia_datos al 60%                   Info
+
+
+════════════════════════════════════════════════════════════════
+  10. RECOMENDACIONES (ordenadas por impacto)
+════════════════════════════════════════════════════════════════
+
+  1. POBLAR n8n-admin
+     n8n es el servicio más crítico del laboratorio.
+     Necesita una skill operativa cuanto antes.
+
+  2. COMPLETAR HERMES.md (secciones 4, 6, 7, 8)
+     El documento fundacional del laboratorio está incompleto.
+
+  3. RELLENAR docs/arquitectura.md
+     Documento clave para entender el entorno técnico.
+
+  4. POBLAR ai-router
+     Segunda skill más estratégica (enrutamiento de modelos).
+
+  5. VERIFICAR PRIMERA EJECUCIÓN DE CRON
+     Confirmar que healthcheck y backups automáticos funcionan.
+
+  6. REDACTAR docs/joko-lab-principles.md
+     Archivo vacío desde su creación.
+
+
+════════════════════════════════════════════════════════════════
+  Fin del informe
+════════════════════════════════════════════════════════════════

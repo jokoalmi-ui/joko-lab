@@ -1,0 +1,386 @@
+======================================================================
+  AUDITORÍA EJECUTIVA — JOKO LAB
+  Fecha: 2026-07-07
+  Preparado por: Director Técnico (lab-manager v0.2.0)
+======================================================================
+
+  ¿Quién consulta este documento?
+  Alguien externo al laboratorio o un nuevo miembro técnico que
+  necesita entender qué es Joko Lab, qué contiene y cómo está
+  organizado, sin tener que leer la documentación interna.
+
+  ¿Para qué?
+  Para obtener una visión completa y ordenada del laboratorio en
+  un solo archivo: sus componentes, su estado actual, su deuda
+  técnica y los próximos pasos planificados.
+
+----------------------------------------------------------------------
+
+ÍNDICE
+  1.  ¿Qué es Joko Lab?
+  2.  ¿Qué problema resuelve?
+  3.  Hardware y sistema
+  4.  Servicios en funcionamiento
+  5.  Inteligencia artificial
+  6.  Skills de Hermes Agent
+  7.  Documentación
+  8.  Automatización
+  9.  Deuda técnica y salud
+  10. Próximos pasos
+  11. Resumen visual
+
+
+======================================================================
+1.  ¿QUÉ ES JOKO LAB?
+======================================================================
+
+Joko Lab es un laboratorio personal de ingeniería asistida por IA.
+
+No es un simple proyecto de automatización. Es un entorno diseñado
+para diseñar, documentar, operar y evolucionar infraestructura técnica
+de forma incremental, reproducible y comprensible.
+
+Hermes Agent actúa como arquitecto técnico del laboratorio: utiliza
+documentación estructurada y skills especializadas para ayudar a tomar
+decisiones, detectar mejoras y mantener el conocimiento del sistema
+a lo largo del tiempo.
+
+El laboratorio funciona sobre un equipo de escritorio local, con
+servicios en contenedores Docker, modelos de IA instalados localmente
+(y uno online como respaldo), y un asistente (Hermes) que orquesta
+todo el entorno.
+
+No depende de la nube para sus funciones principales. Los datos
+sensibles se procesan localmente.
+
+
+======================================================================
+2.  ¿QUÉ PROBLEMA RESUELVE?
+======================================================================
+
+El problema de base es: mantener un sistema técnico que crece con el
+tiempo sin que se vuelva incomprensible, frágil o dependiente de una
+sola persona.
+
+Joko Lab resuelve esto con tres mecanismos:
+
+  1. Documentación estructurada — cada decisión, cada cambio, cada
+     componente tiene un archivo que explica qué es, por qué está ahí
+     y cómo se relaciona con el resto.
+
+  2. Skills especializadas — Hermes Agent no es un asistente genérico.
+     Tiene skills que lo especializan en áreas concretas: Docker, n8n,
+     modelos de IA, diagnóstico. Cada skill documenta su propio
+     conocimiento, comandos y límites de seguridad.
+
+  3. Director Técnico (lab-manager) — una skill que audita, diagnostica
+     y prioriza. No ejecuta acciones, pero responde preguntas como
+     "¿cuál es la deuda técnica?", "¿qué ha cambiado?", "¿qué
+     reconstruirías primero?".
+
+El laboratorio se rige por cinco principios:
+
+  1. Comprender antes de actuar
+  2. Verificar antes de afirmar
+  3. Documentar las decisiones importantes
+  4. Priorizar soluciones simples y mantenibles
+  5. Mejorar continuamente
+
+
+======================================================================
+3.  HARDWARE Y SISTEMA
+======================================================================
+
+  Componente     |  Especificación
+  ---------------|--------------------------------------------------
+  CPU            |  Intel Core i5-9500
+  RAM            |  32 GB
+  GPU            |  NVIDIA RTX A2000 (12 GB VRAM)
+  Disco 1        |  SSD principal: sistema operativo y home
+  Disco 2        |  SSD secundario: datos de n8n, backups, exports
+                 |  (montado en /mnt/ssd_ia_datos)
+  Sistema        |  Ubuntu (kernel 7.0.0-27)
+  Usuario        |  jokoalmi
+
+
+======================================================================
+4.  SERVICIOS EN FUNCIONAMIENTO
+======================================================================
+
+Todos los servicios se ejecutan en contenedores Docker orquestados con
+Docker Compose v2. El stack principal está en:
+
+  /home/jokoalmi/automation-stack/docker-compose.yml
+
+  Servicio        |  Puerto  |  Estado  |  Propósito
+  ----------------|----------|---------|------------------------------
+  n8n             |  5678    |  ACTIVO  | Automatización low-code
+  Ollama          |  11434   |  ACTIVO  | Modelos de IA locales
+  Stirling-PDF    |  8081    |  ACTIVO  | Procesamiento de PDFs
+  pdf-cleaner     |  8000    |  ACTIVO  | Limpieza de PDFs
+
+n8n es una zona protegida del laboratorio. Tiene un healthcheck automático
+cada 30 minutos, un workflow activo llamado "ENVIO WHATSAPP", y un límite
+de RAM de 2 GB. Sus datos persistentes están en /mnt/ssd_ia_datos/n8n.
+
+
+======================================================================
+5.  INTELIGENCIA ARTIFICIAL
+======================================================================
+
+Joko Lab tiene tres proveedores de IA, con un árbol de decisión que
+selecciona automáticamente cuál usar según la tarea:
+
+  ┌─ ¿Datos privados? ──────────────────────→ Ollama (local)
+  │   ├─ ¿Multimodal (imagen/video)? ──────→ LM Studio (local)
+  │   └─ ¿Razonamiento complejo? ──────────→ DeepSeek (online)
+  │       └─ ¿Consulta simple? ────────────→ Ollama (local)
+
+  Proveedor       |  Tipo        |  Endpoint                 | Modelos
+  ----------------|--------------|---------------------------|-------------------------
+  DeepSeek Flash  |  Online      |  DeepSeek API             | v4-flash
+  Ollama          |  Local       |  localhost:11434          | qwen2.5:7b,
+                  |              |                           | llama3.1:8b,
+                  |              |                           | llama31-8b-64k
+  LM Studio       |  Local       |  localhost:1234           | gemma-4-e4b,
+                  |              |                           | gemma-4-12b-qat,
+                  |              |                           | gemma-4-12b,
+                  |              |                           | glm-4.6v-flash,
+                  |              |                           | qwen/qwen3.5-9b,
+                  |              |                           | text-embedding-nomic
+
+Además, hay un router de IA llamado ai-router que decide automáticamente
+qué proveedor usar según el tipo de consulta (datos privados → local,
+tareas rápidas → gemma-4-e4b, razonamiento detallado → gemma-4-12b-qat,
+visión → LM Studio).
+
+Hermes Agent (el asistente principal) usa DeepSeek Flash como proveedor
+predeterminado.
+
+
+======================================================================
+6.  SKILLS DE HERMES AGENT
+======================================================================
+
+Hermes Agent tiene instaladas 9 skills. Cada skill es un conjunto de
+instrucciones, conocimiento y scripts que especializan al agente en un
+área concreta. Siguen un ciclo de vida de 4 etapas:
+
+  Etapa 1: Comprender  →  entender el dominio
+  Etapa 2: Diagnosticar →  poder inspeccionar y detectar problemas
+  Etapa 3: Actuar      →  realizar operaciones seguras
+  Etapa 4: Optimizar   →  refinar y mejorar
+
+  Skill            |  Etapa  |  Versión  |  Estado      |  Scripts
+  -----------------|---------|-----------|--------------|---------------
+  docker-admin     |  4      |  v0.4.0   |  Completa    |  5 scripts
+  hermes-expert    |  4      |  v0.3.0   |  Completa    |  3 scripts
+  ai-router        |  3      |  v0.4.0   |  Poblada     |  1 script
+  n8n-admin        |  3      |  v0.3.0   |  Completa    |  2 scripts
+  lab-manager      |  2      |  v0.2.0   |  Poblada     |  4 scripts
+  joko-lab         |  ?      |  —        |  Poblada     |  0 scripts
+  betterbird       |  1      |  —        |  VACÍA       |  0 scripts
+  perfumes         |  1      |  —        |  VACÍA       |  0 scripts
+  evolution        |  1      |  —        |  VACÍA       |  0 scripts
+
+  Skills pobladas: 9 de 9
+  Skills vacías:   0 de 9
+  Scripts totales: 14
+
+Las skills vacías (betterbird, perfumes, evolution) existen como archivos
+mínimos pero no tienen contenido funcional. Están pendientes de desarrollar.
+
+
+  ---  DETALLE DE CADA SKILL  ---
+
+  docker-admin (v0.4.0, Etapa 4)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Gestiona el stack Docker del laboratorio. Sus scripts permiten:
+  - healthcheck.sh: verifica que todos los servicios estén activos
+  - backup-volumen.sh: realiza copias de seguridad de volúmenes Docker
+  - restore-volumen.sh: restaura volúmenes desde backups
+  - install-cron.sh: instala tareas programadas (cron)
+  - auditar-stack.sh: auditoría completa del stack Docker
+  Skill madura y completa. Es la skill más avanzada del laboratorio.
+
+  hermes-expert (v0.3.0, Etapa 4)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Diagnóstico y configuración de Hermes Agent. Sus scripts:
+  - hermes-diag.sh: diagnóstico del estado de Hermes
+  - detect-config-changes.sh: detecta cambios en la configuración
+  - install-system-crons.sh: instala crons del sistema
+  Skill madura y completa.
+
+  ai-router (v0.4.0, Etapa 3)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Enrutador inteligente de modelos de IA. Contiene:
+  - ai-router.py: selecciona automáticamente el modelo según la tarea
+  Árbol de decisión: datos privados → Ollama, visión → LM Studio,
+  razonamiento complejo → DeepSeek, simple → Ollama.
+  Funcional y estable. Pendiente de integrar completamente en Hermes.
+
+  n8n-admin (v0.3.0, Etapa 3)
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Gestión de n8n, la herramienta de automatización. Sus scripts:
+  - healthcheck-n8n.sh: verifica el estado de n8n (5 tests)
+  - export-workflows.sh: exporta workflows de n8n
+  n8n tiene RAM 2 GB, healthcheck cada 30 min, y un workflow activo
+  llamado "ENVIO WHATSAPP".
+
+  lab-manager (v0.2.0, Etapa 2) — Director Técnico
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Skill más reciente. Es el Director Técnico del laboratorio:
+  - diagnosticar.sh: genera un snapshot completo del estado
+  - deuda-tecnica.sh: calcula y cuantifica la deuda técnica
+  - cambios-ultima.sh: compara el estado actual con la última auditoría
+  - priorizar.sh: propone orden de reconstrucción y prioridades
+  Recién ascendida a etapa 2. Pendiente de auditoría y optimización.
+
+
+======================================================================
+7.  DOCUMENTACIÓN
+======================================================================
+
+  Archivo                   |  Estado                  |  Líneas
+  --------------------------|--------------------------|--------
+  HERMES.md                 |  Parcial (5/10 secciones)|   87
+  docs/arquitectura.md      |  COMPLETO                |  156
+  docs/estado-real.md       |  COMPLETO                |  132
+  docs/roadmap.md           |  COMPLETO                |   57
+  docs/hermes-internals.md  |  Con contenido           |   15
+  docs/hermes-notes.md      |  Contenido antiguo       |    7
+  docs/joko-lab-principles  |  VACÍO                   |    0
+  docs/decisiones/          |  8 archivos (6 completas,|  —
+                           |   2 activas)
+
+  Decisiones activas actualmente:
+  - Enrutador de modelos IA (ai-router)
+  - Regla de justificación de mejoras
+
+  Documentación completa: 3 archivos
+  Documentación pendiente: 1 archivo vacío + HERMES.md incompleto
+
+
+======================================================================
+8.  AUTOMATIZACIÓN
+======================================================================
+
+  Tarea                    |  Frecuencia          |  Estado
+  -------------------------|----------------------|--------
+  Healthcheck del stack    |  Cada hora (minuto 5)|  ACTIVO
+  Healthcheck de n8n       |  Cada 30 minutos     |  ACTIVO
+  Backup de n8n            |  Diario 3:00 AM      |  ACTIVO
+  Backup de Ollama         |  Diario 3:30 AM      |  ACTIVO
+  Auditoría integrada      |  Bajo demanda        |  ACTIVO
+
+  Backups almacenados en: /mnt/ssd_ia_datos/backups
+  Tamaño del último backup de n8n: 419 MB
+
+
+======================================================================
+9.  DEUDA TÉCNICA Y SALUD
+======================================================================
+
+  Categoría                    |  Puntos  |  Máximo
+  -----------------------------|----------|-------
+  Skills vacías                |    0     |   10
+  Documentación incompleta     |   12     |   12
+  Skills sin scripts           |   10     |   10
+  Skills sin tests             |    9     |    9
+  Infraestructura (Git)        |    2     |    2
+  Incoherencias documentales   |    0     |   10
+  -----------------------------|----------|-------
+  TOTAL                        |   33     |   53
+
+  Salud del laboratorio:  38%
+  Estado:                  ALTA — requiere atención
+
+  Gráfico de salud:
+  (cada bloque = ~5 puntos de la puntuación máxima)
+
+  Arquitectura     ████████░░░░░░░░░░  (8/12)
+  Documentación    ████████████████░░  (12/12)
+  Skills           ██████████████░░░░  (10/10)
+  Automatización   ██████████████████  (completa)
+  Seguridad        ████████░░░░░░░░░░  (pendiente Git)
+
+  Deuda más urgente:
+  1. Completar documentación (6 documentos pendientes)
+  2. Crear scripts de diagnóstico para 5 skills
+  3. Añadir tests a las 9 skills
+  4. Inicializar repositorio Git
+
+  Nota: esta auditoría es la primera línea base. Próximas auditorías
+        medirán la evolución y reducción de la deuda.
+
+
+======================================================================
+10.  PRÓXIMOS PASOS
+======================================================================
+
+  Prioridad  |  Tarea                        |  Depende de   |  Impacto
+  -----------|-------------------------------|---------------|---------
+  ALTA       |  Redactar joko-lab-principles |  —            |  Documentación
+  ALTA       |  Poblar skill betterbird      |  —            |  Funcionalidad
+  ALTA       |  Inicializar repositorio Git  |  —            |  Trazabilidad
+  MEDIA      |  Poblar skill perfumes        |  —            |  Funcionalidad
+  MEDIA      |  ai-router etapa 4 (integrar  |  ai-router    |  Optimización
+             |    en Hermes)                 |  completada   |
+  MEDIA      |  Revisar hermes-notes.md      |  —            |  Documentación
+  BAJA       |  Poblar skill evolution       |  betterbird,  |  Funcionalidad
+             |                               |  perfumes     |
+  BAJA       |  n8n-admin etapa 4 (runners   |  n8n-admin    |  Optimización
+             |    externos, métricas)        |  completada   |
+  BAJA       |  Auditoría global completa   |  —            |  Control
+
+  Si se empezara desde cero, el orden de reconstrucción sería:
+  1. Docker + servicios base (n8n, Ollama)
+  2. ai-router (enrutamiento de IA)
+  3. Backups y healthchecks
+  4. Skills de Hermes (docker-admin, n8n-admin, lab-manager)
+  5. Skills de dominio (betterbird, perfumes, evolution)
+
+
+======================================================================
+11.  RESUMEN VISUAL
+======================================================================
+
+  ╔══════════════════════════════════════════════════════════════╗
+  ║                    JOKO LAB — PANORAMA                       ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║                                                              ║
+  ║  INFRAESTRUCTURA                                             ║
+  ║    • PC de escritorio con GPU NVIDIA RTX A2000 (12 GB)       ║
+  ║    • 32 GB RAM · Intel i5-9500                               ║
+  ║    • Ubuntu · Docker · Hermes Agent                          ║
+  ║                                                              ║
+  ║  SERVICIOS ACTIVOS (4)                                       ║
+  ║    n8n · Ollama · Stirling-PDF · pdf-cleaner                 ║
+  ║                                                              ║
+  ║  INTELIGENCIA ARTIFICIAL (3 proveedores)                     ║
+  ║    DeepSeek Flash (online)                                   ║
+  ║    Ollama (local, 3 modelos)                                 ║
+  ║    LM Studio (local, 6 modelos)                              ║
+  ║                                                              ║
+  ║  SKILLS DE HERMES (9)                                        ║
+  ║    Maduras (etapa 3-4): docker-admin, hermes-expert,         ║
+  ║                         n8n-admin, ai-router                 ║
+  ║    En desarrollo: lab-manager (etapa 2)                      ║
+  ║    Vacías: betterbird, perfumes, evolution                   ║
+  ║                                                              ║
+  ║  AUTOMATIZACIÓN                                              ║
+  ║    Healthchecks cada 30-60 min · Backups diarios             ║
+  ║    Auditoría bajo demanda · 14 scripts de gestión            ║
+  ║                                                              ║
+  ║  DOCUMENTACIÓN                                               ║
+  ║    3 archivos completos · 6 pendientes · 8 decisiones        ║
+  ║                                                              ║
+  ║  SALUD: 38% — DEUDA TÉCNICA ALTA                             ║
+  ║  Prioridad: documentación, skills vacías, Git                ║
+  ║                                                              ║
+  ╚══════════════════════════════════════════════════════════════╝
+
+  ======================================================================
+    === FIN DE LA AUDITORÍA EJECUTIVA ===
+    Generado por: lab-manager (Director Técnico de Joko Lab)
+    Próxima auditoría recomendada: 2026-07-14

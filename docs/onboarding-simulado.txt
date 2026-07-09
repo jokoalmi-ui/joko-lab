@@ -1,0 +1,115 @@
+# Onboarding simulado: primer día en Joko Lab sin poder hablar con el propietario
+
+**Escenario:** Acabo de incorporarme. Durante una semana no puedo hablar con el propietario. Solo tengo la documentación existente.
+
+**Fecha del ejercicio:** 2026-07-07
+
+---
+
+## 1. Qué entiendo del laboratorio
+
+Después de leer la documentación disponible, esto es lo que tengo claro:
+
+**Joko Lab es un laboratorio personal de automatización e IA.** Su propósito es aprender, experimentar y construir soluciones útiles sobre infraestructura propia. El propietario lo opera desde terminal con Hermes Agent como asistente central.
+
+**La arquitectura física y lógica está documentada.** Hay un PC con Intel Core i5-9500, 32 GB de RAM y una NVIDIA RTX A2000 con 12 GB de VRAM. Dos discos: uno para el sistema y home, otro SSD montado en /mnt/ssd_ia_datos para datos de n8n, backups y exports.
+
+**Los servicios corren en Docker Compose.** Hay un docker-compose.yml en /home/jokoalmi/automation-stack con cuatro servicios: n8n (automatización low-code), Ollama (IA local), Stirling-PDF y pdf-cleaner (procesamiento de documentos). Todos tienen sus puertos y volúmenes mapeados.
+
+**Hay una jerarquía de skills de Hermes en 4 niveles.** HERMES.md es la constitución. lab-manager es el arquitecto técnico (coordina pero no ejecuta). Luego vienen los especialistas (hermes-expert, docker-admin, n8n-admin, ai-router) y por último las aplicaciones (betterbird, perfumes, evolution). Cada skill tiene una etapa de desarrollo (Comprender → Diagnosticar → Actuar → Optimizar) y un nivel de madurez (0-7).
+
+**Las decisiones de arquitectura se registran.** Cada decisión importante tiene su propio archivo en docs/decisiones con formato AAAA-MM-DD-tema.md. Hay 10 archivos, algunos completados y otros en estado activo.
+
+**Hay backups automáticos y healthchecks.** El sistema hace backup de n8n y Ollama cada día a las 3:00 y 3:30. Cada hora (minuto 5) se ejecuta un healthcheck que notifica si algo falla.
+
+**El sistema de IA tiene un árbol de decisión.** Datos privados → Ollama. Multimodal → LM Studio. Razonamiento complejo → DeepSeek. Consulta simple → Ollama con llama31-8b-64k.
+
+---
+
+## 2. Qué no entiendo
+
+Varias cosas no quedan claras solo con la documentación:
+
+**¿Cómo se inicia una sesión de trabajo?** No hay un flujo documentado de "enciendes el PC, arrancas esto, luego esto, y abres Hermes aquí". Hay piezas (Docker, Hermes, LM Studio, el monitor Flask) pero no un procedimiento de inicio claro.
+
+**¿Qué está realmente funcionando ahora mismo?** docs/estado-real.md dice que todo está bien, pero está fechado hoy. No sé si es instantánea de este momento o una captura de hace horas. No hay un healthcheck en tiempo real que pueda consultar como recién llegado sin ejecutar comandos.
+
+**¿Cómo se relacionan Hermes Agent y las skills exactamente?** docs/hermes-internals.md dice que algunas cosas están "pendientes de verificar": el sistema de perfiles, skill_view, la carga automática de HERMES.md, la prioridad entre USER.md, MEMORY.md y SKILL.md. El propio documento de internals tiene lagunas que la documentación no resuelve.
+
+**¿Qué versión de cada cosa?** En arquitectura.md aparecen versiones de skills (v0.4.0, v0.3.0) pero el docker-compose.yml real puede tener versiones distintas de las imágenes de Docker. No sé cómo verificar que lo que dice la documentación coincide con lo que hay desplegado.
+
+**¿Git está en uso?** docs/estado-real.md dice "Pendiente comprobar". El roadmap lo marca como prioridad alta. No sé si el laboratorio está versionado, si hay ramas, si los cambios se pierden al cerrar sesión.
+
+**¿Cuál es la contraseña/sudo del sistema?** No aparece en ninguna parte. Si tengo que reiniciar un servicio o hacer un cambio, no sé si tengo acceso administrativo o solo de usuario.
+
+---
+
+## 3. Qué documentos consultaría primero
+
+Si no puedo hablar con el propietario, este es mi orden:
+
+**Primero: HERMES.md.** Es la constitución. Define principios, filosofía operativa, orden de consulta, estilo de comunicación, principios de seguridad. Sin esto no entiendo cómo se toman las decisiones.
+
+**Segundo: docs/estado-real.md.** Me dice qué hay, qué versión, qué funciona y qué no. Es la radiografía más reciente del laboratorio. Me permite saber si algo está caído antes de perder tiempo.
+
+**Tercero: docs/arquitectura.md.** El mapa de componentes: hardware, servicios, puertos, rutas, skills instaladas. Lo necesito para saber dónde están las cosas.
+
+**Cuarto: docs/decisiones/README.md.** El índice de decisiones. No leería las 10 decisiones enteras, pero sí ojearía los resúmenes para saber qué decisiones se han tomado y cuáles están activas.
+
+**Quinto: docs/roadmap.md.** Para saber qué se espera de mí esta semana. Qué está planificado, qué es urgente, qué depende de qué.
+
+**Sexto: skills/lab-manager/ — sobre todo SKILL.md y COMMANDS.md.** lab-manager es el arquitecto. Si voy a mantener el laboratorio, necesito entender cómo audita, cómo detecta incoherencias y cómo prioriza.
+
+---
+
+## 4. Qué información echo en falta
+
+Como recién llegado, esto es lo que no encuentro y me gustaría tener:
+
+**Un README.md raíz del proyecto.** Al abrir /home/jokoalmi/hermes-lab/ no hay un archivo que explique "esto es Joko Lab, aquí tienes los puntos de entrada, empieza por aquí". HERMES.md está dentro del contexto de Hermes pero no hay una puerta de entrada neutral para un humano.
+
+**Un diagrama de flujo de inicio de sesión.** "Arranca el PC → abres terminal → ejecutas X → abres Y → Hermes está listo". Sin eso, no sé si tengo que hacer algo manualmente cada día o si el sistema arranca solo.
+
+**Las credenciales.** No sé la contraseña de sudo, ni si hay usuarios adicionales, ni si n8n requiere login, ni si LM Studio tiene API key configurada. Sin esto, cualquier operación que requiera autenticación está bloqueada.
+
+**La política de actualizaciones.** ¿Se actualiza Docker cuando sale una nueva versión? ¿Los modelos de Ollama se actualizan solos? ¿n8n se actualiza manualmente? La documentación no dice nada sobre cómo se mantienen las versiones al día.
+
+**Procedimientos de recuperación.** docs/estado-real.md dice que hay backups. Pero no dice: si n8n se rompe, ¿cómo lo restauro desde el backup? ¿Dónde están los scripts de restauración?
+
+**Un inventario de modelos de IA.** docs/arquitectura.md lista modelos en Ollama y LM Studio, pero no dice cuál se usa para qué, cuál es el más rápido, cuál gasta más VRAM, cuál es el predeterminado para Hermes.
+
+**El estado del monitor Flask.** docs/arquitectura.md lo menciona (localhost:5000) pero no sé si está en ejecución, si se inicia automáticamente o si hay que arrancarlo manualmente.
+
+---
+
+## 5. Qué riesgos ve si mañana tengo que mantener el proyecto yo solo
+
+**Riesgo 1: No poder acceder al sistema.** Sin contraseña de sudo, no puedo instalar nada, no puedo reiniciar servicios caídos, no puedo cambiar configuraciones del sistema. Si algo se rompe y requiere sudo, estoy bloqueado.
+
+**Riesgo 2: Dependencia del estado actual.** El laboratorio está funcionando porque alguien lo configuró. No hay scripts de bootstrap o de "provisionamiento" que permitan reconstruir el entorno desde cero si algo se corrompe. Si el disco falla, no tengo cómo reconstruir.
+
+**Riesgo 3: Documentación desactualizada sin saberlo.** docs/estado-real.md dice que los servicios están funcionando, pero si no ejecuto yo mismo los comandos de verificación, no sé si la documentación miente por desactualización. Podría confiar en información falsa.
+
+**Riesgo 4: Skills vacías o incompletas.** betterbird, perfumes y evolution están en nivel 0-3. Si mañana el propietario necesita correo o gestión de colecciones y me he comprometido a mantenerlo, no tengo herramientas para hacerlo. Tampoco sé si esas skills son críticas o prescindibles.
+
+**Riesgo 5: El árbol de decisión de IA no está automatizado.** ai-router tiene un árbol documentado pero no sé si Hermes lo usa automáticamente o si hay que invocarlo explícitamente. docs/hermes-internals.md dice que skill_view está pendiente de verificar. Si Hermes no puede decidir solo qué modelo usar, estaré eligiendo manualmente cada vez.
+
+**Riesgo 6: Sin Git, no hay historial.** Si algo se rompe y no hay control de versiones, no puedo ver qué cambió. No hay "git blame" para saber quién tocó qué. Los cambios son irreversibles sin snapshot.
+
+**Riesgo 7: Fatiga de diagnóstico.** El laboratorio tiene healthchecks automáticos (cada hora, cada 30 min para n8n). Pero si el healthcheck falla, no sé qué hacer. No hay procedimientos de respuesta documentados. Tendría que descubrir por mí mismo cómo diagnosticar cada servicio.
+
+**Riesgo 8: El backup puede no ser recuperable.** docs/estado-real.md dice que el backup de n8n pesa 419 MB, pero no hay ningún procedimiento de restauración documentado. Un backup que no se ha probado no es un backup, es una ilusión.
+
+---
+
+## Conclusión para el propietario
+
+Si mañana me dejas solo con esto, **podría mantener el laboratorio en estado de lectura**, pero cualquier cambio introduciría riesgo. Podría monitorizar, leer logs y diagnosticar problemas simples (un contenedor caído, un puerto ocupado). Pero no podría hacer cambios de configuración, restaurar desde backup, actualizar servicios, ni poblar skills vacías sin documentación adicional.
+
+**Las 3 cosas que más necesitaría antes de quedarme solo:**
+
+1. **README.md raíz** en /home/jokoalmi/hermes-lab/ que sea mi punto de entrada.
+2. **Procedimientos de recuperación** para cada servicio con backup (especialmente n8n).
+3. **Credenciales de acceso** o al menos un mecanismo para obtenerlas de forma segura.
+
+Sin esas tres cosas, el riesgo de romper algo o de no poder recuperarlo es alto.

@@ -1,0 +1,15 @@
+{
+  "fecha": "2026-07-07 18:35",
+  "skills": {"total": 9, "pobladas": 9, "vacias": 0},
+  "scripts": 14,
+  "documentacion": {
+    "docs_ok": 3,
+    "docs_vacios": 1,
+    "decisiones": 11,
+    "decisiones_activas": 6
+  },
+  "ia": {
+    "ollama": true,
+    "lm_studio": true
+  }
+}

@@ -1,0 +1,22 @@
+# Joko Lab — .gitignore
+
+# Logs y temporales
+logs/
+backups/
+
+# Archivos del sistema
+*.swp
+*.swo
+~$*
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Placeholders vacíos
+crontab

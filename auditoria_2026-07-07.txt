@@ -1,0 +1,110 @@
+================================================================
+  AUDITORÍA DEL LABORATORIO JOKO LAB
+  Fecha: 2026-07-07 00:06
+================================================================
+
+1. ESTADO DEL SISTEMA
+----------------------------------------------------------------
+  Sistema:          Ubuntu 26.04 LTS
+  CPU:              Intel Core i5-9500
+  RAM:              30 GiB (9.6 GiB usada, 20 GiB disponible)
+  GPU:              NVIDIA RTX A2000 12GB — 43°C, 9% uso, 924/12282 MB VRAM
+  Disco raíz (/):   468G total, 125G usado, 320G libre (29%)
+  Disco datos:      170 GB libres en /mnt/ssd_ia_datos
+
+2. SERVICIOS DOCKER
+----------------------------------------------------------------
+  Servicio       Puerto   Estado
+  ─────────────────────────────────────────────
+  n8n            5678     Up (7 min), RAM 307 MiB / 2GiB, CPU 0.07%
+  ollama         11434    Up (4h), RAM 480 MiB, CPU 0%
+  pdf-cleaner    8000     Up (4h), RAM 35 MiB, CPU 0.01%
+  stirling-pdf   8081     Up (4h, healthy), RAM 1 GiB, CPU 0.08%
+
+  4/4 servicios activos. Ningún contenedor caído.
+
+3. SALUD DE n8n (Healthcheck específico)
+----------------------------------------------------------------
+  ✔ Contenedor Up
+  ✔ Endpoint /healthz OK
+  ✔ Puerto 5678 abierto
+  ✔ Sin errores en últimos 5 minutos
+  ✔ Workflow "ENVIO WHATSAPP" activo
+  Resultado: 5/5 tests OK
+  Límite RAM: 2 GiB máximo, 512 MiB reservados
+  Uso real en reposo: 306.8 MiB (14.98%)
+
+4. HERMES AGENT
+----------------------------------------------------------------
+  Config:           config.yaml (686 líneas), modelo default: deepseek
+  Base de datos:    state.db (24 MB), 84 sesiones, 3.949 mensajes
+  Logs:             agent.log (9.150 líneas), errors.log (796 líneas)
+  Variables .env:   14 activas, DEEPSEEK_API_KEY presente
+  Skills instaladas: 18 (hermes), 8 con SKILL.md (todas las del
+                     laboratorio: ai-router, betterbird, docker-admin,
+                     evolution, hermes-expert, joko-lab, n8n-admin,
+                     perfumes)
+  Permisos:         ~/.hermes/ pertenece a jokoalmi
+  Espacio Hermes:   1.4 GB
+
+5. SKILLS DEL LABORATORIO (hermes-lab/skills/)
+----------------------------------------------------------------
+  Skill           Estado       Etapa               Versión
+  ─────────────────────────────────────────────────────────────
+  joko-lab        ✔ Completa   Fundacional          v0.1.0
+  docker-admin    ✔ Completa   4 — Optimizar        v0.4.0
+  n8n-admin       ✔ Completa   3 — Actuar (+Etapa4) v0.3.0
+  hermes-expert   ✔ Completa   4 — Optimizar        v0.3.0
+  betterbird      ✔ Poblada    2 — Diagnosticar     v0.1.0
+  ai-router       ✗ En etapa1  1 — Comprender       v0.1.0
+  evolution       ✗ En etapa1  1 — Comprender       v0.1.0
+  perfumes        ✗ En etapa1  1 — Comprender       v0.1.0
+
+  5/8 skills con progreso real (etapa 2+), 3 en etapa inicial.
+
+6. CRON JOBS ACTIVOS
+----------------------------------------------------------------
+  Cada hora (min 5):     Healthcheck stack
+  Cada 30 min:           Healthcheck n8n específico
+  3:00 diario:           Backup n8n
+  3:30 diario:           Backup ollama
+
+  Último backup n8n:     n8n-20260706_203839
+
+7. PUERTOS ESCUCHANDO
+----------------------------------------------------------------
+  11434 — ollama
+  5678  — n8n
+  8000  — pdf-cleaner
+  8081  — stirling-pdf
+  NOTA: LM Studio (1234) y Flask monitor (5000): no detectados
+
+8. LOGS DE ERROR RECIENTES (errors.log, últimas entradas)
+----------------------------------------------------------------
+  Los errores recientes son esperables y no críticos:
+  - web_extract falló por DuckDuckGo (solo búsqueda, no extracción)
+  - memory erró por límite de espacio (ya corregido)
+  - export-workflows falló con 401 (esperado: falta API token de n8n)
+  No hay errores de contenedores caídos ni de salud crítica.
+
+9. DOCUMENTACIÓN
+----------------------------------------------------------------
+  docs/estado-real.md:       ✔ Actualizado (2026-07-07)
+  docs/arquitectura.md:      ⚠ 3 huecos pendientes
+  docs/joko-lab-principles.md:  ✗ No creado
+  docs/decisiones/:            ✔ 1 decisión registrada
+  docs/hypothesis/:            ✔ 1 hipótesis creada
+
+10. RECOMENDACIONES
+----------------------------------------------------------------
+  1. Poblar skills vacías: ai-router, betterbird, evolution, perfumes
+  2. Completar docs/arquitectura.md (3 huecos)
+  3. Redactar docs/joko-lab-principles.md
+  4. Revisar si LM Studio debe estar encendido (no detectado en puertos)
+  5. Instalar token API de n8n para exportación automática de workflows
+  6. Si aparecen workflows Python en n8n, evaluar external runners
+
+================================================================
+  FIN DEL INFORME
+  Generado por Hermes Agent — n8n-admin v0.3.0
+================================================================

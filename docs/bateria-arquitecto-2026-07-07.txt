@@ -1,0 +1,812 @@
+Batería de Validación — Hermes como Arquitecto Técnico de Joko Lab
+Fecha: 2026-07-07
+Fuentes: HERMES.md, joko-lab/SKILL.md, estado-real.md, lab-manager/COMMANDS.md,
+         docs/decisiones/, docs/roadmap.md, skills especializadas
+
+================================================================================
+NIVEL 1 — COMPRENSIÓN DEL LABORATORIO
+================================================================================
+
+1 — Objetivo principal de Joko Lab
+
+Según HERMES.md §1:
+"Joko Lab es un laboratorio personal para diseñar, documentar y evolucionar un
+entorno de automatización e inteligencia artificial de forma incremental,
+reproducible y mantenible. Su objetivo es facilitar el aprendizaje, la
+experimentación y la construcción de soluciones útiles sobre una infraestructura
+propia."
+
+Además, la filosofía operativa (§2b) añade que toda mejora debe cumplir al menos
+uno de:
+- Reducir trabajo futuro
+- Aumentar el conocimiento del sistema
+- Mejorar la capacidad de operar autónomamente
+
+No hay otro objetivo documentado en ningún sitio.
+
+
+2 — Papel de HERMES.md
+
+HERMES.md es la constitución del laboratorio. Según estado-real.md:
+"Define principios, normas y organización. Ninguna skill lo modifica."
+
+Según joko-lab/SKILL.md: "La identidad, principios y normas del laboratorio
+están definidos en HERMES.md, que es la fuente de verdad."
+
+Contiene:
+- Filosofía del laboratorio (5 principios + filosofía operativa)
+- Organización de skills (etapas y niveles de madurez)
+- Estilo de comunicación
+- Principios de seguridad
+- Flujo de trabajo
+- Mejora continua
+- Registro de decisiones
+
+No es una skill. No pertenece a ningún nivel jerárquico. Todas las skills lo
+referencian.
+
+
+3 — Diferencia entre HERMES.md y joko-lab
+
+HERMES.md:
+- Naturaleza: Documento constitución
+- Nivel jerárquico: Ninguno (techo)
+- Contiene: Principios, normas, organización
+- Modificable por: Solo por decisión explícita
+- Quién lo consulta: Todas las skills
+
+joko-lab:
+- Naturaleza: Skill
+- Nivel jerárquico: Nivel 1 — Identidad
+- Contiene: Contexto global (infraestructura, hardware, stack Docker,
+  proveedores IA)
+- Modificable por: Sí, actualizable
+- Quién lo consulta: Skills que necesitan contexto del entorno
+
+joko-lab aporta el "dónde estamos" (infraestructura, hardware, stack Docker).
+HERMES.md define "cómo trabajamos" (principios, normas, flujo). No se solapan
+desde la poda realizada.
+
+
+4 — Responsabilidad de lab-manager
+
+Según lab-manager/COMMANDS.md:
+"lab-manager responde preguntas de gestión y diagnóstico. No ejecuta acciones
+técnicas ni modifica archivos. Su trabajo es pensar, coordinar e interpretar."
+
+Según estado-real.md:
+"Audita, detecta incoherencias, prioriza trabajo, revisa documentación.
+Consulta a especialistas pero no ejecuta."
+
+Tiene 4 scripts de diagnóstico que ejecuta para obtener datos, pero no toca
+servicios, archivos de configuración ni modifica el sistema. Es el Arquitecto
+Técnico del laboratorio. No administra nada directamente. Administra el
+laboratorio como concepto.
+
+
+5 — Qué skill consultar para Docker y Hermes
+
+Pregunta: "¿Los contenedores están UP?" -> Skill: docker-admin
+Pregunta: "¿Cómo reinicio un servicio?" -> Skill: docker-admin
+Pregunta: "¿Hermes está bien configurado?" -> Skill: hermes-expert
+Pregunta: "¿Cambio el provider de Hermes?" -> Skill: hermes-expert
+
+Está documentado en estado-real.md (tabla de roles) y en lab-manager/COMMANDS.md:
+"Cuando necesite información de un sistema concreto (Docker, n8n, Hermes),
+consulta a la skill especializada (docker-admin, n8n-admin, hermes-expert)."
+
+
+6 — Fuentes de verdad vs documentos de referencia
+
+HERMES.md — ES fuente de verdad. Otros que lo referencian: joko-lab (lo cita),
+todas las skills.
+
+joko-lab/SKILL.md — NO es fuente de verdad. Ninguna lo referencia.
+
+docker-admin/* — ES fuente de verdad para Docker. lab-manager lo consulta.
+
+n8n-admin/* — ES fuente de verdad para n8n. lab-manager lo consulta.
+
+estado-real.md — NO es fuente de verdad. Es un snapshot, no autoridad normativa.
+
+docs/decisiones/ — ES fuente de verdad. lab-manager los enumera.
+
+estado-real.md es especialmente delicado: contiene información que caduca
+(versiones, niveles de madurez, scripts). Debería marcarse explícitamente como
+snapshot, no como fuente de verdad.
+
+
+================================================================================
+NIVEL 2 — COMPRENSIÓN DE LA ARQUITECTURA
+================================================================================
+
+7 — Arquitectura completa en orden jerárquico
+
+HERMES.md (Constitución — no es skill, no tiene nivel)
+  |
+  Nivel 1: Identidad
+    joko-lab — contexto global del laboratorio
+  |
+  Nivel 2: Arquitectura
+    lab-manager — coordina, audita, prioriza (no ejecuta)
+  |
+  Nivel 3: Especialistas
+    hermes-expert — configura y optimiza Hermes Agent
+    docker-admin — gestiona Docker
+    n8n-admin — gestiona n8n
+    ai-router — gestiona estrategia de IA
+  |
+  Nivel 4: Aplicaciones
+    betterbird — correo
+    evolution — PIM
+    perfumes — colección
+
+Las flechas de consulta van hacia arriba: lab-manager consulta a especialistas,
+especialistas consultan a joko-lab para contexto, todos respetan HERMES.md.
+Las flechas de modificación no existen: lab-manager no modifica especialistas,
+especialistas no modifican HERMES.md.
+
+
+8 — Componentes que dependen de Docker
+
+Servicios en Docker (según joko-lab/SKILL.md):
+  n8n (puerto 5678)
+  Ollama (puerto 11434)
+  Stirling-PDF (puerto 8081)
+  pdf-cleaner (puerto 8000)
+
+Skills que dependen de Docker:
+  docker-admin (gestiona esos contenedores)
+  n8n-admin (gestiona workflows dentro del contenedor n8n)
+  ai-router (usa Ollama que corre en Docker)
+
+Sin Docker, estos 4 servicios dejan de funcionar. Las skills que los gestionan
+pierden su objeto de trabajo.
+
+
+9 — Componentes que dependen de Hermes
+
+Hermes Agent es el sistema que ejecuta este prompt. Dependen de él:
+  hermes-expert (gestiona su configuración)
+  lab-manager (opera dentro de Hermes, no tendría sentido sin él)
+  Todas las skills (se ejecutan dentro de sesiones de Hermes)
+
+Si Hermes dejara de funcionar, el laboratorio como concepto documental sobrevive
+(los archivos están en disco), pero la capacidad de operar y consultar skills
+desaparece. Es una dependencia existencial del laboratorio como sistema vivo.
+
+
+10 — Si Docker dejara de funcionar
+
+Afectados:
+  n8n — Se para. Workflows inaccesibles.
+  Ollama — Se para. Modelos locales no disponibles.
+  Stirling-PDF — Se para.
+  pdf-cleaner — Se para.
+  docker-admin — Pierde su objeto de gestión.
+  n8n-admin — Pierde su objeto de gestión.
+  ai-router — Pierde Ollama (solo le queda LM Studio local).
+  lab-manager — Reportaría servicios caídos en diagnóstico.
+
+No afectados:
+  betterbird — Corre fuera de Docker (Thunderbird).
+  evolution — Corre fuera de Docker.
+  hermes-expert — Hermes Agent corre fuera de Docker.
+  LM Studio — Corre fuera de Docker.
+  perfumes — No depende de Docker.
+
+El laboratorio no colapsa, pero pierde su capa de automatización y modelos
+locales por Ollama.
+
+
+11 — Si DeepSeek dejara de estar disponible
+
+Según joko-lab/SKILL.md, DeepSeek es el proveedor principal de Hermes.
+
+Afectados:
+  Hermes Agent — Pierde su provider principal. Habría que reconfigurarlo.
+  lab-manager — No podría responder sin modelo activo.
+  Todas las skills — Dependen de que Hermes funcione.
+
+Mitigación posible: cambiar Hermes a Ollama o LM Studio como provider.
+DeepSeek no es imprescindible — el laboratorio puede funcionar 100% local
+con Ollama + LM Studio.
+
+
+12 — Partes que funcionan completamente en local
+
+Proveedores de IA local (según joko-lab/SKILL.md):
+  Ollama (localhost:11434) — Funciona sin internet: SÍ
+  LM Studio (localhost:1234) — Funciona sin internet: SÍ
+  DeepSeek (API online) — Funciona sin internet: NO
+
+Con DeepSeek caído pero Ollama + LM Studio activos, funcionan 100% local:
+  n8n, Ollama, Stirling-PDF, pdf-cleaner, LM Studio
+  Hermes Agent (reconfigurado a local)
+  betterbird, evolution, perfumes
+  docker-admin, n8n-admin, ai-router
+
+Única dependencia externa real: Hermes Agent necesita un provider de IA.
+Si se reconfigura a Ollama o LM Studio, el laboratorio es 100% autónomo.
+
+
+================================================================================
+NIVEL 3 — AUDITORÍA
+================================================================================
+
+13 — Auditoría completa
+
+CRÍTICOS (0)
+No hay problemas críticos.
+
+ALTOS (1)
+1. joko-lab-principles.md eliminado pero sin registro de decisión.
+   El archivo docs/joko-lab-principles.md estaba vacío y se eliminó, pero no hay
+   una decisión registrada en docs/decisiones/ que documente por qué.
+   Acción: registrar decisión de eliminación con justificación.
+
+MEDIOS (3)
+2. lab-manager/SKILL.md desactualizado. COMMANDS.md se actualizó a "Arquitecto
+   Técnico" pero SKILL.md probablemente sigue usando "Arquitecto Permanente" o
+   "Director Técnico".
+3. estado-real.md no marcado como snapshot. Contiene información que caduca.
+   No hay una nota que diga "esto refleja el estado en fecha X".
+4. No hay healthcheck para el propio laboratorio. Ningún mecanismo verifica
+   periódicamente que la documentación sigue siendo coherente.
+
+BAJOS (4)
+5. betterbird sin ROADMAP.md ni SAFETY.md.
+6. evolution sin ROADMAP.md ni SAFETY.md.
+7. perfumes solo tiene SKILL.md y README.md. Le falta COMMANDS.md, SAFETY.md,
+   ROADMAP.md, CHANGELOG.md. Es la skill menos desarrollada.
+8. docs/hermes-notes.md (7 líneas) y docs/hermes-internals.md (15 líneas) son
+   archivos muy pequeños, casi esqueletos.
+
+
+14 — Documentación duplicada
+
+No hay duplicación activa tras la poda de joko-lab.
+Antes de la poda: joko-lab/SKILL.md contenía filosofía, estilo, seguridad y
+flujo de trabajo que también estaban en HERMES.md. CORREGIDO.
+
+Duplicación latente: estado-real.md contiene la tabla de skills que también
+existe implícitamente en los SKILL.md individuales. No es duplicación exacta
+(estado-real.md es agregado), pero hay que mantenerla sincronizada.
+
+
+15 — Responsabilidades solapadas
+
+docker-admin vs n8n-admin — No. docker-admin gestiona contenedores, n8n-admin
+gestiona workflows dentro de n8n.
+
+ai-router vs hermes-expert — Límite fino pero claro. ai-router decide qué modelo
+usar. hermes-expert configura qué provider usa Hermes. Son decisiones en capas
+distintas.
+
+lab-manager vs especialistas — No hay solapamiento. lab-manager da visión global,
+cada especialista da visión detallada de su área.
+
+No hay solapamientos activos.
+
+
+16 — Documentos que eliminaría
+
+docs/hermes-notes.md (7 líneas, contenido trivial) — Fusionar en
+hermes-expert/KNOWLEDGE.md y eliminar.
+
+docs/hermes-internals.md (15 líneas, esqueleto) — Fusionar en
+hermes-expert/KNOWLEDGE.md y eliminar.
+
+
+17 — Documentos que dividiría
+
+Ninguno. Todos los documentos actuales tienen un tamaño y propósito manejable:
+  HERMES.md ~150 líneas — No dividir (es la constitución)
+  estado-real.md 200 líneas — No dividir (es un snapshot único)
+  arquitectura.md 156 líneas — No dividir
+  roadmap.md 57 líneas — No dividir (es pequeño)
+  metodologia.md 17 líneas — Enano, no dividir
+
+Ningún documento supera el umbral de división.
+
+
+18 — Documentos que fusionaría
+
+docs/hermes-notes.md + docs/hermes-internals.md -> hermes-expert/KNOWLEDGE.md
+Ambos hablan de Hermes. Deberían vivir dentro de la skill, no en docs/ raíz.
+
+El resto tienen identidad propia.
+
+
+19 — Skills con responsabilidades poco definidas
+
+evolution — Su SKILL.md indica etapa 1 (Comprender). No hay claridad sobre
+qué alcance tendrá como cliente PIM.
+
+perfumes — Su SKILL.md indica etapa 1. Es una "aplicación de dominio" pero no
+está definido qué operaciones cubre (inventario, búsqueda, valoración, compra).
+
+betterbird — Está en etapa 2 (Diagnosticar). Tiene más definición que las
+anteriores, pero le falta ROADMAP y SAFETY.
+
+El resto (docker-admin, n8n-admin, hermes-expert, ai-router, lab-manager) tienen
+responsabilidades claras y documentadas.
+
+
+20 — Skill más importante actualmente
+
+lab-manager.
+Razones: (1) Es la única skill con visión global del laboratorio. (2) Es la que
+detecta incoherencias, prioriza y propone mejoras. (3) Sin ella, las skills
+especializadas funcionan independientemente pero el laboratorio como sistema
+pierde coordinación. (4) Es la skill que justifica la existencia del nivel 2.
+
+Si desapareciera mañana, las skills especializadas seguirían funcionando, pero
+el laboratorio perdería su capacidad de evolucionar de forma coherente.
+
+
+================================================================================
+NIVEL 4 — ARQUITECTURA Y DISEÑO
+================================================================================
+
+21 — ¿Modificaría la jerarquía actual?
+
+No. La jerarquía de 4 niveles recién implementada es correcta:
+
+Nivel 1 (Identidad) — Necesario para que cualquier skill entienda el contexto.
+Nivel 2 (Arquitectura) — Necesario para coordinar. Separado de especialistas.
+Nivel 3 (Especialistas) — Agrupa sistemas grandes con responsabilidades claras.
+Nivel 4 (Aplicaciones) — Agrupa herramientas de usuario final.
+
+No añadiría niveles (4 es suficiente). No fusionaría niveles (confundiría
+arquitectura con operación).
+
+
+22 — Skills haciendo trabajo de otra
+
+No detectado. La auditoría no encuentra solapamientos activos.
+
+El único punto fino: ai-router y hermes-expert comparten el área de "IA", pero
+ai-router decide qué modelo usar para cada tarea y hermes-expert configura
+Hermes Agent (provider, endpoint). Son decisiones distintas en capas distintas.
+
+
+23 — Información que falta para comprender el laboratorio
+
+1. Diagrama de red/puertos — No hay un mapa completo de qué servicio escucha
+   en qué puerto y qué depende de qué.
+2. Ciclo de vida de datos — n8n tiene backups en /mnt/ssd_ia_datos/backups
+   pero no hay un documento que explique qué se respalda, cada cuánto, cómo se
+   restaura.
+3. Dependencias entre skills — No hay un grafo explícito. Está implícito en la
+   jerarquía pero no documentado formalmente.
+4. Criterios de "hecho" — No hay una definición de "esto está terminado" para
+   cada skill.
+
+Ninguno es crítico. Los dos primeros (mapeo de red y ciclo de vida de datos)
+son los que más valor añadirían con poco esfuerzo.
+
+
+24 — Decisiones de arquitectura sin documentar
+
+1. Eliminación de escala 0-7 como jerarquía, reemplazo por 4 niveles
+   -> NO documentada
+2. lab-manager como "Arquitecto Técnico" (no ejecuta, solo coordina)
+   -> NO documentada
+3. Poda de joko-lab/SKILL.md y migración a HERMES.md
+   -> NO documentada
+4. Eliminación de joko-lab-principles.md
+   -> NO documentada
+
+Las 4 decisiones se han implementado pero ninguna tiene entrada en
+docs/decisiones/.
+
+
+25 — Documentación que debería ser referencia obligatoria
+
+HERMES.md — Ya lo es. Contiene principios, normas y organización que todas las
+skills deben respetar.
+
+docs/decisiones/ — Debería serlo. Cualquier skill que quiera cambiar algo debe
+consultar primero si hay una decisión previa.
+
+joko-lab/SKILL.md — No debería serlo. Es contexto, no norma.
+
+Propuesta: añadir a HERMES.md una sección que enumere qué documentos son
+"normativos" (fuente de verdad) y cuáles son "informativos" (referencia).
+
+
+================================================================================
+NIVEL 5 — PLANIFICACIÓN
+================================================================================
+
+26 — Una semana de trabajo, por prioridad
+
+# | Tarea                                     | Prioridad | Esfuerzo
+1 | Registrar las 4 decisiones de esta sesión  | Alta      | 30 min
+2 | Actualizar lab-manager/SKILL.md            | Alta      | 15 min
+3 | Marcar estado-real.md como snapshot        | Alta      | 10 min
+4 | Fusionar hermes-notes+internals en skill   | Media     | 30 min
+5 | Distinguir docs normativos vs informativos | Media     | 20 min
+6 | Crear ROADMAP.md para betterbird           | Media     | 1 h
+7 | Crear COMMANDS.md para perfumes            | Baja      | 1 h
+8 | Revisar SAFETY.md en skills                | Baja      | 2 h
+
+Total estimado: ~6 horas.
+
+
+27 — Si solo pudiera desarrollar una skill más
+
+perfumes.
+
+Razones: (1) Es la skill con menor madurez (nivel 2). Solo tiene SKILL.md y
+README.md. (2) Tiene el dominio más acotado (colección personal), lo que facilita
+definir su alcance rápido. (3) Es una aplicación de nivel 4 — no bloquea a nadie.
+Desarrollarla no tiene riesgo de romper nada. (4) Es la skill que más retorno da
+por esfuerzo: definir COMMANDS.md, SAFETY.md, ROADMAP.md y un script básico la
+llevaría de nivel 2 a nivel 4 en pocas horas.
+
+
+28 — Tareas que eliminaría del ROADMAP
+
+Según el ROADMAP actual (docs/roadmap.md, 57 líneas):
+
+Tarea #3 — Redactar docs/joko-lab-principles.md
+  Motivo: YA ELIMINADO. Era un archivo vacío cuyo contenido se migró a HERMES.md.
+
+Tarea #7 — Revisar docs/hermes-notes.md (contenido antiguo)
+  Motivo: Son solo 7 líneas. Mejor fusionar directamente con
+  hermes-expert/KNOWLEDGE.md y eliminar el archivo. No merece tarea separada.
+
+Tarea #1 — Poblar betterbird — YA ESTÁ POBLADA (etapa 2). Bajar prioridad.
+Tarea #10 — Auditoría global — YA REALIZADA. Marcar como completada.
+
+El ROADMAP está ligeramente desactualizado respecto al estado real.
+
+
+29 — Tareas que añadiría al ROADMAP
+
+A | Registrar decisiones de arquitectura pendientes    | Alta   | —
+B | Actualizar lab-manager/SKILL.md                    | Alta   | —
+C | Marcar estado-real.md como snapshot                | Alta   | —
+D | Distinguir docs normativos vs informativos         | Media  | —
+E | Crear COMMANDS.md para perfumes                    | Media  | —
+F | Mapa de red/puertos del laboratorio                | Baja   | —
+G | Documentar ciclo de vida de datos                  | Baja   | n8n-admin
+
+
+30 — Tres acciones de mayor retorno con menor esfuerzo
+
+1. Registrar 4 decisiones en docs/decisiones/ — 30 min. Evita que dentro de 3
+   meses alguien se pregunte "¿por qué se hizo esto?".
+
+2. Actualizar lab-manager/SKILL.md — 15 min. Elimina la incoherencia entre
+   COMMANDS.md (Arquitecto Técnico) y SKILL.md.
+
+3. Marcar estado-real.md como snapshot — 10 min. Elimina el riesgo de que se
+   trate como fuente de verdad absoluta.
+
+Las tres juntas suman menos de 1 hora y eliminan las incoherencias más
+relevantes detectadas en la auditoría.
+
+
+================================================================================
+NIVEL 6 — RELACIÓN ENTRE SKILLS
+================================================================================
+
+31 — Flujo de conocimiento
+
+HERMES.md
+  Define principios, normas, organización. Todas las skills lo referencian.
+  |
+  v
+joko-lab
+  Aporta contexto: infraestructura, hardware, stack Docker, proveedores IA.
+  Las skills especializadas lo consultan para entender el entorno.
+  |
+  v
+lab-manager
+  Consulta a especialistas para obtener datos. Interpreta, audita, prioriza.
+  No ejecuta, no modifica.
+  |
+  v (consulta, no modifica)
+hermes-expert, docker-admin, n8n-admin, ai-router
+  Cada una opera su dominio. Reportan a lab-manager cuando éste consulta.
+  |
+  v (usan la infraestructura)
+betterbird, evolution, perfumes
+  Consumen servicios gestionados por nivel 3. No administran nada.
+
+El flujo es unidireccional hacia abajo en la consulta, y hacia arriba en el
+reporte. No hay bucles de retroalimentación.
+
+
+32 — Colaboración docker-admin con n8n-admin
+
+docker-admin gestiona los contenedores Docker. n8n-admin gestiona workflows
+dentro del contenedor n8n.
+
+Colaboración esperada:
+1. n8n-admin necesita saber si el contenedor n8n está UP -> consulta a
+   docker-admin.
+2. Si docker-admin detecta que n8n está caído, n8n-admin no debe intentar
+   operar workflows.
+3. Si n8n-admin necesita reiniciar n8n (con confirmación), delega en
+   docker-admin.
+
+No deben solaparse: docker-admin no toca workflows de n8n. n8n-admin no toca
+docker-compose.yml.
+
+
+33 — Colaboración hermes-expert con lab-manager
+
+hermes-expert es especialista en Hermes Agent. lab-manager es el arquitecto
+técnico.
+
+Colaboración esperada:
+1. lab-manager necesita saber cómo está configurado Hermes -> consulta a
+   hermes-expert.
+2. Si lab-manager detecta una incoherencia en la configuración de Hermes, lo
+   notifica, pero NO la corrige.
+3. hermes-expert ejecuta los cambios en Hermes cuando se confirman.
+4. lab-manager puede proponer mejoras, pero la decisión final y la ejecución
+   son de hermes-expert.
+
+Regla: lab-manager piensa, hermes-expert ejecuta.
+
+
+34 — Skills que nunca deberían conocerse directamente
+
+betterbird con perfumes — Son aplicaciones independientes. No comparten datos
+ni dependencias.
+
+evolution con betterbird — Ambas son clientes de comunicación. Si necesitan
+algo, pasan por su especialista de nivel 3.
+
+perfumes con docker-admin — Una colección de perfumes no necesita saber el
+estado de Docker.
+
+Regla general: skills de nivel 4 solo se comunican con skills de nivel 3 cuando
+necesitan infraestructura. Nunca entre sí directamente. Skills de nivel 3 pueden
+comunicarse entre sí cuando hay dependencias reales (docker-admin con n8n-admin).
+
+
+================================================================================
+NIVEL 7 — TOMA DE DECISIONES
+================================================================================
+
+35 — ¿Aceptarías Kubernetes?
+
+No.
+
+Razones:
+1. Sobredimensionado. El laboratorio tiene 4 contenedores. Kubernetes está
+   diseñado para docenas o cientos.
+2. Complejidad operativa. Añadir Kubernetes multiplica la superficie de
+   aprendizaje y mantenimiento.
+3. No aporta valor. No hay necesidad de escalado horizontal ni orquestación
+   multi-nodo.
+4. Contradice la filosofía operativa. No reduce trabajo futuro, no aumenta el
+   conocimiento significativamente.
+
+Decisión: mantener Docker Compose.
+
+
+36 — ¿Aceptarías una base de datos externa para la documentación?
+
+No.
+
+Razones:
+1. Markdown en Git es más mantenible. No necesita servidor ni backup específico.
+2. Portabilidad. Los archivos .md se leen desde cualquier sitio.
+3. Hermes los lee directamente sin necesidad de APIs.
+4. Riesgo de vendor lock-in.
+
+Decisión: mantener documentación en archivos .md dentro del repositorio.
+
+
+37 — ¿Aceptarías sustituir Markdown por Notion?
+
+No.
+
+Razones:
+1. Dependencia externa. Notion requiere internet.
+2. Hermes no puede leer Notion directamente.
+3. Sin versionado nativo (no es Git).
+4. No mejora nada. Markdown ya es legible, editable y versionable.
+
+Decisión: mantener Markdown como formato único de documentación.
+
+
+38 — Tecnologías que rechazaría incorporar actualmente
+
+Kubernetes — Sobredimensionado para 4 contenedores.
+Base de datos externa para docs — Añade dependencia sin valor.
+Notion para documentación — Rompe la autonomía local del agente.
+CI/CD complejo (Jenkins, GitLab CI) — Un hook de Git basta.
+Terraform/Pulumi — IAC para 4 contenedores es sobredimensionado.
+Monitorización externa (Datadog, Grafana Cloud) — nvidia-smi + docker ps bastan.
+Base de datos externa para n8n — SQLite basta para el volumen actual.
+
+Criterio: cualquier tecnología que añada más complejidad operativa de la que
+resuelve, se rechaza.
+
+
+39 — Decisiones que NO tomaría en este momento
+
+Migrar a Podman — Docker funciona, no hay problema que resolver.
+Reemplazar DeepSeek como provider principal — Funciona. No cambiar sin motivo.
+Añadir más servicios Docker — No hay necesidad. Los 4 actuales cubren todo.
+Crear nuevas skills — Las 9 actuales cubren todo el dominio.
+Automatizar healthchecks con herramienta externa — Cron + scripts funcionan.
+Separar n8n en varios contenedores — Un contenedor basta.
+
+Principio: no arreglar lo que no está roto. No añadir complejidad antes de que
+exista la necesidad.
+
+
+================================================================================
+NIVEL 8 — VISIÓN DE ARQUITECTO
+================================================================================
+
+40 — Plan estratégico para tres meses
+
+PRINCIPIOS DE EJECUCIÓN
+- Presupuesto cero -> todo en tiempo y herramientas gratuitas
+- Tiempo limitado -> priorizar lo que más retorno da por hora invertida
+- Mantenibilidad -> cualquier cambio debe reducir trabajo futuro o aumentar
+  conocimiento
+
+MES 1 — SANEAMIENTO
+Objetivo: eliminar incoherencias y deuda técnica rápida.
+
+Semana 1: Registrar decisiones pendientes (4). Actualizar lab-manager/SKILL.md.
+           Marcar estado-real.md como snapshot.
+Semana 2: Fusionar hermes-notes.md + hermes-internals.md en
+           hermes-expert/KNOWLEDGE.md. Eliminar archivos zombi.
+Semana 3: Crear COMMANDS.md para perfumes. Crear ROADMAP.md para betterbird
+           y evolution.
+Semana 4: Añadir sección "documentos normativos vs informativos" a HERMES.md.
+           Auditoría final de mes.
+
+Qué NO haría: crear nuevas skills, añadir servicios Docker, cambiar tecnología.
+
+MES 2 — CONSOLIDACIÓN
+Objetivo: que lab-manager pueda operar de forma más autónoma.
+
+Semana 1-2: Documentar mapa de red/puertos del laboratorio. Documentar ciclo
+             de vida de datos (backups, restauración).
+Semana 3: Revisar SAFETY.md de todas las skills. Añadir healthcheck automático
+           del laboratorio (coherencia documental periódica).
+Semana 4: Actualizar ROADMAP global. Auditoría de mes.
+
+Qué pospondría: desarrollo profundo de evolution (sigue en etapa 1).
+
+MES 3 — AUTOMATIZACIÓN LIGERA
+Objetivo: reducir trabajo manual repetitivo.
+
+Semana 1-2: Scripts de diagnóstico para betterbird y perfumes.
+Semana 3: Revisar si ai-router puede integrarse más con Hermes (tarea #6 del
+           ROADMAP actual).
+Semana 4: Auditoría global final. Decidir próximos 3 meses.
+
+Qué eliminaría: tarea #3 del ROADMAP (joko-lab-principles.md) ya resuelta.
+Qué simplificaría: no añadir automatización donde no hay repetición.
+
+PROYECCIÓN AL FINAL DEL MES 3
+
+Antes -> Después
+4 decisiones sin registrar -> 0 decisiones sin registrar
+lab-manager/SKILL.md desactualizado -> lab-manager/SKILL.md coherente
+estado-real.md sin fecha -> estado-real.md marcado como snapshot
+2 archivos zombi -> 0 archivos zombi
+perfumes sin COMMANDS.md -> perfumes con COMMANDS.md
+betterbird/evolution sin ROADMAP -> con ROADMAP
+Sin healthcheck documental -> healthcheck documental básico
+Sin mapa de red -> mapa de red documentado
+Sin ciclo de vida de datos -> ciclo de vida documentado
+
+
+================================================================================
+NIVEL 9 — PRUEBA MAESTRA
+================================================================================
+
+DUPLICIDADES DETECTADAS
+
+Duplicidad 1 — Principios, filosofía y normas
+Documentos implicados:
+- HERMES.md (§1-5): 5 principios, filosofía operativa, organización
+- joko-lab/SKILL.md (versión anterior): contenía los mismos principios
+- docs/joko-lab-principles.md: vacío
+Estado actual: RESUELTO. HERMES.md es la única fuente de verdad.
+joko-lab/SKILL.md solo contiene identidad y contexto.
+
+Duplicidad 2 — Información de Hermes Agent
+Documentos implicados:
+- docs/hermes-notes.md (7 líneas, miscelánea)
+- docs/hermes-internals.md (15 líneas, esqueleto)
+- skills/hermes-expert/ (skill especializada)
+Estado actual: NO RESUELTO. Dos archivos en docs/ raíz que hablan de Hermes
+pero deberían vivir dentro de la skill.
+Fuente de verdad: skills/hermes-expert/.
+Acción: fusionar ambos en hermes-expert/KNOWLEDGE.md y eliminar originales.
+
+Duplicidad 3 — Estado del laboratorio
+Documentos implicados:
+- docs/estado-real.md (snapshot agregado)
+- Cada SKILL.md individual (su propia versión, etapa, estado)
+Estado actual: RIESGO LATENTE. No son duplicados exactos pero hay que mantener
+sincronización. Si se actualiza una skill y no estado-real.md, hay incoherencia.
+Mitigación: marcar estado-real.md como snapshot con fecha explícita.
+
+Duplicidad 4 — Decisiones de arquitectura
+Documentos implicados:
+- docs/decisiones/ (11 archivos)
+- Sesiones de Hermes (no documentadas: 4 decisiones de esta sesión)
+Estado actual: NO RESUELTO. Las decisiones se toman pero no siempre se registran.
+Acción: registrar las 4 decisiones pendientes inmediatamente.
+
+FUENTES DE VERDAD VS DOCUMENTOS DE REFERENCIA
+
+Tema: Principios y normas
+Fuente de verdad: HERMES.md
+Documentos que deben referenciar (no repetir): joko-lab/SKILL.md (lo cita),
+todas las skills
+
+Tema: Contexto del laboratorio
+Fuente de verdad: joko-lab/SKILL.md
+Documentos que deben referenciar: Ninguno — es referencia, no norma
+
+Tema: Estado actual
+Fuente de verdad: estado-real.md (como snapshot)
+Documentos que deben referenciar: Ninguno
+
+Tema: Hermes Agent
+Fuente de verdad: skills/hermes-expert/
+Documentos que deben referenciar: docs/hermes-notes.md (eliminar),
+docs/hermes-internals.md (eliminar o fusionar)
+
+Tema: Docker
+Fuente de verdad: skills/docker-admin/
+Documentos que deben referenciar: Ninguno
+
+Tema: n8n
+Fuente de verdad: skills/n8n-admin/
+Documentos que deben referenciar: Ninguno
+
+Tema: Decisiones
+Fuente de verdad: docs/decisiones/
+Documentos que deben referenciar: lab-manager los enumera, no los duplica
+
+INFORMACIÓN QUE ELIMINARÍA
+
+1. docs/hermes-notes.md (7 líneas) -> Fusionar en hermes-expert/KNOWLEDGE.md
+2. docs/hermes-internals.md (15 líneas) -> Fusionar en hermes-expert/KNOWLEDGE.md
+3. docs/joko-lab-principles.md -> YA ELIMINADO
+
+No eliminaría ningún otro archivo.
+
+COHERENCIA DOCUMENTAL
+
+SÍ, con reservas.
+
+Puntos fuertes:
+- Jerarquía de 4 niveles clara y bien documentada en estado-real.md
+- HERMES.md cubre principios, normas, estilo, seguridad y flujo sin duplicar
+- Cada skill especializada tiene SKILL.md, COMMANDS.md y scripts
+- 11 decisiones registradas en docs/decisiones/
+
+Riesgos detectados:
+1. Riesgo de deriva documental moderado. 4 decisiones sin registrar.
+2. Dos archivos zombi en docs/ raíz (hermes-notes.md, hermes-internals.md).
+3. estado-real.md sin marcación de snapshot.
+4. ROADMAP desactualizado (incluye tareas ya completadas).
+
+Diagnóstico final: la documentación es coherente hoy pero tiene tendencia a
+acumular archivos pequeños sin mantenimiento y a no registrar decisiones.
+Si se corrige en el próximo mes, el riesgo de deriva es bajo. Si se ignora,
+en 3 meses habrá deuda documental que requerirá otra auditoría como esta.
+
+================================================================================
+FIN DE LA BATERÍA
+================================================================================

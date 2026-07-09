@@ -1,0 +1,144 @@
+3. Evolución de la arquitectura — ¿qué dejaría de escalar con 30 skills?
+=======================================================================
+
+Contexto actual (julio 2026)
+-----------------------------
+Skills instaladas: 8 (3 pobladas/completas, 2 pobladas en desarrollo, 3 vacías).
+Directorios por skill: 7 archivos fijos (SKILL.md, README.md, KNOWLEDGE.md,
+  COMMANDS.md, SAFETY.md, ROADMAP.md, CHANGELOG.md) + opcionales (scripts/,
+  DIARY.md, datos/).
+Skills pobladas (~240 archivos derivados de 8 skills con scripts, datos logs).
+lab-manager v0.2.0 con 4 scripts (diagnosticar, priorizar, deuda-tecnica,
+  cambios-ultima).
+
+Proyección a 30 skills (3.75x)
+-------------------------------
+~210 archivos de skill (7 x 30) solo con estructura base.
+~350-500 archivos totales sumando scripts, datos, logs, configuraciones.
+0-30 skills sin automatización si no se escala lab-manager.
+
+=======================================================================
+LO QUE DEJARÍA DE ESCALAR PRIMERO
+=======================================================================
+
+1. lab-manager — primer cuello de botella
+------------------------------------------
+  - Sus scripts iteran sobre skills/ con un bucle for:
+      for skill_dir in "$LAB_DIR/skills"/*/; do ...
+  - Hoy recorre 8 directorios. A 30 sigue siendo viable en tiempo,
+    pero el cálculo de deuda técnica y las recomendaciones se vuelven
+    una pared de texto.
+  - El script deuda-tecnica.sh produce una línea por skill y N acciones
+    recomendadas. Con 30 skills el usuario deja de leerlo.
+  - No hay umbrales ni filtros: siempre muestra todo.
+  - No hay resumen ejecutivo: entierra los problemas reales entre
+    skills "sanas".
+
+  Síntoma: lab-manager pasa de "útil" a "ruidoso". El usuario
+  lo ignora porque da demasiada información no priorizada.
+
+2. docs/arquitectura.md — tabla de skills insostenible
+-------------------------------------------------------
+  - La tabla actual (skills instaladas, 8 filas) es legible.
+  - Con 30 skills ocuparía ~40 líneas de terminal (estado + etapa +
+    versión). Nadie la lee entera cada vez que consulta el documento.
+  - El documento mezcla información estática (hardware, componentes)
+    con información dinámica (estado de cada skill). A 30 skills,
+    actualizarlo manualmente es inviable.
+  - La sección "skills instaladas" debería generarse automáticamente
+    o eliminarse del documento principal.
+
+  Síntoma: contradicciones entre docs/arquitectura.md y el estado
+  real de las skills. La documentación queda desactualizada.
+
+3. Navegación manual de skills
+-------------------------------
+  - Hoy skills/ tiene 8 subdirectorios, fáciles de recorrer con ls.
+  - A 30, encontrar una skill concreta o saber cuáles existen sin
+    buscador se vuelve lento.
+  - No hay un índice generado automáticamente (skills/INDEX.md o
+    similar).
+  - Tampoco hay un sistema de etiquetas o categorías. Todas las
+    skills están al mismo nivel en el mismo directorio.
+
+  Síntoma: el usuario pregunta "¿qué skills tengo?" y toca hacer
+  ls + filtrar mentalmente.
+
+4. Estructura plana de skills/
+--------------------------------
+  - Skills agrupadas: joko-lab (identidad), lab-manager (arquitecto),
+    especialistas (docker-admin, n8n-admin, ai-router, hermes-expert),
+    aplicaciones (betterbird, perfumes, evolution).
+  - Con 30 skills, esta diferenciación se pierde en el listado plano.
+  - Si se añaden 22 skills nuevas, algunas serán de aplicaciones y
+    otras de herramientas. Sin subdirectorios, encontrar una skill
+    de aplicaciones entre 15 skills de herramientas es ruidoso.
+
+  Síntoma: la organización por carpetas (<nombre>/ al mismo nivel)
+  escala mal porque no hay jerarquía visible sin entrar en cada
+  directorio o leer el SKILL.md.
+
+5. Registro manual de decisiones
+----------------------------------
+  - docs/decisiones/ tiene 11 archivos. Se decide crear uno cada vez
+    que se toma una decisión relevante.
+  - Con 30 skills operando, el ritmo de decisiones se multiplica.
+    Cada skill genera al menos una decisión de diseño, más las
+    decisiones transversales.
+  - El convenio de nombrado (AAAA-MM-DD-tema.md) escala bien como
+    archivo individual, pero el índice (README.md o listado en
+    arquitectura.md) requiere mantenerse al día manualmente.
+
+  Síntoma: decisiones no registradas por fricción. La documentación
+  deja de reflejar el razonamiento real.
+
+6. Salud del sistema sin agregación
+-------------------------------------
+  - Hoy se audita cada skill individualmente. El script de deuda
+    técnica suma puntuaciones.
+  - Con 30 skills, la auditoría individual de cada una consume
+    demasiado tiempo. Sin un dashboard o tabla resumen, el usuario
+    no tiene una visión de conjunto rápida.
+  - lab-manager puede priorizar, pero solo tras ejecutar el script.
+    No hay alertas automáticas ni umbrales que disparen revisión.
+
+  Síntoma: skills que se degradan sin que nadie lo note hasta la
+  próxima auditoría manual.
+
+=======================================================================
+LO QUE SÍ ESCALARÍA (sin cambios)
+=======================================================================
+
+- Hermes Agent: no tiene límite práctico de skills cargadas.
+  Cada skill se carga bajo demanda cuando se referencia.
+- Sistema de archivos: 30 carpetas con 7 archivos cada una es
+  trivial para ext4. El límite no es técnico, es de navegación.
+- Docker stack: 4 servicios, independientes de las skills.
+- ai-router: su árbol de decisión es configurable por archivo,
+  no depende del número de skills.
+- Memoria persistente: la memoria de Hermes tiene límite de chars.
+  A medida que crece el laboratorio, la memoria se llena de datos
+  estables y el resto se busca por session_search. No es un problema
+  nuevo a 30 skills; ya existe con 8.
+
+=======================================================================
+RESUMEN — Puntos de fricción (ordenados por urgencia)
+=======================================================================
+
+1. lab-manager sin filtros ni resumen ejecutivo → ruido.
+
+2. docs/arquitectura.md con tabla de skills manual → inconsistencia.
+
+3. skills/ plano sin índice ni subdirectorios → navegación lenta.
+
+4. docs/decisiones/ con registro manual → decisiones no registradas.
+
+5. Sin alertas ni healthchecks automáticos por skill → degradación
+   silenciosa.
+
+Ninguno de estos problemas es técnicamente grave. Son problemas de
+organización y automatización. Todos se resuelven con mejoras en
+lab-manager y en la estructura de documentación, no con cambios en
+la infraestructura ni en los servicios.
+
+Fecha del análisis: 2026-07-07

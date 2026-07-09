@@ -1,0 +1,68 @@
+# ¿Qué documento modificarías hoy para mejorar más el laboratorio sin escribir una sola línea de código?
+
+**Fecha:** 2026-07-07
+**Pregunta original:** "¿Qué documento modificarías hoy para mejorar más el laboratorio sin escribir una sola línea de código? Justifica por qué ese documento tiene el mayor impacto."
+
+---
+
+## Respuesta
+
+**docs/decisiones/README.md** — el índice de decisiones de arquitectura.
+
+---
+
+## Por qué este documento tiene el mayor impacto
+
+### 1. Es el punto de entrada a la memoria del laboratorio
+
+Cuando alguien (o Hermes) necesita entender por qué se tomó una decisión, el orden de consulta (HERMES.md §3) dice: primero HERMES.md, luego docs/arquitectura.md, luego docs/decisiones/. El README.md de decisiones es la puerta a ese tercer nivel. Si está desordenado, incompleto o con fechas incorrectas, el orden de consulta se rompe.
+
+### 2. Hoy mismo hay anomalías que lo hacen menos fiable
+
+El índice actual lista 10 decisiones, pero tiene dos problemas:
+
+- **2026-07-06 — estructura-hermes-lab.md**: dice "(pendiente de redactar)" — está listado como si existiera pero no tiene contenido.
+- **2026-07-08 — ai-router.md**: dice "(pendiente de redactar)" con fecha del día siguiente. Un archivo que existe en disco con fecha futura.
+
+Esto significa que cualquiera que consulte el índice encontrará entradas que prometen información que no está disponible. Es como un mapa con calles marcadas que no existen.
+
+### 3. No requiere código, solo criterio
+
+Arreglarlo es puramente editorial:
+- Mover entradas pendientes a una sección aparte ("Pendientes de redactar")
+- Corregir la fecha de ai-router.md si corresponde
+- Añadir resúmenes reales a las decisiones que ya están redactadas
+- Verificar que el número de archivos en disco coincide con el número de entradas en el índice
+
+### 4. El impacto es transversal
+
+Un buen índice de decisiones afecta a:
+- **lab-manager**: cuando audita, necesita saber qué decisiones existen.
+- **Cualquier skill**: antes de proponer un cambio, debe consultar si ya hay una decisión al respecto.
+- **Hermes**: en cada sesión, cuando detecta una mejora, necesita saber si ya se decidió algo similar.
+- **El usuario**: cuando dentro de 3 meses quiera recordar por qué se hizo algo.
+
+Un índice malo hace que la gente no lo consulte. Un índice bueno hace que la gente confíe en él y lo use.
+
+### 5. Aplica la filosofía operativa
+
+| Criterio | ¿Lo cumple? |
+|---|---|
+| ¿Reduce trabajo futuro? | Sí. Cada vez que alguien necesite saber el estado de una decisión, encontrarlo en 5 segundos en lugar de tener que preguntar. |
+| ¿Aumenta el conocimiento del sistema? | Sí. Un índice completo y preciso es la forma más rápida de entender la evolución del laboratorio. |
+| ¿Mejora la capacidad de operar autónomamente? | Sí. lab-manager puede consultar decisiones sin intervención humana si el índice es fiable. |
+
+---
+
+## Implementación concreta (sin código)
+
+1. Separar las entradas en dos grupos: "Vigentes" y "Pendientes de redactar"
+2. Añadir el resumen real de cada decisión (1 línea clara)
+3. Verificar que el número de archivos .md en docs/decisiones/ coincide con el índice
+4. Añadir nota al pie con la fecha de última actualización del índice
+
+---
+
+## Conclusión
+
+De todos los documentos del laboratorio, docs/decisiones/README.md es el que más valor nuevo puede generar con el mínimo esfuerzo. No es el que está más roto (seguramente docs/arquitectura.md o el ROADMAP necesitan más trabajo), pero es el que tiene mayor ratio impacto/esfuerzo porque su función es precisamente esa: ser el mapa de decisiones pasadas. Si el mapa es malo, el laboratorio pierde la memoria de por qué hace lo que hace.
