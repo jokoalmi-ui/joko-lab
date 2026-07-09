@@ -38,8 +38,8 @@ Objetivo: que el laboratorio haga cosas útiles sin depender de la nube.
 | 2.1 | Workflow en n8n que consuma Ollama para tareas de texto locales | Alta | Pendiente |
 | 2.2 | Workflow en n8n que procese PDFs con Stirling-PDF + Ollama | Alta | Pendiente |
 | 2.3 | Workflow en n8n que envíe notificaciones (WhatsApp, email) | Alta | Pendiente |
-| 2.4 | Script de respaldo automático del stack Docker y datos críticos | Media | Pendiente |
-| 2.5 | Script de limpieza de logs y temporales del laboratorio | Baja | Pendiente |
+| 2.4 | Script de respaldo automático del stack Docker y datos críticos | Media | ✔ Hecho (backup-volumen.sh + cron n8n 3:00 y ollama 3:30) |
+| 2.5 | Script de limpieza de logs y temporales del laboratorio | Baja | ✔ Hecho (scripts/cleanup.sh, --dry-run, --older-than, --all) |
 
 ---
 
