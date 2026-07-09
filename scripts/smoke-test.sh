@@ -4,11 +4,6 @@
 # Uso: ./smoke-test.sh [--quiet] [--service n8n|ollama|...]
 set +e
 
-ROJO='\033[0;31m'
-VERDE='\033[0;32m'
-AMARILLO='\033[1;33m'
-NC='\033[0m'
-
 PASS=0
 FAIL=0
 SERVICES=()
@@ -35,6 +30,18 @@ while [[ $# -gt 0 ]]; do
         *) echo "Opción desconocida: $1"; exit 1 ;;
     esac
 done
+
+if [[ -z "${QUIET:-}" ]]; then
+    ROJO='\033[0;31m'
+    VERDE='\033[0;32m'
+    AMARILLO='\033[1;33m'
+    NC='\033[0m'
+else
+    ROJO=''
+    VERDE=''
+    AMARILLO=''
+    NC=''
+fi
 
 test_service() {
     local name="$1"
