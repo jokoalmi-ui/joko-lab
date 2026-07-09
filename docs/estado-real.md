@@ -170,9 +170,9 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 | HERMES.md | 5/11 secciones completas |
 | docs/estado-real.md | ✓ Este archivo (actualizado 2026-07-07) |
 | docs/arquitectura.md | ✓ Completo (156 líneas) |
-| docs/hermes-internals.md | Con contenido |
-| docs/hermes-notes.md | Con contenido antiguo |
-| docs/joko-lab-principles.md | Vacío |
+| docs/hermes-internals.md | ⚠ Obsoleto (anotaciones iniciales, archivado) |
+| docs/hermes-notes.md | ⚠ Obsoleto (anotaciones iniciales, archivado) |
+| docs/joko-lab-principles.md | ✓ Creado (documento fundacional) |
 | docs/decisiones/ | 10 archivos: 6 completadas, 4 activas |
 
 ### Decisiones de arquitectura registradas
