@@ -119,11 +119,85 @@ skills/<nombre>/
 
 ## 6. Flujo de desarrollo
 
-(pendiente)
+El laboratorio avanza cuando alguien (tú o Hermes) identifica una mejora,
+un problema o una tarea pendiente. El flujo es siempre el mismo:
+
+```
+Identificar necesidad
+        │
+        ▼
+Consultar documentación existente (sección 3)
+        │
+        ▼
+Si requiere decisión → docs/decisiones/ (sección 12)
+        │
+        ▼
+Ejecutar cambio (solo con confirmación si hay riesgo)
+        │
+        ▼
+Documentar el cambio (estado-real.md, ROADMAP.md, CHANGELOG)
+        │
+        ▼
+Verificar que funciona (smoke-test.sh o prueba manual)
+        │
+        ▼
+Hacer commit si aplica
+```
+
+**Reglas del flujo:**
+
+- No saltarse la consulta de documentación existente. La mayoría de las respuestas ya están escritas.
+- No ejecutar cambios destructivos sin confirmación explícita.
+- Documentar siempre antes de pasar a la siguiente tarea.
+- Si un cambio rompe algo, detenerse, diagnosticar, arreglar, y luego continuar.
+- No empezar una tarea nueva hasta que la anterior esté documentada y verificada.
 
 ## 7. Convenciones
 
-(pendiente)
+### Archivos
+
+| Tipo | Convención | Ejemplo |
+|------|------------|---------|
+| Documentación | `snake-case.md` | `estado-real.md`, `joko-lab-principles.md` |
+| Decisiones | `AAAA-MM-DD-tema.md` | `2026-07-09-router-horario-cron.md` |
+| Scripts | `kebab-case.sh` | `smoke-test.sh`, `model-router.sh` |
+| Skills | `una-palabra` | `docker-admin`, `ai-router`, `n8n-admin` |
+
+### Documentación
+
+- Cada archivo de `docs/` trata un solo tema.
+- No duplicar información. Si un concepto ya está documentado, enlazarlo, no copiarlo.
+- `docs/` es la única fuente de verdad. `certification/` verifica, no define.
+- Las decisiones técnicas van siempre en `docs/decisiones/` con el formato: contexto, problema, alternativas, decisión, motivos, consecuencias, estado.
+
+### Skills
+
+- Una skill por dominio. No mezclar responsabilidades.
+- Cada skill sigue la estructura definida en la sección 5 (SKILL.md, README.md, COMMANDS.md, etc.).
+- Las skills evolucionan por etapas. No saltarse etapas.
+- Los scripts de una skill van dentro de su carpeta `scripts/`.
+
+### Commits
+
+```
+tipo: mensaje breve sin punto final
+
+Cuerpo opcional con más detalle si es necesario.
+```
+
+| Tipo | Cuándo usarlo |
+|------|---------------|
+| `feat:` | Nueva funcionalidad o documento |
+| `fix:` | Corrección de error |
+| `docs:` | Cambios en documentación |
+| `chore:` | Mantenimiento, init, configuración |
+| `refactor:` | Reorganización sin cambio de comportamiento |
+
+### Estilo de código
+
+- Los scripts en Bash usan `set +e` (el laboratorio prefiere control manual de errores).
+- Los scripts deben tener `--help` y al menos un modo de salida silenciosa (`--quiet`).
+- Preferir comandos simples y legibles sobre optimizaciones prematuras.
 
 ## 8. Estilo de comunicación
 

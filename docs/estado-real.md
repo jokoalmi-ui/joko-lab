@@ -167,7 +167,7 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 
 | Archivo | Estado |
 |---|---|
-| HERMES.md | 5/11 secciones completas |
+| HERMES.md | ✓ 13/13 secciones completas |
 | docs/estado-real.md | ✓ Este archivo (actualizado 2026-07-07) |
 | docs/arquitectura.md | ✓ Completo (156 líneas) |
 | docs/hermes-internals.md | ⚠ Obsoleto (anotaciones iniciales, archivado) |

@@ -21,7 +21,7 @@ Objetivo: que lo existente esté documentado, estable y comprobado.
 | # | Tarea | Prioridad | Estado |
 |---|---|---|---|
 | 1.1 | Poblar skills especializadas: `docker-admin`, `n8n-admin`, `ai-router`, `hermes-expert`, `betterbird`, `perfumes` | Alta | ✔ Hecho (hermes-expert) |
-| 1.2 | Desarrollar `hermes.md` con el contenido del esquema actual | Alta | Pendiente |
+| 1.2 | Desarrollar `hermes.md` con el contenido del esquema actual | Alta | ✔ Hecho (secciones 6 y 7 completadas) |
 | 1.3 | Decidir qué hacer con `scripts/`, `backups/` y `test/` (poblar o limpiar) | Media | Pendiente |
 |1.4 | Unificar `hermes-notes.md` y `hermes-internals.md` en un solo documento | Media | ✔ Hecho (archivados como obsoletos) |
 | 1.5 | Unificar la filosofía de trabajo (actualmente duplicada entre SKILL.md y system prompt) | Media | Pendiente |
