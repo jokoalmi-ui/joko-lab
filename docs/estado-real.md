@@ -175,6 +175,14 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 | docs/joko-lab-principles.md | ✓ Creado (documento fundacional) |
 | docs/decisiones/ | 10 archivos: 6 completadas, 4 activas |
 
+## Directorios del laboratorio
+
+| Directorio | Estado |
+|---|---|
+| `scripts/` | ✓ 3 archivos (model-router.sh, smoke-test.sh, README.md) |
+| `backups/` | ✓ Con README, para snapshots manuales del laboratorio |
+| `test/` | ✗ Eliminado (los tests de humo están en scripts/smoke-test.sh) |
+
 ### Decisiones de arquitectura registradas
 
 | Decisión | Archivo | Estado |
