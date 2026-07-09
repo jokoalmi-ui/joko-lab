@@ -339,7 +339,7 @@ L(f"  FIN DE AUDITORIA — {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
 L("-" * 70)
 
 # ── SALIDA ──────────────────────────────────────────────────────────
-output_dir = sys.argv[sys.argv.index("--output") + 1] if "--output" in sys.argv else "/tmp"
+output_dir = sys.argv[sys.argv.index("--output") + 1] if "--output" in sys.argv else os.path.join(REPO_DIR, "logs")
 Path(output_dir).mkdir(parents=True, exist_ok=True)
 
 # Texto
