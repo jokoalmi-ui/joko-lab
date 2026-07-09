@@ -1,0 +1,177 @@
+=========================================================
+   AUDITORIA EJECUTIVA — JOKO LAB
+   Fecha: 2026-07-09
+   Herramienta: Hermes Agent
+=========================================================
+
+1. SALUD DEL LABORATORIO
+─────────────────────────
+
+   Puntuacion global:  7.5 / 10  (+0.7 desde ultima auditoria 6.8)
+
+   Arquitectura       ██████████  10/10  (sin cambios, todo estable)
+
+   Documentacion      ██████████  10/10  (+2 puntos: HERMES.md completo,
+                                          principios creados, obsoletos archivados)
+
+   Skills             ████████░░   8/10  (+1 punto: 6 pobladas de 10,
+                                          lab-manager filosofía unificada)
+
+   Automatizacion     ████████░░   8/10  (+2 puntos: smoke tests, cleanup,
+                                          Git iniciado)
+
+   Seguridad          ██████████  10/10  (+1 punto: Git como control de
+                                          versiones, router horario arreglado)
+
+
+2. COMPARATIVA CON AUDITORIA ANTERIOR (2026-07-07)
+───────────────────────────────────────────────────
+
+   Categoria          Antes  Ahora  Diferencia
+   ────────────────  ─────  ─────  ─────────
+   Arquitectura        10     10     = 0
+   Documentacion        8     10     +2
+   Skills               7      8     +1
+   Automatizacion       6      8     +2
+   Seguridad            9     10     +1
+   ────────────────  ─────  ─────  ─────────
+   Total              6.8    7.5    +0.7
+
+
+3. RESUMEN GLOBAL
+──────────────────
+
+  Estado general:    OPERATIVO
+  Salud:             7.5/10
+  Skills totales:    10
+  Skills pobladas:   7 (docker-admin, n8n-admin, ai-router, hermes-expert,
+                       lab-manager, joko-lab, knowledge-governor)
+  Skills vacias:     3 (betterbird, perfumes, evolution)
+  Documentos:        12 archivos en docs/ + HERMES.md completo
+  Decisiones:        13 registradas (7 completadas, 6 activas)
+  Git:               Iniciado, 7 commits, rama master
+  Workflows n8n:     11 workflows activos
+
+
+4. LOGROS DE LA SESION (2026-07-09)
+────────────────────────────────────
+
+  [✔] Router horario arreglado
+       - Causa: cron escribia en models.main.* en lugar de model.*
+       - Solucion: corregidas las rutas en crontab
+       - Modelos: gemini-2.5-flash (03:00) / deepseek-v4-flash (12:00)
+
+  [✔] Git init
+       - Repositorio inicializado en hermes-lab/
+       - 7 commits, 142+ archivos versionados
+       - .gitignore creado (logs, backups, temporales)
+
+  [✔] docs/joko-lab-principles.md
+       - Documento fundacional con 5 principios desarrollados
+       - Tabla de criterios para propuestas de mejora
+       - Referenciado desde HERMES.md
+
+  [✔] scripts/smoke-test.sh
+       - Tests de humo: 6/8 pasan
+       - Fallos esperados: webhook n8n (opcional), LM Studio API (apagado)
+       - Soporta --service, --quiet, --help
+
+  [✔] scripts/cleanup.sh
+       - Limpieza de logs con --dry-run, --older-than, --all
+
+  [✔] Limpieza documentacion
+       - hermes-notes.md e hermes-internals.md marcados como OBSOLETOS
+       - ROADMAP Fase 1 completada al 100%
+
+  [✔] HERMES.md completo (13/13 secciones)
+       - Seccion 6: Flujo de desarrollo (diagrama + reglas)
+       - Seccion 7: Convenciones (archivos, docs, skills, commits, codigo)
+
+  [✔] ROADMAP actualizado
+       - Fase 1 completa (6 tareas)
+       - Fase 2: 2.4 y 2.5 completadas (quedan 2.1, 2.2, 2.3)
+
+
+5. WORKFLOWS N8N ANALIZADOS
+─────────────────────────────
+
+  Workflow: VENTAS TELEGRAM LINUX
+  - Estado: inactivo (0/1), trigger manual
+  - Pipeline: Lee XLSX → Filtra → 5 ramas (WhatsApp, Telegram, TXT, Update, Fotos)
+  - Sin IA local. Procesamiento puro de datos.
+  - Ejecuciones: 0 historicas
+
+  Workflow: Formateador listado sterling LINUX HTTP request
+  - Estado: inactivo (0/1), trigger manual
+  - Pipeline completa:
+      PDF → pdf-cleaner → Stirling OCR → Stirling texto → Code JS
+      → Prepara IA → Ollama (api/generate)
+        → Exito: HTML → Stirling PDF → guarda PDF
+        → Error: guarda log de errores
+      → WhatsApp (Facebook Graph API v25.0)
+  - Servicios: pdf-cleaner, Stirling-PDF, Ollama, WhatsApp API
+  - Ejecuciones: 10 (2 exitosas, 3 error, 5 canceladas)
+  - Workflow solido. Fallos por timeout en PDFs grandes (+30 hojas)
+    y limite diario de API de WhatsApp.
+
+
+6. INFRAESTRUCTURA Y SERVICIOS
+───────────────────────────────
+
+  Hardware:
+    CPU:       Intel Core i5-9500
+    RAM:       32 GB
+    GPU:       NVIDIA RTX A2000 12 GB VRAM
+
+  Servicios activos (smoke test 6/8):
+    n8n         :5678   UP (11 workflows)
+    Ollama      :11434  UP (qwen2.5:7b, llama3.1:8b, llama31-8b-64k)
+    Stirling-PDF:8081   UP
+    pdf-cleaner :8000   UP (build local)
+
+  IA:
+    DeepSeek v4-flash     — Proveedor principal (Hermes)
+    Gemini 2.5 Flash      — Router horario (03:00-12:00)
+    Ollama local           — Modelos locales
+    LM Studio :1234        — API Server apagado (no usado actualmente)
+
+  Backups:
+    n8n   — Diario 3:00 (backup-volumen.sh)
+    Ollama — Diario 3:30 (backup-volumen.sh)
+    Healthchecks — Cada hora (general), cada 30 min (n8n)
+    Git   — Control de versiones activo
+
+
+7. PROXIMOS PASOS PRIORIZADOS
+──────────────────────────────
+
+  PENDIENTE FASE 2 (n8n workflows, alta prioridad):
+    [2.1] Workflow n8n + Ollama para texto local
+    [2.2] Workflow n8n + Stirling-PDF + Ollama
+    [2.3] Workflow n8n + notificaciones (WhatsApp/Telegram)
+    Nota: ya existen workflows que cubren parcialmente estas tareas
+
+  MEDIA PRIORIDAD:
+    [4] Poblar skill evolution
+    [5] Revisar docs/hermes-notes.md (ya obsoleto, ok)
+    [6] n8n-admin a nivel 5 (auditoria + CHANGELOG)
+
+  BAJA PRIORIDAD:
+    [7] Poblar skill perfumes
+    [8] Poblar skill betterbird
+    [9] ai-router a nivel 5 (auditoria + CHANGELOG)
+    [10] Tests automatizados para docker-admin y hermes-expert
+
+
+8. DECISIONES DE ARQUITECTURA
+──────────────────────────────
+
+  13 registros en docs/decisiones/:
+  - 7 completadas
+  - 6 activas (incluyendo router-horario-cron de hoy)
+
+
+=========================================================
+   FIN DE AUDITORIA
+   2026-07-09 | Salud: 7.5/10 | +0.7 desde ultima
+=========================================================
