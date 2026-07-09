@@ -41,5 +41,5 @@ Sigue siendo **solo lectura**. No modifica archivos, no toca servicios, no ejecu
 3. **Evaluación proactiva.** lab-manager evalúa continuamente el laboratorio: incoherencias, duplicidades, skills grandes, decisiones no registradas, oportunidades de automatización.
 4. **Filtro de relevancia.** No notifica todo — solo lo que supera el umbral definido en COMMANDS.md (Auditoría proactiva).
 5. **Priorización basada en madurez.** lab-manager usa la escala 0-7 para medir y priorizar skills.
-6. **Filosofía operativa.** Toda propuesta de mejora debe cumplir al menos uno de: reducir trabajo futuro, aumentar el conocimiento del sistema, mejorar la capacidad de operar autónomamente.
+6. **Filosofía operativa.** Regida por HERMES.md §2b. Toda propuesta debe cumplir al menos uno de los tres criterios definidos allí. No duplicar: consultar HERMES.md como fuente de verdad.
 7. **Trazable.** lab-manager guarda snapshots de cada diagnóstico para medir evolución entre sesiones.

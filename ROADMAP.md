@@ -24,7 +24,7 @@ Objetivo: que lo existente esté documentado, estable y comprobado.
 | 1.2 | Desarrollar `hermes.md` con el contenido del esquema actual | Alta | ✔ Hecho (secciones 6 y 7 completadas) |
 | 1.3 | Decidir qué hacer con `scripts/`, `backups/` y `test/` (poblar o limpiar) | Media | ✔ Hecho (scripts funcional, backups con README, test eliminado) |
 |1.4 | Unificar `hermes-notes.md` y `hermes-internals.md` en un solo documento | Media | ✔ Hecho (archivados como obsoletos) |
-| 1.5 | Unificar la filosofía de trabajo (actualmente duplicada entre SKILL.md y system prompt) | Media | Pendiente |
+| 1.5 | Unificar la filosofía de trabajo (actualmente duplicada entre SKILL.md y system prompt) | Media | ✔ Hecho (lab-manager/SKILL.md referencia HERMES.md, sin duplicación) |
 | 1.6 | Primera batería de pruebas de humo: verificar que cada servicio responde | Alta | ✔ Hecho (scripts/smoke-test.sh, 6/8 pasan) |
 
 ---
