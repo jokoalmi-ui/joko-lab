@@ -1,6 +1,6 @@
 # Estado real de Joko Lab
 
-Última actualización: 2026-07-08 (skill evolution poblada, bind n8n restringido a localhost)
+Última actualización: 2026-07-09 (Git init, principios, smoke tests)
 
 ## Hardware
 
@@ -17,7 +17,7 @@
 | Sistema | ✓ | Ubuntu, kernel 7.0.0-27-generic |
 | Python | ✓ | 3.14.4 |
 | Docker | ✓ | Instalado, Docker Compose v2 |
-| Git | ✗ | Pendiente comprobar |
+| Git | ✓ | v2.53.0, repo iniciado (142 archivos, rama master) |
 | Hermes Agent | ✓ | En ejecución, perfil default |
 
 ## Servicios del stack (`automation-stack`)
@@ -190,11 +190,13 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 
 ## Próximos pasos recomendados
 
-1. Poblar skills vacías: betterbird, perfumes, evolution (nivel 0→1)
-2. n8n-admin a nivel 5: auditoría global, CHANGELOG completo
-3. ai-router a nivel 5: auditoría, CHANGELOG completo
-4. lab-manager a nivel 5: auditoría formal
-5. docker-admin a nivel 6: tests automatizados
-6. hermes-expert a nivel 6: tests automatizados
-7. Comprobar Git
-8. Revisar docs/hermes-notes.md (contenido antiguo)
+1. ~~Verificar Git e iniciar repo~~ ✔ Hecho
+2. ~~Redactar docs/joko-lab-principles.md~~ ✔ Hecho
+3. ~~Crear smoke tests~~ ✔ Hecho (scripts/smoke-test.sh, 6/8 pasan)
+4. Arrancar LM Studio API Server cuando se necesite
+5. Poblar skill betterbird (nivel 0→1)
+6. n8n-admin a nivel 5: auditoría global, CHANGELOG completo
+7. ai-router a nivel 5: auditoría, CHANGELOG completo
+8. lab-manager a nivel 5: auditoría formal
+9. docker-admin a nivel 6: tests automatizados
+10. Revisar docs/hermes-notes.md (contenido antiguo)
