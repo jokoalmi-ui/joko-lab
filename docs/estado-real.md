@@ -1,6 +1,6 @@
 # Estado real de Joko Lab
 
-Última actualización: 2026-07-10 (auditoría 6.8/10, certification/, 4 decisiones nuevas)
+Última actualización: 2026-07-10 (auditoría 6.8/10, certification/, backups systemd timer)
 
 ## Hardware
 
@@ -17,7 +17,7 @@
 | Sistema | ✓ | Ubuntu, kernel 7.0.0-27-generic |
 | Python | ✓ | 3.14.4 |
 | Docker | ✓ | Instalado, Docker Compose v2 |
-| Git | ✓ | v2.53.0, 20 commits, 155 archivos, rama master |
+| Git | ✓ | v2.53.0, 24 commits, 156 archivos, rama master |
 | Hermes Agent | ✓ | En ejecución, perfil default |
 
 ## Servicios del stack (`automation-stack`)
@@ -57,15 +57,16 @@ google/gemma-4-e4b, google/gemma-4-12b-qat, google/gemma-4-12b, glm-4.6v-flash, 
 |---|---|---|
 | Datos n8n | /mnt/ssd_ia_datos/n8n | ✓ |
 | Exports | /mnt/ssd_ia_datos/exports | ✓ |
-| Backups | /mnt/ssd_ia_datos/backups | ✓ Backup n8n realizado (419 MB) |
-| Backup automático | Cron diario 3:00 (n8n), 3:30 (ollama) | ✓ Instalado |
+| Backups | /mnt/ssd_ia_datos/backups | ✓ n8n (399 MB, 99h), sin ollama/exports |
+| Backup automático | systemd timer joko-backup.timer (Persistent=true) | ✓ Instalado, catch-up al arrancar |
 
 ## Automatización
 
 | Componente | Estado | Detalle |
 |---|---|---|
 | Healthcheck automático | ✓ | Cada hora (minuto 5), notifica si falla |
-| Backup automático | ✓ | Diario 3:00 n8n, 3:30 ollama |
+| Backup automático | ✓ | systemd timer joko-backup.timer (diario, Persistent=true) |
+| Backup GDrive | ✓ | Cron 3:15, git bundle via rclone |
 | Healthcheck n8n específico | ✓ | Cada 30 min, 5 tests, notifica si falla |
 | Auditoría integrada | ✓ | Docker + Hermes + disco + GPU |
 
@@ -173,7 +174,7 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 | docs/hermes-internals.md | ⚠ Obsoleto (anotaciones iniciales, archivado) |
 | docs/hermes-notes.md | ⚠ Obsoleto (anotaciones iniciales, archivado) |
 | docs/joko-lab-principles.md | ✓ Creado (documento fundacional) |
-| docs/decisiones/ | 19 archivos: decisiones activas y completadas |
+| docs/decisiones/ | 20 archivos: decisiones activas y completadas |
 
 ## Directorios del laboratorio
 
@@ -205,6 +206,7 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 | Arquitectura agéntica jerárquica | 2026-07-10-arquitectura-agentica-jerarquica.md | Aceptada |
 | Modelo gobierno auditoría | 2026-07-10-modelo-gobierno-auditoria.md | Aceptada |
 | Personalidad del asistente | 2026-07-10-personalidad-asistente.md | Aceptada |
+| Backups systemd timer | 2026-07-10-backups-systemd-timer.md | Aceptada |
 
 ## Próximos pasos recomendados
 
@@ -213,9 +215,10 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 3. ~~Crear smoke tests~~ ✔ Hecho (scripts/smoke-test.sh, 6/8 pasan)
 4. ~~Auditoría ejecutiva 2026-07-10~~ ✔ Hecho (6.8/10, autonomía 50%)
 5. ~~Crear certification/ con casos 001 y 002~~ ✔ Hecho
-6. Arreglar backups locales (BACKUP_DIR vacío en auditoría)
-7. Probar restauración real de backups desde GDrive
-8. Configurar remoto Git (GitHub/GitLab)
-9. Añadir tests automatizados (shellspec/bats) a skills nivel >= 5
-10. Auditar 17 falsos positivos de secretos en Git
-11. Arrancar LM Studio API Server cuando se necesite
+6. ~~Arreglar backups locales (migración a systemd timer persistent)~~ ✔ Hecho
+7. Generar backups de ollama y exports (solo n8n tiene backup actual)
+8. Probar restauración real de backups desde GDrive
+9. Configurar remoto Git (GitHub/GitLab)
+10. Añadir tests automatizados (shellspec/bats) a skills nivel >= 5
+11. Auditar 17 falsos positivos de secretos en Git
+12. Arrancar LM Studio API Server cuando se necesite
