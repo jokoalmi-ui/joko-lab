@@ -1,6 +1,6 @@
 # Estado real de Joko Lab
 
-Última actualización: 2026-07-09 (Git init, principios, smoke tests)
+Última actualización: 2026-07-10 (auditoría 6.8/10, certification/, 4 decisiones nuevas)
 
 ## Hardware
 
@@ -17,7 +17,7 @@
 | Sistema | ✓ | Ubuntu, kernel 7.0.0-27-generic |
 | Python | ✓ | 3.14.4 |
 | Docker | ✓ | Instalado, Docker Compose v2 |
-| Git | ✓ | v2.53.0, repo iniciado (142 archivos, rama master) |
+| Git | ✓ | v2.53.0, 20 commits, 155 archivos, rama master |
 | Hermes Agent | ✓ | En ejecución, perfil default |
 
 ## Servicios del stack (`automation-stack`)
@@ -168,19 +168,20 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 | Archivo | Estado |
 |---|---|
 | HERMES.md | ✓ 13/13 secciones completas |
-| docs/estado-real.md | ✓ Este archivo (actualizado 2026-07-07) |
+| docs/estado-real.md | ✓ Este archivo (actualizado 2026-07-10) |
 | docs/arquitectura.md | ✓ Completo (156 líneas) |
 | docs/hermes-internals.md | ⚠ Obsoleto (anotaciones iniciales, archivado) |
 | docs/hermes-notes.md | ⚠ Obsoleto (anotaciones iniciales, archivado) |
 | docs/joko-lab-principles.md | ✓ Creado (documento fundacional) |
-| docs/decisiones/ | 10 archivos: 6 completadas, 4 activas |
+| docs/decisiones/ | 19 archivos: decisiones activas y completadas |
 
 ## Directorios del laboratorio
 
 | Directorio | Estado |
 |---|---|
-| `scripts/` | ✓ 3 archivos (model-router.sh, smoke-test.sh, README.md) |
+| `scripts/` | ✓ 5 archivos (model-router.sh, smoke-test.sh, auditor-completo.py, git-backup.sh, cleanup.sh) |
 | `backups/` | ✓ Con README, para snapshots manuales del laboratorio |
+| `certification/` | ✓ Creado (v0.1.0, 2 casos activos) |
 | `test/` | ✗ Eliminado (los tests de humo están en scripts/smoke-test.sh) |
 
 ### Decisiones de arquitectura registradas
@@ -195,16 +196,26 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 | Estructura Hermes Lab | 2026-07-06-estructura-hermes-lab.md | Completada |
 | Enrutador de modelos IA | 2026-07-08-ai-router.md | Activa |
 | Regla justificación mejoras | 2026-07-07-regla-justificacion-mejoras.md | Activa |
+| Arquitecto permanente | 2026-07-07-arquitecto-permanente.md | Activa |
+| Certification dominio | 2026-07-07-certification-dominio.md | Completada |
+| Formato auditoría puntuación | 2026-07-07-formato-auditoria-puntuacion.md | Activa |
+| Router horario cron | 2026-07-09-router-horario-cron.md | Activa |
+| Arquitectura híbrida cloud-local | 2026-07-10-arquitectura-hibrida-cloud-local.md | Aceptada |
+| Arquitectura híbrida proveedores | 2026-07-10-arquitectura-hibrida-proveedores.md | Aceptada |
+| Arquitectura agéntica jerárquica | 2026-07-10-arquitectura-agentica-jerarquica.md | Aceptada |
+| Modelo gobierno auditoría | 2026-07-10-modelo-gobierno-auditoria.md | Aceptada |
+| Personalidad del asistente | 2026-07-10-personalidad-asistente.md | Aceptada |
 
 ## Próximos pasos recomendados
 
 1. ~~Verificar Git e iniciar repo~~ ✔ Hecho
 2. ~~Redactar docs/joko-lab-principles.md~~ ✔ Hecho
 3. ~~Crear smoke tests~~ ✔ Hecho (scripts/smoke-test.sh, 6/8 pasan)
-4. Arrancar LM Studio API Server cuando se necesite
-5. Poblar skill betterbird (nivel 0→1)
-6. n8n-admin a nivel 5: auditoría global, CHANGELOG completo
-7. ai-router a nivel 5: auditoría, CHANGELOG completo
-8. lab-manager a nivel 5: auditoría formal
-9. docker-admin a nivel 6: tests automatizados
-10. Revisar docs/hermes-notes.md (contenido antiguo)
+4. ~~Auditoría ejecutiva 2026-07-10~~ ✔ Hecho (6.8/10, autonomía 50%)
+5. ~~Crear certification/ con casos 001 y 002~~ ✔ Hecho
+6. Arreglar backups locales (BACKUP_DIR vacío en auditoría)
+7. Probar restauración real de backups desde GDrive
+8. Configurar remoto Git (GitHub/GitLab)
+9. Añadir tests automatizados (shellspec/bats) a skills nivel >= 5
+10. Auditar 17 falsos positivos de secretos en Git
+11. Arrancar LM Studio API Server cuando se necesite
