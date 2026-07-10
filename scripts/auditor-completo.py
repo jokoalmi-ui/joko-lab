@@ -166,20 +166,45 @@ section("2. BACKUPS")
 
 bp = Path(BACKUP_DIR)
 if bp.is_dir():
-    backups_found = list(bp.rglob("*.tar.gz")) + list(bp.rglob("*.tgz")) + list(bp.rglob("*.zip"))
+    # Buscar backups comprimidos (tarballs, zips)
+    archives = list(bp.rglob("*.tar.gz")) + list(bp.rglob("*.tgz")) + list(bp.rglob("*.zip"))
+    # Buscar backups en directorio (rsync: n8n-*, ollama-*, exports-*)
+    dir_backups = [d for d in bp.iterdir() if d.is_dir() and (
+        d.name.startswith("n8n-") or d.name.startswith("ollama-") or d.name.startswith("exports-")
+    )]
+    backups_found = archives + dir_backups
+
     if backups_found:
         for f in backups_found:
             age_h = int((datetime.now().timestamp() - f.stat().st_mtime) / 3600)
-            size = f.stat().st_size
-            size_h = f"{size/1024/1024:.1f}M" if size > 1024*1024 else f"{size/1024:.1f}K"
-            if age_h <= MAX_BACKUP_AGE_HOURS:
-                report(PASS, f"{f.name} -- hace {age_h}h, {size_h}")
+            if f.is_dir():
+                # Directorio rsync: obtener tamaño con du
+                size_bytes = subprocess.run(
+                    ["du", "-sb", str(f)], capture_output=True, text=True, timeout=15
+                ).stdout.split()[0]
+                size = int(size_bytes) if size_bytes else 0
+                size_h = f"{size/1024/1024:.1f}M" if size > 1024*1024 else f"{size/1024:.1f}K"
+                tipo = "dir"
             else:
-                report(FAIL, f"{f.name} -- hace {age_h}h (supera umbral {MAX_BACKUP_AGE_HOURS}h), {size_h}")
+                size = f.stat().st_size
+                size_h = f"{size/1024/1024:.1f}M" if size > 1024*1024 else f"{size/1024:.1f}K"
+                tipo = "archivo"
+            if age_h <= MAX_BACKUP_AGE_HOURS:
+                report(PASS, f"{f.name} ({tipo}) -- hace {age_h}h, {size_h}")
+            else:
+                report(FAIL, f"{f.name} ({tipo}) -- hace {age_h}h (supera umbral {MAX_BACKUP_AGE_HOURS}h), {size_h}")
 
             # Test de integridad
             int_result = ""
-            if f.suffix in (".gz", ".tgz") or "tar" in f.suffix:
+            if f.is_dir():
+                # Para directorios: verificar que tiene contenido
+                contenido = list(f.iterdir())
+                if contenido:
+                    int_result = f"{PASS} integro ({len(contenido)} elementos)"
+                    data["backups"]["test_integridad"] = True
+                else:
+                    int_result = f"{FAIL} DIRECTORIO VACIO"
+            elif f.suffix in (".gz", ".tgz") or "tar" in f.suffix:
                 r = subprocess.run(["tar", "-tzf", str(f)], capture_output=True, timeout=30)
                 if r.returncode == 0:
                     int_result = f"{PASS} integro (se lista sin error)"
