@@ -21,7 +21,7 @@ from pathlib import Path
 
 # ── CONFIG ──────────────────────────────────────────────────────────
 REPO_DIR = os.environ.get("REPO_DIR", os.path.expanduser("~/hermes-lab"))
-BACKUP_DIR = os.environ.get("BACKUP_DIR", "/home/jokoalmi/hermes-lab/backups")
+BACKUP_DIR = os.environ.get("BACKUP_DIR", "/mnt/ssd_ia_datos/backups")
 N8N_API_KEY = os.environ.get("N8N_API_KEY", "")
 N8N_URL = os.environ.get("N8N_URL", "http://127.0.0.1:5678")
 MAX_BACKUP_AGE_HOURS = 30

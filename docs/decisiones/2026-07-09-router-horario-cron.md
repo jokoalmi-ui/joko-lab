@@ -24,5 +24,22 @@ Se implementa un script en Python (`scripts/router-modelo.py`) programado median
 2. **Limitación Importante**: Hermes no cambia de modelo "en caliente". Si hay una sesión iniciada antes de la hora de corte y se sigue usando después, se continuará usando el modelo original de la sesión. 
 3. **Regla**: Para aplicar el router horario, **es obligatorio cerrar y abrir una nueva sesión** de Hermes si se atraviesa la hora de corte (03:00 o 12:00).
 
-## Estado
-Activo (09 de julio de 2026).
+|## Estado
+Activo (10 de julio de 2026) — corregido.
+
+## Historial
+- **09-jul-2026**: Implementación inicial con cron inline. Falló en el primer disparo (3:00 del 10-jul) porque el `&&` encadenado impedía escribir el log si el primer comando fallaba, y no se pudo diagnosticar.
+- **10-jul-2026**: Reemplazado por script `scripts/router-cron.sh` que:
+  - Auto-detecta la franja horaria (un solo cron para ambas transiciones).
+  - Siempre escribe en el log, independientemente del resultado.
+  - Reporta códigos de retorno de cada operación.
+  - Se invoca a las 3:00 y 12:00 desde crontab del usuario.
+
+## Archivos involucrados
+| Archivo | Propósito |
+|---------|-----------|
+| `scripts/router-cron.sh` | Script ejecutado por cron (nuevo, robusto) |
+| `scripts/model-router.sh` | Script para source en `.bashrc` (convive, funciona en terminal) |
+| `~/.hermes/config.yaml` | Config modificada por el router |
+| `logs/router-modelo.log` | Log del router |
+| `~/.bashrc` línea 127 | Source de model-router.sh para terminal interactiva |
