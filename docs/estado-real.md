@@ -17,7 +17,7 @@
 | Sistema | ✓ | Ubuntu, kernel 7.0.0-27-generic |
 | Python | ✓ | 3.14.4 |
 | Docker | ✓ | Instalado, Docker Compose v2 |
-| Git | ✓ | v2.53.0, 24 commits, 156 archivos, rama master |
+| Git | ✓ | v2.53.0, 25 commits, 157 archivos, rama master, remoto local SSD |
 | Hermes Agent | ✓ | En ejecución, perfil default |
 
 ## Servicios del stack (`automation-stack`)
@@ -207,6 +207,7 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 | Modelo gobierno auditoría | 2026-07-10-modelo-gobierno-auditoria.md | Aceptada |
 | Personalidad del asistente | 2026-07-10-personalidad-asistente.md | Aceptada |
 | Backups systemd timer | 2026-07-10-backups-systemd-timer.md | Aceptada |
+| Remoto Git local SSD | 2026-07-10-remoto-git-local-ssd.md | Aceptada |
 
 ## Próximos pasos recomendados
 
@@ -217,8 +218,9 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 5. ~~Crear certification/ con casos 001 y 002~~ ✔ Hecho
 6. ~~Arreglar backups locales (migración a systemd timer persistent)~~ ✔ Hecho
 7. Generar backups de ollama y exports (solo n8n tiene backup actual)
-8. Probar restauración real de backups desde GDrive
-9. Configurar remoto Git (GitHub/GitLab)
-10. Añadir tests automatizados (shellspec/bats) a skills nivel >= 5
-11. Auditar 17 falsos positivos de secretos en Git
-12. Arrancar LM Studio API Server cuando se necesite
+8. ~~Probar restauración real de backups desde GDrive~~ ✔ Hecho
+9. ~~Configurar remoto Git local en SSD~~ ✔ Hecho
+10. Configurar GitHub como segundo remoto (pendiente)
+11. Añadir tests automatizados (shellspec/bats) a skills nivel >= 5
+12. Auditar 17 falsos positivos de secretos en Git
+13. Arrancar LM Studio API Server cuando se necesite
