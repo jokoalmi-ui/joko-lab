@@ -1,40 +1,67 @@
-# Certificación de Arquitectura de Joko Lab
+# Certification — Joko Lab
 
-Este directorio contiene el sistema de certificación del laboratorio.
+## Qué es
 
-## ¿Qué es?
+El dominio `certification/` contiene casos de validación diseñados para
+comprobar que un agente (Humano o IA) comprende la fuente de verdad del
+laboratorio: `docs/`.
 
-Un conjunto de casos de prueba que verifican que un agente (IA o humano)
-comprende, mantiene y puede evolucionar Joko Lab utilizando únicamente la
-documentación oficial en `docs/`.
+Cada caso de certificación es un conjunto de preguntas, ejercicios o
+escenarios que verifican:
 
-## ¿Qué contiene?
+- Conocimiento de la arquitectura y los servicios.
+- Comprensión de las decisiones registradas.
+- Capacidad de aplicar los principios del laboratorio.
+- Habilidad para navegar la documentación existente.
 
-| Archivo | Propósito |
-|---------|-----------|
-| `CERTIFICATION_SPEC.md` | Especificación completa: propósito, principios, competencias, niveles, ciclo de vida |
-| `CERTIFICATION.md` | Resumen ejecutivo con casos activos y estado actual |
-| `RUBRIC.md` | Criterios de evaluación detallados (5 criterios, 5 niveles) |
-| `CHANGELOG.md` | Historial de cambios de la certificación |
-| `tests/` | Casos de certificación organizados por competencia |
+## Reglas
 
-## ¿Qué NO es?
+1. **Nunca es fuente de verdad.** La fuente de verdad es `docs/`.
+   Certification solo verifica que esa fuente se ha comprendido.
 
-- No es documentación del laboratorio (la documentación está en `docs/`).
-- No es una skill de Hermes (las skills están en `skills/`).
-- No es una fuente de verdad. Si hay conflicto, la fuente de verdad es `docs/`.
+2. **Se adapta a los cambios.** Cuando se registra una nueva decisión o
+   se modifica la documentación, certification se revisa y actualiza
+   (ver HERMES.md §13).
 
-## ¿Cómo se usa?
+3. **No hay nota eliminatoria.** Fallar un caso no es un error; es una
+   señal de que la documentación necesita mejorar o el agente necesita
+   más contexto.
 
-1. Lee `CERTIFICATION_SPEC.md` para entender el sistema.
-2. Elige un caso de `tests/`.
-3. Responde el caso usando exclusivamente la documentación en `docs/`.
-4. Evalúa la respuesta con `RUBRIC.md`.
+4. **Los casos se numeran.** `001-tema.md`, `002-tema.md`, etc. para
+   mantener un orden claro.
 
-## Primeros casos
+## Estructura de un caso
 
-| ID | Título | Competencia |
-|----|--------|-------------|
-| C-001 | Detección de contradicciones | Comprensión |
-| C-002 | Onboarding simulado | Mentoría |
-| C-003 | Evolución de la arquitectura | Evolución |
+```markdown
+# Título del caso
+
+**Dominio:** [Gobierno | Operación | Conocimiento | Certificación | IA]
+**Habilidades evaluadas:** [lista de skills necesarias]
+**Dependencias:** [casos que deben haberse aprobado antes]
+
+## Contexto
+
+Explicación breve del escenario.
+
+## Preguntas / Ejercicios
+
+1. Pregunta o tarea concreta.
+2. ...
+3. ...
+
+## Criterios de aprobación
+
+- Criterio 1
+- Criterio 2
+
+## Referencias
+
+- Enlaces a docs/ relevantes.
+```
+
+## Índice de casos
+
+| # | Caso | Dominio | Estado |
+|---|------|---------|--------|
+| 001 | Constitución del laboratorio | Gobierno | Activo |
+| 002 | Arquitectura y servicios | Operación | Activo |
