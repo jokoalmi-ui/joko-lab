@@ -1,6 +1,6 @@
 # Estado real de Joko Lab
 
-Última actualización: 2026-07-10 (auditoría 6.8/10, certification/, backups systemd timer)
+Última actualización: 2026-07-12 (API Key n8n operativa, skill n8n-admin actualizada)
 
 ## Hardware
 
@@ -24,7 +24,7 @@
 
 | Servicio | Puerto | Estado |
 |---|---|---|
-| n8n | 5678 | ✓ Up. v2.27.4, límite RAM 2G, 305 MiB en reposo. JS Runner activo. Workflow ENVIO WHATSAPP activo. Healthcheck 5/5. Cron cada 30 min. Puerto restringido a localhost (127.0.0.1). |
+| n8n | 5678 | ✓ Up. v2.27.4, límite RAM 2G, 305 MiB en reposo. JS Runner activo. Workflow ENVIO WHATSAPP activo. Healthcheck 5/5. Cron cada 30 min. Puerto restringido a localhost (127.0.0.1). API Key operativa (creación y gestión programática de workflows). |
 | Ollama | 11434 | ✓ Funcionando. Modelos: qwen2.5:7b, llama3.1:8b, llama31-8b-64k |
 | Stirling-PDF | 8081 | ✓ Funcionando |
 | pdf-cleaner | 8000 | ✓ Funcionando (build local) |
