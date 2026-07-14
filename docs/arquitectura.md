@@ -114,7 +114,7 @@ La red automation_net aísla los servicios contenerizados (n8n, Ollama, Stirling
 └── ¿Razonamiento complejo? → DeepSeek ($0.00023/consulta)
    └─ ¿Consulta simple? → Ollama llama31-8b-64k (gratuito)
 
-Costes: DeepSeek V4 Flash es 13x mas barato que Gemini 2.5 Flash.
+Costes: DeepSeek V4 Flash ($0.14/$0.28 por M input/output) es mas barato que Gemini 2.5 Flash ($0.30/$2.50) -- ~2x en input, ~9x en output. Precios oficiales verificados 2026-07-14.
 No hay franja cara ni barata. DeepSeek es cloud por defecto permanente.
 Solo privacidad justifica usar local.
 ```
