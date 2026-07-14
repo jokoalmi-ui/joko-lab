@@ -32,7 +32,7 @@ LOG_DIR = LAB_STATE / "logs"
 LOG_FILE = LOG_DIR / "decision.log"
 POLICIES_DIR = LAB_STATE / "policies"
 FALLBACK_PROVIDER = "deepseek"
-FALLBACK_MODEL = "deepseek-chat"
+FALLBACK_MODEL = "deepseek-v4-flash"
 
 
 # ─── Logging ─────────────────────────────────────────────────────────────────
