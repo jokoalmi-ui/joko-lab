@@ -1,0 +1,195 @@
+ARQUITECTURA HIBRIDA DE PROVEEDORES - JOKO LAB
+================================================
+
+Fecha: 2026-07-10
+Basado en documentacion oficial de Hermes Agent:
+https://hermes-agent.nousresearch.com/docs/
+
+
+1. ¿Se pueden definir varios proveedores simultaneamente?
+----------------------------------------------------------
+SI. Hermes soporta multiples proveedores conviviendo en config.yaml
+mediante la seccion custom_providers:. Puedes tener cuantos quieras,
+cada uno con su propio endpoint, API key y modelo.
+
+Ejemplo oficial de la documentacion con 3 proveedores:
+
+custom_providers:
+  - name: together
+    base_url: https://api.together.xyz/v1
+    key_env: TOGETHER_API_KEY
+  - name: groq
+    base_url: https://api.groq.com/openai/v1
+    key_env: GROQ_API_KEY
+  - name: perplexity
+    base_url: https://api.perplexity.ai
+    key_env: PERPLEXITY_API_KEY
+
+
+2. ¿Como se declara cada proveedor dentro de config.yaml?
+----------------------------------------------------------
+Dos formas:
+
+A) Proveedores nativos (DeepSeek, Gemini, Anthropic...):
+   Se declaran con model.provider + API key en ~/.hermes/.env
+
+   model:
+     default: deepseek-v4-flash
+     provider: deepseek
+     base_url: https://api.deepseek.com/v1
+
+B) Proveedores personalizados (Ollama, LM Studio, endpoints propios):
+   Se declaran en custom_providers: y se referencian como custom:<nombre>
+
+   custom_providers:
+     - name: local
+       base_url: http://localhost:11434/v1
+
+   model:
+     default: mistral-nemo:12b
+     provider: custom:local
+     base_url: http://localhost:11434/v1
+
+
+3. ¿Existe un sistema oficial de fallback_providers?
+----------------------------------------------------------
+SI, completo. Hermes tiene tres capas de resiliencia:
+
+   Capa 1 - Credential pools: rotar entre varias API keys del mismo proveedor
+   Capa 2 - Primary model fallback: cambiar automaticamente a OTRO proveedor
+            cuando el principal falla (rate limit, 401, 500, timeout)
+   Capa 3 - Auxiliary task fallback: proveedor independiente para subtareas
+            (vision, compresion, web extraction)
+
+Se configura con:
+   hermes fallback add     (modo interactivo)
+
+O directamente en config.yaml:
+   fallback_providers:
+     - provider: deepseek
+       model: deepseek-v4-flash
+     - provider: custom
+       model: mistral-nemo:12b
+       base_url: http://localhost:11434/v1
+
+
+4. ¿Existe seleccion automatica de proveedor o solo cambio manual?
+----------------------------------------------------------
+Hermes NO tiene seleccion automatica por hora del dia ni por tipo de tarea.
+Eso lo implementa Joko Lab con ai-router.
+
+Lo que SI ofrece:
+  - Cambio manual en sesion: /model custom:local:mistral-nemo
+  - Fallback automatico: solo cuando el proveedor PRINCIPAL falla con error
+  - Cambio entre sesiones: modificando config.yaml (lo que hace el cron)
+
+No existe un planificador horario integrado en Hermes.
+
+
+5. ¿Existen perfiles de modelos?
+----------------------------------------------------------
+No con ese nombre, pero SI por modelo dentro de custom_providers:
+
+   custom_providers:
+     - name: local
+       base_url: http://localhost:11434/v1
+       models:
+         mistral-nemo:12b:
+           context_length: 64000
+         qwen2.5:7b:
+           context_length: 32000
+
+Ademas, el modelo activo puede declarar:
+   supports_vision: true   (para enviar imagenes nativamente)
+
+
+6. ¿Puede una skill decidir cambiar de proveedor durante una conversacion?
+----------------------------------------------------------
+SI. Hermes soporta el comando /model dentro de una sesion para cambiar
+entre proveedores ya configurados:
+
+   /model deepseek              -> cambia a DeepSeek
+   /model custom:local          -> cambia a Ollama local
+   /model custom:local:mistral-nemo  -> modelo especifico local
+
+Una skill puede ejecutar hermes config set para cambiar el proveedor
+base (afecta a futuras sesiones) o /model durante la conversacion.
+
+
+7. ¿Cual es la arquitectura recomendada por la documentacion oficial?
+----------------------------------------------------------
+La documentacion recomienda el patron de MULTIPLES custom_providers
++ fallback_providers:
+
+   custom_providers:
+     - name: local
+       base_url: http://localhost:11434/v1
+     - name: lm-studio
+       base_url: http://localhost:1234/v1
+
+   model:
+     default: deepseek-v4-flash
+     provider: deepseek
+     base_url: https://api.deepseek.com/v1
+
+   fallback_providers:
+     - provider: custom
+       model: mistral-nemo:12b
+       base_url: http://localhost:11434/v1
+
+El proveedor principal se usa por defecto. Si falla, Hermes recorre
+fallback_providers automaticamente. Cualquier sesion puede cambiar
+con /model custom:local:mistral-nemo.
+
+
+PROPUESTA PARA JOKO LAB
+=======================
+
+Requisito                              Como se consigue
+------------------------               ----------------------------------------
+DeepSeek como principal                model.provider: deepseek + DEEPSEEK_API_KEY en .env
+Ollama (Mistral-Nemo) como local       custom_providers: con name: local
+Cambio automatico por hora             Cron ejecuta hermes config set (trio completo)
+Fallback si el principal falla         fallback_providers: apuntando al local
+Sin editar manualmente                 Todo persiste en config.yaml, el cron lo gestiona
+
+Config.yaml final:
+
+   model:
+     default: deepseek-v4-flash
+     provider: deepseek
+     base_url: https://api.deepseek.com/v1
+
+   custom_providers:
+     - name: local
+       base_url: http://localhost:11434/v1
+
+   fallback_providers:
+     - provider: custom
+       model: mistral-nemo:12b
+       base_url: http://localhost:11434/v1
+       key_env: ""
+
+Router horario (router-cron.sh modificado):
+
+   # A las 03:00 -> Ollama local (franja cara, evitar coste DeepSeek)
+   hermes config set model.provider custom:local
+   hermes config set model.default mistral-nemo:12b
+   hermes config set model.base_url http://localhost:11434/v1
+
+   # A las 12:00 -> DeepSeek (franja normal)
+   hermes config set model.provider deepseek
+   hermes config set model.default deepseek-v4-flash
+   hermes config set model.base_url https://api.deepseek.com/v1
+
+Cambio manual en sesion:
+
+   /model deepseek                   -> volver a DeepSeek
+   /model custom:local               -> ir a Ollama local
+   /model custom:local:mistral-nemo  -> modelo especifico
+
+Archivos a modificar:
+  - ~/.hermes/config.yaml           -> anadir custom_providers y fallback_providers
+  - scripts/router-cron.sh          -> reescribir con hermes config set
+  - scripts/provider-detect.sh      -> eliminar o archivar
+  - scripts/model-router.sh         -> mantener (solo terminal interactiva)

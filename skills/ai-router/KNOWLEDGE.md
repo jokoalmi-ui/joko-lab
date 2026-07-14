@@ -79,11 +79,13 @@ Indicadores: "traduce", "resume", "formatea", "corrige", "convierte", preguntas 
     │   ├── Sí → LM Studio (visión local, datos no salen del equipo)
     │   └── No → Gemini (API externa, si configurado) / Informar si no.
     └── No → ¿Requiere razonamiento complejo?
-        ├── Sí → DeepSeek
+        ├── Sí → DeepSeek V4 Flash (cloud, $0.00023/consulta)
         └── No → ¿VRAM < 2 GB o RAM < 4 GB?
             ├── Sí → Modelo ligero local
             └── No → Modelo local completo (~7B-8B, rápido, sin coste)
 ```
+
+> **Nota de coste:** DeepSeek V4 Flash cuesta $0.077/M input + $0.154/M output (~$0.00023 por consulta tipica). Es 13x mas barato que Gemini 2.5 Flash. No hay franja cara ni barata — DeepSeek es el cloud por defecto permanente. El unico motivo para forzar local es privacidad de datos, no coste.
 
 ## Tareas típicas por proveedor
 

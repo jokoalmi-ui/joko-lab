@@ -1,6 +1,6 @@
 # Estado real de Joko Lab
 
-Última actualización: 2026-07-12 (API Key n8n operativa, skill n8n-admin actualizada)
+Última actualización: 2026-07-14 (Corregido router horario: DeepSeek es 13x mas barato que Gemini, no hay franja cara)
 
 ## Hardware
 
@@ -42,13 +42,21 @@
 google/gemma-4-e4b, google/gemma-4-12b-qat, google/gemma-4-12b, glm-4.6v-flash, qwen/qwen3.5-9b, text-embedding-nomic-embed-text-v1.5
 
 ### Árbol de decisión (ai-router)
-
 ```
 ¿Datos privados? → Ollama
 ├── ¿Multimodal? → LM Studio (VLM local)
 │  └─ (si no cargado) → Gemini (externo)
-└── ¿Razonamiento complejo? → DeepSeek
+└── ¿Razonamiento complejo? → DeepSeek ($0.00023/consulta, 13x mas barato que Gemini)
    └─ ¿Consulta simple? → Ollama llama31-8b-64k
+
+Costes reales (Julio 2026):
+  DeepSeek V4 Flash: $0.077/M input, $0.154/M output
+  Gemini 2.5 Flash:  $0.300/M input, $2.500/M output
+  Gemini 2.5 FL:     $0.100/M input, $0.400/M output
+  Ollama local:      $0.000 (gratuito)
+
+No existe "franja cara". DeepSeek es el cloud por defecto permanente.
+El unico motivo para usar local es privacidad, no coste.
 ```
 
 ## Datos y backups

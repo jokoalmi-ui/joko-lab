@@ -1,0 +1,191 @@
+ANALISIS DE ARQUITECTURA HIBRIDA DE PROVEEDORES
+================================================
+
+Fecha: 2026-07-10
+Contexto: Reconfiguracion de la estrategia de modelos de Hermes
+
+
+1. ESTADO ACTUAL DE CONFIG.YAML
+--------------------------------
+
+Hay dos secciones model en conflicto:
+
+  # Arriba (seccion principal)
+  model:
+    default: deepseek-v4-flash
+    provider: deepseek
+    base_url: https://api.deepseek.com/v1
+
+  # Abajo (seccion secundaria)
+  models:
+    main:
+      provider: deepseek
+      default: deepseek-chat    <- modelo diferente a v4-flash
+
+Ademas:
+  - providers: {}               <- VACIO
+  - fallback_providers: []      <- VACIO
+  - No hay custom_providers:    <- AUSENTE
+
+
+2. LO QUE SOPORTA HERMES DE FORMA NATIVA
+-----------------------------------------
+
+Mecanismo                           | Soportado | Detalle
+------------------------------------|:---------:|--------------------------------
+Multiples proveedores simultaneos   |    SI     | Via custom_providers:
+Fallback automatico ante errores    |    SI     | fallback_providers: solo se
+                                    |           | activa con HTTP 429, 401, 500,
+                                    |           | 503 o timeout
+Routing por proveedor               | SOLO      | Solo funciona con OpenRouter
+                                    | OpenRouter| o Nous Portal. No aplica para
+                                    | /Portal   | DeepSeek, Gemini, Ollama
+Seleccion automatica por hora       |    NO     | No existe en Hermes
+Seleccion por complejidad de tarea  |    NO     | No existe en Hermes
+Modelos auxiliares independientes   |    SI     | 11 tasks: Vision, Web Extract,
+                                    |           | Compression, Title Gen, etc.
+Cambio manual en sesion             |    SI     | /model custom:local:mistral-nemo
+Perfiles de agente completos        |    SI     | hermes profile - configuraciones
+                                    |           | independientes
+
+
+3. ¿PUEDE IMPLEMENTARSE SOLO CON CONFIGURACION?
+------------------------------------------------
+
+NO. El diagrama deseado:
+
+  Ollama (Mistral Nemo)
+    +-- suficiente -> responder localmente
+    +-- necesita apoyo online -> Gemini/DeepSeek
+
+Requiere que Hermes decida si la tarea es suficiente o no para el modelo
+local. ESO NO EXISTE en Hermes ni en ningun proveedor como mecanismo nativo.
+
+El fallback_providers solo se activa con ERRORES DE CONEXION (timeout,
+401, 500), no con "esta pregunta es demasiado compleja para Mistral Nemo".
+
+
+4. LIMITACIONES EXACTAS
+------------------------
+
+A. No hay evaluacion de complejidad:
+   Hermes no puede analizar tu pregunta, decidir que es demasiado compleja
+   para Ollama, y cambiar automaticamente a DeepSeek. El modelo local es
+   el que tendria que hacer esa evaluacion... y si es demasiado debil para
+   responder, tambien lo es para autoevaluarse.
+
+B. El fallback solo reacciona a errores HTTP:
+   Si Mistral Nemo recibe tu pregunta y responde algo incorrecto pero
+   sintacticamente valido, Hermes considera que fue exitoso. No hay ningun
+   mecanismo que diga "esto esta mal, prueba con otro modelo".
+
+C. El cambio horario no escala a tareas:
+   El cron puede cambiar el proveedor principal, pero eso afecta a TODAS
+   las conversaciones, no solo a las que necesitan mas capacidad.
+
+
+5. ARQUITECTURA PROPUESTA (LA MAS LIMPIA POSIBLE)
+--------------------------------------------------
+
+Dado lo que Hermes soporta realmente, esta es la mejor arquitectura:
+
+### Siempre: Ollama como proveedor principal ###
+
+  model:
+    default: mistral-nemo:12b
+    provider: custom:local
+    base_url: http://localhost:11434/v1
+
+  custom_providers:
+    - name: local
+      base_url: http://localhost:11434/v1
+
+### Fallback automatico segun horario (cambiado por cron) ###
+
+  fallback_providers:
+    - provider: gemini            # Cambia entre 03:00-12:00
+      model: gemini-3.1-flash-lite
+    - provider: deepseek          # Cambia entre 12:00-03:00
+      model: deepseek-v4-flash
+
+El cron ejecuta hermes fallback clear && hermes fallback add con el
+proveedor que toque segun la hora, o edita directamente la lista en
+config.yaml.
+
+### Modelos auxiliares para tareas especificas ###
+
+Las tareas que claramente necesitan mas capacidad se envian directamente
+al online:
+
+  auxiliary:
+    vision:
+      provider: deepseek
+      model: deepseek-v4-flash
+    web_extract:
+      provider: deepseek
+      model: deepseek-v4-flash
+    compression:
+      provider: deepseek
+      model: deepseek-v4-flash
+
+### Como funciona en la practica ###
+
+  Hermes arranca -> Ollama (Mistral Nemo)
+                       |
+                       +-- Pregunta normal -> responde con Ollama ✓
+                       |
+                       +-- Pide analizar imagen
+                       |   -> auxiliary:vision usa DeepSeek/Gemini ✓
+                       |
+                       +-- Pide resumir pagina web
+                       |   -> auxiliary:web_extract usa DeepSeek/Gemini ✓
+                       |
+                       +-- Ollama da error (timeout, 500, context不够)
+                       |   -> fallback_providers activa DeepSeek/Gemini ✓
+                       |
+                       +-- Pregunta muy compleja para Ollama sin error
+                           -> /model deepseek (1 comando)
+                           -> O la skill ai-router lo hace por ti
+
+
+6. ¿POR QUE ESTA ES LA MEJOR OPCION?
+--------------------------------------
+
+1. Usa mecanismos OFICIALES de Hermes:
+   custom_providers, fallback_providers, auxiliary - todo documentado
+
+2. No anade servicios nuevos:
+   No necesitas LiteLLM, proxies ni wrappers
+
+3. Cubre el 90% del caso de uso:
+   Las tareas pesadas (vision, web, compresion) ya se redirigen
+   automaticamente
+
+4. El cron solo toca fallback_providers:
+   Un solo cambio, no tres (provider + model + base_url)
+
+5. Transparente:
+   Hermes arranca solo, no hay que tocar nada manualmente salvo cuando
+   explicitamente quieras un modelo mas potente
+
+
+7. LO QUE NO SE PUEDE AUTOMATIZAR
+----------------------------------
+
+La escalada por complejidad de tarea no se puede automatizar al 100%.
+Ningun agente del mercado lo hace - ni ChatGPT, ni Claude, ni ninguno.
+Todos usan un solo modelo por sesion.
+
+El cambio de modelo en caliente basado en "esta pregunta es demasiado
+dificil" simplemente no existe como mecanismo fiable en ningun sistema.
+
+
+8. CAMBIOS CONCRETOS PARA IMPLEMENTAR
+---------------------------------------
+
+1. Anadir custom_providers: con Ollama en config.yaml
+2. Poner Ollama como model.provider: custom:local
+3. Configurar fallback_providers: con el proveedor online actual
+4. Configurar auxiliary: para vision, web extract, compression con online
+5. Reescribir router-cron.sh para que solo actualice fallback_providers
+   segun la hora

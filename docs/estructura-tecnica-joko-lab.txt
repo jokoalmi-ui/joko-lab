@@ -1,0 +1,202 @@
+===============================================================================
+                       JOKO LAB — ESTRUCTURA TÉCNICA
+===============================================================================
+Documento técnico de estudio sobre el diseño, componentes y gobernanza de
+Joko Lab (Laboratorio de IA y Automatización).
+Última actualización: 2026-07-13
+
+-------------------------------------------------------------------------------
+1. INFRAESTRUCTURA Y HARDWARE
+-------------------------------------------------------------------------------
+Joko Lab corre en un entorno local optimizado para aceleración por GPU, utilizando
+almacenamiento separado para aislar el sistema de los datos persistentes.
+
+* Equipo Principal: Torre de escritorio
+* Procesador (CPU): Intel Core i5-9500
+* Memoria RAM: 32 GB DDR4
+* Gráficos (GPU): NVIDIA RTX A2000 (12 GB VRAM dedicada)
+* Sistema Operativo: Ubuntu (Kernel 7.0.0-27-generic)
+* Usuario del sistema: jokoalmi
+* Almacenamiento:
+  ├── SSD Principal (/) ───────── Sistema base y carpeta de usuario (~/)
+  └── SSD Secundario (/mnt/ssd_ia_datos/)
+        ├── /mnt/ssd_ia_datos/n8n/ ────── Datos persistentes de n8n
+        ├── /mnt/ssd_ia_datos/exports/ ── Exportaciones de workflows n8n
+        └── /mnt/ssd_ia_datos/backups/ ── Copias de seguridad de la infraestructura
+
+-------------------------------------------------------------------------------
+2. ARQUITECTURA DE SOFTWARE (CONTAINER STACK)
+-------------------------------------------------------------------------------
+La automatización y los servicios pesados se ejecutan contenerizados en Docker
+para garantizar su reproducibilidad y aislamiento en una red bridge propia.
+
+Ruta de control: /home/jokoalmi/automation-stack/docker-compose.yml
+Red Docker: automation_net (red bridge aislada de accesos externos no autorizados)
+
+Servicios contenerizados:
+  ├── n8n (v2.27.4) ──────────── Puerto: 5678 (Restringido a localhost)
+  │                              Volumen: /mnt/ssd_ia_datos/n8n
+  │                              Detalle: Límite RAM 2GB. JS Runner activo.
+  │                              Workflow 'ENVIO WHATSAPP' activo.
+  ├── Ollama ─────────────────── Puerto: 11434 (localhost)
+  │                              Detalle: Motor de inferencia local. GPU acelerada.
+  ├── Stirling-PDF ───────────── Puerto: 8081 (localhost)
+  │                              Detalle: Procesamiento avanzado de archivos PDF.
+  └── pdf-cleaner ────────────── Puerto: 8000 (localhost)
+                                 Detalle: Herramienta de limpieza de PDFs (build local).
+
+Servicios que corren fuera de Docker (Host):
+  ├── Hermes Agent ───────────── Agente de IA en terminal (perfil 'default')
+  ├── LM Studio ──────────────── API Server en puerto 1234 (localhost)
+  └── LM Studio Real Monitor ─── Dashboard Flask en puerto 5000 (localhost)
+
+-------------------------------------------------------------------------------
+3. MODELO DE GOBIERNO Y JERARQUÍA DE SKILLS
+-------------------------------------------------------------------------------
+Las habilidades (skills) de Hermes se organizan en 4 niveles de responsabilidad
+que definen quién tiene autoridad técnica sobre quién.
+
+                             [ Nivel 0: Constitución ]
+                                     HERMES.md
+                                         │
+                                         ▼
+                             [ Nivel 1: Identidad ]
+                                    joko-lab
+                                         │
+                                         ▼
+                             [ Nivel 2: Gobierno ]
+                  lab-manager · ai-architecture · hermes-expert
+                                         │
+                                         ▼
+                             [ Nivel 3: Operación ]
+                 docker-admin · ai-router · n8n-admin · betterbird
+                                         │
+                                         ▼
+                            [ Nivel 4: Servicios reales ]
+                    Docker · n8n · Ollama · LM Studio · Git · Filesystem
+
+TABLA DE RESPONSABILIDADES:
+
+* HERMES.md (Constitución)
+  - Responsabilidad: Filosofía, principios, reglas de seguridad globales.
+  - No contiene: Implementación, comandos, procedimientos.
+
+* joko-lab (Identidad)
+  - Responsabilidad: Contexto base: hardware, infraestructura y dominios del lab.
+  - No contiene: Procedimientos, configuraciones, criterios de decisión.
+
+* lab-manager (Gobernanza)
+  - Responsabilidad: Arquitecto permanente (solo lectura). Audita y mide madurez.
+  - No contiene: Ejecución técnica, cambios en archivos o servicios.
+
+* ai-architecture (Gobernanza - NUEVO)
+  - Responsabilidad: Modelo cognitivo. Roles, jerarquía, principios de IA.
+  - No contiene: Fichas técnicas, scripts del cron, comandos config.yaml.
+
+* hermes-expert (Gobernanza)
+  - Responsabilidad: Funcionamiento interno de Hermes. Límites y configuración.
+  - No contiene: Criterios de enrutamiento horario, llamadas a modelos.
+
+* ai-router (Operación)
+  - Responsabilidad: Implementación de enrutamiento. Scripts, cron y fallbacks.
+  - No contiene: Principios invariantes, roles o meta-auditorías de IA.
+
+* docker-admin (Operación)
+  - Responsabilidad: Gestión de Docker, volúmenes, redes y backups de disco.
+  - No contiene: Modelos de IA, configuración de Hermes, workflows.
+
+* n8n-admin (Operación)
+  - Responsabilidad: Gestión de workflows n8n, exportaciones y API keys.
+  - No contiene: Lógica del stack Docker, enrutamiento horario de IA.
+
+REGLA DE FRONTERA CRÍTICA:
+  ├── ai-architecture ── Define el QUÉ (políticas, principios y roles)
+  └── ai-router ──────── Define el CÓMO (implementación, scripts, crons)
+
+-------------------------------------------------------------------------------
+4. ARQUITECTURA COGNITIVA (IA)
+-------------------------------------------------------------------------------
+Joko Lab funciona bajo una arquitectura jerárquica de agentes, donde las tareas
+se segmentan según su complejidad entre modelos Cloud (planificadores) y Locales
+(ejecutores).
+
+                               USUARIO (Guardián)
+                                      │
+                                      ▼
+                            DIRECTOR COGNITIVO
+                          (Gemini / DeepSeek)
+                                      │
+                       ┌──────────────┼──────────────┐
+                       ▼              ▼              ▼
+                 Arquitectura   Planificación   Decisiones
+                       │
+                       ▼
+                       delegate_task (autorizado)
+                       │
+                       ▼
+                       ESPECIALISTA LOCAL
+                     (Mistral Nemo / Ollama)
+                       │
+                       ┌──────────────┼──────────────┐
+                       ▼              ▼              ▼
+                    Código        Análisis      Procesamiento
+
+ROLES Y FUNCIONES:
+
+1. Director Cognitivo (Cloud)
+   * Modelos: DeepSeek-v4-flash (12:00 - 03:00) · Gemini-3.5-flash (03:00 - 12:00)
+   * Funciones:
+     - Arquitectura: Diseña el enfoque técnico y la estrategia del laboratorio.
+     - Planificación: Organiza los pasos, secuencia y estima la complejidad.
+     - Decisiones: Evalúa alternativas y decide si delega trabajo mecánico.
+   * Regla de Coste: Se rota automáticamente según horario para evitar el coste ×2
+     de DeepSeek en su franja cara (03-12 España).
+
+2. Especialista Local (Local Worker)
+   * Modelo: Mistral Nemo (Ollama, GPU acelerada)
+   * Funciones:
+     - Código: Escribe, lee, modifica y analiza scripts o ficheros.
+     - Análisis: Evalúa logs de terminal, diagnósticos y salud del sistema.
+     - Procesamiento: Ejecuta tareas repetitivas, transformaciones y formatos.
+   * Regla de Seguridad: No tiene autonomía. Corre en un entorno aislado via
+     'delegate_task'. Solo puede realizar acciones tras aprobación del usuario.
+
+3. VLM Local (Visión)
+   * Modelos: LM Studio (google/gemma-4, glm-4.6v-flash)
+   * Función: Procesamiento y análisis de imágenes localmente.
+
+4. Usuario (Guardián de Ejecución)
+   * Persona: jokoalmi
+   * Función: Autoriza el lanzamiento del Especialista, confirma cada comando
+     con efectos en el sistema (`approvals.mode: manual`) y mantiene secretos.
+
+-------------------------------------------------------------------------------
+5. AUTOMATIZACIÓN Y RESILIENCIA
+-------------------------------------------------------------------------------
+El laboratorio se auto-mantiene mediante tareas programadas (systemd timers
+y crons) que se ejecutan de forma asíncrona:
+
+* Tareas cron:
+  ├── 03:00 ── Backup n8n (diario) ─────────────── /mnt/ssd_ia_datos/backups/
+  ├── 03:00 ── router-cron.sh (Gemini) ────────── Actualiza config.yaml
+  ├── 03:15 ── Backup GDrive (diario) ──────────── Envía Git bundle a la nube
+  ├── 03:30 ── Backup Ollama (diario) ──────────── Respaldo de modelos locales
+  ├── 12:00 ── router-cron.sh (DeepSeek) ──────── Actualiza config.yaml
+  ├── *:05 ─── Healthcheck Docker (cada hora) ──── docker-admin.log
+  └── */30 ──── Healthcheck n8n (cada 30 min) ───── n8n-admin.log
+
+* systemd timer (joko-backup.timer):
+  - Frecuencia: Diario.
+  - Característica: 'Persistent=true' (si el equipo estaba apagado a la hora
+    programada, se ejecuta inmediatamente al encenderse el sistema).
+
+* Auditoría Operativa del Router (Checklist ROUTER_AUDIT.md):
+  ├── [ ] El cron se ejecuta.
+  ├── [ ] El script decide correctamente la franja horaria.
+  ├── [ ] El script modifica config.yaml.
+  ├── [ ] Hermes recarga la configuración (abre nueva sesión o /model).
+  └── [ ] El modelo activo coincide con la franja actual.
+
+===============================================================================
+                          FIN DEL DOCUMENTO TÉCNICO
+===============================================================================

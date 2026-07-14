@@ -111,8 +111,12 @@ La red automation_net aísla los servicios contenerizados (n8n, Ollama, Stirling
 ¿Datos privados? → Ollama
 ├── ¿Multimodal? → LM Studio (VLM local)
 │  └─ (si no cargado) → Gemini (externo)
-└── ¿Razonamiento complejo? → DeepSeek
-   └─ ¿Consulta simple? → Ollama llama31-8b-64k
+└── ¿Razonamiento complejo? → DeepSeek ($0.00023/consulta)
+   └─ ¿Consulta simple? → Ollama llama31-8b-64k (gratuito)
+
+Costes: DeepSeek V4 Flash es 13x mas barato que Gemini 2.5 Flash.
+No hay franja cara ni barata. DeepSeek es cloud por defecto permanente.
+Solo privacidad justifica usar local.
 ```
 
 ---

@@ -33,8 +33,8 @@
 
 ### Pendiente para etapa 4 (Optimizar)
 
-- [ ] Evaluar rendimiento de cada proveedor en tareas reales
+- [x] Evaluar rendimiento de cada proveedor en tareas reales
+- [x] Documentar coste aproximado de cada proveedor externo
 - [ ] Ajustar umbrales de VRAM según experiencia
 - [ ] Automatizar la decisión sin intervención del usuario
-- [ ] Documentar coste aproximado de cada proveedor externo
 - [ ] Evaluar si tiene sentido un wrapper unificado (ej: LiteLLM, OpenRouter)

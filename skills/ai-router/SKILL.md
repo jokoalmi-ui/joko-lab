@@ -23,15 +23,17 @@ Skill especializada en decidir qué modelo de IA usar según la tarea.
 
 **Etapa actual:** 3 — Actuar
 
-## Criterios de enrutamiento
+|## Criterios de enrutamiento
 
-| Si la tarea... | Entonces usar... | Motivo |
-|---|---|---|
-| Contiene información privada | Ollama (local) | Los datos nunca salen del equipo |
-| Necesita razonamiento complejo | DeepSeek (v4-flash) | Mayor capacidad de razonamiento |
-| Contiene imágenes o PDFs grandes | Gemini | Soporte multimodal nativo |
-| Hay poca memoria disponible (VRAM < 4 GB libre) | Modelo ligero local | Evita out-of-memory y swapping |
-| Es una consulta rápida y simple | Modelo ligero local | Menor latencia, sin coste |
+|| Si la tarea... | Entonces usar... | Motivo |
+|---|---|---|---|
+|| Contiene información privada | Ollama (local) | Los datos nunca salen del equipo |
+|| Necesita razonamiento complejo | DeepSeek (v4-flash) | Mayor capacidad de razonamiento |
+|| Contiene imágenes o PDFs grandes | Gemini o LM Studio (VLM) | Soporte multimodal |
+|| Hay poca memoria disponible (VRAM < 4 GB libre) | Modelo ligero local | Evita out-of-memory y swapping |
+|| Es una consulta rápida y simple | Ollama (local) | Menor latencia, sin coste |
+
+> **Nota sobre costes:** DeepSeek V4 Flash cuesta $0.077/M input y $0.154/M output, siendo 13x mas barato que Gemini 2.5 Flash ($0.300/$2.500) y 2.2x mas barato que Gemini Flash-Lite ($0.100/$0.400). No hay motivo de coste para alternar entre proveedores cloud. DeepSeek es el cloud por defecto permanente. El unico motivo para usar local (Ollama) es privacidad.
 
 ## Proveedores gestionados
 

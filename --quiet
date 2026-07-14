@@ -1,0 +1,76 @@
+{
+  "fecha": "2026-07-10T08:59:41.857558+00:00",
+  "hostname": "milinux",
+  "hardware": {
+    "cpu": "Intel(R) Core(TM) i5-9500 CPU @ 3.00GHz",
+    "ram_gb": 30,
+    "gpu": "NVIDIA RTX A2000 12GB",
+    "vram_gb": 12282
+  },
+  "procesos": {
+    "total": 392,
+    "docker": 1,
+    "n8n": 0,
+    "ollama": 1
+  },
+  "puertos": {
+    "5678": null,
+    "11434": null,
+    "8081": null,
+    "8000": null,
+    "1234": null
+  },
+  "git": {
+    "existe": true,
+    "commits": 12,
+    "ultimo_commit": "2026-07-09 20:01:07 +0200",
+    "rama": "master",
+    "archivos": 149
+  },
+  "backups": {
+    "cron_backups": 4,
+    "cron_healthchecks": 4,
+    "ultimo_git_bundle_gdrive": "hermes-lab-bundle-20260709.bundle 180594 bytes",
+    "restore_probado": false
+  },
+  "scripts": {
+    "cleanup.sh": {
+      "sintaxis": true,
+      "ejecutable": true,
+      "tamano_b": 2940
+    },
+    "git-backup.sh": {
+      "sintaxis": true,
+      "ejecutable": true,
+      "tamano_b": 853
+    },
+    "model-router.sh": {
+      "sintaxis": true,
+      "ejecutable": true,
+      "tamano_b": 853
+    },
+    "router-cron.sh": {
+      "sintaxis": true,
+      "ejecutable": true,
+      "tamano_b": 1650
+    },
+    "smoke-test.sh": {
+      "sintaxis": true,
+      "ejecutable": true,
+      "tamano_b": 4486
+    }
+  },
+  "docker": {
+    "contenedores_activos": 4,
+    "contenedores_totales": 4
+  },
+  "smoke_tests": {
+    "ejecutados": true,
+    "pass": 6,
+    "fail": 2,
+    "total": 8
+  },
+  "tamano_repo_bytes": 835322,
+  "skills_pobladas": 10,
+  "skills_vacias": 0
+}

@@ -1,5 +1,15 @@
 # ai-router — Changelog
 
+## 2026-07-14 — v0.5.0
+
+- **Correccion de costes:** Documentados los precios reales de DeepSeek V4 Flash ($0.077/$0.154 por millon de tokens), Gemini 2.5 Flash ($0.300/$2.500) y Gemini Flash-Lite ($0.100/$0.400).
+- **Decision corregida:** DeepSeek V4 Flash es 13x mas barato que Gemini 2.5 Flash. Se elimina la politica de "cambiar a Gemini en franja cara (03-12)" por obsoleta.
+- **model-router.sh actualizado:** Ya no exporta HERMES_MODEL a Gemini en franja cara. Se convierte en no-op (unset HERMES_MODEL) con documentacion de los precios reales.
+- **docs/decisiones/2026-07-09-router-horario-cron.md:** Marcada como OBSOLETA, con los precios reales y la justificacion de la correccion.
+- **KNOWLEDGE.md:** Arbol de decision actualizado con nota de coste.
+- **SKILL.md:** Criterios de enrutamiento actualizados con nota de coste y DeepSeek como cloud por defecto permanente.
+- **ROADMAP.md:** Marcados como completados "Evaluar rendimiento" y "Documentar coste".
+
 ## 2026-07-07 — v0.4.0
 
 - Avanzada a etapa 3 (Actuar):

@@ -1,0 +1,209 @@
+===============================================================================
+               AUDITORÍA EJECUTIVA DE SISTEMAS — JOKO LAB
+===============================================================================
+Evaluación técnica de madurez, resiliencia y autonomía documental de Joko Lab.
+Fecha de evaluación: 2026-07-13
+Inspector: Hermes Agent (Arquitecto de Sistemas)
+Propietario / Guardián: jokoalmi (Joseba)
+
+-------------------------------------------------------------------------------
+1. RESUMEN EJECUTIVO Y CUADRO DE MANDO
+-------------------------------------------------------------------------------
+Joko Lab ha realizado una transición metodológica crucial en las últimas 72 horas,
+pasando de ser un conjunto disperso de scripts a una plataforma agéntica
+en ciernes, gobernada por políticas explícitas. Sin embargo, persisten cuellos
+de botella estructurales (el bloqueo de asincronía en aprobaciones manuales
+y la vulnerabilidad de la GPU ante OOM por sobrecarga de modelos locales).
+
+* NOTA GLOBAL DE MADUREZ: 6.8 / 10 (Nivel de madurez real en consolidación)
+* MÉTRICA ESTRELLA — AUTONOMÍA: 48%
+  "¿Cuánto podría mantener otra persona o una IA limpia la infraestructura
+  utilizando únicamente la documentación existente sin intervención del creador?"
+
+PUNTUACIÓN POR DIMENSIONES:
+
+  [ Gobierno ] ───────────────────────────── 7.5 / 10 ── (Autonomía: 60%)
+  [ Conocimiento ] ───────────────────────── 7.5 / 10 ── (Autonomía: 70%)
+  [ Inteligencia Artificial ] ────────────── 7.0 / 10 ── (Autonomía: 50%)
+  [ Operación ] ──────────────────────────── 6.5 / 10 ── (Autonomía: 40%)
+  [ Certificación ] ──────────────────────── 4.0 / 10 ── (Autonomía: 20%)
+
+* RIESGO TÉCNICO PRINCIPAL (SPOF & Hardware):
+  El acoplamiento absoluto del "approvals.mode: manual" paraliza las ejecuciones
+  no interactivas (backups y healthchecks nocturnos) si el usuario no está
+  presente en el terminal. Adicionalmente, la ausencia de un gestor de VRAM
+  para los 12 GB de la GPU RTX A2000 expone al host a bloqueos aleatorios del
+  stack por sobrecarga simultánea de modelos de Ollama, LM Studio y VLM.
+
+-------------------------------------------------------------------------------
+2. ANÁLISIS DETALLADO POR DIMENSIÓN
+-------------------------------------------------------------------------------
+
+===============================================================================
+DIMENSIÓN 1: GOBIERNO (Governance) ──── NOTA: 7.5 / 10 ── Autonomía: 60%
+===============================================================================
+Evalúa el plano metodológico, la existencia de políticas de decisión invariantes,
+la hoja de ruta y el control de coherencia interna.
+
+* Componentes evaluados:
+  ├── HERMES.md ────────── Constitución de Joko Lab (13 secciones completas)
+  ├── lab-manager ──────── Skill de gobernanza (Arquitecto Permanente, v0.3.0)
+  ├── ai-architecture ──── Skill de modelo cognitivo (v2.0.0, recién reestructurada)
+  ├── docs/decisiones/ ─── Registro de Decisiones de Arquitectura (20 entradas)
+  └── ROADMAP.md ───────── Planificación general de fases (consolida Fase 1)
+
+* Diagnóstico técnico:
+  Excelente estructura teórica. La separación de responsabilidades entre el
+  diseño de políticas ("QUÉ" en `ai-architecture`) y la implementación de scripts
+  ("CÓMO" en `ai-router`) es impecable. El registro de decisiones (20 entradas)
+  garantiza la trazabilidad histórica del laboratorio.
+
+* Riesgo Principal de Gobierno:
+  El Roadmap y la priorización siguen dependiendo de la intervención manual del
+  agente en diálogo con el usuario. lab-manager calcula la deuda técnica pero no
+  puede bloquear o forzar de manera autónoma la resolución de dependencias obsoletas.
+
+===============================================================================
+DIMENSIÓN 2: CONOCIMIENTO (Knowledge) ── NOTA: 7.5 / 10 ── Autonomía: 70%
+===============================================================================
+Evalúa la calidad, consistencia y frescura de la documentación técnica frente al
+estado real y operativo de los sistemas.
+
+* Componentes evaluados:
+  ├── docs/estado-real.md ───────── Estado real de hardware/software/servicios
+  ├── docs/arquitectura.md ──────── Plano de hardware, puertos y Docker Compose
+  ├── docs/joko-lab-principles.md ── Principios de diseño del laboratorio
+  └── docs/agentic-architecture.md ── Borrador del plano maestro v3.0 (NUEVO)
+
+* Diagnóstico técnico:
+  Se ha realizado una limpieza masiva de documentos obsoletos (como las antiguas
+  notas dispersas de Hermes). El fichero `estado-real.md` refleja de manera fidedigna
+  los puertos restringidos a localhost y la API Key operativa de n8n. La creación de
+  `agentic-architecture.md` eleva el conocimiento técnico a nivel de ingeniería de
+  sistemas avanzados.
+
+* Riesgo Principal de Conocimiento:
+  La documentación no se auto-valida. El riesgo de desincronización entre lo que
+  está escrito (ej. versiones de modelos en `models-reference.md`) y lo que realmente
+  está corriendo en Ollama es latente, requiriendo validaciones manuales periódicas.
+
+===============================================================================
+DIMENSIÓN 3: IA Y ENRUTAMIENTO ───────── NOTA: 7.0 / 10 ── Autonomía: 50%
+===============================================================================
+Evalúa el modelo cognitivo, las políticas de decisión entre modelos en la nube y
+locales, el router dinámico y la resiliencia ante caídas de red.
+
+* Componentes evaluados:
+  ├── ai-router ───────────── Skill operativa de enrutamiento (v0.3.0)
+  ├── scripts/router-cron.sh ── Script de alternancia de modelos por horario (REPARADO)
+  └── Configuración ───────── custom_providers y fallback_providers en config.yaml
+
+* Diagnóstico técnico:
+  Sólido en su fase de transición. Hoy reparamos un bug clásico en `router-cron.sh`
+  que dejaba el `base_url` desactualizado al cambiar entre DeepSeek y Gemini, lo que
+  habría roto la sesión de la tarde. El sistema actual ya utiliza el modelo óptimo
+  de Google (**gemini-3.5-flash**) para la franja de las 03:00 - 12:00.
+
+* Riesgo Principal de IA:
+  La rigidez del cron horario. Si una sesión interactiva larga se inicia a las 11:58,
+  el cron de las 12:00 modificará el config.yaml para nuevas sesiones, pero no afectará
+  a la sesión activa, generando incoherencias de contexto si el usuario asume que se
+  ha cambiado de modelo o si abre una nueva pestaña en frío. No hay gestión de VRAM.
+
+===============================================================================
+DIMENSIÓN 4: OPERACIÓN (Operations) ──── NOTA: 6.5 / 10 ── Autonomía: 40%
+===============================================================================
+Evalúa la administración de los servicios del stack Docker, automatización de
+mantenimientos, healthchecks de salud y la consistencia de scripts operativos.
+
+* Componentes evaluados:
+  ├── docker-admin ───────── Gestión del stack compose y volúmenes (v0.4.0)
+  ├── n8n-admin ──────────── Gestión del servicio n8n, workflows y API (v0.3.0)
+  ├── scripts/smoke-test.sh ── Suite de verificación rápida de puertos y servicios
+  ├── scripts/cleanup.sh ──── Script de mantenimiento y purga de logs del sistema
+  └── scripts/git-backup.sh ── Backups asíncronos y bundles a Google Drive
+
+* Diagnóstico técnico:
+  El sistema está bien instrumentado en su capa básica. Los healthchecks específicos de
+  n8n corren cada 30 minutos y los backups de n8n están operativos y volcados en el
+  SSD secundario (`/mnt/ssd_ia_datos/backups/`).
+
+* Riesgo Principal de Operación:
+  El Especialista local no cuenta con perfiles de ejecución asíncronos autorizados.
+  El `approvals.mode: manual` congela de forma indefinida cualquier mantenimiento
+  no interactivo (backup, healthcheck en segundo plano) si requiere delegación y el
+  usuario no está presente para pulsar la tecla de confirmación.
+
+===============================================================================
+DIMENSIÓN 5: CERTIFICACIÓN (Validation) ── NOTA: 4.0 / 10 ── Autonomía: 20%
+===============================================================================
+Evalúa los mecanismos de prueba automatizados para verificar que el conocimiento
+del laboratorio es correcto y asimilable por el agente.
+
+* Componentes evaluados:
+  └── certification/ ── Carpetas con casos prácticos v0.1.0 (2 casos activos)
+
+* Diagnóstico técnico:
+  Es la dimensión más desatendida de Joko Lab, lo que arrastra la nota global hacia abajo.
+  Existen únicamente 2 casos de prueba teóricos en `certification/`, pero no hay una
+  suite de pruebas de comportamiento de skills (bats, shellspec, etc.) que valide
+  de forma programática que las habilidades de Hermes siguen funcionando tras un cambio.
+
+* Riesgo Principal de Certificación:
+  La obsolescencia invisible. Se modifica una skill y sus scripts internos, pero no hay
+  nada que alerte al lab-manager de que la skill ha dejado de funcionar hasta que falla
+  en un caso de uso real en producción.
+
+-------------------------------------------------------------------------------
+3. INVENTARIO COMPLETO DE COMPONENTES DEL LAB
+-------------------------------------------------------------------------------
+
+Rutas y Estados de Sistemas:
+
+* /home/jokoalmi/hermes-lab (Repositorio principal Git)
+  - Estado: Activo (25 commits, rama master, remoto en SSD secundario)
+  - Responsabilidad: Código de skills, documentación y scripts de gobierno.
+
+* /home/jokoalmi/automation-stack (Stack Docker Compose)
+  - Estado: Activo (Docker Compose v2)
+  - Responsabilidad: Levantar y aislar n8n, Ollama, Stirling y pdf-cleaner.
+
+* /mnt/ssd_ia_datos/ (SSD secundario montado)
+  - Estado: Activo. Capacidad 100% libre de cuellos de botella del sistema base.
+  - Responsabilidad: Datos pesados de n8n, exportaciones y copias de seguridad.
+
+* /home/jokoalmi/lmstudio_real_monitor (Monitor de hardware)
+  - Estado: Activo (API en localhost:5000)
+  - Responsabilidad: Dashboard Flask, nvidia-smi y psutil.
+
+-------------------------------------------------------------------------------
+4. PLAN DE ACCIÓN RECOMENDADO: TRANSICIÓN A LA V3.0
+-------------------------------------------------------------------------------
+Para resolver las vulnerabilidades identificadas de forma estructurada, el
+laboratorio debe adoptar el plano maestro de la versión 3.0 en 4 hitos secuenciales:
+
+* PASO 1 (Urgente - Observabilidad de IA)
+  Implementar el "Decision Ledger" (`logs/decision-ledger.json`).
+  - Objetivo: Registrar latencias, tokens, errores y costes de cada enrutamiento
+    para disponer de datos empíricos reales.
+
+* PASO 2 (Crítico - Automatización Asíncrona)
+  Desarrollar el Policy Engine para perfiles "SAFE vs PRIVILEGED".
+  - Objetivo: Permitir que los backups y tareas de diagnóstico nocturnas se
+    ejecuten en segundo plano sin intervención humana si son de solo lectura (SAFE),
+    bloqueando y requiriendo aprobación manual solo si modifican el sistema (PRIVILEGED).
+
+* PASO 3 (Estabilidad de Hardware)
+  Desarrollar el "GPU Scheduler".
+  - Objetivo: Comprobar la VRAM disponible vía `nvidia-smi` y enviar llamadas
+    de descarga a Ollama/LM Studio antes de levantar modelos locales pesados para
+    evitar el swapping y los bloqueos del stack por OOM.
+
+* PASO 4 (Enrutamiento Inteligente)
+  Sustituir el cron por el "Semantic Router".
+  - Objetivo: Enrutamiento en caliente basado en complejidad, tipo de tarea,
+    costes y disponibilidad de red en tiempo real.
+
+===============================================================================
+                          FIN DE LA AUDITORÍA EJECUTIVA
+===============================================================================

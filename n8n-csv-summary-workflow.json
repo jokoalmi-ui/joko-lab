@@ -1,0 +1,152 @@
+{
+  "name": "Resumen de pedidos por cliente",
+  "nodes": [
+    {
+      "id": "manual-trigger",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [250, 300],
+      "parameters": {}
+    },
+    {
+      "id": "read-csv",
+      "name": "Leer CSV",
+      "type": "n8n-nodes-base.readBinaryFiles",
+      "typeVersion": 1,
+      "position": [450, 300],
+      "parameters": {
+        "fileSelector": "/data/pedidos.csv"
+      }
+    },
+    {
+      "id": "parse-csv",
+      "name": "Parse CSV",
+      "type": "n8n-nodes-base.spreadsheetFile",
+      "typeVersion": 1,
+      "position": [650, 300],
+      "parameters": {
+        "operation": "fromFile",
+        "options": {
+          "delimiter": ","
+        }
+      }
+    },
+    {
+      "id": "if-filter",
+      "name": "Filtrar 2024+ (excluir 2020)",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [850, 300],
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ new Date($json.fecha.split('/').reverse().join('-')).getFullYear() }}",
+              "operation": "notEqual",
+              "value2": 2020
+            }
+          ],
+          "number": [
+            {
+              "value1": "={{ new Date($json.fecha.split('/').reverse().join('-')).getFullYear() }}",
+              "operation": "greaterEqual",
+              "value2": 2024
+            }
+          ]
+        },
+        "combineOperation": "and"
+      }
+    },
+    {
+      "id": "group-by",
+      "name": "Agrupar por Cliente",
+      "type": "n8n-nodes-base.itemLists",
+      "typeVersion": 1,
+      "position": [1050, 300],
+      "parameters": {
+        "operation": "aggregateItems",
+        "fieldsToAggregate": {
+          "values": [
+            {
+              "fieldName": "id",
+              "aggregation": "append"
+            },
+            {
+              "fieldName": "fecha",
+              "aggregation": "append"
+            },
+            {
+              "fieldName": "producto",
+              "aggregation": "append"
+            },
+            {
+              "fieldName": "cantidad",
+              "aggregation": "sum"
+            },
+            {
+              "fieldName": "total",
+              "aggregation": "sum"
+            }
+          ]
+        },
+        "options": {
+          "groupBy": ["cliente"],
+          "disableDotNotation": false
+        }
+      }
+    },
+    {
+      "id": "code-summary",
+      "name": "Generar Resumen HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1250, 300],
+      "parameters": {
+        "language": "javaScript",
+        "code": "// Generar resumen HTML por cliente\nconst cliente = $json.cliente;\nconst totalPedidos = $json.producto.length;\nconst cantidadTotal = $json.cantidad;\nconst totalGastado = $json.total;\n\nlet detalleProductos = '';\nfor (let i = 0; i < $json.producto.length; i++) {\n  detalleProductos += `<tr>\n    <td style=\"padding:6px 10px;border:1px solid #ddd;\">${$json.fecha[i]}</td>\n    <td style=\"padding:6px 10px;border:1px solid #ddd;\">${$json.producto[i]}</td>\n    <td style=\"padding:6px 10px;border:1px solid #ddd;text-align:right;\">${$json.cantidad[i]}</td>\n  </tr>`;\n}\n\nconst html = `<div style=\"font-family:Arial,sans-serif;max-width:600px;margin:0 auto;\">\n  <h2 style=\"color:#1a73e8;\">📊 Resumen de pedidos — ${cliente}</h2>\n  <table style=\"width:100%;border-collapse:collapse;margin:16px 0;\">\n    <tr><td style=\"padding:8px;font-weight:bold;\">Total pedidos:</td><td style=\"padding:8px;\">${totalPedidos}</td></tr>\n    <tr><td style=\"padding:8px;font-weight:bold;\">Unidades compradas:</td><td style=\"padding:8px;\">${cantidadTotal}</td></tr>\n    <tr><td style=\"padding:8px;font-weight:bold;color:#1a73e8;\">Total gastado:</td><td style=\"padding:8px;color:#1a73e8;\"><strong>€${totalGastado.toFixed(2)}</strong></td></tr>\n  </table>\n  <h3 style=\"color:#333;\">Detalle de productos</h3>\n  <table style=\"width:100%;border-collapse:collapse;\">\n    <thead>\n      <tr style=\"background:#f5f5f5;\">\n        <th style=\"padding:8px 10px;border:1px solid #ddd;text-align:left;\">Fecha</th>\n        <th style=\"padding:8px 10px;border:1px solid #ddd;text-align:left;\">Producto</th>\n        <th style=\"padding:8px 10px;border:1px solid #ddd;text-align:right;\">Cant.</th>\n      </tr>\n    </thead>\n    <tbody>\n      ${detalleProductos}\n    </tbody>\n  </table>\n</div>`;\n\nreturn [\n  {\n    cliente: cliente,\n    emailHtml: html,\n    asunto: `Resumen de pedidos — ${cliente}`,\n    totalGastado: totalGastado\n  }\n];"
+      }
+    },
+    {
+      "id": "send-email",
+      "name": "Enviar Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [1450, 300],
+      "parameters": {
+        "fromEmail": "reportes@tuempresa.com",
+        "toEmail": "={{ $json.cliente.split(' ').map(c => c.toLowerCase()).join('.') + '@email.com' }}",
+        "subject": "={{ $json.asunto }}",
+        "text": "",
+        "html": "={{ $json.emailHtml }}",
+        "options": {}
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [[{"node": "Leer CSV", "type": "main", "index": 0}]]
+    },
+    "Leer CSV": {
+      "main": [[{"node": "Parse CSV", "type": "main", "index": 0}]]
+    },
+    "Parse CSV": {
+      "main": [[{"node": "Filtrar 2024+ (excluir 2020)", "type": "main", "index": 0}]]
+    },
+    "Filtrar 2024+ (excluir 2020)": {
+      "main": [[{"node": "Agrupar por Cliente", "type": "main", "index": 0}]]
+    },
+    "Agrupar por Cliente": {
+      "main": [[{"node": "Generar Resumen HTML", "type": "main", "index": 0}]]
+    },
+    "Generar Resumen HTML": {
+      "main": [[{"node": "Enviar Email", "type": "main", "index": 0}]]
+    }
+  },
+  "pinData": {},
+  "versionId": "1.0",
+  "active": false,
+  "settings": {},
+  "tags": [],
+  "staticData": null
+}

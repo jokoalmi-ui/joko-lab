@@ -1,23 +1,22 @@
 #!/usr/bin/env bash
 # model-router.sh — Router horario para Hermes Agent
-# Cambia el modelo activo según la hora para evitar sobrecoste de DeepSeek
 #
-# Franja cara DeepSeek (facturación ×2): 03:00 - 12:00 España → Gemini 3.1 Flash Lite
-# Resto del día → DeepSeek (configuración por defecto)
+# ANALISIS DE COSTES REALES (Julio 2026):
+#   DeepSeek V4 Flash: $0.077/M input, $0.154/M output
+#   Gemini 2.5 Flash:  $0.300/M input, $2.500/M output
+#   Gemini 2.5 FL:     $0.100/M input, $0.400/M output
 #
-# Instalación: Añadir al final de ~/.bashrc:
-#   source /home/jokoalmi/hermes-lab/scripts/model-router.sh
+# DeepSeek es 13x mas barato que Gemini 2.5 Flash y 2.2x mas barato
+# que Gemini Flash-Lite en output. La politica original de "cambiar a
+# Gemini en franja cara para ahorrar costes" estaba basada en datos
+# previos o en otro proveedor. Con los precios actuales NO hay motivo
+# para cambiar de modelo por coste.
 #
-# El script NO modifica config.yaml. Solo exporta HERMES_MODEL
-# que Hermes respeta como override sobre model.default.
+# El unico motivo para usar local (Ollama) es privacidad de datos,
+# no coste. DeepSeek V4 Flash se mantiene como default permanente.
+#
+# Este script se mantiene por compatibilidad pero ya no realiza
+# cambios de modelo. Se conserva para futuros routers si se
+# necesitaran y para no romver ~/.bashrc que lo sourcea.
 
-HORA=$(date +%H)
-HORA=${HORA#0}  # quitar cero inicial para evitar problemas en bash
-
-if [ "$HORA" -ge 3 ] && [ "$HORA" -lt 12 ]; then
-    # Franja cara — usamos Gemini
-    export HERMES_MODEL="gemini-3.1-flash-lite"
-else
-    # Franja normal — DeepSeek (no hace falta exportar, es el default)
-    unset HERMES_MODEL
-fi
+unset HERMES_MODEL

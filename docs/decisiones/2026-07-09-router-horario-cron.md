@@ -1,9 +1,29 @@
 # Router Horario con Cron y Modificación de config.yaml
 
 ## Contexto
-Se utiliza DeepSeek como proveedor principal de IA, pero su facturación se duplica en la franja horaria de 03:00 a 12:00 (hora de España). Para ahorrar costes, se dispone de una licencia de Gemini Pro que puede utilizarse como alternativa en esa ventana horaria.
 
-## Problema
+**ACTUALIZACION 2026-07-14: Esta decision queda obsoleta por datos de coste reales.**
+
+Se utilizaba DeepSeek como proveedor principal de IA, asumiendo que su facturación se duplicaba en la franja horaria de 03:00 a 12:00 (hora de España) o que Gemini era mas barato. Tras consultar los precios oficiales a julio 2026:
+
+| Modelo | Input ($/1M tok) | Output ($/1M tok) | Coste consulta tipica* |
+|--------|:-:|:-:|:-:|
+| DeepSeek V4 Flash | $0.077 | $0.154 | $0.00023 |
+| Gemini 2.5 Flash | $0.300 | $2.500 | $0.00305 |
+| Gemini 2.5 Flash-Lite | $0.100 | $0.400 | $0.00050 |
+| Ollama local | $0.000 | $0.000 | $0.00000 |
+
+*Consulta tipica ≈ 2.000 input + 500 output tokens.
+
+**DeepSeek V4 Flash es 13x mas barato que Gemini 2.5 Flash y 2.2x mas barato que Gemini Flash-Lite en output.** No hay motivo para cambiar a Gemini en franja cara por ahorro de costes. DeepSeek V4 Flash se mantiene como modelo cloud por defecto permanentemente.
+
+El unico motivo para usar Ollama local sigue siendo la privacidad de datos, no el coste.
+
+### Historial de la decision original (obsoleta)
+
+Originalmente se asumia que DeepSeek facturaba el doble en franja 03:00-12:00 y que Gemini era mas economico. Los datos reales demuestran que esto no es asi.
+
+## Problema (original, ya resuelto)
 La solución inicial usaba un script llamado en `~/.bashrc` para cambiar la variable de entorno `HERMES_MODEL`. Sin embargo, esto fallaba al arrancar Hermes desde atajos de escritorio o entornos gráficos, ya que estos no leen `~/.bashrc` al iniciar. Hermes conservaba el último modelo usado, resultando en facturación no deseada.
 
 ## Alternativas
@@ -25,7 +45,7 @@ Se implementa un script en Python (`scripts/router-modelo.py`) programado median
 3. **Regla**: Para aplicar el router horario, **es obligatorio cerrar y abrir una nueva sesión** de Hermes si se atraviesa la hora de corte (03:00 o 12:00).
 
 |## Estado
-Activo (10 de julio de 2026) — corregido.
+**OBSOLETA (14 de julio de 2026)** — Los precios reales demuestran que DeepSeek V4 Flash es mas barato que Gemini en cualquier franja. El router horario queda desactivado. Ver `scripts/model-router.sh` para la version actual (no-op).
 
 ## Historial
 - **09-jul-2026**: Implementación inicial con cron inline. Falló en el primer disparo (3:00 del 10-jul) porque el `&&` encadenado impedía escribir el log si el primer comando fallaba, y no se pudo diagnosticar.
