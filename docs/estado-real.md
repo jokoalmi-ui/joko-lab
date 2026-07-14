@@ -1,6 +1,6 @@
 # Estado real de Joko Lab
 
-Última actualización: 2026-07-14 (Corregido router horario: DeepSeek es significativamente mas barato que Gemini -- ~2x en input, ~9x en output -- no hay franja cara)
+Última actualización: 2026-07-14 (Sprint 3.1: Auditoría del Runtime completada)
 
 ## Hardware
 
@@ -179,10 +179,12 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 | HERMES.md | ✓ 13/13 secciones completas |
 | docs/estado-real.md | ✓ Este archivo (actualizado 2026-07-10) |
 | docs/arquitectura.md | ✓ Completo (156 líneas) |
-| docs/hermes-internals.md | ⚠ Obsoleto (anotaciones iniciales, archivado) |
-| docs/hermes-notes.md | ⚠ Obsoleto (anotaciones iniciales, archivado) |
+| docs/hermes-internals.md | ✗ Eliminado (ya no existe en el repositorio) |
+| docs/hermes-notes.md | ✗ Eliminado (ya no existe en el repositorio) |
 | docs/joko-lab-principles.md | ✓ Creado (documento fundacional) |
-| docs/decisiones/ | 20 archivos: decisiones activas y completadas |
+| docs/runtime/ | ✓ Creado (runtime-audit.md) |
+| runtime/ | ✓ Creado (CONTRACT.md) |
+| docs/decisiones/ | 24 archivos: decisiones activas y completadas |
 
 ## Directorios del laboratorio
 
@@ -228,7 +230,8 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 7. Generar backups de ollama y exports (solo n8n tiene backup actual)
 8. ~~Probar restauración real de backups desde GDrive~~ ✔ Hecho
 9. ~~Configurar remoto Git local en SSD~~ ✔ Hecho
-10. Configurar GitHub como segundo remoto (pendiente)
+10. ~~Configurar GitHub como segundo remoto~~ ✔ Hecho (2026-07-14)
 11. Añadir tests automatizados (shellspec/bats) a skills nivel >= 5
-12. Auditar 17 falsos positivos de secretos en Git
+12. ~~Auditar 17 falsos positivos de secretos en Git~~ ✔ Verificado 2026-07-14 (0 secretos reales con patrón estricto)
 13. Arrancar LM Studio API Server cuando se necesite
+14. Consolidar el Runtime (Sprint 3.1): contrato, auditoría, eliminar cron decisor

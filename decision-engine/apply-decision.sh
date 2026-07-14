@@ -15,7 +15,6 @@ TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 
 log() {
     echo "[$TIMESTAMP] $*" >> "$LOG_FILE"
-    echo "[$TIMESTAMP] $*"
 }
 
 # Obtener decisión del DE
