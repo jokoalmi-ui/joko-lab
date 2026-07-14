@@ -1,45 +1,95 @@
 # Roadmap del laboratorio Joko Lab
 
-Última actualización: 2026-07-07.
+Última actualización: 2026-07-14.
 
 ## Visión
 
 Roadmap general que coordina el desarrollo del laboratorio. Las skills individuales pueden tener sus propios roadmaps detallados, pero este es el plan global.
 
+## Estado actual del laboratorio (julio 2026)
+
+El laboratorio ha completado la migración desde un diseño basado en scripts que
+reescribían `config.yaml` hacia un **Decision Engine** con estado y políticas.
+El Sprint 3 (en curso) consolida esta arquitectura en un **Runtime Agéntico**.
+
+Arquitectura actual simplificada:
+
+```
+cron → apply-decision.sh → Decision Engine → state.json → provider activo
+```
+
+Arquitectura objetivo (Sprint 3):
+
+```
+Runtime
+├── State Manager
+├── Policy Engine
+├── Capability Registry
+└── Decision Engine
+→ consultado bajo demanda, sin cron decisor
+```
+
+## Sprint 3 — Consolidación del Runtime (en curso)
+
+Inicio: 2026-07-14. Prioridad máxima.
+
+**Objetivo:** Transformar el laboratorio de un conjunto de automatizaciones a
+un Runtime Agéntico estable, desacoplado y gobernado por contratos.
+
+**Restricciones del Sprint:**
+- No añadir nuevos modelos, skills, prompts, cron, ni capas.
+- Contract-first: contrato → tests → implementación.
+- Una única fuente de verdad (state.json).
+
+**Entregables:**
+1. `runtime/CONTRACT.md` — Constitución del Runtime
+2. Runtime API (contrato)
+3. Eliminación del provider global
+4. Eliminación del cron decisor
+5. Limpieza del Decision Engine
+6. Tests obligatorios (unitarios e integración)
+7. Logging estructurado
+
+Detalle completo en `docs/decisiones/2026-07-14-sprint-3-consolidacion-runtime.md`
+
 ## Prioridades actuales
 
-### Alta (urgente)
+### Sprint 3 (consolidación, julio 2026)
 
 | # | Tarea | Depende de |
-|---|---|---|
-| 1 | Poblar skill betterbird | — |
-| 2 | ~Completar docs/arquitectura.md (3 huecos)~ | **HECHO** |
-| 3 | Redactar docs/joko-lab-principles.md | — |
-| 4 | Comprobar Git (instalado, repo, config) | — |
+|---|-------|------------|
+| 1 | Definir contrato del Runtime (`runtime/CONTRACT.md`) | — |
+| 2 | Implementar State Manager unificado | Contrato |
+| 3 | Implementar Policy Engine | Contrato |
+| 4 | Implementar Capability Registry | Contrato |
+| 5 | Limpiar Decision Engine (eliminar duplicados, logs) | — |
+| 6 | Eliminar provider global (dejar de depender de config.yaml) | State Manager |
+| 7 | Eliminar cron decisor | Runtime API |
+| 8 | Tests unitarios | Cada módulo |
+| 9 | Tests de integración (10 casos) | Todos los módulos |
 
-### Media (esta semana)
+### Media (post-Sprint 3)
 
 | # | Tarea | Depende de |
-|---|---|---|
-| 5 | Poblar skill perfumes | — |
-| 6 | ~Poblar skill evolution~ | **HECHO** |
-| 7 | ai-router etapa 4: integrar en Hermes | ai-router v0.4.0 completada |
-| 8 | Revisar docs/hermes-notes.md (contenido antiguo) | — |
+|---|-------|------------|
+| 1 | Verifier / Evaluator | Runtime consolidado |
+| 2 | Director Estratégico (Fase 2) | Runtime consolidado |
+| 3 | Poblar skill betterbird | — |
+| 4 | Auditoría global del laboratorio | Runtime consolidado |
 
 ### Baja (próximas semanas)
 
 | # | Tarea | Depende de |
-|---|---|---|
-| 8 | Poblar skill evolution | skills vacías priorizadas |
-| 9 | n8n-admin etapa 4: runners externos, métricas | n8n-admin v0.3.0 completada |
-| 10 | Auditoría global del laboratorio | — |
+|---|-------|------------|
+| 1 | Poblar skill perfumes | — |
+| 2 | Poblar skill evolution | — |
 
 ## Estado de las skills del laboratorio
 
 ```
-Maduras (etapa 3-4):  docker-admin, n8n-admin, ai-router, hermes-expert
-En desarrollo (etapa 1): lab-manager, evolution
-Vacías:                 betterbird, perfumes
+Maduras (etapa 3-4):     docker-admin, n8n-admin, ai-router, hermes-expert
+En desarrollo (etapa 2): lab-manager
+Vacías:                   betterbird, perfumes, evolution
 ```
 
 ## Dependencias entre skills
