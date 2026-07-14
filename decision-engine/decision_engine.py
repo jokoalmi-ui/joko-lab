@@ -145,7 +145,7 @@ def evaluar_privacidad(state: dict, policies: dict) -> Optional[dict]:
     if priv.get("datos_sensibles", False):
         return {
             "provider": "ollama",
-            "model": policies.get("modelos", {}).get("por_proveedor", {}).get("ollama", {}).get("default", "qwen2.5:7b"),
+            "model": policies.get("modelos", {}).get("por_proveedor", {}).get("ollama", {}).get("default", "llama31-8b-64k"),
             "reason": "Privacidad: datos sensibles, forzar modo local",
         }
     return None
@@ -212,13 +212,13 @@ def evaluar_costes(state: dict, policies: dict) -> Optional[dict]:
         if ds_saldo is not None and ds_saldo < saldo_minimo:
             return {
                 "provider": "ollama",
-                "model": "qwen2.5:7b",
+                "model": "llama31-8b-64k",
                 "reason": f"Costes: saldo DeepSeek ({ds_saldo} USD) bajo mínimo ({saldo_minimo} USD)",
             }
         if gm_saldo is not None and gm_saldo < saldo_minimo:
             return {
                 "provider": "ollama",  # DeepSeek sigue disponible
-                "model": "qwen2.5:7b",
+                "model": "llama31-8b-64k",
                 "reason": f"Costes: saldo Gemini ({gm_saldo} USD) bajo mínimo ({saldo_minimo} USD)",
             }
 
