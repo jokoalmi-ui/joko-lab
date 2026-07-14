@@ -1,7 +1,7 @@
 # Runtime Contract — Joko Lab
 
-**Versión:** 1.0-draft
-**Estado:** Contrato de diseño. Pendiente de revisión antes de implementar.
+**Versión:** 1.0
+**Estado:** Congelado. Cualquier cambio incompatible requiere incrementar la versión.
 **Fecha:** 2026-07-14
 
 ---
@@ -23,7 +23,8 @@ Runtime
 ├── State Manager       — observa el laboratorio, escribe state.json
 ├── Policy Engine       — interpreta políticas, nunca decide
 ├── Capability Registry — describe capacidades, nunca decide
-└── Decision Engine     — decide basado en state + policies
+├── Decision Engine     — decide basado en state + policies
+└── Metrics             — registra métricas de uso (diseño, sin implementar)
 ```
 
 ### Reglas estructurales
@@ -48,10 +49,12 @@ Runtime
   "provider": "gemini",
   "model": "gemini-2.5-pro",
   "reason": "Horario: 03:00-12:00, ahora 10:29",
+  "policy": "horario.yaml",
   "privacy": "cloud",
   "verification": "LOW",
   "confidence": 1.0,
-  "expires": 1800
+  "expires": "2026-07-14T12:00:00+02:00",
+  "decision_id": "20260714-103812-a1f4"
 }
 ```
 
@@ -62,10 +65,12 @@ Runtime
 | `provider` | string | Proveedor seleccionado | Siempre |
 | `model` | string | Modelo dentro del proveedor | Siempre |
 | `reason` | string | Motivo legible de la decisión | Siempre |
+| `policy` | string | Nombre del archivo de política que ganó | Siempre |
 | `privacy` | string | `"cloud"` o `"local"` | Siempre |
-| `verification` | string | Nivel de verificación: `"LOW"`, `"MEDIUM"`, `"HIGH"` | Siempre |
+| `verification` | string | `"LOW"`, `"MEDIUM"`, `"HIGH"` | Siempre |
 | `confidence` | float | 0.0 - 1.0 | Siempre |
-| `expires` | int | Segundos hasta que la decisión se considera obsoleta | Opcional |
+| `expires` | string | ISO 8601 del momento en que la decisión caduca | Siempre |
+| `decision_id` | string | Identificador único de esta decisión | Siempre |
 
 ### Códigos de error (caso de fallo)
 
@@ -76,9 +81,12 @@ Cuando el Runtime no puede decidir, devuelve:
   "provider": "none",
   "model": "none",
   "reason": "ERROR: <descripción>",
+  "policy": "none",
   "privacy": "unknown",
   "verification": "NONE",
-  "confidence": 0.0
+  "confidence": 0.0,
+  "expires": null,
+  "decision_id": "20260714-103812-a1f4"
 }
 ```
 
@@ -97,7 +105,7 @@ Cuando el Runtime no puede decidir, devuelve:
 
 ```
 1. state.json          → Fuente principal (producida por State Manager cada 60s)
-2. ultima-decision.json → Fallback inmediato (última decisión aceptada)
+2. ultima-decision.json → Fallback inmediato (última decisión aceptada, escrita por el Runtime)
 3. defaults            → Fallback final (valores compilados en el código)
 ```
 
@@ -121,7 +129,7 @@ Si todas devuelven None, se usa el fallback por defecto.
 ### Sin state.json
 
 1. Intentar cargar `ultima-decision.json`.
-2. Si existe, devolver esa decisión marcando `reason: "FALLBACK: state.json no disponible"`.
+2. Si existe, devolver esa decisión con `reason: "FALLBACK: state.json no disponible"`.
 3. Si no existe, devolver fallback por defecto (`deepseek/deepseek-v4-flash`).
 
 ### Sin Internet
@@ -175,7 +183,7 @@ El Runtime NO depende de:
 
 - El Runtime no ejecuta tareas. Solo decide qué proveedor usar.
 - El Runtime no almacena datos de usuario. Solo estado del sistema.
-- El Runtime no tiene estado mutable propio. Solo lee state.json y escribe ultima-decision.json.
+- El Runtime no tiene estado mutable propio. Solo lee state.json y escribe ultima-decision.json y decision.log.
 - El Runtime no hace autenticación. Las API keys se gestionan fuera (lab-state/secrets/).
 - El Runtime no orquesta flujos de trabajo. Eso es responsabilidad del Director Estratégico (futuro).
 
@@ -196,67 +204,149 @@ El Runtime NO depende de:
 - `confidence < 0.0` o `> 1.0`
 - `privacy: ""` o `null`
 - Que `provider` y `model` sean inconsistentes (ej: `provider: "deepseek"` con `model: "gemini-2.5-pro"`)
+- `expires` en formato distinto a ISO 8601
 
 ---
 
-## 9. Logging (diseño)
+## 9. El Runtime registra sus decisiones
 
-Cada módulo del Runtime genera eventos estructurados con este formato:
+El Runtime es responsable de registrar cada decisión que toma. Esto NO es
+responsabilidad del adaptador (apply-decision.sh).
+
+El Runtime escribe dos cosas:
+
+### a) `ultima-decision.json`
+
+La última decisión completa. Sobrescrita en cada `resolve()`.
 
 ```json
 {
-  "timestamp": "2026-07-14T10:30:01",
+  "provider": "gemini",
+  "model": "gemini-2.5-pro",
+  "reason": "Horario: 03:00-12:00, ahora 10:29",
+  "policy": "horario.yaml",
+  "privacy": "cloud",
+  "verification": "LOW",
+  "confidence": 1.0,
+  "expires": "2026-07-14T12:00:00+02:00",
+  "decision_id": "20260714-103812-a1f4"
+}
+```
+
+### b) `decision.log`
+
+Cada decisión se añade al final del log estructurado:
+
+```json
+{
+  "timestamp": "2026-07-14T10:38:12+02:00",
   "component": "DecisionEngine",
   "operation": "resolve",
   "provider": "gemini",
   "model": "gemini-2.5-pro",
+  "policy": "horario.yaml",
+  "decision_id": "20260714-103812-a1f4",
   "reason": "Horario: 03:00-12:00, ahora 10:29",
   "duration_ms": 6,
   "status": "success"
 }
 ```
 
-- `component` en: `"StateManager"`, `"PolicyEngine"`, `"CapabilityRegistry"`, `"DecisionEngine"`
-- `operation` en: `"collect"`, `"resolve"`, `"evaluate"`, `"fallback"`
+- `operation` en: `"resolve"`, `"fallback"`, `"error"`
 - `status` en: `"success"`, `"fallback"`, `"error"`
 
-No se permiten logs ambiguos. Cualquier log debe poder trazarse a un componente y una operación concretos.
+No se permiten logs ambiguos.
 
 ---
 
-## 10. Tests (diseño)
+## 10. apply-decision.sh como adaptador
 
-### Unit tests
+`apply-decision.sh` NO contiene lógica de negocio.
 
-| Componente | Test |
-|---|---|
-| State Manager | state.json se escribe correctamente |
-| State Manager | Campos requeridos están presentes |
-| Policy Engine | Cada política devuelve None cuando no aplica |
-| Policy Engine | Privacidad fuerza local si datos_sensibles=true |
-| Policy Engine | Disponibilidad fuerza fallback si proveedor caído |
-| Decision Engine | decide() devuelve un dict con todos los campos |
-| Decision Engine | decide() sin state.json usa fallback |
+Su responsabilidad se limita a:
 
-### Integration tests
+1. Llamar a `Runtime.resolve()` (vía `python3 runtime/api.py --json`)
+2. Aplicar el resultado mediante `hermes config set`
+3. Informar del resultado
 
-| Escenario | Comportamiento esperado |
-|---|---|
-| Gemini disponible, DeepSeek caído | Usar Gemini |
-| Ambos cloud disponibles | Seguir política horaria |
-| Ambos cloud caídos | Forzar local o none |
-| Privacidad activada | Forzar local |
-| state.json inexistente | Usar fallback (ultima-decision o defaults) |
-| Ollama caído | Seguir con cloud si disponible |
-| VRAM insuficiente (futuro) | Reportado por State Manager, evaluado por Policy |
+No decide. No registra. No parsea políticas. No conoce el estado del laboratorio.
+
+Es un adaptador entre el Runtime y Hermes CLI.
 
 ---
 
-## 11. Versiones
+## 11. Golden Dataset
+
+Los tests se basan en un conjunto de casos YAML en `runtime/tests/cases/`.
+
+Cada caso:
+
+```yaml
+name: horario-manana
+description: Franja 03:00-12:00 debe elegir Gemini
+state:
+  hora_actual: "09:30"
+  deepseek_disponible: true
+  gemini_disponible: true
+  ollama_activo: true
+  privacidad_activada: false
+expect:
+  provider: gemini
+  policy: horario.yaml
+  privacy: cloud
+```
+
+El suite de tests itera sobre todos los casos, simula el estado, llama al
+Runtime y verifica que la salida coincida con `expect`.
+
+---
+
+## 12. Metrics (diseño, sin implementar)
+
+El Runtime deberá registrar métricas acumuladas para permitir decisiones
+basadas en datos reales en el futuro.
+
+Métricas a registrar (diseño):
+
+| Métrica | Descripción |
+|---|---|
+| TTFT por proveedor | Tiempo hasta el primer token (media, p99) |
+| tokens/minuto | Throughput por proveedor |
+| latencia por petición | Tiempo de respuesta completo |
+| coste acumulado | USD gastado por proveedor (a partir de precios oficiales y tokens) |
+| cambios de proveedor | Cuántas veces se cambió de proveedor en X tiempo |
+| fallos por proveedor | Errores 4xx/5xx, timeouts |
+| % local vs cloud | Proporción de uso local frente a cloud |
+
+No implementar hasta que el Runtime esté estable y tenga tests.
+
+---
+
+## 13. Control de versiones del contrato
+
+Cualquier cambio incompatible con este contrato requiere incrementar la
+versión (v1.0 → v2.0).
+
+Se considera cambio incompatible:
+- Añadir un campo obligatorio a la salida de `resolve()`
+- Eliminar un campo obligatorio
+- Cambiar el tipo de un campo existente
+- Cambiar el orden de precedencia de políticas
+- Añadir o eliminar un proveedor soportado
+
+No requiere cambio de versión:
+- Añadir un campo opcional
+- Añadir una política nueva (se evalúa después de las existentes)
+- Cambiar valores por defecto en policies/*.yaml
+- Correcciones de bugs que no alteren el comportamiento esperado del contrato
+
+---
+
+## 14. Versiones
 
 | Versión | Fecha | Cambio |
 |---|---|---|
-| 1.0-draft | 2026-07-14 | Contrato inicial del Runtime |
+| 1.0 | 2026-07-14 | Contrato congelado del Runtime Joko Lab |
 
-Este contrato es un documento vivo. Se actualiza cuando cambia la arquitectura,
-nunca por conveniencia.
+Este contrato es la fuente de verdad del Runtime. Cualquier implementación
+debe cumplirlo, no redefinirlo.
