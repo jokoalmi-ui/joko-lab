@@ -179,7 +179,7 @@ Antes de invocar un modelo local vía Ollama o LM Studio, el *GPU Scheduler* int
 
 ## 6. Decision Ledger (Observabilidad de IA)
 
-Para transformar la intuición del rendimiento en métricas empíricas de ingeniería, cada interacción y enrutamiento se registra en un diario estructurado en `/home/jokoalmi/hermes-lab/logs/decision-ledger.json`.
+Para transformar la intuición del rendimiento en métricas empíricas de ingeniería, cada interacción y enrutamiento se registra en `decision.log` (JSON por línea en `/mnt/ssd_ia_datos/lab-state/logs/decision.log`). Se evaluó crear un ledger agregado (`decision-ledger.json`) el 2026-07-15 y se descartó por no tener consumidor real — `decision.log` ya cubre la necesidad.
 
 ### 6.1 Esquema del Ledger (Estructura JSON de la decisión)
 
@@ -229,7 +229,7 @@ La implementación de este plano maestro no se realizará mediante un rediseño 
 - [x] Integrar la checklist `ROUTER_AUDIT.md` para verificación rápida.
 
 ### Fase 2: Implementación de la Observabilidad y Fronteras (Próximos días)
-- [ ] Implementar el **Decision Ledger** (`decision-ledger.json`) mediante scripts ligeros dentro de `ai-router`.
+- [x] Implementar el **Decision Ledger** — evaluado y DESCARTADO el 2026-07-15. `decision.log` (JSON por línea) cubre la necesidad. Sin dashboard ni consumidor real que justifique el ledger agregado.
 - [ ] Desarrollar los perfiles de asincronía **SAFE vs PRIVILEGED** dentro del código de automatización para evitar congelamientos nocturnos de n8n y de copias de seguridad.
 
 ### Fase 3: Automatización del GPU Scheduler

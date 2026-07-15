@@ -1,27 +1,33 @@
 #!/bin/bash
 # apply-decision.sh
-# Aplica la decisión del Decision Engine a Hermes Agent.
-# Lee la salida del DE y ejecuta hermes config set.
+# Aplica la decisión del Runtime a Hermes Agent.
+# Consume Runtime.resolve() via runtime/api.py.
 #
-# El DE permanece puro (nunca modifica config.yaml).
-# Este script es la única capa que toca la configuración de Hermes.
+# Ya no llama al DE directamente. El DE es puro (solo decide).
+# El Runtime (runtime/api.py) gestiona logs y archivos de estado.
+#
+# Responsabilidades de este script:
+# 1. Llamar a Runtime.resolve() (vía runtime/api.py --json)
+# 2. Aplicar el resultado mediante hermes config set
+# 3. Informar del resultado
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 LOG_FILE="/mnt/ssd_ia_datos/lab-state/logs/apply-decision.log"
-DECISION_ENGINE="$SCRIPT_DIR/decision_engine.py"
+RUNTIME_API="$PROJECT_ROOT/runtime/api.py"
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
 
 log() {
     echo "[$TIMESTAMP] $*" >> "$LOG_FILE"
 }
 
-# Obtener decisión del DE
-DECISION=$(python3 "$DECISION_ENGINE" --json 2>/dev/null)
+# Obtener decisión del Runtime
+DECISION=$(python3 "$RUNTIME_API" --json 2>/dev/null)
 
 if [ -z "$DECISION" ]; then
-    log "ERROR: No se pudo obtener decisión del DE"
+    log "ERROR: No se pudo obtener decisión del Runtime"
     exit 1
 fi
 
@@ -55,6 +61,3 @@ if [ "$NEW_PROVIDER" = "$PROVIDER" ] && [ "$NEW_MODEL" = "$MODEL" ]; then
 else
     log "❌ Fallo al aplicar: esperado $PROVIDER/$MODEL, obtenido $NEW_PROVIDER/$NEW_MODEL"
 fi
-
-# Guardar última decisión
-echo "$DECISION" > ~/.hermes/ultima-decision.json

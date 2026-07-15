@@ -1,0 +1,1350 @@
+# Sprint 3.3 — Auditoría de Consolidación del Runtime
+# Inicio: 2026-07-14
+# Archivo de trabajo: se añade cada fase secuencialmente
+
+═══════════════════════════════════════════════════════════════
+
+FASE 1 — Inventario completo
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### Mapa de componentes
+
+| Componente | Ruta | Tipo | Líneas | Responsabilidad |
+|---|---|---|---|---|
+| CONTRACT.md | runtime/CONTRACT.md | Documento (contrato) | 352 | Define la arquitectura, API, precedencia, límites del Runtime |
+| VERSION | runtime/VERSION | Archivo de versión | 3 | Indica v1.0 del contrato |
+| decision_engine.py | decision-engine/decision_engine.py | Script Python | 400 | Motor de decisión: lee state.json + policies, aplica precedencia, devuelve proveedor |
+| apply-decision.sh | decision-engine/apply-decision.sh | Script Bash | 60 | Adaptador: llama al DE, ejecuta `hermes config set`, guarda ultima-decision.json |
+| state-manager.py | state-manager/state-manager.py | Script Python | 301 | Observa el laboratorio cada 60s, escribe state.json |
+| state.schema.json | lab-state/state.schema.json | Schema JSON | 142 | Define el contrato de state.json |
+| state.json | lab-state/state.json | Datos (producido) | 68 | Estado actual del lab (GPU, RAM, servicios, cloud) |
+| runtime-audit.md | docs/runtime/runtime-audit.md | Documento | — | Auditoría previa del Runtime (Sprint 3.1) |
+
+### Políticas (6 archivos YAML)
+
+| Política | Archivo | Evaluada por DE | Usada realmente |
+|---|---|---|---|
+| Privacidad | privacidad.yaml | Sí — política 1 | Sí |
+| Disponibilidad | (lógica inline en DE) | Sí — política 2 | Sí (sin YAML) |
+| Costes | costes.yaml | Sí — política 3 | Sí |
+| Horario | horario.yaml | Sí — política 4 | Sí |
+| Preferencias | (lógica inline en DE) | Sí — política 5 | Sí (sin YAML) |
+| Modelos | modelos.yaml | Sí — consultada por DE | Sí |
+| GPU | gpu.yaml | No | No — el DE no la lee |
+| Niveles de verificación | niveles.yaml | No | No — el DE no la lee |
+
+### Dependencias
+
+```
+state-manager.py ──→ nvidia-smi (GPU)
+                  ──→ /proc/meminfo (RAM)
+                  ──→ curl (Ollama, LM Studio, n8n, cloud APIs)
+                  ──→ docker compose exec (versión Ollama)
+                  ──→ lee secrets/gemini.key
+
+decision_engine.py ──→ state.json (State Manager)
+                  ───→ policies/*.yaml
+                  ───→ escribe decision.log
+                  ───→ escribe ultima-decision.json (~/.hermes/)
+
+apply-decision.sh ──→ decision_engine.py (subproceso)
+                  ──→ hermes config (set/show)
+                  ──→ escribe apply-decision.log
+                  ──→ escribe ultima-decision.json (duplicado con DE)
+```
+
+### Consumidores y productores
+
+| Productor | Qué produce | Dónde |
+|---|---|---|
+| state-manager.py | state.json | /mnt/ssd_ia_datos/lab-state/state.json |
+| apply-decision.sh | ultima-decision.json | ~/.hermes/ultima-decision.json |
+| decision_engine.py | decision.log | /mnt/ssd_ia_datos/lab-state/logs/decision.log |
+| apply-decision.sh | apply-decision.log | /mnt/ssd_ia_datos/lab-state/logs/apply-decision.log |
+
+| Consumidor | Qué consume | Cómo |
+|---|---|---|
+| apply-decision.sh | decision_engine.py --json | Subproceso Python |
+| Hermes CLI | Salida de apply-decision.sh | hermes config set |
+| Cron (usuario jokoalmi) | apply-decision.sh | 3 entradas cron: 0 3, 0 12, */30 |
+
+### Cron activo
+
+```
+5 * * * *     healthcheck.sh (docker-admin)
+*/30 * * * *  healthcheck-n8n.sh (n8n-admin)
+15 3 * * *    git-backup.sh
+0 3 * * *     apply-decision.sh
+0 12 * * *    apply-decision.sh
+*/30 * * * *  apply-decision.sh
+```
+
+### systemd activo
+
+- joko-backup.service — backup n8n + ollama + exports + git push
+- joko-backup.timer — diario con Persistent=true
+
+## Riesgos
+
+1. apply-decision.sh escribe ultima-decision.json (línea 60) y decision_engine.py también (línea 376). Dos escritores al mismo archivo → riesgo de corrupción si coinciden.
+
+2. Disponibilidad no tiene archivo YAML. Está codificada inline en decision_engine.py.
+
+3. Preferencias no tiene archivo YAML. FALLBACK_PROVIDER y FALLBACK_MODEL son constantes en el código.
+
+4. gpu.yaml y niveles.yaml existen pero NO los consume nadie. Políticas huérfanas.
+
+5. systemd sin verificación. Los archivos existen pero no se pudo leer contenido completo por permisos.
+
+6. Cron ejecuta apply-decision.sh cada 30 min + 2 veces fijas → 50 ejecuciones/día innecesarias si state.json no ha cambiado.
+
+7. apply-decision.sh usa --json del DE pero el contrato define Runtime.resolve(task_hint). No se usa el parámetro.
+
+## Estado
+
+Completada. Pendiente de autorización para Fase 2.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 2 — Fuente única de verdad
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### Archivos analizados
+
+| Archivo | Ruta | Tipo | Contenido |
+|---|---|---|---|
+| state.json | /mnt/ssd_ia_datos/lab-state/state.json | Producido (cada 60s) | Estado real del lab: GPU, RAM, servicios, cloud, políticas |
+| state.schema.json | /mnt/ssd_ia_datos/lab-state/state.schema.json | Schema | Define contrato de state.json (campos obligatorios, tipos) |
+| ultima-decision.json | ~/.hermes/ultima-decision.json | Caché (sobrescrito) | Última decisión del DE: provider, model, reason |
+| config.yaml | ~/.hermes/config.yaml | Configuración Hermes | Config completa de Hermes (model, delegación, etc.) |
+| ultima-decision.json | /mnt/ssd_ia_datos/lab-state/... | No existe | No hay copia en lab-state |
+| decision.log | /mnt/ssd_ia_datos/lab-state/logs/decision.log | Log histórico | Cada decisión del DE (append) |
+| apply-decision.log | /mnt/ssd_ia_datos/lab-state/logs/apply-decision.log | Log histórico | Cada ejecución de apply-decision.sh (append) |
+
+### ¿Qué archivo es la verdad?
+
+**state.json** es la fuente principal de verdad del laboratorio. Es el único archivo
+que contiene datos observados del sistema real (GPU, RAM, servicios activos,
+disponibilidad de cloud). Lo produce state-manager.py cada 60 segundos.
+
+### ¿Qué archivos son caché?
+
+| Archivo | Por qué es caché |
+|---|---|
+| ultima-decision.json (~/.hermes/) | Contiene la última decisión. Se sobrescribe en cada resolve(). Es un snapshot, no un registro histórico. |
+| decision.log | Registro histórico (append). No es fuente de verdad de estado actual, es auditoría. |
+
+### ¿Qué archivos son derivados?
+
+| Archivo | Derivado de |
+|---|---|
+| ultima-decision.json | Salida del decision_engine.py al finalizar resolve() |
+| apply-decision.log | Ejecución de apply-decision.sh |
+| decision.log | decision_engine.py (append en cada resolve()) |
+| config.yaml (model.provider, model.default) | apply-decision.sh → hermes config set |
+| state.json | state-manager.py (observación directa del hardware y servicios) |
+
+### ¿Qué archivos pueden eliminarse?
+
+| Archivo | Propuesta | Motivo |
+|---|---|---|
+| gpu.yaml | Puede eliminarse | No lo consume nadie. El DE no lo lee. La info de GPU ya está en state.json. |
+| niveles.yaml | Puede eliminarse | No lo consume nadie. El DE no lo lee. No hay sistema de verificación implementado. |
+
+### Duplicidades detectadas
+
+1. **ultima-decision.json escrito por dos componentes:**
+   - decision_engine.py línea 376: `save_ultima_decision(result)`
+   - apply-decision.sh línea 60: `echo "$DECISION" > ~/.hermes/ultima-decision.json`
+   - Son dos escritores distintos al mismo archivo. Si el cron ejecuta apply-decision.sh
+     mientras el DE está haciendo resolve(), hay riesgo de corrupción.
+
+2. **Disponibilidad duplicada:** La política de disponibilidad está codificada inline
+   en decision_engine.py (función evaluar_disponibilidad) pero no tiene archivo YAML
+   propio. El contrato dice que las políticas deben ser declarativas.
+
+3. **Preferencias duplicadas:** Igual que disponibilidad. FALLBACK_PROVIDER y
+   FALLBACK_MODEL son constantes en el código Python. Deberían estar en un YAML.
+
+4. **modelos.yaml tiene un modelo incorrecto:** El default de deepseek es
+   "deepseek-chat" (línea 18 de modelos.yaml) pero Hermes usa "deepseek-v4-flash"
+   como FALLBACK_MODEL. Hay inconsistencia.
+
+5. **state.json tiene hora distinta a la real:** state.json se generó a las 12:06
+   pero ultima-decision.json dice "ahora 11:59". La decisión estaba basada en un
+   state.json anterior. Esto es normal por el polling de 60s, pero indica que
+   la decisión puede usar datos de hasta 60s de antigüedad.
+
+### Relación state.json → config.yaml
+
+```
+state.json                          config.yaml
+──────────                          ──────────
+cloud.deepseek.disponible            model.provider → deepseek
+cloud.gemini.disponible              
+services.ollama.activo               
+policies.hora.actual                 
+policies.hora.franja_activa          
+                                     delegation.provider → openai (Ollama)
+                                     delegation.base_url → http://localhost:11434/v1
+                                     delegation.model → qwen2.5:7b
+```
+
+- **state.json** decide el proveedor principal de Hermes (model.provider)
+- **config.yaml** tiene la delegación local configurada aparte, no la toca el DE
+- **config.yaml** NO es fuente de verdad del estado del laboratorio. Es configuración de Hermes.
+- **state.json** NO es configuración de Hermes. Es el estado observado.
+
+## Riesgos
+
+1. **Dos escritores de ultima-decision.json.** apply-decision.sh y decision_engine.py
+   escriben al mismo archivo. Si coinciden, el archivo puede quedar corrupto.
+
+2. **Disponibilidad y Preferencias no son declarativas.** Están en código Python,
+   no en YAML. Violan el principio de "políticas declarativas" del contrato.
+   También están ausentes del orden de precedencia visible en policies/.
+
+3. **modelos.yaml default incorrecto para deepseek.** Dice "deepseek-chat" pero
+   Hermes usa "deepseek-v4-flash". El DE usa FALLBACK_MODEL="deepseek-v4-flash",
+   ignorando el YAML para el fallback.
+
+4. **state.json puede estar desfasado hasta 60s.** La decisión del DE se basa en
+   datos que pueden tener hasta un minuto de antigüedad. Para cambios de franja
+   horaria no es crítico, pero para disponibilidad sí.
+
+5. **config.yaml contiene el provider activo que aplicó apply-decision.sh, pero**
+   no hay verificación de que ese provider coincida con la última decisión del DE.
+
+## Recomendación
+
+Resolver las duplicidades de escritura de ultima-decision.json: un solo escritor.
+Extraer disponibilidad y preferencias a YAML para que todas las políticas sean
+declarativas. Corregir modelos.yaml para que deepseek default coincida con el
+modelo real que usa Hermes.
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 3 — Flujo Runtime real
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### Flujo ideal (según CONTRACT.md)
+
+```
+Usuario
+   ↓
+Hermes
+   ↓
+Runtime.resolve(task_hint) → API Python
+   ↓
+Decision Engine → lee state.json + policies/*.yaml
+   ↓
+Decide: {provider, model, reason}
+   ↓
+apply-decision.sh → hermes config set
+   ↓
+Hermes usa el nuevo provider
+   ↓
+Respuesta al usuario
+```
+
+### Flujo real (código)
+
+```
+State Manager (cada 60s o bajo demanda)
+   ↓
+Escribe state.json
+   ↓
+Cron (0 3, 0 12, */30)
+   ↓
+apply-decision.sh
+   ↓
+Llama a decision_engine.py --json (subproceso)
+   ↓
+DE: load_state() → state.json
+    → load_yaml() → policies/*.yaml
+    → evalúa 5 políticas en orden
+    → save_ultima_decision() → ~/.hermes/ultima-decision.json
+    → log_decision() → decision.log
+    → devuelve dict {provider, model, reason}
+   ↓
+apply-decision.sh parsea JSON con Python inline
+    → hermes config set model.provider
+    → hermes config set model.default
+    → escribe ~/.hermes/ultima-decision.json (DE duplica)
+    → escribe apply-decision.log
+   ↓
+Hermes (siguiente sesión) usa el provider/config actual
+```
+
+### Ruta que NO existe (según CONTRACT.md pero sin implementar)
+
+- Runtime.resolve() — NO implementado. No hay runtime/api.py.
+- El CONTRACT.md describe Runtime.resolve(task_hint) pero el DE se llama directamente.
+
+### Acoplamientos detectados
+
+| Acoplamiento | Descripción | Impacto |
+|---|---|---|
+| apply-decision.sh → config.yaml | Lee y escribe config.yaml con hermes config | Si el formato de config.yaml cambia, apply-decision.sh se rompe |
+| DE → ultima-decision.json (2 escritores) | DE escribe save_ultima_decision() y apply-decision.sh también | Riesgo de corrupción |
+| DE → state.json (ruta absoluta) | STATE_FILE = /mnt/ssd_ia_datos/lab-state/state.json | Si la ruta cambia, el DE se rompe |
+| state-manager → Docker compose exec | Usa docker compose exec ollama para versión | Dependencia de Docker en componente que debería ser ligero |
+| apply-decision.sh → hermes CLI | Depende de hermes config set/show | Si Hermes CLI cambia su API, el script se rompe |
+
+### Dependencias ocultas
+
+| Dependencia | Dónde aparece | Problema |
+|---|---|---|
+| SECRETS_DIR | state-manager.py línea 191 | Define /mnt/ssd_ia_datos/lab-state/secrets y lee gemini.key. Si no existe la clave, el error se traga silenciosamente. |
+| yaml (PyYAML) | decision_engine.py líneas 21-24 | try: import yaml. Si no está instalado, usa parser manual _parse_yaml_simple. Dos caminos de parseo → posible inconsistencia. |
+| nvidia-smi | state-manager.py | Si no está instalado, GPU devuelve "no detectada" pero sigue funcionando. |
+| curl | state-manager.py (7 llamadas) | Dependencia externa para healthchecks. Sin curl, todos los servicios aparecen como inactivos. |
+
+### SPOF detectados
+
+| SPOF | Componente | Si falla... |
+|---|---|---|
+| state.json | DE | DE no puede decidir → cae a fallback (ultima-decision.json o defaults) |
+| state-manager.py | No hay watchdog | Si se para, state.json se congela. Nadie lo reinicia automáticamente. |
+| apply-decision.sh | DE → Hermes | Si falla el cron no actualiza config.yaml. Hermes se queda con el último provider. |
+| cron (usuario) | Todas las automatizaciones | Si el crontab se corrompe, el Runtime deja de actualizarse. |
+| ~/.hermes/config.yaml | Hermes | Si se corrompe, Hermes no arranca. apply-decision.sh falla. |
+
+### Duplicidades en el flujo
+
+| Duplicidad | Componentes | Detalle |
+|---|---|---|
+| ultima-decision.json | DE + apply-decision.sh | Ambos escriben el mismo archivo |
+| Log de decisión | DE (decision.log) + apply-decision.sh (apply-decision.log) | Información parcialmente duplicada |
+| Parseo de JSON | apply-decision.sh líneas 28-30 | Tres llamadas python3 -c para parsear un mismo JSON |
+
+## Riesgos
+
+1. El flujo real NO pasa por Runtime.resolve(). No hay API. El contrato describe una interfaz que no existe.
+2. state-manager.py es el único componente que escribe state.json. Sin watchdog, si se para el proceso el estado se congela.
+3. apply-decision.sh parsea JSON tres veces (provider, model, reason) cuando podría hacerlo en una sola llamada.
+4. La decisión del DE no se verifica contra la realidad. apply-decision.sh ejecuta hermes config set y da por hecho que funcionó.
+5. Si el cron se ejecuta 50 veces al día y apply-decision.sh tarda ~7.5ms, el coste es irrelevante. Pero el riesgo de que dos ejecuciones coincidan (ultima-decision.json) es real.
+
+## Recomendación
+
+Implementar Runtime.resolve() como API para que el contrato y la implementación coincidan. Eliminar el doble escritor de ultima-decision.json. Añadir watchdog para state-manager.py.
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 4 — Runtime API vs CONTRACT.md
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### ¿Existe runtime/api.py?
+
+**No.** No existe ningún archivo api.py en runtime/. El directorio solo tiene CONTRACT.md y VERSION.
+
+### Compatibilidad CONTRACT.md vs implementación
+
+| Aspecto del contrato | CONTRACT.md dice | Implementación real (decision_engine.py) | Compatible |
+|---|---|---|---|
+| Entrada | Runtime.resolve(task_hint) | decide(task_hint) | Sí, firma idéntica pero nombre distinto |
+| Salida: provider | string, obligatorio | result["provider"] | Sí |
+| Salida: model | string, obligatorio | result["model"] | Sí |
+| Salida: reason | string, obligatorio | result["reason"] | Sí |
+| Salida: policy | string, obligatorio | NO incluido | ❌ |
+| Salida: privacy | "cloud" o "local", obligatorio | NO incluido | ❌ |
+| Salida: verification | "LOW"/"MEDIUM"/"HIGH", obligatorio | NO incluido | ❌ |
+| Salida: confidence | float 0.0-1.0, obligatorio | NO incluido | ❌ |
+| Salida: expires | ISO 8601, obligatorio | NO incluido | ❌ |
+| Salida: decision_id | string, obligatorio | NO incluido | ❌ |
+| Error: state.json no disponible | reason: "state.json no disponible" | Sí, lo implementa | Sí |
+| Error: ningún proveedor disponible | reason: "ningún proveedor disponible" | Sí, lo implementa | Sí |
+| Error en política | reason: "ERROR en política '<nombre>': <detalle>" | Sí, lo implementa | Sí |
+| Sin Internet y sin local | reason: "sin conectividad y sin modelo local" | NO implementado literal. DE devuelve "ningún proveedor disponible" | ❌ |
+| Registro: ultima-decision.json | DE escribe (responsabilidad del Runtime) | Sí, save_ultima_decision() | Sí |
+| Registro: decision.log | DE escribe (append) | Sí, log_decision() | Sí |
+
+### Faltan 6 campos obligatorios en la salida real
+
+La salida actual del DE:
+```
+{"provider": "gemini", "model": "gemini-2.5-pro", "reason": "Horario: ..."}
+```
+
+La salida que exige el contrato (sección 3):
+```
+{"provider": "gemini", "model": "gemini-2.5-pro", "reason": "Horario: ...",
+ "policy": "horario.yaml", "privacy": "cloud", "verification": "LOW",
+ "confidence": 1.0, "expires": "2026-07-14T12:00:00+02:00",
+ "decision_id": "20260714-103812-a1f4"}
+```
+
+Campos faltantes:
+1. policy — nombre del archivo de política que ganó
+2. privacy — "cloud" o "local"
+3. verification — nivel de verificación
+4. confidence — 0.0 a 1.0
+5. expires — ISO 8601 de caducidad
+6. decision_id — identificador único
+
+### ¿Quién debería consumir Runtime?
+
+Según el contrato, apply-decision.sh debe llamar a Runtime.resolve() vía
+python3 runtime/api.py --json. Pero runtime/api.py NO existe.
+En su lugar, apply-decision.sh llama directamente a decision_engine.py --json.
+
+### Lógica duplicada
+
+| Concepto | Dónde aparece | Problema |
+|---|---|---|
+| Definición de la API | CONTRACT.md sección 3 | Define Runtime.resolve() pero no existe |
+| Implementación real | decision_engine.py decide() | Firma parecida pero nombre y salida incompatible |
+| Parseo de la decisión | apply-decision.sh (3 llamadas python3) | Podría ser una sola llamada |
+| Escritura de ultima-decision.json | DE + apply-decision.sh | Dos escritores |
+
+## Riesgos
+
+1. El contrato y la implementación NO son compatibles. La salida del DE tiene 6 campos menos de los obligatorios.
+2. Cualquier código que consuma Runtime.resolve() esperando el formato del contrato recibirá un dict incompleto.
+3. apply-decision.sh llama al DE directamente, no a través de la API definida en el contrato. Si se implementa runtime/api.py en el futuro, apply-decision.sh no lo usará.
+4. No hay versión de la implementación. CONTRACT.md tiene v1.0 (en VERSION) pero el DE no tiene versión propia.
+
+## Recomendación
+
+Sincronizar la salida del DE con el contrato: añadir los 6 campos faltantes. Crear runtime/api.py como wrapper del DE para que el contrato y la implementación coincidan. apply-decision.sh debería consumir Runtime.resolve() en lugar del DE directamente.
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 5 — Decision Engine (solo decide)
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### ¿Solo decide?
+
+La función decide() (líneas 308-377) es mayoritariamente pura:
+recibe task_hint, lee state.json, evalúa políticas, devuelve {provider, model, reason}.
+Hasta ahí, correcto.
+
+### Violaciones detectadas
+
+**Violación 1: Escribe en ~/.hermes/ (directorio de configuración de Hermes)**
+
+Línea 376: save_ultima_decision(result)
+
+save_ultima_decision() (líneas 131-136) escribe en ~/.hermes/ultima-decision.json.
+El DE está escribiendo en el directorio de configuración de Hermes.
+
+El contrato (sección 9) dice que el DE DEBE escribir ultima-decision.json.
+Pero el principio "solo decide" dice que NO DEBE escribir configuración.
+Hay conflicto entre el contrato y la pureza del DE.
+
+**Violación 2: Lee de ~/.hermes/ como fallback**
+
+Línea 30: ULTIMA_DECISION = Path.home() / ".hermes" / "ultima-decision.json"
+
+El DE lee ultima-decision.json de ~/.hermes/ si state.json no existe.
+Funcionalmente correcto, pero mete al DE dentro del espacio de Hermes.
+
+**Violación 3: Escribe decision.log**
+
+Línea 375: log_decision(...)
+
+El contrato dice que el DE debe escribir el log. Pero añade responsabilidad
+de escritura a un componente que idealmente solo decide.
+
+### Tabla de verificación
+
+| Principio | ¿Cumple? | Evidencia |
+|---|---|---|
+| Solo decide | ❌ Parcialmente | Decide (decide()) + escribe (save_ultima_decision, log_decision) |
+| No escribe configuración | ❌ | Escribe en ~/.hermes/ultima-decision.json |
+| No modifica políticas | ✅ | Solo lee policies/*.yaml, nunca escribe |
+| No conoce secretos | ✅ | No lee secrets. API keys no están en su código. |
+| No lee config.yaml | ✅ | No referencia ~/.hermes/config.yaml |
+| No ejecuta herramientas | ✅ | No llama a curl, nvidia-smi ni Docker |
+| Es determinista | ✅ | Misma entrada → misma salida (sin LLM, sin aleatoriedad) |
+| Sin LLM | ✅ | Cien por cien Python puro |
+
+### ¿Quién debería decidir vs quién escribe?
+
+Estado actual:
+```
+decide() ──→ devuelve dict
+          ──→ save_ultima_decision()  ← escribe en ~/.hermes/
+          ──→ log_decision()         ← escribe en lab-state/logs/
+```
+
+Estado ideal:
+```
+decide() ──→ devuelve dict ← solo decide
+             ↓
+        runtime/api.py  ← escribe ultima-decision.json + decision.log
+```
+
+### Conflicto con el contrato
+
+El contrato (sección 9.2) dice:
+"El Runtime es responsable de registrar cada decisión que toma."
+
+Si el DE es el Runtime, entonces debe escribir los logs (según contrato).
+Si el DE debe "solo decidir" (según Fase 5), entonces no debería escribir nada.
+
+Hay una contradicción entre el principio de la Fase 5 y el contrato vigente.
+
+### Punto clave
+
+El DE es un motor de decisión puro en su núcleo (decide()), pero tiene efectos
+secundarios (escritura de archivos). Para que "solo decida", esos efectos
+secundarios deben moverse a la capa de aplicación (runtime/api.py o
+apply-decision.sh).
+
+## Riesgos
+
+1. El DE escribe ultima-decision.json en ~/.hermes/. Si Hermes cambia la
+   estructura de su directorio, el DE se rompe.
+2. apply-decision.sh también escribe ultima-decision.json. Conflicto de escritores.
+3. El contrato obliga al DE a escribir logs. Si se quiere un DE puro (solo decide),
+   hay que modificar el contrato.
+
+## Recomendación
+
+Separar responsabilidades: el DE devuelve la decisión y runtime/api.py (o
+apply-decision.sh) se encarga de escribir logs y archivos de estado.
+El contrato debería actualizarse para reflejar que el DE solo decide.
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 6 — State Manager
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### Frecuencia
+
+| Modo | Frecuencia | Cómo se invoca |
+|---|---|---|
+| run_once() | Bajo demanda | python3 state-manager.py |
+| run_watch() | Cada 60 segundos | python3 state-manager.py --watch |
+
+El modo watch es un bucle while True. No hay watchdog del sistema (systemd) que
+lo mantenga vivo. Si se para el proceso, nadie lo reinicia.
+
+### Consumo por ciclo (~15 llamadas)
+
+| Llamada | Recurso | Timeout |
+|---|---|---|
+| nvidia-smi | GPU | implícito |
+| /proc/meminfo | RAM | N/A |
+| /proc/loadavg | CPU | N/A |
+| df -B1G | Disco | 10s |
+| curl localhost:11434/api/tags | Ollama modelos | 3s |
+| curl localhost:11434/api/ps | Ollama cargado | 3s |
+| docker compose exec ollama --version | Versión Ollama | 5s |
+| curl localhost:1234/api/v0/models | LM Studio | 3s |
+| curl localhost:5678/healthz | n8n | 3s |
+| docker compose logs --tail=30 n8n | Versión n8n | 5s |
+| curl localhost:8081 | Stirling-PDF | 3s |
+| curl localhost:8000 | pdf-cleaner | 3s |
+| curl localhost:5000 | Monitor Flask | 3s |
+| curl api.deepseek.com/v1/models | DeepSeek cloud | 5s |
+| curl generativelanguage.googleapis.com | Gemini cloud | 5s |
+
+Total: ~15 llamadas, ~46s de timeout agregado.
+
+### Robustez
+
+| Aspecto | Estado |
+|---|---|
+| Manejo de errores nvidia-smi | Sí — devuelve "no detectada" con 0s |
+| Manejo de errores /proc | Sí — try/except |
+| Manejo de errores curl | Sí — cmd() devuelve "" si falla |
+| Manejo de errores Docker | Sí — timeout=5, excepción genérica |
+| Escritura atómica | Sí — .tmp + rename() |
+| Creación de directorios | Sí — mkdir(parents=True) |
+| Timeout por llamada | Sí — --max-time en cada curl |
+| Timeout global del ciclo | No — si una llamada se cuelga, el ciclo se queda esperando |
+
+### Datos que sobran
+
+1. docker compose logs --tail=30 n8n solo para buscar "Version:" en las 30 líneas.
+   Ineficiente y frágil.
+
+2. Lista completa de modelos disponibles en Ollama (api/tags). El DE solo usa
+   modelo_cargado, no la lista completa. 30 líneas en state.json para un dato
+   que nadie consume.
+
+### Datos que faltan
+
+| Dato | Por qué falta |
+|---|---|
+| Estado del propio state-manager | No hay métricas de salud del proceso |
+| Tiempo de cada healthcheck | Solo se sabe activo/inactivo, no latencia |
+| Versión del state-manager | No tiene __version__ |
+| Conectividad general de Internet | Se checkea cloud por cloud, no hay test general |
+
+### Polling innecesario (cada 60s)
+
+| Consulta | ¿Necesaria cada 60s? | Motivo |
+|---|---|---|
+| nvidia-smi | Puede ser | VRAM cambia con cada modelo |
+| RAM/CPU | ❌ Innecesario | Cambian poco |
+| Ollama api/tags | ❌ Innecesario | Modelos instalados no cambian cada minuto |
+| Ollama --version | ❌ Innecesario | Versión no cambia sin intervención |
+| LM Studio | ❌ Innecesario | Cambia poco |
+| n8n healthz | Aceptable | Healthcheck ligero |
+| n8n logs (versión) | ❌ Innecesario | Versión no cambia |
+| Stirling, pdf-cleaner, monitor | ❌ Innecesario | Apenas cambian |
+| DeepSeek API | Aceptable | Detecta caídas rápido |
+| Gemini API | Aceptable | Detecta caídas rápido |
+
+### Carga estimada
+
+- Peor caso (todo caído esperando timeouts): ~46s por ciclo
+- Caso normal (todo responde): ~8-10s por ciclo
+- Con watchdog cada 60s, el state-manager consume ~10-46s de los 60s de su propio intervalo
+
+### SECRETS_DIR (línea 191)
+
+```
+SECRETS_DIR = Path("/mnt/ssd_ia_datos/lab-state/secrets")
+```
+
+Se usa para leer gemini.key (línea 256) y pasarlo a check_cloud(). Si la clave
+no existe o el archivo está vacío, check_cloud() recibe api_key="" y la llamada
+curl a Gemini se hace sin key. Gemini devuelve 403, y check_cloud() interpreta
+"disponible: true" porque 401/403/429 se consideran "API existe".
+
+Esto significa que Gemini aparece como disponible incluso si la API key es
+inválida o no existe.
+
+## Riesgos
+
+1. Sin watchdog: si state-manager.py se para, state.json se congela. El DE
+   sigue decidiendo con datos obsoletos hasta que ultima-decision.json caduque.
+2. Timeout global inexistente: si una llamada (ej: DeepSeek API) se queda
+   bloqueada más del timeout individual, el ciclo entero se retrasa.
+3. 7 de 15 llamadas son polling innecesario cada 60s — consumo de recursos
+   y logs que podrían reducirse.
+4. Gemini aparece como disponible aunque la API key sea inválida (código
+   401/403 interpretado como disponible).
+5. docker compose logs --tail=30 n8n es pesado para obtener solo un campo.
+   En un ciclo de 60s, traer 30 líneas de log cada vez es innecesario.
+
+## Recomendación
+
+Separar polling en dos frecuencias: cada 60s lo crítico (GPU, n8n healthz,
+cloud disponibilidad) y cada 5-10 min lo estable (versiones, modelos instalados).
+Añadir watchdog systemd o timer para state-manager. Corregir la interpretación
+de 401/403 en check_cloud() para que no se confundan con "disponible".
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 7 — Políticas
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### Orden real de precedencia (código vs contrato)
+
+Código (decision_engine.py líneas 340-347):
+1. privacidad
+2. disponibilidad
+3. costes
+4. horario
+5. preferencias
+
+CONTRACT.md sección 4:
+1. Privacidad
+2. Disponibilidad
+3. Costes
+4. Horario
+5. Preferencias
+
+✅ Coinciden. El código sigue exactamente el orden del contrato.
+
+### Políticas reales vs archivos YAML
+
+| Política | YAML | Evaluada por DE | Estado |
+|---|---|---|---|
+| privacidad | privacidad.yaml | Sí — evaluar_privacidad() | ✅ |
+| disponibilidad | NO tiene YAML | Sí — evaluar_disponibilidad() inline | ❌ No declarativa |
+| costes | costes.yaml | Sí — evaluar_costes() | ✅ |
+| horario | horario.yaml | Sí — evaluar_horario() | ✅ |
+| preferencias | NO tiene YAML | Sí — evaluar_preferencias() inline | ❌ No declarativa |
+| modelos | modelos.yaml | Sí — consultada desde evaluadores | ✅ |
+| gpu | gpu.yaml | No — no hay evaluar_gpu() | ❌ Huérfana |
+| niveles | niveles.yaml | No — no hay evaluar_niveles() | ❌ Huérfana |
+
+### Conflictos detectados
+
+**Conflicto 1: Disponibilidad puede saltarse Horario (normal, por precedencia)**
+
+Si un cloud está caído, evaluar_disponibilidad() fuerza el otro antes de llegar a
+horario. Es correcto por diseño (precedencia 2 > 4), pero hay que entender que
+la política horaria NO se ejecuta si hay problemas de disponibilidad.
+
+**Conflicto 2: Política de costes INOPERANTE**
+
+costes.yaml define saldo_minimo_usd: 5.00. Pero state.json devuelve
+saldo_usd: null para DeepSeek y Gemini porque check_cloud() nunca rellena ese
+campo. evaluar_costes() comprueba "if ds_saldo is not None" — al ser null,
+la condición nunca se cumple. La política existe pero no tiene efecto real.
+
+**Conflicto 3: Fallback de horario.yaml dice ollama, pero el código tiene deepseek**
+
+horario.yaml:
+```
+fallback:
+  proveedor: ollama
+```
+
+Código:
+```
+proveedor_fb = fb.get("proveedor", FALLBACK_PROVIDER)  # deepseek
+```
+
+El YAML actual tiene proveedor: ollama, así que el código usa ollama. Pero si
+alguien edita el YAML y quita "proveedor", el código cambia silenciosamente a
+DeepSeek. Es frágil.
+
+**Conflicto 4: modelos.yaml default para deepseek es "deepseek-chat" pero
+Hermes usa "deepseek-v4-flash"**
+
+modelos.yaml línea 18:
+```
+deepseek:
+  default: deepseek-chat
+```
+
+Código línea 35:
+```
+FALLBACK_MODEL = "deepseek-v4-flash"
+```
+
+Dependiendo del camino de decisión, el modelo puede ser "deepseek-chat" (vía
+_modelo_por_proveedor) o "deepseek-v4-flash" (vía FALLBACK_MODEL).
+
+**Conflicto 5: Notación horaria confusa**
+
+horario.yaml:
+```
+- horas: "12:00-03:00"
+  proveedor: deepseek
+```
+
+"12:00-03:00" cruza la medianoche. El código lo maneja correctamente, pero
+un humano puede malinterpretarlo como rango inverso.
+
+### Análisis por política
+
+**Privacidad (privacidad.yaml)**
+- datos_sensibles: false por defecto
+- Define niveles (contraseñas, tokens_api, datos_personales → bloquear_cloud)
+- Pero estos niveles NO los usa el DE. evaluar_privacidad() solo mira
+  datos_sensibles. Los niveles están definidos pero inoperantes.
+
+**Disponibilidad (inline en código)**
+- Lógica completa: detecta caídas de cloud, fuerza local si es necesario
+- Pero los umbrales están hardcodeados. No hay YAML para configurarlos.
+
+**Costes (costes.yaml)**
+- saldo_minimo_usd: 5.00 — pero nadie rellena el saldo real
+- max_por_peticion_usd: 0.05 — el DE no lo usa. Solo mira saldo_minimo.
+
+**Horario (horario.yaml)**
+- 2 reglas que funcionan correctamente
+- Fallback a ollama si no hay regla aplicable
+- Coherente con el código
+
+**Modelos (modelos.yaml)**
+- Define qué modelo usar por proveedor
+- deepseek default = "deepseek-chat" (inconsistente con FALLBACK_MODEL)
+- ollama default = "qwen2.5:7b" (coherente con delegación en config.yaml)
+
+## Riesgos
+
+1. Política de costes inoperante — saldo_minimo_usd definido pero nunca comprobado
+   porque state.json siempre devuelve null.
+2. Dos políticas no declarativas (disponibilidad, preferencias) — están en código
+   Python, no en YAML. Si alguien quiere cambiar la disponibilidad, tiene que
+   tocar el código.
+3. Dos políticas huérfanas (gpu, niveles) — archivos YAML que existen pero nadie
+   evalúa. Crean confusión sobre qué políticas están realmente activas.
+4. Modelo inconsistente para deepseek — a veces "deepseek-chat", a veces
+   "deepseek-v4-flash" según el camino de decisión.
+5. Los niveles de privacidad.yaml (contraseñas, tokens, datos personales) están
+   definidos pero no los usa nadie. Son decorativos.
+
+## Recomendación
+
+Extraer disponibilidad y preferencias a YAML. Eliminar gpu.yaml y niveles.yaml
+(o implementar los evaluadores). Corregir modelos.yaml para que deepseek default
+sea "deepseek-v4-flash". Implementar la recolección de saldo real en
+state-manager.py para que la política de costes funcione.
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 8 — Seguridad
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### Secrets
+
+| Recurso | Ruta | Permisos | Propietario | Estado |
+|---|---|---|---|---|
+| gemini.key | /mnt/ssd_ia_datos/lab-state/secrets/gemini.key | 600 (rw-------) | jokoalmi | ✅ Correcto |
+| Directorio secrets | /mnt/ssd_ia_datos/lab-state/secrets/ | 700 (drwx------) | jokoalmi | ✅ Correcto |
+| config.yaml | ~/.hermes/config.yaml | 600 (rw-------) | jokoalmi | ✅ Correcto |
+
+La API key de Gemini existe y tiene permisos restringidos. Solo el usuario jokoalmi puede leerla.
+
+### Exposición de secretos en logs
+
+| Log | Contiene secrets? |
+|---|---|
+| decision.log | ❌ No |
+| apply-decision.log | ❌ No |
+| state-manager.log | ❌ No |
+
+Revisados: ningún log contiene api_key, secret, token ni password. ✅
+
+### Exposición de secretos en código
+
+| Archivo | Contiene secrets? |
+|---|---|
+| decision_engine.py | ❌ No. No referencia api_key, secret ni token. |
+| state-manager.py | Lee gemini.key, pero no lo muestra en logs ni en state.json. ✅ |
+| apply-decision.sh | ❌ No. Solo pasa comandos a hermes CLI. |
+
+### state-manager.py y la API key
+
+check_cloud() (líneas 202-217) recibe api_key como parámetro y la pasa en el header Authorization. El log de state-manager no registra la key. state.json tampoco la incluye. La key solo vive en memoria durante la llamada curl. ✅
+
+### Permisos de archivos
+
+| Archivo | Permisos | ¿Correctos? |
+|---|---|---|
+| state.json | 664 (rw-rw-r--) | ⚠️ Lectura para grupo. Sin secretos hoy. Aceptable. |
+| ultima-decision.json | 664 (rw-rw-r--) | ⚠️ Similar. Solo provider/model/reason. |
+| decision.log | 664 (rw-rw-r--) | Historial. Sin secretos. |
+| apply-decision.log | 664 (rw-rw-r--) | Historial. Sin secretos. |
+| secrets/gemini.key | 600 (rw-------) | ✅ Correcto |
+| config.yaml | 600 (rw-------) | ✅ Correcto |
+
+### API keys en config.yaml
+
+Todas las api_key están vacías en config.yaml. Hermes usa variables de entorno del provider (DeepSeek). No hay secretos almacenados en config.yaml. ✅
+
+### Secretos duplicados
+
+No hay. La única API key (Gemini) está en un solo archivo. No hay copias en config.yaml, state.json, logs ni código.
+
+### Rutas incorrectas
+
+Todas las rutas absolutas en el código existen y son accesibles. ✅
+
+### Docker
+
+El Runtime (state-manager, DE, apply-decision.sh) corre fuera de Docker. No hay secretos de Docker en el Runtime. ✅
+
+## Riesgos
+
+1. state.json y ultima-decision.json con permisos 664. No tienen secretos hoy, pero si se añade un campo sensible quedaría expuesto al grupo.
+2. La API key de Gemini se pasa por header HTTP. curl no loguea headers por defecto. Seguro.
+
+## Recomendación
+
+Mantener permisos 600 para secrets/. Considerar cambiar state.json y ultima-decision.json a 644 o 600. La seguridad actual es aceptable para un laboratorio local monousuario.
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 9 — Código muerto
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### Clasificación
+
+### Puede eliminarse
+
+| Archivo | Ruta | Motivo |
+|---|---|---|
+| __pycache__/ (3 archivos) | scripts/__pycache__/*.cpython-314.pyc | Caché de Python. Se regenera solo. |
+| gpu.yaml | /mnt/ssd_ia_datos/lab-state/policies/gpu.yaml | No lo consume nadie. El DE no lo evalúa. |
+| niveles.yaml | /mnt/ssd_ia_datos/lab-state/policies/niveles.yaml | No lo consume nadie. No hay sistema de verificación implementado. |
+
+### Debe mantenerse
+
+| Archivo | Ruta | Motivo |
+|---|---|---|
+| decision_engine.py | decision-engine/decision_engine.py | Núcleo del Runtime. En uso activo. |
+| state-manager.py | state-manager/state-manager.py | Produce state.json. En uso activo. |
+| apply-decision.sh | decision-engine/apply-decision.sh | Adaptador DE → Hermes. En uso activo. |
+| CONTRACT.md | runtime/CONTRACT.md | Contrato del Runtime. Vivo y referenciado. |
+| VERSION | runtime/VERSION | Versión del contrato. |
+| smoke-test.sh | scripts/smoke-test.sh | Tests de humo. Operativo. |
+| cleanup.sh | scripts/cleanup.sh | Mantenimiento. Operativo. |
+| git-backup.sh | scripts/git-backup.sh | Backup git. En cron. |
+| validate-ports.py | scripts/validate-ports.py | Diagnóstico de puertos. |
+| auditor-completo.py | scripts/auditor-completo.py | Auditoría interna. |
+| auditor-externo.py | scripts/auditor-externo.py | Auditoría externa (para agentes foráneos). |
+| export-workflows.sh | skills/n8n-admin/export-workflows.sh | Export de workflows n8n. |
+| 6 políticas YAML (4 activas) | lab-state/policies/ | 4 en uso (privacidad, costes, horario, modelos). 2 huérfanas. |
+
+### Está obsoleto / candidato a revisión
+
+| Archivo | Ruta | Motivo |
+|---|---|---|
+| n8n-csv-summary-workflow.json | hermes-lab/ (raíz) | Workflow exportado de n8n. ¿Sigue en uso o es histórico? |
+| n8n-csv-summary-workflow.md | hermes-lab/ (raíz) | Documentación del workflow anterior. |
+| errores_optimizado.sh | hermes-lab/ (raíz) | Script en raíz del proyecto. No referenciado por nada. ¿Sigue siendo útil? |
+| scripts/README.md | scripts/README.md | README genérico de scripts/. Comprobar si está actualizado. |
+| LM Studio benchmark | benchmark/benchmark_lmstudio.py | Benchmark de modelos LM Studio. ¿Se sigue usando? |
+
+## Riesgos
+
+1. Los .pyc en __pycache__ no son peligrosos pero ensucian el repo si se hace git add sin .gitignore.
+2. gpu.yaml y niveles.yaml crean confusión — parecen políticas activas pero no lo son.
+3. Los archivos en raíz del proyecto (n8n-csv-summary-workflow.json, errores_optimizado.sh) no tienen dueño claro.
+
+## Recomendación
+
+Eliminar __pycache__ (gitignorar). Eliminar gpu.yaml y niveles.yaml si no se van a implementar. Revisar n8n-csv-summary-workflow.json, errores_optimizado.sh y benchmark_lmstudio.py para decidir si se mantienen o archivan.
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 10 — Tests
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### Tests existentes
+
+| Test | Ruta | Tipo | Para qué sirve |
+|---|---|---|---|
+| smoke-test.sh | scripts/smoke-test.sh | Bash script | Verifica que cada servicio del stack responde (healthcheck por puerto) |
+| test-01-contradicciones.md | docs/tests/test-01-contradicciones.md | Documento | Test manual de consistencia documental (8 contradicciones encontradas) |
+
+### Tests ausentes
+
+| Componente | Tests ausentes | Prioridad |
+|---|---|---|
+| decision_engine.py | No tiene tests unitarios | 🔴 Alta |
+| state-manager.py | No tiene tests unitarios | 🔴 Alta |
+| apply-decision.sh | No tiene tests | 🟡 Media |
+| runtime/api.py | No existe (ni tests) | 🟡 Media |
+| Políticas YAML | No hay tests de validación de esquema | 🟡 Media |
+| state.schema.json | No hay tests que verifiquen que state.json cumple el schema | 🟢 Baja |
+| CONTRACT.md | No hay tests que verifiquen que la implementación cumple el contrato | 🔴 Alta |
+
+### Prioridad de tests
+
+| Prioridad | Componente | Motivo |
+|---|---|---|
+| 🔴 Alta | decision_engine.py | Es el núcleo del Runtime. Cero tests para un motor que decide qué proveedor usa Hermes. |
+| 🔴 Alta | state-manager.py | Produce state.json, la fuente de verdad del lab. Sin tests, cualquier cambio puede romper el formato. |
+| 🔴 Alta | Contrato vs implementación | La Fase 4 detectó 6 campos faltantes. Tests evitarían esta deriva. |
+| 🟡 Media | apply-decision.sh | Adaptador entre DE y Hermes. Fallo silencioso (ya pasó antes). |
+| 🟡 Media | Políticas YAML | Validar que los YAML son parseables y tienen los campos esperados. |
+| 🟢 Baja | state.schema.json | Baja prioridad porque el schema es estable y el state-manager tiene escritura atómica. |
+
+### Nota sobre smoke-test.sh
+
+smoke-test.sh verifica conectividad de servicios (curl a puertos), pero NO verifica
+que el DE tome la decisión correcta. Tampoco verifica que state.json tenga el
+formato esperado. Es un healthcheck de infraestructura, no un test del Runtime.
+
+### Nota sobre test-01-contradicciones.md
+
+Es un documento de test manual, no automatizado. Valió para una auditoría puntual
+pero no se ejecuta regularmente.
+
+## Riesgos
+
+1. El componente crítico del laboratorio (decision_engine.py) no tiene ni un solo test.
+   Cualquier cambio en el código puede cambiar el proveedor que elige Hermes sin
+   que nadie lo note hasta que el usuario abra una sesión.
+2. state-manager.py sin tests significa que cualquier cambio en collect_state()
+   puede romper state.json y, por tanto, todas las decisiones del DE.
+3. No hay test que verifique que la salida del DE cumple CONTRACT.md. Esto explica
+   por qué la Fase 4 encontró 6 campos faltantes — nadie lo comprobaba.
+
+## Recomendación
+
+Escribir tests para decision_engine.py (prioridad máxima), state-manager.py
+(prioridad máxima), y apply-decision.sh (prioridad media). Añadir test de
+contrato que verifique que la salida del DE tiene todos los campos obligatorios
+definidos en CONTRACT.md.
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 11 — Documentación
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+### Contradicciones detectadas
+
+**Contradicción 1: docs/arquitectura.md vs docs/roadmap.md sobre el flujo del Runtime**
+
+arquitectura.md (línea 91): "ai-router (desde Hermes) — Ollama, LM Studio, DeepSeek"
+roadmap.md (línea 18): "cron → apply-decision.sh → Decision Engine → state.json → provider"
+
+El roadmap describe el flujo real (cron → apply-decision.sh → DE). arquitectura.md
+todavía describe el modelo anterior de ai-router como enrutador manual. El flujo
+real es el del roadmap, pero arquitectura.md no se actualizó.
+
+**Contradicción 2: docs/estado-real.md vs realidad sobre LM Studio**
+
+estado-real.md línea 38: "LM Studio — localhost:1234 — ✓ API Server activo"
+state.json actual: lmstudio.activo = false
+
+El documento dice que LM Studio está activo, pero state.json dice que no.
+El doc no se actualizó tras la última vez que se apagó LM Studio.
+
+**Contradicción 3: docs/roadmap.md dice "no provider global" pero config.yaml lo tiene**
+
+roadmap.md línea 47: "Eliminación del provider global"
+Pero config.yaml sigue teniendo model.provider y model.default activos.
+El roadmap describe un objetivo, no un hecho. No es contradicción, pero la
+redacción "Eliminación del provider global" parece un entregable completado
+cuando no lo está.
+
+**Contradicción 4: runtime-audit.md menciona router-cron.sh.DEPRECADO que ya no existe**
+
+runtime-audit.md línea 29: "router-cron.sh.DEPRECADO — Muerto"
+Pero en la Fase 9 se comprobó que NO existe ningún archivo con DEPRECADO en el
+nombre. O bien se eliminó después de la auditoría, o la ruta es incorrecta.
+
+### Duplicidades detectadas
+
+**Duplicidad 1: Mapa de componentes en 3 sitios distintos**
+
+- docs/arquitectura.md — tabla de componentes
+- runtime/CONTRACT.md — sección 2: Arquitectura
+- runtime-audit.md — sección 1: Inventario de componentes
+
+Cada uno con información ligeramente distinta. Ninguno es la fuente única.
+
+**Duplicidad 2: Árbol de decisión en 2 sitios**
+
+- docs/arquitectura.md (líneas 109-120)
+- docs/estado-real.md (líneas 45-60)
+
+El de estado-real.md es más detallado (incluye costes). El de arquitectura.md
+es más esquemático. Ligeramente diferentes.
+
+**Duplicidad 3: Precedencia de políticas en 2 sitios**
+
+- runtime/CONTRACT.md (sección 4)
+- decision_engine.py (comentario línea 140)
+
+El contrato y el código coinciden. La duplicidad no es problemática, pero está
+en dos formatos (markdown y comentario Python).
+
+### Información obsoleta
+
+**1. docs/estado-real.md línea 193: "scripts/ — 5 archivos (model-router.sh, ...)"**
+
+model-router.sh ya no existe. Se eliminó. La lista está desactualizada.
+
+**2. docs/estado-real.md línea 180: "docs/estado-real.md — actualizado 2026-07-10"**
+
+El archivo dice "Última actualización: 2026-07-14" en línea 3, pero en la tabla
+de documentación (línea 180) dice "actualizado 2026-07-10". Hay dos fechas
+distintas en el mismo documento.
+
+**3. docs/estado-real.md línea 39: "LM Studio — API Server activo"**
+
+El state.json dice lmstudio.activo = false. Desactualizado.
+
+**4. docs/roadmap.md línea 18: "cron → apply-decision.sh → Decision Engine"**
+
+Ya no es exactamente así. El flujo real (Fase 3) es más complejo:
+cron → apply-decision.sh → DE (subproceso) → state.json + policies → salida → hermes config set.
+El roadmap simplifica demasiado.
+
+### docs/joko-lab-principles.md
+
+Estado: vacío según docs/arquitectura.md. Verificado: el archivo existe pero
+está sin contenido útil. Sigue pendiente desde la auditoría anterior.
+
+## Riesgos
+
+1. docs/estado-real.md tiene información contradictoria consigo misma (fechas)
+   y con la realidad (LM Studio).
+2. arquitectura.md describe un flujo que ya no es el actual (ai-router manual
+   vs Runtime automático).
+3. Tres mapas de componentes distintos sin fuente única. Cada uno puede derivar.
+4. El roadmap mezcla objetivos cumplidos con pendientes. "Eliminación del
+   provider global" parece un logro pero no lo está.
+
+## Recomendación
+
+Sincronizar docs/estado-real.md con la realidad (LM Studio, lista de scripts).
+Actualizar docs/arquitectura.md para reflejar el flujo del Runtime.
+Consolidar los 3 mapas de componentes en una sola fuente (CONTRACT.md).
+Eliminar docs/runtime/runtime-audit.md si ya no es necesario (su información
+está en este sprint 3.3).
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada.
+
+═══════════════════════════════════════════════════════════════
+
+FASE 12 — Propuesta de refactorización priorizada
+═══════════════════════════════════════════════════════════════
+
+## Hallazgos
+
+Basada en los hallazgos de las 11 fases anteriores y la revisión del usuario.
+
+**4 causas raíz que eliminan >80% de la deuda técnica actual.**
+
+### 🔴 Prioridad 1 — El contrato no se cumple
+
+Problema: existe runtime/CONTRACT.md pero el código no pasa por Runtime.resolve().
+El DE se llama directamente. La API del contrato es bypassada.
+
+Es el equivalente a diseñar una API REST y que todos los programas accedan
+directamente a la base de datos.
+
+Solución:
+```
+Usuario
+    │
+    ▼
+Runtime.resolve()
+    │
+    ▼
+Decision Engine
+```
+
+Todo debe pasar por Runtime.resolve(). Hasta que exista, el contrato es
+solo documentación.
+
+### 🔴 Prioridad 2 — El DE hace demasiado
+
+El DE decide bien pero:
+- Escribe en ~/.hermes/ultima-decision.json
+- Escribe decision.log
+- Tiene dependencias del directorio de Hermes (~/.hermes/)
+
+Solución: el DE debe ser solo:
+```
+input → decisión → JSON
+```
+Nada más. Ni logs. Ni config. Ni escribir archivos. Ni modificar Hermes.
+
+### 🔴 Prioridad 3 — No existen tests
+
+0 tests en el componente más importante del laboratorio.
+Cualquier cambio puede romper precedencia, privacidad, fallback, horarios
+o modelos sin que nadie lo note.
+
+Solución: tests mínimos antes de seguir desarrollando.
+
+### 🔴 Prioridad 4 — Las políticas no son la verdad completa
+
+2 políticas inline en código Python (disponibilidad, preferencias).
+2 políticas huérfanas (gpu, niveles).
+
+Parte de las reglas vive en policies/*.yaml y otra parte en decision_engine.py.
+
+Solución: 100% de las reglas en YAML. Python solo interpreta.
+
+### 🟠 Después de las 4 prioridades
+
+- Reducir llamadas del state-manager (15/ciclo → menos)
+- Añadir watchdog systemd
+- Tests de contrato (Runtime.resolve() → ¿cumple CONTRACT.md?)
+- Observabilidad estructurada: decision-ledger.json DESCARTADO (2026-07-15). decision.log cubre la necesidad.
+
+### 🟡 Documentación al final
+
+Las contradicciones en docs son normales tras refactorizaciones. Se corrigen
+al final, cuando el código esté estable.
+
+### Observabilidad (añadido por el usuario)
+
+Registro estructurado tipo:
+```json
+{
+  "timestamp": "...",
+  "task": "code_generation",
+  "provider": "deepseek",
+  "reason": ["policy:modelos", "policy:costes"],
+  "latency_ms": 6,
+  "fallback": false
+}
+```
+
+Para poder responder dentro de 6 meses:
+- ¿Por qué eligió DeepSeek?
+- ¿Cuántas veces se activó privacidad?
+- ¿Qué % fue local?
+- ¿Cuántos fallbacks hubo?
+- ¿Qué política decide más a menudo?
+
+### Tabla priorizada (revisada por orden de causas raíz)
+
+| # | Causa raíz | Acción | Prioridad | Impacto | Riesgo | Tiempo | Beneficio |
+|---|---|---|---|---|---|---|---|
+| 1 | 🔴 Contrato no se cumple | Implementar Runtime.resolve() como wrapper del DE | 🔴 Alta | Alto | Medio | ~1h | El contrato deja de ser solo documentación |
+| 2 | 🔴 DE hace demasiado | Hacer el DE puro: eliminar save_ultima_decision() y log_decision() del DE. Mover escritura a runtime/api.py o apply-decision.sh | 🔴 Alta | Alto | Medio | ~30 min | DE solo decide, no escribe |
+| 3 | 🔴 DE hace demasiado | Eliminar dependencia de ~/.hermes/ en el DE (mover ULTIMA_DECISION fuera) | 🔴 Alta | Medio | Bajo | ~10 min | DE desacoplado de Hermes |
+| 4 | 🔴 Sin tests | Tests unitarios para decision_engine.py (5 políticas + casos de error) | 🔴 Alta | Alto | Medio | ~2-3h | Cobertura del núcleo del Runtime |
+| 5 | 🔴 Sin tests | Test de contrato: salida del DE cumple CONTRACT.md | 🔴 Alta | Alto | Bajo | ~30 min | Derivas detectadas automáticamente |
+| 6 | 🔴 Políticas incompletas | Extraer disponibilidad y preferencias a YAML (disponibilidad.yaml, preferencias.yaml) | 🔴 Alta | Medio | Bajo | ~30 min | Políticas 100% declarativas |
+| 7 | 🔴 Políticas incompletas | Corregir modelos.yaml: deepseek default → deepseek-v4-flash | 🔴 Alta | Medio | Bajo | ~5 min | DeepSeek usa siempre el mismo modelo |
+| 8 | 🔴 Descartado | decision-ledger.json DESCARTADO (2026-07-15). decision.log (JSON por línea) cubre la necesidad actual. Sin dashboard ni consumidor real que justifique el ledger. | — | — | — | — | Se evaluó crear ledger estructurado y se descartó. Revisar si se conecta el monitor Flask. |
+| 9 | 🟠 Después | Tests unitarios para state-manager.py | 🟡 Media | Alto | Medio | ~2h | State.json validado contra schema |
+| 10 | 🟠 Después | Separar polling del state-manager en 2 frecuencias (60s crítico, 5-10min estable) | 🟡 Media | Medio | Bajo | ~30 min | Menos carga (~50% menos llamadas) |
+| 11 | 🟠 Después | Corregir 401/403 en check_cloud() para que no confunda key inválida con disponible | 🟡 Media | Medio | Bajo | ~10 min | Estado de cloud más preciso |
+| 12 | 🟠 Después | Eliminar doble escritor de ultima-decision.json (ya no aplica si el DE es puro) | 🟡 Media | Medio | Bajo | ~5 min | Un solo punto de escritura |
+| 13 | 🟠 Después | Eliminar gpu.yaml y niveles.yaml si no se van a implementar | 🟡 Media | Bajo | Bajo | ~5 min | policies/ refleja solo políticas activas |
+| 14 | 🟠 Después | Añadir watchdog systemd para state-manager.py | 🟢 Baja | Medio | Bajo | ~20 min | Resiliencia |
+| 15 | 🟠 Después | Implementar recolección de saldo real en state-manager.py | 🟢 Baja | Bajo | Medio | ~1h | Política de costes operativa |
+| 16 | 🟡 Documentación | Actualizar docs/estado-real.md y docs/arquitectura.md | 🟢 Baja | Medio | Bajo | ~30 min | Documentación refleja realidad |
+| 17 | 🟡 Documentación | Eliminar docs/runtime/runtime-audit.md si está cubierto aquí | 🟢 Baja | Bajo | Bajo | ~5 min | Menos duplicidad |
+
+### Orden de ejecución recomendado
+
+```
+Fase A — Cerrar el contrato (ítems 1-3)
+    implementar Runtime.resolve()
+    hacer el DE puro
+    eliminar dependencia de ~/.hermes/
+
+Fase B — Tests mínimos (ítems 4-5)
+    tests unitarios del DE
+    test de contrato
+
+Fase C — Políticas completas (ítems 6-7)
+    disponibilidad.yaml, preferencias.yaml
+    corregir modelos.yaml
+
+    ─── Las 4 causas raíz están resueltas ───
+
+Fase D — Observabilidad (ítem 8)
+    decision-ledger.json (DESCARTADO 2026-07-15)
+
+Fase E — Mejoras (ítems 9-15)
+    tests state-manager, polling, watchdog, etc.
+
+Fase F — Documentación (ítems 16-17)
+    actualizar docs al final
+```
+
+### Objetivo final verificado
+
+| Objetivo del Sprint 3.3 | ¿Se cumple? |
+|---|---|
+| Fuente única de verdad (state.json) | ✅ Ya lo es. Tests lo aseguran (#9) |
+| Sin lógica duplicada | ✅ DE puro (#2), políticas a YAML (#6) |
+| Runtime desacoplado | ✅ Runtime.resolve() es la única puerta (#1) |
+| DE solo decide | ✅ DE puro: input → decisión → JSON (#2, #3) |
+| State Manager solo observa | ✅ + watchdog (#14) |
+| Políticas declarativas | ✅ 100% YAML (#6, #7) |
+| Documentación refleja realidad | ✅ Al final (#16, #17) |
+| Sistema auditable | ❌ decision-ledger.json (#8) — descartado 2026-07-15. decision.log cubre. |
+| Cambios futuros con impacto mínimo | ✅ Tests (#4, #5, #9)
+
+## Riesgos
+
+Ninguno nuevo. Esta fase es solo propuesta priorizada. No implementar sin autorización.
+
+## Recomendación
+
+Ejecutar en orden de prioridad: primero los 6 ítems 🔴 (contrato y tests), luego los 8 🟡 (alineamiento), y finalmente los 4 🟢 (mejoras futuras). Cada ítem requiere confirmación explícita antes de ejecutarse.
+
+## Archivos afectados
+
+Ninguno. Solo lectura.
+
+## Estado
+
+Completada. Sprint 3.3 finalizado.

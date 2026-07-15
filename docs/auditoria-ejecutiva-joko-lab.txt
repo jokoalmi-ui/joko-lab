@@ -182,10 +182,10 @@ Rutas y Estados de Sistemas:
 Para resolver las vulnerabilidades identificadas de forma estructurada, el
 laboratorio debe adoptar el plano maestro de la versión 3.0 en 4 hitos secuenciales:
 
-* PASO 1 (Urgente - Observabilidad de IA)
-  Implementar el "Decision Ledger" (`logs/decision-ledger.json`).
-  - Objetivo: Registrar latencias, tokens, errores y costes de cada enrutamiento
-    para disponer de datos empíricos reales.
+* PASO 1 (Urgente - Observabilidad de IA) — DESCARTADO 2026-07-15
+  Implementar el "Decision Ledger": se evaluó y se descartó. decision.log
+  (JSON por linea en /mnt/ssd_ia_datos/lab-state/logs/decision.log) cubre la
+  necesidad actual sin consumidor real que justifique un ledger agregado.
 
 * PASO 2 (Crítico - Automatización Asíncrona)
   Desarrollar el Policy Engine para perfiles "SAFE vs PRIVILEGED".

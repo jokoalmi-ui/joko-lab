@@ -76,7 +76,7 @@ helpful, concise, technical, creative, teacher, kawaii, catgirl, pirate, shakesp
 ### custom_providers
 
 ```yaml
-- name: Ollama qwen2.5:7b
+  - name: Ollama llama31-8b-64k
   base_url: http://localhost:11434/v1
   api_key: no-key
   model: llama31-8b-64k:latest

@@ -211,9 +211,10 @@ def check_cloud(name: str, url: str, api_key: str = "") -> dict:
 
     r = cmd(["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
               "--max-time", "5", url + params] + headers)
-    disponible = r in ("200", "201", "204", "401", "403", "429")
-    # 200 = autenticado y OK
-    # 401/403 = API existe pero key inválida o sin permisos
+    # 200/201 = autenticado y OK
+    # 204 = sin contenido pero OK
+    # 401/403 = API existe pero key inválida — NO considerar como disponible
+    disponible = r in ("200", "201", "204")
     return {"disponible": disponible, "saldo_usd": None, "latencia_ms": None}
 
 
@@ -241,32 +242,55 @@ def get_policies_state() -> dict:
 
 
 def collect_state() -> dict:
-    """Recopila todo el estado y devuelve un dict conforme al contrato."""
-    log("Recopilando estado...")
+    """Recopila todo el estado. Combina datos rápidos (cada tick) con lentos (cada 5 ticks)."""
+    return _merge_state(_collect_fast(), _collect_slow())
+
+
+def _collect_fast() -> dict:
+    """Datos que cambian rápido: GPU, n8n healthz, cloud disponibilidad, hora."""
     gpu = get_gpu()
-    system = get_system()
-    services = {
-        "ollama": check_ollama(),
-        "lmstudio": check_lmstudio(),
-        "n8n": check_n8n(),
-        "stirling_pdf": check_service("stirling-pdf", 8081),
-        "pdf_cleaner": check_service("pdf-cleaner", 8000),
-        "monitor_flask": check_service("monitor-flask", 5000),
-    }
+    n8n = check_n8n()
     gemini_key = read_secret("gemini.key")
     cloud = {
         "deepseek": check_cloud("deepseek", "https://api.deepseek.com/v1/models"),
         "gemini": check_cloud("gemini", "https://generativelanguage.googleapis.com/v1beta/models", api_key=gemini_key),
     }
     policies = get_policies_state()
+    return {"gpu": gpu, "cloud": cloud, "policies": policies, "n8n": n8n}
 
+
+_fast_cache = {}  # cache para datos lentos
+
+
+def _collect_slow() -> dict:
+    """Datos que cambian lento: versiones, modelos instalados, servicios estables."""
+    system = get_system()
+    services = {
+        "ollama": check_ollama(),
+        "lmstudio": check_lmstudio(),
+        "stirling_pdf": check_service("stirling-pdf", 8081),
+        "pdf_cleaner": check_service("pdf-cleaner", 8000),
+        "monitor_flask": check_service("monitor-flask", 5000),
+    }
+    return {"system": system, "services": services}
+
+
+def _merge_state(fast: dict, slow: dict) -> dict:
+    """Combina fast + slow en un solo state.json."""
     state = {
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "gpu": gpu,
-        "system": system,
-        "services": services,
-        "cloud": cloud,
-        "policies": policies,
+        "gpu": fast.get("gpu", {}),
+        "system": slow.get("system", {}),
+        "services": {
+            "ollama": slow.get("services", {}).get("ollama", {"activo": False, "version": None, "modelos": [], "modelo_cargado": None}),
+            "lmstudio": slow.get("services", {}).get("lmstudio", {"activo": False, "version": None, "modelos": []}),
+            "n8n": fast.get("n8n", {"activo": False, "version": None}),
+            "stirling_pdf": slow.get("services", {}).get("stirling_pdf", {"activo": False}),
+            "pdf_cleaner": slow.get("services", {}).get("pdf_cleaner", {"activo": False}),
+            "monitor_flask": slow.get("services", {}).get("monitor_flask", {"activo": False}),
+        },
+        "cloud": fast.get("cloud", {}),
+        "policies": fast.get("policies", {}),
     }
     return state
 
@@ -282,16 +306,26 @@ def write_state(state: dict):
 
 
 def run_once():
-    state = collect_state()
+    """Una ejecución completa: fast + slow siempre."""
+    state = _merge_state(_collect_fast(), _collect_slow())
     write_state(state)
     log("Estado actualizado.")
 
 
-def run_watch(interval=60):
-    log(f"Modo watch: cada {interval}s. Ctrl+C para salir.")
+def run_watch(fast_interval=60, slow_interval=5):
+    """Bucle principal. fast_interval en segundos, slow_interval en ticks."""
+    log(f"Modo watch: fast cada {fast_interval}s, slow cada {slow_interval} ticks. Ctrl+C para salir.")
+    tick = 0
+    slow_data = _collect_slow()
     while True:
-        run_once()
-        time.sleep(interval)
+        fast_data = _collect_fast()
+        state = _merge_state(fast_data, slow_data)
+        write_state(state)
+        tick += 1
+        if tick % slow_interval == 0:
+            log("Tick lento: recopilando datos estables...")
+            slow_data = _collect_slow()
+        time.sleep(fast_interval)
 
 
 if __name__ == "__main__":

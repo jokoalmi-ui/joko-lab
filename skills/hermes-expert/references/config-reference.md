@@ -24,7 +24,7 @@ custom_providers:
 # Se activa cuando el principal falla con error
 fallback_providers:
   - provider: custom
-    model: qwen2.5:7b
+    model: llama31-8b-64k
     base_url: http://localhost:11434/v1
 
 # === MODO DE APROBACIÓN ===

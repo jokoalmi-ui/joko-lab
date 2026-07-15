@@ -1,0 +1,328 @@
+╔══════════════════════════════════════════════════════════════╗
+║                    MAPA DE JOKO LAB                         ║
+║      Laboratorio personal de automatización e IA local      ║
+║                    Julio 2026 — v3.0                        ║
+╚══════════════════════════════════════════════════════════════╝
+
+═══════════════════════════════════════════════════════════════
+HARDWARE
+═══════════════════════════════════════════════════════════════
+  CPU:  Intel Core i5-9500
+  RAM:  32 GB
+  GPU:  NVIDIA RTX A2000 (12 GB VRAM)
+  SSD:  /  (sistema + home)
+        /mnt/ssd_ia_datos  (datos n8n, backups, exports)
+  SO:   Ubuntu (kernel 7.0.0-27-generic)
+  Usr:  jokoalmi
+
+═══════════════════════════════════════════════════════════════
+ARQUITECTURA POR CAPAS (visión v3.0)
+═══════════════════════════════════════════════════════════════
+
+  CAPA 0 — CONSTITUCIÓN
+  ┌───────────────────────────────────────────┐
+  │  HERMES.md                                │
+  │  Principios, reglas, identidad del lab    │
+  └───────────────────────────────────────────┘
+
+  CAPA 1 — GOBIERNO (Policy Layer)
+  ┌───────────────────────────────────────────┐
+  │  lab-manager (skill de gobierno)          │
+  │  Coordina: docs, auditoría, certificación,│
+  │  roadmap, política de IA. NO ejecuta      │
+  └───────────────────────────────────────────┘
+
+  CAPA 2 — ORQUESTACIÓN (IA Routing)
+  ┌───────────────────────────────────────────┐
+  │  Runtime  (motor de decisión de proveedor)│
+  │  ├─ State Manager   → observa el lab      │
+  │  ├─ Policy Engine   → interpreta reglas   │
+  │  ├─ Decision Engine → elige proveedor     │
+  │  └─ apply-decision.sh → adaptador Hermes  │
+  │                                           │
+  │  ai-router (skill) — árbol de decisión    │
+  │  entre Ollama, DeepSeek, Gemini según:    │
+  │  privacidad → disponibilidad → coste      │
+  └───────────────────────────────────────────┘
+
+  CAPA 3 — EJECUCIÓN (Modelos)
+  ┌───────────────────────────────────────────┐
+  │  Arquitecto Residente:                    │
+  │    Mistral Nemo (Ollama) — 24/7, gratis   │
+  │                                           │
+  │  Especialista Razonamiento:               │
+  │    DeepSeek v4-flash — franja normal      │
+  │                                           │
+  │  Especialista Apoyo:                      │
+  │    Gemini — franja cara (03:00-12:00)     │
+  │                                           │
+  │  VLM Local:                               │
+  │    LM Studio (localhost:1234)             │
+  └───────────────────────────────────────────┘
+
+  CAPA 4 — INFRAESTRUCTURA
+  ┌───────────────────────────────────────────┐
+  │  Docker Compose  (automation-stack)       │
+  │  n8n  ·  Ollama  ·  Stirling-PDF          │
+  │  pdf-cleaner                              │
+  │                                           │
+  │  LM Studio Real Monitor (Flask:5000)      │
+  │  Git  ·  Filesystem  ·  Cron              │
+  └───────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════
+COMPONENTES UNO POR UNO
+═══════════════════════════════════════════════════════════════
+
+┌─────────────────────────────────────────────────────────────┐
+│ 1. HERMES AGENT                                             │
+├─────────────────────────────────────────────────────────────┤
+│ Asistente CLI principal. Orquesta herramientas, skills y    │
+│ memoria persistente. Corre fuera de Docker.                 │
+│ Ruta: ~/.hermes/ + /home/jokoalmi/hermes-lab/               │
+│ Proveedor principal: DeepSeek v4-flash                      │
+│ Hace: razonamiento, código, análisis, orquestación          │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 2. RUNTIME (motor de decisión)                              │
+├─────────────────────────────────────────────────────────────┤
+│ Decide qué proveedor usar según políticas. NO ejecuta       │
+│ tareas. NO orquesta flujos. Solo elige: DeepSeek, Gemini,   │
+│ Ollama o "none".                                            │
+│                                                             │
+│ Componentes:                                                │
+│ ├─ decision-engine/decision_engine.py   → decisión pura     │
+│ ├─ decision-engine/apply-decision.sh    → adaptador Hermes  │
+│ ├─ state-manager/state-manager.py       → observa el lab    │
+│ └─ runtime/CONTRACT.md                  → contrato v1.0     │
+│                                                             │
+│ Estado: implementado, contrato definido, 24 tests (42 asserts)     │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 3. DOCKER STACK (automation-stack/)                         │
+├─────────────────────────────────────────────────────────────┤
+│ Orquesta los servicios contenerizados del laboratorio.      │
+│ Red: automation_net (bridge personalizada)                  │
+│                                                             │
+│ Servicios:                                                  │
+│ ├─ n8n           :5678  → automatización low-code (ZONA    │
+│ │                          PROTEGIDA). Datos en             │
+│ │                          /mnt/ssd_ia_datos/n8n            │
+│ ├─ Ollama        :11434 → modelos locales (llama31-8b-64k, │
+│ │                          llama3.1:8b, llama31-8b-64k)    │
+│ ├─ Stirling-PDF  :8081  → procesamiento de PDFs            │
+│ └─ pdf-cleaner   :8000  → limpieza de PDFs                 │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 4. n8n                                                      │
+├─────────────────────────────────────────────────────────────┤
+│ ZONA PROTEGIDA. Automatic workflows (Telegram, WhatsApp,    │
+│ ventas). Datos persistentes en /mnt/ssd_ia_datos/n8n.      │
+│ Backups diarios a /mnt/ssd_ia_datos/backups/ (cron 3:00).  │
+│ Healthcheck cada 30 min.                                    │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 5. OLLAMA                                                   │
+├─────────────────────────────────────────────────────────────┤
+│ Servidor de modelos locales. GPU NVIDIA (RTX A2000).        │
+│ Modelos: llama31-8b-64k, llama3.1:8b.                        │
+│ Usado por: Hermes (como local), n8n, ai-router.             │
+│ Backups diarios (cron 3:30).                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 6. LM STUDIO                                                │
+├─────────────────────────────────────────────────────────────┤
+│ Servidor de modelos local con interfaz gráfica. API en      │
+│ localhost:1234. Modelos VLM (Gemma-4, Qwen3.5-9b, etc).    │
+│ Usado para: visión, tareas multimodales.                    │
+│ Monitorizado por: LM Studio Real Monitor (Flask :5000)      │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 7. ai-router (skill)                                        │
+├─────────────────────────────────────────────────────────────┤
+│ Árbol de decisión para enrutar peticiones de IA:            │
+│                                                             │
+│  ¿Datos privados?  →  Ollama  (local forzoso)               │
+│  ¿Multimodal?      →  LM Studio o Gemini                    │
+│  ¿Razonamiento?    →  DeepSeek                              │
+│  ¿Simple/repetit.? →  Ollama (Mistral Nemo)                 │
+│                                                             │
+│ Franja cara (03-12) prefiere Gemini para ahorrar coste.     │
+│ Versión: v0.4.0 — Etapa 3 (Actuar)                         │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 8. LAB-MANAGER (skill de gobierno)                          │
+├─────────────────────────────────────────────────────────────┤
+│ Responsable de:                                              │
+│ ├─ Supervisar documentación (docs/)                         │
+│ ├─ Coordinar certificación (certification/)                 │
+│ ├─ Ejecutar auditorías (scripts/auditor-completo.py)        │
+│ ├─ Mantener roadmap (ROADMAP.md)                            │
+│ └─ Validar política de IA (ai-router)                       │
+│                                                             │
+│ Versión: v0.1.0 — Etapa 1 (Comprender). Pendiente de       │
+│ evolucionar.                                                │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 9. SCRIPTS DE AUTOMATIZACIÓN                                │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│ smoke-test.sh     → verificación rápida del stack           │
+│ auditor-completo.py → auditoría completa del laboratorio    │
+│ validate-ports.py → comprueba puertos de servicios          │
+│ cleanup.sh        → limpieza de archivos temporales         │
+│ git-backup.sh     → backup del repositorio git              │
+│ decision_engine.py → motor de decisión del Runtime          │
+│ state-manager.py  → observa estado del laboratorio          │
+│ apply-decision.sh → aplica decisión del Runtime en Hermes   │
+│ benchmark_lmstudio.py → benchmarks de modelos LM Studio     │
+│ errores_optimizado.sh → captura de errores del sistema      │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 10. DOCUMENTACIÓN                                           │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│ docs/                                                       │
+│ ├─ arquitectura.md        → mapa técnico del laboratorio    │
+│ ├─ agentic-architecture.md → plano v3.0 multiagente         │
+│ ├─ estado-real.md         → estado actual del sistema       │
+│ ├─ roadmap.md             → plan de evolución               │
+│ ├─ hermes-internals.md    → funcionamiento interno Hermes   │
+│ ├─ hermes-notes.md        → notas sobre Hermes              │
+│ ├─ vision/                → documentos de visión futura     │
+│ │  ├─ subsistema-de-gobierno.md                             │
+│ │  └─ modelos-como-roles.md                                 │
+│ └─ decisiones/           → 14+ decisiones registradas       │
+│                                                             │
+│ certification/  → casos de validación de conocimiento       │
+│ ├─ C-001: Constitución del laboratorio                      │
+│ └─ C-002: Arquitectura del stack                            │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 11. SKILLS INSTALADAS (Hermes)                              │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│ docker-admin    → gestión Docker (v0.4.0, Etapa 4)         │
+│ hermes-expert   → operación de Hermes (v0.3.0, Etapa 4)    │
+│ n8n-admin       → diagnóstico n8n (v0.3.0, Etapa 3)        │
+│ ai-router       → enrutamiento IA (v0.4.0, Etapa 3)        │
+│ lab-manager     → gobierno (v0.1.0, Etapa 1)               │
+│ evolution       → evolución del lab (v0.1.0, Etapa 1)      │
+│ betterbird      → vacía                                     │
+│ perfumes        → vacía                                     │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 12. AUTOMATIZACIÓN PROGRAMADA (cron)                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│ Cada hora (minuto 5):  Healthcheck stack (docker-admin)     │
+│ Cada 30 min:           Healthcheck n8n (n8n-admin)          │
+│ Diario 3:00:           Backup n8n (workflows + datos)       │
+│ Diario 3:30:           Backup Ollama (modelos + datos)      │
+└─────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────┐
+│ 13. MONITOR (LM Studio Real Monitor)                        │
+├─────────────────────────────────────────────────────────────┤
+│ Dashboard Flask en localhost:5000                           │
+│ Mide: CPU, RAM, VRAM, temperatura GPU, modelos cargados     │
+│ Ruta: /home/jokoalmi/lmstudio_real_monitor/                 │
+│ Arranque: source .venv/bin/activate && python3 app.py       │
+└─────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════
+DIAGRAMA DE FLUJO COMPLETO
+═══════════════════════════════════════════════════════════════
+
+  Usuario
+     │
+     ▼
+  Hermes Agent (CLI)
+     │
+     ├── ¿Tarea de IA?
+     │       │
+     │       ▼
+     │   Runtime.resolve()
+     │       │
+     │       ▼
+     │   ┌─ Privacidad activada? ──→ Ollama (local)
+     │   │
+     │   └─ ¿Disponible cloud?
+     │          │
+     │          ├─ No ──→ Ollama (local degradado)
+     │          │
+     │          └─ Sí
+     │                │
+     │                ├─ 03:00-12:00 ──→ Gemini
+     │                │
+     │                └─ 12:00-03:00 ──→ DeepSeek
+     │
+     ├── ¿Tarea automatizada?
+     │       │
+     │       ▼
+     │   n8n (workflows)
+     │       │
+     │       └── ¿Procesa documentos?
+     │               │
+     │               ├─ PDF ──→ Stirling-PDF / pdf-cleaner
+     │               │
+     │               └─ IA ──→ Ollama (API)
+     │
+     ├── ¿Monitorización?
+     │       │
+     │       ▼
+     │   LM Studio Monitor (Flask :5000)
+     │
+     └── ¿Gobierno?
+             │
+             ▼
+         lab-manager
+             │
+             ├── docs/  (documentación)
+             ├── certification/  (validación)
+             ├── auditoría (scripts)
+             └── ROADMAP.md
+
+═══════════════════════════════════════════════════════════════
+RUTAS IMPORTANTES
+═══════════════════════════════════════════════════════════════
+
+  /home/jokoalmi/hermes-lab/         → Proyecto principal
+  /home/jokoalmi/automation-stack/   → Docker Compose
+  /home/jokoalmi/lmstudio_real_monitor/ → Monitor Flask
+  /mnt/ssd_ia_datos/n8n/            → Datos n8n (PROTEGIDO)
+  /mnt/ssd_ia_datos/exports/        → Exportaciones n8n (PROTEGIDO)
+  /mnt/ssd_ia_datos/backups/        → Backups (PROTEGIDO)
+  ~/.hermes/skills/                 → Skills de Hermes
+  ~/.hermes/profiles/               → Perfiles de Hermes
+
+═══════════════════════════════════════════════════════════════
+ESTADO ACTUAL (julio 2026 — actualizado 2026-07-15)
+═══════════════════════════════════════════════════════════════
+
+  Sprint 3 activo: Consolidación del Runtime Agéntico.
+  3.1 completado: auditoría, contrato v1.0, limpieza.
+  3.2 completado (2026-07-14): Decision Engine puro, FALLBACK_MODEL corregido.
+  3.3 completado (2026-07-15): Contrato DE definido, tests verificados (24),
+    deepseek-v4-flash en todo el sistema (config.yaml, politicas YAML, tests),
+    decision-ledger.json descartado (cubre decision.log).
+  Pendiente:
+    - Eliminar acoplamiento de apply-decision.sh a config.yaml
+    - Eliminar cron decisor
+    - LM Studio + monitor Flask: probados funcionales, parados a proposito
+    - docs/joko-lab-principles.md esta vacio
+    - skills betterbird, perfumes sin poblar
+    - loop-engineering/ pendiente de evaluar
+
+═══════════════════════════════════════════════════════════════

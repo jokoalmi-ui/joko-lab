@@ -38,7 +38,7 @@ Sin embargo, en la auditoría ejecutiva del 2026-07-13, el valor global de **48%
 ### Dimensión 3: Inteligencia Artificial (Máximo 100%)
 - **[M] (25%)** Las directivas operativas de los modelos (Directores y Especialistas) están formalizadas en sus respectivas skills de gobierno.
 - **[M] (25%)** El sistema cuenta con mecanismos de control de consumo de tokens y costes.
-- **[M] (25%)** Se dispone de logs de enrutamiento y auditoría de llamadas de IA (`logs/decision-ledger.json`).
+- **[M] (25%)** Se dispone de logs de enrutamiento y auditoría de llamadas de IA en `decision.log` (JSON por línea, `/mnt/ssd_ia_datos/lab-state/logs/decision.log`). Se evaluó crear ledger agregado (`decision-ledger.json`) y se descartó 2026-07-15.
 - **[M] (25%)** El sistema puede alternar entre proveedores locales y en la nube (fallback) de forma transparente ante caídas del servicio principal.
 
 ### Dimensión 4: Operación (Máximo 100% - Enfoque de Solo Lectura)

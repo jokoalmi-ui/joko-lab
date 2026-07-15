@@ -1,6 +1,6 @@
 # Estado real de Joko Lab
 
-Última actualización: 2026-07-14 (Sprint 3.1: Auditoría del Runtime completada)
+Última actualización: 2026-07-14 (Sprint 3.3: Consolidación del Runtime completada)
 
 ## Hardware
 
@@ -25,7 +25,7 @@
 | Servicio | Puerto | Estado |
 |---|---|---|
 | n8n | 5678 | ✓ Up. v2.27.4, límite RAM 2G, 305 MiB en reposo. JS Runner activo. Workflow ENVIO WHATSAPP activo. Healthcheck 5/5. Cron cada 30 min. Puerto restringido a localhost (127.0.0.1). API Key operativa (creación y gestión programática de workflows). |
-| Ollama | 11434 | ✓ Funcionando. Modelos: qwen2.5:7b, llama3.1:8b, llama31-8b-64k |
+| Ollama | 11434 | ✓ Funcionando. Modelos: llama3.1:8b, llama31-8b-64k |
 | Stirling-PDF | 8081 | ✓ Funcionando |
 | pdf-cleaner | 8000 | ✓ Funcionando (build local) |
 
@@ -35,7 +35,7 @@
 |---|---|---|---|
 | DeepSeek (v4-flash) | Principal (Hermes) | v4-flash | ✓ Funcionando |
 | Ollama | Local | localhost:11434 | ✓ Funcionando |
-| LM Studio | Local | localhost:1234 | ✓ API Server activo |
+|| LM Studio | Local | localhost:1234 | ⚠️ API Server no activo (abrir LM Studio y activarlo cuando se necesite visión) |
 
 ### Modelos disponibles en LM Studio
 
@@ -234,4 +234,53 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 11. Añadir tests automatizados (shellspec/bats) a skills nivel >= 5
 12. ~~Auditar 17 falsos positivos de secretos en Git~~ ✔ Verificado 2026-07-14 (0 secretos reales con patrón estricto)
 13. Arrancar LM Studio API Server cuando se necesite
-14. Consolidar el Runtime (Sprint 3.1): contrato, auditoría, eliminar cron decisor
+14. ~~Consolidar el Runtime (Sprint 3.3)~~ ✔ Hecho
+15. Recolección de saldo real en state-manager (pendiente)
+
+---
+## Runtime (Sprint 3.3 — completado)
+
+### Arquitectura actual
+
+```
+apply-decision.sh (cron cada 30 min)
+    │
+    ▼
+Runtime.resolve()  ← runtime/api.py
+    │ llama a
+    ▼
+Decision Engine (puro)  ← solo decide, no escribe
+    │ lee
+    ├── state.json (State Manager, cron cada minuto)
+    └── policies/*.yaml (6 archivos)
+    │ devuelve
+    ▼
+Salida con 9 campos: provider, model, reason, policy, privacy,
+                      verification, confidence, expires, decision_id
+    │
+    ├── Escribe ultima-decision.json
+    ├── Escribe decision.log (append) — cubre el historial, JSON por línea
+    └── apply-decision.sh → hermes config set
+```
+
+### Políticas activas (6 YAML)
+
+privacidad.yaml, disponibilidad.yaml, costes.yaml, horario.yaml, modelos.yaml, preferencias.yaml
+
+### Tests
+
+60 tests (unitarios + contrato). Cubren DE, Runtime API y State Manager.
+
+### Archivos clave
+
+| Archivo | Ruta | Propósito |
+|---|---|---|
+| runtime/api.py | hermes-lab/runtime/api.py | Runtime.resolve() — API pública del contrato |
+| decision_engine.py | hermes-lab/decision-engine/ | Motor de decisión puro |
+| state-manager.py | hermes-lab/state-manager/ | Observa el laboratorio cada 60s |
+| apply-decision.sh | hermes-lab/decision-engine/ | Adaptador Runtime → Hermes CLI |
+| state.json | /mnt/ssd_ia_datos/lab-state/state.json | Fuente única de verdad |
+| ultima-decision.json | /mnt/ssd_ia_datos/lab-state/ultima-decision.json | Última decisión (fallback) |
+| decision.log | /mnt/ssd_ia_datos/lab-state/logs/decision.log | Historial de decisiones auditable (JSON por línea) — se evaluó ledger agregado y se descartó 2026-07-15 |
+| tests/ | hermes-lab/tests/ | 60 tests (3 suites) |
+| runtime/CONTRACT.md | hermes-lab/runtime/CONTRACT.md | Contrato v1.0 del Runtime |

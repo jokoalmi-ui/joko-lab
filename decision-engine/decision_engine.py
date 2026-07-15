@@ -27,21 +27,10 @@ except ImportError:
 # ─── Rutas ───────────────────────────────────────────────────────────────────
 LAB_STATE = Path("/mnt/ssd_ia_datos/lab-state")
 STATE_FILE = LAB_STATE / "state.json"
-ULTIMA_DECISION = Path.home() / ".hermes" / "ultima-decision.json"
-LOG_DIR = LAB_STATE / "logs"
-LOG_FILE = LOG_DIR / "decision.log"
+ULTIMA_DECISION = LAB_STATE / "ultima-decision.json"
 POLICIES_DIR = LAB_STATE / "policies"
 FALLBACK_PROVIDER = "deepseek"
 FALLBACK_MODEL = "deepseek-v4-flash"
-
-
-# ─── Logging ─────────────────────────────────────────────────────────────────
-def log_decision(provider: str, model: str, reason: str, duracion_ms: float):
-    LOG_DIR.mkdir(parents=True, exist_ok=True)
-    ts = datetime.now().isoformat()
-    line = f"{ts} | {provider} | {model} | {reason} | {duracion_ms:.1f}ms\n"
-    with open(LOG_FILE, "a") as f:
-        f.write(line)
 
 
 # ─── Carga YAML (con fallback sin librería externa) ──────────────────────────
@@ -119,21 +108,13 @@ def load_state() -> dict:
 
 
 def load_ultima_decision() -> Optional[dict]:
-    """Carga la última decisión guardada (fallback)."""
+    """Carga la última decisión guardada (fallback en lab-state/)."""
     if ULTIMA_DECISION.exists():
         try:
             return json.loads(ULTIMA_DECISION.read_text())
         except (json.JSONDecodeError, OSError):
             return None
     return None
-
-
-def save_ultima_decision(decision: dict):
-    """Guarda la decisión como último recurso."""
-    ULTIMA_DECISION.parent.mkdir(parents=True, exist_ok=True)
-    tmp = ULTIMA_DECISION.with_suffix(".tmp")
-    tmp.write_text(json.dumps(decision, indent=2))
-    tmp.rename(ULTIMA_DECISION)
 
 
 # ─── Evaluación de políticas ────────────────────────────────────────────────
@@ -152,11 +133,13 @@ def evaluar_privacidad(state: dict, policies: dict) -> Optional[dict]:
 
 
 def evaluar_disponibilidad(state: dict, policies: dict) -> Optional[dict]:
-    """Política 2. Valida disponibilidad de proveedores.
+    """Política 2. Valida disponibilidad de proveedores según disponibilidad.yaml.
     - Si el proveedor que tocaría según horario no está disponible,
       hace fallback al siguiente disponible.
     - Si ningún proveedor cloud está disponible, fuerza local.
     - Si todo está caído, reporta error."""
+    disp = policies.get("disponibilidad", {})
+    reglas = disp.get("reglas", [])
     cloud = state.get("cloud", {})
     services = state.get("services", {})
 
@@ -287,12 +270,15 @@ def evaluar_horario(state: dict, policies: dict) -> Optional[dict]:
 
 
 def evaluar_preferencias(state: dict, policies: dict) -> Optional[dict]:
-    """Política 5. Preferencia por defecto según política de modelos."""
-    # Si llegamos aquí, devolvemos la preferencia por defecto
+    """Política 5. Preferencia por defecto según preferencias.yaml."""
+    pref = policies.get("preferencias", {})
+    fb = pref.get("fallback", {})
+    proveedor = fb.get("proveedor", FALLBACK_PROVIDER)
+    modelo = fb.get("modelo", FALLBACK_MODEL)
     return {
-        "provider": FALLBACK_PROVIDER,
-        "model": FALLBACK_MODEL,
-        "reason": "Preferencia por defecto: sin política específica",
+        "provider": proveedor,
+        "model": modelo,
+        "reason": f"Preferencia por defecto: {proveedor}/{modelo}",
     }
 
 
@@ -328,7 +314,6 @@ def decide(task_hint: str = "") -> dict:
                 "model": FALLBACK_MODEL,
                 "reason": "FALLBACK: state.json no disponible, usando DeepSeek por defecto",
             }
-        log_decision(result["provider"], result["model"], result["reason"], (time.time() - start) * 1000)
         return result
 
     # Cargar políticas
@@ -371,9 +356,6 @@ def decide(task_hint: str = "") -> dict:
             "reason": "Ninguna política aplicable, fallback por defecto",
         }
 
-    duracion = (time.time() - start) * 1000
-    log_decision(result["provider"], result["model"], result["reason"], duracion)
-    save_ultima_decision(result)
     return result
 
 

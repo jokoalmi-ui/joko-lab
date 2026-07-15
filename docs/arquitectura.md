@@ -97,8 +97,8 @@ La red automation_net aísla los servicios contenerizados (n8n, Ollama, Stirling
 ## IA
 
 ### Modelos locales
-- Ollama serve en localhost:11434 — modelos: qwen2.5:7b, llama3.1:8b, llama31-8b-64k
-- LM Studio API en localhost:1234 — modelos: gemma-4-e4b, gemma-4-12b-qat, gemma-4-12b, glm-4.6v-flash, qwen/qwen3.5-9b, text-embedding-nomic-embed-text-v1.5
+- Ollama serve en localhost:11434 — modelos: llama3.1:8b, llama31-8b-64k
+- LM Studio API en localhost:1234 — modelos: google/gemma-4-e4b, google/gemma-4-12b-qat, google/gemma-4-12b, glm-4.6v-flash, qwen/qwen3.5-9b, text-embedding-nomic-embed-text-v1.5 (⚠️ API Server actualmente inactivo)
 
 ### Modelos online
 - DeepSeek Flash (v4-flash) — proveedor online preferido
@@ -128,13 +128,36 @@ Usuario
    ↓
 Hermes Agent (CLI) — recibe petición, orquesta herramientas
    ↓
-Docker — ejecuta servicios containerizados
+Runtime.resolve() — determina proveedor según políticas declarativas
    ↓
-n8n — automatización de workflows (si aplica)
+Decision Engine (puro) — lee state.json + policies/*.yaml
    ↓
-Ollama / LM Studio / DeepSeek — inferencia de modelos según tarea
+apply-decision.sh — aplica la decisión vía hermes config set
    ↓
-Resultado devuelto al usuario
+Hermes usa el proveedor elegido (DeepSeek, Gemini u Ollama)
+   ↓
+Respuesta al usuario
+```
+
+### Flujo del Runtime (detalle)
+
+```
+State Manager (cron cada minuto) — observa GPU, RAM, servicios, cloud
+   ↓
+Escribe state.json  ← fuente única de verdad
+   ↓
+apply-decision.sh (cron cada 30 min)
+   ↓
+Runtime.resolve()  ← runtime/api.py
+   ↓
+Decision Engine (puro) — lee state.json + 6 políticas YAML
+   ↓
+Devuelve 9 campos: provider, model, reason, policy, privacy,
+                    verification, confidence, expires, decision_id
+   ↓
+Registra en: ultima-decision.json + decision.log (JSON por línea — cubre el historial. Se evaluó ledger agregado y se descartó 2026-07-15)
+   ↓
+apply-decision.sh ejecuta hermes config set
 ```
 
 ---
