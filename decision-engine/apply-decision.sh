@@ -213,18 +213,33 @@ if [ "$OLD_PROVIDER" = "$PROVIDER" ] && [ "$OLD_MODEL" = "$MODEL" ]; then
     exit 0
 fi
 
-# Aplicar nuevo proveedor y modelo
+# Aplicar nuevo proveedor, modelo y base_url
 log "Cambiando: $OLD_PROVIDER/$OLD_MODEL → $PROVIDER/$MODEL"
+
+# Mapa de base_url por proveedor (evita base_url cruzado)
+case "$PROVIDER" in
+    deepseek)  BASE_URL="https://api.deepseek.com/v1" ;;
+    gemini)    BASE_URL="https://generativelanguage.googleapis.com/v1beta" ;;
+    ollama)    BASE_URL="http://localhost:11434/v1" ;;
+    lmstudio)  BASE_URL="http://localhost:1234/v1" ;;
+    *)         BASE_URL="" ;;
+esac
 
 hermes config set model.provider "$PROVIDER" 2>/dev/null
 hermes config set model.default "$MODEL" 2>/dev/null
+[ -n "$BASE_URL" ] && hermes config set model.base_url "$BASE_URL" 2>/dev/null
 
 # Verificar
-NEW_PROVIDER=$(grep -A3 "^model:" ~/.hermes/config.yaml 2>/dev/null | grep "provider:" | awk '{print $2}')
-NEW_MODEL=$(grep -A3 "^model:" ~/.hermes/config.yaml 2>/dev/null | grep "default:" | awk '{print $2}')
+NEW_PROVIDER=$(grep -A4 "^model:" ~/.hermes/config.yaml 2>/dev/null | grep "provider:" | awk '{print $2}')
+NEW_MODEL=$(grep -A4 "^model:" ~/.hermes/config.yaml 2>/dev/null | grep "default:" | awk '{print $2}')
+NEW_BASE=$(grep -A4 "^model:" ~/.hermes/config.yaml 2>/dev/null | grep "base_url:" | awk '{print $2}')
 
 if [ "$NEW_PROVIDER" = "$PROVIDER" ] && [ "$NEW_MODEL" = "$MODEL" ]; then
-    log "✅ Cambio aplicado correctamente: $PROVIDER/$MODEL"
+    if [ -z "$BASE_URL" ] || [ "$NEW_BASE" = "$BASE_URL" ]; then
+        log "✅ Cambio aplicado correctamente: $PROVIDER/$MODEL (base_url: $BASE_URL)"
+    else
+        log "⚠️  Proveedor/modelo OK, pero base_url no coincide: esperado $BASE_URL, obtenido $NEW_BASE"
+    fi
 else
     log "❌ Fallo al aplicar: esperado $PROVIDER/$MODEL, obtenido $NEW_PROVIDER/$NEW_MODEL"
 fi
