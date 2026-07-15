@@ -251,8 +251,9 @@ def _collect_fast() -> dict:
     gpu = get_gpu()
     n8n = check_n8n()
     gemini_key = read_secret("gemini.key")
+    deepseek_key = read_secret("deepseek.key")
     cloud = {
-        "deepseek": check_cloud("deepseek", "https://api.deepseek.com/v1/models"),
+        "deepseek": check_cloud("deepseek", "https://api.deepseek.com/v1/models", api_key=deepseek_key),
         "gemini": check_cloud("gemini", "https://generativelanguage.googleapis.com/v1beta/models", api_key=gemini_key),
     }
     policies = get_policies_state()
