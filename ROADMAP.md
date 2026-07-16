@@ -79,7 +79,8 @@ Objetivo: añadir nuevas capacidades solo cuando lo existente esté sólido.
 | 5.1 | Integrar Betterbird como skill para gestión de correo local | Media | Pendiente |
 | 5.2 | Explorar si hace falta un buscador semántico local (alternativa a mem0) | Baja | Pendiente |
 | 5.3 | Evaluar si integrar algo de la suite de Home Assistant o similar | Baja | Pendiente |
-| 5.4 | Skill perfumes: base de datos local de la colección | Baja | Pendiente |
+|| 5.4 | Skill perfumes: base de datos local de la colección | Baja | Pendiente |
+|| 5.5 | **Enrutamiento por tipo de tarea (modelo-habilidad)** — Pendiente futuro, no planificado. Origen: vídeo tutorial de Hermes Agent (Marcos/Emowe), evaluado 2026-07-16. Propone añadir eje de decisión por tipo de tarea (código, escritura, tool-calling) a la precedencia actual del DE. Conecta con la comparativa GLM vs DeepSeek. Alta complejidad: requiere clasificar la tarea antes de decidir, nueva fuente de fallo silencioso si se diseña mal. No implementar ahora: Sprint 3.4 recién cerrado, tres bugs de enrutamiento esta semana. Retomar solo cuando GLM tenga prueba de calidad Y métricas de Sprint 3.4 tengan 2-4 semanas de datos. | Baja | Pendiente |
 
 ---
 
