@@ -291,6 +291,63 @@ class TestCheckCost(unittest.TestCase):
             self.assertIn("gasto_diario_estimado_usd", costes[prov])
             self.assertIn("ultima_actualizacion", costes[prov])
 
+    @patch.object(sm, "read_secret", return_value="fake-key")
+    @patch.object(sm, "cmd")
+    def test_multi_tick_misma_referencia_hasta_cambio(self, mock_cmd, mock_secret):
+        """3 ticks con mismo saldo (16.78) → gasto null.
+           4o tick con saldo 16.70 → gasto = 0.08 contra la referencia inicial."""
+        balance_response = '{"is_available":true,"balance_infos":[{"currency":"USD","total_balance":"16.78","granted_balance":"0.00","topped_up_balance":"16.78"}]}'
+        balance_baja = '{"is_available":true,"balance_infos":[{"currency":"USD","total_balance":"16.70","granted_balance":"0.00","topped_up_balance":"16.70"}]}'
+
+        # Simular persistencia: una variable externa que hace de "disco"
+        referencia_almacenada = [None]  # mutable para que los side_effect puedan modificarla
+
+        def fake_leer():
+            if referencia_almacenada[0] is None:
+                return (None, None)
+            return (referencia_almacenada[0], "2026-07-16T00:00:00")
+
+        def fake_guardar(saldo):
+            referencia_almacenada[0] = saldo
+
+        with (
+            patch.object(sm, "_leer_saldo_anterior", side_effect=fake_leer),
+            patch.object(sm, "_guardar_saldo_actual", side_effect=fake_guardar),
+        ):
+            # Tick 1: primera lectura, saldo 16.78
+            mock_cmd.return_value = balance_response
+            c1 = sm.check_cost()
+            self.assertIsNone(c1["deepseek"]["gasto_diario_estimado_usd"],
+                msg="Tick 1 (primera lectura): gasto debe ser None")
+            self.assertEqual(referencia_almacenada[0], 16.78,
+                msg="Tick 1: referencia debe guardarse como 16.78")
+
+            # Tick 2: mismo saldo 16.78
+            mock_cmd.return_value = balance_response
+            c2 = sm.check_cost()
+            self.assertIsNone(c2["deepseek"]["gasto_diario_estimado_usd"],
+                msg="Tick 2 (sin cambio): gasto debe ser None")
+            self.assertEqual(referencia_almacenada[0], 16.78,
+                msg="Tick 2: referencia NO debe actualizarse (sigue 16.78)")
+
+            # Tick 3: mismo saldo 16.78
+            mock_cmd.return_value = balance_response
+            c3 = sm.check_cost()
+            self.assertIsNone(c3["deepseek"]["gasto_diario_estimado_usd"],
+                msg="Tick 3 (sin cambio): gasto debe ser None")
+            self.assertEqual(referencia_almacenada[0], 16.78,
+                msg="Tick 3: referencia NO debe actualizarse (sigue 16.78)")
+
+            # Tick 4: saldo BAJA a 16.70
+            mock_cmd.return_value = balance_baja
+            c4 = sm.check_cost()
+            self.assertEqual(c4["deepseek"]["gasto_diario_estimado_usd"], 0.08,
+                msg="Tick 4: gasto debe ser 16.78 - 16.70 = 0.08")
+            self.assertEqual(referencia_almacenada[0], 16.70,
+                msg="Tick 4: referencia debe actualizarse a 16.70")
+            self.assertFalse(c4["deepseek"]["recarga_detectada"],
+                msg="Tick 4: no es recarga")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
