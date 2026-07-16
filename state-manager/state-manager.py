@@ -20,6 +20,13 @@ from pathlib import Path
 STATE_FILE = Path("/mnt/ssd_ia_datos/lab-state/state.json")
 LOG_FILE = Path("/mnt/ssd_ia_datos/lab-state/state-manager.log")
 SCHEMA_FILE = Path("/mnt/ssd_ia_datos/lab-state/state.schema.json")
+SALDO_HISTORY_FILE = Path("/mnt/ssd_ia_datos/lab-state/saldo_history.json")
+
+# ─── Constantes de coste ──────────────────────────────────────────────────────
+TOKENS_POR_SESION=12500  # calculado de 12 sesiones, 2.44 MB, ~25% overhead (redondeado)
+SESIONES_POR_DIA=4                # 12 sesiones / 3 días, recalibrar a los 7 días
+PRECIO_DEEPSEEK = 0.875e-6        # $/token media 3:1 input/output
+PRECIO_GEMINI = 0.75e-6           # $/token media 3:1 input/output
 
 
 def log(msg: str):
@@ -103,100 +110,78 @@ def get_system() -> dict:
                 disco_ssd = int(avail)
 
     return {
-        "ram_total_gb": round(ram.get("MemTotal", 0) / 1024, 1),
-        "ram_libre_gb": round(ram.get("MemFree", 0) / 1024, 1),
-        "ram_disponible_gb": round(ram.get("MemAvailable", 0) / 1024, 1),
-        "cpu_load": load,
-        "disco_root_libre_gb": disco_root,
-        "disco_ssd_libre_gb": disco_ssd,
+        "ram_mb": ram.get("MemTotal", 0),
+        "ram_libre_mb": ram.get("MemFree", 0),
+        "ram_disponible_mb": ram.get("MemAvailable", 0),
+        "cpu_load": round(load, 2),
+        "disco_root_gb": disco_root,
+        "disco_ssd_gb": disco_ssd,
     }
 
 
+def read_secret(name: str) -> str:
+    """Lee un secreto de SECRETS_DIR. Devuelve '' si no existe."""
+    path = Path("/mnt/ssd_ia_datos/lab-state/secrets") / name
+    try:
+        return path.read_text().strip()
+    except Exception:
+        return ""
+
+
+def check_service(service: str, port: int) -> dict:
+    """Comprueba si un servicio responde en un puerto."""
+    out = cmd(["ss", "-tlnp"], timeout=5)
+    return {"activo": f":{port}" in out}
+
+
+def check_n8n() -> dict:
+    """Healthcheck de n8n via HTTP."""
+    out = cmd(["curl", "-sf", "--max-time", "5", "http://127.0.0.1:5678/healthz"])
+    if out:
+        return {"activo": True, "version": out.strip()[:20]}
+    return {"activo": False, "version": None}
+
+
 def check_ollama() -> dict:
-    """Comprueba si Ollama responde y qué modelos tiene."""
-    r = cmd(["curl", "-s", "--max-time", "3", "http://localhost:11434/api/tags"])
-    activo = bool(r)
-    version = ""
+    """Modelos instalados en Ollama via Docker."""
+    out = cmd([
+        "docker", "compose", "-f", "/home/jokoalmi/automation-stack/docker-compose.yml",
+        "exec", "-T", "ollama", "ollama", "list"
+    ])
     modelos = []
-    modelo_cargado = None
-
-    if activo:
-        # Versión vía exec si estamos en el host
-        v = cmd(["docker", "compose", "-f", "/home/jokoalmi/automation-stack/docker-compose.yml",
-                  "exec", "ollama", "ollama", "--version"], timeout=5)
-        version = v.replace("ollama version is ", "").strip() if v else ""
-
-        # Modelos disponibles
-        try:
-            data = json.loads(r)
-            modelos = [m["name"] for m in data.get("models", [])]
-        except Exception:
-            pass
-
-        # Modelo cargado ahora
-        ps = cmd(["curl", "-s", "--max-time", "3", "http://localhost:11434/api/ps"])
-        if ps:
-            try:
-                pdata = json.loads(ps)
-                if pdata.get("models"):
-                    modelo_cargado = pdata["models"][0].get("name")
-            except Exception:
-                pass
-
+    version = None
+    if out:
+        lines = out.strip().split("\n")
+        for line in lines[1:]:
+            parts = line.split()
+            if parts:
+                modelos.append(parts[0])
+    # Versión
+    ver = cmd([
+        "docker", "compose", "-f", "/home/jokoalmi/automation-stack/docker-compose.yml",
+        "exec", "-T", "ollama", "ollama", "--version"
+    ])
+    if ver:
+        version = ver.strip()
     return {
-        "activo": activo,
-        "version": version or None,
+        "activo": len(modelos) > 0 or bool(ver),
+        "version": version,
         "modelos": modelos,
-        "modelo_cargado": modelo_cargado,
+        "modelo_cargado": None,
     }
 
 
 def check_lmstudio() -> dict:
-    """Comprueba si LM Studio responde y obtiene modelos."""
-    r = cmd(["curl", "-s", "--max-time", "3", "http://localhost:1234/api/v0/models"])
-    activo = bool(r)
+    """Estado de LM Studio via API HTTP."""
+    out = cmd(["curl", "-sf", "--max-time", "5", "http://localhost:1234/api/v0/models"])
     modelos = []
-    if activo:
+    if out:
         try:
-            data = json.loads(r)
-            modelos = [m["id"] for m in data.get("data", []) if m.get("type") in ("vlm", "llm")]
-        except Exception:
+            data = json.loads(out)
+            modelos = [m["id"] for m in data.get("data", [])]
+        except (json.JSONDecodeError, KeyError, TypeError):
             pass
-    return {"activo": activo, "version": None, "modelos": modelos}
-
-
-def check_n8n() -> dict:
-    """Comprueba si n8n responde en puerto 5678."""
-    r = cmd(["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
-              "--max-time", "3", "http://localhost:5678/healthz"])
-    activo = r in ("200", "204")
-    version = ""
-    if activo:
-        logs = cmd(["docker", "compose", "-f", "/home/jokoalmi/automation-stack/docker-compose.yml",
-                     "logs", "--tail=30", "n8n"], timeout=5)
-        for line in logs.split("\n"):
-            if "Version:" in line:
-                version = line.split("Version:")[-1].strip()
-                break
-    return {"activo": activo, "version": version or None}
-
-
-def check_service(name: str, port: int) -> dict:
-    """Comprueba si un servicio responde en un puerto (solo conectividad)."""
-    r = cmd(["curl", "-s", "-o", "/dev/null", "-w", "%{http_code}",
-              "--max-time", "3", f"http://localhost:{port}"])
-    return {"activo": r in ("200", "204", "302", "404")}
-
-
-SECRETS_DIR = Path("/mnt/ssd_ia_datos/lab-state/secrets")
-
-
-def read_secret(name: str) -> str:
-    """Lee una clave de archivo. Vacío si no existe."""
-    path = SECRETS_DIR / name
-    if path.exists():
-        return path.read_text().strip()
-    return ""
+    return {"activo": len(modelos) > 0, "version": None, "modelos": modelos}
 
 
 def check_cloud(name: str, url: str, api_key: str = "") -> dict:
@@ -241,13 +226,141 @@ def get_policies_state() -> dict:
     }
 
 
+# ─── check_cost(): Sprint 3.4 — Observabilidad de costes reales ──────────────
+
+def _contar_sesiones() -> int:
+    """Usa SESIONES_POR_DIA constante. No cuenta archivos acumulados (daria sobreestimacion creciente)."""
+    return SESIONES_POR_DIA
+
+
+def _leer_saldo_anterior() -> tuple[float | None, str | None]:
+    """Lee el saldo anterior guardado de saldo_history.json.
+    Devuelve (saldo_anterior, timestamp) o (None, None)."""
+    if not SALDO_HISTORY_FILE.exists():
+        return None, None
+    try:
+        data = json.loads(SALDO_HISTORY_FILE.read_text())
+        return data.get("deepseek_saldo_anterior"), data.get("ultima_actualizacion")
+    except (json.JSONDecodeError, KeyError):
+        return None, None
+
+
+def _guardar_saldo_actual(saldo: float | None):
+    """Guarda el saldo actual para la próxima comparación."""
+    data = {
+        "deepseek_saldo_anterior": saldo,
+        "ultima_actualizacion": datetime.now(timezone.utc).isoformat(),
+    }
+    SALDO_HISTORY_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(SALDO_HISTORY_FILE, "w") as f:
+        json.dump(data, f, indent=2)
+
+
+def check_cost() -> dict:
+    """Consulta costes reales de DeepSeek y estima Gemini.
+
+    DeepSeek: API directa vía /user/balance (único endpoint oficial).
+              El gasto diario se calcula por diferencia de saldo entre lecturas.
+              Si el saldo subió (recarga manual), se marca como recarga_detectada.
+
+    Gemini:   No tiene API de billing con API key simple. Solo estimación.
+    """
+    costes = {}
+
+    # ── DeepSeek: API directa ──────────────────────────────────────────────
+    ds_saldo = None
+    ds_fuente = "estimacion"
+    ds_gasto = None
+    ds_recarga = None
+
+    try:
+        key = read_secret("deepseek.key")
+        if key:
+            r = cmd([
+                "curl", "-s", "--max-time", "10",
+                "-H", f"Authorization: Bearer {key}",
+                "-H", "Accept: application/json",
+                "https://api.deepseek.com/user/balance"
+            ])
+            if r:
+                data = json.loads(r)
+                ds_saldo = float(data["balance_infos"][0]["total_balance"])
+                ds_fuente = "api_directa"
+
+                # Comparar con saldo anterior para calcular gasto
+                saldo_anterior, ts_anterior = _leer_saldo_anterior()
+                if saldo_anterior is not None:
+                    diff = ds_saldo - saldo_anterior
+                    if diff < 0:
+                        # Gasto real: el saldo bajó
+                        ds_gasto = round(abs(diff), 4)
+                        log(f"DeepSeek gasto real: ${ds_gasto:.4f} "
+                            f"(saldo: {saldo_anterior} → {ds_saldo})")
+                    elif diff > 0:
+                        # Recarga manual detectada
+                        ds_recarga = True
+                        log(f"⚠️ DeepSeek: saldo subió de {saldo_anterior} a {ds_saldo} "
+                            f"— recarga manual detectada. Gasto no computable.")
+                    else:
+                        # Sin cambio
+                        log(f"DeepSeek saldo sin cambios: ${ds_saldo}")
+                else:
+                    log(f"DeepSeek saldo actual: ${ds_saldo} "
+                        f"(primera lectura, sin referencia anterior)")
+
+                # Guardar saldo actual para próxima comparación
+                _guardar_saldo_actual(ds_saldo)
+            else:
+                log("⚠️ DeepSeek: /user/balance no devolvió datos")
+        else:
+            log("⚠️ DeepSeek: no hay API key para consultar balance")
+    except Exception as e:
+        log(f"⚠️ DeepSeek: error al consultar balance — {e}")
+
+    # ── Gemini: solo estimación ────────────────────────────────────────────
+    log("⚠️ Gemini: coste estimado — no hay API de billing disponible con API key simple")
+
+    # ── Estimación basada en actividad ──────────────────────────────────────
+    sesiones = _contar_sesiones()
+    coste_estimado_ds = round(sesiones * TOKENS_POR_SESION * PRECIO_DEEPSEEK, 6)
+    coste_estimado_gm = round(sesiones * TOKENS_POR_SESION * PRECIO_GEMINI, 6)
+
+    costes["deepseek"] = {
+        "saldo_actual_usd": ds_saldo,
+        "fuente": ds_fuente,
+        "gasto_diario_estimado_usd": ds_gasto if ds_fuente == "api_directa" else coste_estimado_ds,
+        "recarga_detectada": ds_recarga if ds_recarga else (False if ds_fuente == "api_directa" else None),
+        "ultima_actualizacion": datetime.now(timezone.utc).isoformat(),
+    }
+    costes["gemini"] = {
+        "saldo_actual_usd": None,
+        "fuente": "estimacion",
+        "gasto_diario_estimado_usd": coste_estimado_gm,
+        "ultima_actualizacion": datetime.now(timezone.utc).isoformat(),
+    }
+
+    total = round((coste_estimado_ds + coste_estimado_gm), 6)
+    costes["total_diario_estimado_usd"] = total
+    costes["total_mensual_estimado_usd"] = round(total * 30, 4)
+    costes["nota"] = "Gemini es estimado — solo DeepSeek tiene API de billing (/user/balance)"
+
+    log(f"Costes: DeepSeek=${costes['deepseek']['gasto_diario_estimado_usd']} "
+        f"Gemini=${costes['gemini']['gasto_diario_estimado_usd']} "
+        f"total=${total}/día ({sesiones} sesiones, {TOKENS_POR_SESION} tok/sesión)")
+
+    return costes
+
+
+# ─── Fin check_cost() ────────────────────────────────────────────────────────
+
+
 def collect_state() -> dict:
     """Recopila todo el estado. Combina datos rápidos (cada tick) con lentos (cada 5 ticks)."""
     return _merge_state(_collect_fast(), _collect_slow())
 
 
 def _collect_fast() -> dict:
-    """Datos que cambian rápido: GPU, n8n healthz, cloud disponibilidad, hora."""
+    """Datos que cambian rápido: GPU, n8n healthz, cloud disponibilidad, hora, costes."""
     gpu = get_gpu()
     n8n = check_n8n()
     gemini_key = read_secret("gemini.key")
@@ -257,7 +370,8 @@ def _collect_fast() -> dict:
         "gemini": check_cloud("gemini", "https://generativelanguage.googleapis.com/v1beta/models", api_key=gemini_key),
     }
     policies = get_policies_state()
-    return {"gpu": gpu, "cloud": cloud, "policies": policies, "n8n": n8n}
+    costes = check_cost()
+    return {"gpu": gpu, "cloud": cloud, "policies": policies, "n8n": n8n, "costes": costes}
 
 
 _fast_cache = {}  # cache para datos lentos
@@ -292,6 +406,7 @@ def _merge_state(fast: dict, slow: dict) -> dict:
         },
         "cloud": fast.get("cloud", {}),
         "policies": fast.get("policies", {}),
+        "costes": fast.get("costes", {}),
     }
     return state
 

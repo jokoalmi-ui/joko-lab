@@ -216,5 +216,81 @@ class TestCollectState(unittest.TestCase):
             self.assertIn("gemini", state["cloud"])
 
 
+class TestCheckCost(unittest.TestCase):
+    """Tests para check_cost() — Sprint 3.4."""
+
+    @patch.object(sm, "read_secret", return_value="fake-key")
+    @patch.object(sm, "cmd")
+    @patch.object(sm, "_leer_saldo_anterior", return_value=(16.00, "2026-07-15T00:00:00"))
+    @patch.object(sm, "_guardar_saldo_actual")
+    def test_deepseek_api_directa_con_gasto(self, mock_guardar, mock_saldo_ant, mock_cmd, mock_secret):
+        """DeepSeek con API directa y saldo que bajó → gasto real calculado."""
+        mock_cmd.return_value = '{"is_available":true,"balance_infos":[{"currency":"USD","total_balance":"15.80","granted_balance":"0.00","topped_up_balance":"16.00"}]}'
+        costes = sm.check_cost()
+        self.assertEqual(costes["deepseek"]["fuente"], "api_directa")
+        self.assertEqual(costes["deepseek"]["saldo_actual_usd"], 15.80)
+        self.assertEqual(costes["deepseek"]["gasto_diario_estimado_usd"], 0.20)  # 16.00 - 15.80
+        self.assertFalse(costes["deepseek"]["recarga_detectada"])
+
+    @patch.object(sm, "read_secret", return_value="fake-key")
+    @patch.object(sm, "cmd")
+    @patch.object(sm, "_leer_saldo_anterior", return_value=(15.00, "2026-07-15T00:00:00"))
+    @patch.object(sm, "_guardar_saldo_actual")
+    def test_deepseek_recarga_detectada(self, mock_guardar, mock_saldo_ant, mock_cmd, mock_secret):
+        """DeepSeek con saldo que subió → recarga detectada, no gasto negativo."""
+        mock_cmd.return_value = '{"is_available":true,"balance_infos":[{"currency":"USD","total_balance":"17.50","granted_balance":"0.00","topped_up_balance":"17.50"}]}'
+        costes = sm.check_cost()
+        self.assertEqual(costes["deepseek"]["fuente"], "api_directa")
+        self.assertEqual(costes["deepseek"]["saldo_actual_usd"], 17.50)
+        self.assertIsNone(costes["deepseek"]["gasto_diario_estimado_usd"])
+        self.assertTrue(costes["deepseek"]["recarga_detectada"])
+
+    @patch.object(sm, "read_secret", return_value="")
+    def test_deepseek_sin_key(self, mock_secret):
+        """DeepSeek sin API key → no puede consultar balance."""
+        costes = sm.check_cost()
+        self.assertEqual(costes["deepseek"]["fuente"], "estimacion")
+        self.assertIsNone(costes["deepseek"]["saldo_actual_usd"])
+
+    @patch.object(sm, "read_secret", return_value="fake-key")
+    @patch.object(sm, "cmd")
+    @patch.object(sm, "_leer_saldo_anterior", return_value=(None, None))
+    @patch.object(sm, "_guardar_saldo_actual")
+    def test_deepseek_primera_lectura(self, mock_guardar, mock_saldo_ant, mock_cmd, mock_secret):
+        """Primera lectura (sin saldo anterior) → gasto null, sin recarga."""
+        mock_cmd.return_value = '{"is_available":true,"balance_infos":[{"currency":"USD","total_balance":"16.83","granted_balance":"0.00","topped_up_balance":"16.83"}]}'
+        costes = sm.check_cost()
+        self.assertEqual(costes["deepseek"]["fuente"], "api_directa")
+        self.assertEqual(costes["deepseek"]["saldo_actual_usd"], 16.83)
+        self.assertIsNone(costes["deepseek"]["gasto_diario_estimado_usd"])
+        self.assertFalse(costes["deepseek"]["recarga_detectada"])
+
+    @patch.object(sm, "read_secret", return_value="fake-key")
+    @patch.object(sm, "cmd")
+    @patch.object(sm, "_leer_saldo_anterior", return_value=(None, None))
+    @patch.object(sm, "_guardar_saldo_actual")
+    def test_gemini_siempre_estimacion(self, mock_guardar, mock_saldo_ant, mock_cmd, mock_secret):
+        """Gemini siempre en modo estimación (no tiene API de billing)."""
+        mock_cmd.return_value = '{"is_available":true,"balance_infos":[{"currency":"USD","total_balance":"16.83","granted_balance":"0.00","topped_up_balance":"16.83"}]}'
+        costes = sm.check_cost()
+        self.assertEqual(costes["gemini"]["fuente"], "estimacion")
+        self.assertIsNone(costes["gemini"]["saldo_actual_usd"])
+        self.assertGreater(costes["gemini"]["gasto_diario_estimado_usd"], 0)
+
+    def test_costes_tiene_todos_los_campos(self):
+        """El bloque costes tiene todos los campos esperados."""
+        costes = sm.check_cost()
+        self.assertIn("deepseek", costes)
+        self.assertIn("gemini", costes)
+        self.assertIn("total_diario_estimado_usd", costes)
+        self.assertIn("total_mensual_estimado_usd", costes)
+        self.assertIn("nota", costes)
+        for prov in ("deepseek", "gemini"):
+            self.assertIn("saldo_actual_usd", costes[prov])
+            self.assertIn("fuente", costes[prov])
+            self.assertIn("gasto_diario_estimado_usd", costes[prov])
+            self.assertIn("ultima_actualizacion", costes[prov])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
