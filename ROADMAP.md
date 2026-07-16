@@ -102,4 +102,12 @@ Objetivo: añadir nuevas capacidades solo cuando lo existente esté sólido.
 
 ---
 
-*Última actualización: 2026-07-03*
+## Objetivos personales (fuera del laboratorio)
+
+| # | Objetivo | Prioridad | Estado |
+|---|---|---|---|
+| P.1 | **Explorar trabajo remoto como "bombero" de infraestructura IA** — Perfil: sysadmin/DevOps especializado en agentes, automatización local, sistemas de IA en producción. El que monta el sistema para que otros lo usen. Invisible hasta que algo falla, entonces indispensable. Máster Founderz como contexto, Joko Lab como portafolio real. Pendiente de definir formato (freelance, consultoría, remoto fijo) y plataformas. | Media | Pendiente |
+
+---
+
+*Última actualización: 2026-07-16*
