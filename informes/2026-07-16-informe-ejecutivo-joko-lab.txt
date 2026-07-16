@@ -1,0 +1,238 @@
+================================================================================
+                         JOKO LAB — INFORME DE ESTADO
+                          16 de julio de 2026
+================================================================================
+
+1.  RESUMEN EJECUTIVO
+2.  PROVEEDOR Y ENRUTAMIENTO
+3.  CRON JOBS ACTIVOS
+4.  RUNTIME V3 (Sistema de decisión)
+5.  BUGS CORREGIDOS (15-16 julio)
+6.  DOCUMENTACIÓN Y DECISIONES
+7.  SKILLS DEL SISTEMA
+8.  INFRAESTRUCTURA
+9.  PENDIENTES
+10. PRÓXIMO PASO PROPUESTO
+
+================================================================================
+1. RESUMEN EJECUTIVO
+================================================================================
+
+Estado general: Sólido. Runtime v3 completo, 3 bugs críticos corregidos en
+las últimas 48h, 31 decisiones documentadas, infraestructura estable.
+
+Riesgo principal actual: Hermes Agent en v0.17.0 con bug de migración
+conocido (#62723) bloqueando actualización a v0.18.x. No hay fecha de
+fix todavía (esperar v0.18.3 o v0.19.0).
+
+Punto ciego: No hay métricas de coste real por proveedor. Las decisiones
+de enrutamiento se basan en franja horaria, no en datos de uso. Esto
+impide saber si cambios como integrar GLM son realmente rentables.
+
+================================================================================
+2. PROVEEDOR Y ENRUTAMIENTO
+================================================================================
+
+Activo: deepseek-v4-flash vía api.deepseek.com/v1
+
+Política horaria:
+  03:00-12:00  → gemini/gemini-3.1-flash-lite
+  12:00-03:00  → deepseek/deepseek-v4-flash
+  Fallback     → ollama (local)
+
+Modelos disponibles:
+  Cloud:   DeepSeek (v4-flash), Gemini (2.5-pro, 3.1-flash-lite, +37 más)
+  Local:   Ollama (llama31-8b-64k), LM Studio (glm-4.6v-flash, gemma-4-12b,
+           qwen3.5-9b, +3 más)
+
+================================================================================
+3. CRON JOBS ACTIVOS
+================================================================================
+
+  Sistema (crontab):
+    apply-decision.sh       03:00, 12:00, cada 30 min
+    Healthcheck stack        cada hora (minuto 5)
+    Healthcheck n8n          cada 30 min
+    State manager            cada minuto
+    Git backup               3:15
+
+  Systemd:
+    Backup joko-backup       diario (Persistent=true)
+    State manager            persistente (lab-state-manager.service)
+    LM Studio (llmster)      headless, bajo demanda
+
+  Hermes cron:
+    Informe diario           7:00
+    Hermes version watchdog  cada 7 días
+
+================================================================================
+4. RUNTIME V3 (Sistema de decisión)
+================================================================================
+
+  Componente               Estado
+  ──────────────────────── ─────────────────────────────────────────
+  State Manager            ✅ systemd, state.json cada 60s
+  Decision Engine          ✅ puro (solo decide), 7.5ms, 0% CPU
+  Runtime API (resolve)    ✅ implementado, 9 campos del contrato
+  apply-decision.sh        ✅ validación pre-aplicación + base_url
+  Políticas YAML           ✅ 6 archivos
+  Tests DE                  ✅ 24 tests, 171 asserts
+  Tests contract           ✅ 15 tests
+  Tests state-manager      ✅ 20 tests
+  CONTRACT.md              ✅ v1.0 congelado
+
+  Lo que NO está:
+    - Métricas de uso (pendiente)
+    - Director Estratégico Fase 2 (pendiente de métricas)
+    - Verifier autónomo del contrato
+
+================================================================================
+5. BUGS CORREGIDOS (15-16 julio)
+================================================================================
+
+  Bug #1 — DeepSeek no disponible (73 ciclos forzando Gemini)
+    Causa: check_cloud("deepseek", url) sin api_key + deepseek.key no existía
+    Fix:   read_secret("deepseek.key") + crear key + systemctl restart
+    Commit: d0f6752
+
+  Bug #2 — apply-decision.sh sin validación contra API real
+    Causa: el script aplicaba decisiones sin verificar que el proveedor
+           realmente respondiera ni que el modelo existiera
+    Fix:   Fase de validación pre-aplicación con _validar_modelo_*()
+    Commit: 48d3a05
+
+  Bug #3 — base_url no se actualizaba al cambiar de proveedor
+    Causa: el script de validación solo tocaba provider y default, no base_url
+    Fix:   Mapa case provider→base_url + verificación post-cambio
+    Evidencia: prueba real 07:47h mostrando los 3 campos cambiando juntos
+    Commit: ec56982
+
+================================================================================
+6. DOCUMENTACIÓN Y DECISIONES
+================================================================================
+
+  31 archivos en docs/decisiones/ (desde el 5 julio 2026)
+
+  Últimas entradas:
+    2026-07-16  Watchdog de versiones Hermes + skill upgrade-analysis
+    2026-07-16  Evaluación GLM-4.7-Flash vs Gemini 3.1 Flash-Lite
+    2026-07-15  Fix DeepSeek disponibilidad (v1 + v2 + v3: base_url)
+    2026-07-14  Sprint 3.3: corrección modelo, tests, descarte ledger
+    2026-07-14  Sprint 3.1: auditoría, contrato, limpieza scripts
+    2026-07-14  GitHub remoto externo
+    2026-07-14  Corrección DE + State Manager
+    2026-07-13  Metodología cálculo autonomía
+    2026-07-13  Corrección personality config
+    2026-07-10  Backups systemd timer
+
+================================================================================
+7. SKILLS DEL SISTEMA
+================================================================================
+
+  78 skills instaladas en ~/.hermes/skills/
+
+  Gobierno:
+    ai-architecture       v3.0.0  — principios, roles, contratos
+    lab-manager           —       — coordinación general
+    hermes-expert         v1.6.0  — operación de Hermes en Joko Lab
+
+  Operación:
+    ai-router             —       — enrutamiento cloud-local
+    docker-admin          —       — gestión del stack Docker
+    n8n-admin             —       — diagnóstico de workflows n8n
+    diagnostico-stack-local v1.7.1 — diagnóstico de solo lectura
+
+  Reciente:
+    hermes-upgrade-analysis v1.0.0 — análisis de nuevas versiones
+
+================================================================================
+8. INFRAESTRUCTURA
+================================================================================
+
+  Hardware:
+    CPU:   Intel i5-9500
+    RAM:   32 GB (7.8 GB usados, 22 GB disponibles)
+    GPU:   NVIDIA RTX A2000 12 GB (584 MB VRAM usados, 42°C)
+    Disco: SSD sistema + SSD /mnt/ssd_ia_datos
+
+  Stack Docker (todos UP):
+    n8n             Up 56 min    127.0.0.1:5678
+    ollama          Up 56 min    127.0.0.1:11434
+    pdf-cleaner     Up 56 min    127.0.0.1:8000
+    stirling-pdf    Up (healthy) 127.0.0.1:8081
+
+  Backups:
+    20 directorios de backup en /mnt/ssd_ia_datos/backups/
+    Git bundle a Google Drive vía rclone (3:15)
+    Systemd timer con Persistent=true
+
+  Seguridad:
+    Puertos restringidos a 127.0.0.1 (fix aplicado 2026-07-09)
+    Secrets en /mnt/ssd_ia_datos/lab-state/secrets/ con permisos 600
+    approvals.mode: manual (confirmación humana requerida)
+
+================================================================================
+9. PENDIENTES
+================================================================================
+
+  Sin urgencia:
+    - Prueba de calidad GLM-4.7-Flash (4 tareas, requiere API key)
+    - Decisión de integrar GLM como suplente de Gemini
+    - Esperar v0.18.3/v0.19.0 de Hermes (bug #62723)
+    - Revisión periódica de autonomía/madurez
+
+  No implementado:
+    - Métricas de coste real por proveedor
+    - Director Estratégico Fase 2
+    - Verifier autónomo del contrato
+    - Dashboard de coste real vs estimado
+
+================================================================================
+10. PRÓXIMO PASO PROPUESTO — Sprint 3.4: Observabilidad de costes reales
+================================================================================
+
+Propongo que el siguiente paso sea implementar métricas de coste real
+por proveedor, en lugar de seguir con la evaluación de GLM u otras
+mejoras que no tienen datos objetivos detrás.
+
+Argumentos:
+
+  a) Es el hueco real del sistema actual
+     El DE decide por franja horaria, no por coste real. No sabemos
+     cuánto gasta cada proveedor por sesión, ni cuánto costaron los
+     73 ciclos forzando Gemini. Sin estos datos:
+       - No podemos evaluar si GLM ahorra algo significativo
+       - No podemos detectar fugas de coste hasta que es demasiado tarde
+       - No podemos optimizar el horario con datos, solo con corazonadas
+
+  b) Es la pieza que falta del Sprint 3.x
+     Los Sprints 3.1-3.3 construyeron el Runtime (DE, policies, tests,
+     validación, watchdog). Las métricas son el siguiente nivel lógico:
+     pasar de enrutamiento por reglas fijas a enrutamiento informado
+     por datos.
+
+  c) Beneficio colateral: responde la pregunta de GLM
+     Con métricas reales sabremos cuánto cuesta Gemini por día, cuánto
+     ahorraría GLM, y si el esfuerzo de integración merece la pena.
+     Sin métricas, seguiremos especulando con ~$0.04/día.
+
+  d) Bajo riesgo, alto retorno
+     Es solo añadir un contador de tokens/gastos en state-manager.
+     No toca config.yaml, ni horario.yaml, ni apply-decision.sh.
+     No puede romper nada existente.
+
+  e) Plazo estimado: 1 sesión (~2h)
+     - Añadir contador de uso al state-manager (tokens in/out por llamada)
+     - Estimar coste con tabla de precios por proveedor
+     - Almacenar histórico diario
+     - Mostrar en state.json
+
+  Alternativa que NO recomiendo ahora:
+    - Integrar GLM: sin métricas de coste, es especulativo
+    - Director Estratégico Fase 2: requiere métricas primero
+    - Mejora de tests: ya tenemos cobertura suficiente para el núcleo
+    - Docs: prioridad baja hasta que el código esté estable
+
+Decisión final tuya, como siempre. Mi recomendación con los datos
+disponibles es: métricas primero, GLM después.
+================================================================================
