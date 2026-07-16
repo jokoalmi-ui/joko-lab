@@ -296,20 +296,21 @@ def check_cost() -> dict:
                         ds_gasto = round(abs(diff), 4)
                         log(f"DeepSeek gasto real: ${ds_gasto:.4f} "
                             f"(saldo: {saldo_anterior} → {ds_saldo})")
+                        _guardar_saldo_actual(ds_saldo)  # nueva referencia
                     elif diff > 0:
                         # Recarga manual detectada
                         ds_recarga = True
                         log(f"⚠️ DeepSeek: saldo subió de {saldo_anterior} a {ds_saldo} "
                             f"— recarga manual detectada. Gasto no computable.")
+                        _guardar_saldo_actual(ds_saldo)  # nueva referencia
                     else:
-                        # Sin cambio
-                        log(f"DeepSeek saldo sin cambios: ${ds_saldo}")
+                        # Sin cambio — no actualizar referencia
+                        # La comparacion sigue contra el ultimo saldo DISTINTO
+                        pass
                 else:
                     log(f"DeepSeek saldo actual: ${ds_saldo} "
                         f"(primera lectura, sin referencia anterior)")
-
-                # Guardar saldo actual para próxima comparación
-                _guardar_saldo_actual(ds_saldo)
+                    _guardar_saldo_actual(ds_saldo)  # establecer referencia inicial
             else:
                 log("⚠️ DeepSeek: /user/balance no devolvió datos")
         else:

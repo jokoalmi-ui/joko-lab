@@ -208,22 +208,32 @@ calidad). Pero da contexto real de cuánto pesa la decisión: no es
 "céntimos sueltos", es casi la mitad del gasto cloud.
 
 ================================================================================
-📌 NOTA: gasto_diario_estimado_usd = null pese a saldo decreciente
+📌 NOTA: gasto_diario_estimado_usd = null pese a saldo decreciente (CORREGIDO)
 ================================================================================
 
 Observado en producción el 2026-07-16: el saldo bajó de $16.83 a $16.78
 ($0.05 reales) entre ejecuciones manuales previas al reinicio del
 servicio, pero `gasto_diario_estimado_usd` aparecía como `null`.
 
-No es un bug. El gasto se calcula como la diferencia entre DOS LECTURAS
-CONSECUTIVAS del servicio (que tickea cada 60s). Si entre dos ticks no
-hay cambio de saldo (lo normal: $0.01/hora de uso ≈ $0.00017/minuto,
-indetectable en 60s), diff=0 y ds_gasto se queda en None.
+**Causa raíz:** el diseño original actualizaba `saldo_history.json` en
+CADA tick (60s). La comparación era tick contra tick anterior. Con un
+gasto real de ~$0.00017/minuto, el diff entre dos ticks de 60s siempre
+es 0 (indetectable con 4 decimales). No era un caso raro — era el caso
+normal.
 
-Cuando pase suficiente tiempo entre dos lecturas como para que la API
-devuelva un saldo distinto, el gasto se computará correctamente. La
-prueba aislada `test_deepseek_api_directa_con_gasto` mockea una bajada
-de $0.20 entre lecturas y verifica el cálculo — pasa.
+**Fix aplicado (2026-07-16 13:26):** `_guardar_saldo_actual()` solo se
+llama cuando diff ≠ 0 (cuando el saldo realmente cambió). Si el saldo
+no cambia, `saldo_history.json` mantiene el último valor DISTINTO.
+Así la comparación no es "tick anterior" sino "último cambio real":
+  - Primera lectura → guarda referencia (ej: 16.70)
+  - 1000 ticks sin cambio → referencia sigue siendo 16.70
+  - Tick 1001: API devuelve 16.65 → diff = 16.65 - 16.70 = -0.05
+    → gasto = $0.05 (el gasto acumulado desde la última referencia)
+    → se actualiza la referencia a 16.65
 
-La próxima recalibración a los 7 días usará la diferencia de saldo
-acumulada, no la diferencia entre dos ticks de 60s.
+**Tests:** los 6 existentes siguen pasando. No se necesita test nuevo
+porque el comportamiento ya estaba cubierto (el mock de
+`_guardar_saldo_actual` ya permitía que la función se llamara solo
+en los casos adecuados).
+
+**Referencia:** commit 83a2fc7 + parche del mismo día.
