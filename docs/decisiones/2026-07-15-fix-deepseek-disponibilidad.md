@@ -134,3 +134,87 @@ Ahora hay DOS puntos donde un proveedor cloud puede ser bloqueado:
 `state-manager.py` (disponibilidad en `state.json`) y
 `apply-decision.sh` (validación pre-aplicación). Si uno falla,
 el otro actúa como respaldo. El cron reintenta cada 30 min.
+
+---
+
+## Parche estructural v3: base_url no se actualizaba al cambiar de proveedor (2026-07-15 23:41)
+
+### Problema
+
+El commit `48d3a05` (validación pre-aplicación) corregía la verificación
+contra API real, pero **no actualizaba `model.base_url`** al cambiar de
+proveedor. Solo tocaba `model.provider` y `model.default`.
+
+Resultado: si el DE decidía Gemini, el script escribía:
+
+```yaml
+model:
+  base_url: https://api.deepseek.com/v1    # ← residual del proveedor anterior
+  default: gemini-3.1-flash-lite
+  provider: gemini
+```
+
+Esto es el **mismo patrón que el bug original de disponibilidad**: un
+campo queda desincronizado. Hermes intentaba llamar a Gemini contra la
+URL de DeepSeek, y la petición fallaba silenciosamente.
+
+### Fix aplicado
+
+Commit `ec56982`. Añadido un `case` con mapa provider→base_url:
+
+```bash
+case "$PROVIDER" in
+    deepseek)  BASE_URL="https://api.deepseek.com/v1" ;;
+    gemini)    BASE_URL="https://generativelanguage.googleapis.com/v1beta" ;;
+    ollama)    BASE_URL="http://localhost:11434/v1" ;;
+    lmstudio)  BASE_URL="http://localhost:1234/v1" ;;
+    *)         BASE_URL="" ;;
+esac
+```
+
+Y en la aplicación:
+
+```bash
+hermes config set model.provider "$PROVIDER"
+hermes config set model.default "$MODEL"
+[ -n "$BASE_URL" ] && hermes config set model.base_url "$BASE_URL"
+```
+
+Además, la verificación post-cambio (línea 235) ahora también comprueba
+`base_url` y logea una advertencia si no coincide.
+
+### Prueba de fallo simulado (2026-07-16 07:47)
+
+Ejecución real contra la API, forzando el cambio de proveedor:
+
+```
+ANTES:
+  base_url: https://api.deepseek.com/v1
+  default: deepseek-v4-flash
+  provider: deepseek
+
+APLICACIÓN:
+  ✓ Set model.provider = gemini
+  ✓ Set model.default = gemini-3.1-flash-lite
+  ✓ Set model.base_url = https://generativelanguage.googleapis.com/v1beta
+
+DESPUÉS:
+  base_url: https://generativelanguage.googleapis.com/v1beta
+  default: gemini-3.1-flash-lite
+  provider: gemini
+
+Log: ✅ Cambio aplicado correctamente: gemini/gemini-3.1-flash-lite
+     (base_url: https://generativelanguage.googleapis.com/v1beta)
+```
+
+**Los tres campos cambiaron juntos.** No hay base_url residual del
+proveedor anterior. Commiteado como `ec56982`, incluido en HEAD actual
+(`30b1347`).
+
+### Lección
+
+El patrón se repite por tercera vez en esta sesión: una corrección
+parcial (validación sin base_url) deja un campo desincronizado que
+solo se descubre al inspeccionar la salida real de `grep -A3 "^model:"`.
+La verificación post-cambio ahora incluye base_url explícitamente para
+evitar que vuelva a pasar.
