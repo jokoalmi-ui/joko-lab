@@ -80,9 +80,15 @@ $DOCKER
 PENDIENTES ABIERTOS
 - Loop Engineering: pendiente de evaluar
 - LM Studio + monitor Flask: probados, parados a proposito
-- Eliminar acoplamiento apply-decision.sh a config.yaml
+- Portabilidad: auditoria de acoplamiento a Hermes Agent (ROADMAP.md L84)
+  — Origen: video tutorial Hermes Agent (Marcos/Emowe)
+  — No planificado, prioridad baja. Solo relevante si se evalua migrar de agente.
+  — NO propone desacoplar apply-decision.sh ahora. El acoplamiento actual es correcto.
 - docs/joko-lab-principles.md: vacio
-- Skills betterbird, perfumes: sin poblar
+- Skills: betterbird (vacia), perfume-ia (Fase 1: proyecto creado en /home/jokoalmi/perfume-ia)
+
+VERIFICACIONES DEL DIA
+- deepseek-v4-flash: CONFIRMADO VALIDO en api.deepseek.com/models ($FECHA a las $HORA)
 EOF
 
 echo "  ✅ Informe guardado: $INFORMES_DIR/$FECHA-cierre-joko-lab.txt"

@@ -1,0 +1,84 @@
+=== ANALISIS DE ACTUALIZACION DE HERMES AGENT ===
+Fecha: 2026-07-17
+
+VERSION ACTUAL: v0.17.0 (config v30)
+ULTIMA DISPONIBLE: v0.18.2 (config v32)
+
+DIFERENCIA: 3 versiones (17.0 → 18.0 → 18.1 → 18.2)
+
+--- 1. PRINCIPALES CAMBIOS (v0.17.0 → v0.18.0) ---
+- 1.953 commits, 998 PRs, 949 issues cerrados (100% P0 y P1)
+- MoA (Mixture-of-Agents) como proveedor de primera clase
+- Verificacion de trabajo (/goal con contratos de completitud)
+- /learn — crear skills describiendolas
+- /journey — linea de tiempo de memoria del agente
+- Desktop app: Proyectos de codigo, multi-terminal, grafo de memoria
+- Gateway: scale-to-zero, drenaje coordinado
+- Background fan-out en delegate_task
+- Computer Use sin cambios destacados en release notes
+
+NO HAY release que incluya el fix #64606 (ultima tagged: v0.18.2 del 7 julio, fix mergeado el 15 julio).
+
+--- 2. CAMBIOS BREAKING ---
+
+BUG #62723 — ACTIVO EN v0.18.2 (config v30→v32):
+  La migracion de config borra silenciosamente la seccion platforms
+  en perfiles con configuracion minima. 9 de 10 perfiles afectados
+  en el reporte original. Los bots dejan de responder sin error.
+  FIX: #64606 (mergeado el 15 julio) — NO incluido en v0.18.2.
+  Estado: Hay que esperar a v0.18.3 o v0.19.0.
+
+verify_on_stop: default cambio de true a false en v0.18.0.
+  Nuestro config tiene verify_on_stop: true explicito → deberia sobrevivir.
+
+--- 3. IMPACTO EN JOKO LAB ---
+
+| Componente | Riesgo | Detalle |
+|---|---|---|
+| Config principal (config.yaml) | ALTO | Bug #62723: migracion v30→v32 borra platforms |
+| Proveedor DeepSeek | BAJO | Sin cambios en provider interface |
+| Delegacion Ollama | BAJO | Sin cambios en subagentes |
+| Personality | BAJO | Campo de texto, sobrevive a migracion |
+| Platforms (Telegram/Discord) | BAJO | Actualmente "not configured" en Joko Lab |
+| Cron jobs | BAJO | No afectados por migracion |
+| Skills locales | BAJO | No afectados |
+| Computer Use | ? | Posiblemente fixeado en los 949 issues cerrados |
+
+--- 4. PARCHES POSTERIORES ---
+
+Fix #64606 (plataformas) mergeado en main el 15 julio.
+No hay tagged release posterior. Esperar v0.18.3 o v0.19.0.
+
+--- 5. PRECAUCIONES ---
+
+Si se actualiza:
+1. Hacer backup completo: cp -a ~/.hermes ~/.hermes.backup
+2. Verificar platforms post-migracion (aunque no esten configuradas)
+3. Verificar provider/model/base_url post-migracion
+4. Verificar personality
+
+--- 6. TRES PUNTOS OBLIGATORIOS ---
+
+(a) API keys / secrets:
+No hay cambios en gestion de api_key/secrets en v0.18.x.
+(b) Formato de config.yaml / SOUL.md:
+Migracion v30→v32. Bug #62723 activo: puede borrar secciones.
+Nuestro platforms esta "not configured" → posiblemente no afectado,
+pero es el mismo bug que dejo 9 bots silenciosos sin error.
+(c) Pendientes de docs/decisiones/ resueltos:
+Ninguna novedad de la release resuelve pendientes conocidos.
+
+--- 7. RECOMENDACION ---
+
+ESPERAR a v0.18.3 o v0.19.0 que incluya el fix #64606.
+
+Razon principal: Bug #62723 en v0.18.2. Aunque Joko Lab no usa
+plataformas de mensajeria (Telegram/Discord "not configured"),
+el bug afecta a la migracion de config completa. Es un riesgo
+innecesario.
+
+Razon secundaria: El fix del computer_use (nuestra motivacion para
+actualizar) NO esta confirmado en las release notes. Podriamos
+actualizar y seguir con el mismo error.
+
+Plan: Esperar la proxima tagged release y re-evaluar.
