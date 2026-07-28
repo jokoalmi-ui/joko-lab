@@ -98,25 +98,43 @@ fi
 ((TOTAL++))
 echo -n "  [$TOTAL] n8n (workflows)... "
 tar -czf "$DIR/n8n-backup.tar.gz" -C /mnt/ssd_ia_datos n8n 2>/dev/null
-SIZE=$(du -h "$DIR/n8n-backup.tar.gz" 2>/dev/null | cut -f1)
-echo "✓ ($SIZE)"
-((PASS++))
+if [ -f "$DIR/n8n-backup.tar.gz" ]; then
+    tar -tzf "$DIR/n8n-backup.tar.gz" >/dev/null 2>&1 && echo "✓ (verificado)" || echo "✗ (corrupto)"
+    SIZE=$(du -h "$DIR/n8n-backup.tar.gz" 2>/dev/null | cut -f1)
+    echo "  → $SIZE"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
 
 # 5. exports (documentos)
 ((TOTAL++))
 echo -n "  [$TOTAL] exports... "
 tar -czf "$DIR/exports-backup.tar.gz" -C /mnt/ssd_ia_datos exports 2>/dev/null
-SIZE=$(du -h "$DIR/exports-backup.tar.gz" 2>/dev/null | cut -f1)
-echo "✓ ($SIZE)"
-((PASS++))
+if [ -f "$DIR/exports-backup.tar.gz" ]; then
+    tar -tzf "$DIR/exports-backup.tar.gz" >/dev/null 2>&1 && echo "✓ (verificado)" || echo "✗ (corrupto)"
+    SIZE=$(du -h "$DIR/exports-backup.tar.gz" 2>/dev/null | cut -f1)
+    echo "  → $SIZE"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
 
 # 6. lab-state (policies + secrets)
 ((TOTAL++))
 echo -n "  [$TOTAL] lab-state (policies + secrets)... "
 tar -czf "$DIR/lab-state.tar.gz" -C /mnt/ssd_ia_datos lab-state 2>/dev/null
-SIZE=$(du -h "$DIR/lab-state.tar.gz" 2>/dev/null | cut -f1)
-echo "✓ ($SIZE)"
-((PASS++))
+if [ -f "$DIR/lab-state.tar.gz" ]; then
+    tar -tzf "$DIR/lab-state.tar.gz" >/dev/null 2>&1 && echo "✓ (verificado)" || echo "✗ (corrupto)"
+    SIZE=$(du -h "$DIR/lab-state.tar.gz" 2>/dev/null | cut -f1)
+    echo "  → $SIZE"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
 
 # 7. perfume-ia (git bundle)
 ((TOTAL++))
@@ -144,8 +162,14 @@ echo "✓ ($SIZE)"
 echo -n "  [$TOTAL] hermes-lab (git bundle)... "
 cd ~/hermes-lab && git bundle create "$DIR/hermes-lab.bundle" --all 2>/dev/null
 if [ -f "$DIR/hermes-lab.bundle" ]; then
-    echo "✓"
-    ((PASS++))
+    # Verificar integridad del bundle
+    if git bundle verify "$DIR/hermes-lab.bundle" >/dev/null 2>&1; then
+        echo "✓ (verificado)"
+        ((PASS++))
+    else
+        echo "✗ (bundle corrupto)"
+        ((FAIL++))
+    fi
 else
     echo "✗"
     ((FAIL++))

@@ -14,11 +14,15 @@ FECHA=$(date +%Y-%m-%d)
 HORA=$(date +%H:%M)
 POINT_DIR="$RECOVERY_DIR/$TIMESTAMP"
 
+CHECKPOINT_DIR="$POINT_DIR"
+# Proteccion contra escritura truncada: temp dir + rename
+TEMP_DIR="${RECOVERY_DIR}/.tmp_${TIMESTAMP}"
+
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  CHECKPOINT — Punto de recuperación ($FECHA $HORA)"
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 
-mkdir -p "$POINT_DIR"
+mkdir -p "$TEMP_DIR"
 
 PASS=0
 FAIL=0
@@ -149,15 +153,15 @@ echo "✓"
 ((PASS++))
 
 # ─── Recovery.md ───────────────────────────────────────────
-GPU_INFO=$(cat "$POINT_DIR/gpu.txt" 2>/dev/null | head -1)
-RAM_INFO=$(grep "^Mem:" "$POINT_DIR/ram.txt" 2>/dev/null | awk '{print $3 "/" $2}')
+GPU_INFO=$(cat "$TEMP_DIR/gpu.txt" 2>/dev/null | head -1)
+RAM_INFO=$(grep "^Mem:" "$TEMP_DIR/ram.txt" 2>/dev/null | awk '{print $3 "/" $2}')
 DISK_ROOT=$(df -h / 2>/dev/null | awk 'NR==2 {print $5}')
 DISK_SSD=$(df -h /mnt/ssd_ia_datos 2>/dev/null | awk 'NR==2 {print $5}')
-DOCKER_UP=$(grep -c "Up" "$POINT_DIR/docker.txt" 2>/dev/null || echo "?")
+DOCKER_UP=$(grep -c "Up" "$TEMP_DIR/docker.txt" 2>/dev/null || echo "?")
 HERMES_VERSION=$(hermes --version 2>/dev/null | head -1 | awk '{print $3}')
-GATEWAY_STATUS=$(grep "Active:" "$POINT_DIR/gateway.txt" 2>/dev/null | head -1 | xargs)
+GATEWAY_STATUS=$(grep "Active:" "$TEMP_DIR/gateway.txt" 2>/dev/null | head -1 | xargs)
 
-cat > "$POINT_DIR/recovery.md" << EOF
+cat > "$TEMP_DIR/recovery.md" << EOF
 # Punto de Recuperación — Joko Lab
 
 **Timestamp:** $FECHA $HORA  
@@ -208,6 +212,10 @@ Para restaurar un snapshot de Hermes:
 
 Ver \`hermes-lab/docs/pendientes.txt\`
 EOF
+
+# ─── Mover temp a destino (atomico) ───────────────────────
+rm -rf "$POINT_DIR" 2>/dev/null
+mv "$TEMP_DIR" "$POINT_DIR"
 
 # ─── Resumen final ─────────────────────────────────────────
 echo ""
