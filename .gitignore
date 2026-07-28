@@ -20,3 +20,6 @@ venv/
 
 # Placeholders vacíos
 crontab
+
+# Puntos de recuperación (pueden ser grandes por sessions.jsonl)
+recovery/

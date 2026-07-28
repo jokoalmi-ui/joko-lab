@@ -1,0 +1,228 @@
+#!/bin/bash
+# checkpoint — Punto de recuperación de Joko Lab
+# Crea un snapshot completo del estado del sistema sin cerrar nada.
+# Uso: checkpoint
+# Salida: recovery/YYYY-MM-DD_HH-MM/
+
+set +e
+
+LAB_DIR="$HOME/hermes-lab"
+RECOVERY_DIR="$LAB_DIR/recovery"
+STACK="$HOME/automation-stack"
+TIMESTAMP=$(date +%Y-%m-%d_%H-%M)
+FECHA=$(date +%Y-%m-%d)
+HORA=$(date +%H:%M)
+POINT_DIR="$RECOVERY_DIR/$TIMESTAMP"
+
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  CHECKPOINT — Punto de recuperación ($FECHA $HORA)"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+
+mkdir -p "$POINT_DIR"
+
+PASS=0
+FAIL=0
+
+# ─── 1. Hermes Doctor ──────────────────────────────────────
+echo ""
+echo -n "  [01/12] hermes doctor... "
+if hermes doctor > "$POINT_DIR/doctor.txt" 2>&1; then
+    echo "✓"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
+
+# ─── 2. Hermes Status ──────────────────────────────────────
+echo -n "  [02/12] hermes status... "
+if hermes status > "$POINT_DIR/status.txt" 2>&1; then
+    echo "✓"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
+
+# ─── 3. Hermes Gateway ─────────────────────────────────────
+echo -n "  [03/12] hermes gateway... "
+if hermes gateway status > "$POINT_DIR/gateway.txt" 2>&1; then
+    echo "✓"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
+
+# ─── 4. Hermes Backup (quick snapshot) ─────────────────────
+echo -n "  [04/12] hermes backup --quick... "
+if hermes backup --quick -l "$TIMESTAMP" > "$POINT_DIR/backup-snapshot.txt" 2>&1; then
+    echo "✓"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
+
+# ─── 5. Hermes Sessions Export ─────────────────────────────
+echo -n "  [05/12] hermes sessions export... "
+if hermes sessions export "$POINT_DIR/sessions.jsonl" > /dev/null 2>&1; then
+    SESSION_COUNT=$(wc -l < "$POINT_DIR/sessions.jsonl" 2>/dev/null || echo "?")
+    echo "✓ ($SESSION_COUNT sesiones)"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
+
+# ─── 6. Docker Stack ───────────────────────────────────────
+echo -n "  [06/12] docker compose ps... "
+if docker compose -f "$STACK/docker-compose.yml" ps > "$POINT_DIR/docker.txt" 2>&1; then
+    echo "✓"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
+
+# ─── 7. GPU ────────────────────────────────────────────────
+echo -n "  [07/12] nvidia-smi... "
+if nvidia-smi --query-gpu=name,memory.used,memory.total,utilization.gpu,temperature.gpu --format=csv,noheader,nounits > "$POINT_DIR/gpu.txt" 2>&1; then
+    echo "✓"
+    ((PASS++))
+else
+    echo "✗"
+    ((FAIL++))
+fi
+
+# ─── 8. Discos ─────────────────────────────────────────────
+echo -n "  [08/12] df -h... "
+{
+    echo "=== ROOT ===" 
+    df -h /
+    echo ""
+    echo "=== SSD DATOS ===" 
+    df -h /mnt/ssd_ia_datos
+} > "$POINT_DIR/disk.txt" 2>&1
+echo "✓"
+((PASS++))
+
+# ─── 9. RAM ────────────────────────────────────────────────
+echo -n "  [09/12] free -h... "
+free -h > "$POINT_DIR/ram.txt" 2>&1
+echo "✓"
+((PASS++))
+
+# ─── 10. Ollama ────────────────────────────────────────────
+echo -n "  [10/12] ollama... "
+{
+    echo "=== MODELOS ===" 
+    docker compose -f "$STACK/docker-compose.yml" exec ollama ollama list 2>/dev/null
+    echo ""
+    echo "=== CARGADO AHORA ===" 
+    docker compose -f "$STACK/docker-compose.yml" exec ollama ollama ps 2>/dev/null
+} > "$POINT_DIR/ollama.txt" 2>&1
+echo "✓"
+((PASS++))
+
+# ─── 11. Git Status ────────────────────────────────────────
+echo -n "  [11/12] git status... "
+{
+    echo "=== HERMES-LAB ===" 
+    cd "$LAB_DIR" && git status --short 2>/dev/null
+    echo ""
+    echo "=== ÚLTIMOS 5 COMMITS ===" 
+    cd "$LAB_DIR" && git log --oneline -5 2>/dev/null
+} > "$POINT_DIR/git-status.txt" 2>&1
+echo "✓"
+((PASS++))
+
+# ─── 12. Config Diff ───────────────────────────────────────
+echo -n "  [12/12] config snapshot... "
+{
+    echo "# Hermes config snapshot — $TIMESTAMP"
+    echo "# Generado por checkpoint.sh"
+    echo ""
+    hermes config show 2>/dev/null
+} > "$POINT_DIR/config.txt" 2>&1
+echo "✓"
+((PASS++))
+
+# ─── Recovery.md ───────────────────────────────────────────
+GPU_INFO=$(cat "$POINT_DIR/gpu.txt" 2>/dev/null | head -1)
+RAM_INFO=$(grep "^Mem:" "$POINT_DIR/ram.txt" 2>/dev/null | awk '{print $3 "/" $2}')
+DISK_ROOT=$(df -h / 2>/dev/null | awk 'NR==2 {print $5}')
+DISK_SSD=$(df -h /mnt/ssd_ia_datos 2>/dev/null | awk 'NR==2 {print $5}')
+DOCKER_UP=$(grep -c "Up" "$POINT_DIR/docker.txt" 2>/dev/null || echo "?")
+HERMES_VERSION=$(hermes --version 2>/dev/null | head -1 | awk '{print $3}')
+GATEWAY_STATUS=$(grep "Active:" "$POINT_DIR/gateway.txt" 2>/dev/null | head -1 | xargs)
+
+cat > "$POINT_DIR/recovery.md" << EOF
+# Punto de Recuperación — Joko Lab
+
+**Timestamp:** $FECHA $HORA  
+**Checkpoint:** $TIMESTAMP
+
+## Resumen
+
+| Componente | Estado |
+|---|---|
+| Hermes Agent | $HERMES_VERSION |
+| GPU | $GPU_INFO |
+| RAM | $RAM_INFO |
+| Disco / | $DISK_ROOT |
+| Disco SSD | $DISK_SSD |
+| Docker | $DOCKER_UP contenedores Up |
+| Gateway | $GATEWAY_STATUS |
+| Checkpoint | $PASS/12 pasos OK |
+
+## Archivos
+
+| Archivo | Contenido |
+|---|---|
+| doctor.txt | Diagnóstico completo de Hermes |
+| status.txt | Estado de todos los componentes |
+| gateway.txt | Estado del gateway |
+| backup-snapshot.txt | Snapshot de estado (quick) |
+| sessions.jsonl | Export de sesiones |
+| docker.txt | Estado del stack Docker |
+| gpu.txt | GPU (nvidia-smi) |
+| disk.txt | Uso de discos |
+| ram.txt | Memoria RAM |
+| ollama.txt | Modelos Ollama |
+| git-status.txt | Estado de Git (hermes-lab) |
+| config.txt | Configuración de Hermes |
+| recovery.md | Este resumen |
+
+## Restauración
+
+Para ver qué cambió entre dos checkpoints:
+
+    diff recovery/YYYY-MM-DD_HH-MM/ recovery/YYYY-MM-DD_HH-MM/
+
+Para restaurar un snapshot de Hermes:
+
+    hermes backup --quick → listar snapshots disponibles
+
+## Pendientes
+
+Ver \`hermes-lab/docs/pendientes.txt\`
+EOF
+
+# ─── Resumen final ─────────────────────────────────────────
+echo ""
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo "  CHECKPOINT COMPLETADO"
+echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+echo ""
+echo "  Punto de recuperación: $POINT_DIR"
+echo "  Archivos:             $(ls "$POINT_DIR" | wc -l)"
+echo "  Pasos OK:             $PASS/12"
+echo ""
+echo "  GPU:  $GPU_INFO"
+echo "  RAM:  $RAM_INFO"
+echo "  Root: $DISK_ROOT  |  SSD: $DISK_SSD"
+echo "  Docker: $DOCKER_UP contenedores Up"
+echo ""
+echo "  Sesión: abierta (checkpoint no cierra Hermes)"
+echo ""
