@@ -53,6 +53,28 @@ cp ~/.ssh/id_* "$DIR/ssh/" 2>/dev/null
 echo "✓"
 ((PASS++))
 
+# 3. Runtime environment (uv, cargo, local/bin)
+((TOTAL++))
+echo -n "  [$TOTAL] Runtime (uv, cargo, local/bin)... "
+mkdir -p "$DIR/runtime"
+if [ -d ~/.local/share/uv ]; then
+    tar -czf "$DIR/runtime/uv.tar.gz" -C ~/.local/share uv 2>/dev/null
+    echo -n "uv($(du -h "$DIR/runtime/uv.tar.gz" | cut -f1)) "
+fi
+if [ -d ~/.cargo/bin ]; then
+    tar -czf "$DIR/runtime/cargo-bin.tar.gz" -C ~/.cargo bin 2>/dev/null
+    echo -n "cargo($(du -h "$DIR/runtime/cargo-bin.tar.gz" | cut -f1)) "
+fi
+if [ -d ~/.local/bin ]; then
+    cp ~/.local/bin/* "$DIR/runtime/" 2>/dev/null
+    echo -n "local-bin($(ls "$DIR/runtime" | grep -v tar | wc -l) archivos) "
+fi
+# Guardar lista de lo que hay instalado (uv, cargo tools)
+ls ~/.local/bin/ 2>/dev/null > "$DIR/runtime/local-bin-list.txt"
+ls ~/.cargo/bin/ 2>/dev/null > "$DIR/runtime/cargo-bin-list.txt"
+echo "✓"
+((PASS++))
+
 # 3. Hermes (config + skills + state.db)
 ((TOTAL++))
 echo -n "  [$TOTAL] Hermes config + skills... "
