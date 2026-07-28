@@ -340,5 +340,15 @@ echo "  Irremplazable:  copiado (comprimido)"
 echo "  Reemplazable:   inventario en inventario.md"
 echo ""
 
-# Limpiar rotación: mantener 7 días
-find "$DEST" -maxdepth 1 -type d -name "20*" | sort -r | tail -n +8 | xargs rm -rf 2>/dev/null
+# Limpiar rotación: mantener 2 copias
+COPIAS=$(find "$DEST" -maxdepth 1 -type d -name "20*" | sort -r)
+COPIAS_A_BORRAR=$(echo "$COPIAS" | tail -n +3)
+if [ -n "$COPIAS_A_BORRAR" ]; then
+    echo "$COPIAS_A_BORRAR" | xargs rm -rf 2>/dev/null
+    echo "  Rotación: $(echo "$COPIAS_A_BORRAR" | wc -l) copia(s) antigua(s) eliminada(s)"
+else
+    echo "  Rotación: nada que borrar ($(echo "$COPIAS" | wc -l) copia(s) en disco)"
+fi
+
+# Notificar al escritorio
+notify-send -u normal "Joko Lab — Rescue" "Backup completado: $FECHA\n$TOTAL_SIZE en USB. Puedes apagar el disco." 2>/dev/null || true
