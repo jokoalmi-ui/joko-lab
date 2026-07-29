@@ -208,8 +208,45 @@ def evaluar_costes(state: dict, policies: dict) -> Optional[dict]:
     return None
 
 
+def evaluar_gpu(state: dict, policies: dict) -> Optional[dict]:
+    """Política 4. Según VRAM disponible, forzar modelo ligero si es necesario."""
+    gpu = policies.get("gpu", {})
+    reglas = gpu.get("reglas", [])
+    modelos_vram = gpu.get("modelos_vram", {})
+    
+    # Obtener VRAM libre del state
+    gpu_state = state.get("gpu", {})
+    vram_libre = gpu_state.get("vram_libre_mb", 12282)  # fallback a total
+    vram_usada = gpu_state.get("memoria_usada_mb", 0)
+    vram_libre_mb = vram_libre - vram_usada
+    
+    # Evaluar reglas en orden (la primera que cumpla gana)
+    for regla in reglas:
+        cond = regla.get("condicion", "")
+        if "vram_libre < 2000" in cond and vram_libre_mb < 2000:
+            modelo = regla.get("modelo", "")
+            proveedor = regla.get("proveedor", "lmstudio")
+            return {
+                "provider": proveedor,
+                "model": modelo,
+                "reason": f"GPU: VRAM crítica ({vram_libre_mb}MB libre), forzando {modelo}",
+            }
+        if "vram_libre < 4000" in cond and vram_libre_mb < 4000:
+            excluir = regla.get("excluir", [])
+            return {
+                "provider": "lmstudio",
+                "model": "excluir_pesados",
+                "exclude": excluir,
+                "reason": f"GPU: VRAM baja ({vram_libre_mb}MB libre), evitando modelos pesados",
+            }
+        if "vram_libre >= 6000" in cond and vram_libre_mb >= 6000:
+            return None  # Sin restricciones, pasar a siguiente política
+    
+    return None
+
+
 def evaluar_horario(state: dict, policies: dict) -> Optional[dict]:
-    """Política 4. Elegir proveedor según la hora."""
+    """Política 5. Elegir proveedor según la hora."""
     horario = policies.get("horario", {})
     reglas = horario.get("reglas", [])
     ahora = state.get("policies", {}).get("hora", {}).get("actual", "")
@@ -269,8 +306,47 @@ def evaluar_horario(state: dict, policies: dict) -> Optional[dict]:
     }
 
 
+def evaluar_niveles(state: dict, policies: dict) -> Optional[dict]:
+    """Política 6. Selecciona nivel de verificación según la tarea."""
+    niveles = policies.get("niveles", {})
+    nivel_list = niveles.get("niveles", [])
+    fb = niveles.get("fallback", {"nivel": 2})
+    
+    task_hint = state.get("task_hint", "").lower()
+    if not task_hint:
+        return {
+            "provider": None,
+            "model": None,
+            "nivel": fb["nivel"],
+            "reason": f"Niveles: sin tarea, nivel {fb['nivel']} por defecto",
+        }
+    
+    for nivel in reversed(nivel_list):  # Mayor nivel primero
+        tareas = [t.lower() for t in nivel.get("tareas", [])]
+        for tarea in tareas:
+            if tarea in task_hint:
+                modelos = nivel.get("modelos", [])
+                temp = nivel.get("temperature", 0.5)
+                mt = nivel.get("max_tokens", 1024)
+                return {
+                    "provider": "lmstudio" if modelos else "deepseek",
+                    "model": modelos[0] if modelos else "deepseek-v4-flash",
+                    "nivel": nivel.get("nivel", fb["nivel"]),
+                    "temperature": temp,
+                    "max_tokens": mt,
+                    "reason": f"Niveles: tarea '{tarea}' → nivel {nivel.get('nivel')}",
+                }
+    
+    return {
+        "provider": None,
+        "model": None,
+        "nivel": fb["nivel"],
+        "reason": f"Niveles: tarea no clasificada, nivel {fb['nivel']} por defecto",
+    }
+
+
 def evaluar_preferencias(state: dict, policies: dict) -> Optional[dict]:
-    """Política 5. Preferencia por defecto según preferencias.yaml."""
+    """Política 7. Preferencia por defecto según preferencias.yaml."""
     pref = policies.get("preferencias", {})
     fb = pref.get("fallback", {})
     proveedor = fb.get("proveedor", FALLBACK_PROVIDER)
@@ -288,6 +364,27 @@ def _modelo_por_proveedor(proveedor: str, policies: dict) -> str:
     por_prov = modelos.get("por_proveedor", {})
     info = por_prov.get(proveedor, {})
     return info.get("default", FALLBACK_MODEL)
+
+
+DECISION_LEDGER = LAB_STATE / "decision-ledger.jsonl"
+
+
+def _save_decision_ledger(decision: dict) -> None:
+    """Guarda la decisión en el ledger histórico (formato JSONL, append-only)."""
+    try:
+        entry = {
+            "timestamp": decision.get("timestamp", datetime.now().isoformat()),
+            "provider": decision.get("provider", FALLBACK_PROVIDER),
+            "model": decision.get("model", FALLBACK_MODEL),
+            "reason": decision.get("reason", ""),
+            "nivel": decision.get("nivel"),
+            "temperature": decision.get("temperature"),
+            "max_tokens": decision.get("max_tokens"),
+        }
+        with open(DECISION_LEDGER, "a") as f:
+            f.write(json.dumps(entry) + "\n")
+    except Exception:
+        pass  # El ledger no debe romper la decisión
 
 
 # ─── Algoritmo principal ────────────────────────────────────────────────────
@@ -327,7 +424,9 @@ def decide(task_hint: str = "") -> dict:
         ("privacidad", evaluar_privacidad),
         ("disponibilidad", evaluar_disponibilidad),
         ("costes", evaluar_costes),
+        ("gpu", evaluar_gpu),
         ("horario", evaluar_horario),
+        ("niveles", evaluar_niveles),
         ("preferencias", evaluar_preferencias),
     ]
 
@@ -355,6 +454,10 @@ def decide(task_hint: str = "") -> dict:
             "model": FALLBACK_MODEL,
             "reason": "Ninguna política aplicable, fallback por defecto",
         }
+
+    # Añadir timestamp y guardar en decision-ledger
+    result["timestamp"] = datetime.now().isoformat()
+    _save_decision_ledger(result)
 
     return result
 
