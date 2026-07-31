@@ -30,7 +30,7 @@ FAIL=0
 # ─── 1. Hermes Doctor ──────────────────────────────────────
 echo ""
 echo -n "  [01/12] hermes doctor... "
-if hermes doctor > "$TEMP_DIR/doctor.txt" 2>&1; then
+if hermes doctor > "$POINT_DIR/doctor.txt" 2>&1; then
     echo "✓"
     ((PASS++))
 else
@@ -40,7 +40,7 @@ fi
 
 # ─── 2. Hermes Status ──────────────────────────────────────
 echo -n "  [02/12] hermes status... "
-if hermes status > "$TEMP_DIR/status.txt" 2>&1; then
+if hermes status > "$POINT_DIR/status.txt" 2>&1; then
     echo "✓"
     ((PASS++))
 else
@@ -50,7 +50,7 @@ fi
 
 # ─── 3. Hermes Gateway ─────────────────────────────────────
 echo -n "  [03/12] hermes gateway... "
-if hermes gateway status > "$TEMP_DIR/gateway.txt" 2>&1; then
+if hermes gateway status > "$POINT_DIR/gateway.txt" 2>&1; then
     echo "✓"
     ((PASS++))
 else
@@ -60,7 +60,7 @@ fi
 
 # ─── 4. Hermes Backup (quick snapshot) ─────────────────────
 echo -n "  [04/12] hermes backup --quick... "
-if hermes backup --quick -l "$TIMESTAMP" > "$TEMP_DIR/backup-snapshot.txt" 2>&1; then
+if hermes backup --quick -l "$TIMESTAMP" > "$POINT_DIR/backup-snapshot.txt" 2>&1; then
     echo "✓"
     ((PASS++))
 else
@@ -70,8 +70,8 @@ fi
 
 # ─── 5. Hermes Sessions Export ─────────────────────────────
 echo -n "  [05/12] hermes sessions export... "
-if hermes sessions export "$TEMP_DIR/sessions.jsonl" > /dev/null 2>&1; then
-    SESSION_COUNT=$(wc -l < "$TEMP_DIR/sessions.jsonl" 2>/dev/null || echo "?")
+if hermes sessions export "$POINT_DIR/sessions.jsonl" > /dev/null 2>&1; then
+    SESSION_COUNT=$(wc -l < "$POINT_DIR/sessions.jsonl" 2>/dev/null || echo "?")
     echo "✓ ($SESSION_COUNT sesiones)"
     ((PASS++))
 else
@@ -81,7 +81,7 @@ fi
 
 # ─── 6. Docker Stack ───────────────────────────────────────
 echo -n "  [06/12] docker compose ps... "
-if docker compose -f "$STACK/docker-compose.yml" ps > "$TEMP_DIR/docker.txt" 2>&1; then
+if docker compose -f "$STACK/docker-compose.yml" ps > "$POINT_DIR/docker.txt" 2>&1; then
     echo "✓"
     ((PASS++))
 else
@@ -91,7 +91,7 @@ fi
 
 # ─── 7. GPU ────────────────────────────────────────────────
 echo -n "  [07/12] nvidia-smi... "
-if nvidia-smi --query-gpu=name,memory.used,memory.total,utilization.gpu,temperature.gpu --format=csv,noheader,nounits > "$TEMP_DIR/gpu.txt" 2>&1; then
+if nvidia-smi --query-gpu=name,memory.used,memory.total,utilization.gpu,temperature.gpu --format=csv,noheader,nounits > "$POINT_DIR/gpu.txt" 2>&1; then
     echo "✓"
     ((PASS++))
 else
@@ -107,13 +107,13 @@ echo -n "  [08/12] df -h... "
     echo ""
     echo "=== SSD DATOS ===" 
     df -h /mnt/ssd_ia_datos
-} > "$TEMP_DIR/disk.txt" 2>&1
+} > "$POINT_DIR/disk.txt" 2>&1
 echo "✓"
 ((PASS++))
 
 # ─── 9. RAM ────────────────────────────────────────────────
 echo -n "  [09/12] free -h... "
-free -h > "$TEMP_DIR/ram.txt" 2>&1
+free -h > "$POINT_DIR/ram.txt" 2>&1
 echo "✓"
 ((PASS++))
 
@@ -125,7 +125,7 @@ echo -n "  [10/12] ollama... "
     echo ""
     echo "=== CARGADO AHORA ===" 
     docker compose -f "$STACK/docker-compose.yml" exec ollama ollama ps 2>/dev/null
-} > "$TEMP_DIR/ollama.txt" 2>&1
+} > "$POINT_DIR/ollama.txt" 2>&1
 echo "✓"
 ((PASS++))
 
@@ -137,7 +137,7 @@ echo -n "  [11/12] git status... "
     echo ""
     echo "=== ÚLTIMOS 5 COMMITS ===" 
     cd "$LAB_DIR" && git log --oneline -5 2>/dev/null
-} > "$TEMP_DIR/git-status.txt" 2>&1
+} > "$POINT_DIR/git-status.txt" 2>&1
 echo "✓"
 ((PASS++))
 
@@ -148,7 +148,7 @@ echo -n "  [12/12] config snapshot... "
     echo "# Generado por checkpoint.sh"
     echo ""
     hermes config show 2>/dev/null
-} > "$TEMP_DIR/config.txt" 2>&1
+} > "$POINT_DIR/config.txt" 2>&1
 echo "✓"
 ((PASS++))
 

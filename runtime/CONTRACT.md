@@ -1,3 +1,10 @@
+---
+type: infrastructure
+subtype: infrastructure
+status: active
+tags: [infrastructure]
+created: 2026-07-14
+---
 # Runtime Contract — Joko Lab
 
 **Versión:** 1.0
