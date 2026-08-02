@@ -1,0 +1,51 @@
+#!/bin/bash
+# backup-joko-lab.sh — Backup TOTAL automatizado de joko-lab
+# Creado 2-ago-2026 (analisis exhaustivo, mejora M: el backup de joko-lab
+# era manual y fin.sh solo hace commit de hermes-lab, NO de joko-lab).
+#
+# - Copia completa con rsync (incremental entre ejecuciones)
+# - Excluye .venv, __pycache__, .lancedb y .git (regenerables/versionables)
+#   → backup de ~500M en vez de 1.5G
+# - Rotacion: conserva los ultimos 7 backups
+# - Destino: /home/jokoalmi/joko-lab.BACKUP.<YYYYMMDD>/
+#
+# Uso: ./backup-joko-lab.sh [--quiet]
+set +e
+
+QUIET=false
+[[ "$1" == "--quiet" ]] && QUIET=true
+
+SRC="/home/jokoalmi/joko-lab/"
+FECHA=$(date +%Y%m%d)
+DEST="/home/jokoalmi/joko-lab.BACKUP.${FECHA}/"
+LOG="/tmp/backup-joko-lab-${FECHA}.log"
+
+$QUIET || echo "=== Backup joko-lab → ${DEST} ==="
+
+# Copia completa con exclusiones
+rsync -a --delete \
+    --exclude='.venv' \
+    --exclude='venv' \
+    --exclude='__pycache__' \
+    --exclude='*.pyc' \
+    --exclude='.lancedb' \
+    --exclude='.git' \
+    --exclude='.BACKUP' \
+    --exclude='*.BACKUP.*' \
+    --exclude='~/tmp' \
+    "$SRC" "$DEST" > "$LOG" 2>&1
+RSYNC_EXIT=$?
+
+# Tamano resultante
+SIZE=$(du -sh "$DEST" 2>/dev/null | cut -f1)
+
+if [ $RSYNC_EXIT -eq 0 ]; then
+    $QUIET || echo "✔ Backup completado: $DEST ($SIZE)"
+    # Rotacion: borrar backups anteriores a 7 dias
+    find /home/jokoalmi -maxdepth 1 -type d -name 'joko-lab.BACKUP.*' -mtime +7 -exec rm -rf {} \; 2>/dev/null
+    $QUIET || echo "✔ Rotacion: backups >7 dias eliminados"
+    exit 0
+else
+    echo "✗ Error en rsync (exit $RSYNC_EXIT). Log: $LOG"
+    exit 1
+fi
