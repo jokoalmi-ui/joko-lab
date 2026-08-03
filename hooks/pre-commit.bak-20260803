@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+# pre-commit — Gate determinista: bloquea el commit si el árbol en
+# staging no coincide con un recibo generado tras revisión explícita.
+#
+# Instalación (repo con hooks versionados, recomendado):
+#   git config core.hooksPath hooks
+#   chmod +x hooks/pre-commit hooks/generar_recibo.sh
+#
+# Kill switch (documentado, no silencioso):
+#   JOKO_RDD_DISABLE=1 git commit ...      # desactiva una vez
+#   touch .joko-rdd-disable                # desactiva para todo el repo
+
+set -euo pipefail
+
+if [ "${JOKO_RDD_DISABLE:-0}" = "1" ]; then
+  echo "[joko-rdd] AVISO: gate desactivado vía JOKO_RDD_DISABLE=1. Commit sin recibo." >&2
+  exit 0
+fi
+
+if [ -f ".joko-rdd-disable" ]; then
+  echo "[joko-rdd] AVISO: gate desactivado por .joko-rdd-disable en este repo." >&2
+  exit 0
+fi
+
+GIT_DIR=$(git rev-parse --git-dir)
+RECIBO_FILE="${GIT_DIR}/joko-recibo.json"
+CURRENT_TREE=$(git write-tree)
+
+if [ ! -f "$RECIBO_FILE" ]; then
+  echo "[joko-rdd] BLOQUEADO: no hay recibo para este árbol." >&2
+  echo "  Revisa los cambios y genera uno con: hooks/generar_recibo.sh <nombre>" >&2
+  exit 1
+fi
+
+RECIBO_TREE=$(python3 -c "import json,sys; print(json.load(open('${RECIBO_FILE}'))['tree_sha'])" 2>/dev/null || echo "")
+
+if [ -z "$RECIBO_TREE" ]; then
+  echo "[joko-rdd] BLOQUEADO: el recibo existe pero no se pudo leer (¿corrupto?)." >&2
+  exit 1
+fi
+
+if [ "$CURRENT_TREE" != "$RECIBO_TREE" ]; then
+  echo "[joko-rdd] BLOQUEADO: el árbol actual no coincide con el recibo." >&2
+  echo "  actual: ${CURRENT_TREE}" >&2
+  echo "  recibo: ${RECIBO_TREE}" >&2
+  echo "  Un solo byte cambiado invalida el recibo. Revisa de nuevo y" >&2
+  echo "  genera uno con: hooks/generar_recibo.sh <nombre>" >&2
+  exit 1
+fi
+
+APROBADO_POR=$(python3 -c "import json; print(json.load(open('${RECIBO_FILE}'))['aprobado_por'])" 2>/dev/null || echo "?")
+echo "[joko-rdd] OK — recibo válido (aprobado por: ${APROBADO_POR}, tree: ${CURRENT_TREE:0:12}...)"
+exit 0

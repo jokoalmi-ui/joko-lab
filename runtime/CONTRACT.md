@@ -357,3 +357,8 @@ No requiere cambio de versión:
 
 Este contrato es la fuente de verdad del Runtime. Cualquier implementación
 debe cumplirlo, no redefinirlo.
+
+## Conexiones
+
+- [[ai-router]] — ai-router: implementación del Runtime contract
+- [[decision-engine]] — decision-engine: motor que cumple el contrato
