@@ -1,0 +1,153 @@
+================================================================================
+                         JOKO LAB — INFORME EJECUTIVO
+                          3 de agosto de 2026
+================================================================================
+
+1.  FECHA Y PROVEEDOR ACTIVO
+2.  ESTADO DEL STACK DOCKER
+3.  GPU Y RECURSOS
+4.  ÚLTIMAS DECISIONES DOCUMENTADAS
+5.  ÚLTIMOS COMMITS
+6.  CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+7.  PRÓXIMO PASO RECOMENDADO
+
+================================================================================
+1. FECHA Y PROVEEDOR ACTIVO
+================================================================================
+
+Fecha: 2026-08-03
+Proveedor activo: deepseek (deepseek-v4-flash vía https://api.deepseek.com/v1)
+  - Confirmado en ~/.hermes/config.yaml: model.provider=deepseek,
+    model.default=deepseek-v4-flash, model.base_url=https://api.deepseek.com/v1
+  - No aparece gemini como proveedor activo en la configuración actual.
+
+================================================================================
+2. ESTADO DEL STACK DOCKER
+================================================================================
+
+ALERTA: El stack Docker está CAÍDO por completo.
+
+`docker compose -f /home/jokoalmi/automation-stack/docker-compose.yml ps -a`
+devuelve cero contenedores (ni activos ni detenidos).
+
+`docker ps -a` a nivel de sistema también devuelve cero contenedores.
+
+Servicios definidos en el compose (presentes en config --services):
+  - ollama
+  - pdf-cleaner
+  - stirling-pdf
+  - n8n
+
+Estado real por servicio:
+  - n8n             CAÍDO (sin contenedor)
+  - ollama          CAÍDO (sin contenedor)
+  - pdf-cleaner     CAÍDO (sin contenedor)
+  - stirling-pdf    CAÍDO (sin contenedor)
+
+Nota: la causa de la caída no aparece en ninguna salida recopilada
+(no hay logs de Docker disponibles). No se ha ejecutado ningún comando
+de arranque. /home/jokoalmi/automation-stack no es un repositorio git,
+por lo que no hay historial local de cambios del stack.
+
+================================================================================
+3. GPU Y RECURSOS
+================================================================================
+
+GPU: NVIDIA RTX A2000 12GB — Driver 595.84, CUDA 13.2
+  - Lectura estable (11:08): 3219 MiB / 12282 MiB VRAM, 43°C, 0% util, 7W
+  - Primera lectura (11:05 aprox.): pico de 8846 MiB, 74°C, 100% util
+  - Procesos GPU: hermes-rag/bin/python3 (2280 MiB), gnome-shell (224 MiB),
+    thunderbird (238 MiB), ptyxis (44 MiB), Xwayland (2 MiB)
+  - Interpretación: la GPU mostró un pico transitorio de carga entre las dos
+    lecturas; el estado estable es 0% util / 43°C. El proceso que más VRAM
+    consume es el entorno hermes-rag (2,3 GB).
+
+RAM (free -h):
+  - Total: 30 GiB | Usado: 13 GiB | Disponible: 16 GiB | Swap: 8 GiB sin uso
+
+Disco (df -h):
+  - / (nvme0n1p2):      468G total, 199G usados, 246G libres (45%)
+  - /mnt/ssd_ia_datos:  440G total, 305G usados, 113G libres (73%)
+  - Google Drive (gdrive): 5,0T total, 37G usados — montado en
+    /mnt/ssd_ia_datos/GoogleDrive
+
+================================================================================
+4. ÚLTIMAS DECISIONES DOCUMENTADAS
+================================================================================
+
+docs/decisiones/ (últimas 5 entradas):
+
+  2026-07-16  watchdog-versiones-hermes.md
+  2026-07-16  evaluacion-glm-4-7-flash.md
+  2026-07-15  fix-deepseek-disponibilidad.md
+  2026-07-14  sprint-3.1-auditoria-runtime.md
+  README.md
+
+Observación: no hay decisiones nuevas documentadas desde el 16/07/2026.
+
+================================================================================
+5. ÚLTIMOS COMMITS
+================================================================================
+
+git log --oneline -5 (hermes-lab):
+
+  0f3623a checkpoint: 2026-08-02 23:33:59 CEST
+  994ca0e checkpoint: 2026-07-31 23:44:50 CEST
+  205e683 checkpoint: 2026-07-29 15:03:56 CEST
+  1f98624 checkpoint: 2026-07-28 23:32:25 CEST
+  93d2b44 feat(rescue): añadir runtime uv, cargo, local/bin a la copia de rescate
+
+Observación: los checkpoints diarios siguen activos (último el 02/08 a las
+23:33). El sistema de copia de rescate a USB (rescue.sh) se incorporó el
+28/07. git status limpio (sin cambios sin commitear antes de este informe).
+
+================================================================================
+6. CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+================================================================================
+
+Último informe ejecutivo: 2026-07-16 (hace 17 días). Sí procede generar.
+
+Cambios detectados:
+
+  a) CRÍTICO — Stack Docker caído por completo.
+     El 16/07 los 4 servicios (n8n, ollama, pdf-cleaner, stirling-pdf)
+     estaban UP. Hoy no existe NINGÚN contenedor en el sistema.
+     Es el cambio más relevante del periodo.
+
+  b) Nuevo sistema de rescate a USB (rescue.sh).
+     Commits del 28/07: copia de rescate con inventario de modelos,
+     rotación de 2 copias, trigger udev y recordatorio 23:00.
+     Mejora de resiliencia no presente en el informe anterior.
+
+  c) Checkpoints diarios continúan.
+     El laboratorio ha seguido activo (checkpoints 28/07 a 02/08),
+     a pesar de que no hay decisiones nuevas documentadas desde el 16/07.
+
+  d) Carga de GPU asociada a hermes-rag.
+     El proceso hermes-rag consume 2,3 GB de VRAM. El informe anterior
+     mencionaba LM Studio headless bajo demanda; hoy LM Studio no aparece
+     como proceso con uso de VRAM en nvidia-smi.
+
+  e) Sin decisiones nuevas ni cambios de proveedor.
+     El proveedor sigue siendo deepseek (deepseek-v4-flash).
+
+Pendientes arrastrados del informe anterior (sin evidencia de avance):
+  - Métricas de coste real por proveedor (Sprint 3.4, no implementado)
+  - Bug #62723 de Hermes v0.17.0 (bloqueo de actualización a v0.18.x)
+  - Integración GLM-4.7-Flash (pendiente de evaluación)
+
+================================================================================
+7. PRÓXIMO PASO RECOMENDADO
+================================================================================
+
+Prioridad 1: diagnosticar por qué el stack Docker está caído y levantarlo.
+El laboratorio funciona sin Docker (checkpoints activos), pero n8n, ollama y
+los servicios PDF están fuera de servicio. n8n es zona protegida: primero
+revisar logs/estado con comandos de solo lectura y confirmar antes de arrancar.
+
+Prioridad 2 (después de restaurar el stack): retomar Sprint 3.4
+(observabilidad de costes reales), pendiente desde el informe del 16/07.
+
+================================================================================
+Fin del informe — generado automáticamente el 2026-08-03
+================================================================================
