@@ -29,7 +29,7 @@ FAIL=0
 
 # ─── 1. Hermes Doctor ──────────────────────────────────────
 echo ""
-echo -n "  [01/13] hermes doctor... "
+echo -n "  [01/12] hermes doctor... "
 if hermes doctor > "$TEMP_DIR/doctor.txt" 2>&1; then
     echo "✓"
     ((PASS++))
@@ -39,7 +39,7 @@ else
 fi
 
 # ─── 2. Hermes Status ──────────────────────────────────────
-echo -n "  [02/13] hermes status... "
+echo -n "  [02/12] hermes status... "
 if hermes status > "$TEMP_DIR/status.txt" 2>&1; then
     echo "✓"
     ((PASS++))
@@ -49,7 +49,7 @@ else
 fi
 
 # ─── 3. Hermes Gateway ─────────────────────────────────────
-echo -n "  [03/13] hermes gateway... "
+echo -n "  [03/12] hermes gateway... "
 if hermes gateway status > "$TEMP_DIR/gateway.txt" 2>&1; then
     echo "✓"
     ((PASS++))
@@ -59,7 +59,7 @@ else
 fi
 
 # ─── 4. Hermes Backup (quick snapshot) ─────────────────────
-echo -n "  [04/13] hermes backup --quick... "
+echo -n "  [04/12] hermes backup --quick... "
 if hermes backup --quick -l "$TIMESTAMP" > "$TEMP_DIR/backup-snapshot.txt" 2>&1; then
     echo "✓"
     ((PASS++))
@@ -69,7 +69,7 @@ else
 fi
 
 # ─── 5. Hermes Sessions Export ─────────────────────────────
-echo -n "  [05/13] hermes sessions export... "
+echo -n "  [05/12] hermes sessions export... "
 if hermes sessions export "$TEMP_DIR/sessions.jsonl" > /dev/null 2>&1; then
     SESSION_COUNT=$(wc -l < "$TEMP_DIR/sessions.jsonl" 2>/dev/null || echo "?")
     echo "✓ ($SESSION_COUNT sesiones)"
@@ -80,7 +80,7 @@ else
 fi
 
 # ─── 6. Docker Stack ───────────────────────────────────────
-echo -n "  [06/13] docker compose ps... "
+echo -n "  [06/12] docker compose ps... "
 if docker compose -f "$STACK/docker-compose.yml" ps > "$TEMP_DIR/docker.txt" 2>&1; then
     echo "✓"
     ((PASS++))
@@ -90,7 +90,7 @@ else
 fi
 
 # ─── 7. GPU ────────────────────────────────────────────────
-echo -n "  [07/13] nvidia-smi... "
+echo -n "  [07/12] nvidia-smi... "
 if nvidia-smi --query-gpu=name,memory.used,memory.total,utilization.gpu,temperature.gpu --format=csv,noheader,nounits > "$TEMP_DIR/gpu.txt" 2>&1; then
     echo "✓"
     ((PASS++))
@@ -100,7 +100,7 @@ else
 fi
 
 # ─── 8. Discos ─────────────────────────────────────────────
-echo -n "  [08/13] df -h... "
+echo -n "  [08/12] df -h... "
 {
     echo "=== ROOT ===" 
     df -h /
@@ -112,13 +112,13 @@ echo "✓"
 ((PASS++))
 
 # ─── 9. RAM ────────────────────────────────────────────────
-echo -n "  [09/13] free -h... "
+echo -n "  [09/12] free -h... "
 free -h > "$TEMP_DIR/ram.txt" 2>&1
 echo "✓"
 ((PASS++))
 
 # ─── 10. Ollama ────────────────────────────────────────────
-echo -n "  [10/13] ollama... "
+echo -n "  [10/12] ollama... "
 {
     echo "=== MODELOS ===" 
     docker compose -f "$STACK/docker-compose.yml" exec ollama ollama list 2>/dev/null
@@ -130,7 +130,7 @@ echo "✓"
 ((PASS++))
 
 # ─── 11. Git Status ────────────────────────────────────────
-echo -n "  [11/13] git status... "
+echo -n "  [11/12] git status... "
 {
     echo "=== HERMES-LAB ===" 
     cd "$LAB_DIR" && git status --short 2>/dev/null
@@ -142,7 +142,7 @@ echo "✓"
 ((PASS++))
 
 # ─── 12. Config Diff ───────────────────────────────────────
-echo -n "  [12/13] config snapshot... "
+echo -n "  [12/12] config snapshot... "
 {
     echo "# Hermes config snapshot — $TIMESTAMP"
     echo "# Generado por checkpoint.sh"
@@ -152,16 +152,6 @@ echo -n "  [12/13] config snapshot... "
 echo "✓"
 ((PASS++))
 
-# ─── 13. Backups huerfanos (RULE-008) ─────────────────────
-echo -n "  [13/13] check-backup-huerfanos... "
-if bash "$HOME/joko-lab/tools/check-backup-huerfanos.sh" > "$TEMP_DIR/backup-huerfanos.txt" 2>&1; then
-    echo "✓"
-    ((PASS++))
-else
-    echo "⚠️"
-    ((FAIL++))
-fi
-
 # ─── Recovery.md ───────────────────────────────────────────
 GPU_INFO=$(cat "$TEMP_DIR/gpu.txt" 2>/dev/null | head -1)
 RAM_INFO=$(grep "^Mem:" "$TEMP_DIR/ram.txt" 2>/dev/null | awk '{print $3 "/" $2}')
@@ -170,7 +160,6 @@ DISK_SSD=$(df -h /mnt/ssd_ia_datos 2>/dev/null | awk 'NR==2 {print $5}')
 DOCKER_UP=$(grep -c "Up" "$TEMP_DIR/docker.txt" 2>/dev/null || echo "?")
 HERMES_VERSION=$(hermes --version 2>/dev/null | head -1 | awk '{print $3}')
 GATEWAY_STATUS=$(grep "Active:" "$TEMP_DIR/gateway.txt" 2>/dev/null | head -1 | xargs)
-HUERFANOS_ST=$(tail -1 "$TEMP_DIR/backup-huerfanos.txt" 2>/dev/null)
 
 cat > "$TEMP_DIR/recovery.md" << EOF
 # Punto de Recuperación — Joko Lab
@@ -189,8 +178,7 @@ cat > "$TEMP_DIR/recovery.md" << EOF
 | Disco SSD | $DISK_SSD |
 | Docker | $DOCKER_UP contenedores Up |
 | Gateway | $GATEWAY_STATUS |
-| Backups huerfanos | $HUERFANOS_ST |
-| Checkpoint | $PASS/13 pasos OK |
+| Checkpoint | $PASS/12 pasos OK |
 
 ## Archivos
 
@@ -208,7 +196,6 @@ cat > "$TEMP_DIR/recovery.md" << EOF
 | ollama.txt | Modelos Ollama |
 | git-status.txt | Estado de Git (hermes-lab) |
 | config.txt | Configuración de Hermes |
-| backup-huerfanos.txt | RULE-008: backups fuera del arbol |
 | recovery.md | Este resumen |
 
 ## Restauración
@@ -238,7 +225,7 @@ echo "━━━━━━━━━━━━━━━━━━━━━━━━�
 echo ""
 echo "  Punto de recuperación: $POINT_DIR"
 echo "  Archivos:             $(ls "$POINT_DIR" | wc -l)"
-echo "  Pasos OK:             $PASS/13"
+echo "  Pasos OK:             $PASS/12"
 echo ""
 echo "  GPU:  $GPU_INFO"
 echo "  RAM:  $RAM_INFO"
