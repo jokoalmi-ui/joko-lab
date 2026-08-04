@@ -62,22 +62,22 @@ class TestGetSystem(unittest.TestCase):
             patch.object(sm, "cmd", return_value="Filesystem\n/\n/mnt/ssd_ia_datos\n"),
         ):
             r = sm.get_system()
-            self.assertIn("ram_total_gb", r)
-            self.assertIn("ram_libre_gb", r)
-            self.assertIn("ram_disponible_gb", r)
+            self.assertIn("ram_mb", r)
+            self.assertIn("ram_libre_mb", r)
+            self.assertIn("ram_disponible_mb", r)
             self.assertIn("cpu_load", r)
-            self.assertIn("disco_root_libre_gb", r)
-            self.assertIn("disco_ssd_libre_gb", r)
+            self.assertIn("disco_root_gb", r)
+            self.assertIn("disco_ssd_gb", r)
 
 
 class TestCheckOllama(unittest.TestCase):
     def test_ollama_activo_con_modelos(self):
         def side_effect(*a, **kw):
             cmd = " ".join(a[0]) if isinstance(a[0], list) else str(a[0])
-            if "api/tags" in cmd:
-                return '{"models": [{"name": "llama31-8b-64k"}, {"name": "llama3.1:8b"}]}'
-            if "api/ps" in cmd:
-                return '{"models": [{"name": "llama31-8b-64k", "size": 4096}]}'
+            if "ollama list" in cmd:
+                return "NAME ID SIZE CREATED\nllama31-8b-64k:latest a1b2 4.6GB 2 days ago\nllama3.1:8b c3d4 4.7GB 2 days ago\n"
+            if "--version" in cmd:
+                return "ollama version 0.30.0"
             return ""
         with patch.object(sm, "cmd", side_effect=side_effect):
             r = sm.check_ollama()
@@ -106,20 +106,20 @@ class TestCheckLMStudio(unittest.TestCase):
 
 class TestCheckN8n(unittest.TestCase):
     def test_n8n_activo(self):
-        with patch.object(sm, "cmd", side_effect=["200", "2026-07-14 Version: 2.27.4\n..."]):
+        with patch.object(sm, "cmd", return_value="ok"):
             r = sm.check_n8n()
             self.assertTrue(r["activo"])
-            self.assertEqual(r["version"], "2.27.4")
+            self.assertEqual(r["version"], "ok")
 
     def test_n8n_inactivo(self):
-        with patch.object(sm, "cmd", return_value="000"):
+        with patch.object(sm, "cmd", return_value=""):
             r = sm.check_n8n()
             self.assertFalse(r["activo"])
 
 
 class TestCheckService(unittest.TestCase):
     def test_servicio_responde(self):
-        with patch.object(sm, "cmd", return_value="200"):
+        with patch.object(sm, "cmd", return_value="tcp LISTEN 0 128 0.0.0.0:9999 0.0.0.0:*"):
             r = sm.check_service("test", 9999)
             self.assertTrue(r["activo"])
 

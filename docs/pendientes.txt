@@ -9,3 +9,6 @@
 - Skills vacías pendientes de contenido: betterbird
 - SSD datos al 85% — próxima limpieza de backups antiguos
 - gabinete-v2 integrado en perfume-ia/app/api.py — pendiente decidir si extraer como proyecto independiente
+- DE: franja gemini ELIMINADA (decidido 04-ago, DEC-2026-08-04): cloud siempre deepseek-v4-flash; PRO manual (/model). gpu.yaml desactivado para modelo principal. Backups: horario.yaml.bak-20260804, gpu.yaml.bak-20260804
+- RULE-008 (04-ago): backups .bak-* SIEMPRE dentro del arbol. HECHO: ~/.bak-wikilinks-20260803, -infra, -ops movidos a joko-lab/01-knowledge/objects/ (verificado: check-backup-huerfanos exit 0, home sin .bak). Pitfall: search_files no ve dotfiles (falso negativo 04-ago)
+- OBSIDIAN (evaluado 04-ago): NO instalar de entrada. Grafo ya navegable via markdown+RAG+skill obsidian; la app solo aporta graph view visual. Vias: (a) export HTML del grafo (sin instalar nada), (b) si uso real frecuente -> instalar (gratis) y evaluar con criterios H-001 (1-2 semanas, >=3/5 para adoptar).

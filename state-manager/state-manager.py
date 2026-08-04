@@ -21,6 +21,7 @@ STATE_FILE = Path("/mnt/ssd_ia_datos/lab-state/state.json")
 LOG_FILE = Path("/mnt/ssd_ia_datos/lab-state/state-manager.log")
 SCHEMA_FILE = Path("/mnt/ssd_ia_datos/lab-state/state.schema.json")
 SALDO_HISTORY_FILE = Path("/mnt/ssd_ia_datos/lab-state/saldo_history.json")
+SECRETS_DIR = Path("/mnt/ssd_ia_datos/lab-state/secrets")
 
 # ─── Constantes de coste ──────────────────────────────────────────────────────
 TOKENS_POR_SESION=12500  # calculado de 12 sesiones, 2.44 MB, ~25% overhead (redondeado)
@@ -121,7 +122,7 @@ def get_system() -> dict:
 
 def read_secret(name: str) -> str:
     """Lee un secreto de SECRETS_DIR. Devuelve '' si no existe."""
-    path = Path("/mnt/ssd_ia_datos/lab-state/secrets") / name
+    path = SECRETS_DIR / name
     try:
         return path.read_text().strip()
     except Exception:

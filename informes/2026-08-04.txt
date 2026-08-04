@@ -1,0 +1,155 @@
+================================================================================
+                         JOKO LAB — INFORME EJECUTIVO
+                          4 de agosto de 2026
+================================================================================
+
+1.  FECHA Y PROVEEDOR ACTIVO
+2.  ESTADO DEL STACK DOCKER
+3.  GPU Y RECURSOS
+4.  ÚLTIMAS DECISIONES DOCUMENTADAS
+5.  ÚLTIMOS COMMITS
+6.  CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+7.  PRÓXIMO PASO RECOMENDADO
+
+================================================================================
+1. FECHA Y PROVEEDOR ACTIVO
+================================================================================
+
+Fecha: 2026-08-04
+Proveedor activo: deepseek (deepseek-v4-flash vía https://api.deepseek.com/v1)
+  - Confirmado en ~/.hermes/config.yaml: model.provider=deepseek,
+    model.default=deepseek-v4-flash, model.base_url=https://api.deepseek.com/v1
+  - No aparece gemini como proveedor activo en la configuración actual.
+  - Sin cambio de proveedor respecto al informe anterior.
+
+================================================================================
+2. ESTADO DEL STACK DOCKER
+================================================================================
+
+El stack Docker está OPERATIVO (recuperado respecto a ayer).
+
+`docker compose -f /home/jokoalmi/automation-stack/docker-compose.yml ps -a`
+devuelve 4 contenedores activos (todos "Up 29 seconds" en la captura,
+health de stirling-pdf en "starting"):
+
+  - n8n             UP (127.0.0.1:5678->5678/tcp)
+  - ollama          UP (127.0.0.1:11434->11434/tcp)
+  - pdf-cleaner     UP (127.0.0.1:8000->8000/tcp)
+  - stirling-pdf    UP (127.0.0.1:8081->8080/tcp, health: starting)
+
+Servicios definidos en el compose (config --services):
+  - ollama
+  - pdf-cleaner
+  - stirling-pdf
+  - n8n
+
+Nota: los contenedores llevaban 29 segundos activos en la captura, coherente
+con el arranque diario del stack (protocolo inicio.sh / docker compose up -d).
+El informe del 03/08 registró el estado vacío como "caído sin causa aparente";
+según el AGENTS.md del stack, el estado sin contenedores es el NORMAL tras el
+cierre diario con fin.sh (docker compose down no borra los datos, que viven en
+bind mounts de /mnt/ssd_ia_datos). La recuperación de hoy no implica
+intervención de terceros: es el ciclo de vida habitual del laboratorio.
+
+================================================================================
+3. GPU Y RECURSOS
+================================================================================
+
+GPU: NVIDIA RTX A2000 12GB — Driver 595.84
+  - Lectura (captura del informe): 6133 MiB / 12282 MiB VRAM, 58°C,
+    100% util, 68.47W
+  - Procesos GPU (nvidia-smi --query-compute-apps):
+    - hermes-rag/bin/python3 (2 procesos, 2806 MiB cada uno)
+    - ptyxis (44 MiB)
+    - chrome gpu-process (102 MiB)
+  - Interpretación: la GPU está bajo carga activa (100% util, 58°C) con
+    6,1 GB de VRAM en uso; el consumo principal corresponde al entorno
+    hermes-rag (2×2,8 GB). Es una carga más alta que la lectura estable de
+    ayer (0% util, 43°C, 3,2 GB).
+
+RAM (free -h):
+  - Total: 30 GiB | Usado: 9,1 GiB | Disponible: 21 GiB | Swap: 8 GiB sin uso
+
+Disco (df -h):
+  - / (nvme0n1p2):       468G total, 200G usados, 244G libres (46%)
+  - /mnt/ssd_ia_datos:   440G total, 312G usados, 105G libres (75%)
+  - Google Drive (gdrive): 5,0T total, 37G usados — montado en
+    /mnt/ssd_ia_datos/GoogleDrive
+
+================================================================================
+4. ÚLTIMAS DECISIONES DOCUMENTADAS
+================================================================================
+
+docs/decisiones/ (últimas 5 entradas):
+
+  2026-07-16  watchdog-versiones-hermes.md
+  2026-07-16  evaluacion-glm-4-7-flash.md
+  2026-07-15  fix-deepseek-disponibilidad.md
+  2026-07-14  sprint-3.1-auditoria-runtime.md
+  2026-07-14  sprint-3-consolidacion-runtime.md
+
+Observación: no hay decisiones nuevas documentadas desde el 16/07/2026
+(sin cambios respecto al informe anterior).
+
+================================================================================
+5. ÚLTIMOS COMMITS
+================================================================================
+
+git log --oneline -5 (hermes-lab):
+
+  4031e3f checkpoint: 2026-08-03 23:11:31 CEST
+  77ea6cd docs(informes): informe ejecutivo 2026-08-03
+  0f3623a checkpoint: 2026-08-02 23:33:59 CEST
+  994ca0e checkpoint: 2026-07-31 23:44:50 CEST
+  205e683 checkpoint: 2026-07-29 15:03:56 CEST
+
+Observación: los checkpoints diarios continúan activos (último el 03/08 a las
+23:11). No había commits nuevos del 04/08 antes de este informe. El sistema de
+copia de rescate a USB (rescue.sh) sigue en el historial desde el 28/07.
+
+================================================================================
+6. CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+================================================================================
+
+Último informe ejecutivo: 2026-08-03 (hace 1 día). Dentro de la ventana de
+7 días, pero hay cambio significativo: sí procede generar.
+
+Cambios detectados:
+
+  a) RECUPERACIÓN — Stack Docker operativo de nuevo.
+     El 03/08 no existía NINGÚN contenedor y se registró como caída total.
+     Hoy los 4 servicios (n8n, ollama, pdf-cleaner, stirling-pdf) están UP.
+     El estado vacío de ayer es consistente con el cierre diario (fin.sh →
+     docker compose down, que conserva los datos en /mnt/ssd_ia_datos);
+     el arranque de hoy es el ciclo normal de inicio. Es el cambio más
+     relevante del periodo.
+
+  b) GPU bajo carga activa.
+     Ayer: 0% util, 43°C, 3,2 GB VRAM. Hoy: 100% util, 58°C, 6,1 GB VRAM,
+     con dos procesos hermes-rag activos (2×2,8 GB). El entorno hermes-rag
+     está consumiendo más recursos que en la lectura estable de ayer.
+
+  c) RAM y disco con variación leve.
+     RAM usada: 13 GiB (ayer) → 9,1 GiB (hoy).
+     /mnt/ssd_ia_datos: 73% → 75% de uso (~7 GB más ocupados).
+
+  d) Sin decisiones nuevas ni cambios de proveedor.
+     El proveedor sigue siendo deepseek (deepseek-v4-flash). Última decisión
+     documentada: 16/07/2026. Sin commits del 04/08 antes de este informe.
+
+Pendientes arrastrados (sin evidencia de avance):
+  - Métricas de coste real por proveedor (Sprint 3.4, no implementado)
+  - Bug #62723 de Hermes v0.17.0 (bloqueo de actualización a v0.18.x)
+  - Integración GLM-4.7-Flash (pendiente de evaluación)
+
+================================================================================
+7. PRÓXIMO PASO RECOMENDADO
+================================================================================
+
+Confirmar la salud completa del stack (esperar a que stirling-pdf termine el
+healthcheck y verificar que n8n responde en 127.0.0.1:5678). A medio plazo,
+retomar Sprint 3.4 (observabilidad de costes reales), pendiente desde julio.
+
+================================================================================
+Fin del informe — generado automáticamente el 2026-08-04
+================================================================================

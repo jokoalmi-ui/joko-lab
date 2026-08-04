@@ -1,0 +1,11 @@
+# Pendientes activos de Joko Lab
+# Formato: una línea por pendiente. Líneas que empiezan con # son comentarios.
+# Actualizado: 2026-07-28
+
+- Loop Engineering: pendiente de evaluar
+- LM Studio + monitor Flask: probados, parados a propósito. Arranque automático implementado (systemd + autostart)
+- Portabilidad: auditoría de acoplamiento a Hermes Agent (ROADMAP.md L84, prioridad baja, no planificado)
+- docs/joko-lab-principles.md: vacío
+- Skills vacías pendientes de contenido: betterbird
+- SSD datos al 85% — próxima limpieza de backups antiguos
+- gabinete-v2 integrado en perfume-ia/app/api.py — pendiente decidir si extraer como proyecto independiente

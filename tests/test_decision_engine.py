@@ -263,7 +263,8 @@ class TestDecide(unittest.TestCase):
             self.assertIn("provider", r)
             self.assertIn("model", r)
             self.assertIn("reason", r)
-            self.assertEqual(len(r), 3)
+            # decide() añade timestamp (commit 205e683, 29-jul) -> 4 campos
+            self.assertEqual(len(r), 4)
             # En franja 12:00-03:00 con todo disponible, debe ser deepseek
             self.assertEqual(r["provider"], "deepseek")
         finally:
