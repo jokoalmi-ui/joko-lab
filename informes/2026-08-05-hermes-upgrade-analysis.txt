@@ -1,0 +1,172 @@
+=== ANÁLISIS DE ACTUALIZACIÓN DE HERMES AGENT ===
+Fecha: 2026-08-05
+
+VERSIÓN ACTUAL: v0.17.0 (tag v2026.6.19, repo local en ~/.hermes/hermes-agent)
+CONFIG ACTUAL: _config_version 30 (verificado en ~/.hermes/config.yaml, línea 607)
+ÚLTIMA DISPONIBLE: v0.20.0 (tag v2026.8.3, publicada 2026-08-03, GitHub)
+PyPI: 0.19.0 (publicada 2026-07-20) — PyPI va por detrás de GitHub
+
+DIFERENCIA: 3 versiones por detrás (0.18.0, 0.19.0, 0.20.0) + parches
+(0.18.1, 0.18.2, 0.19.1). El aviso "update available" del banner viene de
+~/.hermes/.update_check: {"behind": -1, "ver": "0.17.0"} — hay actualización
+pero el contador de commits no se pudo calcular (por eso el aviso sin número).
+
+--- 1. PRINCIPALES CAMBIOS ---
+
+v0.18.0 "The Judgment Release" (2026-07-01):
+- P0/P1 clean sweep: 100% de los P0/P1 del repo cerrados (~700 ítems).
+- Mixture-of-Agents (MoA) como modelo seleccionable de primera clase.
+- Verificación del propio trabajo: /goal con completion contracts, hook
+  pre_verify, ledger de evidencia de verificación de código.
+- verify-on-stop pasa a DEFAULT OFF con migración de config v32 (una sola vez).
+- /learn (crear skill de cualquier cosa) y /journey (línea de tiempo de memoria).
+- delegate_task con fan-out en background (varios subagentes, resumen consolidado).
+- Desktop: Projects de codificación, multi-terminal, diffs estilo PR.
+- Gateway: scale-to-zero y drain coordinado.
+- Google Vertex AI como provider de primera clase (Gemini vía service account).
+- Ronda de seguridad: MCP config, cron base_url, aiohttp CVE, etc.
+
+v0.19.0 "The Quicksilver Release" (2026-07-20):
+- Reducción ~80% del tiempo al primer token en todas las plataformas.
+- SecretSource enchufable: Bitwarden y 1Password como fuentes de secrets.
+- Smart approvals por defecto (revisor LLM evalúa comandos marcados), reglas
+  de denegación definidas por el usuario, /deny <razón>.
+- Subagentes: transcripts en vivo (tail -f) y delegación durable en background
+  (ledger con ownership, no se pierde el resultado si el proceso se reinicia).
+- Ledger de obligación de entrega: una respuesta final ya no se pierde si el
+  gateway muere entre generarla y entregarla (cierra ventana P1 de pérdida
+  silenciosa en Telegram/Discord/Slack).
+- Multiplex de gateway por perfiles (routing por guild/canal/thread a perfiles).
+- Nuevos providers: Fireworks AI, DeepInfra, Upstage Solar; GPT-5.6, grok-4.5,
+  claude-sonnet-5, kimi-k3 en catálogos; LM Studio JIT load.
+- Niveles de razonamiento max/ultra, overrides por modelo.
+- hermes sessions export (Markdown/HTML/HF trace) con --redact.
+- Aviso: instalaciones pip/Homebrew marcadas como no soportadas.
+
+v0.19.1 (2026-07-30): tag de estabilización. Rolls up ~1.000+ PRs de bugfix
+entre 0.19.0 y 0.20.0. Notas completas en 0.20.0.
+
+v0.20.0 "The Herald Release" (2026-08-03):
+- Voz conversacional: TTS streaming con barge-in, wake words on-device,
+  manos libres en CLI/desktop/gateway. STT configurable (gpt-transcribe).
+- A2A v1.0: protocolo agente-a-agente (cierra el issue #514, uno de los más
+  antiguos del repo).
+- Outbound webhooks firmados (HMAC) de eventos del ciclo de vida.
+- Grounded research: skill grounded-citations con citas verificables y
+  fact-checking (cada afirmación contrastada contra el texto real).
+- CLI: modo ! (shell directo), /init (AGENTS.md), /diff, /context, /focus.
+- Redirects mid-turn: corregir al agente mientras trabaja sin /stop.
+- Herramientas con auto-recuperación (terminal truncado a fichero, patch
+  detecta edits ya aplicados, write_file verifica en disco, search recupera
+  de near-misses). Límite de iteraciones de tool-calling 90 -> 500.
+- Compresión de contexto rediseñada (pruning proactivo, micro-compactación,
+  garantía de cola de N mensajes de usuario, defensa contra ghost-skills).
+- Cold start ~14s -> ~1.8s; check de actualización del banner 6x más rápido.
+- Config: registry de migración table-driven, DEFAULT_CONFIG extraído a
+  config_defaults.py, soporte de auto-migración con floor en v12.
+- Runtime: Node 26 requerido; canales brew + pip/PyPI wheel RETIRADOS
+  (canales soportados: shell installer, Docker, Nix).
+
+--- 2. CAMBIOS BREAKING ---
+
+1. Migración de config v30 -> v32 (en 0.18.0):
+   - verify_on_stop: el default pasó de true a false. La migración v32 solo
+     toca valores missing/'auto', no booleanos explícitos. Nuestro config
+     tiene verify_on_stop: true EXPLÍCITO (línea 28) -> debería sobrevivir.
+   - Bug #62723: la migración v30->v32 borraba silenciosamente la sección
+     platforms en perfiles con configuración mínima (bots mudos sin error).
+     Estado: CERRADO. Fix #64606 (merge_existing en save_config) mergeado
+     2026-07-15 -> incluido en v0.19.0 y v0.20.0. Ya no es bloqueante.
+2. Canal de instalación: pip/Homebrew retirados en 0.20.0. Joko Lab instala
+   desde repo git (source) -> el método de actualización es hermes update
+   (o git pull + re-instalar deps). No afectado por la retirada de wheels.
+3. Node 26 requerido por el runtime en 0.20.0 (instaladores/heal/upgrade).
+4. max_async_children (delegación) deprecado en 0.19.0 en favor de
+   delegation.concurrency caps unificados. No aparece en nuestro config.
+5. Los parches locales de Joko Lab en cua_backend.py (Wayland y
+   cua-driver session None) NO están en el código oficial: una actualización
+   del repo puede pisarlos. Re-aplicar tras el update (procedimiento en
+   skill hermes-expert).
+
+--- 3. IMPACTO EN JOKO LAB ---
+
+| Componente | Riesgo | Estado verificado |
+|---|---|---|
+| Config principal (~/.hermes/config.yaml, v30) | ALTO | Migración v30->v32+; bug de platforms FIXEADO en 0.19+. Verificar secciones tras migrar |
+| display.platforms (telegram streaming, discord) | MEDIO | Presente (líneas 298-302). Protegido por fix #64606 |
+| display.personality | BAJO/MEDIO | Presente (línea 250). Verificar contenido tras migrar |
+| Proveedor DeepSeek (deepseek-v4-flash) | BAJO | En catálogo; 0.20 añade deepseek-v4-flash-0731. Sin cambios breaking |
+| Delegación a Ollama (localhost:11434) | BAJO/MEDIO | Presente (líneas 397-401). Sin cambios de interfaz; verificar tras update |
+| Auxiliary (vision LM Studio, compression deepseek) | BAJO/MEDIO | Presente (líneas 147-179). Sin cambios breaking aparentes |
+| approvals.mode: manual | BAJO | Presente (línea 492). 0.19 cambia el DEFAULT de smart approvals, no la clave manual |
+| updates.pre_update_backup: true | BAJO | Presente (línea 580). Se mantiene |
+| verify_on_stop: true explícito | BAJO | Presente (línea 28). Sobrevive a v32 (migración solo toca missing/'auto') |
+| Cron jobs (apply-decision.sh) | BAJO | No afectados por las releases |
+| Skills locales (~/.hermes/skills/) | BAJO | No afectadas |
+| Memory | BAJO | Sin cambios de esquema reportados |
+| Parches locales cua_backend.py | ALTO si se actualiza | Verificados en pie ahora (_maybe_enable_wayland línea 149; _started=False líneas 555/633/709). Re-aplicar tras update |
+
+--- 4. PARCHES POSTERIORES ---
+
+v0.20.0 es una release .0 con 2 días de vida (03-ago). Históricamente las
+.0 de Hermes reciben parches rápidos (0.18.1/0.18.2 el mismo día, 0.19.1 a
+los 10 días). No existe aún v0.20.1. PyPI sigue en 0.19.0, lo que sugiere
+que el canal pip no es prioritario (coherente con la retirada de wheels).
+
+--- 5. PRECAUCIONES (si se decide actualizar) ---
+
+1. Ejecutar checkpoint.sh ANTES del update (snapshot de estado completo).
+2. Backup manual de ~/.hermes/config.yaml y de los parches de cua_backend.py
+   (anotar las líneas exactas para re-aplicar).
+3. Actualizar con hermes update (instalación source). NO pip install.
+4. Tras el update: verificar _config_version migrada, y que existen
+   display.platforms, display.personality, auxiliary, delegation,
+   approvals.mode, updates, slack, discord, telegram, whatsapp.
+5. Re-aplicar los 2 parches de cua_backend.py si se perdieron y verificar
+   con los greps documentados en hermes-expert.
+6. Verificar gateway de Telegram (hermes gateway status + mensaje real),
+   delegación a Ollama, y una sesión con deepseek-v4-flash.
+7. hermes doctor para detectar config desactualizada o keys obsoletas.
+
+--- 6. RECOMENDACIÓN ---
+
+ESPERAR (recomendación prudente, no urgente). Motivos:
+- v0.20.0 tiene 2 días; el patrón de Hermes es emitir parches .1/.2 rápidos.
+  Esperar a v0.20.1 reduce riesgo de bugs frescos.
+- No hay ninguna feature de 0.18-0.20 que Joko Lab necesite con urgencia:
+  el stack actual (deepseek + Ollama + LM Studio + gateway Telegram) funciona.
+- El riesgo de la migración de config (v30->v32) ya está mitigado (fix en
+  0.19+), pero una migración siempre merece ventana sin prisa.
+- Alternativa: actualizar a 0.19.0 (más rodada, con el fix de platforms)
+  en vez de saltar directo a 0.20.0, si se quiere actualizar antes.
+
+Si se actualiza: hacerlo con las precauciones del punto 5 y NUNCA en caliente
+(no tocar el stack Docker ni n8n en el mismo proceso).
+
+--- (a) API KEYS / SECRETS ---
+
+No hay cambios que rompan la gestión actual de secrets de Joko Lab
+(api_key en config.yaml + secrets en /mnt/ssd_ia_datos/lab-state/secrets/,
+leídos por read_secret() del state-manager). 0.19 añade SecretSource
+(Bitwarden/1Password) como OPCIONAL; 0.20 añade command-helper secret source
+y rotación de tokens, también opcionales. El parche read_secret() no se ve
+afectado. No hay cambios en cómo Hermes maneja api_key/tokens de DeepSeek.
+
+--- (b) FORMATO DE CONFIG.YAML / SOUL.md ---
+
+SÍ hay migración de esquema: v30 -> v32 (0.18.0) y posiblemente más niveles
+en 0.19/0.20 (no aparece el número exacto en los changelogs; 0.20 introdujo
+un registry table-driven de migraciones con floor de soporte en v12, lo que
+hace la migración más robusta). Secciones que Joko Lab debe verificar tras
+migrar: display.platforms, display.personality, auxiliary, delegation,
+approvals.mode, updates, slack, discord, telegram, whatsapp, command_allowlist,
+security, cron. SOUL.md: sin cambios mencionados en las releases.
+
+--- (c) PENDIENTES DE DOCS/DECISIONES/ RESUELTOS ---
+
+Ninguna de las novedades de 0.18-0.20 resuelve directamente pendientes
+conocidos de Joko Lab en docs/decisiones/. La decisión 2026-07-16
+(watchdog de versiones de Hermes) sigue vigente: este análisis es la
+ejecución de su flujo. El watchdog no notificó porque la comparación usa
+releases/latest de GitHub (0.20.0 es más reciente que la última notificada,
+pero el aviso visible fue el del banner del CLI).
