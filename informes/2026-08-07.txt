@@ -1,0 +1,172 @@
+================================================================================
+                         JOKO LAB — INFORME EJECUTIVO
+                          7 de agosto de 2026
+================================================================================
+
+1.  FECHA Y PROVEEDOR ACTIVO
+2.  ESTADO DEL STACK DOCKER
+3.  GPU Y RECURSOS
+4.  ÚLTIMAS DECISIONES DOCUMENTADAS
+5.  ÚLTIMOS COMMITS
+6.  CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+7.  PRÓXIMO PASO RECOMENDADO
+
+================================================================================
+1. FECHA Y PROVEEDOR ACTIVO
+================================================================================
+
+Fecha: 2026-08-07
+Proveedor activo: deepseek (deepseek-v4-flash)
+  - Confirmado en ~/.hermes/config.yaml: model.provider=deepseek,
+    model.default=deepseek-v4-flash.
+  - CAMBIO IMPORTANTE: model.base_url ya NO es https://api.deepseek.com/v1
+    directo, sino http://127.0.0.1:9911/v1 (proxy local de observabilidad
+    "pipeline_proxy", servicio systemd hermes-pipeline-proxy, Fase A
+    implementada el 06-ago). Verificado hoy con curl: respuesta
+    {"status":"ok","proxy":"pipeline_proxy"}.
+  - Backup de la config previa: config.yaml.bak-20260806 (según
+    docs/pendientes.txt, línea 16).
+  - No aparece gemini como proveedor activo; la franja gemini fue eliminada
+    (decisión 04-ago, DEC-2026-08-04): cloud siempre deepseek-v4-flash.
+  - fallback_providers: deepseek (custom localhost:1234/v1, LM Studio).
+
+================================================================================
+2. ESTADO DEL STACK DOCKER
+================================================================================
+
+docker compose -f /home/jokoalmi/automation-stack/docker-compose.yml ps
+devuelve 4 contenedores UP (arrancados hace ~4 minutos, ciclo diario normal):
+
+  - n8n             UP (127.0.0.1:5678->5678/tcp)
+  - ollama          UP (127.0.0.1:11434->11434/tcp)
+  - pdf-cleaner     UP (127.0.0.1:8000->8000/tcp)
+  - stirling-pdf    UP (127.0.0.1:8081->8080/tcp, health: healthy)
+
+Stack operativo, sin contenedores caídos. Mismo estado que el 05-08.
+
+================================================================================
+3. GPU Y RECURSOS
+================================================================================
+
+GPU: NVIDIA RTX A2000 12GB
+  - nvidia-smi: 405 MiB / 12282 MiB VRAM, 13% util, 34°C, 9.34W
+  - Procesos GPU: solo ptyxis (44 MiB) y chrome gpu-process (69 MiB).
+  - CAMBIO SIGNIFICATIVO: la GPU está en reposo (13% util, 34°C) frente al
+    100% util / 50°C / 3069 MiB del 05-08. No aparecen procesos
+    hermes-rag/python3 en esta captura; el tráfico de inferencia va ahora
+    por el proxy local hacia DeepSeek cloud.
+
+RAM (free -h):
+  - Total: 30 GiB | Usado: 8,2 GiB | Disponible: 22 GiB | Swap: 8 GiB sin uso
+  - Leve subida respecto al 05-08 (6,2 GiB usados / 24 GiB disponibles).
+
+Disco (df -h):
+  - / (nvme0n1p2):     468G total, 207G usados, 237G libres (47%)
+  - /mnt/ssd_ia_datos: 440G total, 192G usados, 225G libres (47%)
+  - Estable: el SSD sigue ~47% tras la limpieza A+B del 04-ago (antes 77%).
+
+================================================================================
+4. ÚLTIMAS DECISIONES DOCUMENTADAS
+================================================================================
+
+docs/decisiones/ (últimas 5 entradas, por orden alfabético):
+
+  2026-07-15  fix-deepseek-disponibilidad.md
+  2026-07-16  evaluacion-glm-4-7-flash.md
+  2026-07-16  watchdog-versiones-hermes.md
+  2026-08-04  deepseek-cloud-permanente.md
+  README.md
+
+Sin archivos de decisión NUEVOS desde el 04-08. Las decisiones operativas
+del 06-08 (SVP-001, KVC-001, KCR-001 adoptados; Fase A observabilidad)
+están registradas en docs/pendientes.txt, no como ficha en docs/decisiones/.
+
+================================================================================
+5. ÚLTIMOS COMMITS
+================================================================================
+
+git log --oneline -5 (hermes-lab):
+
+  aae4b84 docs(pendientes): gateway telegram reiniciado y registrando OBS
+  3384b2d feat(observability): proxy medicion t2-t4 (TTFB/inferencia/tokens) + pendientes 06-ago
+  329af28 pendientes: estado 06-ago
+  f5e8c1c checkpoint: 2026-08-05 23:32:17 CEST
+  7f6ce18 docs(informes): informe ejecutivo 2026-08-05
+
+Los 3 primeros commits son posteriores al último informe (05-08) y reflejan
+el trabajo del 06-08.
+
+================================================================================
+6. CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+================================================================================
+
+Último informe ejecutivo: 2026-08-05 (hace 2 días). Dentro de la ventana de
+7 días, PERO hay cambios significativos: sí procede generar.
+
+Cambios detectados:
+
+  a) OBSERVABILIDAD DEL PIPELINE — FASE A IMPLEMENTADA (06-ago).
+     Nuevo proxy de medición hermes-lab/observability/pipeline_proxy.py
+     (systemd hermes-pipeline-proxy, puerto 9911) entre Hermes y DeepSeek.
+     Mide t2-t4 (TTFB, inferencia, tokens) y registra OBS en
+     joko-lab/04-operations/metrics/pipeline_obs.jsonl. model.base_url de
+     Hermes apuntó a http://127.0.0.1:9911/v1 (verificado hoy: proxy UP y
+     respondiendo). Prueba E2E del 06-ago: prefill real 25625 tokens,
+     TTFB 708ms, total 2.0s. Límite conocido: t1/t5/t6 y canal no medidos.
+
+  b) GATEWAY TELEGRAM REINICIADO (06-ago 23:48) y registrando OBS
+     (35 entradas en ledger; sesión Telegram real: prefill 258k tokens,
+     TTFB ~1.5s, total hasta 13.2s).
+
+  c) KCR-001 ADOPTADO (06-ago): Gate-005 implementado parcial
+     (priorización conocimiento gobernado en context_builder.py), banco
+     6/7 → 7/7 con granite; 3 defectos del evaluador corregidos en el
+     camino (run_eval.py truncamiento 2000→12000, comparador.py palabra
+     completa + tildes).
+
+  d) MODELOS (06-ago): batería 7 modelos x 8 dims completa; LFM 2.5 2.6B
+     integrado (RULE-009, context_builder mapea 'lfm'); 3 modelos
+     retirados (llama-3.1-8b, qwen3-14b, gemma-4-e4b); LM Studio pasa de
+     12 modelos/60.55 GB a 9 modelos/40.30 GB.
+
+  e) GOVERNANZA (06-ago): SVP-001, KVC-001 y KCR-001 adoptados; EVF
+     operativo; PIL-001 en EXP (Operations Ledger, 11 ops).
+
+  f) GPU EN REPOSO: 405 MiB VRAM, 13% util, 34°C (05-08: 3069 MiB, 100%,
+     50°C). Sin procesos hermes-rag en esta captura; coherente con el
+     tráfico dirigido al proxy local → DeepSeek cloud.
+
+  g) Stack Docker: sin cambios relevantes (operativo, arranque diario).
+
+Pendientes arrastrados (sin evidencia de avance):
+  - Fase B (análisis p95 por fase) y Fase C (experimento 30 consultas por
+    canal) del pipeline de observabilidad.
+  - Vigencia por defecto en search.py (expires/superseded filtro no
+    opcional) — pendiente real de KCR-001.
+  - Hermes upgrade: esperar a v0.20.1 (actual 0.17.0); vigilancia diaria
+    con watchdog.
+  - Retraso Telegram↔CLI en sesiones largas: recomendado /new o /compress.
+
+================================================================================
+7. PRÓXIMO PASO RECOMENDADO
+================================================================================
+
+Ejecutar la Fase B del pipeline de observabilidad (análisis p95 por fase
+con los datos OBS ya registrados) y cerrar la pendiente real de KCR-001
+(vigencia por defecto en search.py). Mantener vigilancia de v0.20.1 para el
+upgrade de Hermes.
+
+================================================================================
+Nota de publicación (cron 2026-08-07):
+  - COMMIT BLOQUEADO por el hook pre-commit "joko-rdd" (Receipt-Driven
+    Development): "el árbol actual no coincide con el recibo". El recibo
+    (joko-recibo.json) solo se regenera con hooks/generar_recibo.sh
+    <quién-aprueba>, que certifica una revisión humana; un cron no debe
+    auto-certificarla. El archivo queda en staging (git add hecho), sin
+    commit local. NO se ha usado --no-verify ni se ha tocado el recibo.
+  - PUSHES REALIZADOS (previos al bloqueo): origin y github avanzaron de
+    7f6ce18 a aae4b84 (estado ya existente en local que faltaba en remotos).
+  - El checkpoint diario del repo cubre el trabajo pendiente de commit.
+================================================================================
+Fin del informe — generado automáticamente el 2026-08-07
+================================================================================
