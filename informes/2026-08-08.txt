@@ -1,0 +1,163 @@
+================================================================================
+                         JOKO LAB — INFORME EJECUTIVO
+                          8 de agosto de 2026
+================================================================================
+
+1.  FECHA Y PROVEEDOR ACTIVO
+2.  ESTADO DEL STACK DOCKER
+3.  GPU Y RECURSOS
+4.  ÚLTIMAS DECISIONES DOCUMENTADAS
+5.  ÚLTIMOS COMMITS
+6.  CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+7.  PRÓXIMO PASO RECOMENDADO
+
+================================================================================
+1. FECHA Y PROVEEDOR ACTIVO
+================================================================================
+
+Fecha: 2026-08-08
+Proveedor activo: deepseek (deepseek-v4-flash)
+  - Confirmado en ~/.hermes/config.yaml: model.provider=deepseek,
+    model.default=deepseek-v4-flash.
+  - model.base_url sigue siendo http://127.0.0.1:9911/v1 (proxy local de
+    observabilidad "pipeline_proxy", Fase A del 06-ago). Verificado hoy con
+    curl: respuesta {"status":"ok","proxy":"pipeline_proxy"} tanto en
+    /health como en /v1/models. Proxy UP y respondiendo.
+  - fallback_providers: deepseek (custom localhost:1234/v1, LM Studio).
+  - No aparece gemini como proveedor activo (franja eliminada 04-ago,
+    DEC-2026-08-04). Sin cambios respecto al 07-08.
+
+================================================================================
+2. ESTADO DEL STACK DOCKER
+================================================================================
+
+docker compose -f /home/jokoalmi/automation-stack/docker-compose.yml ps
+devuelve 4 contenedores UP (arrancados hace ~1 hora, ciclo diario normal):
+
+  - n8n             UP (127.0.0.1:5678->5678/tcp)
+  - ollama          UP (127.0.0.1:11434->11434/tcp)
+  - pdf-cleaner     UP (127.0.0.1:8000->8000/tcp)
+  - stirling-pdf    UP (127.0.0.1:8081->8080/tcp, health: healthy)
+
+Stack operativo, sin contenedores caídos. Mismo estado que el 07-08.
+
+================================================================================
+3. GPU Y RECURSOS
+================================================================================
+
+GPU: NVIDIA RTX A2000 12GB
+  - nvidia-smi: 5178 MiB / 12282 MiB VRAM, 20% util, 44°C
+  - Procesos GPU:
+      - llama-server (LM Studio backend llama.cpp, PID 24085): 4634 MiB
+      - chrome gpu-process: 157 MiB
+      - ptyxis: 44 MiB
+  - CAMBIO SIGNIFICATIVO: la GPU ya NO está en reposo. Hay un llama-server de
+    LM Studio con modelo cargado usando 4634 MiB de VRAM (07-08: 405 MiB,
+    13% util, 34°C, solo ptyxis+chrome). El 06-ago se implementó arranque
+    automático de LM Studio (systemd + autostart), así que puede ser
+    esperado; queda verificar si es el arranque automático o una sesión
+    manual abierta.
+
+RAM (free -h):
+  - Total: 30 GiB | Usado: 12 GiB | Libre: 2,4 GiB | Disponible: 18 GiB
+  - Subida clara frente al 07-08 (8,2 GiB usados / 22 GiB disponibles),
+    coherente con el modelo de LM Studio cargado en RAM además de VRAM.
+  - Swap: 8 GiB sin uso (652 KiB).
+
+Disco (df -h):
+  - / (nvme0n1p2):     468G total, 213G usados, 231G libres (48%)
+  - /mnt/ssd_ia_datos: 440G total, 208G usados, 210G libres (50%)
+  - CAMBIO: el SSD subió de 47% (192G usados, 07-08) a 50% (208G usados,
+    hoy), +16G en un día. / subió de 47% a 48%. Localizar qué creció en
+    /mnt/ssd_ia_datos (n8n, ollama, logs, exports).
+
+================================================================================
+4. ÚLTIMAS DECISIONES DOCUMENTADAS
+================================================================================
+
+docs/decisiones/ (últimas 5 entradas, por orden alfabético):
+
+  2026-07-15  fix-deepseek-disponibilidad.md
+  2026-07-16  evaluacion-glm-4-7-flash.md
+  2026-07-16  watchdog-versiones-hermes.md
+  2026-08-04  deepseek-cloud-permanente.md
+  README.md
+
+Sin archivos de decisión NUEVOS desde el 04-08 (mismo estado que el 07-08).
+Las decisiones operativas del 06-08 (SVP-001, KVC-001, KCR-001, Fase A
+observabilidad) siguen registradas en docs/pendientes.txt, no como ficha en
+docs/decisiones/.
+
+================================================================================
+5. ÚLTIMOS COMMITS
+================================================================================
+
+git log --oneline -5 (hermes-lab):
+
+  288440d checkpoint: 2026-08-07 23:52:48 CEST
+  aae4b84 docs(pendientes): gateway telegram reiniciado y registrando OBS
+  3384b2d feat(observability): proxy medicion t2-t4 (TTFB/inferencia/tokens) + pendientes 06-ago
+  329af28 pendientes: estado 06-ago
+  f5e8c1c checkpoint: 2026-08-05 23:32:17 CEST
+
+Novedad: commit 288440d (checkpoint del 07-08 23:52), que añadió backups
+pendientes.txt.bak-20260806f/g/h, observability/pipeline_proxy.py.bak-20260806
+y el propio informe 2026-08-07.txt. Árbol de trabajo limpio (git status sin
+cambios pendientes).
+
+================================================================================
+6. CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+================================================================================
+
+Último informe ejecutivo: 2026-08-07 (ayer). Dentro de la ventana de 7 días,
+PERO hay cambios significativos detectables: sí procede generar.
+
+Cambios detectados:
+
+  a) GPU CON CARGA: llama-server de LM Studio activo (4634 MiB VRAM, 44°C,
+     20% util) frente al reposo del 07-08 (405 MiB, 34°C). El 06-ago se
+     implementó arranque automático de LM Studio (systemd + autostart);
+     probablemente esperado, pero es un cambio de estado real respecto al
+     informe anterior.
+
+  b) RAM AL ALZA: 12 GiB usados / 18 GiB disponibles (07-08: 8,2 / 22).
+     Coherente con modelo cargado en LM Studio.
+
+  c) SSD /mnt/ssd_ia_datos 47% -> 50% (+16G en 24h). Causa por localizar.
+
+  d) Stack Docker: sin cambios (4/4 UP, arranque diario normal).
+
+  e) Sin decisiones nuevas, sin fixes nuevos documentados, sin cambio de
+     proveedor (deepseek-v4-flash vía proxy, confirmado).
+
+Pendientes arrastrados (sin evidencia de avance, misma lista que 07-08):
+  - Fase B (análisis p95 por fase) y Fase C (experimento 30 consultas por
+    canal) del pipeline de observabilidad.
+  - Vigencia por defecto en search.py (expires/superseded filtro no
+    opcional) — pendiente real de KCR-001.
+  - Hermes upgrade: esperar a v0.20.1 (actual 0.17.0); vigilancia diaria
+    con watchdog.
+  - Retraso Telegram↔CLI en sesiones largas: recomendado /new o /compress.
+
+================================================================================
+7. PRÓXIMO PASO RECOMENDADO
+================================================================================
+
+Verificar si el llama-server en GPU corresponde al arranque automático de
+LM Studio (systemd/autostart) o a una sesión manual, y localizar el
+crecimiento de +16G en /mnt/ssd_ia_datos. Después, continuar con la Fase B
+del pipeline de observabilidad (p95 por fase).
+
+================================================================================
+Nota de publicación (cron 2026-08-08):
+  - COMMIT BLOQUEADO por el hook pre-commit "joko-rdd" (Receipt-Driven
+    Development): "el árbol actual no coincide con el recibo". El recibo
+    (joko-recibo.json) solo se regenera con hooks/generar_recibo.sh
+    <quién-aprueba>, que certifica una revisión humana; un cron no debe
+    auto-certificarla. El archivo queda en staging (git add hecho), sin
+    commit local. NO se ha usado --no-verify ni se ha tocado el recibo.
+  - Sin pushes (no hay commit que empujar). El checkpoint diario del repo
+    cubre el trabajo pendiente de commit.
+================================================================================
+Fin del informe — generado automáticamente el 2026-08-08
+================================================================================
