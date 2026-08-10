@@ -1,0 +1,179 @@
+================================================================================
+                         JOKO LAB — INFORME EJECUTIVO
+                          9 de agosto de 2026
+================================================================================
+
+1.  FECHA Y PROVEEDOR ACTIVO
+2.  ESTADO DEL STACK DOCKER
+3.  GPU Y RECURSOS
+4.  ÚLTIMAS DECISIONES DOCUMENTADAS
+5.  ÚLTIMOS COMMITS
+6.  CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+7.  PRÓXIMO PASO RECOMENDADO
+
+================================================================================
+1. FECHA Y PROVEEDOR ACTIVO
+================================================================================
+
+Fecha: 2026-08-09
+Proveedor activo: deepseek (deepseek-v4-flash)
+  - Confirmado en ~/.hermes/config.yaml: model.provider=deepseek,
+    model.default=deepseek-v4-flash.
+  - model.base_url sigue siendo http://127.0.0.1:9911/v1 (proxy local de
+    observabilidad "pipeline_proxy"). Verificado hoy con curl: respuesta
+    {"status":"ok","proxy":"pipeline_proxy"} tanto en /health como en
+    /v1/models. Proxy UP y respondiendo.
+  - fallback_providers: deepseek (custom localhost:1234/v1, LM Studio).
+  - No aparece gemini como proveedor activo (franja eliminada 04-ago,
+    DEC-2026-08-04). Sin cambios respecto al 08-08.
+
+================================================================================
+2. ESTADO DEL STACK DOCKER
+================================================================================
+
+docker compose -f /home/jokoalmi/automation-stack/docker-compose.yml ps
+devuelve 4 contenedores UP (arrancados hace ~1 minuto, ciclo diario normal):
+
+  - n8n             UP (127.0.0.1:5678->5678/tcp)
+  - ollama          UP (127.0.0.1:11434->11434/tcp)
+  - pdf-cleaner     UP (127.0.0.1:8000->8000/tcp)
+  - stirling-pdf    UP (127.0.0.1:8081->8080/tcp, health: healthy)
+
+Stack operativo, sin contenedores caídos. Mismo estado que el 08-08.
+Ollama verificado hoy: curl http://localhost:11434/v1/models responde con
+el modelo llama31-8b-64k:latest cargado.
+
+================================================================================
+3. GPU Y RECURSOS
+================================================================================
+
+GPU: NVIDIA RTX A2000 12GB (Driver 595.84, CUDA 13.2)
+  - nvidia-smi: 254 MiB / 12282 MiB VRAM, 0% util, 33°C, P8, 6W/70W
+  - Procesos GPU:
+      - gnome-shell: 170 MiB
+      - Xwayland: 2 MiB
+      - ptyxis: 44 MiB
+  - NO aparece llama-server en la lista de procesos: LM Studio no tiene
+    modelo cargado. La GPU vuelve a estar en reposo (ver sección 6).
+  - El monitor local lmstudio_real_monitor sigue activo en segundo plano
+    (PIDs 2362/2435/2434/2464, ~0.1% CPU cada uno).
+
+RAM (free -h):
+  - Total: 30 GiB | Usado: 5,4 GiB | Libre: 19 GiB | Disponible: 24 GiB
+  - Bajada clara frente al 08-08 (12 GiB usados / 18 GiB disponibles),
+    coherente con la GPU sin modelo cargado.
+  - Swap: 8 GiB sin uso (0 B).
+
+Disco (df -h):
+  - / (nvme0n1p2):     468G total, 216G usados, 229G libres (49%)
+  - /mnt/ssd_ia_datos: 440G total, 208G usados, 210G libres (50%)
+  - /dev/sdb1 (New Volume): 224G total, 123G usados, 101G libres (55%)
+  - gdrive: 5,0T total, 37G usados (1%), montado en
+    /mnt/ssd_ia_datos/GoogleDrive
+  - CAMBIO menor: / subió de 48% (213G, 08-08) a 49% (216G, hoy), +3G.
+    El SSD /mnt/ssd_ia_datos se mantiene en 50% (208G): el crecimiento
+    de +16G detectado el 08-08 no ha continuado en las últimas 24h.
+
+Nota de observación: en la muestra de procesos, java aparece con 56,7% de
+CPU (stirling-pdf es Java y el stack se arrancó hace ~1 minuto; puede ser
+warmup de la JVM, no necesariamente un problema).
+
+================================================================================
+4. ÚLTIMAS DECISIONES DOCUMENTADAS
+================================================================================
+
+docs/decisiones/ (últimas 5 entradas, por orden alfabético):
+
+  2026-07-15  fix-deepseek-disponibilidad.md
+  2026-07-16  evaluacion-glm-4-7-flash.md
+  2026-07-16  watchdog-versiones-hermes.md
+  2026-08-04  deepseek-cloud-permanente.md
+  README.md
+
+Sin archivos de decisión NUEVOS desde el 04-08 (mismo estado que el 08-08).
+Las decisiones operativas del 06-08 (SVP-001, KVC-001, KCR-001, Fase A
+observabilidad) siguen registradas en docs/pendientes.txt, no como ficha en
+docs/decisiones/.
+
+================================================================================
+5. ÚLTIMOS COMMITS
+================================================================================
+
+git log --oneline -5 (hermes-lab):
+
+  461ef81 checkpoint: 2026-08-08 20:02:22 CEST
+  288440d checkpoint: 2026-08-07 23:52:48 CEST
+  aae4b84 docs(pendientes): gateway telegram reiniciado y registrando OBS
+  3384b2d feat(observability): proxy medicion t2-t4 (TTFB/inferencia/tokens) + pendientes 06-ago
+  329af28 pendientes: estado 06-ago
+
+Novedad: commit 461ef81 (checkpoint del 08-08 20:02), posterior al informe
+anterior (generado el 08-08 a las 09:07). Árbol de trabajo limpio al
+inicio de esta ejecución (git status sin cambios pendientes).
+
+================================================================================
+6. CAMBIOS SIGNIFICATIVOS RESPECTO AL INFORME ANTERIOR
+================================================================================
+
+Último informe ejecutivo: 2026-08-08 (ayer). Dentro de la ventana de 7 días,
+PERO hay cambios significativos detectables: sí procede generar.
+
+Cambios detectados:
+
+  a) GPU DE VUELTA AL REPOSO: 254 MiB / 0% util / 33°C, sin llama-server
+     (08-08: 5178 MiB / 20% / 44°C con llama-server usando 4634 MiB).
+     La GPU ya no tiene modelo cargado en LM Studio. La duda abierta del
+     08-08 (¿arranque automático systemd/autostart o sesión manual?) queda
+     sin confirmación concluyente: hoy no hay proceso llama-server, LM
+     Studio está cerrado o sin modelo cargado.
+
+  b) RAM A LA BAJA: 5,4 GiB usados / 24 GiB disponibles (08-08: 12 / 18).
+     Coherente con la GPU sin modelo.
+
+  c) DISCO /: 48% -> 49% (+3G). SSD /mnt/ssd_ia_datos estable en 50%
+     (208G, sin continuar el +16G del 07->08; el aviso del informe
+     anterior queda pendiente de causa, pero no ha crecido más).
+
+  d) Stack Docker: sin cambios (4/4 UP, arranque diario normal). Ollama
+     verificado respondiendo hoy (llama31-8b-64k:latest).
+
+  e) Commit nuevo: 461ef81 (checkpoint 08-08 20:02), posterior al informe
+     anterior.
+
+  f) Sin decisiones nuevas, sin fixes nuevos documentados, sin cambio de
+     proveedor (deepseek-v4-flash vía proxy, confirmado).
+
+Pendientes arrastrados (sin evidencia de avance, misma lista que 08-08):
+  - Fase B (análisis p95 por fase) y Fase C (experimento 30 consultas por
+    canal) del pipeline de observabilidad.
+  - Vigencia por defecto en search.py (expires/superseded filtro no
+    opcional) — pendiente real de KCR-001.
+  - Hermes upgrade: esperar a v0.20.1 (actual 0.17.0); vigilancia diaria
+    con watchdog.
+  - Retraso Telegram↔CLI en sesiones largas: recomendado /new o /compress.
+
+================================================================================
+7. PRÓXIMO PASO RECOMENDADO
+================================================================================
+
+Confirmar por qué no hay modelo cargado en LM Studio hoy (cierre manual vs.
+fallo del arranque automático systemd/autostart del 06-ago) y, si el
+arranque automático no funcionó, revisar el servicio. Después, continuar
+con la Fase B del pipeline de observabilidad (p95 por fase).
+
+================================================================================
+Nota de publicación (cron 2026-08-09):
+  - COMMIT BLOQUEADO por el hook pre-commit "joko-rdd" (Receipt-Driven
+    Development): "el árbol actual no coincide con el recibo".
+    actual: bae9fd1130678d02d427f992e786bb4c75976382
+    recibo: acdd8693c3538210f404e4e367cbfdff68ed2853
+  - El recibo (joko-recibo.json en .git/) solo se regenera con
+    hooks/generar_recibo.sh <quién-aprueba>, que certifica una revisión
+    humana; un cron no debe auto-certificarla. El archivo queda en staging
+    (git add hecho), sin commit local. NO se ha usado --no-verify ni se ha
+    tocado el recibo.
+  - Sin pushes (no hay commit que empujar). El checkpoint diario del repo
+    cubre el trabajo pendiente de commit.
+================================================================================
+Fin del informe — generado automáticamente el 2026-08-09
+================================================================================
