@@ -1,0 +1,112 @@
+=== ANÁLISIS DE ACTUALIZACIÓN DE HERMES AGENT ===
+Fecha: 2026-08-14
+
+VERSIÓN ACTUAL: v0.17.0 (2026.6.19) · config v30 · +3 carried commits · Python 3.11.15
+ÚLTIMA DISPONIBLE: v0.20.1 (v2026.8.13) · config v34 · publicada 2026-08-13 20:37 UTC
+
+DIFERENCIA: 6 releases por detrás (0.18.0/1/2, 0.19.0/1, 0.20.0, 0.20.1)
+
+--- 1. PRINCIPALES CAMBIOS ---
+
+0.20.1 es un parche de ESTABILIZACIÓN (rollup): ~656 PRs, 1.444 commits,
+2.172 archivos, ~481 issues cerrados desde 0.20.0. Las notas curadas por
+área NO existen aún: el release dice que llegarán con v0.21.0. Lo que se
+sabe con certeza del body oficial:
+- Rollup de bugfixes del periodo 03-08 → 13-08 (desktop, gateway platforms,
+  installers, tool system, provider catalogs).
+- A2A nativo existe desde 0.20.0 (plugin de plataforma + toolset outbound);
+  0.20.1 lo hereda.
+- Bug #62723 (migración v30→v32 borraba platforms): CERRADO desde 15-jul,
+  fix #64606 en 0.19.0+. NO es bloqueo.
+- verify_on_stop: el default cambió a false en 0.18.0; nuestro config lo
+  tiene explícito en true (línea 28) → sobrevive a la migración.
+
+--- 2. CAMBIOS BREAKING / RIESGOS ---
+
+- Migración de config: v30 → v34 = 4 saltos acumulados (v31, v32, v33, v34).
+  El bug de la migración v30→v32 está corregido. Sin notas de migración
+  detalladas disponibles (no hay UPGRADING.md/MIGRATION.md en el repo; la
+  info vive en issues).
+- Requisito runtime Node (verificado en package.json del tag v2026.8.13):
+  engines.node = ">=22.22.0" → el Node del lab (22.22.1) CUMPLE.
+  npm: "<11.10.0 || >=11.17.0" → npm local NO verificado (pendiente).
+  DISCREPANCIA DOCUMENTADA: la skill registra que 0.20.0 exigía Node 26
+  (validado 11-ago). El tag 0.20.1 exige >=22.22.0. No resuelto si el
+  requisito bajó entre 0.20.0 y 0.20.1 o si la verificación del 11-ago
+  miró otra fuente. No bloquea: la versión objetivo cumple.
+- Instalación source (repo git en ~/.hermes/hermes-agent): `hermes update`
+  lleva a lo último de MAIN, que puede estar por delante de 0.20.1. Para
+  quedar EXACTAMENTE en 0.20.1: git checkout v2026.8.13 + reinstalar deps.
+  El release oficial indica "Existing installs: hermes update".
+
+--- 3. IMPACTO EN JOKO LAB ---
+
+Componente                 Riesgo   Estado
+Config (~/.hermes/config)  ALTO     v30 → v34 (4 migraciones); pre_update_backup: true (línea 580); bug v30→v32 corregido
+display.personality        BAJO     Presente (línea 248-250); la migración preserva secciones no-default
+display.platforms.telegram MEDIO    Presente (línea 298); era lo que borraba el bug #62723 (corregido)
+slack / discord            BAJO     Presentes (435/440)
+telegram                   MEDIO    Presente (469); verificar tras el update
+auxiliary (visión/compresión) BAJO/MEDIO  Presente (147); depende de si la migración toca auxiliary
+delegation (Ollama local)  BAJO/MEDIO     Presente (397); cambios en subagentes/tool calling del rollup no documentados aún
+approvals.mode manual      BAJO     Presente (491)
+verify_on_stop             BAJO     Explícito true (28)
+updates.pre_update_backup  -        true (580), backup_keep 5 (581)
+Proveedor DeepSeek         BAJO     Sin cambios documentados
+Skills locales / Memoria   BAJO     Sin cambios de esquema esperados (0.17→0.20.1)
+
+--- 4. PARCHES POSTERIORES ---
+
+0.20.1 es el parche .1 esperado tras 0.20.0 (patrón de Hermes: .1/.2 en
+días). Es la versión que el lab tenía como OBJETIVO de espera. Si se
+quiere máxima prudencia, vigilar 2-5 días por si sale un 0.20.2/0.21.0
+antes de tocar nada.
+
+--- 5. PRECAUCIONES ---
+
+1. Backup pre-update: config.yaml tiene updates.pre_update_backup: true
+   (verificado) → hermes update genera backup automático. Además, copia
+   manual de ~/.hermes/config.yaml antes (RULE-008).
+2. Verificar tras el update, en orden:
+   - hermes --version (debe decir v0.20.1)
+   - grep _config_version ~/.hermes/config.yaml (debe decir 34)
+   - telegram/slack/discord/platforms siguen en config (bug #62723)
+   - hermes gateway / bot de Telegram responde
+   - hermes tools list (toolsets intactos) y config show model.provider
+     (deepseek-v4-flash)
+3. Node 22.22.1 cumple (>=22.22.0). Verificar npm --version contra el
+   rango del package.json antes del update.
+4. Los +3 carried commits locales se pueden perder o entrar en conflicto
+   con el update: revisar git status en ~/.hermes/hermes-agent antes.
+
+--- 6. RECOMENDACIÓN ---
+
+Decisión en una frase: ACTUALIZAR a 0.20.1 es viable y coincide con el
+plan (era el objetivo de espera), sin urgencia, y con 3 pasos previos:
+verificar npm/node, decidir el método (hermes update a main vs checkout
+del tag v2026.8.13), y backup manual del config antes de ejecutar.
+
+Matices:
+- No hay urgencia: ninguna feature del rollup resuelve un problema actual
+  del lab (A2A no se usa; el resto es estabilización). 0.17.0 funciona.
+- El plan "esperar a la .1" se cumple: 0.20.1 existe y es estable.
+- Riesgo principal: salto de config v30→v34 (4 migraciones acumuladas).
+  Mitigado por pre_update_backup: true + bug de migración corregido +
+  verificación post-update en orden (paso 5.2).
+- La actualización NO se ejecuta sin confirmación explícita del usuario
+  y sin el plan de verificación aprobado.
+
+--- (a) API keys / secrets ---
+No hay cambios documentados en la gestión de api_key/secrets en 0.20.1
+(rollup de estabilización; notas curadas en 0.21.0). El flujo del lab
+(Bitwarden + proxy :9911) no se ve afectado por el changelog disponible.
+
+--- (b) Formato de config.yaml / SOUL.md ---
+SÍ cambia: _config_version 30 → 34 (migración acumulada v31-v34). Sin
+notas detalladas por release; el bug de migración conocido (v30→v32) está
+corregido. SOUL.md: sin cambios documentados.
+
+--- (c) Pendientes de docs/decisiones/ resueltos ---
+El pendiente "esperar a 0.20.1" queda resuelto por la publicación. El bug
+#62723 (documentado como bloqueo en sesiones previas) está cerrado desde
+15-jul (fix en 0.19.0+).
