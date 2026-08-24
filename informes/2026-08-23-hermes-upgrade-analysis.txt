@@ -1,0 +1,113 @@
+=== ANÁLISIS DE ACTUALIZACIÓN DE HERMES AGENT ===
+Fecha: 2026-08-23
+
+VERSIÓN ACTUAL: v0.17.0 (2026.6.19) — config v30
+  Instalación source: /home/jokoalmi/.hermes/hermes-agent
+  upstream f293e720 · local 5c9c9d12 (+3 carried commits)
+  Python 3.11.15 · OpenAI SDK 2.24.0
+  (fuente: hermes --version ejecutado por el usuario 23-ago)
+
+ÚLTIMA DISPONIBLE: v0.20.5 (v2026.8.19) — config v38 — publicada 21-ago-2026
+  (fuente: API GitHub releases/latest + releases?per_page=10, verificado 23-ago)
+
+DIFERENCIA: 5 releases menores por detrás (0.18.x, 0.19.x, 0.20.x)
+  8 niveles de migración de config (v30 -> v38)
+
+--- 1. PRINCIPALES CAMBIOS (período 0.18 -> 0.20.5) ---
+
+- 0.18.x: verify_on_stop cambió su default a false (el lab lo tiene true explícito).
+- 0.19.0 (20-jul): incluye fix #64606 (merge_existing en save_config) — ya no
+  borra platforms en migración. Bug #62723 CERRADO.
+- 0.20.0 (03-ago): release mayor. Plugin A2A (agent-to-agent, gateway);
+  canales de instalación pip/Homebrew retirados (source -> `hermes update`).
+- 0.20.1-0.20.5 (13-21 ago): parches de estabilización. 0.20.5 = rollup de
+  ~323 PRs / ~746 commits: Bot Mode group-room threads, resúmenes plegables,
+  adjuntos PDF drag&drop, keyless web tier (rotación 5 proveedores con
+  fallback en anillo), pulido CLI (fuzzy /model picker, Ctrl+P palette,
+  /status), guards de ejecución (hallazgos Composio eval), `hermes update`
+  receipts + fleet --plan, `hermes worktree list/prune`, proveedor
+  zero-auth, clarify multi-pregunta, cron jobs con memoria persistente y
+  reasoning effort por job, perf desktop.
+- NOTA: el propio changelog de 0.20.5 dice "Full curated release notes for
+  this window will ship with v0.21.0" — las notas completas del período
+  0.20->0.21 van en v0.21.0, que SIGUE SIN SALIR.
+
+--- 2. CAMBIOS BREAKING ---
+
+- MIGRACIÓN DE CONFIG v30 -> v38: salto de 8 niveles acumulados. Riesgo ALTO.
+  La _config_version que espera el tag v2026.8.19 es 38 (fuente:
+  config_defaults.py del tag, verificado 23-ago; en 0.20.1 era 34).
+- Bug #62723 (v30->v32 borraba platforms): CERRADO 15-jul, fix #64606 en
+  0.19.0+ — ya NO bloquea.
+- verify_on_stop: default true->false desde v0.18. El lab lo tiene explícito
+  true (config.yaml línea 28) -> sobrevive.
+- Canales de instalación: desde 0.20.0 pip/Homebrew retirados; source =
+  `hermes update` (va a main/última, no a tags concretos).
+- Bugs de migración ABIERTOS (API search issues, 23-ago): ninguno bloqueante.
+  El único llamativo es #90177 (session poisoning en state.db con OpenRouter,
+  P2, needs-repro) — el lab usa DeepSeek vía router local; relevancia baja.
+- Actividad de HOY (23-ago) en main: PRs cerrados #92918 (sibling profiles
+  migrate con el fleet — fin del version drift), #92950 (preserve explicit
+  string values en config), #92968/#92949 (soporte cron stores dict-keyed).
+  Mejoras de update/migración camino de 0.21.0.
+
+--- 3. IMPACTO EN JOKO LAB ---
+
+| Componente | Riesgo | Estado verificado (23-ago) |
+|---|---|---|
+| Config principal (~/.hermes/config.yaml v30->v38) | ALTO | pre_update_backup: true (L584); verify_on_stop: true (L28); salto 8 niveles |
+| Display platforms (telegram, discord) | ALTO (histórico) | Bug cerrado; secciones presentes (L298-301) |
+| Personality | MEDIO | Presente (L250) |
+| Auxiliary vision (glm-4.6v-flash, provider custom) | MEDIO | Presente (L147-150) |
+| Delegación Ollama (localhost:11434, r1-distill-qwen-14b) | MEDIO | Presente (L397-400) |
+| Approvals (mode: smart) | BAJO | Presente (L496) |
+| Cron jobs (34 activos) | MEDIO | Cambios de cron store en camino (dict-keyed); verificar post-update |
+| Proveedor principal (deepseek vía router 127.0.0.1:9911) | BAJO | Sin cambios conocidos |
+| Memory | BAJO | Sin cambios de esquema conocidos |
+| Skills locales | BAJO | No afectadas |
+| A2A plugin | BAJO | Solo si se quiere usar (no es el caso) |
+
+--- 4. PARCHES POSTERIORES ---
+
+- Última .0 del período: 0.20.0 (03-ago); ya hay .1-.5 (13/16/17/18/21-ago).
+- 0.21.0 SIN PUBLICAR (verificado 23-ago, releases?per_page=10).
+- Ritmo acelerado: gaps recientes 3,1,1,3 días (media ~5.7). Actividad de
+  hoy en main (PRs de update/migración cerrados 23-ago) -> 0.21.0 cercano
+  (días, no semanas). Es estimación estadística, no promesa.
+
+--- 5. PRECAUCIONES (cuando se decida actualizar) ---
+
+- pre_update_backup: true ya activo; hacer además backup manual del config.
+- Tras la migración, verificar secciones: platforms, personality, auxiliary,
+  delegation, approvals, updates.
+- Verificar cron jobs tras el update (cambios de store dict-keyed).
+- verify_on_stop: true -> la migración preguntará; no dejarla desatendida.
+- Runtime: tag objetivo exige node >=22.22.0, npm <11.10.0 || >=11.17.0
+  (package.json v2026.8.19). Lab: Node 22.22.1 (verificado 14-ago) CUMPLE;
+  Python 3.11.15 OK.
+- Instalación source: `hermes update` lleva a lo último de main (hoy 0.20.5;
+  cuando salga, 0.21.0). Fijar un tag concreto = checkout manual + reinstalar.
+
+--- 6. RECOMENDACIÓN ---
+
+MANTENER la decisión vigente (15-ago, confirmada 20-ago): ESPERAR a v0.21.0.
+NO actualizar a 0.20.5 como paso intermedio (evita migrar dos veces
+30->38 y 38->39+). No hay urgencia: ninguna feature de 0.20.x resuelve un
+problema real actual del lab, y 0.21.0 traerá las notas completas del
+período + mejoras de migración/update que reducen el riesgo del salto.
+Próximo hito: cuando el watchdog (job 517fdc280d6f, diario/telegram,
+ya notificó v2026.8.19) avise de 0.21.0, re-evaluar con esta skill.
+
+--- (a) API keys / secrets ---
+No hay cambios en la gestión de api_key/secrets en el período 0.20.x
+(changelogs de parches sin menciones; el parche de read_secret() de
+state-manager ya viajó en releases previas a 0.19+).
+
+--- (b) Formato de config.yaml / SOUL.md ---
+Sí hay migración de esquema: _config_version 30 -> 38 (8 niveles) al pasar
+a 0.20.5. SOUL.md: sin cambios conocidos.
+
+--- (c) Pendientes de docs/decisiones/ resueltos ---
+Ninguna de las novedades de 0.20.x resuelve pendientes conocidos en
+docs/decisiones/. El session-continuity work (motivo de la espera) sigue
+esperado en v0.21.0.
