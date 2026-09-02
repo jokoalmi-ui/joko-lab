@@ -84,7 +84,7 @@ Frontal alternativo de YouTube en Docker doméstico: metadatos de vídeo (títul
 
 | Servicio | Puerto host | Contenedor | Estado |
 |---|---|---|---|
-| invidious | 4000 | invidious | Up |
+| invidious | 127.0.0.1:4000 | invidious | Up |
 | invidious-db | — | postgres:14 | Up |
 | invidious-companion | — | companion | healthy |
 
