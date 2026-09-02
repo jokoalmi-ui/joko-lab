@@ -76,6 +76,30 @@ Todos los servicios tienen `restart: unless-stopped`.
 - RAM: 32 GB
 - GPU: NVIDIA RTX A2000 12 GB VRAM
 
+### Servicios auxiliares (fuera del automation-stack)
+
+#### Invidious local (desplegado 02-sep-2026, futurible ALTO del análisis atareao 25-ago)
+
+Frontal alternativo de YouTube en Docker doméstico: metadatos de vídeo (título, duración, autor, búsqueda) SIN los 429 de YouTube. En `~/invidious/docker-compose.yml`, red propia `invidious_net`, NO toca automation-stack.
+
+| Servicio | Puerto host | Contenedor | Estado |
+|---|---|---|---|
+| invidious | 4000 | invidious | Up |
+| invidious-db | — | postgres:14 | Up |
+| invidious-companion | — | companion | healthy |
+
+Comandos útiles:
+```bash
+cd ~/invidious && docker compose ps          # estado
+curl -s "http://localhost:4000/api/v1/search?q=<tema>&type=video"   # buscar vídeos
+curl -s "http://localhost:4000/api/v1/videos/<VIDEO_ID>"            # metadatos de un vídeo
+```
+
+⚠️ PITFALLS del montaje (02-sep):
+- Invidious exige `hmac_key` en la config (INVIDIOUS_CONFIG) → sin él, crash-loop con "Config: 'hmac_key' is required".
+- El companion exige `SERVER_SECRET_KEY` de EXACTAMENTE 16 chars alfanuméricos (generar con `openssl rand -hex 8`); con otro formato valida y aborta.
+- Invidious da METADATOS, NO transcripciones — complementa la detección de vídeos (vigilar-canales-yt), no sustituye yt-dlp para el análisis de contenido.
+
 ### Protecciones especiales
 
 - **n8n es zona protegida.** No reiniciar, parar, recrear ni modificar sin confirmación explícita.
