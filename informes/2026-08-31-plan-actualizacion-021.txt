@@ -1,0 +1,95 @@
+=== PLAN DE ACTUALIZACIÓN: HERMES v0.17.0 → v0.21.0 (preparado 31-ago-2026) ===
+
+⚠️ DECISIÓN PREVIA (análisis 31-ago): la recomendación del informe era
+ESPERAR a v0.21.1 (la .0 salió el 31-ago 19:29 UTC; patrón de Hermes =
+parches .1/.2 en días). Este plan ejecuta la decisión del USUARIO de
+actualizar a v0.21.0 mañana (01-sep). El usuario es el Approver.
+
+--- 0. DATOS DE LA INSTALACIÓN ---
+Método: SOURCE (repo git en ~/.hermes/hermes-agent)
+Rama: main · commits locales: 5c9c9d12 (+3 carried commits)
+Instalada: v0.17.0 (2026.6.19) · config v30
+Objetivo: v0.21.0 (v2026.8.31) · config v39 · Node 22.23.0 CUMPLE (^22.22.0)
+Comando: `hermes update` (source → lleva a lo último de main = 0.21.0)
+
+--- 1. PRE-BACKUP COMPLETO (obligatorio, RULE-008) ---
+Ejecutar ANTES de actualizar, TODO en un solo directorio:
+  mkdir -p ~/hermes-backup-pre-021
+  cp -a ~/.hermes/config.yaml ~/hermes-backup-pre-021/
+  cp -a ~/.hermes/.env ~/hermes-backup-pre-021/
+  cp -a ~/.hermes/state.db ~/hermes-backup-pre-021/
+  cp -a ~/.hermes/memories ~/hermes-backup-pre-021/
+  cp -a ~/.hermes/skills ~/hermes-backup-pre-021/
+  cp -a ~/.hermes/cron ~/hermes-backup-pre-021/
+  cp -a ~/.hermes/auth.json ~/hermes-backup-pre-021/ (si existe)
+  cp -a ~/.hermes/.env ~/hermes-backup-pre-021/
+  tar czf ~/hermes-backup-pre-021/hermes-agent-src.tar.gz \
+      --exclude='.git' -C ~/.hermes hermes-agent/
+  du -sh ~/hermes-backup-pre-021/
+
+Nota: backups diarios ya existen (joko-lab 22:15 + .bak-*), pero el backup
+de ~/.hermes COMPLETO (config+state+memories+skills+cron) es la pieza
+crítica y NO la cubre el cron de 22:15.
+
+--- 2. EJECUCIÓN ---
+  cd ~/.hermes/hermes-agent && hermes update
+  (source: lleva a main = v0.21.0; NO es elegible un tag intermedio)
+
+--- 3. VERIFICACIÓN POST-MIGRACIÓN (checklist en orden) ---
+a) Versión y config:
+   hermes --version            → esperado: v0.21.0
+   grep _config_version ~/.hermes/config.yaml  → esperado: 39
+b) Secciones sensibles del config (posible pérdida en migración):
+   grep -n "telegram:" ~/.hermes/config.yaml        → debe existir
+   grep -n "display:" ~/.hermes/config.yaml         → debe existir
+   grep -n "auxiliary:" ~/.hermes/config.yaml       → debe existir
+   grep -n "delegation:" ~/.hermes/config.yaml      → debe existir
+   grep -n "approvals" ~/.hermes/config.yaml        → smart (no manual)
+   grep -n "verify_on_stop" ~/.hermes/config.yaml   → true
+   grep -n "memory_char_limit\|user_char_limit" ~/.hermes/config.yaml
+c) Memory (formato § — bug #94121 NO debe aparecer):
+   grep -c "^§" ~/.hermes/memories/MEMORY.md        → 29 (se mantiene)
+   grep -c "^##" ~/.hermes/memories/MEMORY.md       → 0 (NO legacy)
+   Probar un memory add/remove de prueba → NO debe dar drift-refusal
+d) Skills (Protected instruction files — writes requieren aprobación):
+   Probar skill_manage patch → verificar si pide aprobación con
+   approvals.mode: smart
+e) MCPs (3 servidores):
+   hermes mcp list | grep -E "animation-server|lab-db|lancedb" → 3 presentes
+   hermes mcp test lancedb → Connected
+f) Crons (35):
+   hermes cron list | wc -l → ~35 (verificar que sobreviven)
+   Revisar que no hay errores en jobs.json (last_status)
+g) Gateway Telegram:
+   hermes gateway status → running
+   Enviar mensaje de prueba al DM → debe llegar
+h) Suite de tests del lab (no debe tocar código, pero confirmar):
+   cd ~/joko-lab && python3 -m unittest tests/ -o 'addopts=' -q 2>/dev/null
+   (o el comando real de la suite del lab)
+
+--- 4. ROLLBACK (si algo falla) ---
+  cd ~/.hermes/hermes-agent
+  git checkout v2026.6.19    (tag de 0.17.0 — verificar nombre exacto)
+  git stash pop 2>/dev/null  (si hay carried commits en stash)
+  Restaurar config/env/memories/skills/cron desde ~/hermes-backup-pre-021/
+  hermes gateway restart
+
+--- 5. RIESGOS ESPECÍFICOS DE ESTA MIGRACIÓN (del análisis 31-ago) ---
+- 9 niveles de config (v30→v39): migración automática (pre_update_backup
+  existe) pero verificar secciones del paso 3b.
+- Protected instruction files: writes a skills/memory pedirán aprobación
+  — puede cambiar el flujo del agente (verificar 3d).
+- Cron memory+continuity NUEVO: los crons AGENT podrían cambiar de
+  comportamiento (memoria entre runs) — observar auto-mejora semanal.
+- Live subagent orchestration NUEVO: delegate_task gana steering —
+  el piloto F1 del PRD graph se beneficiaría.
+- Bug #94121 NO aplica (formato §) — verificado.
+- release .0 de 12h: si sale 0.21.1 durante la semana, evaluar si
+  conviene el parche (pero NO migrar dos veces 30→39 y 39→39.x).
+
+--- 6. CUÁNDO ---
+Recomendado: tras el backup nocturno de las 22:15 del 01-sep (así el
+backup diario ya incluye el estado pre-migración) o en franja de baja
+actividad. El usuario decide la hora.
+
+=== FIN DEL PLAN ===

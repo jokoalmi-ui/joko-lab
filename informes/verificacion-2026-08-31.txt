@@ -1,0 +1,48 @@
+=== VERIFICACIÓN AD-HOC FINAL (2026-08-31) — informe + plan 0.21 ===
+Timestamp: 2026-08-31T23:22:16.352263
+
+--- informe: /home/jokoalmi/hermes-lab/informes/2026-08-31-hermes-upgrade-analysis.txt ---
+  ✅ informe: existe
+  ✅ informe: tamaño 7252 bytes
+  ✅ informe: sección --- 1. PRINCIPALES CAMBIOS ---
+  ✅ informe: sección --- 2. CAMBIOS BREAKING ---
+  ✅ informe: sección --- 3. IMPACTO EN JOKO LAB ---
+  ✅ informe: sección --- 4. PARCHES POSTERIORES ---
+  ✅ informe: sección --- 5. PRECAUCIONES ---
+  ✅ informe: sección --- 6. RECOMENDACIÓN ---
+  ✅ informe: sección --- (a) API keys
+  ✅ informe: sección --- (b) Formato
+  ✅ informe: sección --- (c) Pendientes
+  ✅ informe: dato v0.21.0
+  ✅ informe: dato v2026.8.31
+  ✅ informe: dato 39
+  ✅ informe: dato ESPERAR a 0.21.1
+  ✅ informe: dato DECISIÓN EN UNA FRASE
+  ✅ informe: sin marcador TODO:
+  ✅ informe: sin marcador PLACEHOLDER
+  ✅ informe: sin marcador Lorem
+  ✅ informe: sin marcador XXX
+
+--- plan: /home/jokoalmi/hermes-lab/informes/2026-08-31-plan-actualizacion-021.txt ---
+  ✅ plan: existe
+  ✅ plan: tamaño 4813 bytes
+  ✅ plan: sección --- 0. DATOS DE LA INSTALACIÓN ---
+  ✅ plan: sección --- 1. PRE-BACKUP COMPLETO
+  ✅ plan: sección --- 2. EJECUCIÓN ---
+  ✅ plan: sección --- 3. VERIFICACIÓN POST-MIGRACIÓN
+  ✅ plan: sección --- 4. ROLLBACK
+  ✅ plan: sección --- 5. RIESGOS ESPECÍFICOS
+  ✅ plan: sección --- 6. CUÁNDO ---
+  ✅ plan: dato hermes update
+  ✅ plan: dato v0.21.0
+  ✅ plan: dato config v39
+  ✅ plan: dato Node 22.23.0
+  ✅ plan: dato ~/hermes-backup-pre-021
+  ✅ plan: dato git checkout
+  ✅ plan: dato RULE-008
+  ✅ plan: sin marcador TODO:
+  ✅ plan: sin marcador PLACEHOLDER
+  ✅ plan: sin marcador Lorem
+  ✅ plan: sin marcador XXX
+
+RESULTADO: OK (verificación ad-hoc, no suite verde)

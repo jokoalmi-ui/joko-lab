@@ -174,6 +174,8 @@ class Handler(BaseHTTPRequestHandler):
             "status": status,
             "prompt_tokens": usage.get("prompt_tokens") if usage else None,
             "completion_tokens": usage.get("completion_tokens") if usage else None,
+            "prompt_cache_hit_tokens": usage.get("prompt_cache_hit_tokens") if usage else None,
+            "prompt_cache_miss_tokens": usage.get("prompt_cache_miss_tokens") if usage else None,
             "error": error,
         }
         registrar_obs(entry, self.ledger)

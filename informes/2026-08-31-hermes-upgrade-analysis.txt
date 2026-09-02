@@ -1,0 +1,131 @@
+=== ANÁLISIS DE ACTUALIZACIÓN DE HERMES AGENT ===
+Fecha: 2026-08-31
+
+VERSIÓN ACTUAL: v0.17.0 (config v30) · instalada 19-jun-2026
+ÚLTIMA DISPONIBLE: v0.21.0 (v2026.8.31) · publicada 31-ago-2026 19:29 UTC
+CONFIG OBJETIVO: v39 (salto 30→39 = 9 niveles de migración)
+NODE: local v22.23.0 cumple (^22.22.0 || ^24.11.0 || >=26.0.0) ✅
+
+DIFERENCIA: 0.17.0 → 0.21.0 = 3 versiones mayores de diferencia,
+~5.800 commits · ~2.475 PRs · ~2.100 issues cerrados · 760+ contribuidores
+"The Pantheon Release" — rollup completo de 0.20.1–0.20.6 (notas curadas
+que 0.20.x no documentó individualmente)
+
+--- 1. PRINCIPALES CAMBIOS ---
+
+HIGHLIGHTS:
+- Bot Mode: agentes con nombre/avatar/chats de grupo en la app desktop
+  (NO afecta: el lab usa CLI+Telegram, no desktop)
+- hermes peer: DM bot-a-bot entre agentes (entre perfiles y gateways) —
+  RELEVANTE para el lab (graph multi-agente; los subagentes podrían
+  hablarse por peer)
+- Cron jobs con memoria + continuity: los crons AGENT aprenden entre
+  ejecuciones, continuity=true encadena salidas, notepads durables,
+  monitor-mode sin LLM si nada cambió — RELEVANTE (el lab tiene 35 crons;
+  algunos AGENT como auto-mejora/vigilar-ig ganarían memoria)
+- Live subagent orchestration: delegate_task con steer mid-flight,
+  structured-output schemas, batch-quality validation — RELEVANTE
+  (mejora directa del piloto F1 del PRD graph)
+- MCP command center: dashboard para gestionar MCP servers —
+  RELEVANTE (el lab tiene 3 MCPs: animation-server, lab-db, lancedb)
+- model_overrides config: parchear context/pricing/capabilities por modelo
+  sin esperar release — ÚTIL (llvm-router)
+
+OBSERVABILIDAD:
+- Model/provider usage reporting + tool-metrics agregadas (subsistema nuevo)
+
+SEGURIDAD:
+- Protected instruction files: escrituras a AGENTS.md/skills/memory SIEMPRE
+  requieren aprobación — ⚠️ IMPACTO OPERATIVO: el lab escribe skills y
+  memoria constantemente (skill_manage, memory tool). Verificar cómo
+  interactúa con approvals.mode: smart (el lab usa smart) antes de migrar.
+- Redaction sweep: cierran gaps de emisión de secretos (.env reads, terminal
+  exception results, process(list), checkpoints)
+
+--- 2. CAMBIOS BREAKING ---
+
+- Sin sección breaking explícita en el changelog (0 menciones).
+- _config_version salta 30→39: 9 niveles de migración acumulados.
+- Bug #94121 (P2, risk-compatibility, ABIERTO): "Memory store refuses all
+  writes on legacy ##-sectioned MEMORY.md (drift guard has no migration
+  path)" — las MEMORY.md en formato legacy ## quedan read-only.
+  ⚠️ VERIFICADO: el lab YA usa formato § (29 separadores, 0 ##) →
+  el bug NO aplica al estado actual del lab. Vigilar tras migrar que el
+  formato no cambie.
+- 163 issues de migración/config en el último mes; 21 bugs de migración
+  abiertos. Ninguno más con riesgo directo al lab verificado.
+
+--- 3. IMPACTO EN JOKO LAB ---
+| Componente | Riesgo | Estado |
+| Config principal (v30→v39) | ALTO | Migración 9 niveles; backup pre_update existe (updates.pre_update_backup: true) |
+| Display platforms (telegram) | ALTO | Bug #62723 CERRADO 15-jul (fix #64606 en 0.19+) — no bloquea; verificar post-migración |
+| Skills locales | BAJO | Skills en ~/.hermes/skills/ no se tocan; pero writes requieren aprobación (nuevo) |
+| Memory (formato §) | BAJO | El lab ya usa § (bug #94121 no aplica) — verificar que no cambie el formato |
+| Cron jobs (35) | BAJO/MEDIO | Ganarían memoria/continuity; no_agent sin cambios; AGENT podrían aprender entre runs |
+| Delegación (subagentes) | BAJO/MEDIO | Live orchestration nueva — refuerza el PRD graph |
+| MCP (3 servidores) | BAJO | Dashboard nuevo; config existente debería migrar |
+| Proveedor DeepSeek | BAJO | Sin cambios de interfaz en changelog |
+| verify_on_stop | BAJO | Config tiene true explícito (sobrevive, patrón conocido) |
+
+--- 4. PARCHES POSTERIORES ---
+- v0.21.0 publicada HOY (31-ago). Patrón de Hermes: parches .1/.2 en días
+  (0.18.1/0.18.2 mismo día; 0.19.1 a los 10 días; 0.20.1-0.20.6 en la
+  ventana 0.20.x). Una .0 con <3 días → recomendación habitual: ESPERAR
+  a la .1 salvo necesidad concreta.
+- Ritmo re-medido: media 5.7 días entre releases (cadencia acelerada).
+- El changelog de 0.21.0 ya incluye el rollup de 0.20.1-0.20.6 (no hay
+  parches .1-.6 pendientes de documentar).
+
+--- 5. PRECAUCIONES ---
+- Backup completo ANTES de migrar: config.yaml + .env + state.db +
+  memories/ + skills/ (patrón RULE-008, .BACKUP 22:15 diario ya cubre
+  joko-lab pero verificar que cubra ~/.hermes completo).
+- `hermes config migrate` o el flujo de `hermes update` — en instalación
+  source (repo git en ~/.hermes/hermes-agent), `hermes update` lleva a
+  main = última; NO es elegible un tag intermedio sin checkout manual.
+- Post-migración: verificar telegram (platforms), memory (formato § intacto),
+  skills (writes con aprobación — puede pedir confirmación en el flujo),
+  3 MCPs, 35 crons, suite de tests del lab.
+- El "Protected instruction files" puede añadir aprobaciones a writes de
+  skills/memoria: probar un skill_manage + memory tras migrar.
+- Esperar al menos 48-72h post-release para ver si sale 0.21.1 con fixes.
+
+--- 6. RECOMENDACIÓN ---
+DECISIÓN EN UNA FRASE: **ESPERAR a 0.21.1** (la .0 salió hoy; patrón de
+Hermes = parches en días) y aprovechar ese margen para preparar el backup
+completo y el plan de verificación post-migración — la espera estratégica
+por 0.21.0 terminó, pero actualizar a una .0 de 12 horas es el peor momento.
+
+Matices:
+- La condición que el lab esperaba (0.21.0 = notas curadas + session work)
+  se CUMPLIÓ hoy. El motivo de esperar a 0.21.0 ya no existe.
+- PERO el patrón histórico (0.18.1/2 mismo día, 0.20.1-0.20.6 en días)
+  recomienda esperar la .1: en el peor caso son 2-5 días más, y se evita
+  migrar 9 niveles de config dos veces (30→39 y 39→39.x).
+- Señal para actualizar: publicación de v0.21.1 (el watchdog avisará si
+  funciona; está roto desde 27-ago — verificar su estado).
+
+--- (a) API keys / secrets ---
+No hay cambios en la gestión de api_key/secrets en el changelog (solo
+redaction sweep que CIERRA gaps — mejora, no cambio de formato). Las keys
+del lab en ~/.hermes/.env no requieren migración.
+
+--- (b) Formato de config.yaml / SOUL.md ---
+_config_version sube a 39 (9 niveles). La migración es automática
+(updates.pre_update_backup: true), pero hay que verificar post-migración:
+display.platforms (telegram), personality, auxiliary, delegation,
+approvals.mode (smart), verify_on_stop (true explícito). No hay cambios
+documentados en SOUL.md.
+
+--- (c) Pendientes de docs/decisiones/ resueltos ---
+Ninguna de las novedades resuelve pendientes conocidos en
+docs/decisiones/. La mejora de live subagent orchestration REFUERZA el
+PRD graph (piloto F1 en curso) pero no lo sustituye.
+
+=== VERIFICACIÓN ===
+Fuentes: GitHub API releases/tags/v2026.8.31 (changelog 39.683 chars),
+releases/latest (fecha 19:29 UTC), raw package.json (engines node),
+raw config_defaults.py (_config_version 39), issues #94121 (abierto),
+search issues migración (163/30d, 21 open). hermes --version local
+(v0.17.0 config v30). Formato MEMORY.md verificado en disco (29 §, 0 ##).
+Verificación ad-hoc, no suite verde.
