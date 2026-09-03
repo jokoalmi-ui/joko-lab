@@ -23,3 +23,7 @@ crontab
 
 # Puntos de recuperación (pueden ser grandes por sessions.jsonl)
 recovery/
+
+# Backups RULE-008 (no versionar)
+*.bak
+*.bak-*
