@@ -39,6 +39,13 @@ case "$SERVICE" in
         ;;
 esac
 
+# Política ollama (decidido 05-sep-2026): backup SOLO los domingos.
+# Los models pesan ~22G y son re-descargables; un backup diario satura el SSD.
+if [ "$SERVICE" = "ollama" ] && [ "$(date +%u)" != "7" ]; then
+    echo "Omitido: backup de ollama solo los domingos (hoy: $(date +%A))."
+    exit 0
+fi
+
 echo "Backup de $SERVICE..."
 echo "  Desde: $SRC"
 echo "  Hacia: $DEST"
@@ -51,9 +58,22 @@ if [ $RC -eq 0 ]; then
 elif [ $RC -eq 23 ]; then
     echo "⚠  Backup de $SERVICE con errores parciales (rsync code 23): algunos archivos no se copiaron"
     echo "    Destino: $DEST"
-    exit 0
 else
     echo "✗  Error en backup de $SERVICE (rsync code $RC)"
     echo "    Destino: $DEST"
     exit $RC
 fi
+
+# Rotación: conservar solo los $KEEP backups MÁS RECIENTES de este servicio.
+# Los nombres usan YYYYMMDD_HHMMSS → orden alfabético = orden cronológico.
+KEEP=7
+[ "$SERVICE" = "ollama" ] && KEEP=3   # ollama es semanal (domingos): 3 copias = ~3 semanas
+ANTIGUOS=$(ls -1d "$BACKUP_BASE/${SERVICE}-"* 2>/dev/null | sort | head -n -${KEEP})
+if [ -n "$ANTIGUOS" ]; then
+    echo "Rotación de $SERVICE: eliminando $(echo "$ANTIGUOS" | wc -l) backup(s) antiguo(s), conservando los $KEEP más recientes"
+    echo "$ANTIGUOS" | while IFS= read -r d; do
+        echo "  rm -rf $d"
+        rm -rf "$d"
+    done
+fi
+exit 0
