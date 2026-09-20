@@ -1,0 +1,29 @@
+VERIFICACIÓN 14-sep-2026 — informe de análisis 0.21.2 + plan de decisión 16-sep
+Ejecutada: 2026-09-14 10:37:14 
+Método: comprobaciones deterministas sobre los ficheros reales (este script).
+
+informe: /home/jokoalmi/hermes-lab/informes/2026-09-14-hermes-upgrade-analysis.txt
+  309 líneas | 22721 bytes | sha256 fff8a6705d5fcb45a620a93a8ba4f6dfc892c587b91e4e9f2d6d1e4f93cadba9
+plan: /home/jokoalmi/hermes-lab/informes/2026-09-14-plan-actualizacion-0212.txt
+  233 líneas | 14586 bytes | sha256 4a079f1894ea716a0a3cf78236fd6a174f81601b52305c3c0d85abfe1725c50d
+
+  [PASA] 1. informe existe y tiene cuerpo (>20 KB)  (22460 chars)
+  [PASA] 2. cabecera con fecha real y método
+  [PASA] 3. seis secciones numeradas
+  [PASA] 4. informe sin marcadores explicitos de relleno  ([])
+  [PASA] 5. cubre los 3 puntos obligatorios (keys / config-SOUL / decisiones)
+  [PASA] 6. dato de crons CORREGIDO a 41/40 y ya no dice (35)
+  [PASA] 7. punto 9 de coordinacion con el watchdog de Telegram
+  [PASA] 8. datos clave presentes (versiones, config, bugs, simbolo del fix)
+  [PASA] 9. plan existe y tiene cuerpo (>10 KB)  (14405 chars)
+  [PASA] 10. pasos 0-7 y seccion de limites
+  [PASA] 11. comandos clave citados literalmente
+  [PASA] 12. temporización: RULE-016, fecha tope y ventana propuesta
+  [PASA] 13. no declara hecha la actualizacion (es un plan)
+  [PASA] 14. protege n8n/stack y evita el reinicio desde el agente
+  [PASA] 15. rollback definido con config previa y state.db
+
+RESULTADO: 15/15 comprobaciones PASA
+Nota: la pasada anterior (09:55) dio 10/10; esta pasada incluye la corrección del
+dato de cron jobs (35 -> 41 jobs / 40 activos) y el punto 9 de coordinación del
+watchdog, verificados contra ~/.hermes/cron/jobs.json y los scripts reales.

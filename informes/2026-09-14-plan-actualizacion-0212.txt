@@ -1,0 +1,233 @@
+=== PLAN DE DECISIÓN Y EJECUCIÓN — ACTUALIZACIÓN A HERMES AGENT v0.21.2 ===
+Creado: 2026-09-14 10:36 CEST (hora real verificada con `date`)
+Fichero hermano (análisis completo): 2026-09-14-hermes-upgrade-analysis.txt
+Objetivo: dejar decidido y listo qué comprobar y qué ejecutar el miércoles 16-sep-2026,
+          cuando vence la ventana de 5 días de RULE-016 (publicación 11-sep 19:20:31Z
+          → vence ~16-sep 19:20Z = 21:20 CEST).
+Estado: PLAN. No se ha ejecutado ningún comando de este plan salvo los de verificación
+        previa ya documentados en el informe (todos de solo lectura).
+
+Este plan NO programa nada por sí solo: no crea cron jobs ni temporizadores.
+La decisión (actualizar / esperar / rollback) se toma el 16-sep con las salidas reales.
+
+--------------------------------------------------------------------------------
+PASO 0 — VENTANA Y COORDINACIÓN
+--------------------------------------------------------------------------------
+
+0.1 Franja recomendada: 16-sep entre 21:30 y 22:00 CEST.
+    Motivo: RULE-016 ya vencida (21:20), aún con red (el wifi del lab se apaga 00:00-07:00),
+    y sin crons de lab en esa media hora. El primer cron nocturno es a las 22:00.
+    Alternativa si falla esa franja: 17-sep 07:00-07:45 (antes del RAG de las 08:00).
+    NO hacerlo después de las 22:00 ni antes de las 07:00: coincide con backups nocturnos
+    (22:00 checkpoint, 22:20 backup-hermes-diario, 22:30 cloud-backup, 22:35 backup git,
+    22:45, 23:00 notify) o con el corte de red.
+
+0.2 Pausar el watchdog de Telegram durante la ventana (evita que arranque el gateway a
+    mitad del `pip install -e .` o antes de la migración de config):
+        job_id 264c02dae003  ("telegram-watchdog", cada 15 min)
+        → cronjob action=pause  (y action=resume al terminar, incluso si algo falla)
+    Verificado el 14-sep: ese script ejecuta `systemctl --user start/restart hermes-gateway`
+    si el gateway está caído o si la API de Telegram no responde. La vía del cron NO está
+    bloqueada, así que puede interferir de verdad.
+    `watchdog-control-cli` (cada 2 min) NO toca el gateway: no hace falta pausarlo.
+
+0.3 No tocar en toda la operación: n8n, contenedores Docker, el stack de
+    /home/jokoalmi/automation-stack, ni el state-manager del lab.
+
+--------------------------------------------------------------------------------
+PASO 1 — COMPROBACIONES DE ESE DÍA (solo lectura, antes de decidir)
+--------------------------------------------------------------------------------
+
+1.1 ¿Salió una 0.21.3? (si existe, se actualiza a esa y se reinicia la ventana de 5 días)
+    curl -sL --max-time 20 https://api.github.com/repos/NousResearch/hermes-agent/releases/latest \
+      | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['tag_name'], '|', d['name'], '|', d['published_at'])"
+
+1.2 ¿Sigue abierto el bug que SÍ aplica al lab (gateway + segundo proceso abriendo state.db)?
+    para n in 109727; do curl -sL --max-time 20 \
+      https://api.github.com/repos/NousResearch/hermes-agent/issues/$n \
+      | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['number'], d['state'], '|', d['title'])"; done
+    (Si aparece "closed" con un release asociado → ese release es el objetivo.)
+
+1.3 ¿Siguen sin mergear los PRs de fix del WAL abiertos el 14-sep?
+    para n in 110102 110544 110073 110097 110737; do curl -sL --max-time 20 \
+      https://api.github.com/repos/NousResearch/hermes-agent/pulls/$n \
+      | python3 -c "import sys,json; d=json.load(sys.stdin); print(d['number'], d['state'], d.get('merged_at'))"; done
+    Lectura: si alguno ya está merged en main, main es más estable que el tag → ver PASO 3.
+
+1.4 Estado real del repo (importante: el clon es shallow)
+    cd /home/jokoalmi/.hermes/hermes-agent
+    git fetch origin --tags
+    git status -sb
+    git log -1 --oneline origin/main
+    git rev-parse --short HEAD
+    git log --oneline v2026.9.11..origin/main        # qué hay DESPUÉS del tag
+    git rev-list --count v2026.9.11..origin/main
+    Lectura: si esos commits son ruido (docs/fmt/i18n) → usar el tag v2026.9.11.
+             Si tocan state.db/WAL/locks → usar origin/main.
+
+1.5 Qué commits locales se perderían con el reset (el "+1 carried commit")
+    cd /home/jokoalmi/.hermes/hermes-agent
+    git log --oneline origin/main..HEAD
+    git diff origin/main HEAD --stat
+    Lectura: si el diff de contenido es vacío o trivial, el reset no pierde nada real.
+
+1.6 Versión y config instaladas
+    hermes --version
+    grep _config_version /home/jokoalmi/.hermes/config.yaml
+
+1.7 Salud del state.db SIN abrirlo con sqlite3 (no abrir la BD con un proceso extra:
+    es justo el escenario del bug #109727)
+    ls -la /home/jokoalmi/.hermes/state.db*
+    lsof /home/jokoalmi/.hermes/state.db | wc -l
+    Lectura: se esperan 2 procesos (gateway + la CLI en uso) y sidecars -wal/-shm con
+             escritura reciente. Si aparecen procesos de más o falta el -wal → revisar antes.
+
+ÁRBOL DE DECISIÓN (con las salidas de 1.1-1.3):
+  A) Existe 0.21.3 (o una release posterior con el fix de #109727) → actualizar a ESA,
+     y reiniciar la ventana de RULE-016 (5 días desde su publicación).
+  B) No hay 0.21.3 y #109727 sigue abierto, state.db sano → actualizar a 0.21.2 igualmente
+     (la campaña state.db de la .2 compensa), con la precaución de no abrir el state.db
+     con procesos extra durante la operación.
+  C) state.db muestra cualquier síntoma (procesos de más, -wal ausente, errores en
+     ~/.hermes/errors.log) → actualizar a 0.21.2 SIN esperar al resto del plan.
+  D) Si aparece una release intermedia rara o mucha actividad de WAL sin release → no
+     actualizar y replanificar con nueva fecha tope.
+
+--------------------------------------------------------------------------------
+PASO 2 — BACKUP PREVIO (obligatorio, antes de tocar nada)
+--------------------------------------------------------------------------------
+
+2.1 Backup estándar del lab (Es el MISMO script que corre el cron de las 22:20; hace
+    copia CONSISTENTE de state.db con `sqlite3 .backup`, no un cp de BD viva en WAL.
+    Incluye config.yaml, memories/, skills/, scripts/, cron/jobs.json. Destino con
+    rotación de 7 días en disco distinto: /mnt/ssd_ia_datos/backups-hermes/)
+        bash /home/jokoalmi/hermes-lab/scripts/backup-hermes-state.sh
+
+2.2 Verificar el tar recién creado (nombre con fecha; ajustar el stamp si hace falta)
+    ls -la --time-style=long-iso /mnt/ssd_ia_datos/backups-hermes/ | tail -5
+    tar tzf /mnt/ssd_ia_datos/backups-hermes/hermes-state-<STAMP>.tar.gz \
+      | grep -E "config.yaml|state.db$|jobs.json" 
+
+2.3 Anotar los dos SHA para el rollback (a un fichero, no a la memoria)
+    cd /home/jokoalmi/.hermes/hermes-agent
+    { git rev-parse HEAD; git rev-parse --short HEAD; \
+      python3 -c "import importlib.metadata as m; print(m.version('hermes-agent'))"; } \
+      | tee /tmp/hermes-pre0212-sha.txt
+
+2.4 Copia extra de config.yaml (por si la migración v41→v42 pierde valores; recordar que
+    en la v30→v39 se perdieron agent.verify_on_stop y display.personality)
+    cp -v /home/jokoalmi/.hermes/config.yaml \
+          /home/jokoalmi/.hermes/config.yaml.bak-pre0212-$(date +%Y%m%d)
+    NOTA RULE-008: la release mueve la ubicación por defecto de los backups de config
+    (#106388) → después del upgrade, comprobar DÓNDE quedan los .bak-* y anotarlo.
+
+--------------------------------------------------------------------------------
+PASO 3 — ACTUALIZACIÓN (dos vías; elegir UNA)
+--------------------------------------------------------------------------------
+
+3.A Vía `hermes update` (hace el post-pull: migración de config y restauración de servicios)
+        hermes update
+    Ventaja: hace la migración de config automáticamente.
+    Inconveniente: va a origin/main (no al tag), reinicia el gateway y mata agentes en curso
+    (pide aprobación explícita), y en este repo puede fallar por el carried commit
+    (el `git pull --ff-only` ya falló el 01-sep con 3 commits locales).
+
+3.B Vía manual controlada (el procedimiento ya validado en el lab el 01-sep)
+    Elegir el objetivo según 1.4:
+        # Opción tag (release probada, determinista):
+        cd /home/jokoalmi/.hermes/hermes-agent && git checkout --force v2026.9.11
+        # Opción main (si en 1.4 hay fixes de state.db posteriores al tag):
+        cd /home/jokoalmi/.hermes/hermes-agent && git reset --hard origin/main
+    Luego, en ambos casos:
+        git rev-parse --short HEAD        # anotar el SHA nuevo
+        pip install -e .                  # puede tardar; no cortar a medias
+        pip show hermes-agent | grep -i "^Version"
+        hermes --version                  # debe decir v0.21.2
+
+3.C NO hacer el reset sin haber mirado 1.5: si el diff de contenido NO es trivial, primero
+    comprobar que esos cambios están absorbidos en el destino.
+    El bug #110648 (hermes update borra state.db en flat installs) NO aplica al lab: el
+    checkout vive en /home/jokoalmi/.hermes/hermes-agent, que no es el HERMES_HOME.
+    Aun así, el PASO 2 es obligatorio precisamente por esto.
+
+--------------------------------------------------------------------------------
+PASO 4 — MIGRACIÓN DE CONFIG Y REINICIO DEL GATEWAY
+--------------------------------------------------------------------------------
+
+4.1 Migración de config (NO es automática en un upgrade manual; solo la dispara
+    `hermes config migrate` o el flujo completo de `hermes update`)
+        hermes config migrate
+        grep _config_version /home/jokoalmi/.hermes/config.yaml     # esperado: 42
+    Revisar de inmediato los valores sensibles en config.yaml:
+        grep -nE "verify_on_stop|personality|max_iterations|max_concurrent_children|voice|display:" \
+             /home/jokoalmi/.hermes/config.yaml
+    Valores del lab que deben seguir como estaban (comparar con el .bak del PASO 2.4):
+      - api keys (DeepSeek), aux/vision (GLM), delegation, cron, paths de datos.
+
+4.2 Reinicio del gateway — la vía bloqueada y la que funciona
+    ⚠️ NO se puede reiniciar el gateway desde una tool call del agente: devuelve
+       "Blocked: cannot restart or stop the gateway from inside the gateway process".
+    Vías válidas (elegir una):
+      (1) La que ejecuta el usuario en su terminal externa:
+              systemctl --user restart hermes-gateway
+      (2) Cron one-shot no_agent con systemd-run (el scheduler sí puede; patrón ya
+          validado en el lab el 01-sep).
+    Después, reanudar el watchdog de Telegram (PASO 0.2).
+
+--------------------------------------------------------------------------------
+PASO 5 — VERIFICACIÓN POST (con valores esperados; nada se declara OK sin salida real)
+--------------------------------------------------------------------------------
+    hermes --version                                  → v0.21.2 (2026.9.11)
+    grep _config_version ~/.hermes/config.yaml        → 42
+    systemctl --user status hermes-gateway            → active (y hora de arranque nueva)
+    pgrep -af hermes                                  → gateway + la CLI de la sesión
+    ls -la ~/.hermes/state.db*                        → state.db + -wal + -shm, escritura nueva
+    lsof ~/.hermes/state.db | wc -l                   → 2 procesos, no más
+    tail -20 ~/.hermes/errors.log                     → sin errores nuevos de state.db
+    cronjob action=list                               → 41 jobs, telegram-watchdog reanudado
+    (opcional, barato) cronjob action=run de un job no_agent → sale con código 0
+    MCP del lab cargados (lab-db, lancedb, animation-server) → herramientas disponibles
+    MEMORY.md / USER.md intactos (el presupuesto de caracteres del lab)
+    Un mensaje de Telegram de ida y vuelta (o esperar al watchdog)
+    ls -la ~/.hermes/backups/config/                  → dónde han quedado los .bak-* (RULE-008)
+
+--------------------------------------------------------------------------------
+PASO 6 — ROLLBACK (si algo va mal: gateway caído, config rota, state.db tocado)
+--------------------------------------------------------------------------------
+    6.1 Parar el gateway (terminal externa del usuario, no desde el agente):
+            systemctl --user stop hermes-gateway
+    6.2 Volver el código al SHA anotado en 2.3:
+            cd /home/jokoalmi/.hermes/hermes-agent
+            git reset --hard <SHA_ANTERIOR>
+            pip install -e .
+            hermes --version                 # debe volver a v0.21.1
+    6.3 Restaurar la config previa (el binario viejo NO entiende una config v42):
+            tar xzf /mnt/ssd_ia_datos/backups-hermes/hermes-state-<STAMP>.tar.gz \
+                -C /tmp .hermes/config.yaml
+            cp /tmp/.hermes/config.yaml ~/.hermes/config.yaml
+            grep _config_version ~/.hermes/config.yaml     # 41
+    6.4 state.db: SOLO si está corrupto. Restaurar desde el .backup del tar (copia en frío):
+            tar xzf ... .hermes/state.db    → y sustituir con el gateway PARADO.
+        Antes de eso, preferir `hermes doctor` / `hermes sessions recover` (no destructivos).
+    6.5 Arrancar el gateway (terminal externa) y reanudar el watchdog.
+    6.6 Verificar con el bloque del PASO 5 (versión 0.21.1 otra vez).
+    El rollback es viable porque: el SHA anterior sigue en el repo local, el tar guarda
+    config.yaml + state.db consistente, y la instalación es `git` + `pip install -e .`.
+
+--------------------------------------------------------------------------------
+PASO 7 — CIERRE
+--------------------------------------------------------------------------------
+    7.1 Informe del resultado en /home/jokoalmi/hermes-lab/informes/ (con salidas crudas).
+    7.2 Anotar en la línea HERMES UPGRADE de hermes-lab/docs/pendientes.txt.
+    7.3 Si se actualizó: guardar el caso en la skill hermes-upgrade-analysis
+        (references/caso-2026-09-1X-*.md) — qué funcionó y qué no, sin bloques aditivos.
+    7.4 Si salió una 0.21.3 después: nueva ventana de 5 días de RULE-016 y repetir
+        desde el PASO 1 con la fecha tope anotada.
+
+--------------------------------------------------------------------------------
+LO QUE ESTE PLAN NO HACE
+--------------------------------------------------------------------------------
+  - No programa cron jobs ni recordatorios (decisión del usuario: nada automático).
+  - No modifica config.yaml, state.db, ni el unit systemd.
+  - No toca n8n ni el stack Docker.
+  - No declara ninguna actualización hecha: eso exige las salidas reales del PASO 5.

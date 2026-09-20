@@ -1,0 +1,309 @@
+=== ANÁLISIS DE ACTUALIZACIÓN DE HERMES AGENT ===
+Fecha: 2026-09-14 09:51 CEST (hora real verificada con `date`)
+Método: skill hermes-upgrade-analysis + RULE-016 (ventana de 5 días post-publicación)
+Fuentes: API GitHub (releases/tags/issues/pulls), raw.githubusercontent del tag,
+         repo local en disco, config.yaml del lab, docs/decisiones/ del lab.
+
+VERSIÓN ACTUAL:  v0.21.1 — tag v2026.9.7 (publicado 2026-09-07T22:17Z) — config v41
+                 install git, dir /home/jokoalmi/.hermes/hermes-agent, Python 3.11.16
+                 HEAD local 3a7bf745 (+1 carried commit), upstream 5eb99eb2, clon shallow=true
+ÚLTIMA DISPONIBLE: v0.21.2 — tag v2026.9.11 (publicado 2026-09-11T19:20:31Z) — config v42
+                 "The state.db Patch Release"
+
+DIFERENCIA: 1 release (2 días y 12,5 h desde la publicación en el momento del análisis)
+Watchdog: OK — ya notificó v2026.9.11 (~/.hermes/.version-watchdog-notified)
+
+NOTA sobre el banner "1888 commits behind":
+  Es un ARTEFACTO del clon shallow (git rev-parse --is-shallow-repository = true).
+  El estado real del repo es `## main...origin/main [adelante 1, detrás 1]`, es decir
+  ~1 commit por detrás de origin/main y 1 commit local propio. No es divergencia real.
+
+--- 1. PRINCIPALES CAMBIOS (0.21.2) ---
+
+Ventana desde v0.21.1: 947 commits no-merge, 1.869 archivos (+182.504/−15.564), 312 PRs,
+140 contribuidores. Es un patch rollup, no una release mayor.
+
+1.1 Campaña state.db (6 PRs, 44 issues cerradas) — el eje de la release
+  - "No more second writers": el gateway de perfiles escribía estado de hosted rooms en el
+    state.db RAÍZ cada 5 s; el dashboard abría handle escribible al arrancar; el guard de
+    ciclo de vida de cron hacía un open() crudo sobre una BD viva (receta clásica de
+    corrupción SQLite: cancela los locks POSIX del gateway); doctor --fix hacía checkpoint
+    bajo un holder vivo. Los cuatro corregidos: hosted rooms → shared-state.db, dashboard
+    abre read-only primero, el guard pasa por el registro de conexiones, doctor --fix se
+    niega a hacer un checkpoint que no puede probar seguro (#108076).
+  - "Healthy WAL databases stop wedging": dentries (deleted) en OpenZFS, close() compitiendo
+    con append_message, journal mode no confirmado en el pool de lectura, disk I/O error
+    transitorio en WSL2, banner de "state.db locked" ya liberado (#108082).
+  - "FTS damage no longer kills your turn": un error del índice FTS se clasificaba como
+    corrupción del fichero entero y hacía fail-closed de la conversación. Ahora es `fts_index`:
+    la búsqueda degrada y se reconstruye luego; el transcript no se toca. Incluye: doctor
+    distingue daño estructural de daño de índice, el probe de escritura FTS detecta el índice
+    obsoleto, .recover no rompe el arranque por shadow tables huérfanas, BD con cabecera a
+    cero se recuperan, el poller del dashboard devuelve 503 en vez de 520K tracebacks/día (#108130).
+  - "One corrupt row no longer kills sessions list, export, or insights": un timestamp TEXT o
+    un epoch 1e30 tumbaba el listado entero; JSON malformado rompía json_extract; >999 ids
+    rompía bulk delete/prune. Helper coerce_epoch() en todos los lectores (fila mala → "?" +
+    WARNING con el id), guard json_valid, chunking de IN-lists, export por lotes (#108086).
+  - "Sessions never bind to or read another profile's database": el backend de Desktop podía
+    fijarse al state.db del perfil equivocado bajo race de HERMES_HOME; session_search por id
+    desnudo escaneaba TODOS los perfiles y devolvía transcripts ajenos (#108074).
+  - "Opening state.db no longer takes the write lock when nothing needs writing": un proceso
+    hermes one-shot abriendo la BD detrás de un gateway ocupado se quedaba 4-20 s y fallaba
+    con "database is locked". Ahora 0,01 s (#108067).
+  - Extras del subsistema: FTS no se publica antes de poseer el lock de rebuild (#106311),
+    handle sin generación WAL no hace checkpoint de frames obsoletos (#106315/#106840),
+    primera página clobbered se pone en cuarentena con su WAL (#106587), WAL setup deja
+    intacta una BD no verificable (#106568), handles en cuarentena rechazan VACUUM/FTS (#106343/#106349).
+
+1.2 Endurecimiento de multi-perfil (multiplex)
+  Bots de perfil secundario ya no heredan allow-lists del perfil default (#107616), adapters
+  no mandan credenciales al host del default (#107617), servidores MCP stdio no reciben los
+  vault secrets del default (#107630), MEDIA: no puede adjuntar .env/auth.json/state.db de
+  otro perfil (#107609), callbacks Feishu y webhooks /p/<profile>/ quedan en el perfil
+  rutado (#107620/#107626), sin bearer de un perfil hermano (#107611).
+
+1.3 Vault de credenciales "password-blind"
+  El agente puede iniciar sesión, pagar y rellenar direcciones desde 1Password, Bitwarden o
+  el vault local de Hermes sin ver el secreto; códigos 2FA desde authenticator key guardada
+  o preguntados en la UI del usuario (#106480, #107585). Plugins git privados se instalan
+  con credenciales guardadas del usuario (#106981).
+
+1.4 Catálogo de plugins y una página Plugins
+  Índice de plugins curado y SHA-pinned con CLI, CI de admisión, docs y dashboard (#69446);
+  Desktop gana una página Plugins única (plugins de agente + de desktop, install, catálogo,
+  pin por commit) (#107212, #107314, #107321); Radio como plugin SDK opt-in (#107072).
+
+1.5 Nous free tier y primer arranque guiado
+  Inferencia gratis + conectores out-of-the-box con un comando de login (#105258/#105260),
+  /login desde el chat (#105261), conectores (Gmail, Linear, Notion...) buscables por
+  tool_search (#106842), onboarding guiado tras HERMES_GUEST_ONBOARDING=1 (#107697 y otros).
+
+1.6 Desktop
+  Fin de las "spawn storms": Bot Mode ya no arranca/marca un backend por perfil en cada
+  roster tick, ni backend por fila al pasar el ratón, ni duplicado del primario al cambiar
+  de perfil (#108069, #108107, #108118, #108134, #107969, #108112). UI language sobrevive
+  al relaunch, OAuth caducado con re-login de un click, HUD mode recupera transcript y
+  devuelve la ventana, backend muere con su padre Desktop, WSLg renderiza en GPU Windows.
+  (~60 fixes de Desktop, muchos de @OutThisLife y @kshitijk4poor.)
+
+1.7 Correcciones notables que TOCAN al lab
+  - Gateway & plataformas: una clave `display:` vacía en config.yaml ya no crashea cada
+    turno del gateway (#106305); carril en cola rechazado por la plataforma se registra y
+    reentrega (#106316); un envío WebSocket atascado no bloquea todos los eventos siguientes
+    (#106581); el primer turno no espera al probe del toolchain de Python (#106556);
+    bots de Telegram exigen @mención con bots_require_mention (#106534).
+  - Providers: /model y auxiliary auto nunca facturan a un provider no elegido (#107366) ni
+    auto-cambian a un provider sin credenciales (#107281); MCP OAuth refresh ya no borra el
+    refresh token (#106185); pickers con DeepSeek V4.1 Flash en Nous Portal y OpenRouter (#107489).
+  - Agent loop & compresión: un callback periódico bloqueado no congela el lease refresh
+    (#106308); /steer mid-turn se persiste como fila user propia (#106317/#106344);
+    rechazos por techo de memoria en inferencia local hacen back-off en vez de comprimir
+    historia (#106307); context-overflow tras streaming parcial cierra el turno (#106567);
+    la compresión ya no expira en silencio con reintentos aux (#106866); el cambio de
+    superficie Desktop↔TUI ya NO reconstruye el system prompt ni rompe el prompt cache
+    (#105844) y el CLI conserva el sidecar api_content (#105842).
+  - CLI/TUI: `hermes -z --resume` continúa la sesión (#106313); browser_exec mata el árbol
+    de procesos al expirar (#106589); el chequeo de updates consulta la API de GitHub UNA
+    vez al día en vez de hacer git-fetch cada 30 min (#107648); `hermes update` nombra la
+    causa real y no se cuelga en un fetch atascado (#108053).
+  - Cron & Kanban: un "run now" fuera de tick no cancela el siguiente run programado
+    (#106306); un run manual matado no bloquea el siguiente 5 min (#106733); un one-shot
+    convertido a recurrente sigue disparando (#106532); jobs sin pin corren con el modelo
+    de su snapshot de creación (#106499); --clone-all ya no copia cron jobs (#106478);
+    kanban promote rechaza padres sin hacer (#106550).
+  - Tools & memoria: un MCP stdio que muere a mitad de llamada no re-ejecuta la tool
+    (#106546); una revisión de fondo solo-skills ya no puede borrar entradas de memoria
+    (#106310); mem0 no pierde turnos largos (#106542); tool_search devuelve vacío en vez de
+    cinco tools por una palabra compartida (#106676); RSS y Reddit ya no se activan por
+    defecto (#105873).
+  - Housekeeping: los backups de config.yaml viven en un directorio acotado
+    backups/config/ (#106388); `hermes backup` conserva los 3 zips más nuevos (#106455);
+    `hermes setup --reset` hace backup del config real (#106453); retención de `debug share`
+    a 1 día en el fallback dpaste (#106531).
+
+--- 2. CAMBIOS BREAKING / RIESGOS ---
+
+2.1 Esquema de config: _config_version 41 → 42 (1 nivel)
+  Verificado en hermes_cli/config_defaults.py de ambos lados:
+    instalada 0.21.1 → 41 ; tag v2026.9.11 → 42
+  Diff de claves de primer nivel de DEFAULT_CONFIG (detección por indentación, orientativo):
+    + vault, + HERMES_ANON_API_SECRET, + TOOL_GATEWAY_URL, + CONNECTOR_GATEWAY_URL
+    − ACTUAL_BASE_URL
+  La migración NO es automática al arrancar el gateway (verificado en el lab el 01-sep con
+  v30→v39): la dispara `hermes config migrate` (o el flujo completo de `hermes update`).
+  Un upgrade manual (git reset/rebase + pip install -e) deja la config en la versión vieja.
+
+2.2 Cambio en la ubicación de backups de config (#106388)
+  Los backups de config.yaml pasan a un `backups/config/` acotado. En el lab NO existe hoy
+  ~/.hermes/backups/config/ y los backups se guardan junto al config
+  (config.yaml.bak-20260903-journaldelete, ...-journalwal, ...-20260904-deleg-exp) por RULE-008.
+  A VERIFICAR tras actualizar que los .bak-* del lab se siguen creando donde el lab los espera.
+
+2.3 Bugs ABIERTOS posteriores a la 0.21.2 (búsqueda en el issue tracker, 14-sep)
+  - #109727 (P1, open, 13-sep): con el gateway corriendo, CUALQUIER otro proceso Hermes que
+    abra state.db deslinka el state.db-wal/-shm vivo; basta un comando de solo lectura
+    (`hermes sessions list`, `hermes insights`). El gateway conserva los inodos borrados y su
+    guard de WAL borrado lo rechaza de forma permanente; la recuperación exige parar el
+    gateway Y todo otro holder de vida larga. Etiquetas: P1, sweeper:risk-session-state.
+    RELEVANTE: es exactamente la topología del lab (gateway + sesión CLI + crons simultáneos).
+  - #110214 (P1, open, 13-sep): gateway se detiene cada hora con "retired state.db-wal
+    generation" tras actualizar el kernel de WSL2 a 6.18.33. NO APPLICA al lab (Linux nativo).
+  - #110648 (P1, open, 14-sep): `hermes update` barre el state.db/-wal vivo en instalaciones
+    "flat" (checkout root == $HERMES_HOME). NO APPLICA al lab: checkout en
+    /home/jokoalmi/.hermes/hermes-agent y HERMES_HOME=/home/jokoalmi/.hermes.
+  - #109946 / #110042 (P1, desktop/dashboard): el sidebar de todos los perfiles y el arranque
+    del dashboard pueden provocar generación WAL borrada. No aplica si no se usan esos frontends.
+  - #109775 (P2, open): hosted rooms huérfanos tras el aislamiento a shared-state.db (sin
+    migración de datos ni fallback legacy). El lab no usa hosted rooms / Bot Mode.
+  - #109928, #110497, #110173, #109740 marcados duplicate de los anteriores.
+  - PRs de fix ABIERTOS del 13-14 sep sobre el WAL (18 resultados): #110102 (no deslinkar el
+    WAL si un Hermes hermano lo mantiene), #110544 (el WAL sobrevive a cierres hermanos y
+    cancelaciones de lock), #110097 (reinicio del proceso supervisado tras WAL borrado),
+    #110262 (tolerar checkpoint in-process y evitar acumulación de descriptores del pool de
+    lectura), #110073 (recuperación in-product tras disparar el guard), #110023 (enumeración
+    de holders en macOS), #109737 (mantener el WAL vivo cuando cierra un CLI anidado),
+    #109916 (VACUUM PASSIVE tras VACUUM para evitar split de generación).
+  - No se han encontrado bugs ABIERTOS de MIGRACIÓN de config para la 0.21.2.
+
+--- 3. IMPACTO EN JOKO LAB ---
+
+| Componente del lab                         | Riesgo | Estado con la 0.21.2                                  |
+|--------------------------------------------|--------|-------------------------------------------------------|
+| state.db (871 MB, WAL, gateway + CLI + cron)| ALTO   | Cierra la clase del incidente 02-03 sep; ver 3.1      |
+| Config principal (~/.hermes/config.yaml)    | MEDIO  | Migración v41→v42 manual; 4 claves nuevas, 1 eliminada|
+| Backups de config (RULE-008, .bak-* en árbol)| MEDIO | #106388 mueve la ubicación por defecto → verificar    |
+| Gateway Telegram (systemd user)             | MEDIO  | Fix del crash por `display:` vacío; topología #109727 |
+| Cron jobs del lab (41: 40 activos)         | BAJO   | Fixes: one-shot→recurring, off-tick run now, clone-all |
+| Delegación a Ollama (delegation.*)          | BAJO   | Sin cambios de esquema en la release                  |
+| auxiliary (vision GLM, compresión, web)     | BAJO   | Sin cambios de esquema; aux auto no factura a otro    |
+| MCP del lab (lab-db, lancedb, animation)    | BAJO   | Fix: MCP stdio muerto no re-ejecuta la tool           |
+| Pipeline proxy de observabilidad (9911)     | BAJO   | No afectado (es un proxy externo a Hermes)            |
+| RAG (crons reindex, LanceDB)                | BAJO   | No afectado                                           |
+| Skills locales (~/.hermes/skills)           | BAJO   | No afectadas; fix de memoria borrada por revisión fondo|
+| Memoria / SOUL.md                           | BAJO   | Sin cambios de formato en el changelog                |
+| Prompt cache / coste                        | MEDIO  | Mejora: surface switch ya no rompe el cache (#105844) |
+| Approvals (smart)                           | BAJO   | Debe sobrevivir a la migración                        |
+
+3.1 ¿Está el lab protegido en la versión INSTALADA? (verificado con código literal)
+  SÍ para el fix crítico del incidente: en /home/jokoalmi/.hermes/hermes-agent/hermes_state_dbfile.py
+    L45  def _pread_db_header(db_path, length)  → lectura lock-safe del header
+    L77  return os.pread(cached[0], length, 0)
+    L81  def _read_sqlite_application_id(...)  → ahora ENRUTA por _pread_db_header (L85)
+    L31  comentario: "_read_sqlite_application_id runs on EVERY write ... against the LIVE"
+    y el test tests/hermes_state/test_state_db_file_identity.py L199 documenta que antes del
+    fix hacía open("rb")/read/close (el patrón que cancelaba locks POSIX).
+  Es decir, el fix #100519 (criterio de salida de D1) YA viaja en la 0.21.1 instalada.
+  Lo que NO está en la instalada y sí trae la 0.21.2 (comprobado por símbolo en el árbol local):
+    coerce_epoch → 0 archivos; shared-state.db → 0 archivos (sin migración de hosted rooms).
+  Ya presentes en la instalada: DeletedWalGenerationError (4 archivos), deleted_wal (5),
+    fts_index (10).
+  Corrección metodológica: el primer grep se hizo sobre el FACADE hermes_state.py y dio 0
+  (falso negativo) — el símbolo vive en el sibling hermes_state_dbfile.py. Verificar fixes
+  por símbolo con grep -rn sobre TODO el árbol, nunca sobre el god-file.
+
+3.2 Topología actual del lab (verificada hoy, 09:51)
+  gateway PID 2432 (activo desde 09:31:46) + esta sesión CLI PID 19174 + 2 MCP death
+  supervisors + pipeline_proxy 9911 + RAG/reranker. state.db 871 MB con -wal y -shm
+  escritos a las 09:51 → funciona ahora mismo; no hay error de state.db en errors.log
+  (solo los 3 check_fn WARNING habituales de tools sin requisitos).
+  Existe evidencia del incidente: state.db.malformed-backup-20260903_115200 (1,37 GB) +
+  state.db.repair-attempts.json. journal_mode configurado: wal (config.yaml L595, correcto
+  desde el 03-sep).
+
+--- 4. PARCHES POSTERIORES ---
+
+Última release publicada: v2026.9.11 (0.21.2) el 11-sep 19:20 UTC. No existe todavía .3.
+Cadencia real medida (releases recientes): 31-ago, 07-sep, 11-sep → 7 y 4 días.
+Patrón del repo: parches .1/.2/.3 en días tras una .0 o tras una release de campaña.
+Ventana RULE-016: publicación 11-sep 19:20 UTC → criterio de salida 16-sep ~19:20 UTC
+(21:20 CEST). Hoy 14-sep es el DÍA 3 de 5.
+
+--- 5. PRECAUCIONES (si se decide actualizar) ---
+
+1. Backup previo de config.yaml + .env (RULE-008: .bak-* junto al árbol) y confirmar
+   tamaño/hora reales antes de tocar nada.
+2. No usar `hermes update` dentro de un cron del lab (reinicia el gateway al final y mata
+   el cron a mitad). Patrón validado del lab: script con git fetch/pull + pip install -e +
+   `systemd-run --user --on-active=15s … systemctl --user restart hermes-gateway`.
+3. Antes de un pull: `git status -sb` del repo — el lab tiene 1 carried commit; si hay
+   divergencia, decidir reset (comprobando que el contenido del fix está en main) vs rebase.
+4. Tras actualizar: `hermes config migrate` explícito y luego verificar
+   `grep _config_version ~/.hermes/config.yaml` → 42, `hermes --version` → v0.21.2.
+5. Revisar post-migración las secciones sensibles (pitfall del lab en v30→v39: verify_on_stop
+   se apagó y personality se reseteó): agent.verify_on_stop, display.personality,
+   display.platforms, delegation.*, approvals.mode, database.journal_mode.
+6. Verificar que los backups de config del lab siguen creándose (cambio #106388 a backups/config/).
+7. Si state.db hubiera dado problemas: `hermes doctor` primero (ahora distingue daño
+   estructural de daño de índice) y `hermes sessions recover --inspect-only` (por perfil).
+8. Reinicio del gateway: NO desde una tool call del agente (bloqueado); vía shell externo
+   del usuario o cron one-shot con systemd-run.
+9. Coordinación con los crons del lab (verificado 14-sep: 41 jobs, 40 activos — 31 no_agent
+   y 9 con LLM): el job `telegram-watchdog` (264c02dae003, cada 15 min) ARRANCA o REINICIA el
+   gateway si lo ve caído o si la API de Telegram no responde (systemctl --user start/restart
+   desde el cron, vía no bloqueada). Durante la ventana de actualización puede arrancar el
+   gateway en medio del `pip install -e .` o antes de la migración de config → PAUSARLO antes
+   y reanudarlo después. El job `watchdog-control-cli` (cada 2 min) NO toca el gateway.
+   El `backup-hermes-diario` (22:20) ya cubre ~/.hermes con sqlite .backup consistente.
+
+--- 6. RECOMENDACIÓN ---
+
+Mantener la v0.21.1 instalada hasta el miércoles 16-sep (fin de la ventana RULE-016, hoy es
+el día 3/5) y ese día actualizar a v0.21.2 si no ha salido una 0.21.3 con los PRs del WAL ya
+mergeados; excepción: si el state.db del lab vuelve a fallar antes de esa fecha, adelantar la
+actualización a 0.21.2 sin esperar al criterio de salida.
+
+Matices que sostienen la decisión:
+  - No es urgencia crítica: el fix que motivó el incidente del lab (#100519) YA está en la
+    0.21.1 instalada (verificado con código literal en 3.1). Lo que falta es la campaña
+    complementaria de 6 PRs.
+  - Sí hay bug conocido que afecta al lab y sigue ABIERTO en la 0.21.2 (#109727, P1, topología
+    gateway + segundo proceso Hermes) con 8 PRs de fix en vuelo → la clase no está cerrada, y
+    esperar 2 días tiene criterio de salida concreto (fecha, no vigilancia indefinida).
+  - La 0.21.2 y una eventual 0.21.3 serían la MISMA generación de config (v42), así que el
+    argumento de "no migrar dos veces" NO aplica aquí: lo que justifica esperar es el bug
+    abierto, no la migración.
+  - "No urgente" ≠ "no interesa": la 0.21.2 trae valor real para el lab (clase state.db,
+    stall de 4-20 s al abrir la BD con gateway ocupado, /steer persistido, cron fixes,
+    prompt cache preservado al cambiar de superficie).
+
+--- (a) API KEYS / SECRETS ---
+
+Sí hay cambios, pero ninguno que rompa la configuración actual del lab:
+  - Sección nueva `vault` + vault de credenciales password-blind (1Password, Bitwarden o
+    vault local de Hermes): el agente firma, paga o rellena sin ver el secreto; TOTP desde
+    authenticator key o preguntado en la UI. Es opt-in (nada se conecta solo).
+  - Claves nuevas detectadas en DEFAULT_CONFIG: vault, HERMES_ANON_API_SECRET,
+    TOOL_GATEWAY_URL, CONNECTOR_GATEWAY_URL; eliminada: ACTUAL_BASE_URL.
+  - Nous free tier + `/login` desde el chat + conectores (Gmail, Linear, Notion...) buscables
+    por tool_search. No cambia el manejo de las claves actuales del lab (DeepSeek en
+    ~/.hermes/.env, token de Telegram).
+  - No hay migración de credenciales existentes ni cambios en el parche read_secret() del
+    state-manager del lab. La separación .env = secretos / config.yaml = ajustes se mantiene.
+
+--- (b) FORMATO DE CONFIG.YAML / SOUL.MD ---
+
+  - _config_version: 41 (instalada) → 42 (objetivo). Salto de 1 nivel.
+  - Claves nuevas/eliminadas de primer nivel: ver 2.1 (4 nuevas, 1 eliminada).
+  - La migración NO es automática: la dispara `hermes config migrate` (o `hermes update`).
+    El arranque del gateway solo COMPRUEBA la versión, no migra.
+  - SOUL.md: sin cambios de formato en el changelog de la 0.21.2.
+  - Riesgo real (histórico del lab, migración v30→v39 del 01-sep): verify_on_stop pasó a
+    false y display.personality se reseteó a none. Volver a revisar esos valores tras migrar.
+
+--- (c) PENDIENTES DE docs/decisiones/ RESUELTOS ---
+
+  - DEC-2026-09-03 (corrupción state.db v0.21.0), D1: el criterio de salida era "una release
+    con el fix #100519". VERIFICADO hoy con código literal: el fix está en la instalada
+    (hermes_state_dbfile.py L45/L77/L85) → D1 CUMPLIDA desde la 0.21.1. La 0.21.2 cierra la
+    clase completa (44 issues), lo que convierte este pendiente en "resuelto por la release,
+    pendiente de instalarla".
+  - Punto 3 del plan de esa decisión (reiniciar el gateway para aplicar journal_mode=delete):
+    OBSOLETO — D2 se revirtió a wal el 03-sep; la config actual dice journal_mode: wal.
+  - Punto 5 (actualizar GUIA-JOKO-LAB y la skill con la norma de 5 días): cumplido — la guía
+    menciona RULE-016 ("5 días", 2 coincidencias) y la skill hermes-upgrade-analysis ya la
+    documenta. RULE-016.yaml sigue activo (version 1, last_validated 03-sep, next_review 03-dic).
+  - Resto de docs/decisiones/ revisados (deepseek-cloud-permanente, glm-4-7-flash,
+    watchdog-versiones, sprint-3.1-auditoria-runtime, fix-deepseek-disponibilidad): ninguna
+    novedad de la 0.21.2 resuelve esos pendientes.
+
+=== FIN DEL INFORME ===
