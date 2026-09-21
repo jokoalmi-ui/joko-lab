@@ -113,6 +113,22 @@ if [ $RSYNC_EXIT -eq 0 ]; then
         echo "✗ Backup de cafe-ia FALLO (log: /tmp/backup-cafe-ia-$(date +%Y%m%d).log)"
         exit 1
     fi
+
+    # --- Capa de hermes-lab (21-sep-2026) ---
+    # ~/hermes-lab (803 M: scripts de backup, skills del lab, herramientas y su
+    # propio repo git) entraba en las copias SOLO por git: todo lo no commiteado
+    # quedaba fuera de cualquier capa. Detectado al revisar la cobertura
+    # (21-sep-2026: 0 copias en disco, 0 ficheros sin commitear ese dia). Mismo
+    # patron que perfume-ia/cafe-ia: se llama desde aqui para NO crear un segundo
+    # scheduler. Un fallo de hermes-lab no deshace el backup ya hecho de joko-lab,
+    # pero SI hace que el job del cron devuelva error (no mas fallos silenciosos).
+    # Detalle del script: backup-hermes-lab.sh
+    HL_ARGS=()
+    $QUIET && HL_ARGS+=(--quiet)
+    if ! bash /home/jokoalmi/hermes-lab/scripts/backup-hermes-lab.sh "${HL_ARGS[@]}"; then
+        echo "✗ Backup de hermes-lab FALLO (log: /tmp/backup-hermes-lab-$(date +%Y%m%d).log)"
+        exit 1
+    fi
     exit 0
 else
     echo "✗ Error en rsync (exit $RSYNC_EXIT). Log: $LOG"
