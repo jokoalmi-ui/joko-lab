@@ -4,8 +4,9 @@
 # era manual y fin.sh solo hace commit de hermes-lab, NO de joko-lab).
 #
 # - Copia completa con rsync (incremental entre ejecuciones)
-# - Excluye .venv, __pycache__, .lancedb y .git (regenerables/versionables)
-#   → backup de ~500M en vez de 1.5G
+# - Excluye .venv, __pycache__ y .lancedb (regenerables) → ~500M en vez de 1.5G
+# - El .git SI entra desde 24-sep-2026: joko-lab ya es repo git y su historial
+#   no lo cubria ninguna capa (el bundle de git-backup.sh era solo de hermes-lab)
 # - Rotacion: conserva los ultimos 7 backups
 # - Destino: /home/jokoalmi/joko-lab.BACKUP.<YYYYMMDD>/
 #
@@ -51,7 +52,6 @@ rsync -a --delete --delete-excluded "${LINK[@]}" \
     --exclude='__pycache__' \
     --exclude='*.pyc' \
     --exclude='.lancedb' \
-    --exclude='.git' \
     --exclude='.BACKUP' \
     --exclude='*.BACKUP.*' \
     --exclude='~/tmp' \
