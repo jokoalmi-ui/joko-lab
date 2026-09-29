@@ -1,31 +1,31 @@
 # Estado real de Joko Lab
 
-Última actualización: 2026-07-14 (Sprint 3.3: Consolidación del Runtime completada)
+Última actualización: 2026-09-29 (refresco de los datos medibles; el bloque de Runtime sigue siendo el Sprint 3.3, completado el 2026-07-14)
 
 ## Hardware
 
 | Componente | Estado | Detalle |
 |---|---|---|
-| CPU | ✓ | Intel Core i5-9500 |
-| GPU | ✓ | NVIDIA RTX A2000 12 GB VRAM |
-| RAM | ✓ | 32 GB |
+| CPU | ✓ | Intel Core i5-9500 (6 núcleos) |
+| GPU | ✓ | NVIDIA RTX A2000 12 GB (12.282 MiB) |
+| RAM | ✓ | 30 GiB visibles con `free -h` (el documento declaraba 32 GB) |
 
 ## Software base
 
 | Componente | Estado | Detalle |
 |---|---|---|
-| Sistema | ✓ | Ubuntu, kernel 7.0.0-27-generic |
-| Python | ✓ | 3.14.4 |
-| Docker | ✓ | Instalado, Docker Compose v2 |
-| Git | ✓ | v2.53.0, 25 commits, 157 archivos, rama master, remoto local SSD |
+| Sistema | ✓ | Ubuntu, kernel 7.0.0-34-generic |
+| Python | ✓ | 3.11.16 |
+| Docker | ✓ | Docker 29.8.1, Docker Compose v5.5.1 |
+| Git | ✓ | v2.53.0; en `hermes-lab`: 95 commits, 1036 ficheros sin contar `.git`, rama master, dos remotos (bare local en el SSD y GitHub) |
 | Hermes Agent | ✓ | En ejecución, perfil default |
 
 ## Servicios del stack (`automation-stack`)
 
 | Servicio | Puerto | Estado |
 |---|---|---|
-| n8n | 5678 | ✓ Up. v2.27.4, límite RAM 2G, 305 MiB en reposo. JS Runner activo. Workflow ENVIO WHATSAPP activo. Healthcheck 5/5. Cron cada 30 min. Puerto restringido a localhost (127.0.0.1). API Key operativa (creación y gestión programática de workflows). |
-| Ollama | 11434 | ✓ Funcionando. Modelos: llama3.1:8b, llama31-8b-64k |
+| n8n | 5678 | ✓ Up. v2.27.4, límite RAM 2G, 305 MiB en reposo. JS Runner activo. Workflow ENVIO WHATSAPP activo. Healthcheck 5/5. Cron cada 30 min. Puerto restringido a localhost (127.0.0.1). API Key operativa (creación y gestión programática de workflows). **Refresco 2026-09-29**: de n8n sólo se ha comprobado que el contenedor está `Up` y el puerto en `127.0.0.1:5678`; el resto de esta celda (versión, RAM, healthcheck, workflow) es de julio y no se ha re-medido. |
+| Ollama | 11434 | ✓ Funcionando. Modelos medidos 2026-09-29: ibm/granite4.2:8b-q4_K_M, qwen2.5:7b, deepseek-r1-distill-qwen-14b:latest |
 | Stirling-PDF | 8081 | ✓ Funcionando |
 | pdf-cleaner | 8000 | ✓ Funcionando (build local) |
 
@@ -35,11 +35,13 @@
 |---|---|---|---|
 | DeepSeek (v4-flash) | Principal (Hermes) | v4-flash | ✓ Funcionando |
 | Ollama | Local | localhost:11434 | ✓ Funcionando |
-|| LM Studio | Local | localhost:1234 | ⚠️ API Server no activo (abrir LM Studio y activarlo cuando se necesite visión) |
+|| LM Studio | Local | localhost:1234 | ⚠️ API Server no activo — confirmado 2026-09-29 (`:1234/v1/models` responde vacío). Abrir LM Studio y activarlo cuando se necesite visión |
 
 ### Modelos disponibles en LM Studio
 
 google/gemma-4-e4b, google/gemma-4-12b-qat, google/gemma-4-12b, glm-4.6v-flash, qwen/qwen3.5-9b, text-embedding-nomic-embed-text-v1.5
+
+> **Sin verificar (2026-09-29):** esta lista es de julio y no se ha podido re-medir porque el API Server está apagado.
 
 ### Árbol de decisión (ai-router)
 ```
@@ -55,7 +57,7 @@ Costes reales (Julio 2026):
   Gemini 2.5 FL:     $0.100/M input, $0.400/M output
   Ollama local:      $0.000 (gratuito)
 
-No existe "franja cara". DeepSeek es el cloud por defecto permanente.
+[REVISAR 2026-09-29] «No existe franja cara» NO se ha re-medido: el lab tiene anotados descuentos por franja (off-peak) en DeepSeek, así que esta frase y la tabla de precios de arriba (julio) hay que contrastarlas antes de usarlas.
 El unico motivo para usar local es privacidad, no coste.
 ```
 
@@ -72,10 +74,10 @@ El unico motivo para usar local es privacidad, no coste.
 
 | Componente | Estado | Detalle |
 |---|---|---|
-| Healthcheck automático | ✓ | Cada hora (minuto 5), notifica si falla |
+| Healthcheck automático | ✓ | Cada hora (minuto 5), `skills/docker-admin/scripts/healthcheck.sh --cron`, notifica si falla |
 | Backup automático | ✓ | systemd timer joko-backup.timer (diario, Persistent=true) |
-| Backup GDrive | ✓ | Cron 3:15, git bundle via rclone |
-| Healthcheck n8n específico | ✓ | Cada 30 min, 5 tests, notifica si falla |
+| Backup GDrive | ✓ | Cron real medido 2026-09-29: `scripts/cloud-backup.sh` a las 22:30 y `scripts/git-backup.sh --quiet` a las 22:35 |
+| Healthcheck n8n específico | ✓ | Cada 30 min, `skills/n8n-admin/healthcheck-n8n.sh`; los «5 tests» son de julio y no se han re-medido |
 | Auditoría integrada | ✓ | Docker + Hermes + disco + GPU |
 
 ## Skills de Hermes — Jerarquía
@@ -172,27 +174,48 @@ su desarrollo técnico (ver escala completa en HERMES.md §5).
 | evolution | ❌ | ❌ | ❌ | Instrumentada | 3 |
 | joko-lab | ❌ | ❌ | ❌ | Básica | 1 |
 
+## Lo que este refresco NO ha medido
+
+> Refresco hecho el 2026-09-29 21:08 CEST por el asistente, midiendo en el propio repo
+> (`git rev-list --count HEAD`, `find`, `ls`, AST de `tests/`, `curl` a Ollama,
+> `docker compose ps` del stack). Sigue siendo una fotografía: **vuelve a medirla**.
+
+- **n8n**: sólo que el contenedor está `Up` y el puerto en `127.0.0.1:5678`. Versión,
+  RAM, healthcheck y workflows siguen siendo datos de julio.
+- **Backups**: no se ha verificado el contenido ni la antigüedad de
+  `/mnt/ssd_ia_datos/backups`, ni ninguna restauración desde GDrive.
+- **LM Studio**: API Server apagado, así que la lista de modelos no se ha re-medido.
+- **Saldo**: `state.json` registraba 8,4 USD de DeepSeek (fuente `api_directa`) a las
+  21:09; es dato de otro proceso, no una consulta de este refresco.
+- **Costes por franja**: la tabla de precios y la frase «no existe franja cara» son de
+  julio y quedan marcadas `[REVISAR]`.
+- **Jerarquía de skills**: el diagrama y las tablas de madurez son de julio. Hoy
+  `skills/` tiene **11 dominios** y **10 con `SKILL.md`**: falta
+  `skills/ai-architecture/SKILL.md` y `knowledge-governor` no aparece en las tablas.
+- **Resto de `docs/`**: se corrigió lo que decía «eliminado» (los dos ficheros existen),
+  pero no se ha auditado el resto de las entradas de `docs/`.
+
 ## Documentación
 
 | Archivo | Estado |
 |---|---|
 | HERMES.md | ✓ 13/13 secciones completas |
-| docs/estado-real.md | ✓ Este archivo (actualizado 2026-07-10) |
+| docs/estado-real.md | ✓ Este archivo (refrescado 2026-09-29) |
 | docs/arquitectura.md | ✓ Completo (156 líneas) |
-| docs/hermes-internals.md | ✗ Eliminado (ya no existe en el repositorio) |
-| docs/hermes-notes.md | ✗ Eliminado (ya no existe en el repositorio) |
+| docs/hermes-internals.md | ✓ Existe en el repositorio (corregido 2026-09-29: esta fila decía «eliminado») |
+| docs/hermes-notes.md | ✓ Existe en el repositorio (corregido 2026-09-29: esta fila decía «eliminado») |
 | docs/joko-lab-principles.md | ✓ Creado (documento fundacional) |
 | docs/runtime/ | ✓ Creado (runtime-audit.md) |
 | runtime/ | ✓ Creado (CONTRACT.md) |
-| docs/decisiones/ | 24 archivos: decisiones activas y completadas |
+| docs/decisiones/ | 34 entradas (32 `.md` + un `.txt` + un `*.md.bak-*` de addendum): decisiones activas y completadas |
 
 ## Directorios del laboratorio
 
 | Directorio | Estado |
 |---|---|
-| `scripts/` | ✓ 5 archivos (model-router.sh, smoke-test.sh, auditor-completo.py, git-backup.sh, cleanup.sh) |
+| `scripts/` | ✓ 32 entradas, 13 `.sh` (`smoke-test.sh`, `checkpoint.sh`, `rescue.sh`, `fin.sh`, `git-backup.sh`, `cloud-backup.sh`, …) |
 | `backups/` | ✓ Con README, para snapshots manuales del laboratorio |
-| `certification/` | ✓ Creado (v0.1.0, 2 casos activos) |
+| `certification/` | ✓ 8 entradas de primer nivel: casos 001 y 002, especificación, y 3 subcarpetas de tests. Verifica, no define |
 | `test/` | ✗ Eliminado (los tests de humo están en scripts/smoke-test.sh) |
 
 ### Decisiones de arquitectura registradas
@@ -269,7 +292,7 @@ privacidad.yaml, disponibilidad.yaml, costes.yaml, horario.yaml, modelos.yaml, p
 
 ### Tests
 
-60 tests (unitarios + contrato). Cubren DE, Runtime API y State Manager.
+67 tests (unitarios + contrato; contados el 2026-09-29 con AST: 16 + 24 + 27). Cubren DE, Runtime API y State Manager.
 
 ### Archivos clave
 
@@ -282,5 +305,5 @@ privacidad.yaml, disponibilidad.yaml, costes.yaml, horario.yaml, modelos.yaml, p
 | state.json | /mnt/ssd_ia_datos/lab-state/state.json | Fuente única de verdad |
 | ultima-decision.json | /mnt/ssd_ia_datos/lab-state/ultima-decision.json | Última decisión (fallback) |
 | decision.log | /mnt/ssd_ia_datos/lab-state/logs/decision.log | Historial de decisiones auditable (JSON por línea) — se evaluó ledger agregado y se descartó 2026-07-15 |
-| tests/ | hermes-lab/tests/ | 60 tests (3 suites) |
+| tests/ | hermes-lab/tests/ | 67 tests (3 suites) |
 | runtime/CONTRACT.md | hermes-lab/runtime/CONTRACT.md | Contrato v1.0 del Runtime |
