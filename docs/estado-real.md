@@ -17,7 +17,7 @@
 | Sistema | ✓ | Ubuntu, kernel 7.0.0-34-generic |
 | Python | ✓ | 3.11.16 |
 | Docker | ✓ | Docker 29.8.1, Docker Compose v5.5.1 |
-| Git | ✓ | v2.53.0; en `hermes-lab`: 95 commits, 1036 ficheros sin contar `.git`, rama master, dos remotos (bare local en el SSD y GitHub) |
+| Git | ✓ | v2.53.0; rama master, dos remotos (bare local en el SSD y GitHub). **Cifras con su instrumento y su hora** (2026-09-29 21:13): **97 commits** (`git rev-list --count HEAD`) y **263 ficheros versionados** (`git ls-files | wc -l`); en disco, sin `.git`, 1040 (incluye `recovery/`, `logs/` y los `*.bak-*`, que git ignora). Los commits de este mismo refresco invalidan ya la primera cifra: **se vuelve a medir, no se copia** |
 | Hermes Agent | ✓ | En ejecución, perfil default |
 
 ## Servicios del stack (`automation-stack`)
