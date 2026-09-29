@@ -66,9 +66,9 @@ echo ""
 echo "-- Skills --"
 SKILLS_DIR="${HERMES_HOME}/skills"
 if [[ -d "${SKILLS_DIR}" ]]; then
-    TOTAL=$(ls -d "${SKILLS_DIR}"/*/ 2>/dev/null | wc -l)
-    CON_SKILL=$(find "${SKILLS_DIR}" -maxdepth 2 -name 'SKILL.md' -not -path '*/references/*' 2>/dev/null | wc -l)
-    echo -e "${OK} ${TOTAL} skills instaladas, ${CON_SKILL} con SKILL.md"
+    CATEGORIAS=$(ls -d "${SKILLS_DIR}"/*/ 2>/dev/null | wc -l)
+    SKILL_DOCS=$(find "${SKILLS_DIR}" -name 'SKILL.md' -not -path '*/references/*' 2>/dev/null | wc -l)
+    echo -e "${OK} ${SKILL_DOCS} skills (SKILL.md) en ${CATEGORIAS} categorias"
 else
     echo -e "${ERR} No existe directorio skills/"
 fi

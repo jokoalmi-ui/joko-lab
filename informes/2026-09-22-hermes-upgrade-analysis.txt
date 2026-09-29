@@ -1,0 +1,157 @@
+ANALISIS DE ACTUALIZACION HERMES AGENT - v0.21.3 -> v0.21.4
+Fecha del analisis: 2026-09-22 11:56 CEST (hora real, comando date)
+Skill aplicada: hermes-upgrade-analysis (RULE-014)
+Metodo: RULE-016 - ventana de observacion de 5 dias post-publicacion ANTES de actualizar el lab.
+
+===============================================================
+1. ESTADO ACTUAL Y OBJETIVO
+===============================================================
+Instalado en el lab: v0.21.3 (release 2026-09-14).
+Objetivo notificado:  Hermes Agent v0.21.4 (tag v2026.9.21).
+Publicacion real:     2026-09-21T18:10:55Z = 21-sep-2026 20:10 CEST (API GitHub releases/latest).
+Dia de la ventana:    dia 1 de 5. Cierre de la ventana: 2026-09-26.
+Notificacion:         cronjob "Hermes version watchdog" (job_id 517fdc280d6f).
+
+Ritmo de publicaciones observado (API releases, 22-sep-2026):
+  v2026.9.21 (21-sep) -> v2026.9.14 (14-sep) -> v2026.9.11 (11-sep) -> v2026.9.7 (07-sep)
+  -> v2026.8.31 (31-ago) -> v2026.8.27 -> v2026.8.19 -> v2026.8.18.
+  Intervalos: 7, 3, 4, 7, 4 dias. Cadencia semanal/trisemanal, patron estable.
+  Nota oficial de la release: "Full curated release notes for this window will ship with v0.22.0"
+  -> las notas curadas del ciclo 0.21.x NO existen aun; llegan con 0.22.0 (mismo patron que 0.20->0.21).
+
+===============================================================
+2. COMPATIBILIDAD VERIFICADA (sin instalar nada)
+===============================================================
+Migracion de config:  CERO saltos.
+  ~/.hermes/config.yaml linea 575: _config_version: 45
+  tag v2026.9.21 (hermes_cli/config_defaults.py): _config_version 45  -> COINCIDE.
+Node: lab v22.23.0; requisito package.json del tag: ^22.22.0 || ^24.11.0 || >=26.0.0 -> CUMPLE.
+npm: requisito <11.10.0 || >=11.17.0 (no comprobado en el lab en este analisis).
+Secciones sensibles presentes en config.yaml: display, platforms, personality, slack, discord,
+  telegram, auxiliary, delegation, approvals, updates, mcp.
+Valores que deciden exposicion a bugs:
+  compression.threshold 0.3 (no 0.85) | compression.enabled true
+  kanban.dispatch_in_gateway true | gateway.multiplex_profiles NO configurado | gateway.profile_routes NO configurado
+  cron.mirror_delivery false | fallback_providers [deepseek-v4-flash @ deepseek]
+  updates.pre_update_backup true | approvals.mode smart | delegation.max_concurrent_children 10
+  display.platforms: telegram streaming true, discord false
+Crons del lab: 42 jobs, 42 habilitados, 34 con campo "script" (gate), entregas: 18 telegram,
+  12 origin, 11 local, 1 canal fijo. attach_to_session: 0 jobs.
+Secretos: solo aparece ~/.hermes/.env (23.630 B, modo 600). No aparece ~/.config/joko-lab/*.
+Infra: /home/jokoalmi/automation-stack/docker-compose.yml tiene 0 menciones de "hermes"
+  (servicios: n8n, stirling-pdf, pdf-cleaner, ollama) -> Hermes NO corre en Docker en el lab.
+
+===============================================================
+3. QUE TRAE v0.21.4 (notas oficiales de la release)
+===============================================================
+Se presenta como release grande de patch: ~1.812 PRs y ~2.116 issues cerrados acumulados.
+Cambios citados textualmente en las notas:
+  - Gateway host-wide singleton lock + handshake para que Desktop se enganche a la gateway viva.
+  - CLI --format stream-json.
+  - skills.auto_load: las skills marcadas se inyectan en el prompt de toda sesion nueva.
+  - mcp.discovery_concurrency (limite configurable de descubrimiento MCP).
+  - session_search con limites after/before + reintento relajado (OR) para recuperar recuerdos.
+  - hermes sessions set-journal-mode (modo journal de la BD de sesiones).
+  - Comportamiento "decline" para DMs no autorizados.
+  - Desktop: selector de fuente, actualizaciones de motor local en un clic, desinstalacion de plugins.
+  - Catalogos de video: LTX 2.5 y Kling O3.
+  - Catalogo de plugins ampliado (tailscale, ssh, shodan, terminal, rss, resetwatch, done-bell, kiwi,
+    cognee, Octen, y mas).
+  - "large run of profile/multiplex isolation, cron, kanban, Desktop and state.db fixes".
+Fuente: https://github.com/NousResearch/hermes-agent/releases/tag/v2026.9.21 (consultada 22-sep-2026).
+
+===============================================================
+4. INCIDENCIAS DE LA VENTANA (RULE-016, paso 2)
+===============================================================
+Consulta: API GitHub search/issues, state:open, created:>2026-09-21T18:10:55Z (22-sep-2026 11:5x CEST).
+Resultado: 141 issues abiertos creados en las ~17 h posteriores a publicarse v0.21.4.
+  Mencionan "0.21.4" explicitamente: 26.
+  Reparto por componente: desktop 54 | agent 34 | cli 26 | gateway 25 | plugins 17 | cron 11 |
+    tools 10 | tui 7 | dashboard 2.
+  Reparto por riesgo: session-state 26 | compatibility 19 | message-delivery 11 | windows 7 |
+    security-boundary 7.
+MATIZ: "abierto y creado despues" no implica causado por la release; buena parte son de main.
+Sirve como indicador de estabilidad percibida, no como lista de regresiones confirmadas.
+
+De los 26 que citan 0.21.4, 14 son de Desktop/Windows/macOS o SSH -> NO aplican al lab.
+Los que SI tocan componentes que el lab usa, con evidencia de aplicabilidad:
+  #118536 cron: los fallos por proveedor inalcanzable NUNCA reintentan (cadena de causa destruida
+          antes del matcher). Reportado en 0.21.4. El lab tiene 42 crons, 19 con entrega Telegram
+          -> riesgo de perder entregas en silencio. APLICA ESTRUCTURALMENTE.
+  #118535 cron: "run" manual con extra_prompt es no-op si el script gate no produce salida
+          (cronjob(action='run', prompt=...)). 34 de 42 jobs del lab tienen script -> APLICA
+          cuando se fuerza una ejecucion manual de un job watcher.
+  #118484 truncate_message emite trozos por encima del limite de plataforma cuando un fence
+          de codigo no tiene salto de linea (parser CommonMark). Afecta a mensajes largos partidos
+          en Telegram -> APLICA si se envian bloques de codigo largos.
+  #118721 / #118720 hermes doctor: la validacion de auxiliary salta provider: auto y marca ✗ en
+          bloques auxiliary sin lector. El lab tiene seccion auxiliary -> FALSO ✗ posible en doctor.
+  #118984 gateway session hygiene: el net fijo 0.85 adelanta a compression.threshold si este se
+          sube por encima de 0.85. Lab con threshold 0.3 -> NO APLICA hoy; aviso si se sube.
+  #119009 Docker/s6 multiplex-only boot deja bots secundarios offline. Lab sin Hermes en Docker
+          y sin multiplex -> NO APLICA.
+  #119003 kanban dispatch/reconcile destruye filas reales (placeholder 't_running') con
+          gateway.multiplex_profiles + kanban.dispatch_in_gateway. Lab: dispatch_in_gateway true
+          pero multiplex NO configurado -> NO APLICA hoy. AVISO si se activa multiplex.
+  #118862 gateway multiplexado: check de sesion muerta lee el store del perfil por defecto.
+          Sin gateway.profile_routes -> NO APLICA hoy.
+  #118863 cron delivery mirror guarda la entrega como turno de usuario. cron.mirror_delivery false
+          y 0 jobs con attach_to_session -> NO APLICA.
+  #118969 el fallback persiste un par provider:model imposible (xai + deepseek-v4-flash).
+          Lab: fallback_providers = deepseek-v4-flash @ deepseek (par coherente) -> NO APLICA hoy.
+  #118988 v0.21.4 deja HERMES_HOME a nivel de usuario y rompe la validacion de home remoto por SSH
+          en Windows (labels: platform/windows, comp/desktop) -> NO APLICA (lab Linux, sin SSH remoto).
+      Relevante como senal: el updater de 0.21.4 tiene al menos una regresion de instalacion.
+
+Conclusion de la ventana: hay bugs abiertos y REPRODUCIDOS EN 0.21.4 en el area que mas usa el lab
+(cron y entrega de mensajes). No se ha verificado ninguno en produccion (no se ha instalado).
+
+===============================================================
+5. LOS TRES PUNTOS OBLIGATORIOS
+===============================================================
+(a) API keys / secretos: la release no documenta cambio de formato de secretos ni de claves.
+    Situacion del lab: ~/.hermes/.env 23.630 B modo 600 (unica ruta de secretos que aparece).
+    No aparece ~/.config/joko-lab/* en el lab. Al actualizar: verificar que .env sigue intacto
+    (tamano + modo) y que las claves cargan, sin imprimir valores.
+(b) config.yaml / SOUL.md: _config_version 45 = 45 -> sin migracion de config. No hay
+    indicacion en las notas de cambio de formato de config ni de SOUL.md. Igual se hara
+    backup previo (updates.pre_update_backup ya esta en true).
+(c) Pendientes del lab resueltos por la release: NINGUNO. La release no resuelve ningun punto
+    abierto de docs/pendientes.txt ni de docs/decisiones/. Al contrario: las notas curadas del
+    ciclo 0.21.x seguiran sin existir hasta v0.22.0. La decision vigente del lab de esperar a
+    las notas curadas (registrada para el salto 0.20->0.21) sigue siendo el criterio aplicable.
+
+===============================================================
+6. RECOMENDACION
+===============================================================
+NO actualizar hoy (dia 1 de la ventana de 5 dias de RULE-016).
+Ventana de reevaluacion: 2026-09-26 (dia 5). Condiciones para actualizar:
+  1. #118536 y #118535 (cron) cerrados o confirmados no presentes en 0.21.4.
+  2. Sin incidencias nuevas de tipo session-state / message-delivery creadas tras el 26-sep
+     que afecten a CLI+gateway Telegram+cron.
+  3. Punto (a) verificado: .env intacto y claves cargando.
+Alternativa razonable: esperar a v0.22.0, que traera las notas curadas completas del ciclo 0.21.x
+  (el lab ya aplico este criterio en el salto 0.20->0.21). Coste de esperar: bajo, porque el lab
+  esta en v0.21.3 y el salto no aporta nada critico para el trabajo diario.
+Ventaja del salto: config ya en 45 -> actualizacion barata y reversible (backup previo automatico).
+
+===============================================================
+7. QUE NO ESTA VERIFICADO
+===============================================================
+- No se ha instalado ni ejecutado v0.21.4 en el lab (no hay verificacion en produccion).
+- No se ha comprobado npm version del lab (requisito <11.10.0 || >=11.17.0).
+- Los issues citados estan ABIERTOS: no hay confirmacion de arreglo en ninguna version.
+- El reparto de 141 issues es un indicador de actividad, no una lista de regresiones confirmadas.
+
+===============================================================
+8. FUENTES
+===============================================================
+- https://api.github.com/repos/NousResearch/hermes-agent/releases/latest (2026-09-21T18:10:55Z)
+- https://github.com/NousResearch/hermes-agent/releases/tag/v2026.9.21
+- https://raw.githubusercontent.com/NousResearch/hermes-agent/v2026.9.21/hermes_cli/config_defaults.py
+- https://raw.githubusercontent.com/NousResearch/hermes-agent/v2026.9.21/package.json
+- API GitHub search/issues (state:open, created:>2026-09-21T18:10:55Z) + issues #118536, #118535,
+  #118484, #118988, #118863, #119003, #118984, #118862, #118969
+- Local: ~/.hermes/config.yaml (575), ~/.hermes/cron/jobs.json (42 jobs), ~/.hermes/.env (permisos),
+  /home/jokoalmi/automation-stack/docker-compose.yml, hermes-lab/docs/pendientes.txt (linea 20)
+- Consultas realizadas el 2026-09-22 entre 11:53 y 11:56 CEST (hora real via date)

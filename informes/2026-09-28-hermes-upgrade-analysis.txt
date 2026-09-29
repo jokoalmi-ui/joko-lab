@@ -1,0 +1,323 @@
+=== ANÁLISIS DE ACTUALIZACIÓN DE HERMES AGENT ===
+Fecha: 2026-09-28 (lunes), franja 23:14-23:40 CEST (hora verificada antes de escribir: `date` → lun 28 sept 2026 23:14:56 CEST)
+Método: skill hermes-upgrade-analysis + RULE-016 (ventana de 5 días post-publicación)
+Autor: Hermes (agente), para Joko Lab
+
+VERSIÓN ACTUAL:  v0.21.3 (2026.9.14) — instalación source (git + venv), HEAD 1ad89ac0
+ÚLTIMA DISPONIBLE: v0.21.5 (tag v2026.9.24), publicada 2026-09-24T10:09:38Z = 12:09 CEST
+
+DIFERENCIA: 2 releases por detrás (0.21.4 del 21-sep y 0.21.5 del 24-sep).
+Migración de config pendiente: _config_version 45 (lab) → 46 (objetivo del tag v2026.9.24) = 1 nivel.
+
+CONTEXTO DE PLANES ANTERIORES (verificado en disco)
+  - Último informe: informes/2026-09-22-hermes-upgrade-analysis.txt (22-sep 11:56 CEST)
+  - Último plan:     informes/2026-09-22-plan-actualizacion-0214.txt (22-sep 15:48 CEST)
+    Objetivo de aquel plan: decidir/ejecutar el SÁBADO 26-sep la actualización a v0.21.4
+    (ventana RULE-016 vencía 26-sep 20:10 CEST). Condiciones de salida pactadas:
+    (a) #118536 y #118535 cerrados o confirmados como no aplicables, (b) .env intacto.
+  - RESULTADO: ese plan NO se ejecutó. Hoy el sistema sigue en v0.21.3 / config 45.
+    Consecuencia: la 0.21.4 ya no es objetivo útil; el objetivo vigente es la 0.21.5.
+
+--------------------------------------------------------------------------------
+SALIDAS CRUDAS VERIFICADAS HOY (solo lectura)
+--------------------------------------------------------------------------------
+$ hermes --version
+Hermes Agent v0.21.3 (2026.9.14) · upstream 1ad89ac0
+Install directory: /home/jokoalmi/.hermes/hermes-agent
+Install method: git
+Python: 3.11.16
+Update available: 10969 commits behind — run 'hermes update'
+
+$ grep -n "_config_version" ~/.hermes/config.yaml
+578:_config_version: 45
+
+$ cat ~/.hermes/.update_check
+{"ts": 1790615004.46, "behind": 10969, "rev": null, "ver": "0.21.3",
+ "head": "1ad89ac018f26a4f21817ebf37bb09f508656d63",
+ "target": "1b91b8eaa576b3c3dfe08e4592bdd698d1aca019"}
+(lectura: el "10969 commits behind" es coherente con clon SHALLOW + origin/main avanzado
+ desde el 14-sep; NO es divergencia real ni trabajo local en riesgo)
+
+$ git -C ~/.hermes/hermes-agent log -1 --format='%H %cI %s'
+1ad89ac018f26a4f21817ebf37bb09f508656d63 2026-09-14T13:04:39-07:00 feat(web): send Hermes identity headers on Perplexity requests
+
+$ git -C ~/.hermes/hermes-agent status -sb
+## main...origin/main
+?? ig_cands.json / ig_lote1.json / ig_lote2.json / ig_lote3.json
+(lectura: sin commits locales, sin divergencia. Solo 4 ficheros untracked sin relación)
+
+$ node --version ; npm --version
+v22.22.1
+9.2.0
+
+$ stat -c "%s bytes modo=%a %n" ~/.hermes/.env
+23630 bytes modo=600 /home/jokoalmi/.hermes/.env
+
+$ ls -la /mnt/ssd_ia_datos/backups-hermes/ | tail -4
+hermes-state-20260925-2220.tar.gz  551.497.420 B
+hermes-state-20260926-2220.tar.gz  568.337.439 B
+hermes-state-20260927-2220.tar.gz  580.165.980 B
+hermes-state-20260928-2220.tar.gz  591.800.382 B
+(lectura: rotación diaria 22:20 funcionando; backup de HOY ya existe)
+
+$ ls -la ~/.hermes/state.db*
+state.db        1.381.825.660 B  Sep 28 23:15
+state.db-wal        6.620.872 B  Sep 28 23:17
+state.db-shm           32.768 B  Sep 28 23:17
+
+$ ls -la ~/.hermes/backups/config/ | tail -4
+config.yaml.good.20260914-224534  14.571 B
+config.yaml.good.20260914-224535  14.571 B
+config.yaml.good.20260925-230643  14.604 B
+config.yaml.good.20260925-231923  14.730 B
+(lectura: los .bak de config se escriben en ~/.hermes/backups/config/ — el bug #106388
+ ya NO aplica en la versión instalada)
+
+$ API GitHub /releases (consultada hoy)
+v2026.9.24 | Hermes Agent v0.21.5 (v2026.9.24) | 2026-09-24T10:09:38Z
+v2026.9.21 | Hermes Agent v0.21.4 (v2026.9.21) | 2026-09-21T18:10:55Z
+v2026.9.14 | Hermes Agent v0.21.3 (v2026.9.14) | 2026-09-14T16:04:14Z
+
+$ body de la release v0.21.5 (recortado)
+"Patch release. rolls up ~460 PRs merged since v0.21.4 ... Full curated notes for this
+ window are deferred to v0.22.0."
+
+$ tag v2026.9.24 → hermes_cli/config_defaults.py
+"_config_version": 46
+
+$ tag v2026.9.24 → package.json
+engines: node "^22.22.0 || ^24.11.0 || >=26.0.0", npm "<11.10.0 || >=11.17.0"
+(CUMPLE con node v22.22.1 y npm 9.2.0)
+
+$ docs de migración en main
+https://raw.githubusercontent.com/NousResearch/hermes-agent/main/docs/UPGRADING.md       → 404
+https://raw.githubusercontent.com/NousResearch/hermes-agent/main/docs/MIGRATION.md       → 404
+https://raw.githubusercontent.com/NousResearch/hermes-agent/main/docs/BREAKING_CHANGES.md → 404
+(confirmado otra vez: la info de migración solo está en los issues, no en docs)
+
+$ PR del fix de corrupción state.db (el origen de RULE-016)
+PR #109841 | closed | merged 2026-09-13 | "fix(state): tightening state.db modes no longer
+drops the holder's SQLite locks (#109786, salvage #109754)"
+PR #100519 | closed | merged 2026-09-01 | "fix(state): stop the on-write identity probe
+cancelling our own POSIX locks (#100368 producer candidate)"
+(lectura: ambos fixes son ANTERIORES al 24-sep → viajan tanto en la .4 como en la .5.
+ No hay motivo de RULE-016 para evitar la .5 por corrupción de state.db)
+
+--------------------------------------------------------------------------------
+--- 1. PRINCIPALES CAMBIOS ---
+--------------------------------------------------------------------------------
+La v0.21.5 es un PATCH ROLLUP SIN NOTAS PROPIAS. Su propio changelog dice que las notas
+curadas de esta ventana (0.21.4 + 0.21.5) se publicarán con v0.22.0. Es el mismo patrón
+ya conocido del ciclo 0.20.x → 0.21.0.
+
+Consecuencia práctica y honesta: NO se puede enumerar qué entra en la 0.21.5. Lo que sí
+se puede medir es el VOLUMEN y el estado del tracker:
+  - ~460 PRs mergeados entre la .4 y la .5 (dato del propio body).
+  - Issues abiertos creados DESPUÉS de la publicación de la .5: 1.211 (indicador bruto de
+    actividad del proyecto, NO lista de regresiones confirmadas de la .5).
+  - Issues abiertos que mencionan "0.21.5": 110.
+  - Por etiquetas de riesgo (issues abiertos creados en la ventana):
+      sweeper:risk-session-state      → 178
+      sweeper:risk-message-delivery   → 117
+      sweeper:risk-compatibility      → 270
+
+⚠️ Precision: los issues creados los días 26, 27 y 28-sep son POSTERIORES al tag .5, así
+que no demuestran que ese bug esté dentro de la .5. Los que SÍ viajan son los abiertos
+antes del 24-sep y aún sin cerrar. Los relevantes para el lab, con ese matiz:
+
+  BUGS DE CRON (área crítica del lab: 45 jobs, 35 con script gate)
+  #118536 P2 open (creado 21-sep) cron: provider-unreachable failures never retry
+                                  (cause chain destroyed before the transient check)
+  #118535 P2 open (creado 21-sep) cron: manual run with extra_prompt is a no-op when a
+                                  gate script is quiet
+      → AMBOS son las condiciones de salida del plan del 22-sep y SIGUEN ABIERTOS.
+  #123045 P? (25-sep) cronjob remove durante un run activo descarta el run en silencio.
+  #126126 (28-sep) cron --no-agent con entrega a bot-chat sin owner.
+  Cluster "cron external worker" (source/PM installs, varios P1/P2):
+      #125269, #126609, #126715, #126183, #126112, #125999, #125820, #125690, #125689
+      Síntoma común: el worker muere con `No module named 'ruamel'`. El lab es instalación
+      SOURCE, así que esta clase de bug es la que más nos puede tocar.
+  #123264 (26-sep) el stderr de un cron fallido (con rutas del host) llega al chat.
+
+  BUGS DE CONFIG (riesgo de perder 581 líneas de config.yaml)
+  #125107 P1 open (27-sep) atomic_config_write borra config.yaml si recibe un dict parcial
+                            (caso observado: 99 claves → 1).
+  #124995 P2 open (27-sep) los settings de plataforma en config.yaml se resetean cuando las
+                            credenciales viven en .env. El lab tiene TODAS las credenciales
+                            en .env (23.630 B) → mismo patrón que el histórico #62723.
+                            (matiz: los ejemplos del issue son Feishu/WeCom/BlueBubbles/
+                            Matrix/Signal; NO se verifica en el issue que Telegram se vea
+                            afectado — no afirmar que aplica a telegram sin comprobarlo)
+  #126465 (28-sep) `hermes config unset`/migraciones borran el bloque de comentarios.
+  #126467 (28-sep) migración de custom_providers → providers pierde capacidades.
+                            (el lab usa `providers:` en config.yaml: línea 6)
+
+  BUGS DE STATE.DB / SESIONES
+  #125273 P2 open (27-sep) cada token de razonamiento se guarda DOS veces en state.db
+                            (etch provider/deepseek). El lab usa DeepSeek como modelo
+                            principal y su state.db ya pesa 1,38 GB.
+  #126025 P3 open (28-sep) efecto colateral de generación de WAL al correr CLI corta junto a
+                            un gateway vivo; el propio issue aporta verificación post-fix y
+                            14 días sin recurrencia ("fixed on CLI paths since ...").
+                            Es exactamente la topología del lab (CLI + gateway + state.db),
+                            pero con evidencia de estar mitigado; NO es un blocker.
+  #124380 (26-sep) worker de kanban matado por reclaim deja su sesión abierta en state.db.
+
+  BUGS DE GATEWAY / TELEGRAM (19 crons entregan a Telegram)
+  #124413 (26-sep) las entregas cron→Telegram no usan Rich Messages y pierden TODO el
+                   formato cuando hay cualquier tag HTML.
+  #125857 (28-sep) envío de documentos por Telegram degrada a texto con la ruta.
+  #123898 (26-sep) respuestas con send_path_degraded no se reenvían hasta reiniciar.
+  #126356 (28-sep) un plugin que falla al cargar desactiva la plataforma PARA SIEMPRE,
+                   sin reintento ni aviso (Telegram muerto 49 h tras un reinicio sucio).
+  #125885 (28-sep) el troceo de Telegram parte un enlace Markdown tras prosa normal.
+  #122905 (25-sep) mensajes de una sesión pueden llegar desordenados.
+  #122837 (25-sep) respuesta truncada por agotar continuaciones sin aviso al usuario.
+
+  FUERA DE ALCANCE PARA EL LAB (no aplican): todo el bloque Windows (varios), macOS
+  (launchd, #126883 hermes update exit 1 en macOS), multiplex de perfiles, iMessage,
+  Yuanbao, Matrix, WeCom, BlueBubbles, Signal.
+
+--------------------------------------------------------------------------------
+--- 2. CAMBIOS BREAKING / RIESGO DE MIGRACIÓN ---
+--------------------------------------------------------------------------------
+  1) MIGRACIÓN DE CONFIG: el tag v2026.9.24 declara _config_version 46; el lab está en 45.
+     → salto de 1 NIVEL. No es "cero" como en el plan de la .4 (45→45):
+       hay una migración real cuando se ejecute `hermes config migrate` o el flujo de
+       `hermes update`. Riesgo MEDIO-ALTO por el contenido del config del lab (55 secciones
+       top-level, MCP, telegram, delegation, auxiliary, approvals).
+  2) Un bug P1 abierto (#125107) describe que una escritura parcial de config PUEDE borrar
+     el fichero entero. No consta que la migración 45→46 use esa ruta, y no se ha verificado
+     si el bug está dentro del tag .5. Es un motivo de PRECAUCIÓN (backup + verificación
+     posterior), no una afirmación de que vaya a pasar.
+  3) Los dos bugs de cron que motivaron esperar en el plan del 22-sep siguen abiertos. La
+     migración no los arregla.
+  4) El fix de corrupción de state.db (PR #109841, merged 13-sep) YA viaja en la .4 y en
+     la .5 → por ese lado no hay motivo de la RULE-016 para no actualizar.
+  5) No existe UPGRADING.md / MIGRATION.md / BREAKING_CHANGES.md (404 hoy): no hay guía
+     oficial de migración que leer; la evidencia son los issues.
+
+--------------------------------------------------------------------------------
+--- 3. IMPACTO EN JOKO LAB ---
+--------------------------------------------------------------------------------
+  | Componente                              | Riesgo     | Estado hoy (datos reales) |
+  |-----------------------------------------|------------|---------------------------|
+  | config.yaml (~/.hermes/)                | ALTO       | _config_version 45 → 46.  |
+  |                                         |            | Secciones sensibles VERIFICADAS presentes: |
+  |                                         |            | display(222), auxiliary(134), telegram(432), |
+  |                                         |            | delegation(363), approvals(457, mode smart), |
+  |                                         |            | cron(482), kanban(492), gateway(520), |
+  |                                         |            | updates(551, pre_update_backup: true), |
+  |                                         |            | mcp_servers(581), secrets(564). |
+  | Cron jobs (45, 43 enabled, 35 con script)| MEDIO      | #118536/#118535 abiertos.  |
+  |                                         |            | 3 jobs con attach_to_session (nuevo desde el 22-sep: eran 0). |
+  |                                         |            | Deliver: telegram 19, origin 14, local 11, |
+  |                                         |            | telegram:-1003968087263 1. |
+  | Gateway / Telegram                      | MEDIO      | #124413 (formato en deliverables), |
+  |                                         |            | #125857/#123898, #126356 (plataforma muerta sin aviso). |
+  | state.db (1,38 GB + WAL 6,6 MB)         | MEDIO      | Creció de 1,15 GB (22-sep) a 1,38 GB en 6 días. |
+  |                                         |            | #125273 (reasoning duplicado, deepseek). |
+  | Delegación local (lmstudio/gpt-oss-20b) | BAJO       | Sin cambios conocidos. |
+  | MCP (lab-db, lancedb, animation-server) | BAJO       | Sin cambios conocidos. |
+  | Skills / memoria / SOUL.md              | BAJO       | Sin cambios de esquema detectados. |
+  | Docker / n8n / automation-stack         | NO APLICA  | Hermes no corre en Docker. |
+  | Desbalance de runtime                   | BAJO       | node 22.22.1 y npm 9.2.0 cumplen el `engines` del tag. |
+
+  DISCREPANCIAS CON EL PLAN DEL 22-SEP (se reportan, no se explican: no hay evidencia)
+   - node/npm: el plan del 22-sep anotó node v22.23.0 y npm 10.9.8. Hoy la salida real da
+     node v22.22.1 y npm 9.2.0. No aparece en la salida del plan de dónde salió 22.23.0;
+     puede ser otro PATH/entorno de esa sesión. Ambas versiones cumplen el requisito.
+   - `updates.pre_update_backup`: el plan del 22-sep decía "NO APARECE en config.yaml".
+     Hoy la salida real lo muestra explícito: línea 551 `updates:` / 552
+     `pre_update_backup: true`. No se puede afirmar cuándo se añadió.
+
+--------------------------------------------------------------------------------
+--- 4. PARCHES POSTERIORES ---
+--------------------------------------------------------------------------------
+  No existe ninguna release posterior a la v0.21.5 a fecha de hoy (consultado
+  /releases: la más nueva es v2026.9.24 del 24-sep). No hay 0.21.6 ni 0.22.0 todavía.
+  Ritmo observado en este ciclo (0.21.0 → 0.21.5): gaps de 7, 3 y 3 días entre releases.
+  Con esa cadencia, una 0.22.0 es esperable en días/semanas (estimación estadística,
+  NO fecha comprometida: no hay milestone público consultado).
+
+--------------------------------------------------------------------------------
+--- 5. PRECAUCIONES (si algún día se ejecuta la actualización a 0.21.5) ---
+--------------------------------------------------------------------------------
+  Las mismas del plan validado del 22-sep, con los cambios de esta ventana:
+  1. Backup previo con el script del lab (bash /home/jokoalmi/hermes-lab/scripts/backup-hermes-state.sh)
+     y copia extra de config.yaml antes de tocar nada (la migración 45→46 SÍ puede tocar
+     el config). Verificar el tar y anotar el SHA de rollback.
+  2. Pausar el cron `telegram-watchdog` (job 264c02dae003, cada 15 min) durante la ventana:
+     su script arranca/reinicia el gateway y puede pisar el `pip install -e .` o la
+     migración. Reanudarlo SIEMPRE al terminar, incluso si falla.
+  3. NO usar `hermes update` (va a origin/main, no al tag, y reinicia el gateway por su
+     cuenta). Vía manual: fetch del tag → checkout --force → venv/bin/python -m pip install -e .
+  4. Reinicio del gateway desde terminal externa o `systemd-run` (la tool call del agente
+     devuelve "Blocked: cannot restart or stop the gateway from inside the gateway process").
+  5. Tras migrar: comparar config.yaml contra el .bak con foco en las secciones listadas en
+     la tabla (display, telegram, delegation, auxiliary, approvals, mcp_servers) y
+     confirmar que _config_version subió a 46 sin perder ninguna.
+  6. Verificación post con salidas reales (versión, config, gateway active, state.db + WAL,
+     errors.log, cronjob list, MCP cargados).
+  7. Rollback: SHA 1ad89ac018f26a4f21817ebf37bb09f508656d63 (v0.21.3) + tar de backups-hermes.
+
+--------------------------------------------------------------------------------
+--- 6. RECOMENDACIÓN ---
+--------------------------------------------------------------------------------
+DECISIÓN EN UNA FRASE: NO actualizar a la v0.21.5. Seguir en v0.21.3 y esperar a la
+v0.22.0 (que traerá las notas curadas de todo el ciclo 0.21.x), aplicando su ventana de
+5 días de RULE-016 al publicarse, con FECHA TOPE de reevaluación el lunes 12-oct-2026
+(si para entonces no hay 0.22.0, se reevalúa la última 0.21.x disponible).
+
+Por qué (y qué NO significa):
+  - No hay URGENCIA: ninguna novedad conocida de la .4/.5 resuelve un problema actual del
+    lab, y la .5 no publica notas propias de las que se pueda concluir nada.
+  - No es que "no interese": simplemente el beneficio de actualizar hoy es marginal frente
+    al de entrar con las notas curadas y el rollup completo.
+  - El coste de esperar es BAJO y verificable: la .5 es un patch rollup (config 45→46,
+    1 nivel) y el lab no arrastra esos bugs como bloqueo, dado que el fix de state.db
+    (#109841) ya está en las dos versiones.
+  - La ventana RULE-016 de la v0.21.5 vence MAÑANA martes 29-sep a las 12:09 CEST. Dentro
+    de la ventana, la norma del lab es no actualizar; pasado mañana la decisión sería ya
+    de conveniencia, y la balanza (2 bugs P2 de cron abiertos + P1 de config + cluster de
+    cron worker en instalaciones source) no justifica el salto por sí solo.
+
+Condiciones de salida (para que no sea una espera abierta):
+  A) Si se publica v0.22.0 → ventana de 5 días de RULE-016 + informe nuevo con esta skill,
+     y entonces se decide con las notas curadas en la mano.
+  B) Si el 12-oct-2026 no hay v0.22.0 → reevaluar la última 0.21.x y decidir actualizar
+     aunque no haya notas curadas (evita acumular meses de retraso).
+  C) Si aparece un bug que afecte al lab en la 0.21.3 instalada y esté corregido en la
+     rama 0.21.x → adelantar la actualización con el plan del 22-sep adaptado.
+  D) Si el usuario prefiere ejecutarlo ya → el procedimiento es el del plan del 22-sep con
+     los cambios de este informe (tag v2026.9.24, migración 45→46, SHA de rollback 1ad89ac0).
+
+--------------------------------------------------------------------------------
+--- PUNTOS OBLIGATORIOS DE LA SKILL ---
+--------------------------------------------------------------------------------
+(a) API keys / secrets:
+    No hay cambios CONOCIDOS en la gestión de secretos en la ventana .4/.5: el body de la
+    .5 es un rollup sin detalle y no menciona secrets, api_key ni read_secret(). No se
+    puede afirmar ausencia total de cambios sin notas curadas → queda como "no consta".
+    Estado del lab: ~/.hermes/.env intacto (23.630 B, modo 600) y la sección `secrets:`
+    sigue presente en config.yaml (línea 564).
+
+(b) Formato de config.yaml / SOUL.md:
+    SÍ hay cambio estructural: _config_version 45 → 46 (1 nivel de migración). No consta
+    ningún cambio en SOUL.md. Las secciones sensibles del lab siguen todas presentes en la
+    salida de hoy (lista completa en la tabla de la sección 3). Aviso: el bug P1 #125107
+    (atomic_config_write con dict parcial) hace OBLIGATORIO el backup de config antes de
+    cualquier migración.
+
+(c) Pendientes de docs/decisiones/ resueltos:
+    Ninguna novedad de la v0.21.5 resuelve un pendiente documentado del lab. Los dos
+    pendientes que condicionaban el plan del 22-sep (#118536 y #118535) siguen ABIERTOS.
+
+--------------------------------------------------------------------------------
+VERIFICACIÓN DE ESTE INFORME
+--------------------------------------------------------------------------------
+Verificación ad-hoc (no existe suite canónica para un .txt): script
+/tmp/hermes-verify-2026-09-28.py que comprueba existencia, secciones obligatorias, datos
+clave y ausencia de marcadores de relleno, y escribe la evidencia persistente en
+informes/verificacion-2026-09-28.txt. NO se declara ninguna actualización hecha: no se ha
+ejecutado ningún comando de actualización, migración ni reinicio.

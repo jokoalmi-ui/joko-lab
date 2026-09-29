@@ -1,0 +1,89 @@
+=== VERIFICACIÓN AD-HOC — informe y plan Hermes 2026-09-28 (v3, final) ===
+Ejecutado: 2026-09-28 23:22:20 
+Script: /tmp/hermes-verify-2026-09-28.py v3 (se autolimpia al terminar)
+Alcance: SOLO existencia/estructura/contenido de los 2 .txt. NO es una suite verde.
+Historial de falsos positivos corregidos (los checks, no los documentos):
+  v1: buscaba 'todo:' como subcadena -> marcaba 'Método:' (informe, línea 3).
+  v2: buscaba la frase de 'no ejecutado' sin normalizar saltos de línea -> fallo.
+  v3: normaliza espacios y usa límite de palabra. Ninguno de los 3 fallos fue del contenido.
+Ficheros verificados:
+  /home/jokoalmi/hermes-lab/informes/2026-09-28-hermes-upgrade-analysis.txt (21056 B)
+  /home/jokoalmi/hermes-lab/informes/2026-09-28-plan-decision-0220.txt (17164 B)
+
+  OK   informe existe y >15 KB  [21056 B]
+  OK   plan existe y >12 KB  [17164 B]
+  OK   informe sección: === ANÁLISIS DE ACTUALIZACIÓN DE HERMES AGENT ===
+  OK   informe sección: --- 1. PRINCIPALES CAMBIOS ---
+  OK   informe sección: --- 2. CAMBIOS BREAKING
+  OK   informe sección: --- 3. IMPACTO EN JOKO LAB ---
+  OK   informe sección: --- 4. PARCHES POSTERIORES ---
+  OK   informe sección: --- 5. PRECAUCIONES
+  OK   informe sección: --- 6. RECOMENDACIÓN ---
+  OK   punto obligatorio (a) API keys / secrets:
+  OK   punto obligatorio (b) Formato de config.yaml / SOUL.md:
+  OK   punto obligatorio (c) Pendientes de docs/decisiones/
+  OK   informe dato: v0.21.3
+  OK   informe dato: v0.21.5
+  OK   informe dato: v2026.9.24
+  OK   informe dato: _config_version: 45
+  OK   informe dato: 10969
+  OK   informe dato: #118536
+  OK   informe dato: #118535
+  OK   informe dato: #125107
+  OK   informe dato: #124995
+  OK   informe dato: #125273
+  OK   informe dato: #109841
+  OK   informe dato: 12-oct-2026
+  OK   informe dato: 2609
+  OK   informe dato: 22.22.1
+  OK   informe dato: 23.630
+  OK   informe dato: 1.381.825.660
+  OK   informe veredicto NO actualizar a la .5
+  OK   informe criterio de salida (fecha tope)
+  OK   informe ventana RULE-016 con fecha
+  OK   plan === PLAN DE DECISIÓN Y EJECUCIÓN
+  OK   plan RAMAS DE ESTE PLAN
+  OK   plan RAMA A
+  OK   plan RAMA B
+  OK   plan RAMA C
+  OK   plan PASO 0
+  OK   plan PASO 1
+  OK   plan PASO 2
+  OK   plan PASO 3
+  OK   plan PASO 4
+  OK   plan PASO 5
+  OK   plan PASO 6
+  OK   plan PASO 7
+  OK   plan dato: 264c02dae003
+  OK   plan dato: 1ad89ac018f26a4f21817ebf37bb09f508656d63
+  OK   plan dato: v2026.9.24
+  OK   plan dato: 45 → 46
+  OK   plan dato: backup-hermes-state.sh
+  OK   plan declara NO ejecutado
+  OK   informe declara que no se actualizó nada
+  OK   sin marcadores de relleno explícitos
+
+RESULTADO: OK (52/52 checks) — verificación ad-hoc, no suite verde
+
+================================================================================
+CIERRE DEL CASO (28-sep-2026, 23:24-23:26 CEST)
+================================================================================
+La verificación de arriba (52/52 OK) cubre el INFORME y el PLAN. Estas dos escrituras
+de registro son posteriores y no estaban en su alcance:
+
+1) hermes-lab/docs/pendientes.txt — append de la línea "HERMES UPGRADE (28-sep…)"
+   13.123 -> 15.589 B (aporta 2.466 B) | 30 -> 31 líneas | 0 líneas previas ausentes
+   md5 antes  c7ec48af11da1638e5cf8ec2083cc07a
+   md5 después d3714020e4d8c4171c5d50fcd3fdd374
+   backup: pendientes.txt.bak-20260928-hermes-0215 (13.123 B, md5 c7ec48af…)
+   script: /tmp/append_hermes_2815.py (plantilla append-aditivo.py, skill edicion-aditiva-registros)
+   log:    /tmp/append_hermes_2815.txt
+
+2) Skill hermes-upgrade-analysis — reference NUEVO
+   references/caso-2026-09-28-0215-rule016.md  (4.108 B, md5 fe6fc7ba7ff568af93ed1dab7d61d30c)
+   escrito con skill_manage(write_file) -> queda en el ledger del curador
+   (id ecc6f131c6fe, 2026-09-28T21:24:42Z, skill hermes-upgrade-analysis)
+
+NADA ACTUALIZADO EN EL SISTEMA: v0.21.3 sigue instalada (_config_version 45) y no se ha
+ejecutado ningún comando de actualización, migración ni reinicio. La .5 pierde su ventana
+RULE-016 el 29-sep-2026 a las 12:09 CEST sin que se haya instalado.
