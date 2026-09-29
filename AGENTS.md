@@ -202,8 +202,10 @@ git log -1 --stat --format='%H %s'    # qué entró en el último commit
 - Remotos: `origin` = `/mnt/ssd_ia_datos/hermes-lab.git` (bare **local**, mismo SSD: no
   es copia externa) y `github` = `git@github.com:jokoalmi-ui/joko-lab.git` (SSH). El
   remoto se llama `joko-lab` aunque la carpeta sea `hermes-lab`: es correcto, no un error.
-- Repo: 1035 ficheros sin contar `.git` ni este fichero; 18 RULE activos, 1 de ellos con
-  scope `hermes-lab` (RULE-006).
+- Repo: **el tamano no se copia, se mide**: `git ls-files | wc -l` da los ficheros
+  versionados (263 el 2026-09-29) y `find . -path ./.git -prune -o -type f -print | wc -l`
+  los que hay en disco (1040 esa fecha: `recovery/`, `logs/`, `informes/` y los `*.bak-*`
+  no se versionan). 18 RULE activos, 1 de ellos con scope `hermes-lab` (RULE-006).
 - **Los datos que caducan no se copian: se miden.** Este fichero evita a propósito
   meter a mano el commit de `HEAD` o el número de pendientes; para eso están las órdenes
   de §6.
