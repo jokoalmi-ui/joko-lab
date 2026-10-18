@@ -1,0 +1,33 @@
+id: RULE-014
+type: RULE
+decision_origin: incidente
+status: activo
+version: 1
+created: '2026-09-02'
+last_validated: '2026-09-02'
+next_review: '2026-12-02'
+expires: '2027-03-02'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-09-02T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-12-02T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-09-02T00:00:00Z
+title: "LEC: si existe skill para la tarea, EJECUTARLA (no improvisar desde memoria)"
+desc: >
+  Para tareas recurrentes del lab, consultar SIEMPRE la skill correspondiente
+  y el backlog de 48h antes de actuar (Paso 0 obligatorio). Nunca actuar desde
+  memoria del LLM. Si algo falla, consultar la skill de diagnóstico antes de
+  concluir. Para contenido factual, pasar por el gate de veracidad. Visión de
+  imágenes: GLM local.
+confidence: 0.9
+confidence_label: ALTA
+evidence:
+- 'Corregido varias veces por el usuario: "consulta SIEMPRE skill + backlog 48h antes de actuar"'
+dependencies: [RULE-013]
+contradicts: []
+superseded_by: null
+domain: proceso
+scope: todo_joko_lab

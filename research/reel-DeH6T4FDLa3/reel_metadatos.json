@@ -1,0 +1,42 @@
+{
+  "url": "https://www.instagram.com/reel/DeH6T4FDLa3/",
+  "cuenta": "notfound404.es",
+  "published": "2026-10-05",
+  "leido": "2026-10-09 16:22 CEST",
+  "metricas_visibles": {
+    "likes": 258,
+    "comentarios": 3
+  },
+  "video": {
+    "duracion_s": 58.985,
+    "w": 720,
+    "h": 1280,
+    "codecs": "h264/aac",
+    "bytes": 5156223
+  },
+  "caption": "Affaan Mustafa ganó el hackathon de Anthropic en Nueva York construyéndolo todo con Claude Code, y después subió su configuración entera a GitHub. El repositorio se llama ECC (antes, everything-claude-code): 68 agentes, casi 300 skills y un sistema que aprende de cómo trabajas. Es gratis y se instala con dos comandos dentro de Claude Code: /plugin marketplace add https://github.com/affaan-m/ECC y luego /plugin install ecc@ecc. Mi consejo: no lo instales entero y te olvides, quédate con lo que vayas a usar. ¿Tú lo instalarías entero o prefieres montarte el tuyo? #claudecode #ia #github",
+  "comentarios": [
+    {
+      "user": "cristianrdr76",
+      "texto": "Y?????"
+    },
+    {
+      "user": "abrahamluque89",
+      "texto": "¿Cuál es el motivo de compartir algo que te puede hacer destacar? ..."
+    }
+  ],
+  "contraste_github_20261009": {
+    "repo": "affaan-m/ECC",
+    "estrellas": 275713,
+    "forks": 41150,
+    "licencia": "MIT",
+    "creado": "2026-01-18",
+    "ultimo_push": "2026-10-05",
+    "agents_en_disco": 68,
+    "skills_en_disco": 293,
+    "comandos": 94,
+    "posicion_estrellas_aprox": 16,
+    "web": "https://ecc.tools",
+    "soporte_hermes": "install.sh --profile minimal --target hermes (docs/HERMES-SETUP.md)"
+  }
+}

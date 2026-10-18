@@ -1,0 +1,78 @@
+# Análisis — Curso OpenCode (live, ~2h) en español
+
+**Fecha:** 05-ago-2026
+**Fuente:** https://www.youtube.com/live/aDJNG_f2C3E (curso de Bris en español)
+**Transcripción:** 2026-08-05-transcripcion-youtube4.txt (166 KB, ~2h, 3700 líneas)
+
+---
+
+## Qué es
+
+Curso completo en directo sobre **OpenCode** — la alternativa open source a
+Claude Code. Instructor "Bris" (español). OpenCode: **191K estrellas GitHub**
+(~1000 contribuidores), comparado con Claude Code 140K — "más apoyado por la
+comunidad open source que un proyecto respaldado por una empresa con billones".
+
+## Puntos clave del curso (aplicables al lab)
+
+### 1. Proveedores: 75+ y modelos locales GRATIS
+- OpenCode soporta **más de 75 proveedores** (Anthropic, OpenAI, Google, etc.)
+- **Modelos locales 100% gratis** — se puede enganchar Ollama / LM Studio
+- Plan free de OpenCode Zen incluye: **Pickel, Dixic, Nemotron, North Mini,
+  Laguna, Link, DeepSeek** — modelos gratuitos integrados
+- Al seleccionar modelo se elige "esfuerzo" (razonamiento): más esfuerzo =
+  más lento pero más inteligente, más tokens
+
+### 2. Commands personalizados (comandos)
+- Directorio `.opencode/command/`
+- Estructura: `descripción` + `agente` (build/plan) + `prompt`
+- Ejemplo del curso: comando `/commit` → "genera un commit siguiendo las
+  convenciones del proyecto" con `git diff --staged`
+- **Aplicación al lab:** crear comandos personalizados para los flujos del lab
+  (ej: `/joko-commit` con las convenciones de joko-git-recibos)
+
+### 3. Skills (habilidades)
+- Directorio `.opencode/skill/`
+- Estructura similar a las skills de Hermes: nombre + descripción + prompt
+- El agente las crea solo: "crea una skill a nivel de proyecto para ejecutar
+  los tests" → crea la skill + instala dependencias + verifica
+- **Aplicación al lab:** el concepto de skill de OpenCode = skill de Hermes —
+  el lab ya domina este patrón
+
+### 4. Modelos locales
+- El curso dedica sección a "cómo ejecutar Open Code con modelos en local"
+- Cada vez más importante; útil para tareas donde un modelo local pequeño
+  tiene sentido
+
+---
+
+## Conexión con el lab
+
+| Concepto OpenCode | Equivalente Hermes | Estado |
+|---|---|---|
+| Skills (`.opencode/skill/`) | Skills de Hermes (`.hermes/skills/`) | ✅ Mismo concepto |
+| Commands (`.opencode/command/`) | Skills + crons | 🟡 OpenCode los tiene más simples |
+| 75+ proveedores | DeepSeek + LM Studio | ✅ Suficiente |
+| Modelos locales | LM Studio (GLM, Qwen3) | ✅ Ya integrado |
+| Plan free con modelos | DeepSeek v4-flash | ✅ Ya en uso |
+
+**Conclusión:** el lab NO necesita OpenCode para lo que ya hace Hermes — pero
+si se usa OpenCode como worker de código (anotado en backlog), este curso es
+la referencia de configuración (proveedores, skills, commands).
+
+---
+
+## Ideas aprovechables
+
+1. **Comandos personalizados** — si OpenCode se usa como worker, crear
+   `/joko-commit` con las convenciones del lab (joko-git-recibos)
+2. **Modelos locales gratis** — confirmado que OpenCode soporta LM Studio,
+   alineado con el stack del lab
+3. **DeepSeek gratis en el plan free** — ya lo usamos, validado
+
+## Nota
+
+Curso divulgativo en español, orientado a principiantes de OpenCode. Útil como
+referencia de configuración si se activa OpenCode como worker #1 del lab
+(pendiente en backlog). No requiere acción inmediata — el lab ya tiene el
+concepto de skills implementado con Hermes.

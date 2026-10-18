@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Plantilla Cuaderno Block — Joko Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;700;800&family=Caveat:wght@600&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================
+     FORMATO CUADERNO BLOCK (estilo veriqta)
+     Estructura de 6 bloques verticales:
+     1. Banda superior (marca)
+     2. Título principal (2 líneas, acento de color)
+     3. Barra subtítulo
+     4. Cuerpo central (logos + caja datos + checklist)
+     5. Eslogan
+     6. Fila de pilares (iconos)
+     Espiral de cuaderno a la izquierda + papel crema
+     ============================================ */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background:#EDE4D3;
+    display:flex; justify-content:center; align-items:center;
+    min-height:100vh; font-family:'Open Sans',sans-serif;
+  }
+  .notebook {
+    position:relative;
+    width:1080px; min-height:1440px;
+    background:#FDF8E9;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    border-radius:12px;
+    box-shadow:10px 10px 25px rgba(0,0,0,0.08);
+    padding:55px 50px 55px 95px;   /* izq 95px = zona espiral */
+    overflow:hidden;
+  }
+  /* Perforaciones de la hoja: los agujeros por donde pasan los alambres */
+  .holes {
+    position:absolute; left:58px; top:45px; bottom:45px; width:24px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    z-index:3;
+  }
+  .holes .hole {
+    width:24px; height:13px; border-radius:50%;
+    background:#D9CBA2;
+    border:1px solid rgba(90,70,30,0.25);
+    box-shadow:inset 0 2px 5px rgba(60,45,10,0.45),
+               inset 0 -1px 2px rgba(255,255,255,0.5);
+  }
+  /* Helice real: SVG del alambre que atraviesa los agujeros */
+  #spiral_svg {
+    position:absolute; left:6px; top:45px; width:88px; height:1350px;
+    z-index:5; pointer-events:none;
+  }
+  /* Canto del lomo: da referencia de profundidad al borde de la hoja */
+  .spine {
+    position:absolute; left:0; top:45px; bottom:45px; width:34px;
+    background:linear-gradient(to right,
+      rgba(80,60,20,0.28), rgba(80,60,20,0.10), transparent);
+    border-radius:10px 0 0 10px;
+    z-index:2;
+  }
+  /* ============ BLOQUE 1: Banda superior ============ */
+  .top-band {
+    background:#1e3a8a; color:#fff;
+    text-align:center; padding:14px 20px; border-radius:8px;
+    font-family:'Montserrat'; font-weight:700; font-size:16px;
+    letter-spacing:0.22em; text-transform:uppercase;
+  }
+  /* ============ BLOQUE 2: Título ============ */
+  .title-block { text-align:center; margin:42px 0 8px; }
+  .title-block h1 {
+    font-family:'Special Elite',serif;
+    font-size:74px; line-height:1.06; letter-spacing:-1px; color:#1e3a8a;
+  }
+  .title-block h1 .accent { color:#ea580c; }
+  /* ============ BLOQUE 3: Barra subtítulo ============ */
+  .subtitle-bar {
+    background:#1e3a8a; color:#fff; text-align:center;
+    padding:12px 20px; border-radius:8px; margin:18px 30px 34px;
+    font-family:'Montserrat'; font-weight:700; font-size:18px;
+    letter-spacing:0.08em; text-transform:uppercase;
+  }
+  /* ============ BLOQUE 4: Cuerpo central ============ */
+  .body-grid { display:grid; grid-template-columns:1fr 1fr; gap:30px; margin-bottom:34px; }
+  .logo-box {
+    border:2px dashed #1e3a8a; border-radius:14px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:28px 18px; gap:14px; min-height:240px;
+  }
+  .logo-box .logos { display:flex; gap:20px; font-size:64px; }
+  .logo-box .data-box {
+    border:2px solid #ea580c; border-radius:10px; padding:12px 22px;
+    text-align:center; background:#fff7f0;
+  }
+  .logo-box .data-box .num { font-family:'Montserrat'; font-weight:800; font-size:34px; color:#ea580c; }
+  .logo-box .data-box .lbl { font-size:13px; text-transform:uppercase; letter-spacing:0.08em; color:#333; }
+  .checklist { padding:8px 0 0 10px; }
+  .checklist .item {
+    display:flex; align-items:center; gap:12px;
+    font-size:19px; color:#333; padding:9px 0;
+    border-bottom:1px dashed #d8cfba;
+  }
+  .checklist .item:last-child { border-bottom:none; }
+  .checklist .check {
+    width:26px; height:26px; border-radius:50%; background:#1e3a8a; color:#fff;
+    display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700;
+    flex-shrink:0;
+  }
+  /* ============ BLOQUE 5: Eslogan ============ */
+  .slogan {
+    text-align:center; font-family:'Montserrat'; font-weight:800;
+    font-size:24px; letter-spacing:0.06em; text-transform:uppercase;
+    color:#111827; padding:22px 20px; border-top:3px solid #1e3a8a; border-bottom:3px solid #1e3a8a;
+    margin-bottom:30px;
+  }
+  .slogan .accent { color:#ea580c; }
+  /* ============ BLOQUE 6: Pilares ============ */
+  .pillars { display:grid; grid-template-columns:repeat(5,1fr); gap:14px; }
+  .pillar {
+    text-align:center; padding:16px 8px; border-radius:12px;
+    background:#eef2fb; border:2px solid #1e3a8a;
+  }
+  .pillar .icon { font-size:30px; margin-bottom:8px; }
+  .pillar .label { font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color:#1e3a8a; }
+  /* Footer */
+  .footer {
+    margin-top:30px; text-align:center;
+    font-family:'Caveat'; font-size:26px; color:#333;
+  }
+  .footer .stars { color:#D4A017; letter-spacing:6px; }
+  @media (max-width:900px) {
+    .notebook { width:100%; min-height:auto; padding:40px 20px 40px 60px; }
+    .title-block h1 { font-size:44px; }
+    .body-grid { grid-template-columns:1fr; }
+    .pillars { grid-template-columns:repeat(3,1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="notebook">
+<div class="spine"></div>
+<div class="holes" id="holes"></div>
+  <svg id="spiral_svg" viewBox="0 0 88 1350" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="wireGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#b8b8b8"/>
+        <stop offset="45%" stop-color="#e8e8e8"/>
+        <stop offset="60%" stop-color="#8a8a8a"/>
+        <stop offset="100%" stop-color="#555"/>
+      </linearGradient>
+      <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="1.6"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- BLOQUE 1 -->
+  <div class="top-band">JOKO LAB · PRUEBA DE FORMATO</div>
+
+  <!-- BLOQUE 2 -->
+  <div class="title-block">
+    <h1>PRUEBA DE <span class="accent">FORMATO</span></h1>
+  </div>
+
+  <!-- BLOQUE 3 -->
+  <div class="subtitle-bar">DE PLANTILLA A PRUEBA VISUAL</div>
+
+  <!-- BLOQUE 4 -->
+  <div class="body-grid">
+    <div class="logo-box">
+      <div class="logos">✏️ 📐</div>
+      <div class="data-box">
+        <div class="num">01</div>
+        <div class="lbl">PRUEBA · 07-AGO-2026</div>
+      </div>
+    </div>
+    <div class="checklist">
+      <div class="item"><span class="check">✓</span>Formato cuaderno block</div>
+      <div class="item"><span class="check">✓</span>Espiral de 24 anillas</div>
+      <div class="item"><span class="check">✓</span>Papel crema con grano</div>
+      <div class="item"><span class="check">✓</span>Título con acento naranja</div>
+      <div class="item"><span class="check">✓</span>Checklist con checks</div>
+      <div class="item"><span class="check">✓</span>5 pilares con iconos</div>
+    </div>
+  </div>
+
+  <!-- BLOQUE 5 -->
+  <div class="slogan">MIRA EL FORMATO · NO EL CONTENIDO · <span class="accent">¿TE GUSTA?</span></div>
+
+  <!-- BLOQUE 6 -->
+  <div class="pillars">
+    <div class="pillar"><div class="icon">🎨</div><div class="label">Diseño</div></div>
+    <div class="pillar"><div class="icon">🔤</div><div class="label">Tipografía</div></div>
+    <div class="pillar"><div class="icon">🎯</div><div class="label">Paleta</div></div>
+    <div class="pillar"><div class="icon">🌀</div><div class="label">Espiral</div></div>
+    <div class="pillar"><div class="icon">🖼️</div><div class="label">Render</div></div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer"><span class="stars">★ ★</span> · PRUEBA 07-AGO · <span class="stars">★ ★</span></div>
+</div>
+<script>
+  // Espiral real: 24 perforaciones + helice continua de alambre
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const N = 24, HOLE_X = 64, HOLE_TOP = 45, HOLE_BOTTOM = 1395;
+  const step = (HOLE_BOTTOM - HOLE_TOP) / (N - 1);
+  const ys = Array.from({length: N}, (_, i) => HOLE_TOP + i * step);
+
+  // Perforaciones de la hoja
+  const holes = document.getElementById('holes');
+  for (let i = 0; i < N; i++) {
+    const hole = document.createElement('div');
+    hole.className = 'hole';
+    holes.appendChild(hole);
+  }
+
+  // Helice: cada vuelta sale del agujero i, sobresale por el borde
+  // y entra en el agujero i+1 (arco cerrado que sobresale, vista de frente)
+  const svg = document.getElementById('spiral_svg');
+  for (let i = 0; i < N - 1; i++) {
+    // Sombra del alambre sobre la hoja (profundidad)
+    const sh = document.createElementNS(SVG_NS, 'path');
+    sh.setAttribute('d', `M ${HOLE_X} ${ys[i]} A 30 28 0 0 1 ${HOLE_X} ${ys[i+1]}`);
+    sh.setAttribute('stroke', 'rgba(60,45,10,0.30)');
+    sh.setAttribute('stroke-width', '9');
+    sh.setAttribute('fill', 'none');
+    sh.setAttribute('filter', 'url(#softShadow)');
+    svg.appendChild(sh);
+    // Alambre delantero
+    const p = document.createElementNS(SVG_NS, 'path');
+    p.setAttribute('d', `M ${HOLE_X} ${ys[i]} A 30 28 0 0 1 ${HOLE_X} ${ys[i+1]}`);
+    p.setAttribute('stroke', 'url(#wireGrad)');
+    p.setAttribute('stroke-width', '7');
+    p.setAttribute('fill', 'none');
+    p.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(p);
+  }
+  // Seccion del alambre por DETRAS de la hoja (oscura) dentro de cada agujero
+  for (let i = 0; i < N; i++) {
+    const e = document.createElementNS(SVG_NS, 'ellipse');
+    e.setAttribute('cx', HOLE_X);
+    e.setAttribute('cy', ys[i]);
+    e.setAttribute('rx', 6.5);
+    e.setAttribute('ry', 4.5);
+    e.setAttribute('fill', '#3d3d3d');
+    svg.appendChild(e);
+  }
+</script>
+</body>
+</html>

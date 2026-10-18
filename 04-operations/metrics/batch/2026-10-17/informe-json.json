@@ -1,0 +1,25 @@
+{
+  "ts": "2026-10-17T12:02:50+02:00",
+  "modo": "diario",
+  "id": "informe-json",
+  "runner": "orquestador",
+  "fuente": "/home/jokoalmi/joko-lab/04-operations/reports/20261017-informe-local.txt",
+  "estado": "local_ok",
+  "segundos": 49.37,
+  "exit_code": 0,
+  "stdout": "✅ Local OK (json_valido) en 49.29s. Coste: 0 USD.\n--- SALIDA ---\n{\"fecha\":\"2026-10-17\",\"tests_ok\":false,\"servicios_activos\":3,\"gpu_mem_usado_mb\":8672,\"gpu_temp_c\":72,\"problemas\":[\"GPU sobrecalentada\",\"Tests con hallazgos pendientes\"]}\n",
+  "stderr": "",
+  "ledger": [
+    {
+      "ts": "2026-10-17T12:02:01+02:00",
+      "tarea": "Extrae en JSON estricto (solo JSON, sin markdown ni texto alrededor) un objeto con estas claves exactas: fecha, tests_ok",
+      "tipo": "batch-json",
+      "motor": "local",
+      "intento_local": true,
+      "local_ok": true,
+      "escalo_cloud": false,
+      "motivo": "json_valido",
+      "latencia_s": 49.29
+    }
+  ]
+}

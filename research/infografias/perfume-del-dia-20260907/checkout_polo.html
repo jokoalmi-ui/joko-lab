@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!-- Inyecta el checklist y lo vuelca en <pre id=checkout> para leerlo con --dump-dom -->
+<html lang="es">
+<head><meta charset="UTF-8"><style>html,body{width:1080px;height:1350px;margin:0;padding:0;overflow:hidden;}</style></head>
+<body>
+<iframe id="ficha" src="perfume_del_dia_v5_polo_sport.html" style="width:1080px;height:1350px;border:0;"></iframe>
+<pre id="checkout"></pre>
+<script>
+const out = {};
+function esc(t){ return (t||'').trim().slice(0,140); }
+window.addEventListener('load', function () {
+  const ifr = document.getElementById('ficha');
+  function run() {
+    try {
+      const d = ifr.contentDocument;
+      if (!d || !d.body || !d.querySelector('.pie')) { setTimeout(run, 500); return; }
+      const txt = function (sel) { const el = d.querySelector(sel); return el ? esc(el.textContent) : '(FALTA)'; };
+      out.scrollHeight = d.body.scrollHeight;
+      const pie = d.querySelector('.pie');
+      out.pieBottom = pie ? Math.round(pie.getBoundingClientRect().bottom) : '(FALTA .pie)';
+      out.titulo = txt('h1');
+      out.casa = txt('.casa');
+      out.fecha = txt('.fecha-sep');
+      out.heroDatos = txt('.datos-hero');
+      out.ratingNum = txt('.r-num');
+      out.ratingMeta = txt('.r-meta');
+      out.pirLegend = [...d.querySelectorAll('.pl .not')].map(e=>esc(e.textContent));
+      out.fuentePir = txt('.pir-leyenda .fuente-line');
+      out.inspiracion = txt('.inspiracion p');
+      out.alternativas = [...d.querySelectorAll('.alt-item')].map(e=>esc(e.textContent));
+      out.cita = txt('.cita blockquote');
+      out.citaFuente = txt('.cita .fuente-line');
+      out.pieClima = txt('.pie .clima');
+      out.pieSprays = txt('.pie .sprays');
+      out.qrOK = (d.querySelector('.qr') && d.querySelector('.qr').naturalWidth > 0) ? 'SI' : 'NO';
+      out.fotoOK = (d.querySelector('.frasco-figura') && d.querySelector('.frasco-figura').naturalWidth > 0) ? 'SI' : 'NO';
+      out.pirSVG = d.getElementById('pir3d') ? 'presente' : 'FALTA';
+      // Estrellas
+      out.stars = d.querySelectorAll('.rating-line .stars svg').length;
+    } catch (e) { out.error = String(e); }
+    document.getElementById('checkout').textContent = JSON.stringify(out, null, 1);
+  }
+  run();
+});
+</script>
+</body>
+</html>

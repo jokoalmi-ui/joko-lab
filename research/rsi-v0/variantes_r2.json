@@ -1,0 +1,12 @@
+[
+  {
+    "id": "v0-sin-instruccion",
+    "instr": null,
+    "origen": "referencia en modo razonamiento (think on): el instrumento tal cual."
+  },
+  {
+    "id": "v2-calculo",
+    "instr": "Devuelve solo el objeto JSON. Cuando tengas que convertir una cantidad escrita en palabras a cifra, escríbela como número puro sin separador de millar (por ejemplo, \"doce mil trescientos cuarenta\" se escribe 12340). Cuando tengas que sumar, multiplica cada línea y suma después, sin redondear ni aproximar.",
+    "origen": "misma candidata de la ronda 1, ahora con razonamiento activo: aísla el efecto de la instrucción del efecto del razonamiento."
+  }
+]

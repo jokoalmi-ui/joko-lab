@@ -1,0 +1,1971 @@
+{
+ "meta": {
+  "backend": "stub",
+  "checkpoint": null,
+  "casos": 177,
+  "casos_sha256": "765503df4e84a0a7854e23aa6cbd955f217ff9322815332cbfa1687a0947cddf",
+  "set": "v2",
+  "fichero_casos": "casos_v2_noul.json",
+  "golden_set_sha256": "2a2da99cc7001128f9c58bc2812f78a590f1a13aa34195191dafa01934fbe1d1",
+  "ejecutado": "2026-09-23T19:55:29+02:00",
+  "host": {
+   "python": "Python 3.11.16",
+   "laya": true,
+   "torch": false,
+   "gpu": "NVIDIA RTX A2000 12GB, 10564, 12282, 0",
+   "ollama": [
+    "ibm/granite4.2:8b-q4_K_M",
+    "qwen2.5:7b",
+    "deepseek-r1-distill-qwen-14b:latest"
+   ],
+   "disco_home": "/dev/nvme0n1p2   468G   287G  158G  65% /",
+   "fecha": "mié 23 sept 2026 19:55:29 CEST"
+  }
+ },
+ "metricas_globales": {
+  "n": 177,
+  "accuracy": 0.4746,
+  "brier": 0.4309,
+  "ece5": 0.4367,
+  "ece15_proveedor": 0.4367,
+  "conf_media": 0.8661,
+  "sesgo_conf_menos_acierto": 0.3915,
+  "confiado_y_fallado": 93,
+  "seguro_y_acertado": 76,
+  "p50_ms": 0.0,
+  "p95_ms": 0.0
+ },
+ "metricas_por_bloque": {
+  "A": {
+   "n": 163,
+   "accuracy": 0.4294,
+   "brier": 0.4664,
+   "ece5": 0.4706,
+   "ece15_proveedor": 0.4706,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": 0.4706,
+   "confiado_y_fallado": 93,
+   "seguro_y_acertado": 70,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "B": {
+   "n": 8,
+   "accuracy": 1.0,
+   "brier": 0.0225,
+   "ece5": 0.15,
+   "ece15_proveedor": 0.15,
+   "conf_media": 0.15,
+   "sesgo_conf_menos_acierto": -0.85,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "D": {
+   "n": 6,
+   "accuracy": 1.0,
+   "brier": 0.01,
+   "ece5": 0.1,
+   "ece15_proveedor": 0.1,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": -0.1,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 6,
+   "p50_ms": null,
+   "p95_ms": null
+  }
+ },
+ "metricas_por_subtipo": {
+  "campo_ausente": {
+   "n": 30,
+   "accuracy": 0.0,
+   "brier": 0.81,
+   "ece5": 0.9,
+   "ece15_proveedor": 0.9,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": 0.9,
+   "confiado_y_fallado": 30,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "grounding": {
+   "n": 13,
+   "accuracy": 0.7692,
+   "brier": 0.1946,
+   "ece5": 0.1308,
+   "ece15_proveedor": 0.1308,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": 0.1308,
+   "confiado_y_fallado": 3,
+   "seguro_y_acertado": 10,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "literal": {
+   "n": 30,
+   "accuracy": 1.0,
+   "brier": 0.01,
+   "ece5": 0.1,
+   "ece15_proveedor": 0.1,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": -0.1,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 30,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "memoria": {
+   "n": 6,
+   "accuracy": 1.0,
+   "brier": 0.01,
+   "ece5": 0.1,
+   "ece15_proveedor": 0.1,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": -0.1,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 6,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "negacion": {
+   "n": 15,
+   "accuracy": 0.0,
+   "brier": 0.81,
+   "ece5": 0.9,
+   "ece15_proveedor": 0.9,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": 0.9,
+   "confiado_y_fallado": 15,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "parafrasis": {
+   "n": 30,
+   "accuracy": 1.0,
+   "brier": 0.01,
+   "ece5": 0.1,
+   "ece15_proveedor": 0.1,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": -0.1,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 30,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "soporte_parcial": {
+   "n": 15,
+   "accuracy": 0.0,
+   "brier": 0.81,
+   "ece5": 0.9,
+   "ece15_proveedor": 0.9,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": 0.9,
+   "confiado_y_fallado": 15,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "trampa": {
+   "n": 8,
+   "accuracy": 1.0,
+   "brier": 0.0225,
+   "ece5": 0.15,
+   "ece15_proveedor": 0.15,
+   "conf_media": 0.15,
+   "sesgo_conf_menos_acierto": -0.85,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "valor_vecino": {
+   "n": 30,
+   "accuracy": 0.0,
+   "brier": 0.81,
+   "ece5": 0.9,
+   "ece15_proveedor": 0.9,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": 0.9,
+   "confiado_y_fallado": 30,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  }
+ },
+ "errores": 0,
+ "registros": [
+  {
+   "id": "gen-001",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-002",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-003",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-004",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-005",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-006",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-007",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-008",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-009",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-010",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-011",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-012",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-013",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-014",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-015",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-016",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-017",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-018",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-019",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-020",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-021",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-022",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-023",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-024",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-025",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-026",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-027",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-028",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-029",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-030",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-031",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-032",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-033",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-034",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-035",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-036",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-037",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-038",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-039",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-040",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-041",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-042",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-043",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-044",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-045",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-046",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-047",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-048",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-049",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-050",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-051",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-052",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-053",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-054",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-055",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-056",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-057",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-058",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-059",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-060",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-061",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-062",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-063",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-064",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-065",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-066",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-067",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-068",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-069",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-070",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-071",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-072",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-073",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-074",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-075",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-076",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-077",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-078",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-079",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-080",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-081",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-082",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-083",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-084",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-085",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-086",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-087",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-088",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-089",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-090",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-091",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-092",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-093",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-094",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-095",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-096",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-097",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-098",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-099",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-100",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-101",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-102",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-103",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-104",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-105",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-106",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-107",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-108",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-109",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-110",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-111",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-112",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-113",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-114",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-115",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-116",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-117",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-118",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-119",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-120",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-121",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-122",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-123",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-124",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-125",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-126",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-127",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-128",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-129",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-130",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-131",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-132",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-133",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-134",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-135",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-136",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-137",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-138",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-139",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-140",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-141",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-142",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-143",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-144",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-145",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-146",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-147",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-148",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-149",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "gen-150",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-01",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-02",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-03",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-04",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-05",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-06",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-07",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-08",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-01",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-02",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-03",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-04",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-05",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-06",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-01",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-02",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-03",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-04",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-05",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-06",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-07",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-08",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-01",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-02",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-03",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-04",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-05",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  }
+ ]
+}

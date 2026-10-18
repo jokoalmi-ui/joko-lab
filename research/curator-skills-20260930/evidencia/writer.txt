@@ -1,0 +1,103 @@
+### menciones de las skills tocadas
+9958:2026-09-29 23:04:56,156 WARNING [20260929_230213_5e34ab] agent.tool_executor: Tool skill_manage returned error (0.13s): {"success": false, "error": "operations[0] (patch on 'edicion-aditiva-registros') failed: Could not find a match for old_string in the file\n\nDid you mean one of these sections?\n  27| ## Procedimien
+### curator/curador
+4369:2026-09-28 23:00:50,026 WARNING [20260928_225422_7b7802] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'perfume-del-dia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation.
+4554:2026-09-28 23:09:03,417 WARNING [20260928_230826_a11e68] agent.tool_executor: Tool skill_manage returned error (0.04s): {"success": false, "error": "Refusing background curator patch for skill 'perfume-del-dia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation.
+4593:2026-09-28 23:12:52,008 WARNING [20260928_230826_a11e68] agent.tool_executor: Tool skill_manage returned error (0.17s): {"success": false, "error": "operations[1] (patch on 'bolsa-autonoma') failed: Refusing background curator patch for skill 'bolsa-autonoma': the current SKILL.md content has not been loaded in this re
+4752:2026-09-28 23:18:47,330 WARNING [20260928_231409_6b1a44] agent.tool_executor: Tool skill_manage returned error (0.01s): {"success": false, "error": "Refusing background curator write_file for skill 'hermes-upgrade-analysis': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonom
+4852:2026-09-28 23:23:25,692 WARNING [20260928_232151_14e36c] agent.tool_executor: Tool skill_manage returned error (0.01s): {"success": false, "error": "Refusing background curator patch for skill 'hermes-upgrade-analysis': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous c
+7359:2026-09-29 20:18:35,704 WARNING [20260929_201548_004fa5] agent.tool_executor: Tool skill_manage returned error (0.01s): {"success": false, "error": "Refusing background curator patch for skill 'gate-veracidad': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation. 
+7562:2026-09-29 20:27:26,511 WARNING [20260929_202356_61d141] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'ai-architecture': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation.
+9433:2026-09-29 22:44:14,459 WARNING [20260929_224157_b2b073] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'perfume-ia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation. Run 
+9521:2026-09-29 22:48:17,731 WARNING [20260929_224607_ad9141] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'perfume-ia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation. Run 
+9555:2026-09-29 22:49:08,887 WARNING [20260929_224607_ad9141] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'perfume-ia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation. Run 
+9573:2026-09-29 22:49:25,032 WARNING [20260929_224607_ad9141] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'joko-lab/validacion-instrumentos-medicion': the skill is not curator-managed (created_by=None). User-owned skills are off-limi
+9762:2026-09-29 22:55:59,320 WARNING [20260929_225220_b480ba] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator write_file for skill 'perfume-ia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation.
+9964:2026-09-29 23:05:05,705 WARNING [20260929_230213_5e34ab] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator write_file for skill 'perfume-del-dia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous cura
+9968:2026-09-29 23:05:10,650 WARNING [20260929_230213_5e34ab] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator write_file for skill 'perfume-ia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation.
+10024:2026-09-29 23:07:15,627 INFO hermes_plugins.telegram_platform.adapter: Telegram clarify button resolved (id=4e90c83fa7, choice='Sí: borra `templates/__pycache__/` y anota en la skill que se compruebe el ledger del curador ANTES de crear un fichero en una skill (Recommended)', user=Jokoalmi)
+11263:2026-09-30 07:59:28,572 WARNING [20260930_075730_2a2da5] agent.tool_executor: Tool skill_manage returned error (0.01s): {"success": false, "error": "Refusing background curator patch for skill 'diagnostico-stack-local': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous c
+11846:2026-09-30 08:16:43,523 WARNING [20260930_081345_8bfd11] agent.tool_executor: Tool skill_manage returned error (0.01s): {"success": false, "error": "Refusing background curator patch for skill 'diagnostico-stack-local': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous c
+12238:2026-09-30 08:32:36,664 WARNING [20260930_082853_1bc4c3] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'perfume-del-dia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation.
+12257:2026-09-30 08:33:01,586 WARNING [20260930_082853_1bc4c3] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'perfume-ia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation. Run 
+12506:2026-09-30 09:05:45,474 WARNING [20260930_090308_e79384] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'joko-lab/perfume-del-dia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous 
+14010:2026-09-30 15:15:00,489 WARNING [20260930_151342_c051d8] agent.tool_executor: Tool skill_manage returned error (0.03s): {"success": false, "error": "Refusing background curator patch for skill 'instagram-monitor': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curatio
+### lineas 16:1x
+14375:2026-09-30 16:10:04,449 INFO [20260930_160112_34c627] agent.conversation_loop: API call #24: model=deepseek-v4-flash provider=deepseek in=95366 out=936 total=96302 latency=4.5s cache=94976/95366 (100%) id=ec1788f8-fbdf-46c0-a56a-18d65416ef98
+14376:2026-09-30 16:10:04,584 INFO [20260930_160112_34c627] agent.tool_executor: tool patch completed (0.12s, 1196 chars)
+14377:2026-09-30 16:10:06,735 INFO [20260930_160112_34c627] agent.conversation_loop: API call #25: model=deepseek-v4-flash provider=deepseek in=96804 out=176 total=96980 latency=2.1s cache=96256/96804 (99%) id=22644d0e-ae33-466e-8fa2-2d4b91b35783
+14378:2026-09-30 16:10:06,866 INFO [20260930_160112_34c627] agent.tool_executor: tool patch completed (0.12s, 1009 chars)
+14379:2026-09-30 16:10:08,987 INFO [20260930_160112_34c627] agent.conversation_loop: API call #26: model=deepseek-v4-flash provider=deepseek in=97346 out=240 total=97586 latency=2.1s cache=96768/97346 (99%) id=488489aa-57c2-4ab0-8323-ec335de95669
+14380:2026-09-30 16:10:09,121 INFO [20260930_160112_34c627] agent.tool_executor: tool patch completed (0.12s, 3384 chars)
+14381:2026-09-30 16:10:09,135 INFO [20260930_091918_c56689] agent.conversation_compression: context compression started: session=20260930_160112_34c627 messages=79 tokens=~98,481 model=deepseek-v4-flash focus=None
+14382:2026-09-30 16:10:09,178 INFO [20260930_091918_c56689] agent.auxiliary_client: Auxiliary compression: using deepseek (deepseek-v4-flash) at https://api.deepseek.com/v1/
+14383:2026-09-30 16:10:18,328 INFO __main__: Job '780b1dc488a4' (no_agent): empty stdout — silent run
+14384:2026-09-30 16:10:18,332 INFO cron.scheduler: Cron job '780b1dc488a4' handed to restart-safe worker pid=277756 execution=5dad4e2855b74d8d97e11f5ab78b99a8
+14385:2026-09-30 16:10:18,346 INFO __main__: Job '780b1dc488a4': agent returned [SILENT] — skipping delivery
+14386:2026-09-30 16:10:50,383 INFO hermes_cli.mem_trim: memory trim: reason=messaging gateway housekeeping malloc_trim=1 rss_kib=437052->428976 rss_anon_kib=400092->392016 threads=47 duration_ms=142.6
+14387:2026-09-30 16:11:00,423 INFO [20260930_161100_556214] agent.conversation_compression: context compression done: session=20260930_161100_556214 messages=79->56 rough_tokens=~63,328 awaiting_real_usage=true
+14388:2026-09-30 16:11:00,423 INFO [20260930_161100_556214] agent.conversation_compression: context compression attempt telemetry: {"attempt_id":"a3a910f3c9e342feae30d2b6251de58a","chunk_count":0,"chunking":false,"commit_ms":63,"commit_status":"committed","event":"compression_attempt","fallback_used":false,"session_id":"20260930_161100_556214","split_status":"rotated_committed","total_duration_ms":51288}
+14389:2026-09-30 16:11:02,711 INFO [20260930_161100_556214] agent.conversation_loop: Compression budget rearmed after provider-confirmed recovery: prompt=72,043 < threshold=98,304 (attempts were 1/3)
+14390:2026-09-30 16:11:02,711 INFO [20260930_161100_556214] agent.conversation_loop: API call #27: model=deepseek-v4-flash provider=deepseek in=72043 out=79 total=72122 latency=2.3s cache=26368/72043 (37%) id=2c6da0bd-7ee4-449e-a284-b4059adabc0b
+14391:2026-09-30 16:11:18,438 INFO cron.scheduler: Cron job 'e05be5b13d5f' handed to restart-safe worker pid=278235 execution=3fd09f9e7d08477491c0b5dd5f525173
+14392:2026-09-30 16:11:18,464 INFO __main__: Job 'e05be5b13d5f' (no_agent): empty stdout — silent run
+14393:2026-09-30 16:11:18,486 INFO __main__: Job 'e05be5b13d5f': agent returned [SILENT] — skipping delivery
+14394:2026-09-30 16:11:50,527 INFO hermes_cli.mem_trim: memory trim: reason=messaging gateway housekeeping malloc_trim=1 rss_kib=434088->426464 rss_anon_kib=397128->389504 threads=48 duration_ms=133.9
+14395:2026-09-30 16:12:18,512 INFO cron.scheduler: Cron job '780b1dc488a4' handed to restart-safe worker pid=278719 execution=00f3351f2df94fec8c1c85dcf007a21a
+14396:2026-09-30 16:12:18,549 INFO cron.scheduler: Cron job 'f9f09a489d7e' handed to restart-safe worker pid=278718 execution=30ce7fa505574cb1a20c4cbbc23673e2
+14397:2026-09-30 16:12:18,657 INFO __main__: Job '780b1dc488a4' (no_agent): empty stdout — silent run
+14398:2026-09-30 16:12:18,678 INFO __main__: Job '780b1dc488a4': agent returned [SILENT] — skipping delivery
+14399:2026-09-30 16:12:45,026 INFO [20260930_161100_556214] agent.tool_executor: tool terminal completed (102.30s, 5106 chars)
+14400:2026-09-30 16:12:50,732 INFO hermes_cli.mem_trim: memory trim: reason=messaging gateway housekeeping malloc_trim=1 rss_kib=430384->426392 rss_anon_kib=393488->389496 threads=45 duration_ms=189.2
+14401:2026-09-30 16:12:53,383 INFO [20260930_161100_556214] agent.conversation_loop: API call #28: model=deepseek-v4-flash provider=deepseek in=74015 out=1746 total=75761 latency=8.3s cache=71936/74015 (97%) id=98ca13d7-3566-4059-b1ca-3083ee766d41
+14402:2026-09-30 16:12:53,402 INFO [20260930_161100_556214] agent.tool_executor: tool read_file completed (0.00s, 2344 chars)
+14403:2026-09-30 16:12:53,546 INFO [20260930_161100_556214] agent.tool_executor: tool terminal completed (0.13s, 1347 chars)
+14404:2026-09-30 16:13:07,758 INFO [20260930_161100_556214] agent.conversation_loop: API call #29: model=deepseek-v4-flash provider=deepseek in=76978 out=2875 total=79853 latency=14.2s cache=75264/76978 (98%) id=50364142-235f-4174-a16f-d321e1d58b4c
+### jobs del cron que huelan a curador/skill
+total jobs: 46
+- 6653542a7855 | auditoria-hermes | {'kind': 'interval', 'minutes': 1440, 'display': 'every 1440m'} | 2026-09-29T19:05:47.024940+02:00 | 2026-09-30T19:05:47.024940+02:00
+- 67d5fcc5b69e | informe-diario-joko-lab (LOCAL gpt-oss) | {'kind': 'cron', 'expr': '0 9 * * *', 'display': '0 9 * * *'} | 2026-09-30T09:00:46.039579+02:00 | 2026-10-01T09:00:00+02:00
+- 517fdc280d6f | Hermes version watchdog | {'kind': 'interval', 'minutes': 1440, 'display': 'every 1440m'} | 2026-09-29T19:03:32.500725+02:00 | 2026-09-30T19:03:32.500725+02:00
+- e05be5b13d5f | Founderz Watchdog | {'kind': 'interval', 'minutes': 10, 'display': 'every 10m'} | 2026-09-30T16:11:18.499633+02:00 | 2026-09-30T16:21:18.499633+02:00
+- 264c02dae003 | telegram-watchdog | {'kind': 'interval', 'minutes': 15, 'display': 'every 15m'} | 2026-09-30T16:07:18.272119+02:00 | 2026-09-30T16:22:18.272119+02:00
+- 97b85cb6d48e | Recordatorio pendientes RAG | {'kind': 'cron', 'expr': '0 8 * * *', 'display': '0 8 * * *'} | 2026-09-30T08:01:36.542762+02:00 | 2026-10-01T08:00:00+02:00
+- f9f09a489d7e | session-heartbeat-cli | {'kind': 'interval', 'minutes': 10, 'display': 'every 10m'} | 2026-09-30T16:12:18.859927+02:00 | 2026-09-30T16:22:18.859927+02:00
+- da39a2148b34 | rag-reindex-daily | {'kind': 'cron', 'expr': '0 8 * * *', 'display': '0 8 * * *'} | 2026-09-30T08:02:36.867723+02:00 | 2026-10-01T08:00:00+02:00
+- 174499853a8b | rag-reindex-catchup | {'kind': 'interval', 'minutes': 60, 'display': 'every 60m'} | 2026-09-30T15:27:14.194282+02:00 | 2026-09-30T16:27:14.194282+02:00
+- 9474f6f3d224 | consolidador-sesiones | {'kind': 'cron', 'expr': '30 22 * * *', 'display': '30 22 * * *'} | 2026-09-29T22:31:46.866886+02:00 | 2026-09-30T22:30:00+02:00
+- 40cd94440294 | backup-joko-lab-diario | {'kind': 'cron', 'expr': '15 22 * * *', 'display': '15 22 * * *'} | 2026-09-29T22:16:18.173607+02:00 | 2026-09-30T22:15:00+02:00
+- 1d20246058a8 | Recordatorio datos sueño | {'kind': 'cron', 'expr': '0 9 * * *', 'display': '0 9 * * *'} | 2026-09-30T09:00:46.981335+02:00 | 2026-10-01T09:00:00+02:00
+- ed60eabaa369 | prediction-log-watchdog | {'kind': 'cron', 'expr': '5 22 * * *', 'display': '5 22 * * *'} | 2026-09-29T22:06:16.427816+02:00 | 2026-09-30T22:05:00+02:00
+- 57f986492465 | scan-empleo-diario | {'kind': 'cron', 'expr': '0 19 * * *', 'display': '0 19 * * *'} | 2026-09-29T19:03:47.014682+02:00 | 2026-09-30T19:00:00+02:00
+- c84be4f73b5a | telemetria-observer-diario | {'kind': 'cron', 'expr': '0 22 * * *', 'display': '0 22 * * *'} | 2026-09-29T22:00:45.249431+02:00 | 2026-09-30T22:00:00+02:00
+- f506ec5ad281 | nvidia-suspend-solucion-watchdog | {'kind': 'cron', 'expr': '45 12 * * 1', 'display': '45 12 * * 1'} | 2026-09-28T12:48:44.205430+02:00 | 2026-10-05T12:45:00+02:00
+- 40721dd223cc | lab-health-watchdog | {'kind': 'cron', 'expr': '30 8 * * *', 'display': '30 8 * * *'} | 2026-09-30T08:31:42.914190+02:00 | 2026-10-01T08:30:00+02:00
+- dce8b9d1dfb2 | l2-proposer-daily | {'kind': 'cron', 'expr': '45 8 * * *', 'display': '45 8 * * *'} | 2026-09-30T08:45:42.430375+02:00 | 2026-10-01T08:45:00+02:00
+- fdda01130e7b | perfumes-biblioteca-revision | {'kind': 'cron', 'expr': '0 15 1 * *', 'display': '0 15 1 * *'} | 2026-09-01T09:10:09.405157+02:00 | 2026-10-01T15:00:00+02:00
+- 3d18a82cfd79 | Bolsa autonoma - scan diario EXP-002 | {'kind': 'cron', 'expr': '30 22 * * 1-5', 'display': '30 22 * * 1-5'} | 2026-09-29T22:35:21.722444+02:00 | 2026-09-30T22:30:00+02:00
+- abffcc12711c | kel-revalidacion-diaria | {'kind': 'cron', 'expr': '12 22 * * *', 'display': '12 22 * * *'} | 2026-09-29T22:13:17.222729+02:00 | 2026-09-30T22:12:00+02:00
+- 5d09dad3a028 | prospective-watchdog | {'kind': 'cron', 'expr': '30 9 * * *', 'display': '30 9 * * *'} | 2026-09-30T09:30:51.609331+02:00 | 2026-10-01T09:30:00+02:00
+- 41a1a42060f4 | registrar-hel-diario (EXP-HEL-001) | {'kind': 'cron', 'expr': '35 22 * * *', 'display': '35 22 * * *'} | 2026-09-29T22:35:54.848040+02:00 | 2026-09-30T22:35:00+02:00
+- 2371b6491039 | hel-registro-watchdog | {'kind': 'cron', 'expr': '45 22 * * *', 'display': '45 22 * * *'} | 2026-09-29T22:45:48.878867+02:00 | 2026-09-30T22:45:00+02:00
+- 7b52075a99e5 | watchdog-salud-sistema | {'kind': 'cron', 'expr': '0 */4 * * *', 'display': '0 */4 * * *'} | 2026-09-30T16:00:17.583828+02:00 | 2026-09-30T20:00:00+02:00
+- 73011b42492f | detectar-sin-uso-semanal | {'kind': 'cron', 'expr': '30 12 * * 1', 'display': '30 12 * * 1'} | 2026-09-28T12:31:11.945003+02:00 | 2026-10-05T12:30:00+02:00
+- 90ccaf21e819 | descargador-modelos-inactivos | {'kind': 'cron', 'expr': '*/30 * * * *', 'display': '*/30 * * * *'} | 2026-09-30T16:00:17.661384+02:00 | 2026-09-30T16:30:00+02:00
+- 4d64ff821685 | vigilar-canales-ig | {'kind': 'cron', 'expr': '30 13 * * *', 'display': '30 13 * * *'} | 2026-09-30T13:33:26.756042+02:00 | 2026-10-01T13:30:00+02:00
+- f34ad152832c | detector-perdida-contexto | {'kind': 'interval', 'minutes': 240, 'display': 'every 240m'} | 2026-09-30T15:21:42.724584+02:00 | 2026-09-30T19:21:42.724584+02:00
+- 780b1dc488a4 | watchdog-control-cli | {'kind': 'cron', 'expr': '*/2 * * * *', 'display': '*/2 * * * *'} | 2026-09-30T16:16:18.953560+02:00 | 2026-09-30T16:18:00+02:00
+- 3d3f31933420 | monitor-precios-ia-semanal | {'kind': 'cron', 'expr': '0 9 * * 1', 'display': '0 9 * * 1'} | 2026-09-28T09:02:41.339919+02:00 | 2026-10-05T09:00:00+02:00
+- 8bb360a57419 | investigacion-modelos-locales-semanal | {'kind': 'cron', 'expr': '0 14 * * 1', 'display': '0 14 * * 1'} | 2026-09-28T14:08:41.112428+02:00 | 2026-10-05T14:00:00+02:00
+- c84f8d890630 | vigilar-canales-yt | {'kind': 'cron', 'expr': '15 9 * * *', 'display': '15 9 * * *'} | 2026-09-30T09:15:49.643859+02:00 | 2026-10-01T09:15:00+02:00
+- f2392a2076da | auto-mejora-semanal-hermes | {'kind': 'cron', 'expr': '0 13 * * 1', 'display': '0 13 * * 1'} | 2026-09-28T13:07:16.517498+02:00 | 2026-10-05T13:00:00+02:00
+- 813ae3358e99 | vigilar-yt-outliers | {'kind': 'cron', 'expr': '30 9 * * *', 'display': '30 9 * * *'} | 2026-09-30T09:31:52.053640+02:00 | 2026-10-01T09:30:00+02:00
+- 05de86a93257 | lpa-revision-incidentes-semanal | {'kind': 'cron', 'expr': '30 14 * * 5', 'display': '30 14 * * 5'} | 2026-09-25T14:39:59.870700+02:00 | 2026-10-02T14:30:00+02:00
+- 5119c2e881ad | backup-hermes-diario | {'kind': 'cron', 'expr': '20 22 * * *', 'display': '20 22 * * *'} | 2026-09-29T22:22:16.580505+02:00 | 2026-09-30T22:20:00+02:00
+- fc37ab71e6be | baskepensiones-monitor-semanal | {'kind': 'cron', 'expr': '0 13 * * 1', 'display': '0 13 * * 1'} | 2026-09-28T13:00:57.500681+02:00 | 2026-10-05T13:00:00+02:00
+- 5064fc88538a | vigilar-estructura-skills-semanal | {'kind': 'cron', 'expr': '0 10 * * 2', 'display': '0 10 * * 2'} | 2026-09-29T16:48:26.617550+02:00 | 2026-10-06T10:00:00+02:00
+- b6eba644300d | vigilar-skills-diario | {'kind': 'cron', 'expr': '0 22 * * *', 'display': '0 22 * * *'} | 2026-09-29T22:01:15.065313+02:00 | 2026-09-30T22:00:00+02:00
+- 96cb7b7e9eca | aviso-modelos-locales-novedades | {'kind': 'cron', 'expr': '45 10 * * 1', 'display': '45 10 * * 1'} | 2026-09-28T10:45:56.249499+02:00 | 2026-10-05T10:45:00+02:00
+- 41d9f517c5c8 | watchdog-informes-cron | {'kind': 'cron', 'expr': '0 12 * * *', 'display': '0 12 * * *'} | 2026-09-30T12:00:57.716659+02:00 | 2026-10-01T12:00:00+02:00
+- b536390fd665 | Laya medicion set v3 07:05 | {'kind': 'once', 'run_at': '2026-09-24T07:05:00+02:00', 'display': 'once at 2026-09-24 07:05'} | 2026-09-24T07:09:01.274865+02:00 | None
+- 8717d7fa34ad | pendientes-12-rsi-y-curador | {'kind': 'once', 'run_at': '2026-09-25T12:05:00+02:00', 'display': 'once at 2026-09-25 12:05'} | 2026-09-25T12:07:28.538524+02:00 | None
+- 1d06754e7c9a | Entrenador emocional diario 22:00 | {'kind': 'cron', 'expr': '0 22 * * *', 'display': '0 22 * * *'} | 2026-09-29T22:01:15.850647+02:00 | 2026-09-30T22:00:00+02:00
+- 8bf412ac2ba3 | ficha-perfume-diaria | {'kind': 'cron', 'expr': '5 7 * * *', 'display': '5 7 * * *'} | None | 2026-10-01T07:05:00+02:00

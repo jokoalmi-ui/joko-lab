@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>08 — Productos</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1824px; height: 2310px; }
+  body { position: relative; font-family: 'Open Sans', sans-serif; background: #141414; }
+  .base { position: absolute; inset: 0; width: 1824px; height: 2310px; display: block; object-fit: fill; z-index: 1; }
+  .content { position: absolute; z-index: 2; left: 200px; top: 80px; right: 100px; bottom: 70px; display: flex; flex-direction: column; }
+  .badge { display: inline-block; background: #2D5D62; color: #FDF8E9; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px 34px; border-radius: 999px; margin-bottom: 34px; align-self: flex-start; }
+  h1 { font-family: 'Special Elite', serif; font-size: 118px; font-weight: 700; letter-spacing: -3px; color: #1e1e1e; line-height: 1.02; margin-bottom: 14px; }
+  h1 .accent { color: #2D5D62; }
+  .subtitle { font-family: 'Montserrat', sans-serif; font-size: 40px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: #2D5D62; margin-bottom: 32px; }
+  .loop { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 26px; flex-wrap: wrap; }
+  .lbox { background: #FDF8E9; border: 3px solid #2D5D62; border-radius: 14px; padding: 16px 22px; text-align: center; min-width: 150px; }
+  .lbox .t { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; color: #2D5D62; }
+  .lbox .d { font-family: 'Open Sans', sans-serif; font-size: 16px; font-weight: 600; color: #1A1A1A; margin-top: 3px; }
+  .lbox.hl { background: #2D5D62; border-color: #2D5D62; }
+  .lbox.hl .t { color: #FDF8E9; }
+  .lbox.hl .d { color: #DCE7E8; }
+  .larrow { font-size: 28px; color: #D4A017; font-weight: 800; }
+  .loopcaption { text-align: center; font-family: 'Caveat', cursive; font-size: 30px; font-weight: 600; color: #333333; margin-bottom: 28px; }
+  .prodgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin-bottom: 28px; }
+  .prod { background: rgba(232, 241, 242, 0.55); border: 4px dashed #333333; border-radius: 20px; padding: 24px 30px; }
+  .prod h3 { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #2D5D62; margin-bottom: 14px; border-bottom: 4px dashed #D4A017; padding-bottom: 10px; }
+  .prod ul { list-style: none; }
+  .prod li { font-family: 'Open Sans', sans-serif; font-size: 22px; font-weight: 600; color: #1A1A1A; line-height: 1.35; margin-bottom: 10px; padding-left: 38px; position: relative; }
+  .prod li::before { content: ""; position: absolute; left: 0; top: 9px; width: 14px; height: 14px; background: #2D5D62; border-radius: 3px; }
+  .prod li b { color: #2D5D62; }
+  .iconrow { display: flex; justify-content: center; gap: 16px; margin-bottom: 26px; flex-wrap: wrap; }
+  .ic { font-size: 36px; background: rgba(255,255,255,0.5); border: 3px dashed #333333; border-radius: 14px; padding: 10px 18px; text-align: center; min-width: 110px; }
+  .ic .lbl { display: block; font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700; text-transform: uppercase; color: #1A1A1A; margin-top: 4px; }
+  .dashed-box { border: 4px dashed #333333; border-radius: 26px; padding: 24px 40px; font-family: 'Caveat', cursive; font-size: 40px; font-weight: 600; color: #333333; text-align: center; background: rgba(255,255,255,0.35); }
+  .spacer { flex: 1; }
+  .footer { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #1A1A1A; }
+  .stars { color: #D4A017; font-size: 36px; letter-spacing: 0.35em; }
+</style>
+</head>
+<body>
+  <img class="base" src="hoja-cuaderno-base.png" alt="hoja cuaderno base">
+
+  <div class="content">
+    <!-- ============ CONTENIDO SLIDE 8 ============ -->
+    <span class="badge">Acto 3 · Validación</span>
+    <h1>PRODUCTOS REALES, <span class="accent">APRENDIZAJE REAL</span></h1>
+    <p class="subtitle">El circuito se comprueba en el mundo real</p>
+
+    <div class="loop">
+      <div class="lbox hl"><div class="t">Producto</div><div class="d">uso real</div></div>
+      <div class="larrow">→</div>
+      <div class="lbox"><div class="t">Problema</div><div class="d">fallo real</div></div>
+      <div class="larrow">→</div>
+      <div class="lbox"><div class="t">Principio</div><div class="d">lección</div></div>
+      <div class="larrow">→</div>
+      <div class="lbox"><div class="t">Sistema</div><div class="d">mejorado</div></div>
+    </div>
+    <div class="loopcaption">↻ el conocimiento fluye desde los productos hacia el sistema</div>
+
+    <div class="prodgrid">
+      <div class="prod">
+        <h3>🧴 Perfume IA</h3>
+        <ul>
+          <li>Colección real gestionada con IA</li>
+          <li>3 capas contra alucinaciones</li>
+          <li><b>95%</b> de inventos atrapados</li>
+        </ul>
+      </div>
+      <div class="prod">
+        <h3>🕵️ Forense Digital</h3>
+        <ul>
+          <li>Peritaje de buzones de correo</li>
+          <li>Cadena de evidencia trazable</li>
+          <li>Caso real analizado</li>
+        </ul>
+      </div>
+      <div class="prod">
+        <h3>📈 Bolsa autónoma</h3>
+        <ul>
+          <li>Simulación <b>1.000 €</b> virtuales</li>
+          <li>Patrón en L, salida 10-20%</li>
+          <li>Autocorrección con resultados</li>
+        </ul>
+      </div>
+      <div class="prod">
+        <h3>🧠 Biohacking</h3>
+        <ul>
+          <li>Cognición natural, sin humo</li>
+          <li>Pilares: sueño, ejercicio, nutrición, estrés</li>
+          <li>Medición real: Band 8 Pro + tests</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="iconrow">
+      <div class="ic">📊<span class="lbl">Observabilidad</span></div>
+      <div class="ic">🏁<span class="lbl">Benchmarks</span></div>
+      <div class="ic">🧪<span class="lbl">Experimentos</span></div>
+    </div>
+
+    <div class="dashed-box">No se construye teoría en el vacío: los productos revelan los principios.</div>
+
+    <div class="spacer"></div>
+    <div class="footer">
+      <div class="stars">★ ★</div>
+      slide 08 · productos
+    </div>
+    <!-- ============ /CONTENIDO SLIDE 8 ============ -->
+  </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+id: DEC-001
+type: DEC
+decision_origin: experimento
+status: activo
+version: 1
+created: '2026-07-26'
+last_validated: '2026-07-31'
+next_review: '2026-10-24'
+expires: '2027-01-22'
+confidence: null
+confidence_label: MEDIA
+confidence_origin: legacy
+confidence_status: missing_historical_data
+review_required: true
+label_updated: '2026-08-04'
+evidence:
+- 'EXP-20260726-001: 0/5 tests en tareas de tool_use y chat'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: modelo_ausente
+  baseline: 'Qwen 3.5 9B no disponible en LM Studio ni Ollama'
+  current: 'Verificado 2026-07-31: qwen/qwen3-14b presente (modelo distinto). Qwen 3.5 9B no aparece en ningún proveedor.'
+  last_checked: '2026-07-31'
+history:
+- date: '2026-07-26'
+  event: created
+- date: '2026-07-30'
+  event: migrated_to_ko
+  note: Migrado de formato YAML plano a Knowledge Object v1
+- date: '2026-07-31'
+  event: validated
+  note: Primera validación tras migración a Knowledge Object
+body: "Qwen 3.5 descartado como modelo principal tras 0/5 tests. No usar bajo ninguna circunstancia. Ver [[RULE-004]]."
+legacy_fields:
+  accion: block
+  modelos_afectados:
+  - qwen-3.5-9b
+  - qwen3.5-9b

@@ -1,0 +1,3702 @@
+0:00 Bueno, bienvenidos, bienvenidas. Curso
+0:03 por petición popular de Open Code y
+0:07 seguro que ya os estáis preguntando,
+0:09 pero Bris, ¿qué es esto de Open Code?
+0:11 Pues vamos a explicarlo muy muy rápido
+0:13 porque hoy vamos a aprender un montonazo
+0:15 de cosas. Vamos a hacer un repaso por
+0:18 prácticamente todo lo que podemos hacer
+0:20 con Open Code. Así que sin prisa, pero
+0:23 sin pausa, pero realmente poneros las
+0:27 pilas, entrar con ganas porque vamos a
+0:29 aprender a trabajar con una de las
+0:31 herramientas con inteligencia artificial
+0:33 más impresionantes y más utilizadas de
+0:36 la actualidad. Y si no me creéis o si no
+0:38 lo sabéis, os lo iré demostrando a lo
+0:41 largo de todo el curso. Lo primero que
+0:42 tenemos que entender es qué es esto de
+0:44 Open Code. Seguramente todo el mundo
+0:46 conoce Cloude, todo el mundo conoce
+0:48 Cloud Code, pero seguramente también
+0:51 todo el mundo conoce una de las mayores
+0:53 pegas o uno de los mayores
+0:54 inconvenientes que tiene la gente que
+0:56 quiere utilizar Cloud Code, que no lo
+0:58 sepa es una de las herramientas también
+1:00 más empleadas en el mundo del desarrollo
+1:03 de software orientado también a la parte
+1:06 de inteligencia artificial, ¿vale? Cloud
+1:08 Code, por un lado, tiene un problema o
+1:11 una virtud, según como lo querramos ver
+1:13 y es que únicamente puedes utilizar los
+1:16 modelos de Antropic, Sonet, Opus, en
+1:19 nuevo Fable y por otro lado es una
+1:22 aplicación que únicamente la podemos
+1:24 utilizar bajo una suscripción que
+1:26 comienza en $
+1:30 gastarte el dinero pues claro que ya
+1:33 representa una barrera de entrada, pero
+1:35 todo esto se acaba cuando aparece Open
+1:38 Code. ¿Qué es Open Code? Pues realmente
+1:41 es la alternativa a Cloud Code con dos
+1:44 grandes ventajas. La primera es que es
+1:47 de código abierto. ¿Qué significa de
+1:49 código que sea de código abierto? Que la
+1:51 mantiene la propia comunidad. Nosotros
+1:53 nos vamos a la web oficial de Opencode,
+1:56 opencode.aiai,
+1:58 y nos vamos a su GitHub por aquí y que
+2:01 vemos que es una aplicación de código
+2:03 abierto con su código en GitHub que
+2:05 tiene casi 1000 contribuidores, 1000
+2:09 personas que están ayudando a crear esta
+2:11 grandísima herramienta con inteligencia
+2:13 artificial, que ya os digo que si no la
+2:15 conocíais la vais a querer utilizar y
+2:18 que por otro lado, fijaos, porque esto
+2:20 me explota la cabeza.
+2:24 191,000 estrellas. Es uno de los
+2:28 proyectos de código abierto de GitHub
+2:31 con más apoyo de la comunidad, no de las
+2:34 herramientas con inteligencia
+2:35 artificial, ¿no? De toda la historia de
+2:38 repositorios que tenemos dentro de
+2:40 GitHub. Pero alguien puede pensar ahora
+2:42 mismo, bueno, Brce, pero claro, es que
+2:44 Cloud Code es la más famosa. Tú me estás
+2:47 hablando de Open Code como una
+2:48 alternativa de código abierto gratuita,
+2:52 que ya os contaré también, ya os hablaré
+2:54 de los planes gratuitos, pero vamos a
+2:55 hacer una cosa. Vamos a poner Cloud Code
+3:00 y vamos a poner GitHub. ¿Por qué? Porque
+3:02 una parte de la gente, hala, que me
+3:05 salta aquí un bot. Una parte de la gente
+3:07 dentro de Cloud Code está subida al
+3:11 propio GitHub. Entonces sí, también hay
+3:14 una parte subida, pero eso no significa
+3:17 que Cloud Code sea gratuito. Lo que pasa
+3:19 es que una parte del proyecto es de
+3:21 código abierto y detrás tenemos
+3:24 Antropic, que es una de las empresas de
+3:26 inteligencia artificial más grandes del
+3:28 mundo. Vamos a ver por aquí estrellas
+3:32 140,000.
+3:33 ¿Qué significa? que el proyecto que
+3:37 tiene a una empresa con billones
+3:40 literalmente de dólares está menos
+3:43 apoyado en la comunidad open source que
+3:46 la herramienta que vamos a ver hoy. De
+3:48 ahí ya el primer punto para que tengamos
+3:51 en cuenta que esta herramienta es muy
+3:53 seria, que esta herramienta se utiliza a
+3:56 niveles estratosféricos por toda la
+3:59 comunidad del mundo del desarrollo de
+4:01 software y que esto no es una
+4:02 herramienta que utilicen cuatro frikis
+4:04 ni mucho menos. Así que acordaros,
+4:06 herramienta open source, herramienta
+4:08 gratuita y verdadera alternativa a Cloud
+4:12 Code por diferentes motivos que os voy a
+4:16 ir explicando a lo largo de este curso y
+4:18 que quiero que tengáis en cuenta. ¿Okay?
+4:21 Cuando nos vamos directamente a la
+4:23 herramienta de Open Code, en la página
+4:26 oficial lo que vamos a encontrar es la
+4:28 pequeña descripción para que entendamos
+4:30 muy rápido cómo funciona esta
+4:32 herramienta. Ya vemos la parte
+4:33 instalación, lo veremos muy muy rápido,
+4:35 pero sí que os diría que por lo menos
+4:37 leerla landing porque vais a entender
+4:38 muy bien cuáles son los puntos fuertes,
+4:40 como está diciendo por aquí que fijaos,
+4:43 es el el LSP, hablaremos de él, la
+4:45 multisesión, hablaremos de él, el
+4:47 compartir enlaces, hablaremos de ello,
+4:48 las suscripciones a las a los diferentes
+4:51 proveedores de inteligencia artificial
+4:52 que podemos utilizar, también hablaremos
+4:54 de ellos, haremos un repaso por
+4:56 absolutamente todo, pero también, como
+4:58 siempre os digo, algo muy importante, en
+5:00 el momento que os queréis especializar
+5:01 en una herramienta
+5:03 Ya no solo es tener en cuenta el curso
+5:05 que vamos a hacer hoy, ya no solo tener
+5:07 en cuenta la parte de la landing, sino
+5:09 también tener en cuenta, por supuesto,
+5:11 la documentación. Aquí la tenéis,
+5:13 simplemente la web principal/DCs.
+5:16 No os podéis quejar, la documentación y
+5:18 toda la web está en español. es la mejor
+5:21 forma de entender en profundidad cómo
+5:24 funciona todo. Yo os voy a hablar de un
+5:27 montón de cosas, un montón de cosas que
+5:29 sí que os voy a explicar, que os voy a
+5:31 enseñar, que os voy a decir cómo
+5:32 funciona y os voy a dar ejemplos
+5:34 prácticos. Pero, por supuesto, si
+5:36 queremos ver muy bien en detalle cómo
+5:38 funciona algo, oye, vete a la
+5:41 documentación, lee la documentación, que
+5:43 así es la manera en la que
+5:45 verdaderamente aprendemos. ¿Vale? En el
+5:48 primer momento, yo creo que es una de
+5:51 las primeras cosas que tenemos que
+5:53 entender, sobre todo para la gente que
+5:55 está dando sus primeros pasos. Cuando
+5:56 hablamos de herramientas como Pencode,
+5:59 cuando hablamos de herramientas de
+6:00 codificación con inteligencia
+6:01 artificial, esto no es un chat, esto no
+6:03 es chat GPT donde le pedimos algo, nos
+6:05 da una respuesta, la copiamos y la
+6:07 pegamos. Esto realmente a lo que
+6:09 atiendes al concepto de agente. ¿Qué
+6:11 significa esto? que sí que es una
+6:13 herramienta con inteligencia artificial,
+6:15 pero que tiene dentro herramientas
+6:16 reales para leer, para escribir, para
+6:18 editar, para ejecutar diferentes
+6:20 comandos, para buscar el LSP, que ya os
+6:23 hablaré de él más adelante. Realmente es
+6:25 un bucle de un agente que es capaz de
+6:27 iterarse y es capaz de utilizar
+6:29 inteligencia artificial para construir y
+6:31 realizar diferentes operaciones de
+6:33 desarrollo de software que son capaces
+6:35 de ejecutarse una tras otra de una
+6:37 manera mucho más allá de contestarnos
+6:41 únicamente contexto. ¿Vale? ¿Qué es lo
+6:43 que tenemos? Lo que tenemos es una
+6:45 herramienta en formato TUI. Después
+6:48 veremos más formatos, pero un Twi no
+6:50 deja de ser un text user interface,
+6:53 traducido una interfaz de usuario de
+6:56 texto. Básicamente es una herramienta
+6:58 que instalamos en nuestra terminal. ¿En
+7:01 qué terminales podemos instalarla?
+7:03 Bueno, si nos vamos a la documentación,
+7:05 si nos vamos a la configuración, aquí lo
+7:07 que veremos es que nos da diferentes
+7:09 recomendaciones. Lo podéis ejecutar en
+7:11 cualquier terminal, ¿okay? ¿Qué
+7:13 significa? Que tú, sin más, la manera de
+7:15 instalarlo ya nos dice aquí. Esta es la
+7:17 manera más sencilla si estamos
+7:19 utilizando bash, pero si lo queremos
+7:21 hacer a través de npm, de boom, de pnpm,
+7:26 dearn, lo que sea, es compatible con
+7:29 todos los sistemas operativos. Lo podéis
+7:31 utilizar en cualquier máquina,
+7:34 simplemente lo único que necesitáis es
+7:36 una terminal. ¿Cuál es la terminal que
+7:38 utilizo yo? Pues bueno, desde hace ya,
+7:41 creo que no me equivoco, años, esta es
+7:43 la terminal que yo utilizo. ¿Tenéis que
+7:45 utilizar esta para acabar corriendo Open
+7:47 Code? Para nada. Pero yo os recomiendo
+7:50 esta porque es una terminal que
+7:51 realmente fue capaz de reinventar el
+7:54 concepto de las terminales y encima le
+7:57 añadió inteligencia artificial, que sí
+7:58 que la capa de inteligencia artificial
+8:00 hay que pagar por ella, que es algo que
+8:01 han eliminado no hace mucho, pero que la
+8:04 parte de terminal como tal es
+8:06 superpotente y en muchos casos mejora. a
+8:09 las terminales del sistema que tenemos
+8:11 por defecto en Windows, en Mac, en
+8:12 Linux. También es una aplicación
+8:14 totalmente gratuita. Y sin más, lo que
+8:16 os vais a encontrar cuando acabáis
+8:19 instalando warp o la que queráis es algo
+8:21 así. Básicamente esta es la terminal con
+8:24 la que voy a trabajar yo en la que lo
+8:27 primero que tenemos que hacer es
+8:29 comenzar por instalar sin más open code.
+8:32 Manera de instalar, yo en mi caso lo voy
+8:34 a hacer con el CUR, con bash, ya está,
+8:37 no pasa absolutamente nada. Si tenéis
+8:39 dudas sobre BR, los comandos, qué es
+8:41 bas, que no sé qué, pues también tenéis
+8:43 un curso. Revisáis mi curso y ahí vas a
+8:46 aprender bash en profundidad porque
+8:48 hicimos un curso creo que de hasta 6
+8:50 horas, si no me equivoco. Ahí se habla
+8:52 de cómo funciona la terminal, cómo
+8:54 funciona la línea de comandos y
+8:56 aprendéis a manejar la terminal a nivel
+8:59 mucho más profesional. Pero sin más, lo
+9:01 queréis instalar, bueno, ¿qué hacéis?
+9:03 Copiáis esto o el modo de instalación
+9:05 que querráis. Vení por aquí, lo acabáis
+9:08 pegando y ya está sin más. ¿Qué es esto?
+9:11 En el momento que vengo por aquí y
+9:13 empiezo a pegarlo, pues bueno, se va a
+9:15 instalar. ¿Qué va a hacer? Bueno, yo en
+9:18 mi caso, fijaos, tengo [resoplido] la
+9:20 versión 1189 y justo ha salido la 11810.
+9:25 se acaba de realizar, bueno, sin más una
+9:29 actualización menor. Y en el momento que
+9:31 nosotros ya tenemos instalado todo esto,
+9:35 para acceder a la TI, escribimos Open
+9:38 Code. Ya está. ¿Qué nos va a ocurrir?
+9:43 Tenemos aquí la TUI, esa interfaz de
+9:46 usuario en formato texto, no deja de ser
+9:48 una interfaz de usuario que dista un
+9:50 poquito de escribir las cosas
+9:51 directamente en la línea de comandos de
+9:54 la terminal y nos lo pone un poquito más
+9:56 bonito. ¿Por qué? Porque así es capaz de
+9:58 pintarnos una UI que nos va a entregar
+10:00 más información que únicamente escribir
+10:02 comandos. Ya podemos ver por aquí, pues
+10:04 bueno, nos habla aquí de un modelo, nos
+10:06 dice por aquí el comando con control P,
+10:08 nos dice por aquí unos tips, nos dice
+10:10 por aquí la versión. Vamos a ver cosas
+10:14 muy rápidas para que entendáis de manera
+10:17 directa cómo empezamos a trabajar con
+10:19 Open Code y cómo empezamos a hacer el
+10:21 repaso por cada uno de los comandos que
+10:24 podemos ejecutar desde esta herramienta
+10:26 que nos va a permitir desarrollar y
+10:28 programar nuestras aplicaciones con
+10:30 inteligencia artificial en modo agente.
+10:33 Okay. Vale, en el momento que tenemos
+10:34 esto, vamos a pasar a lo primerito que
+10:38 os quería enseñar. Si ya hemos visto
+10:41 cómo entrar en la aplicación, lo primero
+10:42 que tenemos que hacer es y cómo salimos.
+10:44 Pues bueno, con la barra inclinada
+10:45 tenemos el acceso a los comandos. Si
+10:47 escribís exit sin más os salís fuera. Ya
+10:50 está, no tiene más misterio. También muy
+10:53 importante, si queréis comprobar si está
+10:55 instalado Open Code al principio,
+10:57 queréis ver la versión, ¿porque no os
+10:59 arranca o lo que sea, si no os arranca
+11:01 Open Code, por supuesto, revisar la
+11:04 instalación, volver a abrir la terminal,
+11:06 reiniciar lo que sea, porque ha podido
+11:07 fallar algo en esa primera instalación y
+11:10 hace falta volver a levantar la Shell.
+11:11 En principio vosotros podéis ver si está
+11:14 instalado simplemente escribiendo Open
+11:16 Code o ponéis incluso OpenCode-V.
+11:20 Este es el menos version y así ya podéis
+11:22 ver la versión que se está ejecutando.
+11:24 Simplemente - V o - men- V son los dos
+11:28 formatos que solemos tener en BAS para
+11:30 acabar consultando cuál es la versión.
+11:31 Sin más, vamos otra vez para adentro.
+11:33 Vamos a poner open code. Vamos a entrar
+11:36 por aquí. Vamos a dejar que se vuelva a
+11:37 levantar esta Tui y vamos a ver los
+11:40 comandos más simples que podemos empezar
+11:43 a ejecutar. Esto lo que tenemos aquí sin
+11:45 más es la interfaz de Open Code donde
+11:48 podemos empezar a chatear. Sin más, yo
+11:50 escribo hola. Eh, para que os hagáis una
+11:52 idea, yo estoy o lo he abierto dentro
+11:55 del proyecto de la landing de Moured Pro
+11:57 de la web de la academia. Bueno,
+11:59 simplemente porque quiero que veáis un
+12:01 proyecto real, después crearemos otro,
+12:03 pero ya para interactuar con un proyecto
+12:05 que está levantado. Yo aquí lo que puedo
+12:06 hacer es si escribo hola, esto va a
+12:09 ejecutar un modelo y me dice, "Hola, ¿en
+12:11 qué puedo ayudarte?" Un chat de toda la
+12:13 vida. Si lo habéis arrancado por primera
+12:16 vez es posible que os mande configurar
+12:18 algún modelo. Todo eso lo veremos, pero
+12:20 os quiero comenzar enseñando la parte de
+12:22 la interfaz. En el momento que nosotros
+12:24 levantamos un chat, esto es como si
+12:25 fuera una especie de chat GPT, que
+12:27 quiero abrir otra nueva sesión, escribo
+12:30 barra new. ¿Veis? Aquí ya tengo otra
+12:32 nueva sesión donde ya no tengo el chat
+12:34 de antes. Por otro lado, todo lo que yo
+12:38 vaya escribiendo, voy a volver a poner
+12:40 otra vez aquí el hola. todo el listado
+12:44 de este chat que yo esté levantando
+12:47 dentro de la sesión de la gente, en el
+12:49 caso de que yo me lo quiera copiar,
+12:51 tenemos un comando que es copy. ¿Veis?
+12:53 Esto se copia la transcripción de la
+12:56 sesión. Con esto lo que vais a conseguir
+12:58 es sin más copiar la transcripción. ¿Por
+13:01 qué? porque la queréis acabar pegando en
+13:03 un documento para guardaroslo, para
+13:06 acabar enviándoselo a alguien o lo que
+13:08 sea. Por supuesto, una cosa es copiar y
+13:11 pegar, pero también tenéis la
+13:12 posibilidad de exportarlo. El barra
+13:15 export lo que hace es exportar la sesión
+13:17 directamente. Voy a seleccionarlo. ¿Veis
+13:19 lo que hace aquí? Sin más, me dice, "Ey,
+13:22 inclúyeme la parte de pensamiento,
+13:24 inclúyeme el detail de todas las tools
+13:26 que se fueron ejecutando, la parte de la
+13:28 metadata, incluso el abrir sin grabar si
+13:31 yo lo quiero acabar seleccionando y el
+13:33 nombre del fichero me lo guarda como un
+13:35 mardown y ya está." También podría
+13:38 acabar haciendo eso. Y por supuesto
+13:40 también tenemos incluso, y esto es algo
+13:42 que a mí me gusta bastante, el barra
+13:44 share. ¿Por qué? Porque la sesión
+13:46 también la podemos acabar exportando. La
+13:49 podemos acabar exportando, pero al nivel
+13:52 de que podemos acabar compartiendo
+13:55 directamente la sesión con la que
+13:57 nosotros estamos trabajando para
+13:59 compartirla con el equipo o con una
+14:01 persona que nosotros estemos
+14:02 interesados. Eso realmente es bastante
+14:05 guay. También os quiero hablar del barra
+14:07 help, que es algo muy habitual y que el
+14:10 barrah help realmente lo único que vamos
+14:12 a ver es esto. Pulsa control P para ver
+14:15 los diferentes comandos que están
+14:17 disponibles y acciones en cualquier
+14:19 contexto. Bueno, esta ayuda nos acaba
+14:22 remitiendo a otro tipo de ayuda. No os
+14:24 preocupéis porque veremos justamente
+14:26 también eso. Pero antes de comenzar, lo
+14:30 que yo quiero hacer es hablaros de qué
+14:32 pasa con la sesión. Cuando, por ejemplo,
+14:35 nosotros lo que hacemos es salir de Open
+14:38 Code, hago un barra exit, salgo por aquí
+14:41 y fíjate lo que pasa. La sesión y esto
+14:43 es un título que le da automáticamente
+14:46 Open Code, le he llamado saludo breve
+14:48 porque realmente es que es lo que he
+14:50 hecho. Pero veis esto, Open Code - S6 ta
+14:55 ta ta. Esto que veis aquí, ¿recordáis
+14:58 que nosotros para abrir Open Code
+15:00 lanzamos el comando pen code? Pero si le
+15:02 pasamos por aquí este parámetro - s con
+15:06 este identificador único, lo que
+15:09 haríamos directamente es en el momento
+15:12 que yo copio esto y lo pego por aquí y
+15:15 lo ejecuto, que esto es algo que nos
+15:17 podríamos haber guardado, fíjate lo que
+15:19 ocurre. se va a arrancar directamente
+15:23 en la sesión que habíamos utilizado
+15:26 anteriormente. Fíjate que esto yo ya lo
+15:29 pregunté antes, con lo cual es algo muy
+15:31 útil saber que sí que tenemos la sesión,
+15:34 que podemos copiarla, que podemos
+15:35 exportarla, que podemos compartirla,
+15:38 pero que también podemos volver a ella
+15:40 en el momento que querramos. Una manera
+15:43 de hacerlo es pues nos guardamos este
+15:45 identificador porque queremos ir a esa
+15:47 sesión concreta porque, bueno, yo ya he
+15:49 dejado de trabajar, pero claro, cuando
+15:50 apagues el ordenador o cuando vuelvas a
+15:53 ejecutar Open Code desde cero o lo que
+15:54 sea, esa sesión
+15:56 va a desaparecer porque te va a abrir
+15:58 una sesión de nuevo. En cambio, si tú te
+16:00 guardas ese identificador, pues sin más
+16:02 ya arrancas sí o sí en la sesión en la
+16:05 que tú estabas trabajando o la sesión en
+16:07 la que tú eliges que quieres trabajar.
+16:09 Pero alguien también puede pensar,
+16:11 "Bueno, Bryce, pero claro, eso a mí me
+16:13 parece un rollo. Si me tengo que estar
+16:14 guardando el identificador de la sesión,
+16:17 no pasa nada. Por eso tenemos un comando
+16:19 que es el barra sessions y fíjate lo que
+16:21 pasa. Ta ta ta. Barra sessions. Unas
+16:24 sesiones que tengo yo por aquí y que
+16:26 digo, mira, quiero navegar entre esta
+16:28 sesión y esta sesión. Pues ya está.
+16:31 seleccionas la sesión y ahí realmente lo
+16:33 que tienes es el historial de cada una
+16:36 de las sesiones que ha guardado, por lo
+16:38 menos de las últimas, para que puedas
+16:40 navegar entre ellas. ¿Okay? Entonces
+16:42 también es una forma de hacerlo bastante
+16:44 fácil. Sin más, voy a abrir una nueva
+16:48 terminal porque no quiero cerrar esta
+16:50 por aquí. En este caso, cada herramienta
+16:53 de terminal funciona de una forma. Yo
+16:54 aquí me abro una nueva terminal porque
+16:56 una cosa es estar dentro de la Twi, como
+16:59 estábamos viendo aquí. donde ya tenemos
+17:01 la interfaz de usuario del propio Open
+17:03 Code. Pero por supuesto, más allá del
+17:06 comando Open Code, nosotros iremos
+17:08 viendo a lo largo de este curso
+17:10 diferentes comandos que lanzamos desde
+17:12 la línea de comandos asociada a Open
+17:15 Code. ¿Cuál es el primero que quiero que
+17:17 veáis por aquí? El comando stats. ¿Por
+17:20 qué? Porque por supuesto, en el momento
+17:22 que tenemos una herramienta que es capaz
+17:24 de empezar a ejecutar todas estas
+17:26 llamadas a diferentes modelos de
+17:28 inteligencia artificial, que veremos los
+17:31 gratuitos, pero por supuesto también hay
+17:32 la posibilidad de enganchar modelos de
+17:34 pago. Hay que ver las estadísticas o por
+17:37 lo menos debemos conocer las
+17:38 estadísticas de cómo se está ejecutando
+17:40 por aquí nuestro Open Code. Fíjate, aquí
+17:43 lo que vemos muy rápido. Veremos a lo
+17:45 largo de la clase más comandos para ver
+17:49 en profundidad otro tipo de estadísticas
+17:51 que nos pueden ayudar. Pero fíjate, aquí
+17:53 las tools lo que nos dice es, mira, de
+17:55 mis sesiones de usuario, la mayor parte
+17:59 de las operaciones que ha hecho esta
+18:00 gente ha sido de lectura. Por otro lado,
+18:03 las operaciones de bash, es decir, de
+18:05 lanzar comandos contra la terminal, pues
+18:07 tenemos por aquí un 19%, también el
+18:10 glob, el to right, el right, el rep,
+18:13 diferentes operaciones que nos dice por
+18:15 aquí el porcentaje, porque esto también
+18:16 es bastante útil de cara a conocer cómo
+18:19 estamos utilizando nuestra propia
+18:21 herramienta. Pero antes de nada, claro,
+18:24 hay que ver una cosa y es que vosotros
+18:27 seguramente tenéis que partir desde
+18:29 cero. para enseñaros ya cómo funciona
+18:32 Open Code. Ya visteis que yo ya tengo
+18:34 aquí un modelo que está funcionando, que
+18:37 es el GPT 5 5.6 Luna Fast. Okay. Pero,
+18:42 ¿y cómo puedo empezar a utilizar cada
+18:45 uno de los modelos? Bueno, lo primero
+18:48 que quiero es que me digáis por ahí en
+18:50 comentarios qué modelos os gustan, cuál
+18:53 estáis utilizando para así también ir
+18:55 sabiendo qué es lo que hace la
+18:57 comunidad, ya que muchas veces me
+18:59 preguntáis sobre, ey, BR, ¿qué modelo
+19:01 utilizo? ¿Cuál es mejor? ¿Cuál es peor?
+19:04 La respuesta más corta y creo que una de
+19:07 las mejores es que cada modelo tiene sus
+19:09 pros y sus contras y que, por supuesto,
+19:12 el modelo no es la solución a todos
+19:14 nuestros males. Es mucho más importante
+19:16 saber nosotros mismos cómo sacarle
+19:19 partido a los modelos que no utilizar el
+19:22 modelo mejor, más guapo, más listo y más
+19:26 caro. ¿Qué significa esto? que si no
+19:28 tenemos ni idea de cómo trabajar con los
+19:30 modelos, no va a importar que nosotros
+19:32 paguemos cientos de dólares por utilizar
+19:34 el mejor, ¿okay? Así que eso tenerlo
+19:37 también siempre presente. ¿Vale? Vamos a
+19:40 comenzar con la parte a la hora de
+19:42 entender cómo conectar un proveedor de
+19:44 modelos. Nosotros tenemos que ver cómo
+19:46 podemos empezar a trabajar con los
+19:48 diferentes modelos que nos permite
+19:51 utilizar Open Code. Una de las grandes
+19:55 ventajas de Open Code es que no está
+19:57 limitado a nivel de modelos. Cuando yo
+19:59 hablaba de la alternativa a Cloud Code,
+20:03 realmente cuando pensamos en Cloud Code
+20:05 solo podemos utilizar los modelos de
+20:08 Anthropic, pero una de las grandes
+20:10 ventajas al margen de ser una
+20:12 herramienta prácticamente igual a Cloud
+20:14 Code, Open Code, no se cierra a nivel de
+20:18 proveedor de inteligencia artificial,
+20:20 con lo cual tú puedes utilizar el modelo
+20:22 que te da la gana y entre esos modelos,
+20:25 en realidad lo que tenemos es la
+20:27 posibilidad de utilizar modelos
+20:30 gratuitos. Para ello, lo primero que
+20:32 vamos a hacer es conocer cuáles son esos
+20:34 modelos que ya nos da directamente o
+20:38 esos proveedores o esa posibilidad de
+20:40 conectar modelos que ya nos da
+20:43 directamente la gente de Open Code.
+20:45 ¿Okay? Así que si os vais a la web y os
+20:48 vais por aquí a la parte superior, vais
+20:50 a ver algo que nos dice, por ejemplo,
+20:52 Zen, go, enterprise. Fijaos en lo
+20:56 principal. Vamos a conocer qué es el
+20:59 modo Zen. El modo Zen de Open Code es un
+21:01 modo de pago por uso. Básicamente lo que
+21:04 nos va a permitir es algo así como, "Ey,
+21:07 tú no quieres pagar una suscripción,
+21:09 perfecto, paga por utilizar el modelo
+21:12 según lo utilices. Ya está, fin de la
+21:15 historia. ¿Qué modelos podemos
+21:17 utilizar?" Fíjate, voy a pinchar yo por
+21:18 aquí el empieza con Zen, aunque por aquí
+21:21 podemos leer un montón de información,
+21:23 pero sin más, si le das al empieza por
+21:24 Zen, lo que vais a ver es algo así. los
+21:26 modelos que tiene. No es que tenga unos
+21:28 modelos random, sí tiene algún modelo
+21:31 que es mucho más liviano, mucho más
+21:34 rápido y mucho más barato. Pero por
+21:36 supuesto, si nosotros pagamos por uso,
+21:38 podemos utilizar aquí Fable 5, que en el
+21:41 momento que estamos haciendo este curso
+21:42 es posiblemente uno de los modelos
+21:44 mejores que existen en el mundo. También
+21:47 uno de los modelos más caros. Vemos los
+21:48 de Cloue, vemos los de GPT, vemos por
+21:50 aquí Yemini, Dipsic, GLM, Kimi, que es
+21:54 tan famoso aquí estos últimos días,
+21:56 Mimo, Minimx, bueno, un montón de
+21:59 modelos por aquí que nosotros podríamos
+22:00 acabar habilitando o deshabilitando y
+22:03 que en el momento que nosotros decimos,
+22:04 "Ey, quiero habilitar la facturación",
+22:06 por supuesto, aquí se pone una tarjeta y
+22:08 te van cobrando por uso. Aún así, por
+22:11 favor, que hay modelos gratuitos, calma,
+22:13 que nadie se acelere. Por otro lado, si
+22:15 os vais a la propia web de OpenCode,
+22:18 también lo que vais a acabar encontrando
+22:20 es que hay algo que nos dice por aquí,
+22:22 Go. ¿Qué es esto de Go? Pues go es la
+22:25 parte de suscripción que tiene también
+22:27 Open Code. Nos dice por aquí $ el primer
+22:29 mes y después ya pasa a los $10. Aún
+22:32 así, es importante tener esto en cuenta.
+22:36 Brce, ¿hay que pagar por modelos o no
+22:38 hay que pagar por modelos? Mi manera de
+22:40 ver esto siempre es que, por favor, no
+22:42 os lancéis a pagar. Y sobre todo en este
+22:45 caso Copencode tiene modelos gratuitos
+22:47 que vamos a ver ahora mismo, no os la
+22:48 hacéis a pagar si en realidad aún no
+22:50 sabéis si le vais a sacar partido o si
+22:52 va a ser el servicio por el que queréis
+22:53 acabar pagando. Eso es lo primero y por
+22:56 eso vamos a ver opciones. Pero en el
+22:57 caso de que digáis, bueno, me llevo muy
+23:00 bien con Open Code, quiero acabar
+23:01 también pagando lo que sea. Fijaos que
+23:04 los costes de la utilización de este
+23:06 tipo de modelos, ya veis que es 5 D el
+23:08 primer mes, 10 el resto de meses,
+23:11 comparado con la competencia, con Open
+23:14 AI, con la gente de Antropic, pues
+23:17 realmente es una opción de las más
+23:20 baratas. ¿Por qué? Porque aquí también
+23:23 tenemos que tener en cuenta algo que
+23:24 vemos por aquí, es que esos modelos que
+23:27 entran dentro de la suscripción, fíjate,
+23:30 en muchos casos son modelos, los modelos
+23:33 que se llaman de pesos abiertos,
+23:36 digamos, una especie de open source, los
+23:38 modelos que en la gran mayoría de casos
+23:42 e son modelos chinos y que realmente en
+23:45 la mayoría de casos también son modelos
+23:47 muchísimo más baratos. Tenemos por aquí
+23:49 a Minimax, a Mimo, a Ibisc, a Quen, veis
+23:53 por aquí, ta ta ta. Pues todo este tipo
+23:55 de modelos los podemos utilizar dentro
+23:57 de la suscripción y lo que vamos a
+23:59 lograr con ello es que podemos utilizar
+24:02 modelos muy potentes, modelos de pesos
+24:04 abiertos y que esos 5 $
+24:10 modelos muchísimo más baratos que
+24:12 también una de las quejas principales en
+24:14 la gente que utiliza Open AI, pero sobre
+24:17 todo Anthropic y Cloud Code es que si
+24:19 pagas la suscripción de $ pues la
+24:21 ventilas rapidísimo realmente. Pues
+24:24 bueno, y por otro lado, al margen de
+24:27 estas opciones, por supuesto, también
+24:28 puedes utilizar tus propios modelos. Así
+24:30 que vamos a empezar a entender cómo
+24:32 funciona este enganche de modelos,
+24:35 porque cómo selecciono yo, cuáles son
+24:36 los proveedores que quiero acabar
+24:38 utilizando. Para eso tenemos un comando
+24:40 que es connects, que si vosotros nunca
+24:42 habéis utilizado Open Code, seguramente
+24:45 es de lo primero que vais a tener que
+24:46 hacer, porque vais a tener que
+24:47 seleccionar también cuáles son los
+24:49 proveedores que queréis acabar
+24:50 enganchando y cuál es el modelo que
+24:52 queréis acabar utilizando. Fijaos lo que
+24:54 yo tengo por aquí. Tengo el Open Code
+24:57 CEM.
+24:59 Esto es del propio Pencode y ya nos dice
+25:01 que es recomendado porque dentro del
+25:04 Zen, que si recordáis era el modo de
+25:07 pago por uso, dentro del CEN, que esto
+25:09 es gratuito, repito, también tenemos
+25:12 esos modelos que podemos utilizar sin
+25:14 pagar. Pero, ¿qué he hecho yo en mi
+25:16 caso? Yo, por ejemplo, pago una
+25:19 suscripción a Open AI, a Chat GPT. Igual
+25:22 tú ya la estás pagando, dices, "Jo, qué
+25:24 lástima que yo ya esté pagando una
+25:26 suscripción a Chat GPT, pero a mí me
+25:27 gustaría poder utilizar esos modelos
+25:29 dentro de Open Code, que es la
+25:30 herramienta con la que yo voy programar.
+25:32 Ras, aquí lo tienes. Fíjate que tú
+25:34 puedes acabar enganchándole tu
+25:36 suscripción plus o pro o utilizar un API
+25:40 que tú tienes KHC copilot porque también
+25:42 es una herramienta que estás pagando y
+25:44 que quieres utilizar, le enganchas
+25:46 copilot, que quieres utilizar Anthropic
+25:48 con un API Key, que quieres utilizar
+25:50 Google o por favor lo voy a dejar
+25:54 pulsado para que veáis
+25:57 los proveedores.
+25:59 Hay más de 75 proveedores. Literalmente
+26:02 podéis utilizar la inteligencia
+26:04 artificial que os dé la gana. La que os
+26:07 dé la gana. Soporta todas las del mundo.
+26:10 Y en este curso también vamos a ver
+26:12 incluso cómo podemos ejecutar Open Code
+26:16 con modelos en local, que sabéis que es
+26:17 algo que cada vez está ganando también
+26:19 mucha más importancia. Y si tú tienes
+26:22 una máquina que es capaz de correr
+26:24 modelos locales o si tienes un pequeño
+26:26 modelo local que en realidad sí que
+26:27 tiene sentido para el tipo de actividad
+26:29 que vas a hacer tú, vamos a ver también
+26:32 cómo podemos engancharlo a los modelos
+26:33 locales y eso ya es 100% gratis.
+26:36 Perfecto. En el momento que tú ya
+26:37 seleccionas los proveedores que quieras,
+26:40 por supuesto, no quieres pagar, marcas
+26:42 Open Code y ya está. Si ya tienes alguna
+26:45 suscripción, si quieres probar lo que
+26:46 sea, enganchas la que sea. Realmente lo
+26:49 que va a ocurrir es que según el tipo de
+26:51 proveedor que selecciones, te va a pedir
+26:53 que hagas algo. Igual alguno que abras
+26:55 la web y te autentiques o algo parecido.
+26:57 Claro, en el momento que ya tenemos el
+26:59 proveedor enganchado, lo siguiente que
+27:01 tenemos que hacer es, bueno, ¿y qué
+27:03 modelo quiero acabar yo seleccionando?
+27:06 Pues en función de los proveedores que
+27:09 tú te hayas autenticado o que hayas
+27:12 seleccionado o que hayas configurado, tú
+27:14 ahora mismo te vas a barra models y
+27:17 ahora aquí te van a aparecer todos los
+27:19 proveedores, fíjate. Y aquí ya entran
+27:22 los modelos gratuitos. Dentro de Pencode
+27:25 Zen tenemos todos estos gratuitos. Pick
+27:29 Pickel, Dixic, Nemotron, North Mini,
+27:32 Laguna, Link, todos estos que yo puedo
+27:36 venir por aquí decir, bueno, pues voy a
+27:37 seleccionar sin más este gratuito que es
+27:41 Deepsic y en el momento que tú ya
+27:43 seleccionas, ya te va a pedir cuál es el
+27:45 esfuerzo. ¿Qué es el esfuerzo? Ya sabéis
+27:47 que cuanto mayor esfuerzo le indiquemos
+27:51 realmente va a ser un poquito más lento,
+27:53 pero va a ser entre comillas más
+27:55 inteligente. Pero claro, también va a
+27:57 gastar más tokens y también va a gastar
+28:01 más de esa suscripción. Los modelos
+28:03 gratuitos no quiere decir que tú puedas
+28:05 marcarle un modelo gratuito y que lo
+28:07 vayas a utilizar sin ningún tipo de
+28:09 límite. Bueno, en el momento que tú
+28:11 seleccionas un modelo gratuito, pues
+28:12 está claro que hay límites. Aún así,
+28:15 como puedes ir alternando entre los
+28:17 diferentes modelos gratuitos, pues
+28:18 bueno, puedes estirar bastante esa parte
+28:21 y como son modelos también bastante
+28:23 simples y que no consumen mucho dentro
+28:25 de esta capa gratuita, los puedes
+28:27 utilizar sin bastante miedo. En este
+28:29 caso yo digo, bueno, voy a seleccionar
+28:32 sin más la variante default. Ya está.
+28:35 ¿Qué pasa en este caso? Ya me dice por
+28:37 aquí que el modelo que yo he
+28:38 seleccionado es Dixig V4 flash, que está
+28:41 dentro del plan free y que el proveedor
+28:44 es Open Code Zen dentro de estos planes
+28:47 gratuitos. Yo ahora vengo por aquí,
+28:49 vuelvo a escribir hola y vemos que lo
+28:51 que nos va a acabar contestando es,
+28:52 "Vale, sin más, se pone aquí a razonar,
+28:55 vemos cómo tiene la parte de
+28:57 razonamiento y me dice, ey, el usuario
+28:59 simplemente quiere que diga hola. Hola
+29:01 en español yo tengo que responder, por
+29:03 supuesto, en español." Y lo que tenemos
+29:05 aquí es hola en que te puedo ayudar.
+29:06 Todo esto ya hecho con el modelo
+29:08 gratuito. Ya vemos que el barra models
+29:11 nos vale para seleccionar el modelo. Y
+29:14 si yo quisiera cambiar el esfuerzo a
+29:17 medida que yo voy trabajando, claro,
+29:19 porque vamos a pasar a otro modelo.
+29:22 Vamos a seleccionar un modelo que tenga
+29:24 más variantes. Por ejemplo, voy a
+29:26 seleccionar GPT 5.6 Luna porque yo tengo
+29:28 esa suscripción de Open AI, tengo Luna
+29:31 Fast porque responde muy muy rápido,
+29:33 pero aquí es donde tenemos que empezar a
+29:34 entender. Okay, yo tengo todos estos
+29:37 modelos dentro de Zen, pero fíjate que
+29:41 como yo enganché más proveedores, si
+29:44 llego a ellos, yo enganché copilot, pues
+29:46 yo puedo seleccionar todos los modelos
+29:49 que tengo de Copilot. Yo enganché
+29:51 también, ¿qué más? La suscripción de
+29:53 Open Ei. Aquí tengo los modelos de Open
+29:55 Ei, fíjate. Aquí tengo todos. Voy a
+29:58 seleccionar, como decía antes, el
+30:00 Terrafast. Y aquí tengo más variantes.
+30:03 Lo dejo por defecto, pero tú imagínate
+30:05 que tengo que empezar a trabajar. Y yo
+30:07 estoy currando con este modelo, estoy
+30:09 muy a gusto, pero de repente digo, "Ey,
+30:12 justo lo que yo le voy a pedir ahora,
+30:14 pues necesitaría que este modelo pues
+30:17 hiciera un esfuerzo mayor o lo que sea."
+30:20 Perfecto. ¿Cómo puedo cambiarlo? ¿Qué
+30:22 tendríamos que hacer? volver a
+30:24 seleccionar el modelo, puedo irme a
+30:25 models y dentro de models ya veis que
+30:28 hay una sección reciente para que tú te
+30:30 muevas muy rápidamente muy rápidamente
+30:33 entre los diferentes modelos. Pero si tú
+30:35 lo único que quieres cambiar es esa
+30:36 capacidad de esfuerzo, es esa variación,
+30:39 sin más tienes esto. Tienes un comando
+30:43 que se llama variants. En el momento que
+30:45 pones variants, ya te lanza el pop-up
+30:48 únicamente para modificar la variante.
+30:51 Seleccionas la que te da la gana. Yo
+30:53 estaba ahora aquí en default, pero digo,
+30:55 "Uf, es que con la tarea que voy a hacer
+30:57 ahora necesito nada, máximo esfuerzo."
+31:00 Pues le meto el max, ya está. y después
+31:02 quiero volver a cambiar. Lo vuelvo a
+31:04 hacer por aquí, digo variants y me voy
+31:06 otra vez al default porque ya quiero
+31:08 volver a hacer una tarea que no le va a
+31:10 acabar suponiendo tanta carga. Perfecto,
+31:13 ya vemos cómo empezamos a movernos por
+31:16 aquí. Vale, yo como estaba diciendo
+31:19 antes, aquí lo que abrí es el directorio
+31:22 de la landing page de Moured Pro para
+31:24 que tengamos un proyecto pues bueno, que
+31:26 ya tiene ciertas cosas, ya tiene un
+31:29 montón de ficheros, un montón de
+31:31 configuraciones, un montón de código.
+31:33 Así que lo primero que voy a hacer aquí
+31:35 es m
+31:38 dime la estructura
+31:41 de este proyecto y que se guarda en cada
+31:47 directorio. Sin más pongo esto.
+31:49 Perfecto. Voy a lanzarlo. Se va a poner
+31:51 a pensar. va a empezar a hacer aquí
+31:53 algunas cosas y dentro de unos segundos,
+31:56 en el momento que ya veis cómo empezamos
+31:58 a ver todo lo que ya va haciendo el
+31:59 proyecto, fíjate que en el momento que
+32:01 yo ya le digo, "Ey, dime la estructura",
+32:04 ya me dice, "Voy a contrastar la
+32:05 estructura con el repositorio, empieza a
+32:07 lanzar los diferentes comandos, porque
+32:09 esto es un agente, no únicamente utiliza
+32:11 la IA, sino que también se apoya en los
+32:14 diferentes comandos que él por debajo
+32:16 lanza la terminal, que esa información
+32:18 la lee, la guarda, la interpreta, se la
+32:20 pasa al modelo y sobre todo empieza a
+32:23 leer. Claro, yo estoy utilizando por
+32:25 aquí un modelo que le estoy pidiendo a
+32:27 un modelo no muy listo que es el
+32:29 Terrafas, realmente le estoy pidiendo
+32:31 algo muy complejo que es que se lea todo
+32:34 mi proyecto y que empiece a sacar
+32:35 conclusiones. Vemos como aquí lo que
+32:37 tenemos son las diferentes partes de
+32:40 razonamiento. Mira, va planeando por
+32:42 aquí la estructura, la configuración, la
+32:45 caché y en el momento que acaba dice,
+32:47 "La aplicación está construida con
+32:48 Python Reflex. El código principal está
+32:50 en barra web. los recursos están tal y
+32:53 aquí me va contando absolutamente todo.
+32:55 Bueno, una muy buena respuesta, pero que
+32:58 yo ahora aquí lo que podría pensar es,
+33:00 ostras, y si yo no quiero ver todo este
+33:01 razonamiento porque me parece un poquito
+33:04 más pesado lo que sea. Tenemos un
+33:06 comando que quiero que conozcáis, que es
+33:08 esto que veis aquí, thinking, y me dice,
+33:11 voy a colapsar la parte en la que yo
+33:13 estaba pensando. Vale, entonces aquí ya
+33:15 vemos cómo realmente tendríamos la
+33:18 opción de que nos va a contar menos
+33:20 cosas. Vemos que aquí tiene un más que
+33:22 en el momento que nosotros dije decimos
+33:24 por aquí, "Ey, quiero que lo pandas",
+33:26 vemos que nos va a expandir y que nos
+33:28 puede acabar sacando más información del
+33:31 proceso de razonamiento que va haciendo
+33:33 cada uno de los modelos. Claro, aquí
+33:35 dependiendo del modelo que utilicemos,
+33:37 las capacidades razonadoras que tiene o
+33:39 no, pues ese barra thinking para
+33:41 colapsar o no nos puede interesar más o
+33:44 menos. También un comando que os quiero
+33:46 enseñar yo por aquí ahora también muy
+33:47 rápido es el es el barra stamps. ¿Qué
+33:51 significa el time stamps? Que a medida
+33:53 que se va ejecutando todo esto, nosotros
+33:55 también vamos a tener la información a
+33:58 la hora de lanzar cada uno de los
+34:01 comandos de qué está pasando, cuándo se
+34:03 está ejecutando, en qué momento se está
+34:06 ejecutando y que nosotros también así
+34:07 tengamos un contexto pues un poquito más
+34:10 amplio. ¿Okay? Por supuesto, en el
+34:12 momento que ya se ejecuta todo, ya vemos
+34:14 el tiempo en el que se ha ejecutado. Y
+34:16 creo que aquí es el momento de empezar a
+34:18 hablar sobre la interfaz de usuario,
+34:20 porque es cierto que ya hemos visto
+34:21 algunas cosas, pero no hemos visto
+34:23 realmente todas. Algunas que ya hemos
+34:25 visto, sí, en esta TUI ya estamos viendo
+34:28 el modelo que se está ejecutando y cuál
+34:30 es el proveedor. Perfecto. Pero también
+34:34 teníamos alguna cosa como lo que vemos
+34:35 aquí. Vemos build. Esto es el agente que
+34:39 se está ejecutando. ¿Qué es esto del
+34:41 agente? Pues básicamente nosotros
+34:43 tenemos diferentes tipos de agente
+34:46 creados por defecto dentro de Open Code.
+34:49 El agente Build es el agente que tiene
+34:51 la capacidad de construcción.
+34:53 Básicamente es un agente con la
+34:55 capacidad de sí consultar a la
+34:58 inteligencia artificial, consultar al
+34:59 modelo, pero también la capacidad de
+35:02 ejecutar diferentes herramientas como ha
+35:03 sido leer todo el código de nuestro
+35:05 proyecto y si yo le pidiera que cambiara
+35:07 algo en mi código también lo iba a
+35:10 acabar cambiando. ¿Vale? También hemos
+35:12 visto que algo que nos está avisando por
+35:14 aquí es el control P. Pues bueno, vamos
+35:17 a hacerlo ya que antes no lo mostramos,
+35:20 pero básicamente el control P, que es lo
+35:22 que nos decía la ayuda que teníamos que
+35:24 ejecutar, sin más, aquí lo que nos da es
+35:27 listado de todos los comandos, comandos
+35:30 sugeridos según lo que estamos haciendo,
+35:32 compartir la sesión, cambiar la sesión,
+35:34 una nueva sesión. Vemos comandos para la
+35:36 sesión, todo esto, prompts, agentes,
+35:40 proveedores, system, digamos que está
+35:44 agrupando por el tipo de operación que
+35:46 realiza todos los comandos, básicamente
+35:49 todo lo que podemos hacer con el propio
+35:52 pencode.
+35:53 Realmente yo no utilizo mucho la parte
+35:56 de comandos. ¿Por qué? porque me es más
+35:58 cómodo más que hacer el control P y aquí
+36:02 buscar el comando que yo quiero. Por
+36:04 ejemplo, me pongo a buscar model, me
+36:07 dice switch model. ¿Y qué era este
+36:09 comando? el comando para acabar
+36:11 cambiando de modelo directamente. La
+36:13 gran mayoría de los comandos que yo
+36:15 utilizo los utilizo con el barra porque
+36:17 aquí ya hago el barra models y ya accedo
+36:19 directamente. Es cierto que si lanzáis
+36:22 la paleta de comandos aquí aparece algún
+36:25 comando extra e incluso también os
+36:27 aparecen
+36:29 estas combinaciones de teclas para que
+36:31 directamente ya accedáis a las
+36:33 diferentes capacidades. La nueva sesión
+36:35 pues control Xn. Aún así, yo aquí pongo
+36:39 barra new y ya voy a arrancar una nueva
+36:41 sesión. Esto es la preferencia que
+36:43 tengáis cada uno para acabar utilizando
+36:46 o accediendo a los comandos de una
+36:47 manera o de otra. ¿Vale? ¿Qué más cosas
+36:50 podemos ver por aquí? Voy a hacer el
+36:52 tamaño de letra un poquito más pequeño
+36:54 para que veáis esto. Como yo lo tenía
+36:57 tan tan grande, no se veía esta columna,
+36:59 pero esta columna realmente es bastante
+37:01 útil porque también nos da un poquito
+37:04 contexto de toda la sesión que nosotros
+37:06 estamos ejecutando en este momento en
+37:07 Open Code. nos dice el nombre de la
+37:09 sesión, el saludo breve que veis antes,
+37:11 el contexto nos dice los tokens que
+37:13 hemos gastado, estos 15,000, un 3% de
+37:16 uso de la ventana de contexto, cuánto
+37:19 dinero hemos gastado y si ha cargado
+37:21 algún LSP. ¿Qué es el LSP? Ya vamos a
+37:23 sacarnos esto de encima. LSP significa
+37:26 language server protocol. En Open Code
+37:28 básicamente sirve para que la gente
+37:30 entienda mejor el código que está
+37:32 utilizando. Esto en la gran mayoría de
+37:34 editores de código al final le da como
+37:37 ese contexto de cómo tiene que funcionar
+37:40 el lenguaje concreto. Como yo no estoy
+37:41 trabajando con ningún lenguaje concreto
+37:43 ni estoy en ningún fichero, me está
+37:46 diciendo que los LSPs están
+37:48 deshabilitados y que no está cargando
+37:49 ninguno. Automáticamente, incluso
+37:51 nosotros lo podemos hacer en
+37:52 configuración, va a ir cargando el LSP.
+37:54 Si nosotros estamos trabajando con un
+37:56 fichero de Python, va a acabar creando
+37:58 también este LSP para acabar funcionando
+38:00 muy bien con el propio código para no
+38:03 tener que inventarse nada y entender de
+38:05 una forma mucho mejor con el tipo de
+38:07 código basado en el lenguaje en el que
+38:09 está trabajando. ¿Okay? Entonces, bueno,
+38:11 también veis por aquí toda esta
+38:12 información, también el directorio en el
+38:14 que estoy, la versión y tal. Como yo
+38:16 tenía, si no me equivoco, todo esto así,
+38:19 pues un poquito más grande, no veis esa
+38:21 columna, pero es importante que el
+38:23 número de tokens lo veis por aquí,
+38:25 15,000 por aquí el 3% de la ventana de
+38:29 contexto. sabéis que a medida que se va
+38:31 llenando la ventana de contexto, podemos
+38:34 llegar a un punto en el que directamente
+38:36 tenemos que abrir otra nueva sesión
+38:38 porque se ha llenado de tokens toda la
+38:40 memoria, digamos, que tiene el propio
+38:45 modelo, la capacidad del modelo en esta
+38:47 sesión. Así que atender muy bien a este
+38:49 porcentaje porque ya sabéis que en el
+38:51 momento que se llene la ventana de
+38:53 contexto, el modelo va a olvidar todo lo
+38:56 que tenía al principio y claro, no va a
+38:58 tener, valga la redundancia, ese
+39:00 contexto y se va a empezar a inventar
+39:02 cosas. Así que muy importante también
+39:04 tener en cuenta cómo funciona la ventana
+39:06 de contexto. Aún así, después dentro del
+39:08 curso os daré también ahí diferentes
+39:11 consejos para optimizar el gasto de
+39:13 tokens, la ventana de contexto y
+39:15 diferentes buenas prácticas para que no
+39:18 utilicéis una única sesión y realmente
+39:20 esta sesión no rinda como como debería
+39:23 de rendir. ¿Okay? Entonces, bueno, tener
+39:25 en cuenta que más o menos por ahí
+39:28 podemos ver toda la información que nos
+39:30 da esta interfaz de usuario. Ahora vamos
+39:33 a ver cómo manejamos esta interfaz de
+39:35 usuario. Claro, ya hemos visto algo
+39:38 realmente. Si yo escribo la barra
+39:42 inclinada, ya tenemos acceso a los
+39:44 comandos, pero no es el único carácter
+39:48 especial esta barra lateral. Tenemos
+39:50 otro par de caracteres especiales. El
+39:52 primero que vais a ver es la roba. ¿Qué
+39:56 es la roba? ¿Qué es esto que tenéis por
+39:59 aquí? Pues también tenemos la capacidad
+40:02 por un lado, de acceder
+40:04 a esto que vemos aquí, barra explore
+40:07 barra general.
+40:09 Ya hablaremos de lo que es esto. Estos
+40:11 son diferentes subagentes que tiene
+40:13 creados también el propio Pencode, pero
+40:16 ya veremos el concepto subagente, ya
+40:18 entenderemos qué hace cada uno de estos.
+40:20 De momento no nos vamos a meter ahí,
+40:22 pero para lo que también nos va a
+40:24 servir, la roba es para hacer de
+40:27 referencia a cada uno de los ficheros
+40:29 que nosotros tenemos en nuestro
+40:31 proyecto. Aquí os voy a dar o voy a
+40:33 repetir uno de los consejos que os suelo
+40:36 dar, sobre todo si estáis empezando.
+40:39 Esta es una herramienta orientada a
+40:41 desarrollo con inteligencia artificial.
+40:43 ¿Qué quiere decir? que la gran mayoría
+40:45 de las veces nosotros lo que vamos a
+40:47 estar haciendo es delegando en la
+40:49 inteligencia artificial la capacidad
+40:51 para trabajar con nuestra base de
+40:52 código, pero no vamos a estar nosotros
+40:55 programando o revisando todo. Claro, mi
+40:59 obligación como programador es ser muy
+41:01 pesado con esto y decir que nuestra
+41:04 capacidad y nuestro valor siempre está
+41:06 en nuestro criterio. Es importantísimo
+41:08 que nosotros entendamos que aunque la IA
+41:11 vaya a escribir código por nosotros,
+41:13 nosotros tenemos que entender ese
+41:14 código, nosotros tenemos que leerlo,
+41:17 nosotros tenemos que saber programarlo y
+41:19 nosotros tenemos que saber modificarlo,
+41:20 por supuesto. Y para eso está bien tener
+41:23 siempre un contexto amplio de qué está
+41:25 pasando en nuestro proyecto. ¿OK? Pues
+41:27 para eso me voy a abrir un editor de
+41:29 código. Me da igual el editor de código
+41:31 que habráis. Visual Studio Code, Cursor,
+41:34 eh Antigravity, el que os dé la gana.
+41:37 Pero aquí yo tengo el editor de código y
+41:39 este editor de código realmente está
+41:42 abriendo el proyecto de la landing de
+41:44 Mour Pro, que justamente es el mismo
+41:47 proyecto con el que yo estoy trabajando
+41:50 dentro de Open Code. ¿Por qué? porque
+41:51 así tenemos de manera muy muy rápida,
+41:53 pues bueno, cómo está nuestro proyecto
+41:55 montado, cuáles son todos los ficheros
+41:57 que tiene. Si yo voy a hacer algo con un
+41:59 fichero, también podemos ver aquí
+42:01 rápidamente cómo se ha modificado las
+42:03 cosas que yo estoy haciendo. Y esto para
+42:05 mí, sobre todo si sois personas que
+42:07 estáis estudiando, si sois junior,
+42:09 aunque yo se lo recomendaría a todo el
+42:11 mundo, pero especialmente importante, si
+42:15 estáis comenzando, si no tenéis mucha
+42:17 experiencia, no caigáis en la trampa de
+42:20 empezar pedir a pedirle cosas a la
+42:22 gente, que la gente empiece a ejecutar
+42:24 comandos, empieza a crear ficheros,
+42:26 empieza a añadir líneas y líneas y
+42:27 líneas de código y que vosotros no os
+42:29 enteréis absolutamente de nada de lo que
+42:32 está pasando. Así que por favor consejo
+42:35 tener abierto siempre el editor de
+42:37 código. ¿Por qué? Porque así también
+42:39 puedes ir alternando entre ellos. Que tú
+42:41 utilices una herramienta de IA no
+42:42 significa que tú solo tengas que
+42:44 utilizar una herramienta de IA. Utiliza
+42:46 todas las que tú quieras y si yo quiero
+42:47 tener el editor de código por aquí y me
+42:50 llevo muy bien con Open Code a la hora
+42:52 de desarrollar con e, lo quiero tener
+42:53 también abierto, perfecto. Vale, con
+42:56 esto vuelvo a cuál es el manejo general
+42:58 de esta interfaz de usuario, que yo os
+43:00 decía que el primer comando especial que
+43:03 era la barra inclinada, pero tenemos
+43:05 otro también muy importante que es la
+43:08 Voy a escribir por aquí conf y veis esto
+43:11 barraweb/conf.
+43:12 ¿Qué es esto? en el momento que lo
+43:14 selecciono, pues por supuesto nosotros
+43:16 también podemos hacer referencia a cada
+43:20 uno de los ficheros que tenemos en
+43:22 nuestro proyecto. En barra web
+43:25 tenemos un fichero en este proyecto que
+43:28 se llama conf, que forma parte de mi
+43:29 página web, que aquí tiene pues cosas
+43:31 como diferentes modos de configuración
+43:33 que yo tengo, el número de estudiantes
+43:35 que veis en la web que tenemos aquí,
+43:37 pues 17,000, la versión de la web la
+43:39 tengo puesta por aquí, los precios de
+43:40 los cursos, los cupones, los cambios de
+43:43 divisa. Bueno, es un fichero de
+43:44 configuración de la web de Mour Pro que
+43:47 yo he creado y ya está. ¿Qué pasa si yo
+43:50 ahora vengo por aquí y le digo lo
+43:54 siguiente? Si le doy la
+43:57 siguiente
+43:59 misión
+44:00 a la gente, le voy a decir que quiero
+44:02 que actualice la versión del proyecto de
+44:05 la 12 a la 13. Por supuesto, por
+44:08 supuesto. Importantísimo. Esto es una
+44:10 barbaridad. Por eso somos programadores.
+44:13 ¿Creéis que tiene sentido que yo le pida
+44:16 a un agente que gaste tokens, que gaste
+44:18 capacidad de cómputo, que me vaya
+44:21 cargando y llenando la sesión, porque en
+44:24 realidad lo único que quiero hacer es
+44:27 actualizar la versión de mi proyecto.
+44:30 Oye, si yo quiero cambiar de la 1 2 al
+44:32 13, vengo por aquí, cambio el 13 y ya
+44:34 está. Por es tan importante que nosotros
+44:36 entendamos el código, que sepamos
+44:37 programar, que sepamos leer el código,
+44:39 que entendamos cuál es la estructura de
+44:41 nuestro proyecto. Pero para hacer un
+44:42 ejemplo, sin que se cambie mucho código
+44:44 ni nada, para entender muy bien cómo
+44:47 funciona Open Code, yo voy a venir por
+44:48 aquí y le voy a decir, actualiza la
+44:52 versión del proyecto a la 1.3 y voy a
+44:57 lanzarle esta misión y vamos a ver lo
+45:00 que hace. Pues veis, se pone a pensar y
+45:02 qué hace. Voy a localizar las referentes
+45:04 de versión para actualizar. ¿Y qué hace?
+45:07 Leer bombom/web/
+45:09 no sé cuántos. Y de repente dice, "Ey,
+45:11 ya he dado con lo que yo te decía." ¿Y
+45:15 ahora qué tenemos aquí? Pues se ha
+45:16 cambiado a la 1.3. Por supuesto, yo
+45:19 vengo por aquí y digo, "Ey, vamos a
+45:22 verlo." Ah, mira, OpenCode lo que hace
+45:24 es en el momento que modifica código,
+45:26 por supuesto que nos va a mostrar
+45:28 también el código que ha cambiado. Aquí
+45:30 tenemos sin más un div de nuestro
+45:33 proyecto, el cambio que ha hecho, que ya
+45:35 vemos que lo que ha eliminado es esta
+45:38 línea, la de la versión 1.2 dos y ha
+45:41 añadido porque ha actualizado esta
+45:42 versión, igual que lo vemos aquí abajo
+45:44 porque bueno, simplemente pues ha hecho
+45:46 aquí un cambio de estos caracteres. Ya
+45:49 está. Esto primero es una barbaridad.
+45:53 ¿Por qué? Porque le hemos dicho a
+45:55 nuestro proyecto que cambie algo y que
+45:58 se ponga a buscar en todo el proyecto.
+46:00 Sí, los modelos son rápidos, pero
+46:02 vosotros sabéis la cantidad de tokens.
+46:04 Mira, aquí a lo tonto hemos gastado
+46:06 3,000 tokens solo para pedirle esta
+46:09 chorrada que deberíamos cambiar nosotros
+46:11 a mano, pero ya digo que os estoy
+46:12 haciendo un ejemplo. ¿Vale? Ahora vamos
+46:15 a ver cómo podríamos refinar un poquito
+46:18 más esa actuación y de ahí la
+46:20 importancia de la roba. Yo ya sé como
+46:23 buen programador que donde yo tengo la
+46:25 configuración de mi proyecto es en un
+46:27 fichero que se llama barraconf. Así que
+46:29 le voy a decir @cf.
+46:32 Voy a seleccionar el barracf y le voy a
+46:35 decir
+46:37 el número de estudiantes
+46:40 a 18,000.
+46:43 Hago esto y fíjate lo que va a ocurrir.
+46:46 Yo ya le he indicado sí o sí dónde tiene
+46:50 que buscar. Ha tardado muchísimo menos.
+46:54 Fíjate que esto ya lo ha hecho aquí en 5
+46:56 segundos y antes pues no lo sé, pero ha
+46:59 tardado pues 16.
+47:02 cuando era una tarea de modificar
+47:04 únicamente aquí un carácter. Claro, ya
+47:07 no es que haya gastado 16 segundos
+47:11 frente a los cinco, que ha gastado más
+47:13 tokens y todo esto realmente es
+47:16 capacidad de cómputo y control que
+47:19 nosotros perdemos sobre el proyecto. Si
+47:22 fíjate realmente que si tú ya sabes
+47:25 dónde tiene que tocar, por
+47:26 favor@selecciona
+47:28 y así tú le vas diciendo dónde de verdad
+47:31 el tiene que acabar trabajando, ¿vale?
+47:34 Uno de los comandos especiales, la barra
+47:36 inclinada. Segundo de los comandos
+47:38 especiales, la roba. Tercer de los
+47:40 tercero de los comandos especiales, la
+47:42 admiración. Admiración hacia abajo. En
+47:45 este caso, fijaos lo que pasa cuando yo
+47:49 intento escribir la admiración en mi
+47:50 teclado. Fijaos en el build. Ha cambiado
+47:54 a Shell. ¿Qué significa esto? que yo sin
+47:57 necesidad de salir de Open Code, de la
+48:01 TUI, yo puedo lanzar diferentes comandos
+48:04 en la Shell, diferentes comandos en la
+48:06 terminal, diferentes [resoplido]
+48:08 comandos, como si yo me viniera por
+48:10 aquí, me voy a la terminal sin más, sin
+48:12 tener open code y veis por aquí que me
+48:14 dice un kit status.
+48:17 Esto es un comando que yo muchas veces
+48:18 ejecuto porque quiero ver cuál es un
+48:21 poco el estado del control de versiones,
+48:23 de los ficheros que yo he cambiado o de
+48:25 lo que sea. Claro, imagínate que yo
+48:27 estoy aquí digo, "Bueno, pues ahora
+48:29 quiero ejecutar un git status porque
+48:30 quiero ver algo muy concreto." ¿Qué
+48:32 podríamos hacer? Nos abrimos una nueva
+48:35 pestaña de la terminal, me voy al mismo
+48:37 directorio y vengo por aquí, digo, "Va,
+48:39 pues voy a ejecutar git status." Y me
+48:40 dice, "Ah, mira, se ha modificado el
+48:42 fichero conf." Perfecto. Pero si
+48:45 nosotros escribimos la admiración hacia
+48:46 abajo y aquí escribo git status, sin
+48:50 más, lo que va a hacer es el open code
+48:52 por debajo va a lanzar este comando y
+48:55 aquí lo tenemos. La misma información
+48:57 sin salir de Open Code. El comando puede
+49:00 ser el que nos dé la gana. Escribo un
+49:02 git log eh menos online y -10 para ver
+49:08 los últimos 10 comits en una línea que
+49:10 yo he hecho. Pues aquí los tengo. Eh,
+49:14 puse online y era
+49:18 one line, perdón. [risas]
+49:21 Aquí vemos los últimos 10 comits que yo
+49:23 he hecho. Pues fíjate qué pasa que esto
+49:25 está muy guay porque ya no es solo que
+49:28 yo pueda lanzar este comando sin
+49:30 necesidad de salir de Open Code, es que
+49:32 todo esto que yo estoy haciendo aquí
+49:33 forma parte también ahora del contexto
+49:35 de la sesión donde yo estoy trabajando,
+49:37 con lo cual también es bastante
+49:39 importante. Ya que vemos esta parte,
+49:41 algo que tiene muy guay open code es la
+49:44 propia integración con Git propio
+49:46 control de versiones que él va llenando
+49:49 y va trabajando con él en el momento que
+49:52 nosotros vamos realizando tareas con
+49:54 Open Code. ¿Qué cosas hemos hecho ahora
+49:56 mismo? Pues ya hemos hecho una serie de
+49:58 modificaciones que lo que ya nos están
+50:01 indicando es que nuestro fichero no
+50:03 estaba igual. ¿Recordáis cómo estábamos
+50:06 antes? Aquí ponía 1.2 y aquí antes ponía
+50:09 17,000. Sí, son dos tonterías lo que
+50:11 hemos cambiado, pero quiero que veáis
+50:12 cosas muy muy simples para que entendáis
+50:15 muy bien también cómo funciona.
+50:17 Imagínate que yo de repente digo,
+50:18 "Bueno, en toda esta sesión en la que yo
+50:19 estoy trabajando, quiero ver cómo se ha
+50:21 modificado mi código." Pues uno de los
+50:23 comandos que nos sirven para también
+50:25 utilizar esta integración con Git
+50:29 propio código es el propio DIF. ¿Qué es
+50:32 el DIF? nos dice muy rápidamente el
+50:36 estado de nuestro proyecto a nivel de
+50:37 cambios y nos dice por aquí, mira, lo
+50:40 que ha pasado con tu div es que se ha
+50:42 modificado el web/conf.paciones,
+50:48 bueno, como si ejecutáramos un div sin
+50:50 más en cualquier editor de código, en
+50:53 cualquier sistema de control de
+50:54 versiones. Aquí está utilizando Git y lo
+50:57 estamos viendo. No tenéis ni idea de lo
+50:59 que es Git, por favor. es la herramienta
+51:01 que el 99,999
+51:04 periodo de los desarrolladores tenéis
+51:06 que saber. No es opcional no conocer
+51:08 Git. También tenéis un curso mío de Git
+51:11 de unas 5 o 6 horas. Y vemos por aquí
+51:14 como para poder navegar a través de esta
+51:18 herramienta de div, bueno, aquí tienes
+51:22 el next, cómo nos podemos modificar el
+51:25 switch, el mark, tenemos el tri, el
+51:27 file, lo que sea. Pues bueno, tenemos
+51:29 aquí cada uno de los comandos que nos
+51:30 sirven para explorar este DIF. ¿Qué
+51:32 queremos salir? Escribimos escape y ya
+51:34 está. Pero ya veis qué rápido podemos
+51:36 consultar cuál es el estado de la
+51:38 modificación de nuestro código. Más
+51:40 cositas bastante guay que tenemos como
+51:43 comandos y que nos permiten trabajar con
+51:45 una integración con Git con nuestro
+51:47 proyecto para también poder ir
+51:49 trabajando. Fíjate, tenemos un barra
+51:52 review. ¿Qué review? Nos dice, "Ey, va a
+51:55 revisar los cambios." Perfecto. Tenemos
+51:59 una herramienta que nos ayuda a depurar
+52:02 las propias modificaciones que nosotros
+52:04 estamos realizando. Esto lo que va a
+52:05 hacer es empezar a revisar basándose en
+52:09 los cambios y nos va a dar aquí cierta
+52:11 información. Nos dice, "Ey, lanzo un
+52:13 subagente. Empiezo a revisar un poco con
+52:16 diferentes tareas qué es lo que tengo,
+52:19 qué es lo que se ha modificado." Y aquí
+52:21 nos dice información. Pues mira, se ha
+52:23 modificado Conf a la versión 13, a los
+52:26 estudiantes, no sé qué. Perfecto. Pues
+52:28 bueno, también tenemos una manera de
+52:30 decir, "Ey, cuéntame qué se está
+52:32 modificando, de qué manera se está
+52:34 modificando y si realmente se está
+52:36 haciendo de manera correcta." Así que
+52:38 este comando antes de subir o antes de
+52:41 lanzar los cambios contra la brancha en
+52:43 la que estáis trabajando, de subirlos o
+52:45 de lo que sea, también muy importante,
+52:47 pero también muy importante. Aún incluso
+52:51 diría que más que todo esto es que por
+52:54 supuesto nosotros hemos estado haciendo
+52:56 diferentes cambios, pero ¿qué pasa si yo
+53:00 ahora me doy cuenta que un cambio que yo
+53:02 he hecho con el agente lo quiero
+53:03 deshacer? me doy cuenta y digo, "Buah,
+53:06 esta última tarea en la que trabajé,
+53:08 donde ya os digo que es una tontería, he
+53:10 actualizado los estudiantes de 17,000 a
+53:14 18,000. ¡Ostras, me he equivocado,
+53:17 esto es un cambio tonto que yo voy por
+53:19 aquí, lo cambio a mano y ya está."
+53:21 Realmente cuando estamos desarrollando
+53:23 ya sabéis que se están generando decenas
+53:25 líneas de código, se han modificado
+53:27 unas, se han eliminado otras, se han
+53:30 creado ficheros por el medio, pero digo,
+53:32 uy, me he equivocado, quiero deshacer y
+53:35 me gustaría volver al estado anterior
+53:37 antes de pedirle esto último. Entonces,
+53:40 vengo por aquí y escribo el comando undo
+53:43 y me dice, "Ey, le va a dar para atrás
+53:46 al anterior mensaje. Hago un do y me
+53:50 dice, "Hala, me pongo a trabajar. ¿Qué
+53:52 ha hecho?" Uy, esto aún no lo ha
+53:54 modificado. ¿Por qué? Porque el anterior
+53:56 mensaje no había modificado nada. Vengo
+53:58 por aquí, vuelvo para atrás, lo ha
+54:00 modificado, ¿no? Venga, vuelvo para
+54:03 atrás, lo ha modificado, ¿no? Fijaos que
+54:07 aquí lo que va a pasar es que lo que me
+54:10 va haciendo es revirtiendo, ¿lo ves?
+54:13 Mensajes revertidos. Y aquí yo podría
+54:16 empezar a navegar realmente por cada una
+54:19 de las cosas. Vemos que ya estamos
+54:21 justamente en el momento que nosotros
+54:24 hemos hecho este anterior cambio. Por
+54:27 supuesto, esto trabajando con Git
+54:28 haciendo los comits, ya podemos ir
+54:31 navegando por el propio Git, por
+54:33 supuesto, pero esto es cuando aún no
+54:35 hemos comiteado estos cambios y nos
+54:37 hemos dado cuenta de que queremos acabar
+54:39 cambiando algo. Pues vengo por aquí,
+54:41 ahora sí, lanzo esto y ya estamos en ese
+54:45 mensaje donde yo le decía, "Attualiza el
+54:47 número de estudiantes a 18.000." Ya
+54:48 hemos vuelto a un estado anterior. ¿Qué
+54:51 pasa en mi código? Se ha modificado otra
+54:53 vez a 17,000. Si yo ahora aquí antes de
+54:58 lanzar esto digo, "No, no, yo quiero
+55:01 seguir volviendo hacia atrás, hago otro
+55:03 hundo." Dice, "Ah, aquí hemos vuelto a
+55:06 la 1.2." Pero ahora ya pienso, uy, es
+55:09 que le di para atrás y justamente es que
+55:11 no quería eso, ¿no? En realidad sí que
+55:14 quiero recuperar el cambio. Pues hago
+55:17 esto, redu y el redu realmente, fíjate,
+55:21 volvemos tal la 1.3 y si vuelvo a
+55:23 ejecutar el barra redu,
+55:29 lo que vamos a hacer es volver otra vez
+55:31 a los 18,000 que tenemos por aquí. Ya
+55:33 vemos que nos da muchos mecanismos para
+55:36 trabajar. de manera segura y que
+55:39 nosotros tampoco nos preocupemos en
+55:41 exceso de lo que estamos haciendo, si de
+55:44 verdad tiene capacidades más
+55:46 destructivas, porque más allá del
+55:47 control de versiones, el propio Open
+55:49 Code nos permite ir navegando e ir
+55:52 moviéndonos por todo esto que estamos
+55:54 haciendo. Por supuesto, dentro de estos
+55:56 cambios,
+55:58 aquí tenemos algo que se llama timeline.
+56:01 Uy, ¿qué es esto del timeline? es que
+56:03 nosotros también nos podemos desplazar
+56:05 directamente a lo que ha pasado en cada
+56:09 uno de estos mensajes. Voy a volver por
+56:11 aquí al 1.3 que veíamos por aquí. Fíjate
+56:15 que yo antes empecé a hacer un do, un
+56:17 do, un do, un do. Como yo ya escribiera
+56:21 muchos mensajes, revertía de uno en uno.
+56:23 Pero, ¿qué ha pasado? que si yo me voy
+56:25 al timeline directamente al barra
+56:28 timeline, me voy al mensaje justo en el
+56:31 que yo sé que quiero acabar cambiando
+56:33 algo y digo, mira, quiero acabar
+56:36 revirtiendo desde este mensaje o quiero
+56:38 copiar el mensaje de lo que yo promteé
+56:41 en ese momento o sin más puedo hacer un
+56:43 fork. Esto ya lo veremos un poquito más
+56:45 más hacia delante, pero es crear una
+56:47 nueva sesión de la gente en base a lo
+56:50 que ha pasado en esto, ¿vale? Yo podría
+56:53 acabar seleccionando también con el
+56:54 barra timeline a dónde me quiero ir y
+56:57 ahí empezar a sacar diferentes acciones.
+57:00 Okay, una vez ya tenemos esto, vamos a
+57:03 pasar al concepto de agentes. Ya más o
+57:07 menos hemos visto esto de los agentes,
+57:10 porque ya os he explicado antes que el
+57:12 build este que veis por aquí es un
+57:15 agente. Un agente en este caso build con
+57:18 la capacidad de construir. ¿Qué
+57:21 significa que la gente tenga la
+57:23 capacidad de construir lo que ya hemos
+57:25 visto ahora mismo, que es capaz de leer
+57:27 los ficheros, de lanzar comandos y de
+57:29 escribir en esos ficheros? Puede
+57:31 construir nuestro propio software, pero
+57:34 no es el único agente que tenemos por
+57:37 defecto, porque lo que tenemos son dos
+57:41 grandes grupos de agentes. Por un lado,
+57:44 los agentes primarios y, por otro lado,
+57:46 los agentes secundarios. También
+57:49 importante y hago aquí una pequeñita
+57:51 pausa. Os estoy contando un montón de
+57:54 cosas y esto es cierto que puede sonar a
+57:58 que hay mucha información, que no es tan
+58:02 fácil trabajar con ella, entenderla.
+58:06 Voy a escudarme en el concepto que os
+58:08 estoy o que os quiero empezar a explicar
+58:10 ahora, que es justamente la parte de
+58:12 agentes. nos vamos a la documentación y
+58:15 por supuesto igual que yo os empecé a
+58:17 hablar de la TUI, del modo Zen, de las
+58:21 herramientas, de lo que sea, pues hay
+58:22 una sección que dice agentes y aquí
+58:25 tienes documentación a muerte para que
+58:28 tú puedas aprender con un detalle
+58:32 mucho más al al milímetro, mucho más en
+58:35 detenimiento cómo funciona todo lo que
+58:38 tiene que ver con los agentes. ¿Okay?
+58:40 Así que por favor, el curso ayuda, el
+58:43 curso espero que os sirva de mucha
+58:46 utilidad, pero la documentación siempre
+58:49 tiene que estar presente porque ahí, por
+58:50 ejemplo, lo que yo os voy a explicar
+58:52 ahora, la parte de agentes primarios,
+58:54 secundarios, por supuesto, todo eso
+58:55 también se explica. ¿Okay? Vale, tenemos
+58:57 el agente que ya hemos conocido, que ya
+58:59 hemos utilizado, que es el agente build,
+59:02 pero si escribimos barra podríamos decir
+59:05 agents switch agent. y me dice, "Ah,
+59:08 mira, tengo el agente build, pero
+59:11 también tengo el agente plan." En el
+59:14 momento que yo selecciono el plan, vemos
+59:15 lo que hace por aquí. Plan
+59:19 aparece. Y ahora podemos empezar a
+59:21 pensar, bueno, claro, ¿qué es el agente
+59:23 plan? Lo primero que os quiero decir es
+59:24 que si pulsáis el tabulador
+59:27 vemos que ya cambiamos directamente.
+59:30 Esto es bastante útil porque aunque lo
+59:32 podéis hacer con el comando eh con el
+59:35 comando agents, que tampoco es que
+59:36 cueste tanto escribir los comandos, lo
+59:39 podemos cambiar superrápido. ¿Por qué?
+59:41 Porque trabajar con estos dos agentes de
+59:44 la manera adecuada es super importante.
+59:46 Primero, porque el agente build es el
+59:48 que tiene el acceso a todas las
+59:50 herramientas. es el agente por defecto,
+59:52 pero el agente plan tiene también todo
+59:54 el sentido del mundo porque es el agente
+59:58 que en realidad únicamente te va a
+1:00:01 responder, que va a analizar y que va a
+1:00:04 proponer un plan de trabajo, pero que en
+1:00:07 ningún momento va a escribir en
+1:00:08 ficheros. ¿Qué significa? que tú con el
+1:00:11 plan lo que hace es, claro, tú le pides
+1:00:15 un plan, imagínate que yo me quiero
+1:00:16 poner a desarrollar algo muy muy
+1:00:19 concreto. escribo el prom, no sé qué
+1:00:22 tal, pero digo, bueno, claro, no la
+1:00:24 quiero liar porque sé que lo que voy a
+1:00:26 promptear aquí va a empezar a crear
+1:00:29 muchos ficheros, a destruir otros, a
+1:00:31 generar mucho código y mi prompt es
+1:00:35 perfecto, con lo cual quiero que ese
+1:00:37 prompt se planifique, que la gente
+1:00:39 entienda bien qué es lo que tiene que
+1:00:41 hacer, que me pregunte si tiene dudas y
+1:00:44 que una vez esté planificado todo, yo
+1:00:46 incluso pueda leer ese plan, pueda
+1:00:49 corregir ese plan y en el momento que yo
+1:00:53 ya tengo todo correcto, que yo digo,
+1:00:54 "Vale, este es el plan de actuación."
+1:00:56 Esto es como decir, "Sí, la gente va a
+1:00:59 pensar, pero yo quiero que pienses de
+1:01:01 manera extra." Es algo así como que no
+1:01:03 se trata directamente de empezar a hacer
+1:01:06 cosas a lo loco, sino que necesitamos
+1:01:08 esa capa de planificación para hacer las
+1:01:10 cosas con más sentido y que los
+1:01:12 resultados sean mejores y sobre todo
+1:01:14 también a la hora de acabar
+1:01:18 obteniendo sí mejores resultados, pero
+1:01:21 en ese proceso refinando también toda
+1:01:24 esa utilización, perdón, de tokens.
+1:01:28 ¿Okay? ¿Por qué? Porque no es lo mismo
+1:01:30 decirle, "Ey, modo build, haz todo
+1:01:33 esto." Y se va a poner a destrozar todo
+1:01:35 nuestro proyecto, que decir, "No, mira,
+1:01:37 primero voy a pedirle un modo plan, voy
+1:01:40 a corregir muy bien qué es lo que quiero
+1:01:42 y en el momento que ya lo tengo, pues ya
+1:01:45 te digo, perfecto, ahora ponte a
+1:01:47 actuar."
+1:01:48 Okay, imagínate que yo ahora le digo al
+1:01:51 modo plan, quiero crear una nueva
+1:02:00 página para mi plataforma
+1:02:04 que muestre
+1:02:06 m
+1:02:08 el roadmap
+1:02:11 en modo de grafos. Bien, es por decir
+1:02:17 cualquier cosa, pero voy a lanzar este
+1:02:19 modo plan y vamos a ver qué es lo que
+1:02:21 pasa. Y me dice, bueno, voy a buscar la
+1:02:22 página de roap, las rutas, los patrones,
+1:02:25 bla bla bla y vamos a ver lo que ocurre
+1:02:27 realmente para que veáis que el modo
+1:02:29 plan tiene todo el sentido en el momento
+1:02:32 que nosotros queremos planificar, pero
+1:02:34 que no queremos que ejecute ese plan.
+1:02:37 Vamos a darle un rato y vamos a entender
+1:02:40 también qué es algo que deberíamos haber
+1:02:42 hecho. Veis que yo lo estoy corriendo
+1:02:44 con el modo fast. Cuando me habláis de
+1:02:47 Brce y qué modelos utilizamos, ¿es mejor
+1:02:49 uno? ¿Es mejor otro? Yo podría pensar,
+1:02:51 claro, debería haber utilizado este
+1:02:53 modelo o debería haber utilizado otro.
+1:02:55 Debemos entender muy bien para qué es
+1:02:57 bueno cada uno de los modelos. El modelo
+1:02:59 que estoy utilizando yo es porque es
+1:03:00 rápido, porque no quiero gastar mucho y
+1:03:02 porque estamos con ejemplos muy simples.
+1:03:04 Pero en el momento que nosotros
+1:03:05 desarrollamos ya de manera profesional,
+1:03:08 si nosotros queremos lanzar el modo plan
+1:03:09 y le voy a pedir algo muy complejo,
+1:03:12 seguramente lo mejor que yo puedo acabar
+1:03:15 haciendo es diciéndole, "Ey, cuidado. Lo
+1:03:19 mejor que tú puedes acabar haciendo es
+1:03:20 utilizar un modelo mucho más
+1:03:23 inteligente, igual más caro realmente.
+1:03:26 Pero es que quiero que el modo plan lo
+1:03:27 planifiques muy bien. ¿Qué podría hacer
+1:03:29 yo aquí? Pues ya que estoy con GPT,
+1:03:31 podría cambiar a Sol o podría cambiar a
+1:03:33 Opus o podría cambiar a Fable o lo que
+1:03:35 sea. Por eso tenéis que tener también
+1:03:37 siempre en mente cuáles son los modelos
+1:03:39 a los que podéis acceder y qué puede
+1:03:43 hacer cada modelo, cuáles son sus puntos
+1:03:45 fuertes y sus puntos débiles. Buscar
+1:03:47 ranking de modelos, buscar la
+1:03:49 documentación y la información de los
+1:03:50 modelos y entender en cada caso qué
+1:03:54 modelo es mejor que otro. Okay. Así que
+1:03:57 siempre, siempre presente cuándo debemos
+1:04:01 utilizar, cuándo debemos utilizar otro.
+1:04:03 Vale, ya tenemos esto. Dice, "Bueno,
+1:04:05 existe una página roadmap", dice, "Para
+1:04:07 crear la página solicitada necesito
+1:04:09 decidir la ubicación." Claro, esto el
+1:04:12 modo agente se pone a tomar decisiones y
+1:04:14 empieza a hacer lo que él estima. En
+1:04:16 este caso, como estamos planificando, ya
+1:04:19 me está diciendo aquí, aunque yo incluso
+1:04:20 le podría decir, "Ey, hazme todas las
+1:04:22 preguntas que sean necesarias o lo que
+1:04:23 sea." Esto no ha destruido absolutamente
+1:04:25 nada, pero me ha dado opciones. Me ha
+1:04:28 dicho, "Mira, podemos sustituir el barra
+1:04:30 roadmap, aunque esto también dependerá
+1:04:32 de la inteligencia. Si yo pongo aquí un
+1:04:34 modelo mucho mejor que el Terrafast, me
+1:04:36 va a pedir más cosas, va a analizar las
+1:04:38 cosas mejor, pero bueno, con esto es
+1:04:40 suficiente para ver el ejemplo. Me dice,
+1:04:41 puedes sustituir el barra roadmap, que
+1:04:43 es una web que yo ya tengo creada, o
+1:04:44 puedes crear una nueva ruta, no sé qué
+1:04:46 tal. necesito que me lo respondas. Y
+1:04:48 dice, "Yo recomiendo la opción uno
+1:04:49 porque así ya está agrupado en etapas,
+1:04:51 no sé qué tal." Chilla, le dijera, "Ey,
+1:04:55 pues lleva a cabo
+1:04:59 la opción uno. Si yo lanzo esto ahora
+1:05:03 mismo, ¿qué va a hacer este agente? Me
+1:05:06 va me va a contestar, pero no lo va a
+1:05:08 ejecutar porque yo estoy en el modo
+1:05:10 plan. Yo utilizo el modo plan para
+1:05:12 planificar. Ya lo tengo todo y ahora lo
+1:05:14 cambio al modo build con el tab y le
+1:05:17 digo lleva a cabo la opción uno.
+1:05:20 Entonces planifico y después a
+1:05:22 continuación ejecuto en el modo build
+1:05:25 cuando ya me haga falta. ¿Okay? Vale,
+1:05:28 dentro del concepto de agentes también
+1:05:30 os hablaba que existe el concepto de
+1:05:32 subagentes. Tenemos los agentes creados
+1:05:34 Buildy Plan por la parte del agente de
+1:05:37 Open Code. Pero cuando yo escribía la
+1:05:40 también aparecía por defecto este
+1:05:42 Explore y este general. Y estos son
+1:05:44 subagentes. ¿Qué significa subagentes?
+1:05:48 Un subagente es un agente que ejecuta el
+1:05:52 agente primario. Agentes primarios
+1:05:54 Viloplan, agentes secundarios creados
+1:05:57 por defecto, Explore y General. ¿Qué es
+1:06:01 el subagente Explore? Al final es un
+1:06:04 subagente de solo lectura que es
+1:06:07 superrápido y que sirve para buscar
+1:06:09 código.
+1:06:11 Es un agente que tiene la capacidad
+1:06:13 especial de ser muy bueno buscando
+1:06:15 código. Quiero buscar algo, quiero
+1:06:17 encontrar algo muy rápido, no se lo
+1:06:19 pidas al agente principal, pídeselo al
+1:06:20 subagente Explore, que está
+1:06:22 especializado en eso, y que al ser un
+1:06:24 subagente lo que hace es buscarlo por
+1:06:27 debajo. Si yo hago el bar el @explore,
+1:06:30 le voy a decir por aquí, busca
+1:06:34 la confi confi, perdón,
+1:06:39 curación de precios. Lo lanzo por aquí y
+1:06:43 esto lo que hace es el agente Bill lanza
+1:06:45 por debajo al subagente Explore y se
+1:06:47 pone a buscar la configuración de
+1:06:49 precios. Y yo mientras podría seguir
+1:06:51 aquí haciendo lo que quisiera también.
+1:06:53 Muy importante, que esto aún no lo he
+1:06:54 dicho, pero que tiene todo el sentido
+1:06:56 ahora que estamos hablando de los
+1:06:57 subagentes, yo estoy únicamente con esta
+1:07:00 sesión de la terminal, pero si yo ahora
+1:07:03 mismo me quiero abrir más terminales y
+1:07:07 en todas ellas quiero abrir por aquí
+1:07:10 open,
+1:07:13 yo podría abrir las sesiones
+1:07:17 de Open Code que me diera la gana. Vemos
+1:07:19 que tenemos esta que está ahí trabajando
+1:07:21 con el subagente, con el no sé qué, pero
+1:07:23 vemos que yo ahora aquí tengo otros open
+1:07:26 code, otras sesiones que yo podría
+1:07:29 ejecutar en paralelo porque cada una va
+1:07:31 a ser una nueva sesión.
+1:07:34 Cosas buenas puedo hacer o ser más
+1:07:37 productivo porque estoy ejecutando a la
+1:07:38 vez diferentes tareas, cosas malas y
+1:07:41 peligrosas. Cuidado que lo que estás
+1:07:45 pidiendo hacer con una sesión puede
+1:07:47 entrar en conflicto con otra sesión que
+1:07:49 se esté ejecutando. Si yo me pongo aquí,
+1:07:51 le digo, "Ey, ponte a cambiar lo que
+1:07:53 veíamos antes, la página de roadmap y
+1:07:55 ahora abro por aquí y le digo que haga
+1:07:56 otra cosa diferente en la página de
+1:07:58 roadmap y ahora otra cosa diferente por
+1:07:59 aquí en la paja en la página de roadmap
+1:08:01 lo puedo acabar liando." Otra cosa es
+1:08:03 que yo trabaje ya con Wordres, que ya
+1:08:05 trabaje con Git que sea capaz de en cada
+1:08:07 rama trabajar de una manera diferente.
+1:08:09 Pero si vais a trabajar bajo la misma
+1:08:11 rama, bajo el mismo proyecto, bajo eh
+1:08:15 el mismo código, la misma base de
+1:08:17 código, aunque sea con sesiones
+1:08:18 diferentes, cuidado que la podemos
+1:08:20 acabar liando. ¿Okay? Entonces, bueno,
+1:08:22 ya vemos que un subagente lo que hace es
+1:08:25 trabajar por debajo. ¿Veis lo que le
+1:08:26 cuesta al subagente? Buscar las cosas,
+1:08:28 porque le estamos obligando a leer todo
+1:08:30 el código. Esto, volvemos a lo mismo, es
+1:08:32 una barbaridad. vemos que sí, que sí que
+1:08:34 lo encuentra, que aquí tenemos la
+1:08:35 información de los precios, que no sé
+1:08:37 qué, que nos cuenta allí su vida, que
+1:08:39 esto lo ha ejecutado por debajo, pero
+1:08:41 que por eso debemos entender muy bien
+1:08:42 cómo funciona nuestro proyecto y por eso
+1:08:44 también dependiendo el modelo que
+1:08:45 ejecutemos pues nos va a dar un
+1:08:47 resultado otro. Al igual que tenemos el
+1:08:52 subente Explore, tenemos el subente por
+1:08:55 aquí general. ¿Qué es el subente
+1:08:57 general? Subagente general es de proceso
+1:08:59 de de proceso de propósito general.
+1:09:02 Realmente es un acceso completo a todo
+1:09:05 nuestro proyecto, pero que nos sirve
+1:09:08 para ejecutar tareas paralelas. Cuando
+1:09:11 yo le pido algo a esta gente, al build,
+1:09:14 al general, al primario, nosotros no
+1:09:17 podemos hacer nada más en esta sesión.
+1:09:19 Pero en cambio, si yo ejecutara con el
+1:09:21 agente general, Build, agente padre, va
+1:09:24 a llamar a su hijo, que es general, le
+1:09:26 va a decir, "Vete haciendo esto, pero a
+1:09:28 mí déjame libre que yo voy a seguir
+1:09:30 haciendo otras cosas."
+1:09:32 Entonces, entender que ahí es como si
+1:09:33 empezara a existir una especie de
+1:09:35 ramificación donde yo le puedo empezar a
+1:09:38 pedir cosas a la gente, pero por debajo.
+1:09:41 ¿Okay? Entendemos todo eso perfecto.
+1:09:44 Dentro del manejo del código que estamos
+1:09:48 viendo por aquí, claro, nosotros hemos
+1:09:51 hemos visto únicamente cómo le
+1:09:53 escribimos y ya está. Pero y si yo
+1:09:57 quisiera, por ejemplo, pasar una foto,
+1:10:00 porque yo ahora me voy a ir aquí a otro
+1:10:02 directorio que yo he creado que se llama
+1:10:05 Hello Open Code. Esto es una carpeta
+1:10:07 vacía, sin más. Esto no tiene
+1:10:09 absolutamente nada. Voy a abrir por aquí
+1:10:12 a Open Code
+1:10:15 y vamos a empezar a trabajar en este
+1:10:17 proyecto que es un proyecto en blanco.
+1:10:19 Imagínate que yo ahora como quiero
+1:10:21 empezar a construir en este proyecto es
+1:10:23 que yo ya tengo pues no lo sé, un
+1:10:25 esquema donde he dibujado mi web y
+1:10:28 quiero que lo implemente. Cuidado con
+1:10:31 este tipo de cosas, pero lo que quiero
+1:10:33 decir es que realmente Open Code, si yo
+1:10:36 me voy a una imagen, esta es una imagen
+1:10:38 del curso, la agarro, la arrastro por
+1:10:41 aquí, vemos lo que pasa. Dice imagen
+1:10:44 uno, realmente le voy a decir por aquí,
+1:10:48 describe la imagen.
+1:10:51 No sé si este modelo va a a pillarlo
+1:10:54 rápido o no, pero dice, "Bueno,
+1:10:55 miniatura promovenional, sombra Open
+1:10:57 Code. Un hombre con barba y gorra negra
+1:10:59 señala el logotipo de la herramienta. No
+1:11:01 sé qué tal. Open Code desde cero. Vemos
+1:11:04 que Open Code, sí, sí estamos en una eti
+1:11:12 que la describa sin más, pero le podría
+1:11:14 decir, "Ey, implementa la estructura
+1:11:16 gráfica que estás viendo o lo que sea o
+1:11:19 que yo saco una captura de pantalla de
+1:11:21 lo que estoy construyendo y le digo,
+1:11:22 "Ey, toca sobre esto, modifica esto, lo
+1:11:24 que sea." Bueno, podemos utilizar
+1:11:27 también capturas de pantalla y por
+1:11:28 supuesto también podemos acabar copiando
+1:11:32 y pegando código. Tenía por aquí esto.
+1:11:35 Ya que vamos a empezar a crear un nuevo
+1:11:36 proyecto, he creado sin más una pequeña
+1:11:38 especificación. Vamos a construir, de
+1:11:41 ejemplo un proyecto que dice esto,
+1:11:42 construir un currículum online para
+1:11:44 desarrolladores que destaque de verdad,
+1:11:46 quiero usarlo como ejemplo del taller,
+1:11:48 no sé qué tal y me dice concepto. Pues
+1:11:51 fíjate, me voy a quedar únicamente con
+1:11:52 esto para empezar a describirle el
+1:11:54 concepto, el stack, simplemente con
+1:11:57 HTML, CSS y JavaScript. Cero
+1:12:00 dependencias, accesible, HTML,
+1:12:02 semántico, cómo quiero que sea la
+1:12:04 estructura, las secciones, lo que lo
+1:12:06 hace diferente. Implementa al menos tr
+1:12:08 estructura del proyecto, criterios de
+1:12:10 bueno, una especificación y esto aquí un
+1:12:14 texto que
+1:12:16 parece que se me ha colado. Ya está,
+1:12:18 tengo esto. Podría sin más, vengo aquí.
+1:12:22 ¿Qué pasa si yo arrastro un fichero?
+1:12:25 Fíjate, tengo este fichero. Le puede
+1:12:27 decir, "Ey, lee lo que hay en este
+1:12:29 fichero, no sé qué." Es cierto que sería
+1:12:31 más dramático porque tendría que acceder
+1:12:33 al fichero. Sin más que voy a hacer yo,
+1:12:36 copio el contenido, pego el contenido y
+1:12:38 me dice, "Acabas de pegar 44 líneas."
+1:12:41 Esto nos lo dice simplemente igual que
+1:12:43 lo de la imagen, por si queremos meter
+1:12:45 lo que sea ahí para que no nos ocupe
+1:12:47 tanto y para que lo podamos ver de una
+1:12:49 manera más rápida. Y como estamos
+1:12:50 pegando el código, eh, sinceramente,
+1:12:52 pues ya sabemos lo que se ha pegado
+1:12:54 aquí. Voy a cambiar al modo plan. Voy a
+1:12:58 hacer una cosa que es quiero cambiar por
+1:13:02 aquí el modelo y en este modelo voy a
+1:13:06 decir, mira, voy a utilizar un modelo un
+1:13:08 poquito más listo como puede ser Opus 5
+1:13:11 porque ya me quiero ir a uno muy bueno,
+1:13:13 ya que vamos a crear este proyecto desde
+1:13:15 cero o lo que sea y le voy a lanzar esto
+1:13:19 a ver qué pasa. ¿Por qué? Porque en el
+1:13:21 momento que yo ya le estoy especificando
+1:13:23 el plan, él va a empezar a planificar y
+1:13:26 va a empezar a entender qué es lo que
+1:13:28 está pasando. Y me dice, "Claro, es que
+1:13:29 aquí ya hay un directorio vacío.
+1:13:31 Empezamos desde cero. Pues venga, voy a
+1:13:32 empezar a estructurar todo esto. Esta es
+1:13:34 el un poco la el árbol de ficheros, de
+1:13:39 carpetas, de lo que sea." Y me empieza a
+1:13:42 contar todo. Mira, el contrato con los
+1:13:43 datos, pues todo esto, las tres
+1:13:45 diferencias que voy a elegir. El
+1:13:47 planning, ¿recordáis que yo le ponía,
+1:13:49 "Ey, elige tres realmente." Esto ya lo
+1:13:52 puedo minimizar por aquí.
+1:13:56 Vamos a ponerlo por aquí. Y ahora vamos
+1:14:00 a ver lo siguiente. Como ya nos dice,
+1:14:02 voy a seleccionar la paleta, voy a
+1:14:04 seleccionar el modo impresión o lo que
+1:14:06 sea por los extras. Bueno, todo el
+1:14:09 planning nos gusta, no nos gusta, lo
+1:14:12 queremos cambiar, lo que sea, lo
+1:14:14 podríamos hacer sin ningún problema. Yo
+1:14:16 le digo, "Ey,
+1:14:18 tienes que modificar esto. Me gusta que
+1:14:20 hagas este otro tipo de cosa. Cambia
+1:14:22 esto, añada esto, lo que sea. Trabajamos
+1:14:25 con nuestro plan el tiempo que sea
+1:14:27 necesario. No se trata de lanzar a la
+1:14:30 gente a que se ponga a construir lo más
+1:14:32 rápido posible si nosotros le estamos
+1:14:34 dando un plan malo, si estamos tomando
+1:14:36 malas decisiones. Por eso es tan
+1:14:38 importante las especificaciones, flujos
+1:14:40 como Spec Drive and Development, que
+1:14:41 tanto está de moda, que se trata y se
+1:14:44 basa sobre todo en analizar para acabar
+1:14:46 dándole un buen contexto antes de
+1:14:48 ponerse a construir. No nos vamos o nos
+1:14:50 vamos a perder tiempo en esto, pero en
+1:14:52 el momento que yo ya estoy de acuerdo
+1:14:53 con todo esto, le digo, pues venga,
+1:14:57 construye.
+1:14:59 Ya está. He dado por bueno el plan, he
+1:15:01 cambiado a la gente Bill y ahora le voy
+1:15:02 a decir, "Venga, ponte a hacer lo que te
+1:15:04 haga falta. Ahora aquí ya lo lanzo con
+1:15:06 el Terrafas para que intente construir
+1:15:08 las cosas rápidas, para que empiece a
+1:15:09 tirar millas y vamos a ver cómo empieza
+1:15:12 a lanzar el plan. Cómo ha creado un plan
+1:15:14 es capaz de ir implementando e ir
+1:15:16 iterando cada una de las cosas. Dice,
+1:15:18 crear una estructura con los datos los
+1:15:20 del currículum, implementar renderizado,
+1:15:22 tema, no sé qué, crear el diseño
+1:15:24 responsive, animaciones, tal, instalar
+1:15:26 dependencias, verificar el el alcance,
+1:15:29 el arranque, ya no sé leer y ahí que se
+1:15:32 tiene el tiempo que le dé la gana. Pero
+1:15:34 ya vemos que este tiene que ser una
+1:15:36 especie de flujo correcto de cara a
+1:15:38 ponernos a implementar y a trabajar con
+1:15:41 nuestro proyecto. Aquí podríamos ir
+1:15:44 dejándole el tiempo que necesitara. Aquí
+1:15:46 ya podemos también empezar a ver la
+1:15:48 información que se está mostrando, cómo
+1:15:50 empieza a utilizar los tokens, cómo se
+1:15:52 empieza a llenar la ventana de contexto,
+1:15:54 cómo nos habla aquí de un gasto que en
+1:15:56 este caso, como yo tengo una
+1:15:57 suscripción, en este caso no hay gasto.
+1:15:59 Si vosotros utilizáis los planes
+1:16:00 gratuitos, tampoco va a haber gasto,
+1:16:01 pero te va dando una estimación también
+1:16:05 de lo que podría ir gastando tu modelo
+1:16:08 dependiendo del formato en el que lo
+1:16:10 estés utilizando. Bueno, ya nos dice por
+1:16:12 aquí que ha creado algunas cosas. ¿Qué
+1:16:14 cosas? Pues vemos como tiene por aquí un
+1:16:16 currículum, como realmente nos ha hecho
+1:16:19 caso, todo lo que ha creado, pues vemos
+1:16:21 aquí cositas en JavaScript, cositas en
+1:16:23 HTML, la información, no sé qué. nos
+1:16:27 dice que la estructura y ahora va
+1:16:30 haciendo cada una de las iteraciones que
+1:16:33 sean necesarias para ir creando este
+1:16:36 proyecto. Mientras lo que podemos ir
+1:16:39 haciendo, lo voy a buscar por aquí muy
+1:16:40 rápidamente, es ir buscando justamente
+1:16:43 ese proyecto para que tengamos como a
+1:16:45 medida que va construyendo y como vamos
+1:16:47 teniendo por aquí el código JavaScript,
+1:16:50 cómo yo podría ir a mi directorio cómo
+1:16:53 yo podría ir al proyecto que yo he
+1:16:55 creado llamado Hello Open Code y aquí
+1:16:58 sin más ver cómo tiene el index, el
+1:17:00 package Jason, un source con el data,
+1:17:03 con el main, con cierta información que
+1:17:07 la podemos dar por buena, sí o no, pero
+1:17:10 de momento dejamos que haga, dejamos que
+1:17:13 siga haciendo, dejamos que siga
+1:17:14 construyendo diferentes cosas y en el
+1:17:16 momento que ya tenga todo esto, vamos a
+1:17:19 hablar de lo importante que es ya
+1:17:22 empezar a darle un contexto muchísimo
+1:17:25 más fino y muchísimo más cerrado a la
+1:17:28 hora de seguir construyendo, porque una
+1:17:29 cosa es sí tenemos la especificación, si
+1:17:32 hemos creado el modo plan, si ahora ya
+1:17:35 lo está construyendo, siguiendo
+1:17:36 justamente el plan que nosotros hemos
+1:17:39 aprobado, pero realmente no nos tenemos
+1:17:41 que quedar aquí. Vamos a dejar que esto
+1:17:44 acabe. En el momento que acabe, lo vamos
+1:17:47 a abrir también incluso en el editor de
+1:17:49 código para que lo veamos un poquito más
+1:17:51 claro y después vamos a empezar a
+1:17:53 trabajar con ese proyecto que ya vemos
+1:17:55 que solo le falta el último paso. A ver
+1:17:58 si nos instala las dependencias y ya lo
+1:18:01 podemos arrancar y ya lo podemos ver.
+1:18:03 dice que ha metido aquí los paquetes, no
+1:18:06 hay vulnerabilidades, que la manera de
+1:18:08 arrancarlo por terminal, ya vemos esto,
+1:18:12 npm, run dev con el host, con no sé qué,
+1:18:15 por supuesto. Esto, ¿qué podríamos
+1:18:18 hacer? Nosotros podemos venir por aquí,
+1:18:21 nosotros podemos abrir una nueva
+1:18:23 terminal o podemos salir o lo que nos dé
+1:18:25 la gana o podríamos sin más venir por
+1:18:27 aquí y arrancarlo. Y en el momento que
+1:18:30 nosotros tenemos todo esto nos dice,
+1:18:32 "Ey, yo en esta URL teóricamente ya
+1:18:37 debería tener el proyecto." Pues vamos a
+1:18:39 ver si nos miente o no. Claro, yo no le
+1:18:42 he pasado ningún tipo de dato.
+1:18:45 Clara Moreno, aquí tenemos la
+1:18:47 información. Bueno, eh, obviamente
+1:18:50 nosotros le hemos dado
+1:18:53 ciertas limitaciones a nivel de
+1:18:57 formato y también a nivel de tecnología,
+1:19:01 pero no le hemos dado los datos. Se está
+1:19:03 inventando aquí todo, pero bueno, aquí
+1:19:05 tenemos nuestro currículum. ¿Está mejor?
+1:19:07 ¿Está peor?
+1:19:08 No lo vamos a juzgar de momento, pero
+1:19:10 vamos a ver algo muy claro. ¿Cómo yo
+1:19:12 vuelvo a este directorio? ¿Cómo voy a
+1:19:14 abrir eh Open Code?
+1:19:17 Sin más, lo abro por aquí. Voy ahora que
+1:19:21 lo cerré a las sesiones, ¿recordáis? Voy
+1:19:24 a ir por aquí a la sesión que tenía
+1:19:27 antes, que es la que me creó el
+1:19:29 proyecto, y vamos a ver algo muy claro.
+1:19:32 Voy a lanzar la shell porque voy a decir
+1:19:34 cursor
+1:19:36 a ver si me ejecuta el comando cursor y
+1:19:38 así me abre también por aquí cursor.
+1:19:41 Fíjate que nosotros teníamos este
+1:19:43 proyecto de cursor y me lo está
+1:19:45 abriendo. Pero, ¿y si yo quisiera abrir
+1:19:47 justamente esto con cursor?
+1:19:50 No sé. Hacemos cursor punto a ver si
+1:19:53 esto es capaz de lanzarlo. A ver si
+1:19:54 lanzar si es capaz de lanzar el
+1:19:56 proyecto. Por aquí tenemos cursor. Por
+1:19:58 aquí tenemos el proyecto de hello open
+1:20:01 code. Y si yo quisiera también abrirlo
+1:20:05 en el ID, pues aquí tenemos el proyecto
+1:20:08 de Hello. ¿Dónde está? Abrir el
+1:20:10 proyecto. Vengo por aquí. Yo esto lo
+1:20:13 tenía en mi carpeta h dev, si no me
+1:20:17 equivoco, en los workshops y el hello
+1:20:20 open code. Por aquí, al margen de
+1:20:21 abrirlo en el agent first de cursor, me
+1:20:26 lo voy a abrir aquí también en formato
+1:20:28 código porque quiero empezar a ver todo
+1:20:30 lo que se ha creado. Bueno, ¿qué tenemos
+1:20:31 por aquí? el índice, el package Jason,
+1:20:34 un poco pues toda la información, lo que
+1:20:36 ya hemos visto que ha hecho nuestro
+1:20:39 agente con Open Code. Pero claro, ¿qué
+1:20:42 pasa en el momento que ahora nos ponemos
+1:20:44 a trabajar? ¿Se llena la sesión? ¿La
+1:20:47 cerramos o lo que sea? Uno de los
+1:20:49 grandes problemas de los agentes con
+1:20:51 inteligencia artificial justamente es
+1:20:53 esta ventana de contexto. Esta ventana
+1:20:55 de contexto lo que está haciendo es
+1:20:57 limitando que la gente no recuerde nada
+1:20:59 entre sesiones. Si ahora viniera por
+1:21:01 aquí y dijera, "Ey, arranca una nueva
+1:21:04 sesión porque le quiero pedir otra cosa,
+1:21:06 porque llene la ventana de contexto por
+1:21:08 lo que sea." Entonces, claro, este
+1:21:10 contexto, el saber de qué va el
+1:21:12 proyecto, esta sesión lo sabe. ¿Por qué
+1:21:15 lo sabe realmente? porque yo le pasé el
+1:21:17 documento con la información para
+1:21:19 crearlo, pero en el momento que yo abra
+1:21:23 otra nueva sesión ya no va a saber de
+1:21:24 qué va el proyecto. Y eso que va a
+1:21:26 implicar gastar un montón de tokens
+1:21:29 porque lo que va a hacer el agente es
+1:21:31 leer con cada nueva sesión de qué va
+1:21:34 nuestro proyecto. Ya veis que esa es la
+1:21:36 cosa más ineficiente que existe y por
+1:21:38 eso existe un comando por aquí que se
+1:21:41 llama barra init, que realmente es de
+1:21:43 los comandos más importantes en Open
+1:21:45 Code. Barra init arrancar el agents.md,
+1:21:50 un mardown que va a reflejar la
+1:21:53 información principal de nuestro
+1:21:55 proyecto. Cuando yo lanzo este barra
+1:21:57 init, lo que va a hacer en nuestro
+1:21:59 proyecto es empezar a planificar todo
+1:22:02 esto. va a revisar toda la información
+1:22:04 que tiene y va a crear un fichero de
+1:22:06 texto, un fichero en marnowar
+1:22:10 el escaneo de repo incluso Open Code si
+1:22:14 necesitara información nuestra por algo
+1:22:16 nos lo iba a preguntar y acabaría
+1:22:18 creando esto que vemos aquí, un Agents
+1:22:21 MD, que esto ya es un estándar en el
+1:22:24 mundo del desarrollo que representa la
+1:22:27 información principal. En este caso nos
+1:22:29 lo ha creado en inglés. Le podrías
+1:22:31 decir, "Ey, crea Legends en español,
+1:22:33 tradúcet o lo que sea." No nos vamos a
+1:22:36 molestar ahora en traducirlo, pero sin
+1:22:37 más vamos a ver esto. Agents, ¿qué me
+1:22:40 dice? ¿Qué es lo principal del proyecto?
+1:22:42 ¿Cómo funciona? npmeb lo arranca, el
+1:22:45 build, el preview. ¿Cuál es la
+1:22:46 estructura? Aquí tenemos el mail, los
+1:22:49 styles, el HTML, diferentes claves que
+1:22:52 le tiene que dar. Ey, cuidado que este
+1:22:54 proyecto pues la única dependencia que
+1:22:56 tiene es BE. Tiene aquí una parte de las
+1:23:00 diferentes configuraciones que se le
+1:23:01 está aplicando. Y con esto realmente
+1:23:05 nosotros podríamos decirle, "Ey, ya
+1:23:07 tienes esta información que es
+1:23:10 suficiente para que tú puedas ejecutar
+1:23:13 una nueva sesión sin necesidad de que
+1:23:15 tengas que leer el proyecto completo.
+1:23:17 ¿Qué le podríamos decir y qué suele ser
+1:23:19 una buena práctica también en Aents?
+1:23:21 meter información sobre el proyecto, de
+1:23:22 qué trata. Es decir, también decirle a
+1:23:24 agends, nosotros lo podríamos pedir,
+1:23:26 decirle añade al @ queagents
+1:23:32 la información
+1:23:35 sobre el cometido del proyecto,
+1:23:40 es decir, que es una web para un
+1:23:46 currículum
+1:23:48 de un desarrollador.
+1:23:51 ¿Vale? Entonces, yo en el momento que
+1:23:53 lanzo esto, fíjate que ya lo he hecho
+1:23:55 también a propósito, como aún se está
+1:23:56 ejecutando, como aú está haciendo una
+1:23:58 ejecución por debajo, lo que hace es
+1:24:00 encolarlo. Si yo hubiese lanzado una
+1:24:04 tarea con lo que teníamos antes, el
+1:24:06 subagente general, lo que tendríamos es
+1:24:09 un agente que corre por debajo y no
+1:24:11 necesitaríamos encolar las peticiones.
+1:24:13 En cambio, yo aquí lo que estoy haciendo
+1:24:15 es, vale, hasta que acabes realmente no
+1:24:19 puedes lanzar la siguiente tarea. Para
+1:24:22 esto, como tampoco me importa que el AGS
+1:24:25 esté mejor hecho o no, ya vemos que aquí
+1:24:29 lo que hace es que en el momento que el
+1:24:31 agente ha finalizado,
+1:24:34 lo que hace ahora es voy a lanzar la
+1:24:37 siguiente tarea. Fíjate,
+1:24:40 nos ha añadido
+1:24:42 aquí la propia misión que tiene. Es un
+1:24:46 one page personal con un currículum para
+1:24:49 un desarrollador de software. Ya está.
+1:24:51 Con una inspiración pues basada en la
+1:24:54 terminal, en la interfaz de la terminal.
+1:24:57 Perfecto, ya acabado. Pues ya está, ya
+1:24:59 tenemos por aquí todo. Fijaos lo
+1:25:01 importante que es tener un buen agents.
+1:25:04 Eso sí, no utilicéis el agents como un
+1:25:07 fichero desastre donde le añadáis toda
+1:25:08 la información del mundo a modo de
+1:25:10 documentación. Para eso ya existen
+1:25:12 diferentes procedimientos, para crear
+1:25:14 documentación, referenciarla desde aquí,
+1:25:16 crear especificaciones. Eso no es el
+1:25:18 cometido del curso, pero lo que sí que
+1:25:21 os pido es que por favor también os
+1:25:23 forméis y busquéis información sobre
+1:25:25 cómo estos ficheros de reglas, porque
+1:25:26 esto no deja de ser un fichero de
+1:25:28 reglas. Una cosa es lo que metemos en el
+1:25:30 agents y otra cosa es lo que tenemos que
+1:25:33 meter en otro tipo de documentos,
+1:25:35 dependiendo de lo que querramos hacer y
+1:25:37 del contexto que le querramos dar a
+1:25:39 nuestro proyecto y a nuestro agente. La
+1:25:43 peculiaridad, que es lo más importante
+1:25:45 agent, que por defecto cualquier agente
+1:25:50 va a acabar leyendo cómo funciona.
+1:25:53 Sin nosotros decirle al propio Pencode o
+1:25:56 si utilizaris Cloc Code o si utilizarais
+1:25:59 Ghoocilot o el agente que sea, no tenéis
+1:26:02 necesidad realmente de decirle y fíjate,
+1:26:07 vengo por aquí, voy a hacer un new, voy
+1:26:10 a abrir y le voy a decir
+1:26:13 de qué va este proyecto.
+1:26:17 Esto por defecto lo que va a hacer y de
+1:26:21 las primeras cosas que va a hacer va a
+1:26:23 ser buscar la información que tienen el
+1:26:26 agents para ir muchísimo más rápido.
+1:26:28 ¿Okay? Entonces, eso ya es algo que por
+1:26:31 defecto hacen todos los agentes, buscar
+1:26:33 la información del agents y cómo sí o sí
+1:26:37 tenemos que tener un agents en nuestro
+1:26:40 proyecto. Vale, dicho esto, vamos a
+1:26:43 pasar a la siguiente parte. Y siguiente
+1:26:44 parte también muy importante porque
+1:26:46 hasta ahora hemos visto un montón de
+1:26:48 comandos. En realidad ya os aseguro que
+1:26:51 a lo largo del curso vais a ver si no
+1:26:54 son el 100% el 95% de los comandos que
+1:26:59 podemos ejecutar en Open Code, porque
+1:27:01 igual se me olvida alguno, pero también
+1:27:04 tenemos la capacidad de crear nuestros
+1:27:08 propios comandos. ¿Okay? Vale. ¿Cómo es
+1:27:11 esto? ¿Qué es esto de comandos? Pues
+1:27:13 básicamente los comandos no dejan de ser
+1:27:15 una especie de prompt que nosotros hemos
+1:27:18 guardado. ¿Cómo funcionan los comandos?
+1:27:20 Los comandos guardan la información que
+1:27:23 nosotros queremos ejecutar en un momento
+1:27:25 concreto. Fijaos que cuando yo decía por
+1:27:27 aquí, no sé, comando DI, ¿qué hacía el
+1:27:32 comando DIF? Pues buscaba cuál era el DI
+1:27:35 de nuestro Word Tree basado en git. Esto
+1:27:38 no deja de ser un comando que está
+1:27:40 lanzando por debajo, pero claro, y si yo
+1:27:43 quiero un comando muy propio de mi
+1:27:47 proyecto o yo quiero crear un comando
+1:27:49 con una capacidad que no me está dando
+1:27:51 open code, por supuesto, yo puedo
+1:27:53 crearlo. ¿Cómo creamos los comandos?
+1:27:56 Bueno, la forma más fácil que es
+1:28:01 crea un comando
+1:28:06 personalizado
+1:28:07 para Open Code dentro de este proyecto.
+1:28:15 No hace falta que crees el contenido,
+1:28:19 simplemente
+1:28:21 llámale
+1:28:25 comit.
+1:28:26 Voy a hacer esto y ahora vemos lo que va
+1:28:28 a pasar en el momento que yo lanzo esto.
+1:28:31 Open Code, si hay suerte de que este
+1:28:33 modelo funciona, porque claro, los
+1:28:34 modelos pueden tener ahí algún problema,
+1:28:37 pero ya vemos que ya está lanzando ahí
+1:28:38 una skills. Customize open code. Veremos
+1:28:41 lo que son las skills. Vemos lo que va a
+1:28:43 hacer. Nos ha creado un directorio
+1:28:45 llamado Pencode y nos ha metido dentro
+1:28:47 un fichero que se llama Commit. Dice
+1:28:50 descripción, comando personalizado para
+1:28:51 el comit. añada aquí las instrucciones
+1:28:53 del comando. Claro, aquí mi
+1:28:55 recomendación, queréis acabar creando
+1:28:58 comandos personalizados, lo que sea, por
+1:29:01 favor, os venís a la documentación,
+1:29:03 buscáis la parte de comandos y aquí os
+1:29:04 va a explicar con todo lujo de detalles
+1:29:06 cómo funcionan los comandos. Vamos a ver
+1:29:09 un ejemplo muy muy simple, porque aquí
+1:29:12 ya estáis viendo cuál es la estructura
+1:29:13 que vemos descripción, ¿vale? He copiado
+1:29:16 y pegado este que ya tenía preparado. La
+1:29:19 descripción de este comando
+1:29:20 personalizado que yo he creado que se
+1:29:21 llama Commit dice, "Genera un comit
+1:29:23 siguiendo las convenciones del proyecto.
+1:29:25 El agente, porque eso es algo que
+1:29:27 también le podemos decir, ¿cuál es el
+1:29:28 agente que quiero que utilice mi comando
+1:29:29 personalizado?" El bill. Esto es toda
+1:29:31 una configuración que la veis en la
+1:29:32 documentación. Pero sin más, lo que os
+1:29:34 digo que que lo que le digo que quiero
+1:29:36 que haga, que esto ya es el prompt. El
+1:29:38 prompt e lanza este comando, git dif un
+1:29:41 staged y los últimos comit revisa todo
+1:29:43 aquí crea un comit que siga esta
+1:29:45 estructura, no sé qué con el estilo de
+1:29:47 arriba, no añadas nada al staging, no sé
+1:29:48 qué. Perfecto. Esto es un comando
+1:29:51 personalizado que yo me voy a guardar y
+1:29:53 que ya veis dónde se crea el comando
+1:29:55 personalizado. Hay una carpeta que se
+1:29:57 llama punto Open Code, que tiene un
+1:29:58 directorio que se llama command y que
+1:30:00 dentro de ese command que en realidad
+1:30:03 aquí me ha yo creo que aquí me ha
+1:30:05 cometido un error. Bueno, lo vamos a
+1:30:07 ver. Ahora mismo no lo recuerdo, pero
+1:30:09 vamos a ver rápidamente si de verdad
+1:30:11 este comando ha funcionado. Voy a
+1:30:14 escribir barra
+1:30:16 comit. Uy, no aparece. Vamos a hacer una
+1:30:19 cosa. Voy a hacer barra exit. Voy a
+1:30:23 volver a entrar en Open Code
+1:30:26 y voy a escribir ahora sí barracit
+1:30:31 y me dice, "Uy, ¿qué ha pasado aquí?
+1:30:34 Este comando que dice, genera un cómic
+1:30:38 siguiendo las convenciones del
+1:30:39 proyecto."
+1:30:41 Vamos por aquí. en un có siguiendo las
+1:30:43 convenciones del proyecto. He creado un
+1:30:46 comando personalizado y ahora lo tenemos
+1:30:49 accesible dentro de nuestro proyecto.
+1:30:53 Esto igual es un poquito más avanzado,
+1:30:55 pero os lo explico igual. Mi
+1:30:57 recomendación es que comandos
+1:30:59 personalizados, skills, MCPs, que esto
+1:31:01 son cosas que veremos dentro de un rato,
+1:31:03 lo creéis todo dentro de cada proyecto.
+1:31:06 ¿Por qué? Es cierto que hay comandos
+1:31:10 personalizados que igual yo quiero
+1:31:12 utilizar desde todos los proyectos.
+1:31:14 Fijaos que vuelvo a la web de Moured
+1:31:17 Pro, que aquí voy a hacer exit y ahora
+1:31:20 voy a volver a entrar en Open Code y voy
+1:31:23 a intentar poner el comando
+1:31:24 personalizado que yo he creado, que es
+1:31:26 el barracit. Aquí no aparece. ¿Por qué
+1:31:29 no aparece? Porque yo he creado el
+1:31:31 comando personalizado a nivel de
+1:31:33 proyecto, el proyecto Hello Open Code. Y
+1:31:35 por eso la forma en la que Open Code
+1:31:38 entiende que existe este comando, pues
+1:31:41 es dentro de este directorio Code. Esto
+1:31:43 forma parte del funcionamiento de Open
+1:31:45 Code. Si yo ahora este Commit lo metiera
+1:31:49 dentro realmente del proyecto de la web
+1:31:51 de Moured Pro, funcionaría también, por
+1:31:54 supuesto. Pero hay una forma en la que
+1:31:57 nosotros podemos meter estos comandos a
+1:32:00 nivel general. Esto lo podéis buscar en
+1:32:03 la propia documentación, pero es cierto
+1:32:06 que vemos algo así como Opencode Command
+1:32:08 Test, pero nosotros también tenemos la
+1:32:10 opción de meter todo esto dentro de la
+1:32:14 propia configuración, con lo cual tú si
+1:32:16 te vas, esto puede tener diferentes
+1:32:19 variaciones según el sistema operativo,
+1:32:21 pero por ejemplo yo aquí lo que tengo es
+1:32:24 dentro de mi carpeta de directorio, si
+1:32:26 no me equivoco, hay un directorio que se
+1:32:29 llama config. Uy, que me fui. Eh,
+1:32:33 config. Por aquí, dentro de config hay
+1:32:36 un directorio que se llama Open Code. Y
+1:32:38 aquí yo podría ir creando las diferentes
+1:32:40 configuraciones. ¿Qué significaría? Que
+1:32:42 en el momento que yo configuro algo a
+1:32:45 nivel general de Open Code, ya pasaría a
+1:32:47 estar disponible en todas las sesiones
+1:32:50 de Open Code. A mí, personalmente, me
+1:32:52 gusta crear las cosas solo para el
+1:32:54 proyecto para no liarme, porque después
+1:32:56 el día de mañana te juntas ahí con 200
+1:32:58 comandos personalizados. Igual creaste
+1:33:00 algún comando que solo querías para un
+1:33:02 proyecto. Otra cosa es que tú decidas,
+1:33:04 "Bueno, igual este comando tiene todo el
+1:33:05 sentido del mundo meterlo solo para mi
+1:33:08 proyecto y este puede ser a nivel
+1:33:10 general." Perfecto. No voy a decir que
+1:33:12 no, pero ten en cuenta que cuanto más
+1:33:14 acotado dejes todo, seguramente mejor te
+1:33:17 vas a acabar entendiendo, ¿vale? Cosas
+1:33:19 que podrías hacer con los comandos en
+1:33:22 realidad lo que te dé la gana. Si yo
+1:33:24 ahora ejecuto este comando solo por
+1:33:27 hacernos una idea de cómo se acabaría
+1:33:29 ejecutando, ¿dónde está? Volvemos por
+1:33:32 aquí a mi terminal, vamos a este
+1:33:35 proyecto que yo veía por aquí y ahora
+1:33:37 vamos a ejecutar este comando. Fíjate,
+1:33:39 el comando personalizado Comito. Y esto
+1:33:42 ya me dice, pues crea un comit con unos
+1:33:43 cambios, no con no sé qué. Aquí se va a
+1:33:45 encontrar con un follón porque en
+1:33:46 realidad yo aquí no tengo ni Git. Y me
+1:33:49 dice, "Ey, es que no tienes ni git,
+1:33:51 tienes que crear git." Ya lo lancé a
+1:33:52 propósito para que no me haga comi ni
+1:33:54 nada, pero para que veas cómo realmente
+1:33:56 se está basando en el contenido del
+1:34:00 comando personalizado. El comando
+1:34:02 personalizado lanza el comando cuando yo
+1:34:06 quiero, como lo hemos visto. Yo escribo
+1:34:08 la barra, mando el comando y ya está.
+1:34:11 Pero frente al concepto de comando
+1:34:14 personalizado, tenemos también un
+1:34:16 concepto que es muy posible que os
+1:34:18 suene, que es el concepto de skill.
+1:34:21 Una skill también va a ser un fichero
+1:34:24 como vemos aquí marown con una
+1:34:26 habilidad, con un prompt, pero realmente
+1:34:30 una skill es conocimiento cargado bajo
+1:34:34 demanda. ¿Qué significa esto de
+1:34:37 conocimiento cargado bajo demanda?
+1:34:39 Volvemos por aquí y nos vamos a la parte
+1:34:43 de, en este caso, habilidades de la
+1:34:46 gente y vemos aquí algo muy parecido,
+1:34:48 como tenemos también el directorio pen
+1:34:51 code, pero en este caso en vez de ser
+1:34:52 command es el eh directorio skill y
+1:34:56 vemos también como os dice e si lo
+1:34:57 quieres meter a nivel global config open
+1:35:00 code, no sé qué tal, si no en open code
+1:35:02 barra skills. Vale, vamos a ver ahora en
+1:35:04 este caso un ejemplo de cómo podemos
+1:35:07 trabajar con skills en nuestro proyecto.
+1:35:10 Por supuesto, nosotros podríamos acabar
+1:35:12 creando nuestras propias skills. ¿Cómo
+1:35:14 hacemos todo esto? Vamos a utilizar el
+1:35:17 mismo mecanismo. Vengo por aquí, digo,
+1:35:20 crea una skill a nivel de proyecto para
+1:35:27 ejecutar
+1:35:29 los tests. Me lo invento. Vale, pero sin
+1:35:32 más. Vamos a ver qué cosas nos va a
+1:35:34 hacer. Bueno, él lee su skill interna,
+1:35:37 que es capaz de darle la capacidad y la
+1:35:39 información de cómo tiene que acabar
+1:35:41 creando todo esto y se pone a hacer sus
+1:35:43 cosas. Fíjate, en este proyecto no
+1:35:44 tienes new runner tal, no puedes
+1:35:46 ejecutar tal, no pasa nada. Y le digo,
+1:35:49 pues mira, crea mm o le voy a decir
+1:35:53 encima que añada bitest y que añada la
+1:35:56 skill de test o una skill genérica. Me
+1:36:00 da igual. Voy a seleccionar cualquiera
+1:36:02 porque lo que me importa es que veáis
+1:36:04 cuál es el concepto de skill en este
+1:36:06 caso y qué diferencia un skill realmente
+1:36:10 de un command. Me va a instalar aquí la
+1:36:13 dependencia para poder hacer testing. Y
+1:36:15 ahora, en el momento que ya tiene todo
+1:36:17 esto, debería empezar a crearme la
+1:36:20 skill. Vamos a darle ahí nada un ratillo
+1:36:24 para que vaya haciendo las cosas. cómo
+1:36:25 me va a crear también por ahí unos test,
+1:36:27 cómo me lanza el npm test para que
+1:36:30 veamos que los tests por aquí pasan y
+1:36:32 ahora dice, bueno, ahora que ya tengo la
+1:36:34 capacidad de lanzar test, ahora voy a
+1:36:37 preparar las kills. Y lo que nos debería
+1:36:40 hacer es que dentro ahora aquí de Open
+1:36:44 Code, ahora también tenemos un
+1:36:46 directorio que se llama skills. ¿Y cómo
+1:36:49 le ha llamado esa skill? Yo no le he
+1:36:50 dado nombre, entonces se lo ha
+1:36:51 inventado, la ha llamado room test.
+1:36:53 Vemos que el formato es ligeramente
+1:36:55 diferente. Barra skills, una carpeta que
+1:36:57 es el nombre de la skill y dentro la
+1:36:59 skill, pero realmente vemos que es
+1:37:02 bastante parecido. El nombre de la skill
+1:37:05 también le mete la descripción y aquí
+1:37:07 información, el prompt. Este proyecto
+1:37:09 usa eh vitest, lo que tienes que hacer
+1:37:11 es correr es ta ta ta. Y le da aquí toda
+1:37:14 la información de la skill. ¿Qué pasaría
+1:37:17 con la skill? Pues hay una diferencia.
+1:37:19 Vuelvo a ver a salir aquí para que me
+1:37:21 lea también la skill. Vuelvo a entrar en
+1:37:24 Open Code y vamos a hacer ahora barra y
+1:37:28 el nombre de la skill room. Y aquí que
+1:37:31 dice, uy,
+1:37:33 no veo la parte de room test. ¿Qué está
+1:37:37 pareciendo? ¿Por qué no hace esto? ¿Qué
+1:37:40 está pasando? Vale, lo primero que
+1:37:43 tenemos que hacer siempre en estos
+1:37:45 casos, decir cómo funciona barra
+1:37:47 opencode barra skills. Esto está
+1:37:50 funcionando
+1:37:52 barra opencode barra skills barra el
+1:37:56 nombre de la skill/skill.md.
+1:38:01 ¿Qué pasa en este caso cuando estamos
+1:38:03 viendo por aquí? Aquí va a depender un
+1:38:05 poquito de la gente que estemos
+1:38:07 ejecutando y cómo va a funcionar. Aquí
+1:38:09 tenemos opciones. Hay agentes que
+1:38:11 realmente en este caso sí que cuando
+1:38:14 nosotros estamos en el proyecto y
+1:38:17 nosotros vamos a skills dice, "Ey, ¿qué
+1:38:20 tenemos por aquí?" Ah, mira, tenemos una
+1:38:23 nueva skill. En este caso ya vemos que
+1:38:25 la skill no es como el comando, no es
+1:38:28 barra y el nombre de la skill. Si pongo
+1:38:31 barra run tests, aquí no aparece nada.
+1:38:34 Pero si hago barra skills,
+1:38:37 ya me dice, "Cuidado que aquí ya tienes
+1:38:40 una skill." Estas son skills que tiene
+1:38:43 creadas por Defet Open Code para
+1:38:45 customizarlo, para encontrar las skills.
+1:38:48 Y esto es que realmente nos ayuda a
+1:38:51 encontrar skills que ya estén creadas y
+1:38:53 que nos sirvan eh para utilizar nuestro
+1:38:55 proyecto. Pero también tenemos
+1:38:58 la skill que nosotros hemos creado. Y
+1:39:00 ves cuá nos dice aquí, utiliza cuando el
+1:39:03 usuario pregunte sobre ejecutar los
+1:39:05 test.
+1:39:07 ¿Cuál es la diferencia entre los
+1:39:09 comandos y las skills? Y no es solo
+1:39:12 dónde las encontramos o cómo las
+1:39:14 ejecutamos. ¿Qué? Nosotros podemos
+1:39:16 ejecutar la skill haciendo esto, ¿sí?
+1:39:20 Barra run tests, porque yo ahora la he
+1:39:22 seleccionado y le digo aquí ejecutará el
+1:39:24 test de lo que sea. Pero la skill, yo os
+1:39:28 decía al principio que es conocimiento
+1:39:31 bajo demanda. Si yo le digo ejecuta los
+1:39:36 tests,
+1:39:37 open code en realidad lo que va a hacer
+1:39:39 es, "Ey, me ha hablado sobre ejecutar
+1:39:42 test. ¿Hay alguna skill que realmente
+1:39:46 haga referencia
+1:39:48 a ejecutar los test?" Y fíjate qué
+1:39:51 rápido la encontró. Ey,
+1:39:55 tengo la skill de test y ya hace lo que
+1:39:59 le está diciendo la skill. Fíjate que
+1:40:01 esto también es super importante porque
+1:40:04 aquí no se trata de que cada vez, si yo
+1:40:07 le digo a la gente, ejecuta los tests
+1:40:09 que cada vez ejecute los test como le da
+1:40:11 la gana. Se trata de que ejecute los
+1:40:15 test de la forma, en este caso, que yo
+1:40:18 he definido, pero sin necesidad de que
+1:40:20 yo esquiva el barra rantest, sino que
+1:40:23 cuando yo estoy hablando de testing o si
+1:40:25 yo estoy hablando sobre algo que existe
+1:40:28 una skill, se ejecute la skill. Esto
+1:40:31 también, como lo podemos ver muy fácil,
+1:40:33 es accediendo a un repositorio de
+1:40:36 skills. Nosotros podemos crear nuestras
+1:40:39 propias skills, como acabáis de ver,
+1:40:41 pero también tenemos un montón de skills
+1:40:44 que ya ha creado la comunidad. Hay una
+1:40:46 página que a mí me gusta mucho, es de
+1:40:47 Versel, que se llama skills. Aquí
+1:40:50 tenemos un montón de skills, fíjate,
+1:40:52 hasta tenemos una skill para frontend o
+1:40:55 lo que sea. Voy a ver de qué va esta
+1:40:58 skill. Ah, vale. Pues mira, es una skill
+1:41:01 que utiliza pues HTML, CSS, rewicas
+1:41:06 o lo que sea. Imagínate que yo considero
+1:41:08 que esta skill pues está muy guay. Me
+1:41:10 gusta esta skill. Pues me copio este
+1:41:12 comando, me voy a la terminal
+1:41:15 directamente y le digo, "Ey, ejecuta
+1:41:18 esto. ¿Qué va a hacer esto?" me dice,
+1:41:21 "Vale, hay que ejecutar este paquete
+1:41:25 porque te va a hacer falta para instalar
+1:41:26 o lo que sea." Ya tenemos aquí como una
+1:41:28 especie de utilidad que nos va a ayudar
+1:41:30 a crear estas skills. Fíjate que dentro
+1:41:35 del punto agents/skills
+1:41:39 nos dice por aquí que ya está valorado
+1:41:42 Open Code. Entonces yo podría decirle,
+1:41:44 "Venga, ejecútate." Y me dice, "¿Dónde
+1:41:47 quieres instalar esto?" A nivel de
+1:41:50 proyecto, en el directorio en el que
+1:41:51 estás o a nivel global. ¿Por qué? Porque
+1:41:53 los agentes también son capaces de leer
+1:41:55 configuraciones globales, igual que os
+1:41:56 enseñé antes la parte de comandos. Pero
+1:41:58 yo vuelvo a decir, "No, no, no quiero
+1:42:00 que lo hagas en el proyecto." Hago así y
+1:42:03 digo, "Venga, instálate." ¿Qué ha hecho
+1:42:06 dentro de Open Code? Ahora tenemos este
+1:42:09 barra skills, pero ahora también tenemos
+1:42:13 un barra agents que es también una
+1:42:15 manera genérica de meterle configuración
+1:42:17 donde tenemos la skill que hemos
+1:42:19 instalado. Frontend Design, ¿qué tiene
+1:42:21 la skill que hemos instalado? pues esta
+1:42:23 información para darnos buenas prácticas
+1:42:27 alrededor de cómo tenemos que
+1:42:29 ejecutarlo. Vale, volvemos a lo mismo,
+1:42:32 vuelvo a Open Code. Hago un exit para
+1:42:35 que recargue siempre bien el contexto,
+1:42:37 en este caso, de las nuevas skills.
+1:42:39 Vengo por aquí y ahora voy a hacer otra
+1:42:42 vez un barra skills. Lanzo esto, me
+1:42:46 dice, "Oy, ya me ha leído la nueva
+1:42:48 skill." Y vemos que esta skill realmente
+1:42:51 no está en barra open code,
+1:42:53 perdón, en punto open code. Punto open
+1:42:55 code hace referencia a la configuración
+1:42:58 de Open Code, pero como cada día tenemos
+1:43:00 más agentes, más opciones, más
+1:43:02 herramientas,
+1:43:04 esto está haciendo algo muy bien la
+1:43:07 comunidad open source, que es, [ __ ]
+1:43:09 igual esta persona quiere trabajar con
+1:43:10 Open Code, pero igual quiere trabajar
+1:43:12 con CL Code o igual quiere trabajar con
+1:43:13 GitH o Pilot o la herramienta con IA que
+1:43:16 sea. ¿Por qué no creamos también
+1:43:19 diferentes estándares? El primer
+1:43:21 estándar que hemos visto es el agents,
+1:43:23 pero ahora también se está empezando a
+1:43:25 trabajar
+1:43:27 este punto agents que ya es
+1:43:29 configuración en general para todos los
+1:43:30 agentes. Yo si ahora pillara mi skill
+1:43:34 personalizada y la metiera aquí también
+1:43:36 iba a funcionar. Entonces, ya veis que
+1:43:38 ahora, claro, empezamos a añadir un
+1:43:40 montón de skills y así podríamos empezar
+1:43:42 a trabajar en el momento que le
+1:43:44 habláramos a nuestro a nuestra sesión de
+1:43:46 Open Code de ey, quiero que diseñes
+1:43:49 algo, crees algo, implementes algo. ¿Qué
+1:43:51 va a hacer? Lo mismo que cuando le
+1:43:53 hablamos de test, va a decir, "Ey, yo
+1:43:54 tengo una skill que me ayuda a diseñar
+1:43:57 mejor, a programar mejor la la parte
+1:44:00 frontend, pues voy a utilizar la skill
+1:44:01 de buenas prácticas." Okay, eso también
+1:44:03 es s super importante dentro de los
+1:44:06 conceptos. también basados en
+1:44:08 guardarraíles, que son estas skills,
+1:44:10 estos comandos personalizados, que lo
+1:44:12 que hacen es que el agente se comporte
+1:44:15 más como nosotros queremos. Vamos a
+1:44:17 añadir un nuevo concepto que es el
+1:44:19 concepto de MCPs y es un concepto que
+1:44:22 también, por supuesto, tenéis dentro por
+1:44:26 aquí de toda la información, servidores
+1:44:29 MCPs, lo que sea. ¿Qué es un MCP? ¿Y por
+1:44:32 qué es también un concepto tan tan
+1:44:35 importante en el mundo del desarrollo
+1:44:37 con inteligencia artificial? Es que sí,
+1:44:39 nosotros estamos trabajando con nuestro
+1:44:42 contexto. ¿Cuál es el contexto que
+1:44:44 tenemos? pues la documentación, el
+1:44:46 código, los comandos personalizados, los
+1:44:50 skills que le hemos pasado, el agents
+1:44:52 que tenemos creado. Pero imagínate que
+1:44:54 yo lo que quiero es conectarme a una
+1:44:57 herramienta externa.
+1:45:00 ¿Qué es esto de una herramienta externa?
+1:45:02 Vamos a pensar el ejemplo más típico. Yo
+1:45:05 tengo este proyecto, pero imagínate que
+1:45:06 este proyecto se conecta a una base de
+1:45:10 datos. Claro, la base de datos es algo
+1:45:12 remoto, puede estar en otro servidor y
+1:45:16 para yo programar mejor, ¿qué debería?
+1:45:19 Conocer muy bien la base de datos. Yo
+1:45:21 igual la conozco muy bien, pero la gente
+1:45:24 no tiene ni idea de cómo funciona mi
+1:45:27 base de datos. Imagínate que yo le
+1:45:29 pudiera decir a la gente que se
+1:45:32 conectara a mi base de datos, que leyera
+1:45:35 información de base de datos y que en
+1:45:38 función de la información o de la
+1:45:40 estructura o de las tablas de base de
+1:45:41 datos, él programar a diferente lógica.
+1:45:45 ¿Qué estamos haciendo con esto? Mejorar
+1:45:47 sus guardarraíles, mejorar su contexto y
+1:45:49 hacer que la gente funcione mejor. Para
+1:45:52 eso es para lo que tenemos el concepto
+1:45:54 de MCPs, el concepto de Model Contest
+1:45:56 Protocol. También tengo un curso sobre
+1:45:58 MCPs completo por si queréis profundizar
+1:46:01 mucho más en esto, pero básicamente MCPs
+1:46:04 es un protocolo que nos permite conectar
+1:46:07 nuestra gente a herramientas externas.
+1:46:10 Claro. ¿Y cómo lo hacemos? Pues también
+1:46:13 con un fichero de configuración. ¿Cómo
+1:46:16 creamos esos ficheros de configuración?
+1:46:18 También de forma muy simple. Yo podría
+1:46:20 venir aquí con toda mi cara y decirle,
+1:46:23 "Crea un MCP para este proyecto
+1:46:30 para conectarme a context 7. Este es el
+1:46:35 ejemplo que yo voy a utilizar y que os
+1:46:38 voy a enseñar ahora mismo, que es esto
+1:46:39 de Contex Seven. Vamos a buscar por aquí
+1:46:42 context 7. La grandísima mayoría, y esto
+1:46:45 es algo que ya os lo adelanto, la
+1:46:47 grandísima mayoría de proyectos
+1:46:53 ya tienen su propio MCP. ¿Qué significa?
+1:46:56 Que yo en el momento que le he pedido
+1:46:59 también aquí
+1:47:01 a mi Open Code que intente crear la
+1:47:07 conexión al MCP, también podemos empezar
+1:47:10 a ver qué es lo que está haciendo aquí.
+1:47:12 Fíjate, dice, "Bueno, Open Code. Voy a
+1:47:14 leer la información, tengo por aquí el
+1:47:17 esquema." Y me dice, "He creado un Open
+1:47:19 Code Jason en la raíz del proyecto."
+1:47:22 Bueno, vamos a ver qué es esto. Open
+1:47:24 Code Jason. Ah, mira, aquí tenemos
+1:47:27 información para la raíz del proyecto y
+1:47:29 me dice que esto es el MCP. Aquí ya
+1:47:33 empezamos a ver cómo funciona la
+1:47:35 configuración del MCP. Aquí lo ha creado
+1:47:38 bajo su criterio. ¿Qué os recomiendo?
+1:47:41 que el MCP, aunque tiene un fichero de
+1:47:44 configuración estándar, por supuesto,
+1:47:46 después cada MCP
+1:47:49 puede tener algunas variaciones. Lo
+1:47:52 primero que estoy viendo yo aquí es que,
+1:47:54 por ejemplo, este MCP no ha metido la
+1:47:56 cabecera de autenticación. ¿Qué es
+1:47:58 Contex Seven? Que es el que vamos a
+1:48:00 utilizar para lanzar este este ejemplo
+1:48:03 de cómo funciona un MCP.
+1:48:06 Lo mejor que podéis hacer para no tener
+1:48:10 que estar siempre actualizados a nivel
+1:48:11 de documentación. Contex Seven es una
+1:48:14 plataforma que lo que hace es tener
+1:48:16 referencias a las últimas versiones de
+1:48:18 la documentación. Fíjate, Next,
+1:48:21 Supabase, Expo. Imagínate que yo ahora
+1:48:23 tengo la necesidad y le digo, "Crea mi
+1:48:26 proyecto con NJS, no sé qué." El propio
+1:48:29 agente puede estar desactualizado. ¿Qué
+1:48:31 quiere decir esto? que igual la
+1:48:33 información que tiene la gente dentro de
+1:48:36 su propio entrenamiento para implementar
+1:48:38 una aplicación con con NJS o con Supace
+1:48:41 o con lo que sea que vemos aquí está
+1:48:43 desactualizada. Pero si yo ahora le
+1:48:47 conecto un MCP que a su vez se conecta a
+1:48:51 la última versión de la documentación,
+1:48:53 ¿qué voy a hacer? Voy a asegurar que mi
+1:48:55 proyecto, si yo le hablo de, "Ey, crea
+1:48:58 un proyecto con next, él se va a
+1:49:00 conectar al MCP. y el MCP va a buscar la
+1:49:04 documentación más actualizada de justo
+1:49:06 la tecnología que yo le estoy pidiendo y
+1:49:08 así estoy haciendo que mi proyecto aún
+1:49:10 se construya de una manera mejor. Esto
+1:49:12 es un ejemplo también muy claro. Voy a
+1:49:14 hacer login por aquí me tenéis que dar
+1:49:17 simplemente un segundo para que yo me
+1:49:20 venga por aquí, haga login y así veamos
+1:49:23 muy rápido también cómo podemos empezar
+1:49:25 a crear este MCP. Vamos a ver también
+1:49:29 otra información. En el momento que yo
+1:49:30 ya me he logueado, aquí hace falta un
+1:49:33 app de autenticación.
+1:49:36 Contex S en concreto es gratuito, hay
+1:49:38 también una parte de pago, pero lo
+1:49:40 puedes utilizar en una capa gratuita
+1:49:41 para conectarte, para medir justamente
+1:49:43 estas estas interacciones, lo que te va
+1:49:45 a pedir es crear un API key. Entonces,
+1:49:47 yo le voy a decir por aquí eh Open Code,
+1:49:51 porque es justo la API Key que voy a
+1:49:53 crear para Open Code. Le doy a crear, me
+1:49:56 va a decir que esta es la AP. Esta APIQ
+1:49:58 me la puedo copiar, por supuesto, si
+1:50:00 ahora me copiáis el APIQ, podéis acabar
+1:50:02 utilizando mi APQ. Si yo tuviera un plan
+1:50:04 de pago, empezaríais a gastarme el
+1:50:05 dinero o lo que sea. Bueno, esta Piqu
+1:50:07 sin más, vemos que la tenemos por aquí.
+1:50:10 Y ahora esta AP lo que voy a hacer yo es
+1:50:12 borrarla para que no la tengáis porque
+1:50:14 ya me tengo por aquí otra creada, pero
+1:50:16 vamos a ver cómo lo podemos configurar.
+1:50:18 Fíjate que yo le he dicho a la gente que
+1:50:22 directamente cree el MCP. Claro, la
+1:50:26 gente lo ha creado como buenamente
+1:50:28 puede, pero lo que yo os recomendaría es
+1:50:31 que como cada plataforma tiene su MCP
+1:50:34 creado, veis esto instal me va a lanzar
+1:50:37 con este comando. Yo podría venir por
+1:50:39 aquí, podría irme a mi terminal, no ya a
+1:50:43 Open Code, sino a mi terminal, abrir por
+1:50:46 aquí una nueva terminal, lanzar este
+1:50:50 comando, que es el comando para crear la
+1:50:54 configuración del MCP de Contex S. Y ya
+1:50:57 me dice por aquí el agents no sé qué tal
+1:51:00 y me va a acabar creando el MCP para
+1:51:03 Contex S.
+1:51:05 Así ya nos aseguramos que lo va a crear
+1:51:08 bien sí o sí. No lo voy a utilizar
+1:51:11 porque ya lo he lanzado porque también
+1:51:14 os quiero acabar enseñando cuál es la
+1:51:15 manera nativa que tiene Open Code para
+1:51:17 trabajar con los MCPs. Tiene la
+1:51:21 posibilidad de que yo haga OpenCode
+1:51:23 MCPAD y así ya no es agente haz lo que
+1:51:25 te dé la gana, sino que me va a empezar
+1:51:28 a decir, "Vale, vamos a crear un MCP."
+1:51:31 Así que ya que vamos a crear el MCP, me
+1:51:33 tienes que decir cuál es la URL del MCP.
+1:51:37 Esto, por supuesto, es todo
+1:51:39 configuración que tú puedes acabar
+1:51:41 buscando la documentación del MCP. En
+1:51:43 este caso, ¿cuál es la URL de Contex
+1:51:45 Seven para el MCP? Esta que tienes por
+1:51:47 aquí. ¿Cómo la quieres crear? Local, es
+1:51:49 decir, levantar tú el MCP. No, no, no.
+1:51:50 Yo me quiero conectar a un MCP remoto a
+1:51:53 través de la URL que ves por aquí. Ah,
+1:51:56 claro, yo le di el nombre al MCP. Bueno,
+1:51:57 perdonar, le he dado aquí.
+1:52:00 Vamos a salir y vamos a volver a empezar
+1:52:02 porque lo he hecho lo he hecho mal. El
+1:52:06 nombre Contex Sen del MCP lo quiero
+1:52:09 ejecutar en remoto, quiero conectarme a
+1:52:12 un MCP que está remoto y la URL es esta.
+1:52:15 Y me dice, "Ey, ¿necesita
+1:52:16 autenticación?" Sí, necesita
+1:52:17 autenticación. Vale. ¿Y tiene registrado
+1:52:21 un ID o lo que sea? No, no lo tengo
+1:52:22 registrado. Vamos a dejar que se lance
+1:52:24 así porque así vamos a ver lo siguiente.
+1:52:26 Cómo dentro de config me ha creado un
+1:52:30 open code barra
+1:52:34 opencode.jonj.
+1:52:37 ¿Qué significa esto? Otra vez volvemos a
+1:52:39 donde antes. Dentro de la configuración
+1:52:42 general. Ahora lo que me ha creado es
+1:52:45 esto. Como yo tengo un ficherito por
+1:52:47 aquí, ¿lo vemos? Ta ta ta. me ha creado
+1:52:51 dentro de la configuración general de
+1:52:54 Open Code el MCP que este Wizard me ha
+1:52:57 permitido ir haciendo poquito a poco. Yo
+1:53:00 en este caso lo voy a desechar o qué
+1:53:02 podría hacer yo copiar esto y meterlo
+1:53:04 dentro de mi proyecto porque vuelvo a lo
+1:53:06 mismo, los MCPs misma filosofía que los
+1:53:09 skills o los comandos personalizados.
+1:53:12 Para mí, para mí es mucho mejor tenerlo
+1:53:15 a nivel de proyecto. ¿Qué nos falta
+1:53:17 aquí? Bueno, nos falta una cabecera de
+1:53:20 autenticación. La cabecera de
+1:53:22 autenticación que
+1:53:25 yo me he copiado por aquí, que ya vemos
+1:53:26 que esto es un token que yo tengo. Por
+1:53:28 supuesto, ese token lo voy a borrar, que
+1:53:30 nadie se complique en buscarlo ni en
+1:53:32 copiarlo. Cada uno que genere su token.
+1:53:35 Pero con esto ya tendríamos el MCP
+1:53:37 configurado siguiendo las reglas de los
+1:53:39 MCPs y siguiendo la configuración que
+1:53:42 nos indica que tenemos que seguir el
+1:53:44 propio MCP de Contex 7. Y ahora, ¿qué
+1:53:47 conseguiríamos? En este caso, fíjate, ya
+1:53:50 tengo el MCP. Voy a volver a Open Code,
+1:53:54 pero voy a ir a Open Code sin abrir la
+1:53:57 Twi, sino poner lo siguiente, Open Code
+1:54:00 MCP list. Y vamos a ver si es capaz de
+1:54:03 listarme los MCPs. Claro, veis este MCP,
+1:54:08 tenemos el MCP de Contex 7. ¿Por qué
+1:54:11 tenemos el MCP de Contex 7? Porque aquí
+1:54:14 lo tengo, lo he configurado en el
+1:54:16 proyecto. Perfecto, ya tengo el MCP. Ya
+1:54:19 estoy seguro que tengo el MCP. Vamos a
+1:54:22 abrir Open Code dentro de nuestro
+1:54:25 proyecto. Y ahora vamos a lanzar el
+1:54:28 comando MCPs. Fíjate lo que tenemos
+1:54:31 aquí, el único MCP que tenemos
+1:54:34 conectado. ¿Cuál es la recomendación?
+1:54:37 ¿Cuál es la buena práctica que tú solo
+1:54:40 conectes los MCPs que quieras utilizar
+1:54:45 en este momento concreto y en este
+1:54:47 proyecto? ¿Cómo los conectamos? Con la
+1:54:49 barra. ¿Ves que yo le doy barra
+1:54:52 espaciadora
+1:54:54 disable? Barra espaciador uy barra
+1:54:58 espaciadora
+1:54:59 enable.
+1:55:01 Yo ahora digo, "Vale, no, no, con el
+1:55:03 proyecto que estoy trabajando sí que
+1:55:05 quiero tener habilitado el MCP de Contex
+1:55:07 Seven, porque es cierto que yo voy le
+1:55:09 voy a preguntar algo, que quiero que se
+1:55:11 acabe conectando a la información o lo
+1:55:13 que sea." ¿Qué va a pasar ahora mismo?
+1:55:16 misma filosofía que los skills, con la
+1:55:20 diferencia que los skills no se
+1:55:22 desactivan,
+1:55:23 sino que se invocan bajo demanda, si el
+1:55:26 agente lo considera, pero los MCPs
+1:55:30 primero yo tengo que activarlos y ahora
+1:55:32 lo que va a pasar es que si yo le
+1:55:34 pregunto algo a la gente que tiene que
+1:55:38 ver con la documentación,
+1:55:41 lo que va a hacer es, "Ey, tengo algún
+1:55:44 MCP que me ayude con la documentación.
+1:55:46 Ostras, sí que tengo el MCP de Contex
+1:55:48 Seven. Va a invocar al MCP de Contex
+1:55:50 Sev. se va a conectar a Contex Seven, le
+1:55:52 va a pedir la documentación sobre lo que
+1:55:54 yo le estoy pidiendo a la gente, va a
+1:55:55 leer la documentación y sobre esa
+1:55:57 documentación va a acabar implementando
+1:55:59 algo concreto.
+1:56:01 Si en algún momento veis que no se os
+1:56:04 está conectando al MCP, sin más le
+1:56:06 dices, usa el MCP de Contex S. Se lo
+1:56:12 puedo decir yo expresamente, ya que
+1:56:15 quiero que implementes
+1:56:18 con eh NextJs
+1:56:22 tal funcionalidad,
+1:56:25 ¿vale? Entonces, él ya sí o sí ya le
+1:56:27 estás obligando a que utilice el MCP, se
+1:56:30 conecte, no sé qué y haga lo que sea. Yo
+1:56:33 ahora aquí el modo lanzo el modo plan
+1:56:35 para que no acabe implementando nada,
+1:56:37 pero dice, "Ey, necesito que conectes la
+1:56:39 funcionalidad, no sé qué." Claro. Oye,
+1:56:41 modo plan, me puedo conectar a Conte
+1:56:44 Seven, pero no sé cuál es la tal, te
+1:56:46 describo una, no sé quié, escribes la
+1:56:47 funcionalidad o escribes lo que te da la
+1:56:49 gana, bueno, lo que sea, pero ya vemos
+1:56:51 que ya tenemos la capacidad de
+1:56:53 conectarnos a un sistema de terceros.
+1:56:58 Aquí os puse esto que es de solo
+1:56:59 lectura, que yo me conecto a la
+1:57:00 documentación, pero por favor también
+1:57:02 tener muy muy en mente que
+1:57:06 hay MCPs prácticamente para todo. Otro
+1:57:10 ejemplo de MCP, imagínate que tienes un
+1:57:12 Notion, un Notion donde tú estás
+1:57:15 describiendo todas las funcionalidades
+1:57:16 de tu proyecto, pues conectas al MCP de
+1:57:19 Notion, así se va a conectar a tu Notion
+1:57:21 y tú le vas a decir, "Ey, lee la
+1:57:23 documentación de mi Notion e implementa
+1:57:25 lo que pide el Notion y cuando acabes
+1:57:27 escribe mi Notion."
+1:57:30 pensar que no hay un límite realmente,
+1:57:34 que cuando hablamos de MCPs me puedo
+1:57:35 conectar a cualquier aplicación de
+1:57:37 tercero siempre y cuando tenga la
+1:57:39 capacidad de utilizar justamente ese
+1:57:43 MCP. También incluso podría crear un MCP
+1:57:46 mío local para algo concreto, para
+1:57:48 acabar exponiendo cualquier dato, por
+1:57:50 supuesto. Para aquí lo mejor, más de lo
+1:57:53 mismo, os vais a la documentación,
+1:57:55 buscáis la parte de MCPs, aquí os va a
+1:57:57 decir cómo conectaros, pero también
+1:57:59 buscar información sobre cómo o podéis
+1:58:02 acabar creando los propios MCPs. Hay
+1:58:04 directorios de MCPs.
+1:58:08 Buscáis directorios.
+1:58:10 No sé por qué me está saltando aquí la
+1:58:12 validación, pero lo que vais a acabar
+1:58:14 viendo es que sí, también hay un montón
+1:58:16 de comunidades. Dice MCP Directory,
+1:58:19 bueno, pues aquí puedes buscar los MCPs
+1:58:22 de lo que de Atlasian, Conbamos viendo,
+1:58:24 Playght, Dagda Go. Bueno, servicios y
+1:58:28 servicios. Este directorio ya tiene aquí
+1:58:31 2,300 servidores de MCP, 9,000 skills.
+1:58:35 Bueno, lo de siempre, buscar información
+1:58:38 porque así es la mejor manera también de
+1:58:39 entender todas las capacidades que
+1:58:42 podéis acabar añadiendo a la
+1:58:44 funcionalidad de vuestros propios
+1:58:46 agentes. Algo también muy guay,
+1:58:49 realmente que a mí me gusta bastante es
+1:58:51 la capacidad de utilizar plugins.
+1:58:57 Vamos aquí a la sección de plugins de
+1:59:00 Open Code, que la encontráis como
+1:59:01 complementos. Esto es contenido más
+1:59:04 avanzado, entonces os lo voy a explicar
+1:59:06 solo por encima porque no os quiero
+1:59:08 romper demasiado la cabeza, pero
+1:59:09 entender que los plugin para mí es una
+1:59:12 de las capacidades más diferenciadoras
+1:59:15 que tiene eh Open Code. ¿Qué es eso de
+1:59:19 ahí? Vale, a ver, os lo explico muy muy
+1:59:23 rápido sin entrar en demasiados detalles
+1:59:26 porque el tema de los complementos, que
+1:59:27 ya veis que se puede crear para toda la
+1:59:29 configuración o también open cober
+1:59:31 plugins dentro del proyecto. Ya veis que
+1:59:34 la filosofía de configuración es muy
+1:59:35 parecida, pero básicamente los plugins
+1:59:39 es la capacidad de extender el
+1:59:41 comportamiento de nuestro agente. Claro,
+1:59:44 hemos visto los comandos personalizados,
+1:59:47 las skills, los agentes. En realidad, un
+1:59:50 plugin es distinto porque modifica el
+1:59:52 comportamiento de Open Code, ya que se
+1:59:55 engancha a los eventos del ciclo de
+1:59:57 vida. A ver si soy capaz de explicarlo
+2:00:01 mejor o explicarlo de manera más
+2:00:03 concisa. las skills, los comandos y todo
+2:00:06 esto se ejecutaba en el momento que
+2:00:09 nosotros hacíamos el promptiono.
+2:00:11 Decíamos, "Ey, igual se ejecuta esta
+2:00:13 skill o se va a conectar a o va a lanzar
+2:00:17 este comando." Pero nosotros lo que
+2:00:20 tenemos es que con la capacidad de los
+2:00:22 plugins, de los complementos, es que
+2:00:25 podemos interceptar un montón de
+2:00:27 eventos. Fíjate,
+2:00:29 cuando se ejecuta un comando, cuando se
+2:00:31 edita un fichero, cuando se conecta a un
+2:00:34 server, estos son
+2:00:37 partes del ciclo de vida de la propia
+2:00:40 ejecución de los eventos del código.
+2:00:44 Empieza a lanzarse la gente, empieza a
+2:00:46 hacer cosas y de repente se conecta a un
+2:00:51 servidor, como veíamos por aquí. Pues
+2:00:54 nosotros lo que le podemos decir es,
+2:00:55 "Ey, si en algún momento el agente
+2:00:58 realiza la tarea de conectarse a un
+2:01:01 servidor, tienes que hacer esto."
+2:01:03 Entonces nosotros tenemos la capacidad,
+2:01:05 y esto lo podemos ver aquí con algún
+2:01:07 ejemplo, la manera de escribir los
+2:01:09 plugins es sobre todo en TypeScript,
+2:01:11 ¿no? Como suele funcionar, pero lo que
+2:01:13 tenemos por aquí, Typescript o
+2:01:15 JavaScript, vemos por aquí que hemos
+2:01:16 creado un plugin. Le decimos cuándo
+2:01:20 queremos que se ejecute.
+2:01:22 Este before se ejecuta antes de que se
+2:01:26 vaya a lanzar la ejecución de la tool.
+2:01:29 ¿Y de qué tool? ¿De qué herramienta? Del
+2:01:31 bash. Fíjate. Y aquí lo que tenemos,
+2:01:35 fíjate. Ta ta ta. Open code ejuta. Este
+2:01:39 boom install. Luego los complementos y
+2:01:41 las herramientas se pueden acabar
+2:01:43 importando. Tenemos todo esto y aquí lo
+2:01:45 que hace es justamente escapar los
+2:01:46 argumentos.
+2:01:48 va a ser capaz de ejecutar algo muy
+2:01:51 concreto en el momento que nosotros le
+2:01:53 indiquemos. Y claro, tenemos todas estas
+2:01:56 posibilidades, todos estos eventos. Yo
+2:01:58 le puedo indicar en un momento concreto,
+2:02:01 en el caso que se lance uno de estos
+2:02:03 eventos por el agente, lo puedo
+2:02:06 interceptar
+2:02:07 y decirle, "Ey, este plugin tiene que
+2:02:10 hacer esto que yo voy a implementar
+2:02:12 cuando esté sucediendo esto concreto."
+2:02:15 Imagínate que quieres bloquear acciones
+2:02:18 peligrosas, entonces puedes interceptar
+2:02:20 antes de que se lance una herramienta.
+2:02:22 Puedes crear un formateador concreto o
+2:02:26 que te lance una notificación. oerva
+2:02:28 algo concreto o crear herramientas
+2:02:31 propias. Ya os digo que esto es algo más
+2:02:33 avanzado, pero que por supuesto la
+2:02:35 documentación lo tenéis todo muy bien
+2:02:37 explicado y que lo importante para mí es
+2:02:40 que entendáis el concepto de plugin, el
+2:02:42 concepto de complemento y cómo puede o
+2:02:44 cómo podemos colar lógica concreta en el
+2:02:48 medio de la propia ejecución del agente.
+2:02:51 ¿Vale? Más cositas que vamos a ver por
+2:02:54 aquí, también algo avanzado, pero que
+2:02:56 también resulta bastante importante.
+2:02:58 Hemos visto como nosotros tenemos
+2:03:01 agentes, pero hemos visto hasta ahora
+2:03:05 que nosotros teníamos el agente Plan, el
+2:03:08 agente Bill, los agentes Explore
+2:03:11 General. Pero, ¿qué pasa si yo quiero
+2:03:14 acabar creando mi propio agente? Bueno,
+2:03:17 más de lo mismo, por favor, atentos a la
+2:03:20 documentación de agentes. ¿Qué podría
+2:03:23 hacer yo? Claro, igual que yo tengo los
+2:03:25 agentes con capacidades concretas, igual
+2:03:28 yo quiero crear mis propios agentes.
+2:03:31 Pues, ¿cómo puedo crear mi propio
+2:03:33 agente? Podemos hacer, por supuesto, la
+2:03:35 de crea un agente para Open Code, no sé
+2:03:39 qué se lo pedimos para que lo haga el
+2:03:40 propio agente. Aún así, ahí, claro, el
+2:03:43 agente va a hacer lo que sabe, lo que
+2:03:45 puede.
+2:03:47 Para mí, algo que podemos hacer es
+2:03:49 utilizar justamente los comandos de Open
+2:03:50 Code que nos permiten crear agentes, que
+2:03:53 simplemente es Open Code agent,
+2:03:56 create. Si ya voy a lanzar sí o sí el
+2:04:00 comando de la gente y le voy a decir
+2:04:02 pues no lo sé, ¿cuál es la descripción
+2:04:05 de la gente? pues le voy a decir,
+2:04:07 "Revisa el código sin tocarlo, busca
+2:04:09 backs, riesgos y deuda técnica y va a
+2:04:12 empezar a generar la configuración de la
+2:04:14 gente. Esta gente se va a meter dentro
+2:04:18 de toda la estructura de configuración
+2:04:21 de Open Code. Ya lo vemos por aquí,
+2:04:23 generando la configuración de la gente.
+2:04:25 Y después nosotros lo que vamos a tener
+2:04:27 es la capacidad de igual que ahora
+2:04:28 nosotros podemos llamar a los diferentes
+2:04:30 agentes que ya tiene creados OpenCode
+2:04:32 por defecto, nosotros podremos acabar
+2:04:35 creando o perdón, acabar invocando a
+2:04:38 nuestro propio agente. Vamos a dejar que
+2:04:41 se ejecute, vamos a dejar que finalice y
+2:04:43 vamos a ver qué es esto de los agentes
+2:04:46 dentro del propio Open Code, pero a un
+2:04:49 nivel personalizado.
+2:04:51 Realmente si lo queremos ir viendo muy
+2:04:54 muy rápido, fíjate en el momento que ya
+2:04:56 crea el agente me dice, "¿Cuáles son los
+2:04:59 permisos?" Claro, quieres tener el
+2:05:01 permiso bash, el permiso de lectura, de
+2:05:04 de edición o todos los que sea, la
+2:05:07 capacidad de lanzar skills, de cargar
+2:05:09 LSP, lo que sea. Bueno, pues yo le digo,
+2:05:12 claro, este agente en realidad yo no
+2:05:16 quiero que edite. Quiero que haga todo,
+2:05:19 pero no quiero que edite
+2:05:21 porque ya hemos visto que era una
+2:05:23 revisión del código sin tocarlo. Pues yo
+2:05:25 le digo, "Mira, pues ya está, quiero que
+2:05:28 hagas todo esto y quiero que lo acabes
+2:05:31 creando como ¿qué? ¿Como agente primario
+2:05:34 o como un agente secundario?" Ya vemos
+2:05:36 que me dice, "Créalo como all". en
+2:05:39 realidad un agente que se puede ejecutar
+2:05:41 primario o secundario, es decir, que lo
+2:05:44 puedo lanzar en segundo plano o que lo
+2:05:46 puedo lanzar en primario. En este caso,
+2:05:48 yo voy a decir, bueno, para mí yo creo
+2:05:49 que esto tiene la concepción de
+2:05:51 subagente. No quiero que bloquee, sino
+2:05:53 que busque errores mientras yo estoy
+2:05:55 haciendo otra cosa y que sea el agente
+2:05:57 primario el que se encarga de lanzarlo.
+2:05:59 Bueno, le doy esta capacidad. Por
+2:06:00 supuesto, dependiendo de la gente que tú
+2:06:02 quieras crear, haces lo que te dé la
+2:06:04 gana. Yo voy a crear este subagente y ya
+2:06:06 está. Vale, ¿qué tenemos por aquí?
+2:06:09 Configuración,
+2:06:10 open code, agentes. ¿Qué ha hecho? Ha
+2:06:13 creado un subagente llamado revisión
+2:06:16 código reazongly. Perfecto. Que yo lo
+2:06:19 quiero llamar de otra forma. Volvemos al
+2:06:21 directorio. Fíjate lo que yo tengo por
+2:06:23 aquí. Se ha creado un directorio agents
+2:06:25 y que me ha creado este. Imagínate que
+2:06:28 yo ahora digo, "Ostra, yo quiero
+2:06:29 cambiarlo porque no me gusta." Le voy a
+2:06:31 llamar inspector.
+2:06:33 No pasa nada. Le cambio el nombre y no
+2:06:36 ocurre. absolutamente nada. Que alguien
+2:06:38 tiene dudas y dice, "Uf, es que este
+2:06:40 subente y si yo lo quisiera solo a nivel
+2:06:43 de proyecto revisar, porque esto es algo
+2:06:45 también muy típico de todos los agentes.
+2:06:47 Si yo lo quiero crear a nivel de
+2:06:49 proyecto, a nivel general, ¿cómo son las
+2:06:52 cómo son las configuraciones? ¿Cómo lo
+2:06:53 podría acabar utilizando? Lo habitual es
+2:06:57 que en el momento que nosotros podemos
+2:06:59 crear algo a nivel general, fíjate que
+2:07:01 esto era punto agents y aquí dentro del
+2:07:04 punto agents teníamos un
+2:07:07 inspector que es el nombre del agente
+2:07:09 del subagente que yo he creado. También
+2:07:12 es muy habitual que nosotros podamos
+2:07:14 venir por aquí dentro del punto agents,
+2:07:15 le metemos el inspector y esto lo acaba
+2:07:17 leyendo con un subente.
+2:07:19 cierto y esto sí que ahora igual que
+2:07:23 antes os daba las recomendaciones de que
+2:07:25 igual que los skills o los comandos
+2:07:28 personalizados decía créalo a nivel de
+2:07:31 proyecto los agentes, como ya son un
+2:07:34 ente teóricamente mucho más grande y que
+2:07:36 va a tener capacidades muchísimo más
+2:07:38 amplias, ahí sí que podéis decidir si lo
+2:07:40 metéis a mi nivel de proyecto, si lo
+2:07:41 metéis a un nivel un poquito más
+2:07:43 especializado. Fíjate que si yo me abro
+2:07:46 el inspector aquí, ha metido
+2:07:48 información. ¿Qué ha creado la
+2:07:50 información que le ha dado la gana?
+2:07:52 Obviamente si yo voy a definir mi propio
+2:07:55 agente, aunque aquí tenemos, fíjate, la
+2:07:58 descripción, el modo subagente, el
+2:08:01 permiso le decimos o le denegamos que no
+2:08:04 puede editar, pero aquí el cómo funciona
+2:08:07 se lo ha inventado, por supuesto, como
+2:08:10 aquí, como las skin, como los comandos,
+2:08:11 como todo. Por favor, escribe las
+2:08:15 capacidades que quieras que tenga tu
+2:08:17 agente. A mí, en este caso me da un
+2:08:19 poquito igual, no pasa absolutamente
+2:08:21 nada. Dejo que haga lo que quiera, me
+2:08:23 voy a abrir Open Code y vamos a ver
+2:08:25 ahora qué pasa con este subagente.
+2:08:28 Fíjate que ahora cuando escribo a el
+2:08:31 valía para hacer referencia a ficheros,
+2:08:33 pero también a los subagentes. Claro,
+2:08:35 dentro de los primarios yo solo tengo el
+2:08:37 plan y el build. Tengo aquí algo que se
+2:08:39 llame agents, sí, pero solo de los
+2:08:41 primarios.
+2:08:43 Build y plan. Claro, no tengo mi
+2:08:47 subagente. ¿Por qué? Porque lo he creado
+2:08:49 justamente como subagente. Le he dicho
+2:08:51 que no debería ser primario, con lo cual
+2:08:52 la forma de llamarlo es a través de este
+2:08:56 a leado inspector, ¿verdad? Lanzo el
+2:08:59 inspector. ¿Qué va a hacer el build? que
+2:09:01 es el agente primario, llama al
+2:09:03 subagente y aquí es donde ya empieza a
+2:09:05 entrar ese concepto que ya es mucho más
+2:09:07 avanzado. Cuando hablamos de
+2:09:09 orquestación, cuando hablamos de
+2:09:12 subagentes, justamente lo que tenemos es
+2:09:14 nuestra serie de agentes que son capaces
+2:09:17 de de ejecutarse en primer plano o en
+2:09:19 segundo plano y que cada uno es capaz de
+2:09:23 hacer cosas muy concretas. Claro, mi
+2:09:25 agente build es capaz de construir, por
+2:09:28 supuesto, también es capaz de revisar,
+2:09:30 pero imagínate que yo le tengo que
+2:09:33 especificar
+2:09:34 toda esta regla cada vez que yo quiero
+2:09:37 que revise mi código. Sería una locura,
+2:09:39 ¿verdad? no tendría sentido. En cambio,
+2:09:41 si yo tengo un subagente que ya sé que
+2:09:44 va a funcionar de esta forma, que ya sé
+2:09:46 que no va a ser capaz de editar el
+2:09:48 código porque yo se lo he denegado en
+2:09:50 los permisos, en realidad lo que estoy
+2:09:52 haciendo es ser mucho más eficiente y
+2:09:54 dando un contexto muchísimo mejor a mi
+2:09:57 propio proyecto. De ahí la importancia
+2:09:59 de que un agente puede empezar a lanzar
+2:10:02 más suagentes o que nosotros podemos
+2:10:03 crear más agentes primarios que
+2:10:06 desarrollen con todas las capacidades
+2:10:08 agénticas, pero limitados por las reglas
+2:10:11 que nosotros le queremos acabar dando.
+2:10:13 Con lo cual, ya veis, aquí va a empezar
+2:10:16 a hacer un montón de cosas que le hemos
+2:10:18 indicado. Ya está. No me importa que nos
+2:10:21 dé resultado que nos dé la gana, porque
+2:10:23 esto se está ejecutando en segundo
+2:10:24 plano, como hemos visto que se ejecutan
+2:10:27 los subagentes. Revisar muy bien cómo
+2:10:29 funciona toda la información. Ya vemos
+2:10:32 editar, el bas, el no sé qué. Fíjate
+2:10:35 bien cómo se hace todo, porque después
+2:10:37 tú te acabarás creando los agentes
+2:10:38 primarios o los suagentes que tenga las
+2:10:41 capacidades que a ti te de la gana.
+2:10:43 Vale, he dejado algunos comandos aquí ya
+2:10:47 para el final, comandos también que voy
+2:10:48 a contar muy por encima. Comando rename,
+2:10:51 la sesión ya vemos que le daba el nombre
+2:10:53 que le daba la gana. Si tú quieres
+2:10:55 renombrar el nombre de la sesión, porque
+2:10:58 realmente veis qué es esto, bueno, le ha
+2:11:01 dado este nombre, que le quiero dar otro
+2:11:02 nombre porque después yo lo quiero
+2:11:03 acabar encontrando mejor, no sé qué tal.
+2:11:05 Le puedes cambiar el nombre de la
+2:11:06 sesión. Vemos que ya ha acabado el
+2:11:07 subagente. Aquí vemos errores, mira,
+2:11:11 errores críticos.
+2:11:13 errores altos, medios, no sé qué. Pues
+2:11:15 bueno, pues con todo el subente que
+2:11:17 hemos creado, ya vemos que nos da la
+2:11:19 información correcta. Eso. Otros
+2:11:20 comandos, el comando fork que vimos
+2:11:22 antes. Nosotros tenemos una sesión,
+2:11:24 estamos trabajando con una sesión, pero
+2:11:25 lo que queremos hacer es levantar una
+2:11:27 nueva sesión con lo que tenemos ahora
+2:11:29 mismo, porque no queremos contaminar,
+2:11:31 digamos, la sesión actual. Queremos
+2:11:34 crear una nueva sesión, pero que no
+2:11:36 pierda el contexto de lo que nosotros
+2:11:37 habíamos hecho hasta este momento. Pues
+2:11:39 tú puedes hacer sin más esta sesión y
+2:11:42 nos va a decir, "Ey, ¿de qué quieres
+2:11:44 hacer el fork? ¿De qué quieres hacer la
+2:11:46 nueva rama de la sesión? De toda la
+2:11:48 sesión o de lo que se estaba ejecutando
+2:11:51 en segundo plano, que era lo que ejecutó
+2:11:52 el inspector. Bueno, lo podemos acabar
+2:11:54 seleccionando y así podemos seguir
+2:11:56 trabajando también de una manera más
+2:11:58 óptima. También tenemos el comando move,
+2:12:00 que nos sirve para movernos a otro
+2:12:02 directorio del proyecto. Claro, yo estoy
+2:12:04 actuando sobre un lugar muy concreto, en
+2:12:07 este caso mi directorio Hello Open Code,
+2:12:10 que me quiero mover a otro sitio, pues
+2:12:13 digo, "Vale, ahora quiero que empieces a
+2:12:15 trabajar, pero en un sitio más concreto
+2:12:16 del proyecto." Hago el el move, escribo
+2:12:19 hacia dónde me quiero ir yo y ya está.
+2:12:22 Vale, también espero que quede claro
+2:12:25 porque creo que son comandos también que
+2:12:28 pueden llegar a ser útiles, no tan
+2:12:29 útiles como todos los que hemos visto,
+2:12:31 pero sí útiles en algún momento. Con
+2:12:33 esto hemos repasado creo que todos los
+2:12:35 comandos que existen en Open Code, pero
+2:12:39 esto no se va a quedar aquí porque yo os
+2:12:42 prometí algo al principio del curso y es
+2:12:44 que sí tenemos todos estos modelos, los
+2:12:48 modelos gratis, los modelos que tú
+2:12:49 enganchas a través de los proveedores,
+2:12:51 pero también os he dicho una cosa, si
+2:12:53 vosotros tenéis una máquina que es capaz
+2:12:55 de ejecutar modelos locales,
+2:12:58 oye, estaría bastante guay que Open Code
+2:13:01 también fuera era capaz de ejecutar el
+2:13:04 modelo que yo estoy corriendo en mi
+2:13:06 máquina. Así es privado, es gratuito, no
+2:13:09 gasto nada y todo perfecto. La mejor
+2:13:13 forma o la que yo os recomiendo hay una
+2:13:16 herramienta que se llama Oyama, ¿vale?
+2:13:19 Oyama es una herramienta que nos
+2:13:21 permite, por un lado, descargar Llms,
+2:13:24 modelos de código abierto, de pesos
+2:13:28 abiertos, mejor dicho, en nuestra
+2:13:29 máquina y ejecutarlos. Es decir, que
+2:13:31 nosotros en nuestra máquina podemos
+2:13:33 correr un modelo. ¿Queréis saber más
+2:13:35 sobre todo el concepto de inteligencia
+2:13:37 artificial local? Tengo otro curso de
+2:13:39 inteligencia artificial local. Lo
+2:13:41 buscáis, lo hacéis y ahí vais a ver cómo
+2:13:43 os instalo llama, cómo corro llama, cómo
+2:13:46 podéis descargar los modelos, cómo los
+2:13:48 podéis ejecutar. Yo ya tengo instalado
+2:13:50 llama. Voy a hacer algo muy muy simple.
+2:13:53 Voy a abrir una nueva terminal,
+2:13:56 voy a correr Oyama
+2:13:59 y vamos a ver lo siguiente, como tenemos
+2:14:01 aquí la posibilidad de yo empezar a
+2:14:03 chatear con Oyama o con lo que sea.
+2:14:06 Bueno, que yo quiero chatear con Oyama
+2:14:09 sin más porque es un modelo que yo tengo
+2:14:11 local y no sé qué. Perfecto, ya vemos
+2:14:12 que aquí tenemos diferentes opciones,
+2:14:15 pero dentro de estas opciones vemos que
+2:14:18 nos dice, "Ey, puedes lanzar codex o
+2:14:20 Hermes o openla o un montón de cosas."
+2:14:24 ¿Por qué? Porque el propio Yama
+2:14:27 que tú puedas lanzar un modelo local y
+2:14:30 puedas chatear con ese modelo local,
+2:14:33 sino que también te da la posibilidad, y
+2:14:36 esto lo podéis buscar en la propia
+2:14:39 documentación de Oyama, oyama, dentro de
+2:14:41 la propia documentación vais a acabar
+2:14:44 encontrando como dentro de las
+2:14:45 integraciones, una de las integraciones
+2:14:48 es Open Code. Y con este comando que
+2:14:51 veis aquí, lo que hace es lanzar open
+2:14:54 code el modelo en local que vosotros
+2:14:58 tengáis. Fíjate, vengo por aquí y digo
+2:15:01 oama launch open code. Yo tengo estos
+2:15:05 tres modelos descargados en mi máquina.
+2:15:08 GMA 4, Quen 3, no sé qué, bla, bla, bla.
+2:15:12 Gema 4, por ejemplo, vamos a ver lo que
+2:15:15 ocurre. Se levanta el tui de Open Code y
+2:15:20 vemos ahora cuál es el modelo.
+2:15:23 Ojo, modelo cargado a través del
+2:15:26 proveedor o llama Gema 4 E2B.
+2:15:30 Esto mola bastante, ¿no? Dentro ahora de
+2:15:34 los modelos, fíjate que yo tengo sí
+2:15:36 todos mis modelos, pero también tengo el
+2:15:39 modelo de Oyama. Y el modelo do llama
+2:15:43 aquí la primera vez va a tardar más
+2:15:44 porque va se va a levantar el modelo y
+2:15:46 el contexto, pero en este momento yo ya
+2:15:50 estoy utilizando el modelo que tengo en
+2:15:54 mi máquina, con lo cual tenéis una
+2:15:56 máquina que realmente puede correr
+2:15:59 modelos locales, no perdáis esta
+2:16:01 oportunidad de Copen Code. También es
+2:16:03 capaz de ejecutarse contra modelos de
+2:16:06 vuestra máquina. Hola, ¿en qué puedo
+2:16:08 ayudarte?
+2:16:10 Voy a hacer otra vez.
+2:16:14 Yo voy a chatear con él por hacer algo,
+2:16:16 ¿no? Pero para que veáis que esto se
+2:16:18 sigue ejecutando y que sigue siendo el
+2:16:19 modelo local y que ahora donde, claro,
+2:16:22 se tuvo que levantar la primera vez, no
+2:16:24 sé qué tal, vemos que ahora ya fue
+2:16:25 muchísimo más rápido y yo, por supuesto,
+2:16:27 estoy grabando este curso, estoy
+2:16:29 emitiendo, estoy no sé qué, mi máquina
+2:16:31 funciona más lenta, pero que veáis que
+2:16:34 la opción la tenéis perfectamente.
+2:16:37 Okay, vamos ya encarando casi la recta
+2:16:41 final del curso porque me habéis visto
+2:16:43 que la forma en la que yo estoy
+2:16:45 utilizando Open Code ha sido casi todo
+2:16:49 el rato aquí a través de Satui, a través
+2:16:53 de la herramienta de la propia terminal.
+2:16:56 Pero también habéis visto algo muy
+2:16:59 concreto, que es que yo cuando me salía
+2:17:03 de la propia TUI, yo también tenía la
+2:17:05 posibilidad de hacer cosas como lanzar
+2:17:08 el comando o llama y con el comando
+2:17:11 llama ejecutar
+2:17:13 el propio llama, pero pidiéndole otro
+2:17:16 tipo de tareas. Hemos visto cómo creamos
+2:17:18 el MCPE desde, en este caso, el propio
+2:17:21 CLI, desde el propio cliente de la
+2:17:23 terminal, no desde la TUI realmente. Y
+2:17:26 eso es porque, por supuesto,
+2:17:29 OpenCode
+2:17:31 también tiene su propio cliente. Fíjate,
+2:17:35 Open Code Run y nos dice, "Explícame
+2:17:38 cómo funcionan las closure en
+2:17:40 JavaScript." Y esto, ¿qué va a hacer?
+2:17:42 Pues sin que nosotros veamos la TUI de
+2:17:46 Open Code, en realidad sí que es capaz
+2:17:48 de ejecutar diferentes comandos. Sí que
+2:17:50 tener en cuenta que, bueno, aquí vemos
+2:17:52 los comandos. Ta ta ta ta ta.
+2:17:54 Pues también tiene la capacidad de
+2:17:56 ejecutarse de manera muy completa a
+2:17:59 través de la terminal. Pero esto no es
+2:18:02 todo. ¿Por qué? Porque uno de los
+2:18:05 comandos que podemos lanzar desde el
+2:18:08 cliente es
+2:18:11 Open Code
+2:18:13 web. Fíjate lo que va a hacer aquí. Se
+2:18:16 va a arrancar sin más.
+2:18:20 Voy a venir por aquí.
+2:18:23 Aquí lo veis.
+2:18:25 Ojo, nos ha levantado una web en local
+2:18:30 con la interfaz
+2:18:33 más o menos de Open Code, porque si no
+2:18:37 lo queremos utilizar desde la TUI, pues
+2:18:40 tengo aquí la capacidad de decirle, "Ey,
+2:18:42 voy a añadir un proyecto, voy a meterle
+2:18:44 los ajustes." ¿Lo veis por aquí? Es como
+2:18:47 tener una web con la capacidad de
+2:18:51 ejecutar también open codes de la web.
+2:18:53 En el momento que tú cargas un proyecto,
+2:18:55 que tú lo tienes aquí, y cargas un
+2:18:57 proyecto y lo abres, podrías empezar a
+2:18:59 lanzar los comandos de Open Code, igual
+2:19:02 que hemos hecho desde la propia
+2:19:04 terminal.
+2:19:07 Eh,
+2:19:08 personalmente
+2:19:10 no me gusta
+2:19:12 cómo funciona. ¿Por qué? porque creo que
+2:19:15 está muy limitado. Realmente nosotros
+2:19:17 que somos personas técnicas,
+2:19:20 la TUI de Open Code es infinitamente más
+2:19:25 potente, más útil, más rápida y mejor
+2:19:29 que lo hagas en el formato web. Eso,
+2:19:32 bueno, lo han añadido, está bien,
+2:19:34 pruébalo si quieres, pero en lo personal
+2:19:39 para mí es muchísimo más potente irte a
+2:19:42 la terminal, levantar la Tui y empezar a
+2:19:44 trabajar, que ya viste que es sers
+2:19:46 simple y superamistoso, que no es que
+2:19:48 tengamos que hacer ahí cosas rarísimas,
+2:19:50 pero bueno, que sepas que con este que
+2:19:52 con este comando, con OpenCode web, pues
+2:19:55 te levanta en esta URL local por defecto
+2:19:58 la web para que puedas interactuar con
+2:20:01 ella.
+2:20:02 Pero ahora hasta hay una novedad más.
+2:20:06 ¿Os ha gustado desde la TUI cómo se
+2:20:08 ejecuta? ¿Os gusta desde la web? ¿Os
+2:20:11 gusta incluso desde el cliente? Pues que
+2:20:13 sepáis que Open Code también tiene una
+2:20:16 herramienta de escritorio. ¿Veis esto?
+2:20:18 Presentamos Tab para desktop. Descargar.
+2:20:21 Ahora, fíjate, descargar Open Code para
+2:20:24 desktop.
+2:20:26 Desktop para Mac, Windows y Linux. Es
+2:20:30 decir, tenéis una herramienta de
+2:20:33 escritorio
+2:20:34 para también acabar trabajando con Open
+2:20:37 Code. ¿Cómo esa herramienta de
+2:20:38 escritorio? Bueno, dejar que minimice
+2:20:41 todo por aquí
+2:20:43 porque si queréis os lo enseño y así ya
+2:20:46 salimos de dudas. Yo la tengo
+2:20:47 descargada. Sinceramente yo lo utilizo
+2:20:50 siempre desde la propia Twi. Hm. Pero
+2:20:54 bueno, que sepáis que aquí que tenemos
+2:20:57 una herramienta de escritorio, se ha
+2:20:59 cargado por aquí y aquí selección del
+2:21:03 modelo y selección del proyecto,
+2:21:07 la barra para ejecutar comandos, el aro
+2:21:10 para Aquí veis cada uno de los modelos.
+2:21:12 Bueno, la interfaz obviamente como no es
+2:21:14 una interfaz de línea de comandos, se ve
+2:21:18 así como un poquito más bonita. tenéis
+2:21:22 la capacidad en vez de abrir de abrir
+2:21:24 diferentes instancias de la terminal,
+2:21:27 pues abrís diferentes tabs y cada una de
+2:21:29 las tabs es una nueva sesión. Bueno,
+2:21:33 realmente vuelvo a lo mismo, esto está
+2:21:36 muy guay, eh, a nivel de interfaz, pues
+2:21:38 ya veis que está muy chulo, que podéis
+2:21:40 ir seleccionando todo, que nos da más
+2:21:42 información, porque claro, una interfaz
+2:21:44 gráfica tiene más capacidades que una
+2:21:46 interfaz de texto, pero sigo pensando
+2:21:49 que el verdadero poder está todo desde
+2:21:52 la propia TUI, porque es donde tienen
+2:21:54 implementado el 100% de las
+2:21:56 funcionalidades. Aquí es posible que
+2:21:59 igual que desde la web igual no
+2:22:00 encontráis alguna de las cosas que yo os
+2:22:02 conté, es posible que también desde esta
+2:22:06 desde esta aplicación de escritorio
+2:22:08 alguna cosa tampoco os la encontréis,
+2:22:10 ¿vale? Pero bueno, tenerlo presente de
+2:22:12 que existe la aplicación también de
+2:22:14 escritorio y que oye, también puede
+2:22:16 estar guay. La aplicación de escritorio
+2:22:17 pesa más que lanzarlo desde la terminal.
+2:22:20 tiene el bonito y el que todo es como
+2:22:22 más visual, pero bueno, os podéis
+2:22:24 encontrar también algunas limitaciones e
+2:22:27 para gustos colores. Lo de siempre,
+2:22:29 probáis y me decís qué os parece, ¿no? Y
+2:22:33 también de alguna forma vais encontrando
+2:22:36 cuál es la manera en la que vosotros
+2:22:39 queréis acabar trabajando. Ahora sí, ya
+2:22:42 para casi finalizar, vamos a hablar de
+2:22:46 buenas prácticas, porque es cierto que
+2:22:48 supongo que habéis visto que esta es una
+2:22:51 herramienta potentísima.
+2:22:54 Decirme en comentarios si
+2:22:57 os ha parecido así, porque igual no os
+2:23:00 ha parecido que es una herramienta
+2:23:02 potente. Por favor, decirme en un
+2:23:04 comentario
+2:23:06 qué pensáis hasta ahora de esta
+2:23:09 herramienta, si conocíais todo su poder
+2:23:12 y si realmente lo veis útil. Pero lo que
+2:23:17 también pasa es que muchas veces sí, una
+2:23:20 cosa es saber cómo funciona la
+2:23:21 aplicación, entender todo lo que yo os
+2:23:24 he contado, pero ahora quiero finalizar
+2:23:27 con unos tips para utilizarla
+2:23:30 si cabe, aún mejor. Diferentes buenas
+2:23:34 prácticas para optimizar cómo funciona
+2:23:37 OpenCode y para optimizar los tokens.
+2:23:40 Por cada tarea que tú tengas nueva, lo
+2:23:43 que yo te recomiendo siempre es que
+2:23:45 abras una nueva sesión. Te abres un
+2:23:47 barra new y así. ¿Quieres trabajar sobre
+2:23:50 una tarea, nueva sesión? ¿Vas a trabajar
+2:23:52 con otra tarea que no tiene nada que ver
+2:23:54 con la anterior? Nueva sesión. ¿Por qué?
+2:23:56 Porque el contexto va a crecer
+2:23:58 innecesariamente. Va a empezar a el
+2:24:01 agente leer información que no le hace
+2:24:02 falta y las respuestas van a ser peores.
+2:24:05 Así que cada tarea una nueva sesión. Por
+2:24:08 otro lado, por otro lado también el
+2:24:11 barra el ar y acabar accediendo al
+2:24:16 fichero que tú quieres. Si yo sé que
+2:24:18 solo voy a hacer los cambios o sé que la
+2:24:20 gente tiene que trabajar sobre index o
+2:24:22 leer información de index o el nombre
+2:24:24 del fichero que sea, hazle @ y indícale
+2:24:28 que tiene que trabajar sobre este. Te va
+2:24:29 a gastar menos tokens, te va a dar a dar
+2:24:32 mejores resultados, va a ser mucho más
+2:24:34 rápido y va a ser muchísimo más preciso.
+2:24:36 Otra buena práctica, recordar el modo
+2:24:38 plan, tareas grandes, planificar que no
+2:24:40 nos la líe. Selecciona un modelo
+2:24:43 potente, selecciona el modo plan y
+2:24:45 después vete cambiando entre el modo
+2:24:46 bill para construir los diferentes
+2:24:48 modelos según el tipo de tarea que
+2:24:50 tengas. Perfecto. Vale, otra cosa, vamos
+2:24:53 a irnos por aquí a una sesión que ya
+2:24:57 tengamos de antes, por ejemplo, esta
+2:24:59 sesión que ya tenía pues un 4%.
+2:25:02 Imagínate que ves que empieza a crecer
+2:25:04 la sesión. Os he dicho algo, la ventana
+2:25:06 de contexto es limitante. Esto lo que
+2:25:09 quiere decir es que cuando tú estés
+2:25:10 llegando al 100% y ya se ha demostrado
+2:25:13 que con el 20, el 30, el 40%, ya en el
+2:25:16 momento que se empieza a llenar un
+2:25:17 poquito el modelo y a la gente empieza a
+2:25:19 ser un poquito más tonto, realmente tú
+2:25:22 lo que tienes que empezar a buscar son
+2:25:24 mecanismos para que ese contexto no se
+2:25:26 pierda. ¿Cuáles son los consejos? los
+2:25:29 guardarraíles, el fichero agents, la
+2:25:32 documentación, todo eso que os he estado
+2:25:34 contando que ayuda a que el agente no
+2:25:36 tenga que estar trabajando o
+2:25:38 sobretrabajando siempre sobre lo mismo.
+2:25:40 Pero uno de los comandos que nos faltaba
+2:25:42 por ver es el compact. El barra compact
+2:25:45 compacta la sesión. ¿Para qué? para que
+2:25:48 todo lo que ha ido guardando y
+2:25:50 acumulando a nivel de tokens sea capaz
+2:25:52 de decir, "Bueno, lo voy a resumir." Sí,
+2:25:55 en ese resumen se puede perder
+2:25:58 información por el camino, por supuesto,
+2:26:01 pero pero
+2:26:04 es mejor comprimir y resumir que llenar
+2:26:08 la sesión y que la gente empiece a
+2:26:10 funcionar mal. Fíjate, lo he compactado
+2:26:14 por aquí, me lo ha dejado con las cosas
+2:26:17 más importantes. Esta es la información
+2:26:19 con la que trabaja la gente. Tanto me lo
+2:26:21 ha compactado que me ha dicho que ha
+2:26:22 vuelto al 0%. Esto no es exacto, será un
+2:26:24 cero con algo, pero para que veamos cómo
+2:26:27 si es importante, mete compact. Cuando
+2:26:30 tienes el 4% lleno, como yo lo tenía, no
+2:26:33 hagas compact, pero cuando ya veas que
+2:26:35 se te va al 50%, al 60, al 70 y digas,
+2:26:37 "Buf, aún tengo mucho que trabajar en
+2:26:39 esta sesión.
+2:26:41 y se me va a acabar llenando y la voy a
+2:26:43 acabar liando. Venga, métele compact,
+2:26:46 busca cómo guardar esa información para
+2:26:49 que no se pierda el contexto. Okay. Otra
+2:26:51 buena práctica, utiliza los modelos, los
+2:26:54 modelos baratos para las tareas más
+2:26:56 mecánicas.
+2:26:58 Yo aquí tengo cladopus para algo muy
+2:27:00 complejo, pero si yo me tengo que ir a
+2:27:02 hacer un refactor muy simple o no sé
+2:27:06 qué, pues yo sin más cambio el modelo y
+2:27:08 digo que me vuelvo al Luna Fast que
+2:27:10 tenía antes. Empieza a optimizar esos
+2:27:13 tokens porque si no después pasa lo que
+2:27:15 pasa, que acabas gastando tus planes
+2:27:17 gratuitos o de pago en nada. Otra buena
+2:27:19 práctica, el tema de los suagentes.
+2:27:21 Utiliza el Explore para buscar en la
+2:27:23 propia sesión. No ensucies la tuya
+2:27:25 porque te va a lanzar un subagente y así
+2:27:27 tú piensa que ese subagente no va a
+2:27:30 impactar tanto como tu sesión. Que
+2:27:32 tienes tareas concretas, crea subagentes
+2:27:34 propios. Vale, otra buena práctica, el
+2:27:37 tema de los MCPs. No tengas todos los
+2:27:40 MCPs levantados siempre. Yo no voy a
+2:27:43 necesitar contex, que es el MCP que
+2:27:45 montamos, lo deshabilito, también muy
+2:27:47 importante. Y el agents que teníamos
+2:27:50 antes, por favor, agents cortos, no
+2:27:53 creéis agents con 1000, 2000 ni 3,000
+2:27:55 líneas porque el agents va a entrar en
+2:27:57 el contexto de la gente. Una cosa es que
+2:27:59 el agents nos ayude para resumir toda
+2:28:01 esa información, pero otra muy distinta
+2:28:03 es que sobrecarguemos de información al
+2:28:05 propio agente. Así que el agents buscar
+2:28:08 también las buenas prácticas, que ya
+2:28:09 vemos que cuando ejecutamos el barra
+2:28:11 inet se nos crea el agents ideal. Ya
+2:28:14 veis que ahí lo que tenía era una
+2:28:16 información muy concreta. Eso es lo que
+2:28:18 debe tener. Sí modificarlo, sí
+2:28:20 extenderlo, sí cambiar lo que
+2:28:21 consideréis, pero no penséis que es una
+2:28:23 especie de cajón desastre para el
+2:28:24 contexto. Para eso hay otros mecanismos
+2:28:27 ya basados en documentación. ¿Okay? Y ya
+2:28:30 por último, ya por último voy a salir de
+2:28:32 aquí y voy a enseñaros un par de
+2:28:38 por aquí comandos que os van a servir
+2:28:41 para ejecutar desde el CLI y buscar
+2:28:45 información sobre las propias
+2:28:47 estadísticas de uso. Open code, stats y
+2:28:51 guion guion. Este flag, este comando,
+2:28:54 perdón, days y los días. Vamos a mirar
+2:28:57 en el último día. Lanzo este comando y
+2:29:00 vamos a ver lo siguiente. Fíjate,
+2:29:02 overview, las sesiones. Pues mira, he
+2:29:06 levantado 19 sesiones, tantos mensajes
+2:29:08 en un día. Los costes, fíjate, he
+2:29:11 gastado $2. Yo en mi caso no he gastado
+2:29:14 nada porque va todo a través de la
+2:29:15 suscripción, incluso ejecutamos modelos
+2:29:17 locales gratuitos, pero es como una
+2:29:19 especie de estimación del coste por
+2:29:21 días, ¿no? Aquí simplemente es
+2:29:24 información que creo que está bien que
+2:29:26 sepáis que podéis acceder a ella para
+2:29:29 medir también cómo estáis utilizando
+2:29:30 esta herramienta. las operaciones que ha
+2:29:33 hecho. Bueno, pues más información. Otra
+2:29:35 operación de stats muy importante,
+2:29:38 guion guion models, porque así vais a
+2:29:41 ver también los modelos que estáis
+2:29:43 ejecutando. Fíjate,
+2:29:46 vamos por aquí. Listado de modelos,
+2:29:49 coste total, otra vez los tokens, no sé
+2:29:51 qué. Clodopus, GPT 5.5, Terrafast, no sé
+2:29:56 qué. Aquí vemos cómo hemos gastado cada
+2:29:59 uno y qué operaciones han hecho. Pues
+2:30:01 bueno, estos comandos realmente también
+2:30:04 os van a ayudar muy bien a que entendáis
+2:30:07 cómo estáis utilizando la herramienta
+2:30:09 para que así podáis iterar y podáis
+2:30:12 mejorar vuestra propia manera de
+2:30:14 utilizar la herramienta. Con esto damos
+2:30:16 por finalizado el curso completo de
+2:30:19 OpenCode desde cero. Por favor, dejarme
+2:30:21 en comentarios qué os ha parecido,
+2:30:24 decirme qué es lo que más os ha gustado
+2:30:26 y de verdad, muchísimas gracias. Espero
+2:30:30 realmente que os haya parecido
+2:30:31 superútil, que os haya servido para
+2:30:35 entender que esta herramienta puede
+2:30:37 potenciar vuestra manera de desarrollar
+2:30:39 de una manera muy simple y encima con
+2:30:41 una herramienta open source, con modelos
+2:30:43 gratuitos que puedes ejecutar, modelos
+2:30:46 locales, que puedes enganchar cualquier
+2:30:48 proveedor con cualquier modelo y que es
+2:30:50 una grandísima alternativa para que no
+2:30:52 tengamos envidia de que alguien esté
+2:30:55 utilizando Cloud Code y que diga ¡Uf!
+2:30:59 Es que claro, se puede pagar esa
+2:31:00 herramienta con la suscripción de no sé
+2:31:02 qué y es mucho mejor. realmente es un
+2:31:05 agente que está a la altura y que
+2:31:07 algunas cosas realmente, y lo pienso de
+2:31:10 verdad, creo que hace incluso mejor que
+2:31:13 Cloud Code y que tenemos al alcance de
+2:31:15 todo el mundo. Así que de verdad,
+2:31:17 muchísimas gracias por asistir a este
+2:31:19 curso y nos vemos en el próximo. Ciao
+2:31:22 ciao ciao.

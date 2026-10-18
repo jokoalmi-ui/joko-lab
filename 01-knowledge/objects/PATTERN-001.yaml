@@ -1,0 +1,49 @@
+type: PATTERN
+id: PATTERN-001
+status: activo
+version: 1
+created: 2026-08-04
+last_validated: 2026-08-04
+next_review: 2026-11-04
+expires: 2027-02-04
+confidence: null
+confidence_label: SIN_LABEL
+evidence:
+  - EXP-20260804-VIGENCIA-OKF
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: precision
+  baseline: null
+  current: null
+  last_checked: null
+history:
+  - date: 2026-08-04
+    event: created
+
+patron:
+  cuando: >
+    El RAG recupera conocimiento gobernado (DEC/RULE/POLICY) y hay riesgo de
+    que un documento viejo gane por volumen a uno vigente. Disparo: cualquier
+    consulta que toque decisiones, reglas o políticas del lab.
+  plantilla: >
+    1. Generar indice-okf.md con tools/generar_indice_okf.py (17 KOs,
+    ~800 tokens, con expires/superseded_by/status).
+    2. Inyectar bloque [Indice de conocimiento (vigencia)] en context_builder
+    cuando detect_type no este vacio.
+    3. El LLM recibe que existe y que esta vigente ANTES del retrieval.
+  trampas: >
+    - Usar body completo en el indice lo infla (2334 -> 800 tokens al
+    truncar a 160 chars). [[RULE-008]]
+    - Sin superseded reales el indice no discrimina aciertos (H1 no
+    falsable, EXP-20260804-VIGENCIA-OKF). [[DEC-001]]
+  clasicos:
+    - 'EXP-20260804-VIGENCIA-OKF (3/3 con y sin indice; robustez de nombre canonico: "DeepSeek R1" vs "deepseek-r1-distill-qwen-14b").'
+
+body: >
+  Patron de retrieval con vigencia: un indice compacto de Knowledge Objects
+  con su estado (expires/superseded/status) se inyecta al contexto para que
+  el LLM sepa que existe y que esta vigente, sin depender del reranker.

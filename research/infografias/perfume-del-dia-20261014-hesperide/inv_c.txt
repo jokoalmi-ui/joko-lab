@@ -1,0 +1,86 @@
+=== INVENTARIO DE LEGIBILIDAD ===
+fichero            : ficha_c.html
+tamano tarjeta     : 1080 x 1378 px  (scrollHeight 1378)
+pie (bottom)       : 1378 px   [limite 1350]  -> SE SALE
+nodos de texto     : 69
+
+px      %ancho  peso   color     texto  [clase]
+8.5     0.79    800    rgb(17, 34, 51) SALIDA  [text.[object.SVGAnimatedString]]
+8.5     0.79    800    rgb(17, 34, 51) CORAZÓN  [text.[object.SVGAnimatedString]]
+8.5     0.79    800    rgb(17, 34, 51) FONDO  [text.[object.SVGAnimatedString]]
+9.0     0.83    400    rgb(147, 161, 168) fondo: arte generado con ComfyUI · SDXL local · hecha con   [div.nota-fondo]
+10.0    0.93    800    rgb(13, 107, 140) Elección  [div]
+10.0    0.93    800    rgb(13, 107, 140) del Lab  [div]
+10.0    0.93    500    rgb(138, 154, 163) Fragrantica (la casa no lo acredita en la ficha de product  [span.f]
+10.0    0.93    500    rgb(138, 154, 163) BD de la colección (id 981) · Precio: web oficial Nishane,  [span.f]
+10.0    0.93    800    rgb(165, 113, 18) Salida  [span.lab]
+10.0    0.93    800    rgb(95, 82, 134) Corazón  [span.lab]
+10.0    0.93    800    rgb(36, 76, 99) Fondo  [span.lab]
+10.0    0.93    600    rgb(125, 142, 151) Notas: web oficial Nishane (pirámide) / Fragrantica — cons  [span.fuente-line]
+10.0    0.93    600    rgb(125, 142, 151) — Web oficial Nishane [traducida]  [span.fuente-line]
+10.0    0.93    600    rgb(125, 142, 151) Selección: misma casa (colección Extrait de Cologne) + el   [span.fuente-line]
+10.0    0.93    600    rgb(107, 91, 192) — Reseña de comunidad · Fragrantica (Hespéridé Colognisé)   [span.fuente-line]
+11.0    1.02    500    rgb(90, 106, 114) misma casa y colección: la primera de la serie  [span.alt-motivo]
+11.0    1.02    500    rgb(90, 106, 114) misma casa: la hermana con azafrán, más cálida  [span.alt-motivo]
+11.0    1.02    500    rgb(90, 106, 114) el clásico italiano del que bebe toda colonia cítrica  [span.alt-motivo]
+11.5    1.06    600    rgb(90, 106, 114) 123 votos · Fragrantica  [span.r-meta]
+11.5    1.06    600    rgb(90, 106, 114) Nishane · 2018  [span.alt-casa]
+11.5    1.06    600    rgb(90, 106, 114) Nishane · 2019  [span.alt-casa]
+11.5    1.06    600    rgb(90, 106, 114) Acqua di Parma · 1916  [span.alt-casa]
+12.0    1.11    600    rgb(29, 58, 72) la salida: bergamota, naranja y lima (la colonia de limón   [span.not]
+12.0    1.11    600    rgb(29, 58, 72) el corazón: jazmín, iris, cedro y madera de cachemira  [span.not]
+12.0    1.11    600    rgb(29, 58, 72) el fondo: ámbar gris, musgo, almizcle y vetiver  [span.not]
+12.0    1.11    800    rgb(201, 111, 28) 4,14/5 · 1.141 votos  [span.alt-rt]
+12.0    1.11    800    rgb(201, 111, 28) 4,34/5 · 1.514 votos  [span.alt-rt]
+12.0    1.11    800    rgb(201, 111, 28) 4,13/5 · 4.309 votos  [span.alt-rt]
+12.5    1.16    600    rgb(90, 106, 114) MIÉRCOLES · 14 OCTUBRE 2026  [div.fecha-sep]
+12.5    1.16    900    rgb(178, 69, 42) 2026  [b]
+13.0    1.20    700    rgb(35, 64, 77) 24,6 – 30,0 °C de sensación (ventana 16-22) · media 27,5 °  [div.clima]
+13.0    1.20    700    rgb(11, 47, 63) Sprays:  [div.sprays]
+13.0    1.20    900    rgb(11, 47, 63) 1-2  [b]
+13.0    1.20    700    rgb(11, 47, 63) a media tarde (tramo 16-18, ~30 °C) ·  [div.sprays]
+13.0    1.20    700    rgb(11, 47, 63) por la noche (tramo 19-22)  [div.sprays]
+13.0    1.20    700    rgb(35, 64, 77) amplitud 11,5 °C: media tarde a ~30 °C y noche templada ·   [div.clima]
+13.5    1.25    800    rgb(18, 120, 158) Pirámide olfativa — en capas  [div.sec-title]
+13.5    1.25    800    rgb(14, 124, 123) Inspiración  [div.sec-title]
+13.5    1.25    800    rgb(201, 111, 28) Si te gusta, prueba  [div.sec-title]
+13.5    1.25    800    rgb(91, 66, 230) La comunidad dice  [div.sec-title]
+14.0    1.30    800    rgb(255, 255, 255) 01  [div.sec-num]
+14.0    1.30    800    rgb(255, 255, 255) 02  [div.sec-num]
+14.0    1.30    800    rgb(255, 255, 255) 03  [div.sec-num]
+14.0    1.30    800    rgb(255, 255, 255) 04  [div.sec-num]
+14.5    1.34    800    rgb(13, 107, 140) Nishane  [div.casa]
+14.5    1.34    800    rgb(11, 47, 63) 2023  [b]
+14.5    1.34    600    rgb(29, 58, 72) Extrait de Cologne  [div.dh]
+14.5    1.34    600    rgb(29, 58, 72) Unisex  [div.dh]
+14.5    1.34    600    rgb(29, 58, 72) Cítrica aromática amaderada  [div.dh]
+14.5    1.34    600    rgb(29, 58, 72) Perfumista:  [div.dh]
+14.5    1.34    800    rgb(11, 47, 63) Olaf Larsen  [b]
+14.5    1.34    600    rgb(29, 58, 72) Longevidad  [div.dh]
+14.5    1.34    800    rgb(11, 47, 63) ~7 h  [b]
+14.5    1.34    600    rgb(29, 58, 72) Estela  [div.dh]
+14.5    1.34    800    rgb(11, 47, 63) moderada  [b]
+14.5    1.34    800    rgb(11, 47, 63) 175,00 €  [b]
+14.5    1.34    600    rgb(29, 58, 72) / 100 ml  [div.dh]
+14.5    1.34    800    rgb(17, 34, 51) BERGAMOTA · NARANJA · LIMA  [text.[object.SVGAnimatedString]]
+14.5    1.34    800    rgb(17, 34, 51) JAZMÍN · IRIS · CEDRO · CACHEMIRA  [text.[object.SVGAnimatedString]]
+14.5    1.34    800    rgb(17, 34, 51) ÁMBAR GRIS · MUSGO · ALMIZCLE · VETIVER  [text.[object.SVGAnimatedString]]
+15.0    1.39    800    rgb(11, 47, 63) Colognisé  [span.alt-n]
+15.0    1.39    800    rgb(11, 47, 63) Safran Colognisé  [span.alt-n]
+15.0    1.39    800    rgb(11, 47, 63) Colonia  [span.alt-n]
+18.0    1.67    400    rgb(18, 48, 61) “Hespéridé Colognisé es una incorporación notable a nuestr  [p]
+19.0    1.76    400    rgb(35, 47, 122) “Huele a sorbete de lima. Me lo puse para ir al gimnasio y  [blockquote]
+22.0    2.04    600    rgb(178, 69, 42) que se note al pasar, no al entrar  [span.caveat-pie]
+28.0    2.59    400    rgb(178, 69, 42) colonia de lima turca: jazmín e iris sobre musgo y vetiver  [div.sub]
+32.0    2.96    800    rgb(201, 151, 28) 4,00  [span.r-num]
+72.0    6.67    800    rgb(11, 47, 63) Hespéridé Colognisé  [h1]
+
+=== resumen por tramos (son datos, no veredicto) ===
+    0-10    px :   4 textos   min 8.5
+   10-11.5  px :  14 textos   min 10.0
+ 11.5-13    px :  12 textos   min 11.5
+   13-15    px :  30 textos   min 13.0
+   15-20    px :   5 textos   min 15.0
+   20-999   px :   4 textos   min 22.0
+Criterio: el minimo legible lo fija el usuario sobre esta tabla.
+json -> inv_c.json

@@ -1,0 +1,47 @@
+type: PRED
+decision_origin: desconocido
+id: PRED-001
+status: resuelta
+version: 1
+created: 2026-08-04
+
+quien_predice: joseba
+relacionado_con: null
+
+prediccion: >
+  Cortar cafeína a las 14:00 mejorará la puntuación de foco de la tarde.
+
+criterio_exito: >
+  Media de foco 16:00-20:00 registrada en el diario sube al menos 1.5
+  puntos (escala 1-10) comparando la semana 10-17 ago (con corte de
+  cafeína) contra la semana 3-10 ago (sin corte), usando los mismos
+  registros diarios ya existentes en biohacking-cerebral.
+
+fecha_revision: 2026-08-17
+
+resultado: sin_veredicto
+resuelto_por: hermes   # cierra un PRED de joseba (nadie se autoevalua); autorizacion del usuario 2026-10-13
+evidencia: >
+  Medido por hermes el 2026-10-13 (PRED ya vencida, 57 dias tarde):
+  (a) el campo que pide el criterio NO EXISTE en el diario: grep -c
+      "16:00-20:00" sobre 04-medicion/seguimiento-prueba1.md = 0. Las
+      columnas reales son Energia mediodia / Energia fin de dia y Foco
+      mediodia / Foco fin de dia.
+  (b) la semana de comparacion (10-17 ago, filas 8-15) tiene las celdas
+      de foco VACIAS o con "⏳": solo hay Foco fin de dia en los dias
+      1-7 (03-09 ago), valor 7 en los 6 dias registrados.
+  (c) la linea base "semana 3-10 ago sin corte" tampoco existe: el
+      corte de las 14:00 ya estaba aplicado desde el dia 1 (03-ago).
+  Evidencia SI disponible, pero de OTRA metrica (sueno, no foco): el
+  cafe de las 16:30 del 11-ago (error de protocolo) -> 69 pts la noche
+  del 12-ago (-22 vs 91 del 11-ago); el 13-ago vuelve a 88 con la
+  rutina normal. La decision del 17-ago (mantener el corte) se tomo con
+  puntos de sueno y energia mediodia, NO con el criterio de esta PRED.
+notas_posteriores: >
+  Cerrada como sin_veredicto el 2026-10-13 (paquete de evaluacion de
+  resultados, punto 2). Causa raiz: el criterio_exito incumplia la
+  REGLA DE ORO de la plantilla (verificable por un tercero) porque
+  referenciaba una columna inexistente. No es un fallo de la
+  prediccion: es un fallo de instrumentacion (RULE-015: validar la
+  metrica antes de fiarse). Para medir lo que apuntaba hay que
+  reformularla como PRED nueva con un campo que exista.

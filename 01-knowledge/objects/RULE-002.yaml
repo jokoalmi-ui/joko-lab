@@ -1,0 +1,62 @@
+id: RULE-002
+type: RULE
+decision_origin: herencia
+status: activo
+version: 1
+created: '2026-07-28'
+last_validated: '2026-07-28'
+next_review: '2026-10-26'
+expires: '2027-01-24'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-07-28T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-10-26T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-07-28T00:00:00Z
+sources:
+  - resource: 01-knowledge/objects/RULE-001.yaml
+confidence: 0.88
+confidence_label: ALTA
+evidence:
+- 'EXP-20260728-002: Granite 4.1 genera JSON puro a temp=0.3'
+- 'Hallazgo 28-jul (prompt-engineering): temp=0.7 envuelve JSON en markdown; temp=0.3 JSON puro'
+dependencies:
+- EXP-20260728-002
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: null
+  baseline: null
+  current: null
+  last_checked: null
+history:
+- date: '2026-07-28'
+  event: created
+- date: '2026-07-31'
+  event: migrated_to_ko
+  note: Migrado de formato YAML plano a Knowledge Object v1
+body: "Usar Granite 4.1 temp=0.3 para JSON estructurado. Ver [[RULE-001]] para alternativas de creatividad."
+legacy_fields:
+  condicion:
+    tipo_tarea:
+    - json
+    - estructurado
+    keywords:
+    - json
+    - devuelve solo json
+    - formato json
+    - estructurado
+  accion:
+    modelo: granite-4.1-8b
+    proveedor: lmstudio
+    params:
+      temperature: 0.3
+      max_tokens: 1024
+  prioridad: 85
+  activa: true
+  nota: Granite 4.1 con temp=0.3 produce JSON puro. Con temp=0.7 lo envuelve en markdown.
+  validaciones: 2

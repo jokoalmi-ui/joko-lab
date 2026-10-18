@@ -1,0 +1,36 @@
+{
+  "url": "https://www.instagram.com/reel/DeCtOohDB2h/",
+  "cuenta": "notfound404.es",
+  "published": "2026-10-03",
+  "leido": "2026-10-09 16:40 CEST",
+  "metricas_visibles": {
+    "likes": 282,
+    "comentarios": 441,
+    "cta": "Comenta MOTION"
+  },
+  "video": {
+    "duracion_s": 56.25,
+    "w": 720,
+    "h": 1280,
+    "codecs": "h264/aac",
+    "bytes": 5108985
+  },
+  "caption": "Claude ha matado a los Motion Designers... 1) npx skills add remotion-dev/skills 2) skill con tu estilo 3) video de referencia + dirigir paso a paso + revisar sus fotogramas. Opus 5.5 vs Sonnet 5.5, gano Sonnet. Comenta MOTION y te paso la guia.",
+  "verificado_externo": {
+    "remotion-dev/skills": {
+      "stars": 4948,
+      "forks": 548,
+      "creado": "2026-01-19",
+      "push": "2026-10-07",
+      "desc": "Agent Skills"
+    },
+    "remotion-dev/remotion": {
+      "stars": 62718,
+      "licencia": "NOASSERTION"
+    },
+    "no_verificable": [
+      "5 renders Opus 5.5 vs Sonnet 5.5"
+    ]
+  },
+  "transcripcion_chars": 1037
+}

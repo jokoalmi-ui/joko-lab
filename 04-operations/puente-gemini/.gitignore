@@ -1,0 +1,7 @@
+# El contenido del puente NO se versiona: lleva contexto del lab y respuestas.
+outbox/*
+!outbox/.gitkeep
+inbox/*
+!inbox/.gitkeep
+procesados/*
+!procesados/.gitkeep

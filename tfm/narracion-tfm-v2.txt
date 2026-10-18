@@ -1,0 +1,21 @@
+Hola. Hoy os quiero presentar Joko Lab: un laboratorio personal de inteligencia artificial que funciona entero en un ordenador doméstico, sin depender de servicios externos. Su idea es sencilla de decir y difícil de hacer: que la IA no solo responda a preguntas, sino que recuerde lo aprendido, pueda comprobar de dónde sale cada respuesta y mejore sus decisiones con el tiempo.
+
+El punto de partida es un problema que todos conocemos: la IA normal no tiene memoria. Ayer te explicó algo con detalle y hoy, en la siguiente conversación, vuelve a empezar de cero. No acumula conocimiento ni puedes verificar de dónde sale lo que dice. Joko Lab nació de un incidente real: el entorno del agente desapareció sin copia de seguridad. De ahí salió la pregunta que mueve el proyecto: ¿cómo construir una IA con memoria verificable?
+
+La respuesta es un circuito completo. El usuario habla con un agente; el agente usa varios modelos, cada uno con un rol; esos modelos consultan el conocimiento del sistema; y las decisiones vuelven a alimentar ese conocimiento. Es un bucle que mejora solo.
+
+La primera pieza son los modelos: cuatro cerebros con roles separados. La nube piensa y decide; el motor local ve y evalúa; otro motor simula escenarios; y la telemetría mide lo que ocurre de verdad. La regla es dura: quien decide no ve, quien ve no decide, y quien mide no opina. Así cada pieza controla a las demás.
+
+La segunda pieza es el conocimiento. Aquí vive lo aprendido, en piezas con ciclo de vida: nacen, se validan con evidencia, se revisan, caducan y se retiran. Nada se borra: lo obsoleto se marca como sustituido. Y este conocimiento se mide: su salud ha pasado de 31 a 88 sobre 100.
+
+La tercera pieza es la memoria. Cuando preguntas algo, el sistema no responde de memoria: busca en sus documentos, los ordena por relevancia y responde con ese contexto real. Y es rápido: la consulta pasó de quince segundos a tres.
+
+La cuarta pieza es el enrutador, que decide qué modelo se usa en cada tarea. Lo hace con reglas puras, no con otro modelo de lenguaje: decide en siete milisegundos.
+
+Y todo esto se comprueba en el mundo real, con productos. Perfume IA atrapa el 95 por ciento de las respuestas inventadas; Forense Digital hace peritaje de correos con cadena de evidencia; el lab juega a la bolsa en simulación con mil euros virtuales; y estudia biohacking con medición real. Cada problema real se convierte en principio del sistema.
+
+Las tecnologías también son reales: un RAG local con búsqueda híbrida, y un loop agentic que planifica, busca, evalúa y reformula, que pasa de cinco a seis aciertos de siete. Todo verificado con un banco de preguntas y un comparador determinista.
+
+Y la ética no es una promesa, es sistema: una política de alineamiento con valores humanos, el marco del EU AI Act, un checklist de sesgos en cinco fases, y privacidad por diseño, porque los datos no salen del equipo.
+
+En resumen: cerebros con roles separados, conocimiento con ciclo de vida, memoria real y local, tecnologías verificadas y ética en la arquitectura. La pregunta final: ¿cómo construir una IA que no solo responda, sino que acumule conocimiento verificable y mejore sus decisiones con el tiempo? Gracias.

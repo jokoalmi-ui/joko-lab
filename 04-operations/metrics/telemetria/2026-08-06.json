@@ -1,0 +1,87 @@
+{
+  "fecha": "2026-08-06",
+  "decisiones": {
+    "total": 424,
+    "por_politica": {
+      "Horario": 367,
+      "Gpu": 44,
+      "Privacidad": 12,
+      "Disponibilidad": 1
+    },
+    "por_dia": {
+      "2026-07-29": 25,
+      "2026-07-30": 30,
+      "2026-07-31": 38,
+      "2026-08-01": 33,
+      "2026-08-02": 27,
+      "2026-08-03": 30,
+      "2026-08-04": 163,
+      "2026-08-05": 50,
+      "2026-08-06": 28
+    },
+    "fallback_rate": 0.0024
+  },
+  "activaciones": {
+    "total": 68,
+    "por_rule": {},
+    "por_politica_activada": {
+      "POLICY-001": 68,
+      "POLICY-002": 68
+    },
+    "blocks": {
+      "RULE-004": 18
+    },
+    "model_selection": {
+      "RULE-003": 22,
+      "RULE-002": 7,
+      "RULE-009": 5,
+      "RULE-001": 1
+    },
+    "reglas_conocidas": 9,
+    "reglas_nunca_activadas": [
+      "RULE-001",
+      "RULE-002",
+      "RULE-003",
+      "RULE-004",
+      "RULE-005",
+      "RULE-006",
+      "RULE-007",
+      "RULE-008",
+      "RULE-009"
+    ]
+  },
+  "rag": {
+    "total_consultas": 52,
+    "paths_top": {
+      "01-knowledge/experiments/EXP-20260730-005/resultados.md": 30,
+      "GUIA-JOKO-LAB.md": 19,
+      "01-knowledge/experiments/EXP-20260729-004/resultados.md": 15,
+      "01-knowledge/patterns/inference-patterns/large-creative-model.md": 14,
+      "01-knowledge/objects/RULE-001.yaml": 12,
+      "GUIA-APRENDIZAJE-JOKO-LAB.md": 10,
+      "research/prompt-experiments.md": 8,
+      "01-knowledge/experiments/prompt-experiments.md": 8,
+      "lpa/constitucion/normas-jl.md": 7,
+      "01-knowledge/models/llama-3.1-instruct-8b.md": 7,
+      "01-knowledge/objects/RULE-003.yaml": 6,
+      "01-knowledge/objects/DEC-002.yaml": 6,
+      "04-operations/backlogs/2026-07-31-backlog.md": 6,
+      "research/analisis-liquid-lfm-2.5-2.6b.md": 6,
+      "01-knowledge/objects/RULE-004.yaml": 5
+    },
+    "kos_conocidos": 20,
+    "kos_nunca_recuperados": [
+      "DEC-003",
+      "DEC-004",
+      "DEC-GAIPRO-001",
+      "PATTERN-001",
+      "POLICY-001",
+      "POLICY-002",
+      "POLICY-003",
+      "PRED-001",
+      "PRED-002",
+      "RULE-005",
+      "RULE-007"
+    ]
+  }
+}

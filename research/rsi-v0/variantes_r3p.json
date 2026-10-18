@@ -1,0 +1,20 @@
+[
+  {
+    "id": "p-low",
+    "instr": "",
+    "origen": "ronda 3 PILOTO: modo de inferencia think='low' sin instruccion (punto intermedio bajo). Solo los 2 casos que fallan sin razonamiento.",
+    "think": "low"
+  },
+  {
+    "id": "p-medium",
+    "instr": "",
+    "origen": "ronda 3 PILOTO: think='medium' sin instruccion (punto intermedio medio).",
+    "think": "medium"
+  },
+  {
+    "id": "p-high",
+    "instr": "",
+    "origen": "ronda 3 PILOTO: think='high' sin instruccion (nivel alto explicito, comparable con think=None de la ronda 2).",
+    "think": "high"
+  }
+]

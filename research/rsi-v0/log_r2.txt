@@ -1,0 +1,26 @@
+2026-09-25T09:06:30+02:00
+[integridad] corrector 849c12fe093420ba…  examen 30557a9df6ee2fca…
+[fugas] 2 variantes, 0 valores esperados del examen citados
+[PASA ] v0-sin-instruccion json-plano            7.2s 
+[PASA ] v0-sin-instruccion json-anidado         20.2s 
+[PASA ] v0-sin-instruccion json-enum            10.1s 
+[PASA ] v0-sin-instruccion json-nulo-honesto    25.8s 
+[PASA ] v0-sin-instruccion json-numeros-es      20.7s 
+[PASA ] v0-sin-instruccion tool-eleccion         6.6s 
+[PASA ] v0-sin-instruccion tool-args             5.8s 
+[PASA ] v0-sin-instruccion tool-dos-pasos       66.2s 
+[PASA ] v2-calculo     json-plano           12.7s 
+[PASA ] v2-calculo     json-anidado         29.1s 
+[PASA ] v2-calculo     json-enum             4.2s 
+[PASA ] v2-calculo     json-nulo-honesto    17.6s 
+[PASA ] v2-calculo     json-numeros-es      48.4s 
+[PASA ] v2-calculo     tool-eleccion         4.6s 
+[PASA ] v2-calculo     tool-args             6.3s 
+[PASA ] v2-calculo     tool-dos-pasos        9.3s 
+
+== RESUMEN (pasan/total) ==
+  v2-calculo     8/8  132.1s  dominada=False  falla=-
+  v0-sin-instruccion 8/8  162.7s  dominada=True  falla=-
+
+resumen -> /home/jokoalmi/joko-lab/research/rsi-v0/resumen_r2.json
+EXIT=0

@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "creado_por": "asistente (propuesta; el banco lo mantiene el usuario a mano)",
+    "fecha": "2026-09-25",
+    "examen_anterior": "/home/jokoalmi/joko-lab/tools/bateria_json_tool_calling.json",
+    "nota": "Ningun caso entra en vigor hasta que el usuario lo apruebe; el examen v1 no se toca."
+  },
+  "casos": [
+    {
+      "id": "calc-anidado-iva",
+      "tipo": "json",
+      "dificultad": "alta",
+      "requiere": "corrector v1 (vocabulario actual)",
+      "prompt": "Responde ÚNICAMENTE con un objeto JSON, sin markdown ni texto adicional, con este contenido: un pedido del cliente \"Talde 3\" con tres líneas: (1) producto \"cafe\", cantidad 3, precio_unitario 8.40; (2) producto \"taza\", cantidad 2, precio_unitario 6.00; (3) producto \"filtro\", cantidad 1, precio_unitario 4.20. Añade el campo \"subtotal\" (suma de cantidad x precio_unitario de las líneas, sin impuestos), el campo \"descuento\" (10% del subtotal) y el campo \"total\" (subtotal menos descuento, más el 21% de IVA). Los tres importes van redondeados a 2 decimales.",
+      "comprueba": {
+        "claves": [
+          "cliente",
+          "lineas",
+          "subtotal",
+          "descuento",
+          "total"
+        ],
+        "tipos": {
+          "lineas": "array",
+          "subtotal": "number",
+          "descuento": "number",
+          "total": "number"
+        },
+        "longitud": {
+          "lineas": 3
+        },
+        "iguales": {
+          "cliente": "Talde 3",
+          "subtotal": 41.4,
+          "descuento": 4.14,
+          "total": 45.08
+        },
+        "sin_fences": true,
+        "sin_texto_extra": true
+      }
+    },
+    {
+      "id": "fecha-iso-vencimiento",
+      "tipo": "json",
+      "dificultad": "alta",
+      "requiere": "corrector v1 (vocabulario actual)",
+      "prompt": "Responde ÚNICAMENTE con un objeto JSON, sin markdown ni texto adicional, con dos campos: \"fecha_firma\" con la fecha de firma en formato ISO (AAAA-MM-DD) y \"fecha_vencimiento\" con la fecha en que vence, también en ISO. Texto: \"El contrato se firmó en Bilbao el 3 de febrero de 2026 y vence a los 45 días naturales.\"",
+      "comprueba": {
+        "claves": [
+          "fecha_firma",
+          "fecha_vencimiento"
+        ],
+        "iguales": {
+          "fecha_firma": "2026-02-03",
+          "fecha_vencimiento": "2026-03-20"
+        },
+        "sin_fences": true,
+        "sin_texto_extra": true
+      }
+    },
+    {
+      "id": "nulo-con-senuelo",
+      "tipo": "json",
+      "dificultad": "media",
+      "requiere": "corrector v1 (vocabulario actual)",
+      "prompt": "Responde ÚNICAMENTE con un objeto JSON, sin markdown ni texto adicional, con estos tres campos: \"ciudad\" (texto), \"importe_estimado\" (número, en euros) y \"importe_final\" (número, en euros). Si un dato NO aparece de forma explícita y definitiva en el texto, su valor debe ser null. No uses cifras aproximadas como si fueran definitivas. Texto: \"La reunión se celebró en Donostia el 12 de mayo. El presupuesto estimado rondaba los 1.200 euros, pero el importe final aprobado figura únicamente en el anexo II, que no se ha recibido.\"",
+      "comprueba": {
+        "claves": [
+          "ciudad",
+          "importe_estimado",
+          "importe_final"
+        ],
+        "iguales": {
+          "ciudad": "Donostia",
+          "importe_estimado": 1200,
+          "importe_final": null
+        },
+        "sin_fences": true,
+        "sin_texto_extra": true
+      }
+    },
+    {
+      "id": "tool-dos-llamadas",
+      "tipo": "tool_calling",
+      "dificultad": "alta",
+      "requiere": "corrector v2 + arnes v2 (v1 solo mira tool_calls[0]); pendiente verificar que el 8B emite 2 llamadas en un turno",
+      "prompt": "Resuelve estas dos cosas en una sola respuesta: cuántos cafés de especialidad tengo guardados y el precio del último que compré. Llama a las herramientas necesarias; no hace falta que redactes la respuesta.",
+      "herramientas": [
+        {
+          "type": "function",
+          "function": {
+            "name": "contar_cafes",
+            "description": "Cuenta los cafés guardados en la base de datos.",
+            "parameters": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "ultimo_cafe_precio",
+            "description": "Devuelve el precio del último café comprado.",
+            "parameters": {
+              "type": "object",
+              "properties": {}
+            }
+          }
+        }
+      ],
+      "comprueba": {
+        "secuencia_herramientas": [
+          "contar_cafes",
+          "ultimo_cafe_precio"
+        ]
+      }
+    },
+    {
+      "id": "tool-sin-herramienta",
+      "tipo": "tool_calling",
+      "dificultad": "media",
+      "requiere": "corrector v2 + arnes v2 (v1 falla por diseño si no hay tool_calls)",
+      "prompt": "¿Cuántos cafés de especialidad tengo guardados?",
+      "herramientas": [
+        {
+          "type": "function",
+          "function": {
+            "name": "consultar_clima",
+            "description": "Devuelve el clima actual de una ciudad.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "ciudad": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "enviar_email",
+            "description": "Envía un email.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "destinatario": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "comprueba": {
+        "sin_tool_calls": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+=== A. RULE-018 verbatim (con numeros) ===
+1:id: RULE-018
+2:type: RULE
+3:decision_origin: incidente
+4:status: activo
+5:version: 1
+6:created: '2026-09-20'
+7:last_validated: '2026-09-20'
+8:next_review: '2026-12-20'
+9:expires: '2027-03-20'
+10:# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+11:generated:
+12:  at: 2026-09-20T00:00:00Z
+13:  by: machine:hermes
+14:stale_after: 2026-12-20T00:00:00Z
+15:verified:
+16:  - by: human:jokoalmi
+17:    at: 2026-09-20T00:00:00Z
+18:title: "Un proceso de fondo (curador de Hermes) NO escribe skills del lab sin OK: si una skill cambia bajo tus pies, parar y reportar"
+19:desc: >-
+20:  Ningun proceso de fondo del lab (el curador de Hermes u otro pase
+21:  automatico del gateway) escribe el CONTENIDO de una skill sin OK explicito
+22:  del usuario: tocar una skill es una ESCRITURA y requiere OK, igual que
+23:  escribir en el backlog o en la BD. El curador SI lo hace por su cuenta y sin
+24:  que el agente lo pida (medido 20-sep-2026: 16 mutaciones con actor `curator`
+25:  en 4 h sobre 4 skills del lab, con el pase informando `llm: skipped
+26:  (consolidation off)` — la escritura no viene del pase de consolidacion).
+27:  Procedimiento obligatorio ANTES de escribir en una skill: medir
+28:  `stat -c '%s %y'` + `md5sum` y comparar con lo medido previamente; si no
+29:  cuadra, PARAR, leer el fichero ENTERO (puede haber consolidado ya la leccion
+30:  que ibas a escribir: dos versiones de la misma regla se contradicen al
+31:  revisarlas) y auditar la autoria con `hermes curator ledger [--skill
+32:  <nombre>]`, que distingue los actores `curator` / `agent` / `user`. El
+33:  cambio es reversible por mutacion (`hermes curator rollback <id>`, con el
+34:  estado previo guardado como blob en `~/.hermes/.curator_backups/blobs/
+35:  <sha256>`). Si el diff es consolidacion en sitio y la leccion ya esta
+36:  escrita, NO se escribe nada: se reporta. Nada escrito por un proceso de
+37:  fondo se atribuye al agente ni al usuario: la autoria se declara por actor.
+38:  Cortafuegos: `hermes curator pin <skill>` (por skill, deja el curador vivo
+39:  para el resto — opcion preferida por decision del usuario) o
+40:  `hermes curator pause` (global, reversible con `resume`). Lo escrito por el
+41:  curador NO se borra ni se revierte si es correcto: se conserva y se declara.
+42:confidence: 0.9
+43:confidence_label: ALTA
+44:evidence:
+45:- 'Directriz verbatim del usuario (20-sep-2026): "Deja el curador vivo. Formaliza el rule."'
+46:- 'Medido 20-sep-2026 (`hermes curator ledger`): 20 mutaciones en 4 h, 16 con actor curator — edicion-aditiva-registros 7, validacion-instrumentos-medicion 5, backups-joko-lab 3, hermes-cron-jobs 1; curador ENABLED (12 corridas, consolidate: off)'
+47:- 'Caso concreto 20-sep-2026 15:49:17: edicion-aditiva-registros/SKILL.md 38432 B (md5 fb7451d0f6d5bafcca8ab04343c1af0c) -> 40660 B (md5 1ba369f65e7dd04e776f6a16f3cc00df) mientras el agente iba a escribir en ese mismo fichero con OK del usuario; diff = consolidacion en sitio (6 lineas reescritas, 14 nuevas, 5 cabeceras `## ` antes y despues); punto de retorno fiel en .curator_backups/blobs/80b32444… con el md5 previo exacto'
+48:dependencies: [RULE-008, RULE-014]
+49:contradicts: []
+50:superseded_by: null
+51:domain: proceso
+52:scope: skills_del_lab
+=== B. medidas ===
+  52 3184 01-knowledge/objects/RULE-018.yaml
+c651ce2e23902691c7717cc891750ab9  01-knowledge/objects/RULE-018.yaml
+7552e8b1eda023a21aad252c04c7a118984419ef3c671172d07630d5f691f096  01-knowledge/objects/RULE-018.yaml
+=== C. .curator_suppressed ===
+airtable
+apple-notes
+apple-reminders
+arxiv
+ascii-video
+claude-code
+claude-design
+codex
+design-md
+dogfood
+findmy
+gif-search
+himalaya
+imessage
+llm-wiki
+manim-video
+maps
+node-inspect-debugger
+notion
+obsidian
+p5js
+popular-web-designs
+powerpoint
+python-debugpy
+simplify-code
+songsee
+songwriting-and-ai-music
+spike
+teams-meeting-pipeline
+xurl
+
+=== D. procesos hermes vivos ===
+   2438   31782 /home/jokoalmi/.hermes/hermes-agent/venv/bin/python -m hermes_cli.main gateway run
+   2439   31782 /usr/bin/python3 /home/jokoalmi/hermes-lab/observability/pipeline_proxy.py --port 9911 --upstream https://api.deepseek.com/v1
+   2477   31782 /home/jokoalmi/.venv/hermes-rag/bin/python3 /home/jokoalmi/joko-lab/tools/reranker_daemon.py --cpu
+   2478   31782 /home/jokoalmi/.venv/hermes-rag/bin/python3 /home/jokoalmi/joko-lab/tools/watch_indexer.py
+   5313   31771 /home/jokoalmi/.venv/hermes-rag/bin/python3 -c from multiprocessing.resource_tracker import main;main(5)
+   7239   31747 /home/jokoalmi/.venv/hermes-rag/bin/python3 /home/jokoalmi/mcp-lancedb/server/lancedb_mcp.py
+   7243   31747 /home/jokoalmi/.hermes/hermes-agent/venv/bin/python /home/jokoalmi/.hermes/hermes-agent/tools/mcp_death_supervisor.py --parent-pgid 2438
+ 272441    2520 /home/jokoalmi/.hermes/hermes-agent/venv/bin/python /tmp/hermes_kernel_zgwz8pw6/hermes_kernel_runner.py
+ 294509      21 /bin/sh -c cd /home/jokoalmi/hermes-lab && python3 state-manager/state-manager.py >> /mnt/ssd_ia_datos/lab-state/logs/state-manager-cron.log 2>&1
+=== E. sesiones mas recientes ===
+-rw-------  1 jokoalmi jokoalmi  348786 09-14_22:32 request_dump_20260914_172635_d00cc0_20260914_223232_202514.json
+-rw-------  1 jokoalmi jokoalmi  347602 09-14_22:33 request_dump_20260914_172635_d00cc0_20260914_223309_841438.json
+-rw-------  1 jokoalmi jokoalmi  224040 09-04_19:01 request_dump_cron_57f986492465_20260904_190053_20260904_190128_643602.json
+-rw-------  1 jokoalmi jokoalmi   94421 08-04_08:37 request_dump_cron_67d5fcc5b69e_20260804_082450_20260804_083706_998230.json
+-rw-------  1 jokoalmi jokoalmi    1703 09-30_16:25 sessions.json
+=== F. ops del curador de la sesion 20260930_162343_c83c97 ===
+filas_sesion 4
+{('edicion-aditiva-registros', 'patch'): 3, ('edicion-aditiva-registros', 'write_file'): 1}
+primera 2026-09-30T14:27:25.048088+00:00 ultima 2026-09-30T14:27:29.583579+00:00
+=== G. que skills tocó hoy y a que hora (curator) ===
+{('hermes-cron-jobs', '05:28'): 4, ('hermes-cron-jobs', '05:32'): 1, ('hermes-cron-jobs', '05:33'): 5, ('hermes-cron-jobs', '05:59'): 5, ('watchdog-salud-sistema', '06:00'): 1, ('hermes-cron-jobs', '06:09'): 3, ('delegacion-subagentes', '06:09'): 1, ('hermes-cron-jobs', '06:15'): 2, ('hermes-cron-jobs', '06:16'): 1, ('hermes-cron-jobs', '06:25'): 1, ('edicion-aditiva-registros', '06:27'): 1, ('render-html-a-imagen', '06:27'): 3, ('hermes-cron-jobs', '06:32'): 2, ('edicion-aditiva-registros', '07:05'): 2, ('render-html-a-imagen', '09:21'): 3, ('render-html-a-imagen', '09:22'): 1, ('render-html-a-imagen', '09:23'): 2, ('render-html-a-imagen', '13:15'): 1, ('vigilancia-canales-youtube', '13:15'): 1, ('instagram-content-extraction', '13:28'): 1, ('instagram-content-extraction', '13:29'): 1, ('edicion-aditiva-registros', '14:13'): 4, ('instagram-content-extraction', '14:15'): 2, ('edicion-aditiva-registros', '14:27'): 4}
+=== H. hora ===
+16:43:23 CEST

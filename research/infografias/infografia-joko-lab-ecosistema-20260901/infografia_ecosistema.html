@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Joko Lab — IA local de verdad</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1600px; height:900px; overflow:hidden;
+    font-family:'Montserrat',sans-serif;
+    background: url('fondo_ecosistema.png') center/cover no-repeat #0b1020;
+    position:relative; color:#f4f1ea;
+  }
+  /* overlay claro para legibilidad sin tapar el arte */
+  .overlay {
+    position:absolute; inset:0;
+    background: linear-gradient(160deg, rgba(11,16,32,.55) 0%, rgba(11,16,32,.35) 45%, rgba(11,16,32,.65) 100%);
+  }
+  .content { position:relative; z-index:2; height:100%; display:flex; flex-direction:column; padding:52px 64px 40px; }
+  /* sparkles decorativos */
+  .sparkle { position:absolute; color:rgba(255,200,120,.7); font-size:22px; z-index:3; }
+  /* sello */
+  .sello {
+    position:absolute; top:46px; right:60px; z-index:4;
+    width:120px; height:120px; border-radius:50%;
+    border:4px dashed rgba(255,190,90,.85);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+    transform:rotate(10deg);
+    background: radial-gradient(circle, rgba(255,170,60,.18), rgba(255,170,60,.04));
+    font-size:15px; font-weight:800; letter-spacing:1.5px; color:#ffc97a;
+    text-transform:uppercase; line-height:1.25; box-shadow:0 6px 24px rgba(0,0,0,.4);
+  }
+  .header { text-align:center; margin-bottom:8px; }
+  .logo-line { display:flex; align-items:center; justify-content:center; gap:14px; margin-bottom:6px; }
+  .logo-chip {
+    width:44px; height:44px; border-radius:12px;
+    background: linear-gradient(135deg,#ff8c42,#ff5e3a);
+    display:flex; align-items:center; justify-content:center; font-weight:900; font-size:20px; color:#fff;
+    box-shadow:0 4px 14px rgba(255,120,60,.45);
+  }
+  .kicker { font-size:17px; letter-spacing:5px; color:#ffb36b; font-weight:700; text-transform:uppercase; }
+  h1 {
+    font-size:64px; font-weight:900; letter-spacing:1px;
+    background: linear-gradient(90deg,#ffffff 20%,#ffd9a0 55%,#ff9d5c);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 4px 30px rgba(255,150,80,.25);
+  }
+  .sub { font-family:'Caveat',cursive; font-size:34px; color:#e8dcc8; margin-top:2px; }
+  .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin:34px 0 30px; }
+  .metric {
+    background: rgba(20,28,48,.72); backdrop-filter:blur(4px);
+    border-radius:24px; padding:22px 18px 18px; text-align:center;
+    border-top:5px solid;
+    box-shadow:0 10px 30px rgba(0,0,0,.35); position:relative; overflow:hidden;
+  }
+  .metric::after { content:''; position:absolute; top:-30px; right:-30px; width:80px; height:80px; border-radius:50%; opacity:.25; }
+  .m-orange { border-color:#ff8c42; } .m-orange::after{ background:#ff8c42; }
+  .m-teal { border-color:#2dd4bf; } .m-teal::after{ background:#2dd4bf; }
+  .m-blue { border-color:#60a5fa; } .m-blue::after{ background:#60a5fa; }
+  .m-violet { border-color:#a78bfa; } .m-violet::after{ background:#a78bfa; }
+  .metric .num { font-size:44px; font-weight:900; background:linear-gradient(135deg,#fff,#ffd9a0); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+  .metric .label { font-size:15px; color:#cfc6b4; font-weight:700; margin-top:4px; text-transform:uppercase; letter-spacing:1px; }
+  .metric .detail { font-size:13px; color:#9a917f; margin-top:6px; }
+  .flow-title { font-size:19px; font-weight:800; color:#ffb36b; text-transform:uppercase; letter-spacing:2px; margin-bottom:14px; text-align:center; }
+  .flow { display:flex; align-items:stretch; gap:12px; justify-content:center; margin-bottom:26px; }
+  .step {
+    flex:1; max-width:250px; border-radius:20px; padding:16px 14px; text-align:center;
+    background: rgba(20,28,48,.72); backdrop-filter:blur(4px);
+    border-top:4px solid; box-shadow:0 8px 22px rgba(0,0,0,.3);
+  }
+  .step .ic { font-size:26px; margin-bottom:6px; }
+  .step .t { font-weight:800; font-size:15px; }
+  .step .d { font-size:12px; color:#a89f8c; margin-top:4px; }
+  .arrow { display:flex; align-items:center; font-size:26px; color:#ff9d5c; font-weight:900; }
+  .badges { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; }
+  .badge {
+    padding:9px 18px; border-radius:999px; font-size:14px; font-weight:700;
+    background: rgba(255,150,80,.14); border:1px solid rgba(255,150,80,.5); color:#ffd9a0;
+  }
+  .badge.teal { background: rgba(45,212,191,.12); border-color:rgba(45,212,191,.5); color:#a7f3e6; }
+  .badge.blue { background: rgba(96,165,250,.12); border-color:rgba(96,165,250,.5); color:#bfdbfe; }
+  .badge.violet { background: rgba(167,139,250,.12); border-color:rgba(167,139,250,.5); color:#ddd6fe; }
+  .footer { margin-top:auto; display:flex; justify-content:space-between; align-items:flex-end; }
+  .foot-left { font-family:'Caveat',cursive; font-size:24px; color:#d9cdb8; }
+  .foot-right { font-size:13px; color:#8f8672; text-align:right; line-height:1.5; }
+  .foot-right b { color:#ffb36b; }
+</style>
+</head>
+<body>
+  <div class="sparkle" style="top:120px; left:80px;">✦</div>
+  <div class="sparkle" style="top:260px; right:180px;">✧</div>
+  <div class="sparkle" style="bottom:180px; left:220px;">✧</div>
+  <div class="sparkle" style="bottom:120px; right:300px;">✦</div>
+  <div class="sello">Datos<br>reales<br>del lab</div>
+  <div class="overlay"></div>
+  <div class="content">
+    <div class="header">
+      <div class="logo-line">
+        <div class="logo-chip">⚡</div>
+        <div class="kicker">Joko Lab</div>
+        <div class="logo-chip" style="background:linear-gradient(135deg,#2dd4bf,#0ea5a0);">AI</div>
+      </div>
+      <h1>IA LOCAL DE VERDAD</h1>
+      <div class="sub">privada · gratuita · open source · en mi propia máquina</div>
+    </div>
+
+    <div class="metrics">
+      <div class="metric m-orange">
+        <div class="num">11</div>
+        <div class="label">Modelos locales</div>
+        <div class="detail">LLM + visión + voz en LM Studio / Ollama</div>
+      </div>
+      <div class="metric m-teal">
+        <div class="num">21.975</div>
+        <div class="label">Embeddings RAG</div>
+        <div class="detail">LanceDB · 1,9 GB · recall 100% medido</div>
+      </div>
+      <div class="metric m-blue">
+        <div class="num">4</div>
+        <div class="label">Servicios Docker</div>
+        <div class="detail">n8n · Ollama · PDF · herramientas propias</div>
+      </div>
+      <div class="metric m-violet">
+        <div class="num">3</div>
+        <div class="label">Servidores MCP</div>
+        <div class="detail">BD · RAG · animación — USB-C de la IA</div>
+      </div>
+    </div>
+
+    <div class="flow-title">→ Pipeline local-first: la nube solo cuando hace falta ←</div>
+    <div class="flow">
+      <div class="step m-orange" style="border-color:#ff8c42;">
+        <div class="ic">🖥️</div>
+        <div class="t">LOCAL intenta</div>
+        <div class="d">GPU RTX A2000 12 GB · tarea en local</div>
+      </div>
+      <div class="arrow">➜</div>
+      <div class="step m-teal" style="border-color:#2dd4bf;">
+        <div class="ic">✅</div>
+        <div class="t">Verificación</div>
+        <div class="d">¿fiable? gate fail-closed, sin LLM</div>
+      </div>
+      <div class="arrow">➜</div>
+      <div class="step m-blue" style="border-color:#60a5fa;">
+        <div class="ic">☁️</div>
+        <div class="t">Cloud solo si falla</div>
+        <div class="d">escalada acotada · 99,4% cache hit</div>
+      </div>
+    </div>
+
+    <div class="badges">
+      <span class="badge">⚡ 176 skills</span>
+      <span class="badge teal">🔍 recall RAG 100%</span>
+      <span class="badge blue">🤖 Hermes v0.21.0</span>
+      <span class="badge violet">🔒 0 € en suscripciones de IA</span>
+      <span class="badge">🗄️ 21.975 docs indexados</span>
+    </div>
+
+    <div class="footer">
+      <div class="foot-left">Soberanía digital: tu modelo, tus datos, tu conocimiento.</div>
+      <div class="foot-right">Joko Lab · 01-sep-2026 · <b>datos reales medidos</b>, no estimaciones<br>fondo: arte generado con ComfyUI · SDXL local</div>
+    </div>
+  </div>
+</body>
+</html>

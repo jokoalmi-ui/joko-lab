@@ -1,0 +1,48 @@
+id: DEC-005
+type: DEC
+decision_origin: incidente
+status: activo
+version: 1
+created: '2026-09-03'
+last_validated: '2026-09-03'
+next_review: '2026-12-03'
+expires: '2027-03-03'
+title: "Corrupción de state.db de Hermes: causa raíz y recuperación (02-03 sep 2026)"
+desc: >-
+  Incidente de infraestructura del gateway Hermes: corrupción de ~/.hermes/state.db
+  en las tablas FTS messages_fts y messages_fts_trigram ("vtable constructor failed"
+  / "database disk image is malformed"), causa raíz probable: escritura concurrente
+  sin checkpoint limpio en modo WAL. Recuperado con sqlite3 .recover + reconstrucción
+  manual de las dos tablas FTS. SIN relación con el chunking del RAG.
+confidence: 0.7
+confidence_label: MEDIA
+evidence:
+- 'Error real pegado en sesión CLI (02-sep ~23:03, @session:default/20260902_135251_e07c10): "database disk image is malformed"; gateway fallando desde 07:05 del 03-sep'
+- 'Diagnóstico del 03-sep (usuario, por terminal): tablas FTS messages_fts y messages_fts_trigram con "vtable constructor failed" / "database disk image is malformed"'
+- 'Fix aplicado por terminal el 03-sep (fuera de esta conversación): sqlite3 .recover + reconstrucción manual de messages_fts y messages_fts_trigram'
+- 'Verificado: session_search operativo tras el fix (esta sesión devuelve resultados de sesiones)'
+- 'Registro episódico enlazado: LEC-20260814-006 (04-operations/metrics/lecciones_ledger.jsonl)'
+- 'Aclaración explícita del usuario (03-sep): el incidente NO tiene relación con el chunking del RAG'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: hermes
+scope: infraestructura_gateway
+history:
+- date: '2026-09-03'
+  event: created
+  note: 'Documentado a petición del usuario como KO tras el incidente del 02-03 sep; confidence 0.7 porque la causa raíz (escritura concurrente sin checkpoint limpio en WAL) es la hipótesis probable del diagnóstico, no una causa confirmada con traza'
+body: >-
+  El 02-03 sep 2026 el gateway de Hermes falló con "database disk image is malformed"
+  (error pegado en sesión CLI el 02-sep ~23:03; persistente desde 07:05 del 03-sep).
+  El diagnóstico por terminal identificó corrupción en ~/.hermes/state.db, localizada
+  en las tablas FTS messages_fts y messages_fts_trigram, que reportaban "vtable
+  constructor failed". Causa raíz probable: escritura concurrente sobre state.db sin
+  checkpoint limpio en modo WAL, que dejó las tablas FTS inconsistentes. La solución
+  aplicada fue recuperar la base con sqlite3 .recover y reconstruir manualmente las
+  dos tablas FTS (messages_fts y messages_fts_trigram); verificado: session_search
+  vuelve a devolver resultados. Este incidente es de infraestructura del gateway y
+  NO está relacionado con el chunking del RAG (RecursiveCharacterTextSplitter del
+  indexer, verificado en indexer.py:142): no hubo reindexación ni cambio de chunking
+  involucrados. Acción preventiva a valorar: garantizar checkpoint limpio / acceso
+  secuencial a state.db en modo WAL para evitar recurrencia.

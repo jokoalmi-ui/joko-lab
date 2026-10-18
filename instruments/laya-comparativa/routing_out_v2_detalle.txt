@@ -1,0 +1,200 @@
+================================================================================================
+TEST DE ROUTING — Laya 0.3.10 | torch importado: False | fichero: casos_v2_noul.json | casos: 177
+================================================================================================
+caso      bl script  idioma ing  indec diac   -> modelo      razon
+------------------------------------------------------------------------------------------------
+gen-001   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-002   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-003   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-004   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-005   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-006   A  latin   None   False True  0.0390 multilingual   Latin script, language not identified but 4% non-English l
+gen-007   A  latin   None   False True  0.0390 multilingual   Latin script, language not identified but 4% non-English l
+gen-008   A  latin   None   False True  0.0390 multilingual   Latin script, language not identified but 4% non-English l
+gen-009   A  latin   None   False True  0.0390 multilingual   Latin script, language not identified but 4% non-English l
+gen-010   A  latin   None   False True  0.0390 multilingual   Latin script, language not identified but 4% non-English l
+gen-011   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-012   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-013   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-014   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-015   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-016   A  latin   None   False True  0.0288 multilingual   Latin script, language not identified but 3% non-English l
+gen-017   A  latin   None   False True  0.0288 multilingual   Latin script, language not identified but 3% non-English l
+gen-018   A  latin   None   False True  0.0288 multilingual   Latin script, language not identified but 3% non-English l
+gen-019   A  latin   None   False True  0.0288 multilingual   Latin script, language not identified but 3% non-English l
+gen-020   A  latin   None   False True  0.0288 multilingual   Latin script, language not identified but 3% non-English l
+gen-021   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-022   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-023   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-024   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-025   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-026   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-027   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-028   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-029   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-030   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-031   A  latin   None   False True  0.0325 multilingual   Latin script, language not identified but 3% non-English l
+gen-032   A  latin   None   False True  0.0325 multilingual   Latin script, language not identified but 3% non-English l
+gen-033   A  latin   None   False True  0.0325 multilingual   Latin script, language not identified but 3% non-English l
+gen-034   A  latin   None   False True  0.0325 multilingual   Latin script, language not identified but 3% non-English l
+gen-035   A  latin   None   False True  0.0325 multilingual   Latin script, language not identified but 3% non-English l
+gen-036   A  latin   None   False True  0.0385 multilingual   Latin script, language not identified but 4% non-English l
+gen-037   A  latin   None   False True  0.0385 multilingual   Latin script, language not identified but 4% non-English l
+gen-038   A  latin   None   False True  0.0385 multilingual   Latin script, language not identified but 4% non-English l
+gen-039   A  latin   None   False True  0.0385 multilingual   Latin script, language not identified but 4% non-English l
+gen-040   A  latin   None   False True  0.0385 multilingual   Latin script, language not identified but 4% non-English l
+gen-041   A  latin   None   False True  0.0394 multilingual   Latin script, language not identified but 4% non-English l
+gen-042   A  latin   None   False True  0.0394 multilingual   Latin script, language not identified but 4% non-English l
+gen-043   A  latin   None   False True  0.0394 multilingual   Latin script, language not identified but 4% non-English l
+gen-044   A  latin   None   False True  0.0394 multilingual   Latin script, language not identified but 4% non-English l
+gen-045   A  latin   None   False True  0.0394 multilingual   Latin script, language not identified but 4% non-English l
+gen-046   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-047   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-048   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-049   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-050   A  latin   None   False True  0.0328 multilingual   Latin script, language not identified but 3% non-English l
+gen-051   A  latin   None   False True  0.0305 multilingual   Latin script, language not identified but 3% non-English l
+gen-052   A  latin   None   False True  0.0305 multilingual   Latin script, language not identified but 3% non-English l
+gen-053   A  latin   None   False True  0.0305 multilingual   Latin script, language not identified but 3% non-English l
+gen-054   A  latin   None   False True  0.0305 multilingual   Latin script, language not identified but 3% non-English l
+gen-055   A  latin   None   False True  0.0305 multilingual   Latin script, language not identified but 3% non-English l
+gen-056   A  latin   None   False True  0.0405 multilingual   Latin script, language not identified but 4% non-English l
+gen-057   A  latin   None   False True  0.0405 multilingual   Latin script, language not identified but 4% non-English l
+gen-058   A  latin   None   False True  0.0405 multilingual   Latin script, language not identified but 4% non-English l
+gen-059   A  latin   None   False True  0.0405 multilingual   Latin script, language not identified but 4% non-English l
+gen-060   A  latin   None   False True  0.0405 multilingual   Latin script, language not identified but 4% non-English l
+gen-061   A  latin   None   False True  0.0360 multilingual   Latin script, language not identified but 4% non-English l
+gen-062   A  latin   None   False True  0.0360 multilingual   Latin script, language not identified but 4% non-English l
+gen-063   A  latin   None   False True  0.0360 multilingual   Latin script, language not identified but 4% non-English l
+gen-064   A  latin   None   False True  0.0360 multilingual   Latin script, language not identified but 4% non-English l
+gen-065   A  latin   None   False True  0.0360 multilingual   Latin script, language not identified but 4% non-English l
+gen-066   A  latin   None   False True  0.0374 multilingual   Latin script, language not identified but 4% non-English l
+gen-067   A  latin   None   False True  0.0374 multilingual   Latin script, language not identified but 4% non-English l
+gen-068   A  latin   None   False True  0.0374 multilingual   Latin script, language not identified but 4% non-English l
+gen-069   A  latin   None   False True  0.0374 multilingual   Latin script, language not identified but 4% non-English l
+gen-070   A  latin   None   False True  0.0374 multilingual   Latin script, language not identified but 4% non-English l
+gen-071   A  latin   None   False True  0.0296 multilingual   Latin script, language not identified but 3% non-English l
+gen-072   A  latin   None   False True  0.0296 multilingual   Latin script, language not identified but 3% non-English l
+gen-073   A  latin   None   False True  0.0296 multilingual   Latin script, language not identified but 3% non-English l
+gen-074   A  latin   None   False True  0.0296 multilingual   Latin script, language not identified but 3% non-English l
+gen-075   A  latin   None   False True  0.0296 multilingual   Latin script, language not identified but 3% non-English l
+gen-076   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-077   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-078   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-079   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-080   A  latin   None   False True  0.0310 multilingual   Latin script, language not identified but 3% non-English l
+gen-081   A  latin   None   False True  0.0458 multilingual   Latin script, language not identified but 5% non-English l
+gen-082   A  latin   None   False True  0.0458 multilingual   Latin script, language not identified but 5% non-English l
+gen-083   A  latin   None   False True  0.0458 multilingual   Latin script, language not identified but 5% non-English l
+gen-084   A  latin   None   False True  0.0458 multilingual   Latin script, language not identified but 5% non-English l
+gen-085   A  latin   None   False True  0.0458 multilingual   Latin script, language not identified but 5% non-English l
+gen-086   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-087   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-088   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-089   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-090   A  latin   None   False True  0.0301 multilingual   Latin script, language not identified but 3% non-English l
+gen-091   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-092   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-093   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-094   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-095   A  latin   None   False True  0.0348 multilingual   Latin script, language not identified but 3% non-English l
+gen-096   A  latin   None   False True  0.0317 multilingual   Latin script, language not identified but 3% non-English l
+gen-097   A  latin   None   False True  0.0317 multilingual   Latin script, language not identified but 3% non-English l
+gen-098   A  latin   None   False True  0.0317 multilingual   Latin script, language not identified but 3% non-English l
+gen-099   A  latin   None   False True  0.0317 multilingual   Latin script, language not identified but 3% non-English l
+gen-100   A  latin   None   False True  0.0317 multilingual   Latin script, language not identified but 3% non-English l
+gen-101   A  latin   None   False True  0.0272 multilingual   Latin script, language not identified but 3% non-English l
+gen-102   A  latin   None   False True  0.0272 multilingual   Latin script, language not identified but 3% non-English l
+gen-103   A  latin   None   False True  0.0272 multilingual   Latin script, language not identified but 3% non-English l
+gen-104   A  latin   None   False True  0.0272 multilingual   Latin script, language not identified but 3% non-English l
+gen-105   A  latin   None   False True  0.0272 multilingual   Latin script, language not identified but 3% non-English l
+gen-106   A  latin   None   False True  0.0333 multilingual   Latin script, language not identified but 3% non-English l
+gen-107   A  latin   None   False True  0.0333 multilingual   Latin script, language not identified but 3% non-English l
+gen-108   A  latin   None   False True  0.0333 multilingual   Latin script, language not identified but 3% non-English l
+gen-109   A  latin   None   False True  0.0333 multilingual   Latin script, language not identified but 3% non-English l
+gen-110   A  latin   None   False True  0.0333 multilingual   Latin script, language not identified but 3% non-English l
+gen-111   A  latin   None   False True  0.0364 multilingual   Latin script, language not identified but 4% non-English l
+gen-112   A  latin   None   False True  0.0364 multilingual   Latin script, language not identified but 4% non-English l
+gen-113   A  latin   None   False True  0.0364 multilingual   Latin script, language not identified but 4% non-English l
+gen-114   A  latin   None   False True  0.0364 multilingual   Latin script, language not identified but 4% non-English l
+gen-115   A  latin   None   False True  0.0364 multilingual   Latin script, language not identified but 4% non-English l
+gen-116   A  latin   None   False True  0.0413 multilingual   Latin script, language not identified but 4% non-English l
+gen-117   A  latin   None   False True  0.0413 multilingual   Latin script, language not identified but 4% non-English l
+gen-118   A  latin   None   False True  0.0413 multilingual   Latin script, language not identified but 4% non-English l
+gen-119   A  latin   None   False True  0.0413 multilingual   Latin script, language not identified but 4% non-English l
+gen-120   A  latin   None   False True  0.0413 multilingual   Latin script, language not identified but 4% non-English l
+gen-121   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-122   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-123   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-124   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-125   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-126   A  latin   None   False True  0.0354 multilingual   Latin script, language not identified but 4% non-English l
+gen-127   A  latin   None   False True  0.0354 multilingual   Latin script, language not identified but 4% non-English l
+gen-128   A  latin   None   False True  0.0354 multilingual   Latin script, language not identified but 4% non-English l
+gen-129   A  latin   None   False True  0.0354 multilingual   Latin script, language not identified but 4% non-English l
+gen-130   A  latin   None   False True  0.0354 multilingual   Latin script, language not identified but 4% non-English l
+gen-131   A  latin   None   False True  0.0427 multilingual   Latin script, language not identified but 4% non-English l
+gen-132   A  latin   None   False True  0.0427 multilingual   Latin script, language not identified but 4% non-English l
+gen-133   A  latin   None   False True  0.0427 multilingual   Latin script, language not identified but 4% non-English l
+gen-134   A  latin   None   False True  0.0427 multilingual   Latin script, language not identified but 4% non-English l
+gen-135   A  latin   None   False True  0.0427 multilingual   Latin script, language not identified but 4% non-English l
+gen-136   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-137   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-138   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-139   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-140   A  latin   None   False True  0.0286 multilingual   Latin script, language not identified but 3% non-English l
+gen-141   A  latin   None   False True  0.0357 multilingual   Latin script, language not identified but 4% non-English l
+gen-142   A  latin   None   False True  0.0357 multilingual   Latin script, language not identified but 4% non-English l
+gen-143   A  latin   None   False True  0.0357 multilingual   Latin script, language not identified but 4% non-English l
+gen-144   A  latin   None   False True  0.0357 multilingual   Latin script, language not identified but 4% non-English l
+gen-145   A  latin   None   False True  0.0357 multilingual   Latin script, language not identified but 4% non-English l
+gen-146   A  latin   None   False True  0.0420 multilingual   Latin script, language not identified but 4% non-English l
+gen-147   A  latin   None   False True  0.0420 multilingual   Latin script, language not identified but 4% non-English l
+gen-148   A  latin   None   False True  0.0420 multilingual   Latin script, language not identified but 4% non-English l
+gen-149   A  latin   None   False True  0.0420 multilingual   Latin script, language not identified but 4% non-English l
+gen-150   A  latin   None   False True  0.0420 multilingual   Latin script, language not identified but 4% non-English l
+ctx-01    A  latin   es     False False 0.0215 multilingual   Latin script but language looks like 'es', not English
+ctx-02    A  latin   es     False False 0.0215 multilingual   Latin script but language looks like 'es', not English
+ctx-03    A  latin   es     False False 0.0225 multilingual   Latin script but language looks like 'es', not English
+ctx-04    A  latin   es     False False 0.0225 multilingual   Latin script but language looks like 'es', not English
+ctx-05    A  latin   es     False False 0.0238 multilingual   Latin script but language looks like 'es', not English
+ctx-06    A  latin   es     False False 0.0058 multilingual   Latin script but language looks like 'es', not English
+ctx-07    A  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+ctx-08    A  latin   es     False False 0.0225 multilingual   Latin script but language looks like 'es', not English
+mem-01    D  latin   es     False False 0.0345 multilingual   Latin script but language looks like 'es', not English
+mem-02    D  latin   es     False False 0.0238 multilingual   Latin script but language looks like 'es', not English
+mem-03    D  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+mem-04    D  latin   es     False False 0.0270 multilingual   Latin script but language looks like 'es', not English
+mem-05    D  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+mem-06    D  latin   es     False False 0.0185 multilingual   Latin script but language looks like 'es', not English
+trap-01   B  latin   None   False True  0.0222 multilingual   Latin script, language not identified but 2% non-English l
+trap-02   B  latin   None   False True  0.0370 multilingual   Latin script, language not identified but 4% non-English l
+trap-03   B  latin   None   True True  0.0149 english        Latin script, language not identified and no non-English l
+trap-04   B  latin   None   True True  0.0000 english        Latin script, language not identified and no non-English l
+trap-05   B  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+trap-06   B  latin   None   True True  0.0189 english        Latin script, language not identified and no non-English l
+trap-07   B  latin   es     False False 0.0147 multilingual   Latin script but language looks like 'es', not English
+trap-08   B  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+ficha-01  A  latin   None   True True  0.0156 english        Latin script, language not identified and no non-English l
+ficha-02  A  latin   None   True True  0.0156 english        Latin script, language not identified and no non-English l
+ficha-03  A  latin   None   True True  0.0156 english        Latin script, language not identified and no non-English l
+ficha-04  A  latin   None   True True  0.0132 english        Latin script, language not identified and no non-English l
+ficha-05  A  latin   None   True True  0.0156 english        Latin script, language not identified and no non-English l
+------------------------------------------------------------------------------------------------
+
+REPARTO DEL ROUTER (default='english', el de fabrica):
+   multilingual   169/177
+   english          8/177
+
+REPARTO CON Router(default='multilingual'):
+   multilingual   177/177
+
+casos con idioma INDECISO: 160/177  (lista con --detalle)
+casos 'no ingles' por deteccion: 169/177
+
+--- Mismo test con el PROMPT SIMULADO (state + afirmacion juntos) ---
+   default='english'        multilingual=170  english=7
+   default='multilingual'   multilingual=174  english=3
+
+--- CONTRASTE DE ECE: mio (motor.py) vs laya.ece_score ---
+   contraste no disponible: ModuleNotFoundError No module named 'numpy'

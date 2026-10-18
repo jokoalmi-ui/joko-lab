@@ -1,0 +1,13 @@
+2026-10-09 18:16:18 === sweep A inicio ===
+2026-10-09 18:16:18 START E1_C0000 (C=0)
+2026-10-09 18:17:40 END E1_C0000 ok=True 81s {"label": "E1_C0000", "ts": "2026-10-09 18:16:18 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 0, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructurada.txt", "prompt_sha1": "52e0a3afb4d9", "model": "Qwen3.6-35B-A3B
+2026-10-09 18:17:45 START E1_C0256 (C=256)
+2026-10-09 18:18:57 END E1_C0256 ok=True 71s {"label": "E1_C0256", "ts": "2026-10-09 18:17:45 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 256, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructurada.txt", "prompt_sha1": "52e0a3afb4d9", "model": "Qwen3.6-35B-A
+2026-10-09 18:19:02 START E1_C0512 (C=512)
+2026-10-09 18:22:07 END E1_C0512 ok=True 185s {"label": "E1_C0512", "ts": "2026-10-09 18:19:02 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 512, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructurada.txt", "prompt_sha1": "52e0a3afb4d9", "model": "Qwen3.6-35B-A
+2026-10-09 18:22:12 START E1_C1024 (C=1024)
+2026-10-09 18:23:29 END E1_C1024 ok=True 77s {"label": "E1_C1024", "ts": "2026-10-09 18:22:12 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 1024, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructurada.txt", "prompt_sha1": "52e0a3afb4d9", "model": "Qwen3.6-35B-
+2026-10-09 18:23:34 START E1_C2048 (C=2048)
+2026-10-09 18:24:08 END E1_C2048 ok=False 33s {"label": "E1_C2048", "ts": "2026-10-09 18:23:34 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 2048, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructurada.txt", "prompt_sha1": "52e0a3afb4d9", "model": "Qwen3.6-35B-
+2026-10-09 18:24:08 OOM/fallo en la escalera -> corto la escalada de C (segun diseno)
+2026-10-09 18:24:08 === sweep A fin ===

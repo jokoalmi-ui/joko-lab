@@ -1,0 +1,252 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<title>08_informe_mensual · pack de colaboradoras</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#08090C}
+body{width:1080px;font-family:"Inter","Inter Display","DejaVu Sans",Arial,sans-serif;color:#F4F5F7;font-variant-numeric:tabular-nums;
+  -webkit-font-smoothing:antialiased;letter-spacing:-0.006em}
+.piece{width:1080px;height:1920px;position:relative;overflow:hidden;display:flex;flex-direction:column;
+  background:
+   radial-gradient(120% 70% at 10% -12%,rgba(216,180,92,.11),rgba(216,180,92,0) 58%),
+   radial-gradient(95% 60% at 100% 0%,rgba(127,168,255,.075),rgba(127,168,255,0) 55%),
+   linear-gradient(180deg,#0C0E12,#08090C 72%)}
+.piece:after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(80% 50% at 50% 120%,rgba(255,255,255,.03),rgba(255,255,255,0) 70%)}
+.pad{padding:60px 72px;display:flex;flex-direction:column;flex:1;position:relative;z-index:2}
+.pad.wide{padding:64px 56px}
+/* ---------- barra superior ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:14px;font-weight:700;font-size:23px;letter-spacing:.2px}
+.mark{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(140deg,#E7CB84,#A97F2E);color:#1A1408;font-weight:800;font-size:20px}
+.chip{font-size:16px;letter-spacing:2.4px;text-transform:uppercase;color:#D8B45C;
+  border:1px solid rgba(216,180,92,.42);border-radius:999px;padding:8px 16px;background:rgba(216,180,92,.06)}
+.chip.flat{color:#A7AEBB;border-color:rgba(255,255,255,.13);background:rgba(255,255,255,.03)}
+.demo{position:absolute;top:24px;right:26px;z-index:5;font-size:14px;letter-spacing:2.6px;font-weight:600;
+  color:#FF8A8A;border:1px dashed rgba(255,138,138,.55);border-radius:7px;padding:6px 12px;
+  background:rgba(255,90,90,.07)}
+/* ---------- tipografía ---------- */
+.eyebrow{font-size:17px;letter-spacing:3.2px;text-transform:uppercase;color:#8E96A5;font-weight:600}
+.display{font-size:74px;line-height:1.02;font-weight:800;letter-spacing:-2.2px;margin-top:18px}
+.h1{font-size:56px;line-height:1.05;font-weight:800;letter-spacing:-1.6px;margin-top:16px}
+.h2{font-size:34px;line-height:1.15;font-weight:700;letter-spacing:-.7px}
+.h3{font-size:26px;line-height:1.2;font-weight:600;letter-spacing:-.3px}
+.lead{font-size:25px;line-height:1.45;color:#B7BECC;margin-top:16px;max-width:900px}
+.body{font-size:23px;line-height:1.5;color:#A7AEBB}
+.small{font-size:20px;line-height:1.45;color:#98A0AE}
+.micro{font-size:17px;line-height:1.4;color:#7B828F}
+.mono{font-family:"DejaVu Sans Mono","Liberation Mono",monospace;font-size:19px;letter-spacing:-.4px;color:#DCE2EC}
+em.g{color:#E7CB84;font-style:normal}
+.gold{color:#D8B45C}
+.up{text-transform:uppercase;letter-spacing:2.4px;font-size:16px;font-weight:600;color:#8E96A5}
+/* ---------- estructura ---------- */
+.stack{display:flex;flex-direction:column;gap:22px}
+.stack.tight{gap:14px}
+.row{display:flex;gap:22px;align-items:stretch}
+.row.between{justify-content:space-between;align-items:center}
+.row.end{align-items:flex-end}
+.grow{flex:1;min-width:0}
+.sep{height:1px;background:linear-gradient(90deg,rgba(255,255,255,.14),rgba(255,255,255,.02))}
+.spacer{flex:1}
+/* ---------- tarjetas ---------- */
+.card{background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:26px 30px}
+.card.flat{background:rgba(255,255,255,.025)}
+.card.gold{border-color:rgba(216,180,92,.34);background:
+  linear-gradient(180deg,rgba(216,180,92,.10),rgba(216,180,92,.03))}
+.card.pad-lg{padding:32px 36px}
+.kv{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:13px 0;
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.kv:last-child{border-bottom:0}
+.kv .k{font-size:21px;color:#A7AEBB}
+.kv .v{font-size:23px;font-weight:600;color:#F4F5F7;text-align:right}
+/* ---------- kpi ---------- */
+.kpis{display:flex;gap:16px}
+.kpi{flex:1;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:20px 22px}
+.kpi .lbl{font-size:15px;letter-spacing:2px;text-transform:uppercase;color:#8E96A5;font-weight:600}
+.kpi .big{font-size:40px;font-weight:800;letter-spacing:-1.2px;margin-top:8px;line-height:1}
+.kpi .big small{font-size:20px;font-weight:600;color:#98A0AE;letter-spacing:0}
+.kpi .note{font-size:16px;color:#7B828F;margin-top:8px}
+.kpi.big2 .big{font-size:46px}
+/* ---------- cupón / enlace ---------- */
+.coupon{display:flex;gap:26px;align-items:center;justify-content:space-between;
+  border:1px dashed rgba(216,180,92,.5);border-radius:20px;padding:24px 30px;
+  background:linear-gradient(100deg,rgba(216,180,92,.12),rgba(216,180,92,.02))}
+.coupon .val{font-size:50px;font-weight:800;letter-spacing:1.5px;line-height:1}
+.coupon .lbl{font-size:15px;letter-spacing:2.6px;text-transform:uppercase;color:#D8B45C;font-weight:600}
+.linkbox{background:rgba(0,0,0,.42);border:1px solid rgba(255,255,255,.10);border-radius:14px;
+  padding:16px 20px}
+.linkbox .u{font-family:"DejaVu Sans Mono","Liberation Mono",monospace;font-size:18px;line-height:1.5;color:#C9E3FF;word-break:break-all}
+/* ---------- píldoras y listas ---------- */
+.pills{display:flex;gap:10px;flex-wrap:wrap}
+.pill{font-size:18px;color:#C6CCD8;border:1px solid rgba(255,255,255,.12);border-radius:999px;
+  padding:8px 16px;background:rgba(255,255,255,.03)}
+.pill.on{color:#161207;background:linear-gradient(140deg,#E7CB84,#C9A24A);border-color:transparent;font-weight:700}
+ul.list{list-style:none;display:flex;flex-direction:column;gap:12px}
+ul.list li{font-size:21px;line-height:1.45;color:#AFB6C3;padding-left:30px;position:relative}
+ul.list li:before{content:"";position:absolute;left:4px;top:10px;width:9px;height:9px;border-radius:50%;
+  background:#D8B45C}
+ul.list.no li:before{background:#5B6270}
+ul.list b,ul.list strong{color:#F4F5F7;font-weight:600}
+/* ---------- pasos / flujo ---------- */
+.steps{display:flex;flex-direction:column;gap:14px}
+.step{display:flex;gap:20px;align-items:flex-start;background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:18px 22px}
+.step .n{width:38px;height:38px;border-radius:50%;flex:none;display:flex;align-items:center;
+  justify-content:center;font-weight:800;font-size:19px;color:#161207;
+  background:linear-gradient(140deg,#E7CB84,#C9A24A)}
+.step .t{font-size:21px;font-weight:600;color:#F4F5F7}
+.step .d{font-size:19px;color:#A7AEBB;line-height:1.4;margin-top:4px}
+.flow{display:flex;align-items:center;gap:12px}
+.flow .box{flex:1;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;padding:18px 16px;text-align:center}
+.flow .box .t{font-size:19px;font-weight:600;color:#F4F5F7;margin-top:10px;line-height:1.25}
+.flow .box .d{font-size:16px;color:#8E96A5;margin-top:6px;line-height:1.3}
+.flow .arrow{color:#D8B45C;font-size:26px;font-weight:700;flex:none}
+/* ---------- tabla ---------- */
+table.tb{width:100%;border-collapse:collapse}
+table.tb th{font-size:15px;letter-spacing:1.8px;text-transform:uppercase;color:#8E96A5;
+  font-weight:600;text-align:right;padding:12px 14px;border-bottom:1px solid rgba(255,255,255,.12);
+  white-space:nowrap}
+table.tb th:first-child,table.tb td:first-child{text-align:left}
+table.tb td{font-size:21px;padding:14px;border-bottom:1px solid rgba(255,255,255,.05);
+  text-align:right;color:#DCE2EC;white-space:nowrap}
+table.tb td.k{color:#F4F5F7;font-weight:600}
+table.tb tr.tot td{border-bottom:0;border-top:1px solid rgba(255,255,255,.16);font-weight:700;
+  color:#FFFFFF;font-size:22px;padding-top:16px}
+table.tb tr.tot td.warn{color:#E7CB84}
+.tagmini{display:inline-block;font-size:16px;padding:4px 10px;border-radius:7px;
+  background:rgba(216,180,92,.14);color:#E7CB84;border:1px solid rgba(216,180,92,.3);font-weight:600}
+/* ---------- gráfico de barras ---------- */
+.chart{display:flex;align-items:flex-end;gap:34px;height:300px;padding:0 8px}
+.chart .col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;
+  height:100%;text-align:center}
+.chart .val{font-size:24px;font-weight:700;color:#F4F5F7;margin-bottom:10px}
+.chart .bar{width:100%;border-radius:12px 12px 4px 4px;
+  background:linear-gradient(180deg,#E7CB84,#A97F2E)}
+.chart .bar.dim{background:linear-gradient(180deg,rgba(216,180,92,.42),rgba(169,127,46,.3))}
+.chart .lb{font-size:17px;color:#8E96A5;margin-top:12px;letter-spacing:.6px}
+.axis{display:flex;justify-content:space-between;font-size:15px;color:#7B828F;margin-top:8px}
+/* ---------- cita / prueba social ---------- */
+.stars{display:flex;gap:6px;align-items:center}
+.quote{position:relative;padding-left:0}
+.quote .qm{font-size:88px;line-height:.6;color:rgba(216,180,92,.5);font-weight:800}
+.quote .txt{font-size:32px;line-height:1.32;font-weight:600;color:#F4F5F7;letter-spacing:-.5px}
+.quote .who{display:flex;align-items:center;gap:14px;margin-top:22px}
+.avatar{border-radius:50%;flex:none;display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:#161207}
+/* ---------- producto ---------- */
+.prods{display:flex;gap:18px}
+.prod{flex:1;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;padding:20px 18px;text-align:center}
+.prod .nm{font-size:21px;font-weight:600;margin-top:14px;line-height:1.25}
+.prod .ml{font-size:16px;color:#8E96A5;margin-top:4px}
+.prod .pr{font-size:25px;font-weight:700;color:#E7CB84;margin-top:10px}
+.rowprods{display:flex;flex-direction:column;gap:0}
+.rowprod{display:flex;align-items:center;gap:20px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+.rowprod:last-child{border-bottom:0}
+.rowprod .nm{font-size:22px;font-weight:600;color:#F4F5F7}
+.rowprod .ml{font-size:17px;color:#8E96A5;margin-top:3px}
+.rowprod .pr{font-size:23px;font-weight:700;color:#E7CB84;width:150px;text-align:right}
+/* ---------- botón ---------- */
+.btn{display:inline-flex;flex-direction:column;align-items:center;background:linear-gradient(140deg,#E7CB84,#C9A24A);
+  color:#191307;border-radius:14px;padding:18px 34px;font-size:28px;font-weight:800;letter-spacing:-.4px}
+.btn small{font-size:18px;font-weight:600;margin-top:5px;color:#4A3C15;letter-spacing:0}
+.btn.ghost{background:rgba(255,255,255,.05);color:#F4F5F7;border:1px solid rgba(255,255,255,.16)}
+/* ---------- pie ---------- */
+.ft{margin-top:auto;padding-top:20px;border-top:1px solid rgba(255,255,255,.09);
+  display:flex;justify-content:space-between;align-items:center;gap:20px}
+.ft .l{font-size:16px;color:#7B828F;line-height:1.4}
+.ft .r{font-size:16px;color:#7B828F;text-align:right;white-space:nowrap}
+/* ---------- ronda 2: legibilidad y piezas que llenan ---------- */
+.small{font-size:21px;line-height:1.45;color:#9BA3B1}
+.micro{font-size:18px;line-height:1.42;color:#8A91A0}
+.lead{font-size:25px;line-height:1.5}
+.linkbox .u{font-size:21px;line-height:1.35}
+.linkbox .u2{font-family:"DejaVu Sans Mono","Liberation Mono",monospace;font-size:16px;line-height:1.5;color:#78808F;margin-top:10px;
+  word-break:break-all}
+.leader{flex:1;border-bottom:1px dotted rgba(255,255,255,.18);margin:0 14px 9px;min-width:20px}
+.steps.c3{flex-direction:row;gap:20px}
+.steps.c3 .step{flex:1;flex-direction:column;gap:14px;padding:22px 20px}
+.steps.c3 .step .t{font-size:20px}
+.steps.c3 .step .d{font-size:18px}
+.legal{margin-top:18px;padding-top:16px;border-top:1px solid rgba(255,255,255,.09);
+  font-size:17px;line-height:1.55;color:#828A99}
+.demo{color:#98A0AE;border:1px dashed rgba(255,255,255,.24);background:rgba(255,255,255,.03);
+  border-radius:999px;padding:6px 14px;letter-spacing:2.2px}
+.strip{display:flex;gap:16px}
+.mini{flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;
+  padding:18px 12px;text-align:center}
+.mini .nm{font-size:19px;font-weight:600}
+.mini .pr{font-size:20px;font-weight:700;color:#E7CB84}
+.splitbar{display:flex;height:34px;border-radius:9px;overflow:hidden;margin-top:16px}
+.splitbar .a{background:linear-gradient(140deg,#E7CB84,#C9A24A);display:flex;align-items:center;
+  justify-content:center;font-size:17px;font-weight:700;color:#191307}
+.splitbar .b{background:rgba(127,168,255,.42);display:flex;align-items:center;justify-content:center;
+  font-size:17px;font-weight:700;color:#EAF1FF}
+/* ---------- guías de story ---------- */
+.safe{position:absolute;left:0;right:0;border-top:1px dashed rgba(127,168,255,.45);z-index:4;
+  font-size:14px;color:rgba(127,168,255,.8);letter-spacing:1.6px;padding:6px 14px}
+.sticker{display:inline-block;background:linear-gradient(140deg,#E7CB84,#C9A24A);color:#191307;
+  border-radius:18px;padding:16px 26px;font-size:30px;font-weight:800;transform:rotate(-3.5deg);
+  box-shadow:0 12px 30px rgba(0,0,0,.45)}
+table.tb td,table.tb th{padding:8px 14px}.chart{height:270px}</style></head>
+<body><div class="piece"><div class="demo">EJEMPLO</div><div class="pad">
+<div class="top"><div class="brand"><span class="mark">CA</span>Casa Aurora</div><span class="chip">informe por creadora</span></div>
+<div class="h1" style="margin-top:26px">Informe de <em class="g">@ana.decants</em> · octubre 2026</div>
+<div class="lead" style="max-width:1000px">Una página al mes por creadora: qué pasó, de dónde salió
+cada pedido y qué se repite el mes siguiente.</div>
+<div class="kpis" style="margin-top:26px">
+  <div class="kpi"><div class="lbl">clics con su enlace</div><div class="big">962</div>
+    <div class="note">conversión 6,0 %</div></div>
+  <div class="kpi"><div class="lbl">pedidos</div><div class="big">58</div>
+    <div class="note">ticket medio 46 €</div></div>
+  <div class="kpi"><div class="lbl">ingresos atribuidos</div>
+    <div class="big">2.680 €</div><div class="note">medidos por cupón y enlace</div></div>
+  <div class="kpi"><div class="lbl">comisión</div><div class="big">268 €</div>
+    <div class="note">4,62 € por pedido</div></div>
+</div>
+<div class="eyebrow" style="margin-top:30px">pedidos por semana</div>
+<div class="chart"><div class="col"><div class="val">9</div><div class="bar dim" style="height:70px"></div><div class="lb">05-11 oct<br><span style="color:#7B828F">416 €</span></div></div><div class="col"><div class="val">14</div><div class="bar dim" style="height:110px"></div><div class="lb">12-18 oct<br><span style="color:#7B828F">647 €</span></div></div><div class="col"><div class="val">23</div><div class="bar" style="height:180px"></div><div class="lb">19-25 oct<br><span style="color:#7B828F">1.063 €</span></div></div><div class="col"><div class="val">12</div><div class="bar dim" style="height:94px"></div><div class="lb">26 oct-01 nov<br><span style="color:#7B828F">554 €</span></div></div></div>
+<div class="row" style="gap:18px;margin-top:26px">
+  <div class="card grow"><div class="eyebrow">lectura</div>
+    <ul class="list" style="margin-top:14px">
+      <li>El pico está en la semana del 19-25 oct: <b>24</b> de los 58 pedidos
+      (40 % del mes), con el vídeo largo.</li>
+      <li>La conversión (6,0 %) va por encima de la media de la tienda (3,1 %).</li>
+      <li>Cada pedido deja 46 €: casi todos llevan dos decants.</li>
+    </ul>
+  </div>
+  <div class="card grow"><div class="eyebrow">recomendación para el mes siguiente</div>
+    <ul class="list" style="margin-top:14px">
+      <li>Repetir una pieza larga al mes: es la que trae el pico.</li>
+      <li>Subir a 3 stories por semana con el mismo cupón.</li>
+      <li>Probar 10 € de publicidad sobre el vídeo que mejor funcione.</li>
+    </ul>
+  </div>
+</div>
+<div class="eyebrow" style="margin-top:26px">las cuatro piezas del mes</div>
+<table class="tb" style="margin-top:8px">
+  <tr><th style="width:120px">semana</th><th style="text-align:left">pieza</th>
+  <th style="width:160px">formato</th><th style="width:90px">clics</th>
+  <th style="width:100px">pedidos</th><th style="width:110px">conv.</th></tr>
+  <tr><td class="k">05-11 oct</td><td style="text-align:left">Presentación de su selección</td><td>reel 9:16</td><td>214</td><td>9</td><td>4,2 %</td></tr><tr><td class="k">12-18 oct</td><td style="text-align:left">Rutina de dos decants</td><td>story x3</td><td>226</td><td>14</td><td>6,2 %</td></tr><tr><td class="k">19-25 oct</td><td style="text-align:left">Tres perfiles, tres momentos</td><td>reel 9:16</td><td>402</td><td>23</td><td>5,7 %</td></tr><tr><td class="k">26 oct-01 nov</td><td style="text-align:left">Cierre de mes y cupón</td><td>carrusel + story</td><td>120</td><td>12</td><td>10,0 %</td></tr>
+</table>
+<div class="micro" style="margin-top:12px">El reel 9:16 trajo el volumen (402 clics) y el carrusel + story la mejor conversión (10,0 %): conviene alternar una pieza larga con un cierre corto.</div>
+<div class="row" style="gap:18px;margin-top:22px">
+  <div class="card flat grow"><div class="eyebrow">de dónde vienen los pedidos</div>
+    <div class="splitbar">
+      <div class="a" style="width:62%">cupón 62 %</div>
+      <div class="b" style="width:38%">enlace 38 %</div>
+    </div>
+    <div class="micro" style="margin-top:12px">36 pedidos entraron escribiendo el cupón (sin
+    pasar por el enlace) y 22 por el enlace de su bio. Sin el cupón, los primeros no se
+    contarían.</div>
+  </div>
+  <div class="card flat grow"><div class="eyebrow">comparado con septiembre</div>
+    <div style="margin-top:6px"><div class="kv"><span class="k">pedidos</span><span class="v">41 € → <b class="gold">58 €</b> <span class="micro">+41 %</span></span></div><div class="kv"><span class="k">ingresos</span><span class="v">1.755 € → <b class="gold">2.680 €</b> <span class="micro">+53 %</span></span></div><div class="kv"><span class="k">comisión</span><span class="v">175 € → <b class="gold">268 €</b> <span class="micro">+53 %</span></span></div></div>
+  </div>
+</div>
+<div class="ft"><div class="l"><b>Casa Aurora</b> · perfumería de nicho y decants · Bilbao · <span style="color:#8E96A5">datos de EJEMPLO</span></div><div class="r">Informe mensual · pieza 9 de 10</div></div>
+</div></div></body></html>

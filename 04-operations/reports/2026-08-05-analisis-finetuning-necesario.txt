@@ -1,0 +1,84 @@
+# Análisis — Vídeo "Is fine-tuning still needed?" (corto ~10 min)
+
+**Fecha:** 05-ago-2026
+**Fuente:** https://youtu.be/-W2JdSl1v48 (canal en inglés sobre IA)
+**Transcripción:** 2026-08-05-transcripcion-youtube3.txt (9 KB, ~10 min)
+
+---
+
+## Tesis del vídeo
+
+El fine-tuning **no está muerto**, pero su rol se ha reducido drásticamente
+desde 2023. El caso real que narra:
+
+1. **2023:** una empresa legal fine-tuneó su modelo propio → abogados lo
+   prefirieron sobre GPT-4 en tests ciegos **97% de las veces**. Victoria del FT.
+2. **2025:** la misma empresa creó su propio benchmark legal → **7 modelos
+   generales (frontier) ya superaban a su modelo custom**, sin haber recibido
+   fine-tuning legal. BloombergGPT corrió la misma suerte frente a GPT-4.
+
+**Por qué los modelos generales alcanzaron a los custom:**
+1. **Contexto gigante** — 1M+ tokens: si el modelo lee 500 páginas de documentos
+   directamente en el prompt, ¿para qué cocinarlas en los pesos?
+2. **Modelos de razonamiento** — el razonamiento sale del *thinking time* en
+   inferencia, no del entrenamiento previo
+3. **Inferencia más barata** — los frontier mejoran y abaratan constantemente;
+   fine-tunear es "apuntar a un objetivo en movimiento" (al llegar el FT, el
+   siguiente frontier ya lo superó)
+
+---
+
+## El stack de customización SIN tocar pesos
+
+| Técnica | Qué hace | Orden en la decisión |
+|---|---|---|
+| **Prompt + Context engineering** | Prompt cuidadosamente ensamblado | 1º — siempre |
+| **RAG** | Recupera docs frescos/propietarios en query time | 2º — si conocimiento |
+| **Agent skills** | Archivos MD con conocimiento procedimental + tools, cargados on-demand | 3º — si know-how |
+| **Fine-tuning (LoRA)** | Solo si hay un cuello de botella que el stack no resuelve | 4º — último recurso |
+
+**Cuándo SÍ tiene sentido el FT:**
+- **Latencia real-time** (voice agent respondiendo llamadas — los modelos
+  reasoning con thinking-time son demasiado lentos)
+- **Distillation** (modelo grande enseña a uno pequeño)
+- **RFT (reinforcement fine-tuning)** — solo si la salida se puede calificar
+  programáticamente (respuesta correcta definitiva)
+
+---
+
+## Conexión directa con Joko Lab
+
+| Concepto del vídeo | Estado en el lab | Veredicto |
+|---|---|---|
+| Prompt/context engineering primero | Skill prompt-engineering | ✅ Alineado |
+| RAG para conocimiento | LanceDB + BGE-M3 + reranker | ✅ Alineado |
+| **Agent skills** | **Skills de Hermes** (MD files + tools on-demand) | ✅ **Exactamente lo que hace el lab** |
+| LoRA como FT moderno | Dolphin Cyber LoRA | ✅ Alineado |
+| Fine-tuning propio | NUNCA fue necesario | ✅ Confirmado por el vídeo |
+
+**Conclusión clave:** el vídeo valida **exactamente** la arquitectura de Joko
+Lab — que es el stack de customización sin tocar pesos: prompt engineering +
+RAG + skills + (opcionalmente) LoRA. El lab NO necesita fine-tunear nada.
+
+**Añade matiz al análisis del playbook (sreemantideytech):** mientras el
+playbook se centraba en CÓMO fine-tunear, este vídeo responde CUÁNDO vale la
+pena — y para el lab la respuesta es "casi nunca". Refuerza la decisión de no
+entrenar LoRA propio salvo casos concretos (latencia, distillación, RFT).
+
+---
+
+## Ideas aprovechables
+
+1. **Confirmación estratégica:** no gastar tiempo en fine-tuning propio. El
+   lab ya está en la arquitectura correcta.
+2. **Skills como "agent skills"** — el vídeo describe las skills de Hermes
+   como técnica de customización estándar de la industria. Las skills del lab
+   (prompt-engineering, systematic-debugging...) son exactamente eso.
+3. **Marco de decisión:** prompt → RAG → skills → FT (solo si cuello de
+   botella). Aplicar este orden en futuras decisiones del lab.
+
+## Nota
+
+Vídeo divulgativo corto, técnicamente sólido y alineado con la práctica 2026.
+Complementa (no contradice) el playbook de fine-tuning ya analizado. No
+requiere acción en el lab — solo confirmación de arquitectura.

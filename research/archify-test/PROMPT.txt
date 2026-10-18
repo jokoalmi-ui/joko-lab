@@ -1,0 +1,21 @@
+Trabaja SOLO dentro de la carpeta /home/jokoalmi/joko-lab/research/archify-test y no modifiques ni borres nada fuera de ella.
+
+Tienes instalada la skill "archify" en /home/jokoalmi/.agents/skills/archify — lee su SKILL.md y siguelo.
+
+TAREA: crear un diagrama de tipo architecture del stack local de automatizacion del laboratorio:
+- Host Ubuntu con GPU NVIDIA RTX A2000 (12 GB)
+- Contenedores Docker Compose: n8n, Ollama, Stirling-PDF
+- LM Studio en el host sirviendo el modelo local por API en el puerto 1234
+- Hermes Agent como orquestador
+- Datos persistentes en /mnt/ssd_ia_datos (n8n, exports, backups)
+- RAG con LanceDB y servidor MCP lab-db
+
+PASOS OBLIGATORIOS:
+1) Lee el schema de "architecture" y un ejemplo de la skill antes de escribir nada.
+2) Escribe el JSON como /home/jokoalmi/joko-lab/research/archify-test/stack-local.architecture.json
+3) Valida ejecutando desde la carpeta de la skill:
+   cd /home/jokoalmi/.agents/skills/archify && node bin/archify.mjs validate architecture /home/jokoalmi/joko-lab/research/archify-test/stack-local.architecture.json --quality showcase --json
+4) Si hay errores, corrige el JSON y repite hasta obtener ok:true con los 9 checks en pass.
+5) Entrega con: node bin/archify.mjs deliver architecture /home/jokoalmi/joko-lab/research/archify-test/stack-local.architecture.json /home/jokoalmi/joko-lab/research/archify-test/stack-local.html --quality showcase --json
+
+Al terminar responde SOLO con: el resultado de validate (ok y numero de checks), el resultado de deliver (ok y bytes) y la ruta del HTML.

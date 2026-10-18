@@ -1,0 +1,117 @@
+# Análisis — Vídeo Organic RDD (Receive Driven Development) — Gentleman Programming
+
+**Fecha:** 05-ago-2026
+**Fuente:** https://youtu.be/t_HEm1om2Ek (Gentleman Programming / Gentle AI)
+**Transcripción:** 2026-08-05-transcripcion-youtube.txt (67 KB, ~50 min)
+
+---
+
+## Qué es
+
+**Organic RDD (Receive Driven Development)** — metodología inventada por el
+autor (con su comunidad) para VERIFICAR el trabajo de la IA antes de aceptarlo,
+reduciendo alucinaciones y sobre-ingeniería. Implementada en la herramienta
+**Gentle AI** (binario CLI + orquestador).
+
+**El problema que resuelve:** la IA produce código que "parece correcto" pero
+no lo es ("puede demostrar demasiada veracidad en algo que no es"). El autor
+gastó 3 resets de Codex (200€ cada uno) + Claude intentando implementarlo.
+
+---
+
+## El flujo RDD (resumen del vídeo)
+
+### 1. Orquestador + delegación
+- Cambio simple (1-3 archivos, mecánico) → lo hace el orquestador directo
+- Cambio que afecta >4 archivos → **delegación a subagente** (sesión nueva,
+  sin ruido, memoria propia) con instrucción acotada
+- La implementación puede usar TDD (tests primero, luego código)
+
+### 2. Freeze (congelar) — el corazón del sistema
+- **Congela los bytes exactos** del árbol de cambios → **hash SHA** como
+  huella dactilar
+- "Hasta acá es lo que hizo el usuario" — se revisa el SHA, no cambios sueltos
+- El presupuesto de cambios se congela (ej: 200 líneas máx)
+
+### 3. Riesgo congelado en start
+- Evalúa el riesgo del candidato: **0** (silencioso) a **4** (muy severo)
+- Se usa el framework de las **4 R** (4 lentes):
+
+| Lente | Qué revisa |
+|---|---|
+| **Riesgo** | Seguridad, vulnerabilidades |
+| **Legibilidad** | Código claro |
+| **Robustez** | Fiabilidad |
+| **Resiliencia** | Resiliencia ante fallos |
+
+### 4. Revisión en paralelo (4 subagentes)
+- Un subagente por lente, revisión **en paralelo**
+- Solo se ataca el **candidato** (lo que metió la IA ahora)
+- Lo **preexistente** solo se reporta (nada de sobre-ingeniería — no mezclar
+  "lo mío" con "lo que ya estaba")
+- **Un solo intento acotado** — nada de iterar infinito (lección aprendida:
+  antes iteraba hasta el infinito)
+
+### 5. Corrección quirúrgica
+- Si un lente encuentra bloqueo crítico → **corrección acotada** (ej: ≤120
+  líneas dentro del presupuesto de 200)
+- El orquestador delega UNA corrección quirúrgica que ataca todos los problemas
+
+### 6. Verificación + benchmark
+- Ejecuta el código, prueba la API, corre el benchmark
+- "Pass with known benchmark failures" — se documenta qué falla y por qué
+- El orquestador **tiene evidencia de que todo funciona** antes de aceptar
+
+### 7. Kill switch
+- **Global y por proyecto** — se puede desactivar RDD
+- Si está activado, recomienda usar RDD en implementaciones potentes
+
+### 8. Commit validado + deploy
+- El commit solo se crea si el candidato está aprobado
+- Pre-commit validación → commit → deploy (ej: VPS Hostgator con skill)
+
+---
+
+## Ideas aplicables al lab (Joko Lab)
+
+| Concepto RDD | Equivalente/posible en el lab | Estado |
+|---|---|---|
+| **Freeze con SHA** | `joko-git-recibos` (recibos git verificables) | ✅ YA EXISTE — mismo concepto |
+| **4 lentes (Riesgo/Legibilidad/Robustez/Resiliencia)** | `requesting-code-review` skill (revisión pre-commit) | 🟡 Parcial — el skill existe pero no es "4 lentes en paralelo" |
+| **Delegación a subagente** (sin ruido) | `delegate_task` de Hermes | ✅ YA EXISTE |
+| **Solo candidato, no preexistente** (anti sobre-ingeniería) | No formalizado | ⚠️ Idea nueva — evitar mezclar hallazgos viejos en fixes puntuales |
+| **Un solo intento acotado** (no iterar infinito) | No formalizado | ⚠️ Idea nueva — limitar iteraciones de revisión |
+| **Kill switch por proyecto** | No existe | ⚠️ Interesante para crons/skills |
+| **Verificación con evidencia** (benchmark) | `evidence_contract.py` + verifier | 🟡 Existe pero el verifier tiene el bug conocido (falso negativo, 04-ago) |
+| **Corrección acotada (≤N líneas)** | No formalizado | ⚠️ Idea nueva — presupuesto de líneas por corrección |
+
+---
+
+## Qué vale la pena adoptar (priorizado)
+
+1. **"Solo candidato, no preexistente"** — regla anti sobre-ingeniería:
+   al revisar, reportar hallazgos viejos como reporte aparte, NO mezclarlos
+   en la corrección. Se añade como regla a la skill requesting-code-review.
+
+2. **"Un solo intento acotado"** — limitar la iteración de revisión a 1
+   corrección quirúrgica (no bucle infinito). Encaja con la lección del
+   verifier (no re-ejecutar sin evidencia nueva).
+
+3. **Presupuesto de líneas por corrección** — acotar las correcciones de la IA
+   (ej: máximo N líneas por fix) para evitar sobre-ingeniería.
+
+4. **Los 4 lentes como revisión** — la skill requesting-code-review podría
+   formalizar los 4 focos (riesgo/legibilidad/robustez/resiliencia) en vez de
+   una revisión genérica.
+
+---
+
+## Nota crítica
+
+El vídeo es de un creador de contenido (Gentleman Programming) presentando su
+propia herramienta (Gentle AI) — hay sesgo promocional ("espectacular",
+"funcionó de madre"). Pero la metodología en sí (freeze → SHA → revisión por
+lentes → corrección acotada → verificación con evidencia) es sólida y
+directamente aplicable. El lab YA tiene la mitad (recibos git + delegate_task
++ evidence contract); la otra mitad son reglas de disciplina (candidato solo,
+intento acotado, presupuesto de líneas).

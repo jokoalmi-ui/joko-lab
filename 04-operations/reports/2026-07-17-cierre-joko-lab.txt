@@ -1,0 +1,31 @@
+INFORME DE CIERRE — JOKO LAB
+Fecha: 2026-07-17
+Hora: 11:05
+
+RESUMEN DEL DIA
+Commits hoy en hermes-lab: 1
+Load del sistema: 1,41, 1,76, 1,86
+
+HARDWARE
+  GPU: NVIDIA RTX A2000 12GB, 853, 12282, 1, 43
+  RAM: 9,3Gi / 30Gi
+
+STACK DOCKER
+NAME           STATUS
+n8n            Up 3 hours
+ollama         Up 3 hours
+pdf-cleaner    Up 3 hours
+stirling-pdf   Up 3 hours (healthy)
+
+PENDIENTES ABIERTOS
+- Loop Engineering: pendiente de evaluar
+- LM Studio + monitor Flask: probados, parados a proposito
+- Portabilidad: auditoria de acoplamiento a Hermes Agent (ROADMAP.md L84)
+  — Origen: video tutorial Hermes Agent (Marcos/Emowe)
+  — No planificado, prioridad baja. Solo relevante si se evalua migrar de agente.
+  — NO propone desacoplar apply-decision.sh ahora. El acoplamiento actual es correcto.
+- docs/joko-lab-principles.md: vacio
+- Skills: betterbird (vacia), perfume-ia (Fase 1: proyecto creado en /home/jokoalmi/perfume-ia)
+
+VERIFICACIONES DEL DIA
+- deepseek-v4-flash: CONFIRMADO VALIDO en api.deepseek.com/models (2026-07-17 a las 11:05)

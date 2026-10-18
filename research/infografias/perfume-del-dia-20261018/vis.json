@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261018/perfume_del_dia_v5_safran.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261018/safran_figura.png",
+ "rect": [
+  54,
+  121,
+  296,
+  450
+ ],
+ "fondo_L": 113.6728,
+ "tapon_L": 66.1942,
+ "cuerpo_L": 227.535,
+ "contraste_tapon": 2.0729295322749715,
+ "contraste_cuerpo": 3.784998109827979,
+ "pct_claros": 14.213963963963964,
+ "min_claros": null,
+ "min_contraste": null
+}

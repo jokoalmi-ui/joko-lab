@@ -1,0 +1,18 @@
+{
+ "png": "/tmp/pd_hesp/r_b2.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261014-hesperide/hesperide_figura.png",
+ "rect": [
+  54,
+  84,
+  296,
+  450
+ ],
+ "fondo_L": 173.094,
+ "tapon_L": 70.1404,
+ "cuerpo_L": 224.4948,
+ "contraste_tapon": 4.201104325388613,
+ "contraste_cuerpo": 1.7061201950081593,
+ "pct_claros": 13.493993993993994,
+ "min_claros": null,
+ "min_contraste": null
+}

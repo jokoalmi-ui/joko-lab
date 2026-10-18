@@ -1,0 +1,1012 @@
+{
+ "instrumento": "consumo-electrico v0.1",
+ "fecha": "2026-10-11T14:16:08+02:00",
+ "etiqueta": "bateria json+tool-calling qwen2.5:7b (ollama) - ventana con serie",
+ "ventana_pedida_s": 120.0,
+ "ventana_real_s": 120.042,
+ "intervalo_s": 1.0,
+ "gpu": {
+  "muestras": 117,
+  "error": null,
+  "potencia_w": {
+   "media": 11.56,
+   "max": 35.42,
+   "min": 8.9
+  },
+  "energia_wh_integrada": 0.382,
+  "util_pct_media": 3.91,
+  "vram_mib_max": 6246.0,
+  "temp_c_max": 51.0
+ },
+ "rapl": [
+  {
+   "dominio": "intel-rapl",
+   "nombre": null,
+   "legible": false,
+   "error": "energy_uj: no existe"
+  },
+  {
+   "dominio": "intel-rapl:0",
+   "nombre": "package-0",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  },
+  {
+   "dominio": "intel-rapl:0:0",
+   "nombre": "core",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  },
+  {
+   "dominio": "intel-rapl:0:1",
+   "nombre": "uncore",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  },
+  {
+   "dominio": "intel-rapl:0:2",
+   "nombre": "dram",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  },
+  {
+   "dominio": "intel-rapl:1",
+   "nombre": "psys",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  }
+ ],
+ "cpu": {
+  "loadavg_1_5_15": [
+   "1.72",
+   "2.06",
+   "1.92"
+  ],
+  "ocupacion_pct_ventana": 24.21
+ },
+ "coste_eur": null,
+ "limites_de_medicion": [
+  "GPU: potencia muestreada con nvidia-smi (integracion trapezoidal sobre las muestras reales).",
+  "CPU/RAM/SoC: solo medibles por RAPL; si energy_uj no es legible, NO se estiman.",
+  "NO cubre discos, ventiladores, USB ni perdidas de la fuente.",
+  "La medida 'de pared' exige un medidor fisico: este instrumento no la sustituye."
+ ],
+ "serie": [
+  {
+   "t_s": 0.0,
+   "potencia_w": 35.42,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 51.0
+  },
+  {
+   "t_s": 1.029,
+   "potencia_w": 32.58,
+   "util_pct": 2.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 50.0
+  },
+  {
+   "t_s": 2.061,
+   "potencia_w": 23.78,
+   "util_pct": 1.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 3.092,
+   "potencia_w": 23.84,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 4.123,
+   "potencia_w": 23.87,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 5.155,
+   "potencia_w": 24.04,
+   "util_pct": 2.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 6.186,
+   "potencia_w": 24.03,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 7.218,
+   "potencia_w": 23.97,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 48.0
+  },
+  {
+   "t_s": 8.25,
+   "potencia_w": 23.96,
+   "util_pct": 1.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 48.0
+  },
+  {
+   "t_s": 9.281,
+   "potencia_w": 23.94,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 10.313,
+   "potencia_w": 23.99,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 48.0
+  },
+  {
+   "t_s": 11.344,
+   "potencia_w": 23.9,
+   "util_pct": 1.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 12.375,
+   "potencia_w": 23.87,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 13.406,
+   "potencia_w": 23.87,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 14.437,
+   "potencia_w": 23.99,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 15.469,
+   "potencia_w": 23.96,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 49.0
+  },
+  {
+   "t_s": 16.5,
+   "potencia_w": 21.38,
+   "util_pct": 0.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 48.0
+  },
+  {
+   "t_s": 17.544,
+   "potencia_w": 11.73,
+   "util_pct": 2.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 47.0
+  },
+  {
+   "t_s": 18.588,
+   "potencia_w": 9.52,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 47.0
+  },
+  {
+   "t_s": 19.631,
+   "potencia_w": 9.28,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 47.0
+  },
+  {
+   "t_s": 20.674,
+   "potencia_w": 9.43,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 47.0
+  },
+  {
+   "t_s": 21.716,
+   "potencia_w": 9.17,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 47.0
+  },
+  {
+   "t_s": 22.76,
+   "potencia_w": 9.65,
+   "util_pct": 32.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 47.0
+  },
+  {
+   "t_s": 23.803,
+   "potencia_w": 9.38,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 47.0
+  },
+  {
+   "t_s": 24.845,
+   "potencia_w": 9.65,
+   "util_pct": 10.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 25.891,
+   "potencia_w": 9.48,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 47.0
+  },
+  {
+   "t_s": 26.932,
+   "potencia_w": 9.59,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 27.974,
+   "potencia_w": 9.43,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 29.017,
+   "potencia_w": 9.43,
+   "util_pct": 6.0,
+   "vram_mib": 6246.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 30.065,
+   "potencia_w": 9.27,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 31.109,
+   "potencia_w": 9.44,
+   "util_pct": 8.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 32.153,
+   "potencia_w": 9.26,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 33.196,
+   "potencia_w": 9.57,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 34.239,
+   "potencia_w": 9.35,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 35.293,
+   "potencia_w": 9.52,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 36.337,
+   "potencia_w": 9.49,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 37.378,
+   "potencia_w": 9.4,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 38.431,
+   "potencia_w": 9.47,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 39.475,
+   "potencia_w": 9.13,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 40.517,
+   "potencia_w": 9.24,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 41.561,
+   "potencia_w": 9.01,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 42.606,
+   "potencia_w": 9.27,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 43.648,
+   "potencia_w": 9.26,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 44.69,
+   "potencia_w": 9.45,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 45.732,
+   "potencia_w": 9.25,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 46.775,
+   "potencia_w": 9.44,
+   "util_pct": 20.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 47.82,
+   "potencia_w": 9.13,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 48.862,
+   "potencia_w": 9.39,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 46.0
+  },
+  {
+   "t_s": 49.907,
+   "potencia_w": 9.07,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 50.95,
+   "potencia_w": 9.23,
+   "util_pct": 3.0,
+   "vram_mib": 6222.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 51.993,
+   "potencia_w": 8.9,
+   "util_pct": 3.0,
+   "vram_mib": 6222.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 53.038,
+   "potencia_w": 9.22,
+   "util_pct": 27.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 54.081,
+   "potencia_w": 9.25,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 55.13,
+   "potencia_w": 9.3,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 56.176,
+   "potencia_w": 9.12,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 57.242,
+   "potencia_w": 9.16,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 58.296,
+   "potencia_w": 9.38,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 59.339,
+   "potencia_w": 9.17,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 60.39,
+   "potencia_w": 9.2,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 61.431,
+   "potencia_w": 9.01,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 62.475,
+   "potencia_w": 9.31,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 63.516,
+   "potencia_w": 8.98,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 64.559,
+   "potencia_w": 9.33,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 65.602,
+   "potencia_w": 9.22,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 66.644,
+   "potencia_w": 9.46,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 67.687,
+   "potencia_w": 9.18,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 68.728,
+   "potencia_w": 9.43,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 69.772,
+   "potencia_w": 9.1,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 70.814,
+   "potencia_w": 9.24,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 71.857,
+   "potencia_w": 9.02,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 72.899,
+   "potencia_w": 9.13,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 73.942,
+   "potencia_w": 9.05,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 74.987,
+   "potencia_w": 9.5,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 76.03,
+   "potencia_w": 9.18,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 77.077,
+   "potencia_w": 9.44,
+   "util_pct": 22.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 78.123,
+   "potencia_w": 9.24,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 79.166,
+   "potencia_w": 9.37,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 80.208,
+   "potencia_w": 9.19,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 81.252,
+   "potencia_w": 9.2,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 45.0
+  },
+  {
+   "t_s": 82.295,
+   "potencia_w": 8.96,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 83.341,
+   "potencia_w": 9.03,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 84.394,
+   "potencia_w": 9.17,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 85.438,
+   "potencia_w": 9.09,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 86.482,
+   "potencia_w": 9.28,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 87.525,
+   "potencia_w": 9.13,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 88.567,
+   "potencia_w": 9.32,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 89.609,
+   "potencia_w": 9.21,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 90.653,
+   "potencia_w": 9.38,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 91.696,
+   "potencia_w": 9.04,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 92.739,
+   "potencia_w": 9.19,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 93.781,
+   "potencia_w": 8.96,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 94.824,
+   "potencia_w": 9.33,
+   "util_pct": 9.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 95.866,
+   "potencia_w": 9.22,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 96.908,
+   "potencia_w": 9.42,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 97.952,
+   "potencia_w": 9.18,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 98.995,
+   "potencia_w": 9.39,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 100.039,
+   "potencia_w": 9.18,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 101.083,
+   "potencia_w": 9.45,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 102.125,
+   "potencia_w": 9.05,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 103.167,
+   "potencia_w": 9.33,
+   "util_pct": 9.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 104.21,
+   "potencia_w": 9.08,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 105.253,
+   "potencia_w": 9.25,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 106.295,
+   "potencia_w": 9.05,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 107.339,
+   "potencia_w": 9.32,
+   "util_pct": 4.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 108.381,
+   "potencia_w": 9.14,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 109.423,
+   "potencia_w": 9.32,
+   "util_pct": 25.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 110.463,
+   "potencia_w": 9.1,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 111.506,
+   "potencia_w": 9.38,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 112.548,
+   "potencia_w": 9.23,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 113.591,
+   "potencia_w": 8.96,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 114.641,
+   "potencia_w": 9.08,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 115.687,
+   "potencia_w": 8.93,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 116.729,
+   "potencia_w": 9.3,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 117.772,
+   "potencia_w": 9.06,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 118.813,
+   "potencia_w": 9.33,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 119.857,
+   "potencia_w": 9.11,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  },
+  {
+   "t_s": 120.0,
+   "potencia_w": 9.13,
+   "util_pct": 3.0,
+   "vram_mib": 6226.0,
+   "vram_total_mib": 12282.0,
+   "temp_c": 44.0
+  }
+ ]
+}

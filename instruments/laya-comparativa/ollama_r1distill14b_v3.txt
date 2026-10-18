@@ -1,0 +1,38 @@
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : 765503df4e84a0a7
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : ollama
+
+METRICAS GLOBALES
+  n=299  accuracy=0.796  Brier=0.2015  ECE(5 bins)=0.2027
+  confianza media=0.497  sesgo=-0.299  confiado_y_fallado=36  seguro_y_acertado=113
+  latencia P50=1997.4 ms  P95=2574.2 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.9632 Brier=0.0368 ECE=0.0368 sesgo=-0.4969
+  B: n=8 accuracy=0.25 Brier=0.6544 ECE=0.7 sesgo=0.45
+  D: n=6 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=0.0
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  trampa           n=  8 accuracy=0.2500 Brier=0.6544 ECE=0.7000
+  no_aparece       n= 25 accuracy=0.3600 Brier=0.6400 ECE=0.6400
+  comparacion      n= 22 accuracy=0.4091 Brier=0.5909 ECE=0.5909
+  cuantificador    n= 20 accuracy=0.5500 Brier=0.4500 ECE=0.4500
+  soporte_parcial  n= 15 accuracy=0.6667 Brier=0.3333 ECE=0.3333
+  aguja            n=  8 accuracy=0.7500 Brier=0.2500 ECE=0.2500
+  distractor       n= 25 accuracy=0.8000 Brier=0.2000 ECE=0.2000
+  multihop         n= 22 accuracy=0.8182 Brier=0.1818 ECE=0.1818
+  valor_vecino     n= 30 accuracy=0.9667 Brier=0.0333 ECE=0.0333
+  campo_ausente    n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  grounding        n= 13 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  literal          n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  memoria          n=  6 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  negacion         n= 15 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  parafrasis       n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_ollama_deepseekr1distillqwen14blatest_v3.json

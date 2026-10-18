@@ -1,0 +1,149 @@
+{
+  "fecha": "2026-09-09T22:31:14",
+  "fuente": "nasdaq.com/api (sin key)",
+  "resultados": {
+    "NVDA": {
+      "last": 225.73,
+      "high_3m": 230.36,
+      "low_30d": 208.48,
+      "drawdown_pct": -2.01,
+      "recovery_pct": 8.27,
+      "patron": "ascendente",
+      "ticker": "NVDA",
+      "evitar": false
+    },
+    "V": {
+      "last": 368.64,
+      "high_3m": 384.14,
+      "low_30d": 358.84,
+      "drawdown_pct": -4.03,
+      "recovery_pct": 2.73,
+      "patron": "lateral",
+      "ticker": "V",
+      "evitar": false
+    },
+    "GOOGL": {
+      "last": 338.36,
+      "high_3m": 377.65,
+      "low_30d": 335.02,
+      "drawdown_pct": -10.4,
+      "recovery_pct": 1.0,
+      "patron": "lateral",
+      "ticker": "GOOGL",
+      "evitar": false
+    },
+    "MSFT": {
+      "last": 493.95,
+      "high_3m": 513.53,
+      "low_30d": 480.35,
+      "drawdown_pct": -3.81,
+      "recovery_pct": 2.83,
+      "patron": "lateral",
+      "ticker": "MSFT",
+      "evitar": true
+    },
+    "AAPL": {
+      "last": 316.22,
+      "high_3m": 340.08,
+      "low_30d": 302.25,
+      "drawdown_pct": -7.02,
+      "recovery_pct": 4.62,
+      "patron": "lateral",
+      "ticker": "AAPL",
+      "evitar": false
+    },
+    "CCL": {
+      "last": 23.2,
+      "high_3m": 30.9,
+      "low_30d": 23.2,
+      "drawdown_pct": -24.92,
+      "recovery_pct": 0.0,
+      "patron": "descendente",
+      "ticker": "CCL",
+      "evitar": false
+    },
+    "WDC": {
+      "last": 477.3,
+      "high_3m": 746.23,
+      "low_30d": 435.38,
+      "drawdown_pct": -36.04,
+      "recovery_pct": 9.63,
+      "patron": "L-swing",
+      "ticker": "WDC",
+      "evitar": false
+    },
+    "MRVL": {
+      "last": 225.41,
+      "high_3m": 310.58,
+      "low_30d": 206.48,
+      "drawdown_pct": -27.42,
+      "recovery_pct": 9.17,
+      "patron": "L-swing",
+      "ticker": "MRVL",
+      "evitar": false
+    },
+    "REGN": {
+      "last": 810.31,
+      "high_3m": 852.03,
+      "low_30d": 794.19,
+      "drawdown_pct": -4.9,
+      "recovery_pct": 2.03,
+      "patron": "lateral",
+      "ticker": "REGN",
+      "evitar": false
+    },
+    "PLTR": {
+      "last": 170.3,
+      "high_3m": 186.38,
+      "low_30d": 169.46,
+      "drawdown_pct": -8.63,
+      "recovery_pct": 0.5,
+      "patron": "lateral",
+      "ticker": "PLTR",
+      "evitar": false
+    },
+    "FSLY": {
+      "last": 21.49,
+      "high_3m": 30.02,
+      "low_30d": 20.43,
+      "drawdown_pct": -28.41,
+      "recovery_pct": 5.19,
+      "patron": "descendente",
+      "ticker": "FSLY",
+      "evitar": false
+    },
+    "MCHP": {
+      "last": 73.38,
+      "high_3m": 102.71,
+      "low_30d": 71.41,
+      "drawdown_pct": -28.56,
+      "recovery_pct": 2.76,
+      "patron": "descendente",
+      "ticker": "MCHP",
+      "evitar": false
+    },
+    "UAA": {
+      "last": 5.06,
+      "high_3m": 7.43,
+      "low_30d": 4.92,
+      "drawdown_pct": -31.9,
+      "recovery_pct": 2.85,
+      "patron": "descendente",
+      "ticker": "UAA",
+      "evitar": false
+    },
+    "NKE": {
+      "last": 38.1,
+      "high_3m": 45.96,
+      "low_30d": 38.1,
+      "drawdown_pct": -17.1,
+      "recovery_pct": 0.0,
+      "patron": "descendente",
+      "ticker": "NKE",
+      "evitar": true
+    }
+  },
+  "errores": {
+    "VSCO": "serie insuficiente"
+  }
+}

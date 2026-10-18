@@ -1,0 +1,11 @@
+ARTE — Lección 4 «De uno a muchos: agentes que colaboran» (serie IA y agentes)
+Generado con SDXL local (tools/gen_lab.py), 768 px, 24 pasos, vía ComfyUI del stack (8188).
+Estilo de la serie: objeto pequeño centrado, fondo crema dominante, mucho aire,
+líneas negras finas, un acento naranja, sin texto.
+
+s1-tres-robots.png       seed 41  a small row of three identical tin toy robots standing in a line
+s2-fichas-rol.png        seed 17  three small blank round cardboard badges on a small table next to a closed notebook
+s5-lupa-revisora.png     seed 64  a small tin toy magnifying glass lying on a blank sheet of paper
+s7-fabrica-juguete.png   seed 88  a small tin toy factory building with a chimney
+
+Fecha de generación: 2026-09-27.

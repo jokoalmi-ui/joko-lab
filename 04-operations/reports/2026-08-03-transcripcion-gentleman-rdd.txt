@@ -1,0 +1,1514 @@
+0:00 Abuela, salió video de gentleman. ¿Qué
+0:03 hacen, gente hermosa de mi corazón? Hoy
+0:05 tengo literalmente una historia para
+0:07 ustedes. Así no más, eh, una historia de
+0:09 muchísimas cosas, muchísimo esfuerzo,
+0:11 muchísimas horas gastadas, tokens
+0:13 quemados y muchas otras cosas más. Bien,
+0:16 voy a estar haciendo una aplicación más
+0:18 o menos eh ya terminando para sentar
+0:20 todos los conocimientos de lo que les
+0:21 voy a explicar hoy, porque en serio es
+0:23 una cosa muy top, no existe, me lo
+0:26 inventé yo junto con la comunidad para
+0:28 reforzarlo y demás. Y vamos a estar
+0:29 haciendo una aplicación con esto que les
+0:31 voy a explicar. Lo vamos a estar
+0:32 subiendo eh más esto a un VPS, bien, mi
+0:36 BPS de confianza que es HostGator, que
+0:39 ya lo conocen siempre les dejo un link
+0:41 en la descripción, está buenísimo, tiene
+0:43 de todo. Así que nada, vengan, quédense
+0:45 acá porque esto es una locura. Yo sé lo
+0:47 que les digo, vamos a compartirlo.
+0:50 Entonces, gente, ¿qué les quiero
+0:51 comentar? Miren, hace un tiempo yo
+0:53 estaba pensando sobre la idea de cómo
+0:55 puedo hacer para bajar las alucinaciones
+0:57 a la guía. Sí, porque normalmente cuando
+0:59 uno trabaja la IA te dice, "Sí, hice
+1:01 esto, pum, pum, fantástico." Vos lo
+1:03 revisas y está todo bien, ¿no? Pero,
+1:05 ¿qué pasa con justamente la situación
+1:06 actual? Hay muchísima cantidad de código
+1:09 de de muy buena calidad. Eso es el otro
+1:11 problema. Y a la hora de revisarlo es
+1:13 muy tedioso, te puede dar demasiado,
+1:15 ¿cómo te puedo decir? Puede demostrar
+1:17 demasiada veracidad en algo que no es.
+1:19 Entonces, de ahí dije, "¿Y si pudiésemos
+1:21 realmente verificar que lo que la IA
+1:24 está haciendo sea realmente así?" y que
+1:26 cuando yo digo vamos a comitear esto,
+1:27 esté comitiendo exactamente lo que yo le
+1:29 dije y si está haciendo algo que no se
+1:31 haga sobre ingeniería para dar esa
+1:33 solución o toque líneas que no tiene que
+1:35 tocar y demás. Bueno, esto es un
+1:36 poquitito justamente la historia que
+1:38 vamos a tener hoy, ¿sí? The Organic RDD
+1:41 Story es justamente una nueva
+1:43 metodología que me inventé que [música]
+1:45 es eh las siglas significan receive
+1:48 driving development. Bien, no lo
+1:50 confundan con SDD, no es SDD, SD viene
+1:53 de SP Dream Development, esto es otra
+1:55 cosa. Acá prácticamente quiero que sepan
+1:57 que para poder implementarlo [música]
+1:59 gasté tres resets mensuales de codex de
+2:03 200 € no les estoy mintiendo, más otra
+2:06 mensual de 200 € de Claude. Bien, hice
+2:10 de todo. ¿Y saben cuál es el problema?
+2:11 Hice lo que se les cantó. Así no más. Y
+2:14 cuando yo digo hice lo que se les cantó.
+2:16 Ustedes miran, Alan, pero vos siempre
+2:17 estás profetizando de que nosotros
+2:18 tenemos que ser el Tony Stark y la el
+2:20 Jarvis que vos le tenés que decir que
+2:22 hacer. Piensan que no lo hice. Esa es
+2:24 justamente una de las problemáticas. Si
+2:26 ustedes ahora mismo van y y no les estoy
+2:28 mintiendo, eh, pueden ir ahora mismo a
+2:30 repositorio. Acá lo tienen. En el
+2:32 repositorio de Gentleman Programming, si
+2:33 te vas a la parte de Gentliel y dentro
+2:35 de Gentlieli, te vas a la parte de
+2:37 documentos, auditorías, mira toda la
+2:39 cantidad de auditorías que hice, la
+2:42 cantidad. Bien, entonces acá yo hice
+2:44 justamente una auditoría entera, fíjense
+2:46 en que dice exactamente todos los
+2:48 problemas que teníamos, los flujos,
+2:50 todo. Miren, miren. Dibujitos de lo que
+2:52 quiera, todo. Y con esto preparé una
+2:55 nueva arquitectura de cómo tendría que
+2:57 ser ese Happy Path, de cómo debería
+2:59 comportarse Receive the Random Element y
+3:01 muchas otras cosas más. Bien s
+3:05 super detallado, pero hubo un problema.
+3:06 La ingeniería fue excelente, hizo unas
+3:08 cosas espectaculares, espectaculares.
+3:10 Pero pero en la auditoría había como una
+3:13 idea a futuro, bien, de implementación y
+3:16 esa idea a futuro, que era unas pocas
+3:19 cositas, bien, que lo nombraba nada más,
+3:21 la lo tomó como que Gentel era mucho más
+3:24 de lo que yo estaba diciendo, ¿sí? y
+3:26 empezó a hacer, por ejemplo, condiciones
+3:28 para trabajo con http remoto, para
+3:31 trabajar en equipos enterprise y y eso
+3:34 no es Gentlieli, no es la idea de
+3:36 Gentlei. Y claro, el código pasaba,
+3:38 tenía muchísimos entuen en testing,
+3:40 andaba espectacular, pero no era lo que
+3:42 yo quería, literalmente no era ni por
+3:45 aproximación, quiero probarlo. No puedes
+3:47 probarlo porque vos que necesitabas
+3:48 montarte. Yo no quiero montarme nada.
+3:51 Algo s simple quería yo. Entonces,
+3:52 claro, ¿qué pasa? De ahí me empecé a dar
+3:54 cuenta, el problema es la revisión de
+3:56 todo esto, ¿no? Y para poder hacerlo,
+3:58 una cosa importante, yo utilicé porque
+4:01 digo, bueno, estoy construyendo algo, yo
+4:02 siempre tengo la metodología de que si
+4:04 yo construyo algo con Gentlei, lo voy a
+4:06 hacer con Gentlei. ¿Sí? Entonces, Gentle
+4:08 está construido sobre Genteli. Esa es la
+4:10 forma mía de probar las cosas. Entonces,
+4:11 cuando empecé a aplicar todo esto, digo,
+4:13 voy a hacer algo diferente. Por primera
+4:15 vez vamos a meternos un Codex. Codex
+4:18 [música] GPT 5.6 Sol Ultra, que no sé si
+4:21 lo saben, pero el máximo razonamiento es
+4:23 el Max. Bueno, este es el [música]
+4:24 ultra. ¿Qué es lo que hace? Ejecutan
+4:26 Max, pero crea subagentes como él
+4:28 quiere. Bien, como se le cante.
+4:30 Perfecto. Gente, en un día me quemó un
+4:33 reset mensual. Bien. Perdón, semanal.
+4:35 Semal, eh, perdón, perdón por esto. Eh,
+4:38 en un día tuve que arreglar cosas, me
+4:40 quemó otro. Tuve que arreglar cosas, me
+4:42 quemé otro, pasé a Claudio porque ya no
+4:44 daba más, me quemó otro y así pa.
+4:47 Entonces, ese es el otro problema. No me
+4:48 di cuenta que como lo hace los grandes
+4:51 tampoco están así. Uno tiene que situar
+4:53 sus propios arnesi sus propias formas de
+4:55 trabajo y demás. Entonces, hay tres
+4:57 caminos que se puede hacer a la hora de
+4:59 revisar algo. El tema es que ninguno
+5:00 llega a lo que realmente queremos. Por
+5:02 ejemplo, si yo tengo un request muy
+5:03 grande, me pongo a revisar todo, cada
+5:06 uno de los cambios, eso me genera
+5:08 burnout, me genera cansancio, fatiga
+5:10 visual. Y estar fatigado es lo peor que
+5:12 hay. Realmente es lo peor que hay porque
+5:14 pasan las cosas. H momento que ya pasan.
+5:16 Después puedes revisar poco también y
+5:18 por intuición, por mi experiencia
+5:19 espectacular que tengo, pero obviamente
+5:21 perdés cosas. Y después la otra sería
+5:24 también por tamaño, bien por líneas y
+5:26 archidos. ¿Cuál es el problema? Lo que
+5:28 yo estoy revisando, ¿cómo sé que no
+5:30 impactan otro lado, Bien? Entonces,
+5:32 podemos tener una unidad equivocada,
+5:34 podemos estar revisando fuera de lo que
+5:35 tendríamos que haber revisado. Y también
+5:37 si yo tengo más de 400 líneas o lo que
+5:39 sea, ese volumen no explica también un
+5:41 riesgo. Yo puedo tener un documento eh
+5:43 nuevo de 100 líneas, pero no es crítico
+5:47 para nada, no importa. Bien, entonces
+5:50 acá viene el tema. ¿Cuál es la pregunta
+5:51 que yo me tengo que hacer? Yo tengo que
+5:53 preguntarme cuál es el riesgo que se
+5:55 está introduciendo, ¿no? ¿Cuánto cambió
+5:57 la cosa? Hay 400 líneas de código nueva.
+5:59 Sí, pero ¿qué impacta eso? ¿Qué es?
+6:01 toqué un un Redmi, bueno, te puedes
+6:03 equivocar que Redmi puede estar
+6:04 equivocado, pero tu aplicación sigue
+6:06 funcionando igual. Entonces, también acá
+6:08 viene el tema, un procedimiento que se
+6:10 puede aplicar a la hora de utilizar la
+6:12 no quiere decir autoridad. Ya vamos a
+6:14 ver qué es este de la autoridad y por
+6:16 qué justamente se llama receip driving
+6:19 development. Bien, cuando nosotros
+6:20 tenemos un agente y vos le dices a la
+6:22 gente, esto funciona, esto está bien lo
+6:24 que hizo, el agente lo va a mirar, lo va
+6:26 a revisar. Sí, está de madre. Bien,
+6:29 está fantástico. Claro, porque hizo un
+6:31 procedimiento. Ahora, acá viene el tema.
+6:33 Es una opinión, literalmente es una
+6:35 opinión. El tema es que necesitas una
+6:36 evidencia, ¿sí? Necesitas una evidencia.
+6:39 Entonces, les voy a mostrar un flujo
+6:41 orgánico, ¿sí? Cómo es que trabaja
+6:43 Gentil ahora mismo. Le voy a explicar
+6:45 ese flujo. Vamos ahí. Entonces, hago
+6:46 para todo el mundo. Sí, digamos que vos
+6:48 estás utilizando Gentil, ¿cómo se
+6:49 diferencia, por ejemplo, de este Sol
+6:52 ultra [música] y demás? No, un usuario
+6:54 solicita un cambio, quiero hacer tal
+6:56 cosa. Bien, ¿qué ruta alcanza? Podemos
+6:58 hacer dos cosas. Podemos decidir,
+7:00 verificar uno o tres archivitos, algo
+7:02 simple, que en la gente ya tiene
+7:04 contexto de qué es lo que tiene que
+7:05 hacer. Es mecánico. Bien, lo hace la
+7:07 gente. Ya está el orquestador, vamos a
+7:10 decir. Ahora, ¿qué pasa si tenemos ya,
+7:12 mira, no sé qué es lo que tengo que
+7:13 hacer, tengo que ir a buscarlo. Es algo
+7:15 que afectan más de, por ejemplo, eh,
+7:17 cuatro archivos. ¿Qué sucede acá? Ahí se
+7:19 hace una delegación. Se crea un
+7:21 subagente. Se suba agente, tiene su
+7:23 propia memoria, bien, su propia sesión
+7:25 nueva, sin ruido, y le dice, "Esto es lo
+7:27 que tenés que hacer." Valúce y vuelve.
+7:29 Entonces, no está condicionado. Bien. Y
+7:31 con eso se hace una implementación. La
+7:33 implementación puede tener testing,
+7:34 puede tener TDD. Hago los tests eh
+7:37 representando los requerimientos, luego
+7:39 hago el código para que esos test pasen
+7:40 y demás. Después, una vez que ya tenemos
+7:43 esa implementación terminada y que pasa
+7:45 todo, pasan todos los tests, empieza el
+7:47 tema del RDD, de receive driving
+7:49 development. ¿Qué va a pasar? Si querés
+7:50 lo puedes deshabilitar, eso es lo
+7:52 importante. Tenemos lo que se llama un
+7:53 kill switch. El kill switch es a nivel
+7:55 global y por proyecto. Y vos le puedes
+7:57 decir, "Mira, desde ahora para este
+7:58 proyecto apágalo." Bien, no quiero redd.
+8:01 ¿Qué pasa? Trabaja igual que siempre.
+8:03 [música]
+8:03 Bien, pero si yo lo tengo activado, va a
+8:05 pasar lo siguiente. Primero va a
+8:08 recomendarte, ey, mira, podemos utilizar
+8:10 RDD si tenés ganas para esta
+8:12 implementación porque es bastante
+8:13 potente y vas a va a tardar un rato más,
+8:15 pero yo sé lo que te digo, te conviene.
+8:16 Bien, entonces ahí lo que hace es hacer
+8:19 lo que llama un review status next
+8:21 transition. Cada transición que se hace
+8:24 dentro de RDD está apoyada por el CLI,
+8:27 por el binario de Gentle AI. Bien,
+8:30 entonces esto es una ruta que está
+8:32 negociada directamente con el provider.
+8:35 Entonces, ¿qué es lo que hacemos?
+8:36 Congelamos. Eso es lo primero de todo.
+8:38 Congelo. ¿Y qué es congelar? Bueno, voy
+8:40 a evaluar del árbol de cambios que yo ya
+8:43 tengo, los bytes exactos que tenemos ahí
+8:45 y le doy un hash pa, lo bloqueo, le
+8:48 pongo una huella dactilar, le digo,
+8:49 "Hasta acá es lo que hizo el usuario."
+8:51 Bien, esto es lo que se desarrolló.
+8:53 Entonces, cuando algo se revisa, no se
+8:55 revisa un cambio, se revisa justamente
+8:57 el SHA. Bien. se revisa este candidato
+9:01 en particular. Paso número dos, riesgo
+9:04 congelado en start. ¿Qué quiere decir
+9:05 esto? Vamos a evaluar qué tan riesgoso,
+9:09 bien, qué tan complejo, qué tantas
+9:11 vulnerabilidades puede traer ese cambio.
+9:13 Cero bajo un Redmi, algo chiquitito,
+9:16 algo que no me va a generar ningún tipo
+9:18 de problemática. Uno, el estándar. Esto
+9:20 lo que va a hacer es, no sé si se
+9:22 acuerdan, las cuatro Rs, bien, que son
+9:24 justamente cada una de las partes de mi
+9:26 framework de revisión que yo utilizo, e
+9:29 después vamos a hablar un poquito más de
+9:30 eso. Bien, son cuatro R, son cuatro
+9:32 lentes, se llama. [música] ¿Cuántos
+9:34 focos? Bien, cuatro focos diferentes. Si
+9:36 es algo estándar, chiquitito, un solo
+9:38 foco, el que afecta, bien, pero si es
+9:40 algo muy muy complicado, que puede ser
+9:42 una línea, eh, puede ser cambiaste la
+9:44 configuración de cómo funciona tu
+9:46 proyecto. Cuatro, cuatro. ejecutamos
+9:48 todos los lentes. Voy a hacer una
+9:49 revisión completa e en paralelo con
+9:52 cuatro agentes diferentes. Bien,
+9:54 entonces, ¿qué quiere decir lo de las
+9:56 cuatro RS? Tenemos lo que es justamente
+9:59 la legibilidad, la resiliencia, la
+10:02 robustez y el riesgo. Bien, la
+10:04 seguridad. Eso es cada uno de los
+10:06 lentes. Es un subagente que está pensado
+10:09 para atacar ese problema. Bien, ahí lo
+10:11 tenemos. Riesgo, legibilidad, confianza
+10:13 y resiliencia. Entonces, cero es
+10:14 silencioso, no pasa nada, está todo
+10:16 bien. Uno es uno, un solo foco, uno de
+10:19 cada uno de estos. Sí, nada más riesgo,
+10:22 por ejemplo, o mejor legibilidad.
+10:24 Tocaste un RIDmy, puede ser que sea
+10:26 legibilidad. Bien, por ejemplo, el tema
+10:28 de la seguridad, el riesgo, tocaste una
+10:30 configuración, tocaste algo del apartado
+10:32 de billing de tu proyecto, ven como ya
+10:34 cambia, ni siquiera es por el código, es
+10:36 qué has tocado a nivel requerimientos de
+10:38 tu proyecto. Y la cuatro es esto es muy
+10:40  vamos a darle con todo.
+10:42 Entonces, que algo sea severo también no
+10:44 alcanza. Esto tiene que tener eh una
+10:47 base causada. ¿Qué quiere decir esto? Yo
+10:49 tengo un hallazgo y tengo lo viejo y
+10:51 tengo lo nuevo también. Yo puedo hacer,
+10:53 por ejemplo, una revisión con un lente
+10:55 de mis cambios. y puede llegar a ver que
+10:57 justamente mis cambios no introdujeron
+10:59 ese problema. Es algo que ya existía en
+11:01 el código y digamos que vos estás yendo
+11:03 a una release, bien, tenés que hacer
+11:04 algo rápido, es un fix puntual, ¿okay?
+11:07 Hay problemas viejos, esto puede
+11:08 introducir una problemática muy grande
+11:09 que es la sobreingeniería, porque de
+11:11 ahora la solución mía pasa a ser una
+11:13 solución de lo mío más lo que ya estaba
+11:15 antes. Si esto es un problema que ya
+11:17 estaba, hay dos pasos, uno, si ya estaba
+11:19 y todo estaba funcionando y se estaba
+11:20 quejando, dejalo ahí. Dos, anotarlo,
+11:22 obviamente, ¿no? Y dos, es eso, es crear
+11:24 un ISU, atacarlo, arreglarlo en otra
+11:27 parte, bien, fuera de lo que yo estoy
+11:28 haciendo. Y eso es parte también de lo
+11:30 que hace ahora Gentil con RDD. Hace un
+11:32 reconocimiento de lo que yo metí ahora,
+11:35 eso es lo que yo quiero atacar. Bien,
+11:38 entonces es solo candidato más el
+11:40 severo. Solo el candidato. Lo
+11:42 preexistente solamente es un reporte.
+11:44 Ey, está pasando esto. Bien, entonces un
+11:47 solo intento acotado. Esto es
+11:49 importantísimo porque una de las cosas
+11:50 que sucedió con RDD era que iteraba
+11:53 infinito, arreglaba, pum, arreglaba,
+11:56 pum, arreglaba, pum. Cada vez que
+11:57 arreglaba, volvía a revisar y así
+12:00 infinitas veces. Entonces, ¿qué es lo
+12:01 que pasa? Una de las lentes encuentra
+12:03 que hay un problema, bien, se arregla
+12:06 una sola vez de forma acotada y es más,
+12:09 esa corrección acotada, ¿saben cómo se
+12:10 revisa? Es hermoso. Primero la gente va
+12:13 a revisar cuál es el problema. Va a
+12:14 hacer una estimación de cuántas líneas
+12:16 de código se necesitan para
+12:18 solucionarlo. Atentos con esto. O sea,
+12:21 que le va a poner un techo y después le
+12:22 dice, "Corregí solo y solamente esto." Y
+12:25 el cambio tiene que estar en estos
+12:26 archivos y este es el número máximo de
+12:28 líneas. ¿Saben para qué? Porque si se
+12:31 hace una implementación y se pasa, ey,
+12:35 ¿por qué te pasaste? ¿Estás haciéndose
+12:36 ingeniería? ¿Estás tocando cosas que no
+12:38 deberías? tocaste un archivo que no era
+12:40 justamente el que tenías que tocar.
+12:41 Interesante. Entonces, cuando se hace un
+12:43 fix, corre por un fix validator. Bien,
+12:46 es solamente read only. Solamente va a
+12:48 ver qué es lo que se tocó y demás. Y te
+12:50 va a decir, "Pasó, fantástico, generar
+12:52 recibo." Ahora vamos a hablar de recibo,
+12:53 sin acceso, inconcluso, no se sabe.
+12:56 Tenemos que ir a revisar de nuevo a ver
+12:58 qué pasó. Bien. Y después fail, ya está.
+13:00 Pero el fail no es fail y ya está. El
+13:02 fail tiene que generar una evidencia,
+13:05 tiene que generar lo que se llama
+13:07 justamente esto, ¿no? Una representación
+13:09 de por qué falló, porque lo reproduje.
+13:12 Bien, he podido reproducir el error.
+13:15 Listo, eso es un fail. Ya está. Ahora no
+13:17 pude reproducirlo, no tengo las
+13:19 herramientas para poder reproducirlo.
+13:21 Inconcluso. Bien, entonces acá viene el
+13:23 tema. ¿Qué es el recibo? Es una
+13:24 autoridad para una huella. Ante esa
+13:26 huella dactilar de los cambios que yo
+13:29 hice, yo voy a decir, ey, voy a generar
+13:31 un recibo que dice que ante estos
+13:33 cambios el estatus está aprobado. Bien,
+13:36 esta es la idea. Y si sé cuál es el
+13:38 candidato, cuál fue el riesgo, cuántas
+13:40 lentes se ejecutaron y todo. Esta es la
+13:42 idea. Y es muy importante este recibo
+13:45 porque es el que me va a permitir hacer
+13:46 un comit, hacer un push o hacer un pull
+13:49 request. ¿Sí? ¿Por qué? Porque cuando yo
+13:51 estoy trabajando, yo quiero decir, "Ey,
+13:54 esto está revisadísimo." Pero, ¿qué está
+13:55 revisadísimo? Lo que yo implementé.
+13:57 Fantástico. A la hora de hacer el comit,
+13:59 es exactamente el mismo la misma huella
+14:02 da dactilar lo que tenés en código ahora
+14:04 mismo que vas a comitear. Si es así,
+14:05 está justamente ya revisado, está todo
+14:08 perfecto, está aprobado, genial. Podés
+14:10 comitear. Ben, si entre este comit y
+14:12 hacés otra cosa, podés pus y no todavía
+14:14 no, porque por ahí metiste algo que no
+14:16 fue validado. Bien. Y lo mismo el pur
+14:18 request. Entonces, si cambia un solo
+14:20 byte de todo esto, cambia el recibo. Es
+14:23 así de importante. Si vos implementass
+14:26 un cambio, el cual justamente modifica
+14:29 ese ese [música]
+14:32 que tenemos, bien, ese SHA, eh, ahí ya
+14:35 dice, "Ey, tenemos que probar qué es lo
+14:36 que cambiaste." Sí hubo una divergencia.
+14:39 Entonces, en este caso, cuando yo fui a
+14:41 hacer la build, que gente lo hice en
+14:43 stream, es más, estaba dice. Eh, miren
+14:45 gente, acá está terminando, estoy
+14:47 gastando token cambiado. Dije yo, lo
+14:49 vamos a probar en vivo, ya van a ver. Y
+14:51 cuando lo voy a probar, me quería morir
+14:53 yo, porque justamente la máquina
+14:54 optimizó pero un plan equivocado, pero
+14:56 optimizó algo que yo no quería. había
+14:57 metido, como les digo, arquitectura de
+14:58 HTTP remoto, que yo no había pedido. Sí,
+15:01 la implementación espectacular, pero
+15:03 tuve que hacer de todo, realmente de
+15:05 todo. Y había 15 funciones que ni
+15:07 siquiera se estaban utilizando. Les
+15:08 aviso n más, 15 funciones que no se
+15:10 utilizaban y esto me costó tres resets
+15:13 semanales. Bien, entonces los quiero
+15:14 dejar con esta frase. Bien, las buenas
+15:17 decisiones humanas no sobreviven al
+15:20 contacto con una gente si nada las hace
+15:22 vinculantes. Esto es una cosa que
+15:24 aprendí pero a las malas. Y les estoy
+15:27 diciendo, estos fueron días sin dormir,
+15:29 días que me levanta con el ruito del
+15:31 pin, que te decía, "Ey, terminé, revisá
+15:33 o estoy bloqueado." Eran horas de
+15:35 acostarme a las 3 de la mañana,
+15:36 levantarme a las 6 de la mañana
+15:38 agarrando el teléfono, viendo que había
+15:39 pasado. Ya era una locura, gente. Muy
+15:41 cansador, eh, realmente muy cansador.
+15:44 Pero les voy a mostrar algo. Esto es
+15:46 todo lo que hay en Gentil ahora mismo.
+15:47 Bien, tenemos lo que es la orquestación
+15:49 que en ruta al trabajo. Bien, quién va a
+15:51 ser qué y cómo lo vamos a hacer. que lo
+15:53 de la delegación que vimos antes.
+15:55 También tenés SDD Spectrate and
+15:56 Development, que es espectacular,
+15:58 realmente se los digo. Después también
+15:59 tenés la parte de test y continuous
+16:01 integration, todo lo que ya se sube a
+16:02 repositorio. Eh, tiene una parte que que
+16:05 se revisa. Es más, he implementado
+16:08 benchmarks, ya vamos a ver esto. He
+16:10 implementado también hasta un entorno de
+16:11 Windows, bien, en el Continuous
+16:13 Integration para probar todas las cosas,
+16:14 cómo funciona en Windows, cómo funciona
+16:15 en Mac, cómo funciona en diferentes
+16:18 distribuciones de Linux. Es una locura
+16:20 todo lo que yo hice. Bien, RDD es un
+16:22 paso más de todo esto. Es el es el es
+16:24 elabón perdido que nadie tiene ahora
+16:26 mismo. Bien, que la inspección
+16:28 adversarial. Esto es muy importante, muy
+16:31 importante. Entonces, el SDD, que es
+16:34 opcional, no reemplaza al RDD. Ahí está
+16:37 la importancia. Les voy a explicar por
+16:38 qué. El SDD, que ya lo habíamos visto,
+16:41 tengo un video sobre esto, pero lo
+16:42 exploro rápidamente. Tenemos lo que es
+16:43 la exploración. Reviso antes de hacer
+16:46 una implementación, que es lo que ya
+16:47 tengo. Gener una propuesta. Esto es lo
+16:49 que quiero implementar y Gentel te ayuda
+16:51 a generarla también. Te va a hacer
+16:52 preguntas y demás para ver que esté todo
+16:54 cerradito con moño. Luego se aprueba,
+16:57 bien, y se hace una especificación. Esto
+17:00 es importante, se hace una
+17:01 especificación de todas las cosas que se
+17:03 van a realizar. Se hace un diseño
+17:05 técnico sobre esto y con eso se generan
+17:07 tareas para que la IA desarrolle. La IA
+17:09 las desarrolla, las puede hacer, por
+17:11 ejemplo, con TDD, como les decía, con
+17:13 testing, todo hermoso. Y ahí viene el
+17:15 tema. Ahí es cuando se mete RDD, congela
+17:18 al candidato, hace lo de los lentes, ve
+17:21 el riesgo, hace los lentes, genera el
+17:23 recibo. De ahí, una vez que todo eso ya
+17:25 cumple, veo que SDD haya hecho todo
+17:28 perfecto, que las tareas que se
+17:30 implementaron estén todas realizadas y
+17:32 archivo, terminamos y con esto
+17:34 precomiteo, prepleo, pre full request,
+17:37 bien, y se entrega. Entonces es parte de
+17:40 todo esto. Cond vos vas a definir el
+17:42 verificación, el verify no comprueba que
+17:44 esté todo realizado, pero RDD es el que
+17:46 autoriza realmente. Ey, bien hecho. Sí.
+17:49 Entonces acá viene el tema, el RDD no
+17:51 hizo todo, fue una parte de todo esto.
+17:53 Sí, de vuelta el SDD me hizo toda la
+17:56 parte de qué construir, cuando
+17:57 avanzamos. Después la parte de
+18:00 orquestación, tenemos el writer, que es
+18:01 una sola voz que vos vas hablando con él
+18:03 y él es el que va dirigiendo las cosas.
+18:05 Verificamos antes de afirmar que ninguna
+18:08 cosa realmente está terminada hasta que
+18:10 esto terminado, bien con evidencias y
+18:12 demás. Y después, por ejemplo, el tema
+18:15 del TDD, primero hacemos los test que
+18:17 representan los requerimientos, luego
+18:19 hacemos el código que lo lleve a cabo y
+18:21 vemos que todo cumpla. Bien, entonces el
+18:23 RD es el sello al final que dice, "Ey,
+18:25 realmente no te ha pasado, está todo
+18:27 bien, sigue así." Entonces, miren ahora
+18:29 el tema acá dije, ahora ya basta, se
+18:32 terminó reset de todo esto. Bien,
+18:34 hablamos con los reset. Reset. Voy a
+18:36 meterlo y hacerlo bien. Voy a hacer con
+18:38 Gentlieli. Y gente, de ahí lo saqué
+18:40 nada, en nada. Y el límite semanal bajó
+18:43 de usar tres resets semanales a un 60%
+18:47 eh consumido. Y te estoy diciendo que
+18:50 hice de todo, bien, de todo. Sacar todo
+18:52 el código que estaba mal, meter todas
+18:54 las cosas nuevas, todo. Entonces,
+18:56 justamente tener una una fricción, pero
+18:58 que que vale la pena es mucho mejor que
+19:00 andar repitiendo un fracaso. Sí, esto es
+19:03 una una cosa que que pasa en todos
+19:04 lados. Bien, pasa también en el trabajo,
+19:06 pasa en lo que quieras. tenés una
+19:07 empresa, por ejemplo, y si estás
+19:09 haciendo un plan, una estrategia y esa
+19:11 estrategia no sirve, frena todo,
+19:12 hermano. No sigas tirando por esa
+19:14 estrategia, frena todo. Vamos a parar
+19:16 acá, vamos a ver cómo funciona, qué es
+19:18 realmente lo que está sucediendo y de
+19:20 ahí tomamos una nueva decisión. Esto es
+19:22 lo mejor que puedes hacer. ¿Sí? Bien,
+19:25 entonces justamente con esto tenemos acá
+19:27 lo que sería eh el gráfico de las
+19:30 auditorías que yo les decía. Nosotros
+19:32 venimos con una entrada ahí. Esto se
+19:34 fija funciona o no funciona, que esto es
+19:36 lo que hace la IA, ¿eh? Funciona.
+19:37 Genial. Sí, pero esta este funciona
+19:39 puede generar como lo hizo en ese caso,
+19:41 15 funciones muertas. Bien, entonces
+19:44 esto tiene un efecto, tiene eh una una
+19:46 utilidad, esa utilidad se cumple, está
+19:48 todo conectado, está todo bien.
+19:50 Entonces, justamente un test verde, que
+19:52 es lo generalmente lo que usa la IA para
+19:53 decir esto funciona espectacular, no
+19:56 siempre es verdad. No siempre es verdad,
+19:58 porque puede ser que el Unitest
+20:00 funciona, que el entend para esa
+20:01 partecita funciona, pero no está
+20:03 conectado a nada, que me ha pasado bien,
+20:05 no hay una ruta para llegar a ese
+20:06 código. Entonces, el usuario nunca lo
+20:08 puede utilizar, temita. Entonces puede
+20:09 ser, por ejemplo, que la condición
+20:11 existe, pero como les digo, no, el
+20:12 camino no llega. Por ejemplo, tenés una
+20:14 configuración que es review igual a off
+20:16 fin. No hay nada conectado a eso.
+20:18 Genial. Sí, podés hacerlo, podés poner
+20:20 el review, ¿no? Fantástico. Pero la
+20:22 comprobación no funciona, por lo cual es
+20:25 muy correcto. Vos lo ves y todo funciona
+20:27 por partes separadas, pero una vez que
+20:28 lo integras está más complicado.
+20:29 Entonces, gente, el código correcto al
+20:32 que nunca se llega es indistinguible de
+20:35 código que nunca se escribió. Es
+20:37 exactamente lo mismo. Es un camino
+20:39 muerto. Entonces, acá viene otro tema,
+20:41 el benchmark. He creado un benchmark.
+20:43 Ahora se los voy a mostrar en un ratito,
+20:44 que lo que hace es esto. Me había pasado
+20:46 que una una de esas stop vemos todo que
+20:48 pasa y seguimos era que RDD ya había
+20:51 salido su primera versión, ¿no? En la
+20:53 versión 1.49
+20:56 más o menos. Y vi que nuevo, nuevo,
+20:59 nuevo. Había 1000 personas diciendo que
+21:01 las cosas no andaban. Gracias por eso.
+21:02 Aparte me encanta que me lo digan, en
+21:04 serio, porque si no no podemos mejorar
+21:05 nada. ¿Saben lo que dije? En vez de
+21:06 seguir arreglando, porque iba arreglando
+21:08 uno por uno y sacando nuevas versiones,
+21:09 dije, "Se terminó. Vamos a hacer una
+21:11 revisión completa. Vamos a analizar por
+21:13 qué están fallando, cuál es la fuente
+21:15 raíz de que esto falle. Vamos a hacer
+21:17 una solución genérica, no una solución
+21:19 de [música] este error se soluciona
+21:21 tocando esta línea, ¿no? ¿Cómo
+21:23 solucionamos? Vamos a categorizar los
+21:24 ISUUS, vamos a categorizar cómo se
+21:26 pueden agrupar y ver una solución para
+21:28 cada agrupación. Esa fue la idea
+21:30 principal. Bien, entonces esto yo para
+21:32 poder medir que realmente funcionaba
+21:34 genero un benchmark y el benchmark lo
+21:35 que hace es hay una fricción a la hora
+21:37 de utilizar gentili. Entonces, ante un
+21:39 fallo, ¿cómo falla? Porque eso es lo
+21:41 importante, ¿cómo falla? tenemos lo que
+21:43 es inband, bien, dentro de banda, que es
+21:46 que el agente recibe un mensaje en ese
+21:49 fallo diciendo qué es lo que tiene que
+21:50 hacer para solucionarlo. Yes, yo tengo
+21:52 mapeado cada uno de los problemas que
+21:54 todos los usuarios estuvieron teniendo.
+21:56 Bien, los he solucionado y he creado
+21:58 test para ver si eso vuelve a ocurrir. Y
+22:01 además de eso, he relacionado cada fallo
+22:04 con una acción clara que la gente tiene
+22:05 que hacer para ir al siguiente punto y
+22:08 no bloquearse. ¿Qué es el out of band?
+22:10 es, "Ey, usuario, tenemos este problema,
+22:12 necesitamos que lo arregles." Bien. Y
+22:14 después tenemos el dead end. Ni con
+22:16 usuario ni con tres, nada. Bien, no se
+22:18 puede solucionar. Entonces, esto es el
+22:21 tema. ¿Qué fricción tiene el usor y cómo
+22:23 se puede recuperar? Que esa recuperación
+22:24 sea lo menos eh invasiva posible. Una
+22:27 cosa que para mí tengo con Gentle ahí es
+22:30 que Gentle tiene que ser un una
+22:32 herramienta orgánica. Amo decir orgánico
+22:35 porque tiene que ser natural, tiene que
+22:36 ser algo que fluya. Yo pido algo y cómo
+22:38 lo hace por detrás me da igual. Yo lo
+22:40 que quiero es que haga con las mejores
+22:42 prácticas según la necesidad del
+22:44 usuario. Eso es muy difícil de hacer,
+22:46 muy difícil ya muchas horas. Pero como
+22:49 yo soy el mayor power user de Gentli,
+22:51 porque hago todo con Gentlii, bien,
+22:53 hasta Gentle hago con Gentlii, sé muy
+22:55 bien qué es lo que quiero, cómo lo
+22:56 quiero y a la gente le está gustando,
+22:58 así que estoy muy contento. Bien,
+22:59 entonces, ¿qué tiene el Benchmark,
+23:00 gente? Esto es una locura. tiene más de
+23:02 60 flujos diferentes. De los 60, 45
+23:06 están dentro de banda, cero fuera de
+23:08 banda y tres son justamente bloqueados
+23:11 por diseño. A propósito. Bien, lo lo
+23:15 pruebo. Son bloqueos, eh, pero no
+23:18 bloqueos de de punto muerto como antes.
+23:20 Eh, estamos hablando de bloqueos que yo
+23:22 necesito que el usuario conteste. ¿Sí?
+23:23 Entonces, esta es la idea, lo puedes
+23:24 ejecutar ahora mismo y es más, en
+23:26 cualquier momento va a pasar a hacer uno
+23:28 de los checks para cada pur request que
+23:29 la gente me haga. Tienen que haber
+23:31 pasado el benchmark. Entonces, gente,
+23:33 vamos a hacer una cosa. Esto va a ser eh
+23:36 parte de lo que quiero hacer, pero antes
+23:38 de hacerlo lo voy a explicar
+23:39 rápidamente. Vamos a agarrar ese
+23:41 benchmark y vamos a hacer una aplicación
+23:43 demo con Astro, con Node para poder
+23:46 tomar esos benchmarks y justamente
+23:48 subirlos a HostGator. Sí, esa va a ser
+23:51 la idea, pero antes quiero mostrar
+23:53 algunas cosas. Lo primero, el P request
+23:55 que lo cambió todo. Esto es un P
+23:57 request. Esta es mi forma de trabajar
+23:58 con la comunidad que fue una cosa de
+23:59 locos. Nunca ha gané. Esto tiene más de
+24:01 94,000 líneas de código cambiadas, 8,000
+24:04 borradas. Es que esto fue lo que tuve
+24:06 que hacer para arreglar todo el drama
+24:07 que hubo realmente. Bien. Y lo más
+24:09 importante es que esto fue muy
+24:11 controlado. No es lo que ustedes creen.
+24:12 En serio, no es lo que ustedes creen.
+24:14 Esto ya fue con la creación del
+24:15 benchmark. crea un montón de cosas y lo
+24:17 más importante, la cantidad de gente que
+24:20 participó en revisiones de todo y miren
+24:23 la cantidad de comentarios ayudándome.
+24:27 He probado esto, he probado esto, he
+24:28 probado esto, subí una versión nueva, he
+24:30 probado la versión nueva, sigue fallando
+24:32 acá, acá se arregló, pa pa. Iba
+24:34 encontrando esos flujos, los iba
+24:35 agregando, los iba arreglando y eso hizo
+24:38 que realmente esto funcione pero muy
+24:40 bien. Y si hay un bloqueo, por favor, te
+24:42 lo digo, subilo, me ayudas un montón.
+24:44 Crea tu nillo. Sí. Espectacular.
+24:46 Gracias. Entonces, ¿por qué hice todo
+24:47 esto? ¿Por qué tanto tanto nervio? Bien.
+24:50 Primero es crear algo nuevo. Es apostar
+24:52 por algo que no existe. Eso es lo más
+24:54 importante. Estoy apostando por algo que
+24:55 no existe, estoy queriendo evolucionar,
+24:57 no quiero seguir a los demás, quiero ser
+25:00 al que le sigan. Pero esto me daba
+25:01 miedo, mucho miedo. Esto que yo hice,
+25:04 vale la pena lo que estoy haciendo.
+25:05 ¿Vale la pena tener gente bloqueada por
+25:07 esto? Bien, he tenido que poner un
+25:09 mensaje en el Redmi diciendo, "Hay
+25:11 gente, no lo usen o vayan a la versión
+25:13 anterior porque esta versión no anda." Y
+25:16 mayor miedo es que esto el tener un
+25:18 alcance más yo siendo creador de
+25:19 contenido, hace que la gente que lo
+25:21 prueba, cada persona que lo prueba, a mí
+25:24 me da cosa. Bien, realmente me da cosa y
+25:26 cuando yo veía que la gente les
+25:27 bloqueaba, me daba vergüenza realmente.
+25:30 Y ahora pasó algo contrario. Esto es un
+25:33 post bien en X de Juan Barbat. Es un
+25:36 kraken este pido es un kraken. Lo quiero
+25:38 mucho. Y por ejemplo, él venía diciendo,
+25:41 "Lo voy a probar. Lo voy a probar." Y yo
+25:43 estaba, pero hasta nerviosísimo, muy
+25:44 nervioso, porque era la prueba en vivo
+25:47 de una persona probando la herramienta.
+25:49 Bien, entonces a ver, empezó medio ahí,
+25:52 mira, esto me está dando laburo, pero no
+25:53 por gentil, porque si no quería yo pasar
+25:54 cosas que yo tenía. Él tenía su propio
+25:57 eh ecosistema, su propio set de arneses
+25:59 y no lo quería perder. Entonces, ¿qué
+26:02 pasa? Lo instaló. Bien, lo instaló, hizo
+26:04 algunas adaptaciones y yo le dije,
+26:06 "Esperá, voy a hacer una mini release
+26:08 porque voy a mejorar una cosa y esto que
+26:10 lo otro". Me daba mucha ansiedad.
+26:12 Entonces, horrible no lo que hice, sino
+26:14 que justamente estaba andando muy mal
+26:15 Claudio, estaba mandando muy mal el
+26:16 Openi y demás. Entonces, ¿en qué terminó
+26:18 todo esto? En esta parte, mi feedback
+26:21 honesto y con cariño. Y acá eh con
+26:24 miedo, mucho miedo. Y al final le anduvo
+26:27 todo de madre, realmente de
+26:29 madre. Mira, honestamente estoy muy
+26:31 contento. Van mis felicitaciones como
+26:32 usuario. Hoy le di un uso intenso, muy
+26:35 intenso. Eh, múltiples sesiones de 10
+26:37 proyectos en paralelo. Justo temprano,
+26:39 antes de arrancar cayó un reset de
+26:41 Openni y Claudio y lo tenía todo
+26:42 controlado. Bien, Chent es s eficiente,
+26:45 eh, en es eficiente mismo con datos
+26:47 reales y todavía sin optimizar de mi
+26:49 lado especializando agentes de forma
+26:52 fina. Open AI hasta ahora 21:41
+26:54 laburando desde las 7:30 sin parar un 8%
+26:59 cloud en igualdad de condiciones, un 7%.
+27:02 Estoy a repartir mis agentes, bien, a
+27:03 una plataforma que tiene que, o sea, que
+27:06 utiliza, que está muy buena, bien, que
+27:08 es para compartir lo que sería eh es un
+27:11 espacio donde vos compartís gráficas con
+27:13 gente, bien, de lo modelo que vos
+27:14 quiera. Entonces, para cosas de fuerza
+27:16 bruta, donde tengo toques ilimitados,
+27:18 hay varios agentes que se pueden largar
+27:19 para ahí para dejar los pesos pesados
+27:21 para lo importante. Puntaje 10 de 10. Y
+27:24 sigue. Y ahora viene mi confesión,
+27:26 Sueños húmedos. Contigo me llevar a
+27:28 tomar la decisión de dejar mi side
+27:29 project Cortex. Esta semana me desperté
+27:32 fuera de joda, soñando que tenía que
+27:33 largar lo mío y dejarme poseer por
+27:35 Genteli. Con pena por un lado porque
+27:37 elaboré mucho lo mío, pero por otro
+27:39 siento que puedo hacer un uso
+27:40 inteligente de lo que con tanta
+27:42 generosidad estás haciendo. Tu gentil es
+27:45 muy superior en prácticamente todo lo
+27:46 que yo venía usando, así que es un
+27:48 gusto. Me vas a encontrar como
+27:49 colaborador. Ya puse unos mangos como
+27:51 apoyo y espero poder contribuir de
+27:53 manera útil y darte una mano de manera
+27:55 que sea. Así que esto es una locura la
+27:59 lo que me está diciendo. una locura. Yo
+28:01 le dije, "Espero que que esas
+28:02 contribuciones no sean económicas, sino
+28:04 a nivel técnico, me pone superfeliz y
+28:06 demás." Y seguí hablando un poco más con
+28:07 él y me dice, "Vos, esto es muy natural,
+28:09 todo, cero fricción, funciona todo tan
+28:11 bien que da gusto en serio lograr con
+28:13 Jend." Así que yo estoy muy contento con
+28:15 todo lo que salió, realmente muy
+28:17 contento. Pero bueno, llega el momento.
+28:19 Vamos a esto. Bien, acá estamos
+28:20 directamente. Vamos a crear este
+28:23 proyectazo. Bien, acá tengo todo lo que
+28:26 quiero decir. Esta es la super prompt
+28:28 directamente. Implemento una aplicación
+28:30 independiente llamada bench dashboard
+28:31 para ejecutar y mostrar el benchmark de
+28:33 Gentle Ei 2.2.0. Es una demo de stream
+28:36 deliberamente básica. Pa pa pa. Bien,
+28:38 acá tenemos todo. Yo lo voy a copiar.
+28:40 Esto ya está revisado, no se preocupen.
+28:42 Bien, tiene los contratos http, cómo se
+28:45 quiere hacer las cosas, todo, todo,
+28:46 todo, todo. Sí, vamos a venir acá, lo
+28:49 vamos a pegar y le vamos a dar un buen
+28:51 enter. Así no más. Bien, entonces acá
+28:53 quiero que vean una cosa. Eh, yo estoy
+28:54 utilizando una un binario diferente, es
+28:56 un release candidate con algunas cositas
+28:58 que tengo ahí andando y dando vueltas,
+29:00 por lo cual seguramente cuando ustedes
+29:01 lo tomen va a ser una versión superior a
+29:03 220. Pero quiero que vean cómo esto lo
+29:05 ha ejecutado. Lo primero que hizo fue ya
+29:07 a ejecutar bien la creación de lo que
+29:10 sería del buenro, del dashboard,
+29:13 implementando todo lo que yo le pedí. Y
+29:15 lo primero también que van a ver es que
+29:16 va a crear un work. ¿Bien? ¿Qué quiere
+29:18 decir esto? Que lo que va a hacer es
+29:20 generar una carpeta con lo que sería una
+29:22 unidad de trabajo separada de lo que es
+29:24 el main. Bien. Y eso es lo que te
+29:26 permite es que eso es como un clon de
+29:27 todo lo que vos ya tenés dentro del
+29:29 repositorio. Todo eso se trabaja ahí.
+29:31 Una vez que eso se termina, se borra y
+29:33 volvés al main. Bien, son unidades
+29:36 desechables de trabajo. ¿Para qué se
+29:37 hacen? Generalmente son unidades que lo
+29:39 que te permiten es tener dos trabajos en
+29:43 paralelo sobre el código que no brinden
+29:45 conflicto entre ellos. Bien, es muy
+29:48 bueno para paralelizar agentes y cómo
+29:51 trabajan. Entces si vamos al código, lo
+29:53 primero que vamos a encontrar es que ya
+29:54 está ejecutando un benchmark. Bien, para
+29:56 ver esto cómo funciona, vean cómo va
+29:58 tomando los diferentes J que son los
+30:01 journeys y al final de todo esto te va a
+30:03 dar un resultado. Ahora yo estoy en la
+30:05 release candidate, esta que les digo, no
+30:07 lo ejecuté el benchmark, por ahí hay
+30:08 alguna fricción, no pasa nada, pero está
+30:09 bueno así para que lo vean bien. Y si va
+30:12 todo bien, espectacular. Bien, perfecto.
+30:15 Miren, ejecutó dos y hay uno con un
+30:17 fail. Bien, y est acá también que es un
+30:19 fail, pero a su vez, ojo con esto, van a
+30:22 ver que todo lo que son eh la parte de
+30:24 in, out diseño, los dead end 00, bien,
+30:29 que este haya fallado. Ahora vamos a ver
+30:31 por qué es. Ahí está. Ha encontrado que
+30:33 hay dos plujos que han fallado, bien,
+30:35 que es uno, el path canónico en macOS y
+30:38 después tenemos el otro que es un un sí,
+30:42 un enrutamiento que se esperaba que
+30:43 parece ser que no llegamos ahí. Bien, y
+30:45 justamente eso es un blocker de
+30:47 compatibilidad, genial para que yo lo
+30:48 pueda atacar y resolver el problema
+30:50 antes de que le llegue a ustedes. ¿Ven
+30:51 cómo sirve esto? Y es más, eh, perdón
+30:53 gente, pero yo lo voy a atacar ya que
+30:55 estamos bien. Y ahí lo voy a dejar
+30:57 corriendo. Vamos a ir a lo otro a ver
+30:58 qué onda. Bien, y ahí vamos a ver la
+31:00 primer cosa que hace esto. Creó lo que
+31:03 es la parte del package Jason.
+31:04 Espectacular con todas las cositas.
+31:06 Bien, ha hecho las configuraciones de
+31:07 Astro, todo fantástico, bien, todo lo
+31:09 que es la parte de la estructura del
+31:11 proyecto, pero esto es importante. Una
+31:13 vez creada esta estructura, miren lo que
+31:15 empezó a hacer test. Esta es la parte de
+31:17 TDD que ya viene integrada también en
+31:19 Gentlei y es de primero, antes de que
+31:22 este código funcione, voy a crear los
+31:23 test de qué requerimientos yo quiero que
+31:26 la aplicación cumpla. Bien, por ejemplo,
+31:28 tienes que llamar a esta API,
+31:29 fantástico. Voy a crear un test para ver
+31:31 que se llame esa API, bien, a ese point,
+31:33 por ejemplo, y después hago código para
+31:36 que eso funcione. Entonces, es una muy
+31:37 buena forma de tratar de controlar, ¿no?
+31:40 Lo que sería el scope para que no se
+31:41 pase de mambo y además que realmente
+31:43 funcione el código que se está haciendo.
+31:45 Entonces, la no dice esto debería de
+31:47 funcionar. Después agarró, ejecutó los
+31:48 test, todo fantástico, ha hecho un
+31:50 build, todo fantástico. ¿Ven? Ahí está
+31:52 la parte inicial tanto de test y de
+31:54 build funciona, pero hemos encontrado un
+31:57 gap en el contrato, un agujero en el
+31:59 contrato. La API ha validado los
+32:02 archivos de benchmark, pero no ha
+32:03 probado que el Go Run pueda resolver el
+32:07 módulo antes de que esté escuchando.
+32:09 Bueno, resumen, empieza a encontrar
+32:11 problemáticas y se va solucionando.
+32:13 Fantástico. ¿Ven cómo cambia el test?
+32:15 Después va a hacer el parch. Esto es lo
+32:17 que nosotros queremos. He ejecutado otra
+32:19 vez los tests. Ahora estos sí que
+32:20 funcionan. He he hecho el build. Ahora
+32:22 sí que esto funciona bien. Y ahí vemos
+32:24 que ya ha terminado esta parte inicial,
+32:26 pero ahora lo que está haciendo es
+32:28 justamente ya hacer un ejercicio real de
+32:30 cómo esto funciona. Bien, lo está
+32:31 ejecutando a ver qué realmente está
+32:33 pasando. Y miren, mientras esto estaba
+32:35 trabajando, venimos acá y acaba de
+32:36 arreglar los problemas que estábamos
+32:38 teniendo en el benchmark. Espectacular.
+32:40 Miren. Vamos a ver si es verdad. Ejecuta
+32:42 el benchmark de nuevo. Vamos a ver qué
+32:44 pasa. Locuritas cósmicas. Bien. Y ahí
+32:47 está corriendo. Mientras esto corre,
+32:48 vamos a ver cómo va lo otro. Está
+32:50 terminando. Espectacular. Bien, esto ya
+32:52 ejecutó. Ahora está haciendo lo que
+32:54 sería el resumen que le va a pasar al
+32:56 padre, al orquestador, con toda la
+32:58 información ejecutiva de todo lo que
+33:01 sucedió prácticamente. Si yo viera al
+33:03 padre, bueno, ahora que me lo ha
+33:04 completado, ahora se va a ejecutar el
+33:06 RDD. Mm, ahí lo tenés. Y acá está el
+33:10 tema. RDD no se ejecuta siempre. RDD se
+33:13 ejecuta cuando se necesita. Entonces,
+33:15 por ejemplo, acá me está diciendo el
+33:17 Gentlei podría revisar este cambio antes
+33:20 de que lo demos por terminado. Motivo,
+33:22 este cambio recibe una revisión más
+33:23 profunda porque toca autenticación en
+33:26 bench dashboard server out.js.
+33:29 Beneficio, la revisión demora un poco
+33:31 más y hace que el resultado sea
+33:33 considerablemente más seguro. Evidencia
+33:35 de riesgo. Autenticación en bench. Nota
+33:37 fuera de este flujo para desactivar las
+33:39 revisiones permanentemente, ejecuta
+33:40 Gentle Review mode disabled y esto te
+33:43 saca RDD y trabajas como normalidad.
+33:45 Vamos a ejecutar la revisión. Así tiene
+33:47 que hacer cuando lo te ejeas. Bien,
+33:49 ahora me está diciendo, por ser de alto
+33:50 riesgo, el costo previsto es cuatro
+33:52 ejecuciones. Bien, ahí lo tenemos,
+33:54 cuatro ejecuciones de revisores
+33:55 independientes, un presupuesto de
+33:57 corrección congelado de 200 líneas y
+34:00 como máximo una corrección acotada si
+34:03 aparecen bloqueos corroborados. Todo
+34:05 esto que ustedes están viendo acá, todas
+34:06 estas cositas, Gentle Review, Star, esto
+34:08 es la llamada al binario. Esto no es
+34:10 gasto de tokens para nada. Esto es el
+34:13 binario del Gentlei, el mismo con lo que
+34:16 ustedes hacen así y hacen gentle AI,
+34:19 esto se abre y puedes seleccionar cosas.
+34:21 Bien, esta hermosura. Este mismo binario
+34:24 tiene todas las cosas que yo les estoy
+34:25 mostrando. Todo, bien, todo integrado.
+34:27 ¿Para qué? Para no gastar token,
+34:28 justamente y que sea así. Lo que se
+34:30 pueda hacer determinista, háganlo
+34:32 determinista. Si pueden usar un
+34:33 algoritmo, hagan un algoritmo. Y acá
+34:35 tenemos cada uno de los reviewers
+34:37 analizando uno de los lentes. Bien, ahí
+34:40 lo tenemos. Espectacular. Sí,
+34:42 espectacular. Una de las problemáticas
+34:43 que tuve es en una de las soluciones,
+34:45 este es el prompt que se le manda desde
+34:47 el orquestador hacia el hijo. Nosotros
+34:49 mandábamos un base 64. ¿Cuál es el
+34:51 problema de eso? es pesadísimo y ocupaba
+34:53 la ventana de contexto muy rápidamente.
+34:55 Entonces, ahora lo que se le está
+34:57 mandando directamente es el div de git y
+34:59 le dice, "Anda a verlo." Bien, esa es la
+35:00 idea. Entonces, para poderse utilizar
+35:02 necesitamos un Git init al menos dentro
+35:04 del proyecto, para que esto funcione. No
+35:06 te preocupes, Gendli te lo hace solo.
+35:08 Bien, está todo más que bien. Entonces,
+35:10 ahí está, está revisando al candidato,
+35:12 va a revisar cada una de las cosas y si
+35:14 algo falla me lo va a decir y vamos a
+35:16 ver cómo. Y mientras tanto, acá ha
+35:17 terminado ya el benchmark. Vamos a ver.
+35:19 Ahora sí ha quedado Journeys 44
+35:22 completadas, cero sin soporte e y cero
+35:25 fade. Bien, todo funcionó perfectuli.
+35:28 Ahí están terminando los revisores y
+35:29 quiero mostrarles al por más que estamos
+35:31 el mejor modelo, por más que es un
+35:32 proyecto muy chiquitito y demás, fíjense
+35:34 esto. Vamos a entrar primero en el de eh
+35:37 riesgo. Sí, el de riesgo. Acá ha
+35:39 encontrado uno que otro. Acá lo pueden
+35:41 ver en la parte de findings y justamente
+35:43 me está diciendo que esto es crítico.
+35:44 Esto es crítico. Esto hay que atacarlo.
+35:47 Y también te dice la evidencia, cómo lo
+35:49 encontró. Si vamos, por ejemplo, al de
+35:50 readability, bien, son warning, warning,
+35:53 warning, no pasa nada, no pasa nada,
+35:55 pero eso se guarda y si el día de mañana
+35:57 querés atacarlo, le puedes decir, dame
+35:58 un reporte con todo lo que está acá y lo
+36:00 atacamos. Reliability. Tenemos uf
+36:02 bastantes críticos. Sí, tenemos este de
+36:04 acá, este de acá y después un warning y
+36:06 también todo con evidencia. Y después
+36:08 tenemos la parte de resilence que
+36:10 todavía está que siempre la que más
+36:11 tarda. Eh, aviso. Bien, ahí ha
+36:13 terminado. Y si entro, ¿qué tenemos? Un
+36:15 critical y tenemos algunos one. ¿Ven
+36:17 como usando el mejor modelo porque estoy
+36:19 en sol cada uno de mis sobagentes, estoy
+36:21 en la versión powerful que recomiendo de
+36:24 de GentLi. Bien, y estoy utilizando
+36:26 realmente modelos tope de gama con
+36:28 razonamientos muy altos, todo
+36:30 espectacular y aún así he encontrado
+36:33 cositas. Esa es la magia de RDD. Pero no
+36:35 me voy a quedar ahí. Quiero que vean
+36:36 algo. Bien, la revisión encontró al
+36:38 menos un bloqueo corregible antes de
+36:39 tocar el código. Estima una corrección
+36:41 acotada. ¿Lo vieron, no? Una corrección
+36:42 acotada hasta 120 líneas nada más dentro
+36:45 del presupuesto congelado de 200. Ahora
+36:47 voy a obtener el plan finding exacto
+36:49 desde la autoridad y delegar una única
+36:51 corrección quirúrgica que ataque todos
+36:53 esos problemas. Y de vuelta todo estos
+36:55 que están viendo es solamente Gentle
+36:56 funcionando. Papurre, no gasta tokens,
+36:59 no te preocupes. Bien, cada paso que
+37:00 estamos haciendo eso lo va almacenando,
+37:03 va guardando el estado, cómo esa huella
+37:05 dactilar que estamos revisando está
+37:07 evolucionando. ¿Sí? Y ahí tenemos el
+37:09 subente corriendo con las soluciones y
+37:12 vamos a ver qué onda. Esto es lo que
+37:13 está diciendo. Esto es muy importante,
+37:15 por favor. Tienes que aplicar una sola,
+37:18 Bien, ojo con esto, una sola corrección
+37:21 para el lineage, tanto el lineage es
+37:23 justamente que lleva toda la batuta del
+37:26 estatus. Bien, entonces te dice dónde
+37:28 está. Te dice que el linage por si lo
+37:30 quiere revisar con toda la información.
+37:32 No delegues, no hagas comit. Máxima
+37:34 corrección 120 cambios de líneas,
+37:37 máximo, máximo 200 como mucho. Sí.
+37:40 Entonces, te da el target también para
+37:42 que lo pueda ver, para ver si realmente
+37:44 que está trabajando, lo que tiene que
+37:45 trabajar y te da todo y te dice
+37:47 justamente de cada uno de los reviewers
+37:49 cuál fue la problemática y se dan
+37:50 cuenta, ¿no?, le está pasando la
+37:52 problemática con el ID de la
+37:53 problemática. Eso es menos contexto
+37:55 porque va y lo lee y ya está bien cuando
+37:57 lo tiene que usar. Entonces, menos cosas
+37:59 que tiene que pasar el orquestador,
+38:01 menos resúmenes, mucho más bonito. Bien,
+38:03 y justamente me está diciendo, tienes
+38:04 que utilizar de forma nativa, bien, la
+38:08 evidencia que ya está en ese lineage.
+38:10 Entonces, gente, e el subente tiene todo
+38:12 para trabajar, todo, y lo hace muy
+38:14 eficiente porque le estoy diciendo
+38:15 exactamente con pico de pala dónde tiene
+38:18 que tocar las cosas. Ya está. Y acá
+38:19 podemos ver que esto ha terminado. Sí,
+38:21 ya he hecho las correcciones
+38:23 exactamente. Todas las partes, donde qué
+38:25 líneas tocó, todo te dice. Sí. Todo,
+38:28 todo, todo. Pero vamos a ver si es
+38:29 verdad. La corrección quedó en 119
+38:31 líneas y resolvió tres defectos severos.
+38:33 El token heredado en el proceso hijo, el
+38:35 cierre incompleto de grupo de procesos y
+38:37 una promesa rechazada durante errores de
+38:38 arranque. El corrector, además,
+38:40 inicializó metadata.craph
+38:42 porque utilicemos cograph. Bien, fuera
+38:44 del alcance y voy a comprobar
+38:45 inmediatamente que no contamino al
+38:46 candidato ni la autoridad antes de
+38:48 continuar. Entonces va, se fija que esté
+38:50 todo correcto, acaba de borrar code
+38:51 graph. ¿Para qué? Para que no cambie los
+38:53 bytes. Bien, no me cambie lo que sería
+38:55 eh la huella tactilar. Y ahora está
+38:57 haciendo lo que es el finalize. Bien, la
+38:59 autoridad rechazó la corrección porque
+39:00 el plan debía registrarse antes de
+39:02 editar. No iba a forzar el flujo.
+39:04 Restauraré exactamente los dos archivos
+39:06 desde el árbol congelado. Registraré el
+39:08 pronóstico 120 líneas y replicaré la
+39:10 misma corrección. Es más lento, pero
+39:11 para se ver la trazibilidad
+39:12 correctamente. ¿Ven cómo se corrige?
+39:15 Solo esta parte que yo les decía, esto
+39:16 es un inbound. Ahí se ya está, ya lo
+39:19 hice muy rapidito, la verdad no tardó
+39:21 nada. Entonces, ahora está haciendo la
+39:22 finalización, justamente está viendo que
+39:24 esté todo correcto. ¿Ven? Ve estos
+39:26 mensajes que dice acá que están en
+39:28 inglés, no es para ustedes, es para la
+39:29 gente. El binario le está diciendo qué
+39:31 es lo que tiene que hacer para la
+39:32 siguiente parte. ¿Sí? Ahí está diciendo
+39:34 que vaya y reaplique la corrección.
+39:37 Bien, exactamente con las 119 líneas. No
+39:40 está rehaciendo el trabajo, no tiene que
+39:42 volver a explorar, no tiene que hacer
+39:44 nada, tiene que aplicar lo que ella
+39:45 hizo. ¿Por qué? Porque hubo un problema
+39:47 que esto puede pasar. son agentes, no
+39:48 son deterministas, pueden confundirse.
+39:51 Entonces, está volviendo a aplicar lo
+39:53 que ya hizo de una manera rápida, sin
+39:55 ningún tipo de problemática, yendo
+39:56 exactamente las líneas correctas a
+39:58 toquetear como tiene que ser. Bien, ahí
+40:00 lo tenemos. Miren, hizo todas las
+40:01 correcciones de una. Sí, una cosa
+40:03 importante, vean como ante cada cambio
+40:05 vuelve a verificar igualmente que esté
+40:07 todo correcto. Bien, esto es
+40:09 fundamental. Miren cómo hizo los tests
+40:10 de vuelta, el build de nuevo, porque
+40:13 esto tiene que salir correcto. Bien, así
+40:15 que esto es chef kiss. Y acá viene lo
+40:18 importante. Una vez que termine de hacer
+40:19 la corrección, que esto es lo normal, va
+40:21 a ser una validación. Esto es
+40:23 importantísimo. Esto es con o sin RDD
+40:25 hace estas validaciones. Quiero que lo
+40:26 veamos porque es de de lo mejorcito. Eh,
+40:28 ¿se acuerdan todo lo que veníamos
+40:29 hablando de las evidencias? Las
+40:31 evidencias, las evidencias. Bueno, las
+40:33 validaciones son read only y la idea acá
+40:36 concreta es que no edite nada, sino que
+40:39 va a tratar de replicar, por ejemplo, un
+40:41 problema que se arregló, no lo va a
+40:43 poder conseguir. Esperemos bien. Va a
+40:45 comprobar manualmente que estas cosas se
+40:49 cumplan. Bien, es un validador. Esto es
+40:51 buah, no tienen ni idea cómo mejora la
+40:54 calidad del código tener un validador.
+40:55 No tienen idea. Veredicto paso. Me
+40:58 encanta porque yo ya sé exactamente a
+40:59 qué líneas ver de todo lo que está acá.
+41:00 Es tantas veces, lo he visto, tantas
+41:02 veces lo he configurado. Bien, y ahí
+41:04 está verdicto. Pasó, estos son los
+41:06 findings y te va diciendo cada uno de
+41:07 los findings cuál falló, por qué falló,
+41:09 etcétera. Bien, ¿qué hubiera pasado, por
+41:11 ejemplo, si la corrección se hubiera
+41:12 pasado de límite? Lo que yo les decía,
+41:13 le voy a decir, "Ey, ¿por qué te pasaste
+41:15 el límite? Bajá un cachito." Bien, trata
+41:17 de ver de buscar la solución, pero
+41:18 dentro del límite que yo te estoy
+41:20 poniendo. Baja, por ejemplo, el Charn se
+41:22 llama y muchas otras cosas más. La
+41:24 verdad que está está que veo esto y
+41:26 lloro, gente. Ver que anda tan fluido,
+41:28 tan bonito. Yo lloro, gente. Me pone
+41:30 emocional así no más te lo estoy
+41:32 diciendo. Tanto esfuerzo y lo podés ver,
+41:34 ¿me entendés? Tanto esfuerzo, tantas
+41:36 horas, tanto todo y ver lo que funciona.
+41:38 Esto es, no tienen ni idea ustedes lo
+41:39 que Bien. Por ejemplo, acá tenemos un
+41:41 caso, un HK se llama, ¿ven? un caso
+41:44 concreto, aislado, eh, raro podríamos
+41:46 decir. Miren esto, recibo quedó
+41:48 aprobado, pero el gate precomit, el
+41:50 portal este, la puerta que yo les decía,
+41:52 no puede derivar el árbol porque el
+41:53 repositorio todavía no tiene commits ni
+41:55 archivos stage. La autoridad exige
+41:57 estaguiar exactamente los pades
+41:59 revisados. Lo haré sin crear un comit ni
+42:01 modificar contenido y repetiré la
+42:03 validación. ¿Ven cómo sabe qué hacer? ¿Y
+42:05 saben por qué lo sabe? Porque acá le
+42:07 dice todo. Bien, es lo que yo les decía.
+42:10 Stage the review candidate with git ad.
+42:12 Acá mismo le está diciendo cómo actuar.
+42:14 Todo esto para que ustedes vean esto, lo
+42:15 lo potente bien que es y la cantidad de
+42:18 flujos que tengo controlados. Es muy
+42:21 heavy, muy heavy. Gracias a ustedes,
+42:23 justamente gracias a la comunidad.
+42:24 Ahora, una cosa que estoy viendo, por
+42:25 ejemplo, ahora está volviendo a hacer
+42:27 una revisión más que nada por el cambio
+42:29 que tuvimos y demás, pero yo estoy
+42:30 pensando, ver hasta ahora que esto anda
+42:33 muy fino, yo sé que hay cosas para
+42:35 mejorar. Es necesario hacer otra
+42:36 revisión más por ahí, depende. Pero acá
+42:38 podría ser otro tipo de validación.
+42:40 Podría ver. Okay, espera. Antes de
+42:41 cualquier cosa, son exactamente los
+42:43 mismos bites. Exactamente todo, todo,
+42:44 todo, todo. Ha cambiado algo en estos
+42:46 cambios. Son lo mismo. Entonces,
+42:48 hermano, no hagas otra revisión. Me lo
+42:49 estoy pensando muy en alto por ahí. No
+42:50 es así. No es la realidad. Bien, vamos a
+42:53 ver qué onda. Miren, durante la
+42:54 verificación igual está haciendo cosas
+42:55 que antes no había hecho, está probando
+42:57 todo entero y está probando, por
+42:58 ejemplo, utilizar bien lo que sería la
+43:01 API, está haciendo todo. Esto está
+43:02 espectacular. Vean como acá está ya
+43:05 devolviendo la información. Sí, esto
+43:07 dios Access. Esto es eh los datos del
+43:11 benchmark. Espectacular la idea de esto
+43:13 que vos puedas pegarle un endpoint. Ese
+43:15 endpoint de ese servidor de Node va a
+43:17 ejecutar un benchmark sobre el binario
+43:19 que ya tenemos bien de Gentlei y de ahí
+43:22 ver el resultado y todo eso lo hace esta
+43:24 mini aplicación. Bien, ahí está
+43:25 diciendo, dice pass with known benchmark
+43:28 failures o sea, ya sabemos que el
+43:29 benchmark no está pasando por lo que
+43:31 habíamos visto. Eh, ha pasado y acá me
+43:33 está dando todo un super resultado de
+43:35 todas las cosas que se hicieron y demás.
+43:37 Otra vez esto se le pasa al orquestrador
+43:39 y el orquestrador ya tiene evidencia de
+43:41 que todo funciona correctamente. O sea,
+43:42 esto es una máquina superengrasada. Cada
+43:45 engranaje está que es una cosa chilco,
+43:47 ¿eh? Esa la idea, cero fricciones. Yo
+43:50 pido y esto hace y lo puedo ir
+43:51 controlando. Bien, que en cualquier
+43:53 momento puedo para decir, "No, esto no
+43:54 es así." Bien, puedo ver las evidencias,
+43:56 puedo ver todo. Es más, si no me creen,
+43:58 yo hay evidence justamente. Y ante cada
+44:00 paso, esto lo estoy guardando en
+44:01 engramli
+44:05 y que aparte también la puedes instalar
+44:06 aparte. Eh, y que todo lo que yo hago,
+44:09 cada observación, sea arquitectónica,
+44:11 patrones, lo que sea, esto se guarda
+44:13 acá. Y ahora les voy a mostrar dentro de
+44:14 un ratito un flor de caso de uso. Por
+44:16 cierto, sí, son la 1:30 de la noche. Ay
+44:19 no, gente, ay no, no se preocupen,
+44:21 ustedes lo valen. Y ahora, por ejemplo,
+44:23 acaba de hacer otra comprobación
+44:25 chiquita más para que esté todo bien,
+44:27 pero para los lenses, bien, para los e
+44:31 focos de las 4R que habíamos detectado
+44:33 problemas. Y vamos a ver si está todo
+44:35 bien. Y ahí está. Ha pasado todo.
+44:37 Espectacular. Listo. Resumen. Implementé
+44:38 el bench dashboard con toda la
+44:40 información. No se creó ningún comit,
+44:42 nada. Bien, vamos a pedirle hacer un
+44:44 comit. Me está dando todo el parte, todo
+44:46 espectacular. Vamos a decir, haz un
+44:47 comit hermoso, levanta back y front para
+44:49 que yo pueda probar. miércoles que
+44:50 trabajó. Eh, bien, ahí está valido el
+44:52 comit, o sea, exactamente el candidato
+44:55 ya que está aprobado y después me voy a
+44:56 levantar la API y el front para que yo
+44:57 lo pueda probobar directamente. Pero lo
+44:59 primero que va a hacer es hacer una
+45:00 validación antes de poder hacer el
+45:02 precomit y si va todo bien comitea con
+45:05 este título, bien, con este mensaje y
+45:07 ahí está directamente resultado allow,
+45:09 funcionó bien, se le permitió eh ahí
+45:11 está. Allow es true. Acción continue. Es
+45:14 directamente dale con de tuti, no pasa
+45:16 nada. Está bien y ya está comiteado y ha
+45:17 terminado, ya me ha levantado todo. Pero
+45:19 antes quiero mostrarles algo. Sí, esto
+45:22 ya lo tenemos ejecutando. Ahora me va a
+45:23 pasar la URLs, pero quiero mostrarles un
+45:25 caso de uso de engraman la potencia que
+45:28 tiene eso. Dicen, "Ah, porque una base
+45:30 de datos así nada más en SQLite no sirve
+45:32 para nada. Tenés que meterle una base
+45:33 vectorizada con embebidos, que esto, que
+45:35 lo otro, gente. Eh, van a ver que no hay
+45:38 necesidad. Así no más. Eh, miren esto.
+45:40 Acá tengo una sesión que la hice antes
+45:42 de empezar a hacer el video y dice,
+45:43 "Quiero que busques en Engram toda la
+45:45 información relacionada con hostator."
+45:46 Bien, que es justamente donde lo vamos a
+45:48 estar subiendo, que tenga en cuanto a
+45:50 dominios que yo dispongo, cómo subimos
+45:52 algo y cómo lo hicimos en su momento.
+45:54 Esto directamente fue ejecutó engramp
+45:59 ejecutó en que en todos mis proyectos, o
+46:01 sea, toda mi base de datos busque cosas
+46:03 de hostor que tenga que ver con
+46:05 dominios, con esto, con el otro. Y
+46:07 gente, el informe espectacular que me
+46:09 hizo me sacó exactamente dónde están,
+46:11 por ejemplo, mis scripts, por qué tengo
+46:14 un script, que es para ocultar lo que
+46:16 sería el tema de la keychain, bien, de
+46:19 los secretos, etcétera. Entonces, yo
+46:21 ahora con esto voy a hacer control Xi,
+46:22 podría copiármelo como lo ahora o por
+46:24 ejemplo crea una skill para crear eh
+46:27 proyectos en la BPS de Costgator. Házelo
+46:31 en agents para que lo pueda reutilizar
+46:35 en todos mis agentes y carita feliz
+46:38 siempre. Bien, para eso sirve. Esto es
+46:40 una locura. Entonces, ahí lo tenemos.
+46:42 Vamos a entrar, ¿les parece? Vamos allá.
+46:44 Vamos a ver qué sale. Y ahí entramos. En
+46:46 serio, ¿eh? O sea, estamos adentro y
+46:47 miren lo que es esto. Gent bench
+46:49 fraction, eh, perdón, friction under
+46:51 pressure. Miren qué bonito que le hizo
+46:53 el benchmark. Vamos a ejecutarlo. Sí,
+46:55 esto tiene un benchmark token que
+46:56 podemos utilizar. Acá lo tenemos, que es
+46:58 un token temporal que me hizo para hacer
+46:59 las pruebas. Lo ponemos, lo ejecutamos.
+47:02 Vean qué lindo como ya está todo oculto,
+47:04 el input, todo, ¿no? Espectacular. Ahí
+47:06 me dice que el benchmark está corriendo.
+47:08 Ahí vemos como esto está iterando, bien,
+47:10 para poder conseguir los resultados de
+47:13 la ejecución del run. Vamos a poner un
+47:14 poquito más grande. Así lo pueden ver.
+47:16 Sí, ahí sigue, sigue consultando.
+47:17 Acuérdense que esto tarda, sí, tarda un
+47:19 ratito. Ojo que tiene fondo
+47:20 cuadriculado, tiene de todo esto, ¿eh?
+47:22 Qué bien. Tiene hasta, mira, tiene una
+47:24 versión mobile y todo. O sea, qué bien
+47:25 hecho. ¿Qué te decir? Está super bien
+47:27 hecho. One shot, gente, eh, para que
+47:29 vean. One shotado está est bien. Ahora
+47:31 acaba de fallar. Bien, ya lo arreglé.
+47:33 Ahí lo ven. ¿Saben lo que pasaba? Paso
+47:35 que como el benchmark cuando termina te
+47:37 da un uno para decirte que terminó con
+47:40 fallas, pero te da información y yo
+47:42 quiero mostrar todo tipo de información.
+47:44 Entonces ahora me lo va a most bien. Es
+47:46 lo único que le pedí que cambie.
+47:47 Entonces ahí lo tienen, lo ejecutó.
+47:49 Vemos todos los que son en banda, fuera
+47:50 de banda, todo lo que son puntos
+47:52 muertos. Bien. Eh, y acá tenemos todos
+47:55 los detalles. Resumen, esto ya está
+47:56 funcionando. Y sabe lo que vamos a hacer
+47:57 ahora. Atentos. Mientras esto termina
+47:59 acá, ya terminó la skill, ya la hizo
+48:02 bien con todas las cositas sabidas y por
+48:04 haber ahí lo tenemos. Bien, entonces
+48:07 ahora vamos a pedirle que me haga un
+48:09 deploy. Sí, ahí lo tenemos. Quiero que
+48:11 me haga un deploy en la VPS. Bueno,
+48:13 justamente para esto, miren, ahora no.
+48:16 Bien, Sola, por esta vez ahora no. Ya
+48:17 hicimos todos los riesgos, hicimos todo,
+48:18 ya lo terminamos. Bien, vamos a decir lo
+48:20 siguiente. Ahora lo que quiero es que
+48:22 uses la skill de Hostgator para hacer
+48:26 deploy de nuestra apparita
+48:30 feliz. Hazlo bajo el subdominio. Y acá
+48:34 vamos a decir un subdominio que yo ya lo
+48:35 tengo acá identificadísimo en que es
+48:38 este el de short. ¿Se acuerdan que
+48:39 hicimos una aplicación que la desplegué?
+48:40 Bien, vamos a hacerlo ahí. Sí. Entonces,
+48:42 Fum, vamos a tirarle, vamos a dejar que
+48:44 todo termine y vamos con todo. Bien, ahí
+48:46 está. Ya encontró la skill. me está
+48:47 diciendo también que su domina ya está
+48:49 apuntando a la VPS, que tenemos todo
+48:50 bien y que ahora está volviendo un 503.
+48:52 Vamos a arreglar esa situación. Quiero
+48:54 que vean esto porque esto es una locura.
+48:56 Ha sacado hasta la máquina que tiene
+48:59 todo. Eh eh eh interesante. Entonces ahí
+49:02 está. Me hizo un plan de todo lo que va
+49:03 a ser todo fantástico. Ahí está. Me hizo
+49:06 todo lo que es el plan de producción y
+49:08 tenemos comit del cambio mínimo
+49:09 pendiente. Crear configurar repositorio
+49:11 de git privado porque el proyecto no
+49:13 tiene remote. Justamente desplegar
+49:15 aislado. Bien. reutilizar esto en el
+49:17 volumen, crear usuario eh de sistema en
+49:20 login, bench dashboard, justamente
+49:22 instalar node, todo tiene que hacer
+49:24 muchas cosas. Así que vamos con todo,
+49:25 gente. Gente, y ahí terminó. Sí, ya hizo
+49:28 el deploy. Está verificando ahora que
+49:30 funcione, pero les puedo decir algo, ya
+49:31 está funcionando. Sí, esto es
+49:33 literalmente el bench. Acá lo pueden
+49:35 ver, short.condetuti.com.
+49:37 Ya lo tenemos, gente hermosa. Acá voy a
+49:40 poner el token que ya vimos antes, el
+49:41 temporal. Le voy a un run y ahí está.
+49:43 Bien, me está pidiendo ya información.
+49:46 de correcta como tiene que ser. Ya
+49:48 estamos con API, bien, estamos haciendo
+49:49 las cosas bien. Miren, si le pasamos
+49:51 ahora mismo justamente ese mensaje que
+49:53 estamos eh enviando, ¿sí? Vamos a ver
+49:55 qué nos da la gente. Vamos a darle un
+49:56 poquito más de contexto. Lo eh envié el
+50:00 token temporal y le vamos a pasar el
+50:03 token temporal. Ahí lo tenemos. Bien,
+50:05 ahí lo tienen directamente para lo que
+50:07 es ya producción tenemos un token mucho
+50:09 más potenci. Entonces, yo puedo pegarlo
+50:11 acá y con eso lo vamos a sacar.
+50:13 Entonces, vamos a venir acá, lo vamos a
+50:15 pegar, vamos a ejecutarlo y ahora sí
+50:17 está ejecutando el benchmark. Bien,
+50:19 entonces ya tenemos la aplicación
+50:20 funcionando, qué es lo que realmente
+50:22 queríamos. Bien, así que gente que lo
+50:23 hemos logrado, bien, lo hemos logrado,
+50:25 hemos hecho todo, hemosido un recorrido
+50:28 histórico de todas las cosas que fui
+50:30 haciendo y demás y además lo hemos
+50:32 podido subir al buenísimo de Hosgator.
+50:35 Bien, de vuelta, Hoggator es una
+50:37 bombita. Tenés de todo. Es un VPS muy
+50:40 muy potenci dentro de todo también muy
+50:43 económico para todo lo que ofrece y
+50:45 tenés muy buenas computadoras para
+50:46 utilizar eh de todo. Realmente te lo
+50:48 recomiendo, ya lo sabés, tenés el link
+50:50 en la descripción, como dije tanto al
+50:51 principio como dije al médico, dijo al
+50:53 final. Bien, se los recomiendo, en serio
+50:55 se digo, se los recomiendo. Entonces,
+50:56 gente, espero realmente que todo este
+50:58 videazo que tanto me costó grabar les
+51:00 guste. Eh, no les voy a mentir, lo
+51:02 regrabé dos veces. La primera vez no me
+51:05 gustó. Lo volví a hacer todo de vuelta
+51:07 porque quiero lo mejor para ustedes.
+51:08 Quiero que me digan si les gustó, qué
+51:10 les pareció. Me lo pueden decir en los
+51:11 comentarios y como siempre si realmente
+51:13 te gustó le vas a decir hasta tu abuela
+51:14 que te diga abuela se lo video de gente.
+51:18 Nos vemos gente hermosa en mi corazón.
+51:20 Chao, nos fuimos. Oh.

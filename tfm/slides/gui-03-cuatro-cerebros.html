@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>03 — Cuatro cerebros</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1824px; height: 2310px; }
+  body { position: relative; font-family: 'Open Sans', sans-serif; background: #141414; }
+  .base { position: absolute; inset: 0; width: 1824px; height: 2310px; display: block; object-fit: fill; z-index: 1; }
+  .content { position: absolute; z-index: 2; left: 200px; top: 80px; right: 100px; bottom: 70px; display: flex; flex-direction: column; }
+  .badge { display: inline-block; background: #2D5D62; color: #FDF8E9; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px 34px; border-radius: 999px; margin-bottom: 46px; align-self: flex-start; }
+  h1 { font-family: 'Special Elite', serif; font-size: 128px; font-weight: 700; letter-spacing: -3px; color: #1e1e1e; line-height: 1.02; margin-bottom: 18px; }
+  h1 .accent { color: #2D5D62; }
+  .subtitle { font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: #2D5D62; margin-bottom: 52px; }
+  .dashed-box { border: 4px dashed #333333; border-radius: 26px; padding: 30px 44px; font-family: 'Caveat', cursive; font-size: 46px; font-weight: 600; color: #333333; text-align: center; background: rgba(255,255,255,0.35); margin-bottom: 48px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 44px; }
+  .cell { background: rgba(232, 241, 242, 0.55); border: 4px dashed #333333; border-radius: 22px; padding: 30px 36px; }
+  .cell .num { font-family: 'Special Elite', serif; font-size: 34px; color: #D4A017; margin-bottom: 6px; }
+  .cell h3 { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #2D5D62; margin-bottom: 16px; }
+  .cell p { font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: 600; color: #1A1A1A; line-height: 1.4; }
+  .cell .rol { font-family: 'Caveat', cursive; font-size: 34px; font-weight: 600; color: #333333; margin-top: 8px; }
+  .spacer { flex: 1; }
+  .footer { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #1A1A1A; }
+  .stars { color: #D4A017; font-size: 36px; letter-spacing: 0.35em; }
+</style>
+</head>
+<body>
+  <img class="base" src="hoja-cuaderno-base.png" alt="hoja cuaderno base">
+
+  <div class="content">
+    <!-- ============ CONTENIDO SLIDE 3 ============ -->
+    <span class="badge">02 · La arquitectura</span>
+    <h1>CUATRO CEREBROS, <span class="accent">ROLES SEPARADOS</span></h1>
+    <p class="subtitle">Cada modelo hace una cosa y controla a los demás</p>
+
+    <div class="grid">
+      <div class="cell">
+        <div class="num">01</div>
+        <h3>Nube</h3>
+        <p>Piensa, decide y coordina.</p>
+        <p class="rol">¿Qué tiene sentido hacer?</p>
+      </div>
+      <div class="cell">
+        <div class="num">02</div>
+        <h3>Motor local</h3>
+        <p>Ve, evalúa y critica.</p>
+        <p class="rol">¿Es correcto visualmente?</p>
+      </div>
+      <div class="cell">
+        <div class="num">03</div>
+        <h3>Motor secundario</h3>
+        <p>Simula, genera y explica.</p>
+        <p class="rol">¿Qué pasaría si…?</p>
+      </div>
+      <div class="cell">
+        <div class="num">04</div>
+        <h3>Telemetría</h3>
+        <p>Mide, observa y contrasta.</p>
+        <p class="rol">¿Qué ocurre realmente?</p>
+      </div>
+    </div>
+
+    <div class="dashed-box">Quien decide no ve · Quien ve no decide · Quien mide no opina</div>
+
+    <div class="spacer"></div>
+    <div class="footer">
+      <div class="stars">★ ★</div>
+      slide 03 · cuatro cerebros
+    </div>
+    <!-- ============ /CONTENIDO SLIDE 3 ============ -->
+  </div>
+</body>
+</html>

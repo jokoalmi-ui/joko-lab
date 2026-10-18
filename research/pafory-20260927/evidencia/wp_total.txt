@@ -1,0 +1,3 @@
+access-control-expose-headers: X-WP-Total, X-WP-TotalPages, Link
+x-wp-total: 29
+x-wp-totalpages: 1

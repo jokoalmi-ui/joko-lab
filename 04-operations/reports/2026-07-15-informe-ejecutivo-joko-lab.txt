@@ -1,0 +1,90 @@
+INFORME EJECUTIVO — JOKO LAB
+Fecha: 2026-07-15
+Sistema: Ubuntu 7.0.0-27 | Kernel Linux | i5-9500 | 32GB RAM | RTX A2000 12GB
+Generado por: Hermes Agent
+
+---
+
+1. ESTADO DEL HARDWARE
+
+GPU:  OK  | RTX A2000 12GB  | VRAM usada: 698 MB / 12 GB (5.7%) | Temp: 39 C
+RAM:  OK  | 8.2 GB usados (27%)  | 21 GB disponibles
+CPU:  OK  | i5-9500, carga normal
+SSD /:      OK  | 468 GB total  | 141 GB usados (32%)
+SSD datos:  AL 67%  | 440 GB total  | 278 GB usados  | 139 GB libres
+
+---
+
+2. STACK DOCKER — SERVICIOS (automation-stack)
+
+n8n:           ACTIVO  | 127.0.0.1:5678  | n8nio/n8n:latest
+Ollama:        ACTIVO  | 127.0.0.1:11434 | ollama/ollama:latest
+Stirling PDF:  ACTIVO (healthy) | 127.0.0.1:8081 | frooodle/s-pdf:latest
+pdf-cleaner:   ACTIVO  | 127.0.0.1:8000  | pdf-cleaner:latest
+
+Los 4 contenedores UP. Reinicio reciente (11 minutos en ejecucion).
+
+---
+
+3. MODELOS DE IA
+
+Ollama:       ONLINE  | Modelo: llama31-8b-64k
+LM Studio:    OFFLINE | No responde en localhost:1234 (API Server apagado)
+Hermes Agent: ACTIVO  | Perfil: default | Proveedor: DeepSeek | Modelo: deepseek-chat
+Skills instaladas: 70+
+
+---
+
+4. n8n — ZONA PROTEGIDA
+
+Editor web:  http://localhost:5678
+Base datos:  SQLite en /mnt/ssd_ia_datos/n8n/ (con WAL)
+Workflow activo:  "ENVIO WHATSAPP" (ID: e871evjsXHxJ5bND)
+Workflows publicados: 1
+Runners:  JS funcional. Python runner no disponible (falta Python 3 en contenedor)
+Logs:  Sin errores activos. Warnings menores (PostHog, deprecacion util._extend)
+Persistencia: /mnt/ssd_ia_datos/n8n/ (config, database.sqlite, nodos, logs)
+
+---
+
+5. PROYECTOS LOCALES
+
+automation-stack:       OPERATIVO | Docker Compose con 4 servicios
+lmstudio_real_monitor:  CODIGO PRESENTE | Flask CAIDO (no responde en :5000)
+joko-lab-runtime:       NO ENCONTRADO EN DISCO | Directorio y state.json ausentes
+
+---
+
+6. PROCESOS DESTACADOS (top por CPU)
+
+Chrome:             17% CPU  | 2.7% RAM
+Hermes Agent:       14% CPU  | 0.7% RAM
+Java (Telegram):    7.5% CPU | 2.2% RAM
+Telegram Desktop:   4.7% CPU | 1.7% RAM
+n8n (Node):         1.9% CPU | 1.0% RAM
+
+Carga del sistema baja.
+
+---
+
+7. RIESGOS Y OBSERVACIONES
+
+1. SSD datos al 67% — 139 GB libres. Suficiente por ahora, monitorizar
+2. LM Studio caido — API Server no activo en :1234
+3. Monitor Flask caido — Dashboard de monitoreo no accesible en :5000
+4. joko-lab-runtime ausente — No se puede operar el enrutador cloud-local
+5. Modelo unico en Ollama — Solo llama31-8b-64k
+6. n8n runners — Solo JS funcional. Python runner necesita Python 3 en contenedor
+7. GPU infrautilizada — Solo 698 MB de 12 GB VRAM
+
+---
+
+8. RECOMENDACIONES (priorizadas)
+
+1. Restaurar joko-lab-runtime desde repo o determinar su estado real
+2. Recuperar monitor LM Studio (Flask en :5000)
+3. Decidir si LM Studio debe estar activo y levantar su API Server
+4. Liberar espacio en /mnt/ssd_ia_datos si sigue creciendo
+5. Evaluar modelo mas grande en Ollama aprovechando VRAM libre
+
+--- Fin del informe ---

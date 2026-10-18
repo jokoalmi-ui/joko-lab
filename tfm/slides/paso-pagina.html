@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Paso de página — slide 1 a slide 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     PASO DE PÁGINA (page turn) entre dos slides montadas sobre
+     hoja-cuaderno-base.png. La hoja 1 se voltea por la izquierda
+     (eje de la espiral) y revela la hoja 2.
+     ============================================================ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1824px; height: 2310px; background: #141414; }
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .book {
+    position: relative;
+    width: 1824px;
+    height: 2310px;
+    perspective: 2600px;
+  }
+  .page {
+    position: absolute;
+    left: 0; top: 0;
+    width: 1824px;
+    height: 2310px;
+    transform-style: preserve-3d;
+  }
+  /* Hoja 2: debajo, siempre visible */
+  #page2 { z-index: 1; }
+  /* Hoja 1: encima, se voltea sobre el eje izquierdo (espiral).
+     La rotacion la aplica JS segun el parametro ?t= (ms), no CSS animation,
+     porque virtual-time-budget de Chrome headless no avanza animaciones 3D. */
+  #page1 {
+    z-index: 2;
+    transform-origin: left center;
+  }
+  .face {
+    position: absolute;
+    left: 0; top: 0;
+    width: 1824px;
+    height: 2310px;
+    backface-visibility: hidden;
+    overflow: hidden;
+  }
+  .front { transform: rotateY(0deg); }
+  .back  { transform: rotateY(180deg); }
+
+  /* La imagen base es la MISMA en las dos caras y en la hoja 2 */
+  .base {
+    position: absolute;
+    inset: 0;
+    width: 1824px;
+    height: 2310px;
+    display: block;
+    object-fit: fill;
+    z-index: 1;
+  }
+  /* Dorso de la hoja 1: papel crema oscuro (se distingue del papel frontal) */
+  .back .dorso {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, #D8CBA8 0%, #E6DAB8 45%, #EFE6C8 100%);
+    box-shadow: inset 0 0 140px rgba(90,70,30,0.35),
+                inset 18px 0 40px rgba(90,70,30,0.25);
+    z-index: 0;
+  }
+  /* Sombra proyectada por la hoja 1 sobre la hoja 2 (opacidad via JS) */
+  #sombra {
+    position: absolute;
+    left: 0; top: 0;
+    width: 1824px; height: 2310px;
+    z-index: 3;
+    pointer-events: none;
+    background: linear-gradient(to right,
+      rgba(40,30,10,0.45) 0%, rgba(40,30,10,0.22) 22%,
+      rgba(40,30,10,0.10) 45%, transparent 70%);
+    opacity: 0;
+  }
+
+  /* ============ CONTENIDO (misma estructura que las slides) ============ */
+  .content {
+    position: absolute;
+    z-index: 2;
+    left: 200px;
+    top: 80px;
+    right: 100px;
+    bottom: 70px;
+    display: flex;
+    flex-direction: column;
+  }
+  .badge {
+    display: inline-block;
+    background: #2D5D62;
+    color: #FDF8E9;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 12px 34px;
+    border-radius: 999px;
+    margin-bottom: 46px;
+    align-self: flex-start;
+  }
+  h1 {
+    font-family: 'Special Elite', serif;
+    font-size: 150px;
+    font-weight: 700;
+    letter-spacing: -3px;
+    color: #1e1e1e;
+    line-height: 1.02;
+    margin-bottom: 18px;
+  }
+  h1 .accent { color: #2D5D62; }
+  .subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #2D5D62;
+    margin-bottom: 52px;
+  }
+  .dashed-box {
+    border: 4px dashed #333333;
+    border-radius: 26px;
+    padding: 34px 52px;
+    font-family: 'Caveat', cursive;
+    font-size: 52px;
+    font-weight: 600;
+    color: #333333;
+    text-align: center;
+    background: rgba(255,255,255,0.35);
+    margin-bottom: 52px;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .col {
+    background: rgba(232, 241, 242, 0.55);
+    border: 4px dashed #333333;
+    border-radius: 22px;
+    padding: 36px 40px;
+  }
+  .col h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #2D5D62;
+    margin-bottom: 24px;
+    border-bottom: 4px dashed #D4A017;
+    padding-bottom: 14px;
+  }
+  .col ul { list-style: none; }
+  .col li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1A1A1A;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    padding-left: 46px;
+    position: relative;
+  }
+  .col li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 12px;
+    width: 16px; height: 16px;
+    background: #2D5D62;
+    border-radius: 3px;
+  }
+  .spacer { flex: 1; }
+  .footer {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1A1A1A;
+  }
+  .stars { color: #D4A017; font-size: 36px; letter-spacing: 0.35em; }
+</style>
+</head>
+<body>
+<div class="book">
+
+  <!-- Sombra proyectada por la hoja 1 mientras voltea -->
+  <div id="sombra"></div>
+
+  <!-- HOJA 2 (destino) -->
+  <div class="page" id="page2">
+    <div class="face front">
+      <img class="base" src="hoja-cuaderno-base.png" alt="hoja">
+      <div class="content">
+        <span class="badge">El problema · Joko Lab TFM</span>
+        <h1>IA SIN <span class="accent">MEMORIA</span></h1>
+        <p class="subtitle">Responde, pero no recuerda ni verifica</p>
+        <div class="dashed-box">Cada conversación empieza de cero. El conocimiento no se acumula.</div>
+        <div class="cols">
+          <div class="col">
+            <h3>Síntomas</h3>
+            <ul>
+              <li>Sin memoria a largo plazo</li>
+              <li>Sin fuente verificable</li>
+              <li>Mismo error repetido</li>
+              <li>Conocimiento que se pierde</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Origen</h3>
+            <ul>
+              <li>El incidente que lo disparó</li>
+              <li>Datos sin gobierno</li>
+              <li>Sin trazabilidad</li>
+            </ul>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="footer"><div class="stars">★ ★</div>slide 02 · paso de página</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOJA 1 (origen): se voltea -->
+  <div class="page" id="page1">
+    <div class="face front">
+      <img class="base" src="hoja-cuaderno-base.png" alt="hoja">
+      <div class="content">
+        <span class="badge">Joko Lab · TFM Máster IA 2026</span>
+        <h1>PRUEBA DE <span class="accent">MONTAJE</span></h1>
+        <p class="subtitle">Base original intacta · solo se añade información</p>
+        <div class="dashed-box">La hoja que ves de fondo es tu PNG sin tocar. Aquí va el mensaje de cada slide.</div>
+        <div class="cols">
+          <div class="col">
+            <h3>Qué se monta</h3>
+            <ul>
+              <li>Texto e información</li>
+              <li>Bloques y listas</li>
+              <li>Diagramas sobre la hoja</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h3>Qué no se toca</h3>
+            <ul>
+              <li>El papel cuadriculado</li>
+              <li>La espiral y perforaciones</li>
+              <li>Colores y textura</li>
+            </ul>
+          </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="footer"><div class="stars">★ ★</div>slide 01 · paso de página</div>
+      </div>
+    </div>
+    <div class="face back">
+      <div class="dorso"></div>
+    </div>
+  </div>
+
+</div>
+<script>
+  // Rotacion determinista: ?t=ms -> angulo del page turn (delay 300ms, dur 1400ms)
+  // t<300 -> 0deg; t>=1700 -> -180deg; intermedio con ease-in-out
+  (function () {
+    var m = /[?&]t=(\d+)/.exec(location.search);
+    if (!m) return; // sin parametro: hoja 1 quieta (estado inicial)
+    var t = parseInt(m[1], 10);
+    var DELAY = 500, DUR = 2000, T_END = DELAY + DUR;
+    var deg = 0;
+    if (t >= T_END) {
+      deg = -180;
+    } else if (t > DELAY) {
+      var p = (t - DELAY) / DUR;             // 0..1 lineal
+      // ease-in-out: 0.5 - 0.5*cos(pi*p)
+      var e = 0.5 - 0.5 * Math.cos(Math.PI * p);
+      deg = -180 * e;
+    }
+    document.getElementById('page1').style.transform = 'rotateY(' + deg + 'deg)';
+    // Sombra proyectada: max a mitad del giro (90deg), 0 al inicio/fin
+    var absDeg = Math.abs(deg);
+    var sombraOp = 0;
+    if (absDeg > 10 && absDeg < 170) {
+      sombraOp = Math.sin(Math.PI * absDeg / 180); // 1 en 90deg
+    }
+    var s = document.getElementById('sombra');
+    if (s) s.style.opacity = (sombraOp * 0.85).toFixed(3);
+  })();
+</script>
+</body>
+</html>

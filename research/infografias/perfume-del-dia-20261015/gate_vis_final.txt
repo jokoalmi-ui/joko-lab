@@ -1,0 +1,153 @@
+### date: jueves 15-10-2026 07:17 CEST
+  OK fondo CSS (1)
+  OK fecha-sep (1)
+  OK figura+reflejo (2)
+  OK alt figura (1)
+  OK casa (1)
+  OK h1 (1)
+  OK sub (1)
+  OK dh1 (1)
+  OK dh2 (1)
+  OK dh3 (1)
+  OK r-num (1)
+  OK estrellas (1)
+  OK r-meta (1)
+  OK swatch corazón (1)
+  OK lab corazón (1)
+  OK leyendas (3)
+  OK fuente pirámide (1)
+  OK inspiración (1)
+  OK fuente inspiración (1)
+  OK alternativas (3)
+  OK fuente alternativas (1)
+  OK cita (1)
+  OK fuente cita (1)
+  OK clima (1)
+  OK sprays (1)
+  OK ajuste de encaje (1)
+  OK capas pirámide (1)
+{"html": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261015/ficha_a.html", "bytes": 20483, "fondo": "ocean_the_rive_fondo_a.png"}
+BUILD_a=0
+  OK fondo CSS (1)
+  OK fecha-sep (1)
+  OK figura+reflejo (2)
+  OK alt figura (1)
+  OK casa (1)
+  OK h1 (1)
+  OK sub (1)
+  OK dh1 (1)
+  OK dh2 (1)
+  OK dh3 (1)
+  OK r-num (1)
+  OK estrellas (1)
+  OK r-meta (1)
+  OK swatch corazón (1)
+  OK lab corazón (1)
+  OK leyendas (3)
+  OK fuente pirámide (1)
+  OK inspiración (1)
+  OK fuente inspiración (1)
+  OK alternativas (3)
+  OK fuente alternativas (1)
+  OK cita (1)
+  OK fuente cita (1)
+  OK clima (1)
+  OK sprays (1)
+  OK ajuste de encaje (1)
+  OK capas pirámide (1)
+{"html": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261015/ficha_b.html", "bytes": 20483, "fondo": "ocean_the_rive_fondo_b.png"}
+BUILD_b=0
+render_a1 0 1811254 sha=f8ae73b676e69187
+render_a2 0 1811254 sha=f8ae73b676e69187
+render_b1 0 1782138 sha=eecaf0a6f19f028d
+render_b2 0 1782138 sha=eecaf0a6f19f028d
+===== GATE a =====
+=== GATE PRE-ENVIO · ficha_a.html ===
+[OK   ] 01 Titulo                        Ocean The Rive
+[OK   ] 02 Casa                          UNIQUE'E LUXURY
+[OK   ] 03 Fecha                         dia/mes en la ficha
+[OK   ] 04 Anio                          2026
+[OK   ] 05 Concentracion                 etiqueta presente
+[OK   ] 06 Genero                        etiqueta presente
+[OK   ] 07 Familia                       cítric
+[OK   ] 08 Perfumista                    fila presente (permite "no revelado")
+[OK   ] 09 Rating comunidad              3,96 · votos
+[OK   ] 10 Piramide completa             svg=6 lab=3
+[OK   ] 11 Longevidad                    horas presentes
+[OK   ] 12 Estela                        6
+[OK   ] 13 Precio 100 ml                 345 € / 100 ml
+[OK   ] 14 Si te gusta, prueba           3 alternativas
+[OK   ] 15 Cita comunidad                “Una deliciosa brisa de notas mari...
+[OK   ] 16 QR Fragrantica                qr_fragrantica.png
+[OK   ] 17 Pie completo                  20,5 – 28,0 °C · media · lluvia · nota fondo
+[OK   ] A1 Assets existen                4 locales, 0 ausentes []
+[OK   ] A2 Sin restos de prueba          ninguno referenciado
+[AVISO] A3 Fondo ampliado x1.32          ocean_the_rive_fondo_a.png 1024x1024 -> sin ampliacion notable
+[AVISO] A4 Precio con fecha de consulta  el precio no dice de cuando es
+[OK   ] E1 Altura (scrollHeight)         1350 px  [limite 1350]
+[OK   ] E2 Pie dentro de la tarjeta      pie bottom 1346 px
+
+campos            : 17/17
+FALTA             : 0   []
+AVISO             : 2   ['A3 Fondo ampliado x1.32', 'A4 Precio con fecha de consulta']
+veredicto         : ENVIAR (con avisos)
+EXIT_GATE_a=0
+===== VIS a =====
+geometria del DOM  : .frasco-figura -> x 75 y 80 w 255 h 450 (CSS)  x1.00 = 75,80,255,450 px del PNG
+=== VISIBILIDAD DEL FRASCO (medido) ===
+ficha              : render_a1.png  (1080x1350)
+figura             : ocean_the_rive_figura.png  (255x450)  [22223 px tapon / 43227 px cuerpo]
+rect del frasco    : x 75-330  y 80-530  (255x450)
+fondo contiguo     : L mediana 158.2
+tapon              : L 74.1  -> contraste 3.31:1
+cuerpo             : L 238.2  -> contraste 2.31:1
+pixeles claros     : 29947 de 114750  -> 26.1 %  (L>225 dentro del rect)
+
+  [NO CUMPLE] % claros >= 40 -> 26.1 %
+  [OK] contraste cuerpo >= 2:1 -> 2.31:1
+EXIT_VIS_a=1
+===== GATE b =====
+=== GATE PRE-ENVIO · ficha_b.html ===
+[OK   ] 01 Titulo                        Ocean The Rive
+[OK   ] 02 Casa                          UNIQUE'E LUXURY
+[OK   ] 03 Fecha                         dia/mes en la ficha
+[OK   ] 04 Anio                          2026
+[OK   ] 05 Concentracion                 etiqueta presente
+[OK   ] 06 Genero                        etiqueta presente
+[OK   ] 07 Familia                       cítric
+[OK   ] 08 Perfumista                    fila presente (permite "no revelado")
+[OK   ] 09 Rating comunidad              3,96 · votos
+[OK   ] 10 Piramide completa             svg=6 lab=3
+[OK   ] 11 Longevidad                    horas presentes
+[OK   ] 12 Estela                        6
+[OK   ] 13 Precio 100 ml                 345 € / 100 ml
+[OK   ] 14 Si te gusta, prueba           3 alternativas
+[OK   ] 15 Cita comunidad                “Una deliciosa brisa de notas mari...
+[OK   ] 16 QR Fragrantica                qr_fragrantica.png
+[OK   ] 17 Pie completo                  20,5 – 28,0 °C · media · lluvia · nota fondo
+[OK   ] A1 Assets existen                4 locales, 0 ausentes []
+[OK   ] A2 Sin restos de prueba          ninguno referenciado
+[AVISO] A3 Fondo ampliado x1.32          ocean_the_rive_fondo_b.png 1024x1024 -> sin ampliacion notable
+[AVISO] A4 Precio con fecha de consulta  el precio no dice de cuando es
+[OK   ] E1 Altura (scrollHeight)         1350 px  [limite 1350]
+[OK   ] E2 Pie dentro de la tarjeta      pie bottom 1346 px
+
+campos            : 17/17
+FALTA             : 0   []
+AVISO             : 2   ['A3 Fondo ampliado x1.32', 'A4 Precio con fecha de consulta']
+veredicto         : ENVIAR (con avisos)
+EXIT_GATE_b=0
+===== VIS b =====
+geometria del DOM  : .frasco-figura -> x 75 y 80 w 255 h 450 (CSS)  x1.00 = 75,80,255,450 px del PNG
+=== VISIBILIDAD DEL FRASCO (medido) ===
+ficha              : render_b1.png  (1080x1350)
+figura             : ocean_the_rive_figura.png  (255x450)  [22223 px tapon / 43227 px cuerpo]
+rect del frasco    : x 75-330  y 80-530  (255x450)
+fondo contiguo     : L mediana 140.5
+tapon              : L 74.1  -> contraste 2.65:1
+cuerpo             : L 238.2  -> contraste 2.88:1
+pixeles claros     : 29953 de 114750  -> 26.1 %  (L>225 dentro del rect)
+
+  [NO CUMPLE] % claros >= 40 -> 26.1 %
+  [OK] contraste cuerpo >= 2:1 -> 2.88:1
+EXIT_VIS_b=1

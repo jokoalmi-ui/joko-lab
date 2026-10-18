@@ -1,0 +1,87 @@
+id: RULE-006
+type: RULE
+decision_origin: video
+status: activo
+version: 1
+created: '2026-08-03'
+last_validated: '2026-09-29'
+next_review: '2026-10-29'
+expires: '2026-12-03'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-08-03T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-10-29T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-08-05T00:00:00Z
+  - by: machine:hermes
+    at: 2026-09-29T00:00:00Z
+sources:
+  - resource: 04-operations/reports/2026-08-03-analisis-gentleman-rdd.txt
+confidence: 0.8
+confidence_label: ALTA
+evidence:
+- 'Transcripcion y analisis del video RDD: 04-operations/reports/2026-08-03-analisis-gentleman-rdd.txt'
+- 'Instalado en hermes-lab 2026-08-03 (core.hooksPath=hooks). Prueba de 4 escenarios reportada por el autor; validacion de 1-2 semanas en repo real pendiente'
+- 'Validado 05-ago-2026 en repo real: .git/joko-recibo.json generado 07:47 y commit con recibo completado (sesion 05-ago); gate operativo'
+- 'Ampliado a joko-lab el 2026-09-29 (hooks identicos, sha256 verificado, core.hooksPath=hooks): la regla cubre los dos repos git del lab. Medicion del 29-sep sobre el log del gate (36 asientos): 17 OK recibo_valido, 11 bloqueos y 8 kill switches, todos entre el 03 y el 24 de agosto; ninguno despues'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: joko-lab
+scope: hermes-lab
+monitoring:
+  metric: commits_bloqueados_sin_recibo
+  baseline: 0
+  current: 1
+  last_checked: '2026-09-29'
+  log_file: '~/.hermes/logs/joko-rdd.log'
+  indicador_semanal: 'Bloqueos + divergencias + kill switches de la semana. >0 bloqueos = control actuando; kill switch frecuente = friccion excesiva a ajustar'
+history:
+- date: '2026-08-03'
+  event: created
+  note: 'Recibo SHA pre-commit. Origen: RDD (Gentleman Programming, video The Organic RDD Story). Draft hasta validacion en repo real.'
+- date: '2026-08-05'
+  event: validated
+  note: 'Validacion en repo real: recibo generado y commit completado (05-ago). Promovida de draft a activa.'
+- date: '2026-08-03'
+  event: instrumented
+  note: 'Hook con logging persistente (~/.hermes/logs/joko-rdd.log): cada veredicto OK/BLOQUEADO/BYPASS registrado. Indicador semanal definido en monitoring.'
+- date: '2026-09-29'
+  event: revalidated
+  note: 'Revalidacion pedida por el usuario. Medido contra el log del gate (36 asientos, ultimo 2026-09-28 23:27): 17 OK recibo_valido, 11 bloqueos (1 sin recibo + 10 por divergencia del staging) y 8 kill switches, todos entre el 03 y el 24 de agosto; ninguno despues. El gate esta instalado y actuando; la prueba de 1-2 semanas del alta (03-ago) queda cumplida con 8 semanas de uso real, sin friccion excesiva.'
+- date: '2026-09-29'
+  event: corrected
+  note: 'ALCANCE corregido: joko-lab SI es repo git desde 2026-09-24, pero SIN hook instalado (core.hooksPath vacio), asi que alli el recibo no bloquea. Seccion VALIDACION PENDIENTE sustituida por el resultado medido. Texto anterior: backup .bak-20260929-revalidacion.'
+- date: '2026-09-29'
+  event: implemented
+  note: 'Gate instalado tambien en joko-lab (copia de hooks/pre-commit y hooks/generar_recibo.sh, misma sha256, core.hooksPath=hooks) tras medir que ese repo llevaba 33 commits sin recibo. Probado en repo desechable: sin recibo bloquea, con recibo aprueba. En joko-lab el hook ya actua (el commit b4eed43 de L4 paso con el recibo del 28-09 23:08, tree d47891b1). Autorizado por el usuario (orden 1-2-3-4 del 29-sep).'
+- date: '2026-09-29'
+  event: validated
+  note: 'confidence 0.7 (MEDIA) -> 0.8 (ALTA) al cerrar la revalidacion del 29-sep: el gate esta instalado en los dos repos, ha actuado 11 veces y lleva 8 semanas sin ningun kill switch. Escala medida antes de escribir: en los KO vivos 0.8-1.0 llevan ALTA y 0.6-0.7 MEDIA.'
+body: "Recibo SHA obligatorio antes de commit en hermes-lab. Ningun commit se acepta si el arbol de cambios en staging no coincide con el hash de un recibo generado tras revision explicita. Un solo byte distinto invalida el recibo. Blindaje determinista contra cambios silenciosos de agentes (Hermes, Claude Code, o cualquier otro). Concreta el Evidence Contract del lab: no confiar en que el agente reporte 'esta bien', exigir comprobacion externa atada a algo inmutable.\n\nMECANISMO\n1. Congelar: hash del arbol en staging con `git write-tree` (nativo de Git, determinista). Identifica esos bytes exactos, no 'el cambio' en abstracto.\n2. Revisar: humano o Hermes confirma que el diff corresponde EXACTAMENTE a lo solicitado (nada mas, nada menos).\n3. Generar recibo: hooks/generar_recibo.sh <nombre> [nota] escribe hash + aprobado_por + timestamp en .git/joko-recibo.json (fuera de control de versiones).\n4. Gate: el hook pre-commit recalcula el hash del staging; si no hay recibo o el hash diverge (se toco algo despues de revisar), el commit se bloquea.\n\nINSTALACION (2026-08-03)\n- Hook activo en hermes-lab: core.hooksPath=hooks; ficheros hooks/pre-commit y hooks/generar_recibo.sh.\n- fin.sh (checkpoint de cierre) usa JOKO_RDD_DISABLE=1 explicito en su commit automatico (linea 150): bypass documentado y visible, no silencioso.\n\nKILL SWITCH\n- JOKO_RDD_DISABLE=1: desactiva el gate una sola vez (aviso en el log del hook).\n- Fichero .joko-rdd-disable en la raiz del repo: desactiva para todo el repo (aviso).\n- Nunca bypass implicito por patron de mensaje (p.ej. prefijo 'checkpoint:' en el hook).\n\nALCANCE\n- Gate instalado en los DOS repos git del lab: hermes-lab (2026-08-03) y joko-lab (2026-09-29), ambos con core.hooksPath=hooks y hooks byte-identicos (sha256 verificado). La instalacion en joko-lab se hizo al medir que ese repo llevaba 33 commits sin recibo; los dos caminos (bloqueo sin recibo / commit con recibo) se probaron en repo desechable y el hook ya ejecuta en joko-lab (log joko-rdd.log). Verificado 2026-09-29.\n\nLIMITES CONOCIDOS\n- No sustituye la revision humana/de Hermes, solo la hace vinculante una vez hecha.\n- No verifica CALIDAD del cambio, solo identidad de bytes del arbol en staging.\n- No detecta archivos nuevos sin `git add` (solo certifica el staging, no el working tree completo).\n- git commit --no-verify se salta el hook por diseno de Git (barrera de proceso, no criptografia).\n- El recibo vive en .git/ (no versionado, no viaja a clones) — intencional: cada checkout revisa lo suyo.\n\nVALIDACION (cerrada 2026-09-29)\n- Probado en repo real 8 semanas (alta 03-ago, promovida a activa 05-ago). Medido en el log del gate el 29-sep: 17 commits con recibo valido, 11 bloqueos y 8 kill switches, todos entre el 03 y el 24 de agosto; ninguno despues.\n- Friccion controlada: el bypass solo aparece en los primeros dias (fin.sh). El texto anterior de esta seccion y del ALCANCE esta en el backup .bak-20260929-revalidacion."
+legacy_fields:
+  condicion:
+    tipo_tarea:
+    - cambio_protocolo
+    - nueva_skill
+    keywords:
+    - recibo
+    - commit
+    - sha
+    - rdd
+    - gate
+    - pre-commit
+  accion:
+    accion: verificar_recibo_commit
+    ruta: /home/jokoalmi/hermes-lab/hooks/pre-commit
+    reglas:
+    - 'Tras revisar el diff, generar recibo con hooks/generar_recibo.sh <nombre>'
+    - 'Kill switch explicito: JOKO_RDD_DISABLE=1 o .joko-rdd-disable'
+  prioridad: 85
+  activa: true
+  nota: 'Draft. Hook instalado en hermes-lab 2026-08-03; fin.sh usa bypass explicito documentado.'
+  canal: no_engine
+  canal_nota: 'Regla de procedimiento (recibo SHA pre-commit). Su canal real es el hook de git + logs, no el Activation Engine. activa sincronizada a true (KO status activo, validada 05-ago). Sync 07-ago.'
+  validaciones: 1

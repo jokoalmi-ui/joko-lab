@@ -1,0 +1,323 @@
+{
+ "meta": {
+  "backend": "stub",
+  "checkpoint": null,
+  "casos": 27,
+  "casos_sha256": "f5bb2a1f6b3d5cde5d182eecb71dd9cac26e45f90b97289e758a62289d84af48",
+  "golden_set_sha256": "2a2da99cc7001128f9c58bc2812f78a590f1a13aa34195191dafa01934fbe1d1",
+  "ejecutado": "2026-09-23T19:52:33+02:00",
+  "host": {
+   "python": "Python 3.11.16",
+   "laya": true,
+   "torch": false,
+   "gpu": "NVIDIA RTX A2000 12GB, 10562, 12282, 0",
+   "ollama": [
+    "ibm/granite4.2:8b-q4_K_M",
+    "qwen2.5:7b",
+    "deepseek-r1-distill-qwen-14b:latest"
+   ],
+   "disco_home": "/dev/nvme0n1p2   468G   287G  158G  65% /",
+   "fecha": "mié 23 sept 2026 19:52:33 CEST"
+  }
+ },
+ "metricas_globales": {
+  "n": 27,
+  "accuracy": 0.8889,
+  "brier": 0.1026,
+  "ece5": 0.0852,
+  "ece15_proveedor": 0.0852,
+  "conf_media": 0.6778,
+  "sesgo_conf_menos_acierto": -0.2111,
+  "confiado_y_fallado": 3,
+  "seguro_y_acertado": 16,
+  "p50_ms": 0.0,
+  "p95_ms": 0.0
+ },
+ "metricas_por_bloque": {
+  "A": {
+   "n": 13,
+   "accuracy": 0.7692,
+   "brier": 0.1946,
+   "ece5": 0.1308,
+   "ece15_proveedor": 0.1308,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": 0.1308,
+   "confiado_y_fallado": 3,
+   "seguro_y_acertado": 10,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "B": {
+   "n": 8,
+   "accuracy": 1.0,
+   "brier": 0.0225,
+   "ece5": 0.15,
+   "ece15_proveedor": 0.15,
+   "conf_media": 0.15,
+   "sesgo_conf_menos_acierto": -0.85,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "D": {
+   "n": 6,
+   "accuracy": 1.0,
+   "brier": 0.01,
+   "ece5": 0.1,
+   "ece15_proveedor": 0.1,
+   "conf_media": 0.9,
+   "sesgo_conf_menos_acierto": -0.1,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 6,
+   "p50_ms": null,
+   "p95_ms": null
+  }
+ },
+ "errores": 0,
+ "registros": [
+  {
+   "id": "ctx-01",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-02",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-03",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-04",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-05",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-06",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-07",
+   "bloque": "A",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ctx-08",
+   "bloque": "A",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-01",
+   "bloque": "D",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-02",
+   "bloque": "D",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-03",
+   "bloque": "D",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-04",
+   "bloque": "D",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-05",
+   "bloque": "D",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "mem-06",
+   "bloque": "D",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-01",
+   "bloque": "B",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-02",
+   "bloque": "B",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-03",
+   "bloque": "B",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-04",
+   "bloque": "B",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-05",
+   "bloque": "B",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-06",
+   "bloque": "B",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-07",
+   "bloque": "B",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "trap-08",
+   "bloque": "B",
+   "gt": false,
+   "p": 0.15,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-01",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-02",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-03",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-04",
+   "bloque": "A",
+   "gt": true,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  },
+  {
+   "id": "ficha-05",
+   "bloque": "A",
+   "gt": false,
+   "p": 0.9,
+   "motor": "stub",
+   "error": null,
+   "ms": 0.0
+  }
+ ]
+}

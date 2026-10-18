@@ -1,0 +1,41 @@
+id: DEC-003
+type: DEC
+decision_origin: experimento
+status: activo
+version: 1
+created: '2026-07-29'
+last_validated: '2026-07-31'
+next_review: '2026-10-27'
+expires: '2027-01-25'
+confidence: 0.94
+confidence_label: ALTA
+evidence:
+- 'EXP-20260729-004: Superior en creatividad y fluidez narrativa'
+- 3 validaciones independientes
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: null
+  baseline: null
+  current: null
+  last_checked: null
+history:
+- date: '2026-07-29'
+  event: created
+- date: '2026-07-30'
+  event: migrated_to_ko
+  note: Migrado de formato YAML plano a Knowledge Object v1
+- date: '2026-07-31'
+  event: validated
+  note: Primera validación tras migración a Knowledge Object
+body: "Gemma 4 12B para tareas creativas (poemas, relatos, brainstorming). Ver [[RULE-001]]."
+legacy_fields:
+  modelos_afectados:
+  - google/gemma-4-12b-qat
+  params:
+    temperature: 0.7
+    max_tokens: 2048
+  nota: 'Gemma 4 es lento (~151s). Alternativa rápida: Granite 4.1 (5-15s).'

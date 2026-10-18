@@ -1,0 +1,221 @@
+ESTRUCTURA JOKO LAB — 4 PILARES
+==================================
+Fecha: 2026-07-28
+Origen: Sesión CLI, propuesta de Luis analizada por Hermes
+Estado: DISEÑO — pendiente de implementar
+
+═══════════════════════════════════════════════════════════
+CONTEXTO
+═══════════════════════════════════════════════════════════
+
+El incidente del perfil Linux (desaparición de ~/.local/share/uv)
+ha cambiado el enfoque del proyecto. Ya no se trata solo de tener
+un agente potente (Hermes), sino de construir un laboratorio
+reproducible para estudiar, comparar y mejorar agentes de IA.
+
+Joko Lab se organiza en 4 pilares:
+  1. Knowledge    → modelos, experimentos, benchmarks, prompt compiler
+  2. Infrastructure → docker, servicios, recovery, inicio/fin
+  3. Automation  → scripts, cron, workflows, tests
+  4. Operations  → informes, métricas, incidencias, changelog
+
+═══════════════════════════════════════════════════════════
+ESTRUCTURA COMPLETA
+═══════════════════════════════════════════════════════════
+
+~/joko-lab/                              # RAÍZ DEL LABORATORIO
+│
+├── README.md                            # Mapa del laboratorio, propósito
+├── estado-final.json                     # Último estado conocido (generado por fin)
+│
+├── 01-knowledge/                        # PILAR 1: Conocimiento
+│   ├── models/                          # Fichas individuales por modelo
+│   │   ├── deepseek-r1-14b.md
+│   │   ├── gemma-4-12b.md
+│   │   ├── glm-4.6v-flash.md
+│   │   ├── qwen3-14b.md
+│   │   ├── qwen-3.5-9b.md
+│   │   ├── dolphin-cyber-lora-8b.md
+│   │   ├── llama-3.1-instruct-8b.md
+│   │   └── granite-4.1-8b.md
+│   │
+│   ├── experiments/
+│   │   ├── prompt-experiments.md
+│   │   └── logs/                        # Resultados detallados
+│   │
+│   ├── benchmarks/
+│   │   ├── comparativa-2026-07-26.md
+│   │   └── metrics/                     # Datos crudos (CSV/JSON)
+│   │
+│   ├── prompt-compiler/                 # Subsistema central
+│   │   ├── profiles/                    # Perfiles de modelos
+│   │   ├── templates/                   # Plantillas por tipo de tarea
+│   │   ├── validators/                  # Reglas de validación
+│   │   └── strategies/                  # Estrategias de inferencia
+│   │
+│   └── anti-patterns.md                 # Catálogo con gravedad
+│
+├── 02-infrastructure/                   # PILAR 2: Infraestructura
+│   ├── docker/
+│   │   └── automation-stack.yml         # Referencia al compose real
+│   │
+│   ├── services/
+│   │   ├── ollama.md
+│   │   ├── n8n.md
+│   │   ├── lm-studio.md
+│   │   ├── gateway.md
+│   │   └── hermes.md
+│   │
+│   ├── recovery/
+│   │   ├── procedures/
+│   │   │   ├── incidente-uv-20260728.md
+│   │   │   └── checklist-recuperacion.md
+│   │   ├── rescue.sh
+│   │   └── backups/
+│   │
+│   ├── inicio/
+│   │   ├── inicio.sh
+│   │   └── checks/
+│   │       ├── check-docker.sh
+│   │       ├── check-ollama.sh
+│   │       ├── check-gateway.sh
+│   │       ├── check-path.sh
+│   │       ├── check-uv.sh
+│   │       ├── check-cargo.sh
+│   │       └── check-local-bin.sh
+│   │
+│   ├── fin/
+│   │   ├── fin.sh
+│   │   └── estado-final.json            # Generado automáticamente
+│   │
+│   └── network/
+│
+├── 03-automation/                       # PILAR 3: Automatización
+│   ├── scripts/
+│   │   ├── checkpoint.sh
+│   │   ├── fin.sh
+│   │   ├── rescue.sh
+│   │   └── smoke-test.sh
+│   │
+│   ├── cron/
+│   │   ├── crontab
+│   │   └── jobs/
+│   │
+│   ├── workflows/
+│   │   └── n8n/
+│   │
+│   └── tests/
+│       ├── smoke-test.sh
+│       └── integration/
+│
+├── 04-operations/                       # PILAR 4: Operaciones
+│   ├── reports/
+│   │   ├── 2026-07-28-prompt-engineering-skill.txt
+│   │   └── 2026-07-28-cierre-joko-lab.txt
+│   │
+│   ├── metrics/
+│   │   ├── sesiones/
+│   │   ├── gpu/
+│   │   └── estado/
+│   │
+│   ├── incidents/
+│   │   └── 2026-07-28-perfil-linux.md
+│   │
+│   └── changelog/
+│       └── CHANGELOG.md
+│
+└── docs/
+    ├── architecture.md
+    ├── principios.md
+    ├── glossary.md
+    └── index.md
+
+═══════════════════════════════════════════════════════════
+RELACIÓN CON LO QUE YA EXISTE
+═══════════════════════════════════════════════════════════
+
+Origen actual                  → Destino en nueva estructura
+───────────────────────────────────────────────────────────
+~/hermes-lab/benchmark/        → 01-knowledge/benchmarks/
+~/hermes-lab/recovery/         → 02-infrastructure/recovery/
+~/hermes-lab/state-manager/    → 02-infrastructure/fin/ (integrar)
+~/hermes-lab/decision-engine/  → 01-knowledge/prompt-compiler/strategies/
+~/hermes-lab/runtime/          → 02-infrastructure/services/
+~/hermes-lab/tests/            → 03-automation/tests/
+~/hermes-lab/scripts/          → 03-automation/scripts/ (enlaces)
+~/hermes-lab/docs/             → docs/ (consolidar)
+~/informes-joko-lab/           → 04-operations/reports/
+~/joko-lab/research/           → 01-knowledge/experiments/
+~/joko-lab/instruments/        → 01-knowledge/prompt-compiler/ (evaluar)
+
+NO se tocan (siguen donde están):
+  ~/.hermes/skills/             → Skills de Hermes, no del lab
+  ~/automation-stack/           → Docker compose real
+  /mnt/ssd_ia_datos/n8n/       → Datos de n8n (protegidos)
+  ~/hermes-lab/                 → Sigue siendo el repo de Hermes
+
+═══════════════════════════════════════════════════════════
+REGLAS DE LA ESTRUCTURA
+═══════════════════════════════════════════════════════════
+
+1. ~/joko-lab/ es la raíz única. Todo el conocimiento del
+   laboratorio vive aquí.
+
+2. ~/hermes-lab/ sigue siendo el repo de Hermes. No se toca.
+   Solo se referencian o enlazan componentes que pertenecen
+   al laboratorio.
+
+3. Los números (01-, 02-) no son prioridad, son orden lógico.
+   Knowledge va primero porque los otros pilares dependen de él.
+
+4. Cada ficha de modelo es un archivo .md autocontenido con
+   frontmatter YAML para que sea parseable por máquina.
+
+5. inicio/ y fin/ son directorios, no scripts sueltos. Cada
+   check es un script independiente y comprobable.
+
+6. Los informes van a 04-operations/reports/ fechados. No más
+   ~/informes-joko-lab/ suelto.
+
+═══════════════════════════════════════════════════════════
+PRÓXIMOS PASOS (priorizados)
+═══════════════════════════════════════════════════════════
+
+1. Implementar inicio + estado-final.json con diff de arranque
+   (protege contra otro incidente como el de hoy)
+
+2. Crear skill system-recovery con el incidente documentado
+
+3. Crear la estructura de directorios de los 4 pilares
+
+4. Mover lo existente a su sitio (benchmark, recovery, tests...)
+
+5. Diseñar Prompt Compiler como subsistema (no como skill)
+
+6. Fichas individuales por modelo en 01-knowledge/models/
+
+7. Clasificar anti-patrones por gravedad
+
+8. Router de estrategias de inferencia (visión a largo plazo)
+
+═══════════════════════════════════════════════════════════
+NOTAS ADICIONALES
+═══════════════════════════════════════════════════════════
+
+- La Prompt Factory / Prompt Compiler no es una skill aislada.
+  Es un subsistema central de Joko Lab del que todo depende.
+
+- inicio y fin no son scripts de conveniencia. Son el equivalente
+  a las operaciones de apertura y cierre de una transacción.
+
+- El ciclo de mejora continua:
+  Joko Lab → estudia modelos → aprende → mejora Prompt Compiler
+  → Prompt Compiler mejora Hermes → mejores experimentos
+  → el laboratorio aprende más → vuelve a mejorar
+
+- Este diseño está alineado con los principios LPA (JL-011, JL-012)
+  y con la arquitectura de AI Router de Joko Lab.
+
+═══════════════════════════════════════════════════════════
+FIN DEL DOCUMENTO
+═══════════════════════════════════════════════════════════

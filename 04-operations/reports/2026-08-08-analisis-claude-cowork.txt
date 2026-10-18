@@ -1,0 +1,102 @@
+ANALISIS: CLAUDE COWORK (video 1h08m, Adrian Saenz y Ramon Alcaide)
+Fecha: 2026-08-08
+Fuente: https://youtu.be/qH7EUv1v4ng
+Transcripcion: 2026-08-08-transcripcion-claude-cowork.txt (mismo directorio)
+Estado: guardado para revision en unos dias (usuario 08-ago-2026)
+
+QUE ES
+Modo Cowork de Claude (Anthropic): lanzas un prompt y el sistema lo divide en
+tareas, las reparte entre subagentes que trabajan en paralelo, y entrega un
+resultado completo (informe, dashboard, prospeccion, archivos ordenados). No
+es un chat reactivo: ejecuta la tarea de la A a la Z. El creador afirma que
+9 de cada 10 usuarios no lo usan para programar, sino para procesos de
+negocio (informes, checklists, hojas de calculo, contenido, presentaciones).
+
+PIEZAS DEL SISTEMA
+- Conectores gestionados: Gmail, Google Calendar, Drive, Slack, Notion,
+  Canva, n8n, Microsoft 365. Se conectan con clics y OAuth. Ejemplo real del
+  video: lee emails de 24h, clasifica, redacta borradores y agenda reuniones
+  en el calendario de forma autonoma.
+- MCPs: conectores personalizados cuando no hay conector oficial (cuidado:
+  el propio video avisa que no estan verificados por Anthropic).
+- APIs: si no hay conector, se le pasa la documentacion de la API y la usa.
+- Scraping: extrae info de webs sin API (con riesgo de bloqueo).
+- Modo navegador: extension de Chrome donde Claude mueve el raton como humano
+  para saltar bloqueos o entrar detras de cuentas. Es la opcion mas lenta.
+- Artefactos: mini-apps HTML en un solo archivo (trackers, dashboards) que se
+  pueden abrir en navegador, exportar CSV, cambiar modo claro/oscuro. Ejemplo:
+  extracto bancario -> dashboard financiero interactivo.
+- Tareas programadas: cron en la nube de Anthropic. Puedes apagar el PC para
+  tareas que solo tocan APIs cloud (email, noticias). Las que tocan archivos
+  locales necesitan el PC encendido. Ejemplo: briefing financiero diario a las
+  8:00 segun la cartera del usuario.
+- Skills: procesos empaquetados que se repiten (mismo concepto que las skills
+  de Hermes). El video las presenta como "mantener el barco a flote".
+
+COSTE
+Plan $17-20/mes con creditos. Ventana de sesion de 5h y ventana semanal.
+Un ejemplo de ordenar la carpeta de descargas consumio 38% de la sesion.
+Opus consume ~2x que Sonnet. El presentador paga el plan de $200.
+
+COMPARACION CON JOKO LAB / HERMES (no es mejor, es otra filosofia)
+
+Donde Cloud Cowork gana:
+1. Conectores gestionados: OAuth con clics. En el lab seria configurar
+   gws/himalaya a mano. Es su mayor ventaja real de UX.
+2. Tareas programadas en la nube: no necesitas el PC encendido (Hermes cron
+   si lo necesita; el PC del usuario se apaga hasta las 9:00). Para tareas
+   cloud-only es un gap operativo real.
+3. Multi-agente a decenas en paralelo gestionado por el proveedor. Hermes
+   tiene delegate_task pero mas limitado y manual.
+
+Donde gana Joko Lab:
+1. 100% local y privado. Cowork envia emails, archivos y datos a servidores
+   de Anthropic. El lab vende "privacidad por diseño" - es el argumento de
+   venta del TFM. No comparable.
+2. Sin creditos ni limites de sesion. Ollama/LM Studio no se quedan sin
+   presupuesto a mitad de tarea.
+3. Gobernanza real: KEL, RULEs, POLICYs, ledgers, verificacion con datos
+   reales. Cowork es caja negra.
+4. Stack abierto integrado: n8n, Docker, RAG local, Hermes skills + cron.
+
+HONESTIDAD
+El video es promocional de un canal que vende la suscripcion. Las cifras
+("2 webs a 72 euros en un dia", "cambio mi forma de trabajar") son del
+creador, no fuente independiente. No tomar como dato objetivo.
+
+IDEAS COPIABLES (verificadas contra lo que ya existe en el lab)
+
+1. Patron "trabaja sobre una copia, nunca el original" (ordenar descargas sin
+   tocar la original). Ya es RULE-008 del lab: .bak-* siempre, nunca tocar
+   originales. Confirmacion, no novedad.
+
+2. Artefactos HTML interactivos: convertir un extracto/Excel en un dashboard
+   HTML navegable (categorias, meses, export CSV). El lab YA genera HTML ->
+   Chrome headless -> PNG. La idea copiable: entregar el HTML interactivo
+   como producto, no solo la infografia estatica. Directamente replicable
+   con el pipeline actual.
+
+3. Prospeccion de clientes con scraping de Google Maps (locales con muchas
+   resenas pero sin web). Conecta con SkillBridge (proyecto del master) y con
+   el modulo de empleo. El lab tiene browser + maps (OSM) para hacerlo local.
+
+4. Metafora del barco para priorizar: mantener a flote (automatizar lo
+   recurrente) vs avanzar (programar crecimiento). Util para ordenar el
+   backlog. No es tecnica, es marco de priorizacion.
+
+5. Tareas programadas + conectores ("cada manana revisa email y agenda
+   calendario"). Hermes cron + gws/himalaya ya pueden hacerlo; falta
+   configurarlo como skill.
+
+6. Flujo prompt -> plan -> subagentes paralelos -> entregable: es lo que ya
+   hace delegate_task en Hermes. Cowork escala a decenas; si se quiere ese
+   paralelismo, subir delegation.max_concurrent_children en config.
+
+NO COPIAR
+La suscripcion. Para lo que hace Cowork, el lab ya tiene el equivalente
+local excepto ejecucion cloud sin PC encendido y conectores OAuth con clics.
+
+PENDIENTE DE REVISION (en unos dias)
+Revisar si vale la pena: (a) montar el skill de prospeccion Google Maps local
+para SkillBridge, (b) montar el patron artefacto HTML interactivo como skill
+del lab, (c) configurar un cron "briefing" con gws/himalaya.

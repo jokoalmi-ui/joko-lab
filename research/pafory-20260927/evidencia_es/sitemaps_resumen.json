@@ -1,0 +1,106 @@
+{
+ "decants.es": {
+  "home": "https://decants.es/",
+  "robots": [
+   "Sitemap: https://decants.es/sitemap_index.xml"
+  ],
+  "sitemaps": [
+   "https://decants.es/sitemap_index.xml -> 200 4 locs",
+   "  post-sitemap.xml -> 200 5 locs",
+   "  page-sitemap.xml -> 200 13 locs",
+   "  product-sitemap.xml -> 200 124 locs",
+   "  category-sitemap.xml -> 200 1 locs"
+  ],
+  "hits": [],
+  "n_urls": 147,
+  "nota": "ninguna URL con colabora/afiliado/embajador/influencer/creador/programa/cupon"
+ },
+ "oasisparadise.es": {
+  "home": "https://www.oasisparadise.es/",
+  "robots": [
+   "Sitemap: https://www.oasisparadise.es/sitemap.xml"
+  ],
+  "sitemaps": [
+   "https://www.oasisparadise.es/sitemap.xml -> 200 536 locs"
+  ],
+  "hits": [],
+  "n_urls": 536,
+  "nota": "ninguna URL con colabora/afiliado/embajador/influencer/creador/programa/cupon"
+ },
+ "decantsperfumespain.com": {
+  "home": "https://www.decantsperfumespain.com/",
+  "robots": [
+   "Sitemap: https://www.decantsperfumespain.com/sitemap.xml"
+  ],
+  "sitemaps": [
+   "https://www.decantsperfumespain.com/sitemap.xml -> 200 5 locs",
+   "  sitemap_agentic_discovery.xml -> 200 1 locs",
+   "  sitemap_blogs_1.xml -> 200 1 locs"
+  ],
+  "hits": [],
+  "n_urls": 7,
+  "nota": "ninguna URL con colabora/afiliado/embajador/influencer/creador/programa/cupon"
+ },
+ "nadiaperfumeria.com": {
+  "home": "https://www.nadiaperfumeria.com/",
+  "robots": [
+   "Sitemap: https://www.nadiaperfumeria.com/sitemap.xml"
+  ],
+  "sitemaps": [
+   "https://www.nadiaperfumeria.com/sitemap.xml -> 200 3162 locs"
+  ],
+  "hits": [],
+  "n_urls": 3161,
+  "nota": "ninguna URL con colabora/afiliado/embajador/influencer/creador/programa/cupon"
+ },
+ "arabicparfums.es": {
+  "home": "https://www.arabicparfums.es/",
+  "robots": [],
+  "sitemaps": [
+   "https://www.arabicparfums.es/sitemap.xml -> 200 0 locs"
+  ],
+  "hits": [],
+  "n_urls": 0,
+  "nota": "ninguna URL con colabora/afiliado/embajador/influencer/creador/programa/cupon"
+ },
+ "anyaperfumes.es": {
+  "home": "https://anyaperfumes.es/",
+  "robots": null,
+  "sitemaps": [],
+  "hits": [],
+  "n_urls": 0,
+  "nota": "ERROR HTTPError: HTTP Error 404: Not Found"
+ },
+ "ponsaparfums.com": {
+  "home": "https://ponsaparfums.com/",
+  "robots": [
+   "Sitemap: https://ponsaparfums.com/sitemap_index.xml"
+  ],
+  "sitemaps": [
+   "https://ponsaparfums.com/sitemap_index.xml -> 200 6 locs",
+   "  page-sitemap.xml -> 200 15 locs",
+   "  blocks-sitemap.xml -> 200 11 locs",
+   "  product-sitemap.xml -> 200 12 locs",
+   "  featured_item-sitemap.xml -> 200 9 locs"
+  ],
+  "hits": [],
+  "n_urls": 53,
+  "nota": "ninguna URL con colabora/afiliado/embajador/influencer/creador/programa/cupon"
+ },
+ "sillagebarcelona.com": {
+  "home": "https://sillagebarcelona.com/",
+  "robots": [
+   "Sitemap: https://sillagebarcelona.com/wp-sitemap.xml"
+  ],
+  "sitemaps": [
+   "https://sillagebarcelona.com/wp-sitemap.xml -> 200 6 locs",
+   "  wp-sitemap-posts-post-1.xml -> 200 14 locs",
+   "  wp-sitemap-posts-page-1.xml -> 200 13 locs",
+   "  wp-sitemap-posts-product-1.xml -> 200 172 locs",
+   "  wp-sitemap-taxonomies-category-1.xml -> 200 1 locs"
+  ],
+  "hits": [],
+  "n_urls": 206,
+  "nota": "ninguna URL con colabora/afiliado/embajador/influencer/creador/programa/cupon"
+ }
+}

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;800&family=Caveat:wght@600&display=swap');
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    width: 1080px; height: 1350px; overflow: hidden;
+    font-family: 'Inter', sans-serif; color: #1a1a2e;
+    position: relative;
+    background: linear-gradient(160deg, #fdf6e3 0%, #fef9ef 35%, #f3e8d2 100%);
+  }
+
+  /* Blobs decorativos */
+  .blob { position:absolute; border-radius:50%; filter: blur(70px); opacity:.55; }
+  .blob1 { width:480px; height:480px; background:#f6d365; top:-140px; right:-100px; }
+  .blob2 { width:420px; height:420px; background:#a8e6cf; bottom:-120px; left:-140px; }
+  .blob3 { width:300px; height:300px; background:#ffd3b6; top:380px; left:60px; opacity:.4; }
+
+  .sparkle { position:absolute; font-size:22px; opacity:.5; }
+
+  .contenedor {
+    position: relative; z-index: 2;
+    width:100%; height:100%;
+    padding: 48px 54px 40px;
+    display:flex; flex-direction:column;
+  }
+
+  /* Sello */
+  .sello {
+    position:absolute; top:34px; right:44px; width:128px; height:128px;
+    border: 3px solid #c9a227; border-radius:50%;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    transform: rotate(8deg);
+    background: rgba(255,255,255,.5);
+  }
+  .sello .linea1 { font-size:13px; font-weight:800; letter-spacing:1px; color:#c9a227; text-transform:uppercase; }
+  .sello .linea2 { font-size:17px; font-weight:900; color:#c9a227; }
+  .sello .linea3 { font-size:11px; font-weight:600; color:#8a6d1a; }
+  .sello .fecha { font-size:12px; font-weight:800; color:#1a1a2e; margin-top:2px; }
+
+  /* Cabecera */
+  .cabecera { display:flex; align-items:center; gap:36px; margin-bottom:26px; }
+  .titulos h1 {
+    font-family:'Playfair Display', serif; font-size:64px; font-weight:900; line-height:1.02;
+    background: linear-gradient(120deg, #b8860b 10%, #d4a017 40%, #8a6d1a 70%, #c9a227 95%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .titulos .subtitulo {
+    font-size:19px; font-weight:600; color:#5a5a72; margin-top:8px;
+    letter-spacing:.3px;
+  }
+  .titulos .casa {
+    display:inline-block; margin-top:10px; font-size:15px; font-weight:800;
+    background:#1a1a2e; color:#f6d365; padding:7px 18px; border-radius:30px;
+    letter-spacing:1px;
+  }
+
+  /* Foto frasco */
+  .foto {
+    flex-shrink:0; width:300px; height:300px;
+    border-radius:24px; overflow:hidden;
+    border:5px solid #fff; box-shadow: 0 12px 30px rgba(26,26,46,.22);
+    background:#fff; display:flex; align-items:center; justify-content:center;
+  }
+  .foto img { width:100%; height:100%; object-fit:contain; }
+
+  /* Chips clima */
+  .chips { display:flex; gap:14px; margin-bottom:22px; flex-wrap:wrap; }
+  .chip {
+    padding:12px 20px; border-radius:18px; font-size:17px; font-weight:800;
+    box-shadow: 0 4px 12px rgba(26,26,46,.12);
+    display:flex; align-items:center; gap:9px;
+  }
+  .chip.calor { background:#ffdf70; color:#6b4a00; }
+  .chip.verano { background:#a8e6cf; color:#0b4f2e; }
+  .chip.terraza { background:#ffd3b6; color:#7a3b00; }
+
+  /* Tarjetas apiladas */
+  .tarjetas { display:flex; flex-direction:column; gap:14px; flex:1; }
+
+  .tarjeta {
+    background:#fff; border-radius:22px; padding:20px 26px;
+    border-top: 6px solid #d4a017;
+    box-shadow: 0 6px 18px rgba(26,26,46,.08);
+  }
+  .tarjeta h3 { font-size:19px; font-weight:800; color:#1a1a2e; margin-bottom:8px; }
+  .tarjeta p, .tarjeta li { font-size:18px; line-height:1.5; color:#3d3d55; }
+  .tarjeta ul { padding-left:22px; }
+
+  /* Pirámide */
+  .piramide-fila { display:flex; gap:26px; align-items:center; }
+  .svg-piramide { flex-shrink:0; }
+  .leyenda { font-size:16px; color:#5a5a72; line-height:1.55; }
+  .leyenda b { color:#1a1a2e; }
+
+  /* Pie */
+  .pie { margin-top:auto; text-align:center; padding-top:14px; }
+  .pie .manuscrita { font-family:'Caveat', cursive; font-size:30px; color:#8a6d1a; }
+  .pie .sprays { font-size:15px; font-weight:600; color:#5a5a72; margin-top:4px; }
+</style>
+</head>
+<body>
+  <div class="blob blob1"></div>
+  <div class="blob blob2"></div>
+  <div class="blob blob3"></div>
+  <span class="sparkle" style="top:150px; left:70px;">✨</span>
+  <span class="sparkle" style="top:340px; right:60px;">✨</span>
+  <span class="sparkle" style="top:600px; left:30px;">✨</span>
+
+  <div class="sello">
+    <div class="linea1">Elección</div>
+    <div class="linea2">DEL LAB</div>
+    <div class="linea3">perfume del día</div>
+    <div class="fecha">18 AGO</div>
+  </div>
+
+  <div class="contenedor">
+    <div class="cabecera">
+      <div class="foto">
+        <img src="/tmp/perfume_dia/note_colonia_iv.jpg" alt="Note di Colonia IV">
+      </div>
+      <div class="titulos">
+        <h1>Note di<br>Colonia IV</h1>
+        <div class="subtitulo">La chispa cítrica que abre el día con elegancia italiana</div>
+        <span class="casa">ACQUA DI PARMA · 2017</span>
+      </div>
+    </div>
+
+    <div class="chips">
+      <div class="chip calor">☀️ 29 °C · sol</div>
+      <div class="chip verano">🌿 verano</div>
+      <div class="chip terraza">☕ terraza de café</div>
+    </div>
+
+    <div class="tarjetas">
+      <div class="tarjeta">
+        <h3>🧴 Pirámide olfativa</h3>
+        <div class="piramide-fila">
+          <svg class="svg-piramide" width="210" height="230" viewBox="0 0 210 230">
+            <!-- Salida -->
+            <polygon points="105,10 150,70 60,70" fill="#f6d365" stroke="#b8860b" stroke-width="2"/>
+            <text x="105" y="42" text-anchor="middle" font-size="12" font-weight="800" fill="#6b4a00">SALIDA</text>
+            <text x="105" y="58" text-anchor="middle" font-size="11" fill="#6b4a00">mandarina · bergamota</text>
+            <!-- Corazón -->
+            <polygon points="60,78 150,78 175,140 35,140" fill="#ffd3b6" stroke="#b8860b" stroke-width="2"/>
+            <text x="105" y="104" text-anchor="middle" font-size="12" font-weight="800" fill="#7a3b00">CORAZÓN</text>
+            <text x="105" y="120" text-anchor="middle" font-size="11" fill="#7a3b00">azahar · rosa turca</text>
+            <!-- Fondo -->
+            <polygon points="35,148 175,148 200,220 10,220" fill="#c9a227" stroke="#8a6d1a" stroke-width="2"/>
+            <text x="105" y="174" text-anchor="middle" font-size="12" font-weight="800" fill="#fff">FONDO</text>
+            <text x="105" y="190" text-anchor="middle" font-size="11" fill="#fff">opopónaco · ládano · pachulí</text>
+            <!-- Etiquetas laterales -->
+            <text x="8" y="50" text-anchor="middle" font-size="11" fill="#8a6d1a" transform="rotate(-90 14 50)">lo primero que huele</text>
+            <text x="205" y="112" text-anchor="middle" font-size="11" fill="#7a3b00" transform="rotate(90 200 112)">el alma</text>
+            <text x="12" y="190" text-anchor="middle" font-size="11" fill="#fff" transform="rotate(-90 14 190)">lo que queda</text>
+          </svg>
+          <div class="leyenda">
+            <b>Salida:</b> mandarina verde y bergamota — chispa brillante y energética.<br>
+            <b>Corazón:</b> flor de azahar y rosa turca — elegancia profunda.<br>
+            <b>Fondo:</b> opopónaco, ládano y pachulí — calidez envolvente.
+          </div>
+        </div>
+      </div>
+
+      <div class="tarjeta">
+        <h3>✨ Por qué hoy</h3>
+        <ul>
+          <li><b>Café en terraza a 29 °C:</b> fresco cítrico que no pesa con el calor</li>
+          <li><b>Decant disponible</b> · verano · botella clásica italiana</li>
+          <li><b>Sin repetición</b> en los últimos 7 días — descanso de Afternoon Swim</li>
+          <li>Estela moderada: elegante para acompañar la sobremesa</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pie">
+      <div class="manuscrita">Un café, una terraza, una colonia que sabe a verano italiano.</div>
+      <div class="sprays">Aplicación: 3-4 sprays · piel fresca tras la ducha · decant · verano</div>
+    </div>
+  </div>
+</body>
+</html>

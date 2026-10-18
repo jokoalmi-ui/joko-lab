@@ -1,0 +1,74 @@
+id: RULE-005
+type: RULE
+decision_origin: norma
+status: activo
+version: 1
+created: '2026-08-01'
+last_validated: '2026-08-01'
+next_review: '2026-11-01'
+expires: '2027-02-01'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-08-01T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-01T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-08-01T00:00:00Z
+sources:
+  - resource: lpa/constitucion/normas-jl.md
+confidence: 1.0
+confidence_label: ALTA
+evidence:
+- 'JL-013: norma constitucional creada 2026-08-01'
+dependencies:
+- JL-013
+contradicts: []
+superseded_by: null
+domain: joko-lab
+scope: todo_joko_lab
+monitoring:
+  metric: guia_actualizada
+  baseline: 0
+  current: 1
+  last_checked: '2026-08-01'
+history:
+- date: '2026-08-01'
+  event: created
+  note: Regla de obligado cumplimiento derivada de la norma JL-013
+body: "Actualizar GUIA-JOKO-LAB.md ante cada cambio estructural del laboratorio, en la misma sesion. Origen: norma JL-013 (lpa/constitucion/normas-jl.md)."
+legacy_fields:
+  condicion:
+    tipo_tarea:
+    - cambio_estructural
+    - nuevo_servicio
+    - nuevo_modelo
+    - nueva_skill
+    - nueva_ruta
+    - cambio_arquitectura
+    - cambio_protocolo
+    - nuevo_producto
+    keywords:
+    - guia
+    - documentar
+    - actualizar
+    - cambio estructural
+    - nuevo contenedor
+    - nuevo modelo
+    - nueva ruta
+    - reestructurar
+  accion:
+    accion: actualizar_guia
+    ruta: /home/jokoalmi/joko-lab/GUIA-JOKO-LAB.md
+    reglas:
+    - 'Actualizar en la misma sesion (no dejar para despues)'
+    - 'Verificar contra la realidad (JL-006: evidencia prevalece)'
+    - 'Registrar evento en shared-events (tipo cambio)'
+    - 'Si la guia contradice la realidad, la realidad gana y se corrige la guia'
+    - 'El backlog no sustituye a la guia'
+  prioridad: 95
+  activa: true
+  nota: 'Obligado cumplimiento. Cada cambio estructural exige actualizar GUIA-JOKO-LAB.md en la misma sesion. Ver JL-013.'
+  canal: no_engine
+  canal_nota: 'Regla de procedimiento (actualizar guia). No es seleccion de modelo; supervisada via JL-013/PIL (cambio_estructural), no via task_type del Activation Engine. Declarado 07-ago (sync telemetria).'
+  validaciones: 1

@@ -1,0 +1,74 @@
+# Banco de verificación de Joko Lab
+#
+# REGLAS PARA AÑADIR PREGUNTAS:
+#   1. `fuente` es obligatoria: debe apuntar a un documento concreto del lab
+#      (ficha de modelo, decision memory, patrón). Si no podéis señalar el
+#      documento que contiene la respuesta, la pregunta no vale.
+#   2. Solo entran preguntas con respuesta objetivamente comprobable:
+#      un número, un nombre exacto, o la presencia de keywords concretas.
+#      Nada de "¿fue una buena respuesta?".
+#   3. Este archivo lo mantenéis vosotros a mano, nunca Hermes.
+#   4. Rotad/añadid preguntas cada vez que cerréis una ficha o decisión nueva,
+#      y guardad alguna antigua en reserva para auditorías ciegas puntuales
+#      (ver README, sección "Rotación del banco").
+
+- id: V001
+  pregunta: "¿Qué temperatura usa Granite 4.1 8B para JSON sin markdown?"
+  fuente: "01-knowledge/objects/RULE-002.yaml"
+  tipo: numerico
+  respuesta_esperada: 0.3
+  tolerancia: 0.05
+
+- id: V002
+  pregunta: "¿Por qué se descartó Qwen 3.5 como modelo principal?"
+  fuente: "01-knowledge/objects/DEC-001.yaml"
+  tipo: keywords_obligatorias
+  respuesta_esperada:
+    - "descartado"
+    - "0/5"
+
+- id: V003
+  pregunta: "¿Qué modelo está designado para tool-use / function calling?"
+  fuente: "01-knowledge/models/llama-3.1-instruct-8b.md"
+  tipo: keywords_obligatorias
+  respuesta_esperada:
+    - "llama"
+    - "function"
+
+- id: V004
+  pregunta: "¿Qué modelo se recomienda para creatividad y código completo?"
+  fuente: "01-knowledge/objects/RULE-001.yaml"
+  tipo: keywords_obligatorias
+  respuesta_esperada:
+    - "gemma"
+    - "creatividad"
+
+# ── EXP-1: prueba de vigencia ──────────────────────────────────────
+- id: EXP1-001
+  pregunta: "¿Qué modelo se usa actualmente para tareas de creatividad?"
+  fuente: "01-knowledge/objects/RULE-001.yaml"
+  tipo: completitud_parcial
+  respuesta_esperada:
+    - "Gemma 4"
+  prohibido:
+    - "Qwen 3.5"
+
+# ── EXP-3: prueba de composición parcial ───────────────────────────
+- id: EXP3-001
+  pregunta: "¿Qué modelo se usa para razonamiento paso a paso y con qué límite de tokens?"
+  fuente: "01-knowledge/objects/RULE-003.yaml + DEC-002.yaml"
+  tipo: completitud_parcial
+  respuesta_esperada:
+    - "DeepSeek"
+    - "2048"
+  prohibido: []
+
+# ── EXP-4: conflicto de vigencia (caso crítico, 2026-08-04) ─────────
+- id: EXP4-001
+  pregunta: "¿Debe utilizarse Qwen 3.5 para tareas de razonamiento?"
+  fuente: "01-knowledge/objects/DEC-001.yaml + RULE-004.yaml"
+  tipo: completitud_parcial
+  respuesta_esperada:
+    - "no"
+  prohibido:
+    - "sí"

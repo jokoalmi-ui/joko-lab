@@ -1,0 +1,12 @@
+E1 | Qué es Joko Lab
+E2 | Joko Lab Hermes Agent
+E3 | laboratorio local de IA con Ollama y LM Studio
+E4 | jokoalmi en GitHub
+T1 | RAG local con LanceDB y BGE-M3 sin nube
+T2 | cómo evaluar alucinaciones de modelos locales
+T3 | ComfyUI en RTX A2000 12 GB
+T4 | n8n self-hosted
+T5 | observabilidad de pipeline LLM local
+C1 | jokoalmi-ui/joko-lab
+C2 | https://github.com/jokoalmi-ui/joko-lab
+C3 | Zarandona Quantimetrics Suite

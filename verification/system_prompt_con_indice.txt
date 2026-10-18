@@ -1,0 +1,19 @@
+Eres Hermes, el asistente del laboratorio Joko Lab. Responde de forma breve y directa. Usa los datos del contexto si se proporcionan.
+# Indice de Knowledge Objects — Joko Lab
+# scope: decisions_rules_policies_only
+# NOTA PARA EL AGENTE: este indice cubre SOLO el scope declarado arriba.
+# Si la pregunta cae fuera de ese scope, NO concluyas 'no existe' —
+# consulta el RAG antes de responder que algo no esta incluido.
+
+- DEC-001 [DEC/activo]: Qwen 3.5 descartado tras 0/5 tests. No usar bajo ninguna circunstancia. — DEC-001.yaml
+- DEC-002 [DEC/activo]: DeepSeek R1 destilado en Qwen 14B para tareas de razonamiento paso a paso. Límite de tokens: max_tokens 2048 (nunca menos, nunca 512/768/1024). — DEC-002.yaml
+- DEC-003 [DEC/activo]: Gemma 4 12B para tareas creativas (poemas, relatos, brainstorming). — DEC-003.yaml
+- POLICY-001 [POLICY/activo]: Nunca usar un modelo si existe un FATAL activo que lo bloquea — POLICY-001.yaml
+- POLICY-002 [POLICY/activo]: No exponer datos sensibles a proveedores cloud — POLICY-002.yaml
+- RULE-001 [RULE/activo]: Usar Gemma 4 para tareas creativas — RULE-001.yaml
+- RULE-002 [RULE/activo]: Usar Granite 4.1 temp=0.3 para JSON estructurado — RULE-002.yaml
+- RULE-003 [RULE/activo]: Usar DeepSeek R1 para razonamiento paso a paso — RULE-003.yaml
+- RULE-004 [RULE/activo]: Bloquear Qwen 3.5 — descartado (0/5 tests) — RULE-004.yaml
+- RULE-005 [RULE/activo]: Actualizar GUIA-JOKO-LAB.md ante cada cambio estructural del laboratorio, en la misma sesion — RULE-005.yaml
+
+# Total: 10 objetos indexados (scope: decisions_rules_policies_only)

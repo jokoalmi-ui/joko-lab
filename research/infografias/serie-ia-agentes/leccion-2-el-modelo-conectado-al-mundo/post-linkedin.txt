@@ -1,0 +1,21 @@
+Le pregunté por unos gastos que no le había dado. Seis preguntas, seis veces la misma respuesta: «0». Ni una sola vez dijo «no lo sé».
+
+Con esa misma tabla delante, acertó los seis totales. Y las dos respuestas —el cero y el acierto— sonaban exactamente igual de seguras.
+
+Después le declaré una sola función, la de sumar gastos, y en las seis preguntas devolvió la llamada bien formada: `{"herramienta": "sumar_gastos", "argumentos": {"filtro": "concepto", "valor": "luz"}}`. El número lo puso mi código, no su memoria.
+
+En el carrusel de esta semana:
+
+· Las dos formas de conectar un modelo: tus datos (RAG) y tus acciones (herramientas). En una consulta antes de responder; en la otra pide que ejecutes tú.
+· Los dos caminos por dentro: trocear → vectores → buscar por similitud → responder citando la fuente; y declarar funciones → recibir la llamada → ejecutar → devolver el resultado.
+· Cuatro nombres que se mezclan y no son lo mismo: herramientas (la capacidad), tool calling (el mecanismo) y MCP (el estándar).
+· RAG frente a fine-tuning: memoria consultable frente a cambio de comportamiento. No son lo mismo y no se sustituyen.
+· La prueba: 6 preguntas al mismo modelo local en 4 condiciones —sin los datos, con los datos, con la herramienta a temperatura 0 y el control a 0,8—.
+
+La regla que me llevo: la pregunta no es si el modelo sabe o no sabe, sino de dónde sale el número. Si sale de su memoria, no hay nada que auditar. Si sale de tu código, puedes comprobarlo.
+
+¿Tú le das tus datos a la IA, o le pides que ejecute algo?
+
+Esta es la pieza 5 de una serie donde estoy aprendiendo IA y agentes de lo básico a lo avanzado, con pruebas hechas en mi propio ordenador. Lección 2: el modelo conectado al mundo.
+
+#IA #InteligenciaArtificial #LLM #RAG #AgentesIA

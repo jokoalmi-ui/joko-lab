@@ -1,0 +1,82 @@
+id: RULE-021
+type: RULE
+decision_origin: directriz_usuario
+status: activo
+version: 1
+created: '2026-10-12'
+last_validated: '2026-10-12'
+next_review: '2026-11-12'
+expires: '2027-01-12'
+generated:
+  at: 2026-10-12T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-12T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-10-12T00:00:00Z
+  - by: machine:hermes
+    at: 2026-10-12T00:00:00Z
+sources:
+  - resource: tools/llm-router.sh
+  - resource: 04-operations/metrics/batch/2026-10-12/informe-json.json
+  - resource: 04-operations/reports/20261012-informe-local.txt
+  - resource: ~/.hermes/scripts/orquestador-batch.sh
+  - resource: ~/.hermes/scripts/orquestador-recuperar.sh
+  - resource: ~/.config/systemd/user/hermes-gateway.service
+  - resource: ~/.bashrc
+  - resource: lpa/pattern-incubator/CP-012-estado-unknown-se-resuelve-en-el-artefacto.md
+title: "El estado ok con el error descartado es un falso ok: quien invoca un binario o un motor no silencia su error, y el ok se acredita en el artefacto"
+desc: >-
+  Norma de proceso en dos clausulas. (1) Ningun script del lab que invoque un
+  binario, un motor de inferencia o una herramienta externa descarta su salida
+  de error (patron `>/dev/null 2>&1` sin captura): el error real se captura y se
+  escribe en el motivo del artefacto, aunque el resultado final del paso sea
+  correcto. Un motivo que es una SUPOSICION (p. ej. «VRAM ocupada?») en lugar del
+  error literal produce un diagnostico falso y encadena la decision equivocada
+  (aqui: escalar a cloud creyendo que la GPU estaba llena, cuando estaba vacia).
+  (2) El estado ok del motor NO acredita el producto: el `ok` solo dice que el
+  wrapper termino, no que su salida sea buena; el producto se comprueba en el
+  artefacto (patron CP-012, ampliado aqui al caso que CP-012 declara fuera de su
+  alcance: el ejecutor que SI se declara ok porque el error se perdio una capa
+  mas abajo, dentro del script). Clausula de entorno, misma familia y mismo
+  incidente: un proceso lanzado por el planificador (cron de Hermes, servicio
+  systemd) NO hereda el entorno del shell interactivo — `~/.bashrc` no se lee —,
+  asi que un binario que solo entra en el PATH desde `~/.bashrc` simplemente NO
+  EXISTE para ese job; su fallo (command not found) es indistinguible, para quien
+  no mira la salida, de la causa que el script supone. El script que depende de
+  un binario se asegura el PATH o declara la dependencia. Caso medido
+  2026-10-12 (dos sintomas, una clase): el orquestador batch escalo a cloud con
+  motivo «no se pudo cargar openai/gpt-oss-20b (comprobar VRAM/libre)» mientras
+  `nvidia-smi` daba 1836 MiB usados de 12282 y ningun modelo cargado; y el
+  informe diario local lleva degradado en silencio con el job en ok (gate de
+  veracidad OMITIDO, juez de calidad omitido, resumen no disponible «motor
+  ocupado»). Alcance: todo_joko_lab (cualquier script, job, tool o pipeline del
+  lab); no sustituye a RULE-014 (cada tarea se ejecuta desde su skill) ni a
+  CP-012 (que sigue gobernando el `unknown` del motor).
+confidence: 0.8
+confidence_label: ALTA
+evidence:
+- 'Directriz explicita del usuario (12-oct-2026, sesion de la noche; hora del sistema medida con `date` por el usuario por RULE-012): «anota como rule», tras proponerle la regla «estado ok + error silenciado = fallo invisible durante dias» a partir del caso de esa sesion'
+- 'Causa del motivo falso, localizada en codigo: tools/llm-router.sh:72 `if timeout 180 lms load "$model" >/dev/null 2>&1; then` descarta stdout y stderr; :80 imprime `Carga directa fallo (VRAM ocupada?) — intentando swap...` (suposicion, no error) y :107 `ERROR: no se pudo cargar $model (comprobar VRAM/libre)`'
+- 'La suposicion impresa queda falsada por la medida: GPU a las 23:21:06 = `1836 MiB, 12282 MiB, 1 %, 43` con cero modelos cargados y `ollama` arriba sin modelo residente -> la VRAM no estaba ocupada; el motivo del artefacto no describe lo que paso'
+- 'Producto degradado con el job padre en ok (informe del 2026-10-12): `# Gate de veracidad: [SIN RESUMEN — GATE OMITIDO] (GATE_OMITIDO)`, `# Juez de calidad: CALIDAD: omitido`, resumen no disponible por «motor ocupado», `FAILED (errors=9, skipped=56)`'
+- 'Frontera de entorno: ~/.bashrc:120 `export PATH="$PATH:/home/jokoalmi/.lmstudio/bin"` frente a ~/.config/systemd/user/hermes-gateway.service:11, que fija un PATH explicito (node/bin, .local/bin, .cargo/bin, /usr/*) SIN ~/.lmstudio/bin -> todo job del planificador nace sin `lms`. El binario existe en /home/jokoalmi/.lmstudio/bin/lms. REPRODUCCION EN VIVO PENDIENTE (comando propuesto en la sesion, no ejecutado): pendiente declarado en history'
+- 'Segundo silencio, en el sentido contrario: consolidador-sesiones (job 9474f6f3d224) con artefacto mas reciente 2026-09-30_22-31-54.md; 12 dias sin producto y sin informe nuevo, muere a los 26,7 s antes de que el wrapper escriba nada (CP-012: estado unknown resuelto en el artefacto = no existe)'
+- 'CP-012 declara el borde contrario y esta RULE lo cubre sin contradecirla: el motor no se declara ok cuando no lo sabe, y su literal de honestidad es «Scheduler restarted...whether side effects ran is unknown»; el caso de esta RULE es el ejecutor que se declara ok porque el error se perdio dentro del propio script, no en el motor'
+dependencies:
+- RULE-015
+contradicts: []
+superseded_by: null
+domain: proceso
+scope: todo_joko_lab
+monitoring:
+  metric: lineas_degradadas_del_informe_diario_local
+  baseline: 3
+  current: 3
+  last_checked: '2026-10-12'
+  log_file: '04-operations/reports/20261012-informe-local.txt'
+  indicador: 'lineas de degradacion del informe (GATE_OMITIDO / «CALIDAD: omitido» / «motor ocupado» / «[SIN RESUMEN»); baseline 3 el 12-oct-2026. Si el informe las trae MIENTRAS el job consta ok, hay fallo silenciado: ir al motivo real del router (hoy descartado en llm-router.sh:72) antes de tocar el orquestador. Baja a 0 cuando el motor local cargue en contexto de planificador y el artefacto escriba el error literal en lugar de una suposicion.'
+history:
+- date: '2026-10-12'
+  event: created
+  note: 'Elevada a norma a peticion del usuario («anota como rule») al cerrar el diagnostico de la fase 2 del orquestador local/cloud. PENDIENTE DECLARADO, no ocultado: la clausula de entorno (lms fuera del PATH del planificador) esta verificada por lectura de ficheros encadenada, no por reproduccion en vivo; la reproduccion propuesta es `PATH="/home/jokoalmi/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin" bash -c "command -v lms || echo lms NO esta en el PATH del planificador"`. La clausula 1 (no descartar el error real) SI esta verificada literalmente en codigo y en el artefacto, y es la que sostiene la confidence 0.8 (escala medida en los KO vivos: 0.8-1.0 ALTA, 0.6-0.7 MEDIA). Revision 12-nov-2026: comprobar si el informe bajo a 0 lineas degradadas y si el motivo del orquestador ya es el error literal; si no, la RULE no se ha aplicado y toca corregir el router (tools/llm-router.sh) con OK del usuario.'

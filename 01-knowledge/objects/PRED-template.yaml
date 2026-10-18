@@ -1,0 +1,45 @@
+# ══════════════════════════════════════════════════════════════════
+# PLANTILLA — Knowledge Object tipo PRED (Prediction Log) — v2
+# ══════════════════════════════════════════════════════════════════
+# Cambios respecto a v1 (revisión de Hermes, 2026-08-04):
+#   - status se mantiene por consistencia con DEC/RULE/POLICY, pero
+#     el script lo valida contra resultado+fecha_revision y avisa si
+#     discrepan. No es fuente de verdad, es un espejo comprobado.
+#   - Nuevo campo resuelto_por: obligatorio cuando resultado != pendiente.
+#     El script FALLA si resuelto_por == quien_predice — nadie se
+#     autoevalúa, sin excepción.
+#
+# REGLA DE ORO (sin cambios): `criterio_exito` tiene que ser
+# verificable de forma determinista por alguien que NO sea quien hizo
+# la predicción. Si no podés imaginar un script o medición concreta
+# que lo compruebe, reformulalo hasta que sea numérico o binario.
+#
+# AÑADIDO 2026-10-13: resultado: sin_veredicto cierra una PRED cuyo
+# criterio resultó NO medible o cuyo experimento nunca se ejecutó.
+# Declarar el fallo de instrumentación es dato. Queda FUERA de la tasa
+# de acierto (no se maquilla ni como acierto ni como fallo).
+
+type: PRED
+id: PRED-0XX
+status: pendiente                 # pendiente | vencida_sin_revisar | resuelta
+                                   # (el script lo valida, no confíes en él a ciegas)
+version: 1
+created: 2026-08-04
+
+quien_predice: joseba              # joseba | hermes | conjunta
+relacionado_con: null              # id de DEC/RULE si aplica, o null
+
+prediccion: >
+  [Texto de la predicción.]
+
+criterio_exito: >
+  [Verificable por un tercero, sin juicio subjetivo de quien predijo.]
+
+fecha_revision: 2026-08-17
+
+# ── Se rellenan SOLO en la fecha de revisión ───────────────────────
+resultado: pendiente               # pendiente | acierto | fallo | parcial | sin_veredicto
+resuelto_por: null                 # joseba | hermes — DEBE ser distinto de quien_predice
+                                    # obligatorio si resultado != pendiente
+evidencia: null
+notas_posteriores: null

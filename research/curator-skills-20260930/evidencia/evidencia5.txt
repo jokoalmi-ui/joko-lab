@@ -1,0 +1,96 @@
+
+===== YA EN LAB: analisis-wikiskill-2026-09-17.md =====
+1|---
+2|title: "Análisis — WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution (arXiv 2608.27454v1)"
+3|type: research
+4|fecha: 2026-09-17
+5|---
+6|
+7|# Análisis — «WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution»
+8|
+9|**VERACIDAD:** [VERIFICADO]
+10|
+11|**Fuente:** arXiv `2608.27454v1` [cs.AI], 27-ago-2026, licencia **CC BY 4.0** — https://arxiv.org/html/2608.27454v1 (HTML consultado por texto hoy 17-sep-2026). Autores: **Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan** (Google Research) y **Tu Vu** (Google Research / Virginia Tech); contactos declarados `lytang@google.com`, `ttvu@google.com`. Origen del hallazgo: carrusel de Instagram `Dcy01bglqFs` de `chris.enprod` (2-sep-2026), que **difunde** el paper sin aportar técnica propia (triaje de hoy 09:12 en `04-operations/backlogs/pendientes.md`).
+12|
+13|**Nota de ruta:** la instrucción pedía `01-knowledge/research/analisis-wikiskill-2026-09-17.md`; ese directorio **no existe** (`ls` literal: `ls: no se puede acceder a '01-knowledge/research': No existe el archivo o directorio`). Se escribe en el directorio canónico `research/` de `joko-lab`, que es donde viven los análisis y el que escanea `tools/verificar_research.py`. El nombre de fichero pedido se conserva literalmente.
+14|
+15|**Método y material:** volcado de texto del HTML de arXiv hecho hoy 09:05 (`document.body.innerText` con navegador real) → `/tmp/paper_wikiskill.txt`, **87.808 B** (no 85.769 chars como estimaba la nota previa), md5 `6fd6620605d1b08d36d4262ad64100a1`, 2.242 líneas, leído íntegro por tramos y filtrado con `grep -n`. Verificación cruzada contra la **fuente viva** hoy 12:2x: `curl` a la misma URL → `http_code=200 size=821003` (HTML) y 4 coincidencias de «Karpathy» (ver sección de correcciones). Todo sin GPU, sin descargar modelos, sin tocar servicios.
+16|
+17|## Qué es
+18|
+19|Framework de **auto-evolución de skills de agente** cuyo añadido frente a Trace2Skill, EvoSkill y SkillOpt es una **base de conocimiento persistente (el «wiki») que se compila entre iteraciones y no se resetea**. Lo que el agente aprende deja de estar disperso por los artefactos de cada iteración (histórico de propuestas, logs) y pasa a ser una capa propia. Frase de la introducción, literal: *«Inspired by Karpathy (2026)'s perspective on LLM Wiki, which advocates compiling experience into persistent, compounding knowledge»*.
+20|
+21|No entrena pesos: las skills evolucionadas **se inyectan en el prompt** del agente de inferencia (Table 1: *«evolved skills are injected into the Inference Agent's prompt at inference time»*); la premisa del paper es que una skill captura conocimiento procedimental *«without updating model parameters»*.
+22|
+23|## Arquitectura: tres capas (nombres de fichero reales)
+24|
+25|- **`raw/`** — trazas de ejecución inmutables de cada iteración (razonamiento, llamadas a herramienta, salidas, respuesta final). *«To preserve the raw history, this layer is immutable.»* Las trazas viven aquí, pero el entorno resuelve el alias `traces/<task_id>` para los agentes que las leen.
+26|- **`wiki/`** — conocimiento estructurado y acumulativo, mantenido durante toda la evolución: `patterns/` (un `.md` por patrón: modos de fallo y estrategias con workarounds), `index.md` (catálogo de una línea por patrón), `logs.md` (evolution log, lo actualiza el Wiki Maintainer) y **`skill-impact.md`** (lo escribe **programáticamente el harness** tras el gating: metadata de la propuesta, skill objetivo, **diff unificado**, puntuación de validación y veredicto aceptado/rechazado). *«The wiki is not reset between iterations, but rather accumulates and compiles knowledge continuously throughout the evolution process.»* Detalle verificado: el nombre del evolution log aparece como `logs.md` en §3.1 y como `wiki/log.md` en el prompt del Wiki Maintainer; el volcado conserva ambas formas.
+27|- **`skills/`** — skills activas: `SKILL.md` (contenido completo, frontmatter YAML, *When to Apply / When NOT to Apply*) y **`PURPOSE.md`** (*«maps the skill back to the motivating Wiki patterns that inspired its creation or modification»*: Origin + Patterns Addressed + Evolution History).
+28|
+29|## El bucle (4 componentes, §3.2)
+30|
+31|1. **Inference Agent** ejecuta las tareas con las skills activas → trazas en `raw/`. **Sin acceso al wiki durante los rollouts de entrenamiento** (ver hallazgo).
+32|2. **Wiki Maintainer** analiza trazas + wiki, diagnostica fallos,
+[total=100]
+
+
+===== piezas de evaluacion/juez en tools =====
+evaluar_alucinaciones.py
+evaluar_json_tool_calling.py
+evaluar_json_tool_calling_v2.py
+evaluar_rag.py
+evaluar_rag_adversarial.py
+evaluator_optimizer.py
+evaluator_rubric.yaml
+llm_as_judge.py
+rag_telemetry.py
+revalidar_kos.py
+---
+7:- recall@k: ¿aparece el documento esperado en los top-k?
+8:- precision@k: ¿los top-k son relevantes?
+53:def _normalizar(s: str) -> str:
+64:def evaluar(k: int, detalle: bool):
+78:    total_recall = 0
+97:        total_recall += 1 if encontrado else 0
+106:    recall = total_recall / n
+109:    print(f"  recall@{k}: {total_recall}/{n} = {recall*100:.0f}%")
+111:    return recall
+114:def main():
+
+
+===== ledger de retrabajo / por que fallo una edicion =====
+-rw-rw-r--  1 jokoalmi jokoalmi   153365 Sep 14 13:49 alucinaciones_ledger.jsonl
+-rw-rw-r--  1 jokoalmi jokoalmi    19158 Sep 29 20:16 aplicabilidad_ledger.jsonl
+-rw-rw-r--  1 jokoalmi jokoalmi    12072 Sep 22 17:50 aplicabilidad_ledger.jsonl.bak-20260928-sambit-skills
+-rw-rw-r--  1 jokoalmi jokoalmi    16172 Sep 29 20:01 aplicabilidad_ledger.jsonl.bak-20260929-ig-chanti-4repos
+-rw-rw-r--  1 jokoalmi jokoalmi    19105 Sep 29 20:14 aplicabilidad_ledger.jsonl.bak-20260929-ig-chanti-4repos-fix-mcp
+-rw-rw-r--  1 jokoalmi jokoalmi    14245 Sep 28 18:42 aplicabilidad_ledger.jsonl.bak-20260929-yt-ailabs
+-rw-------  1 jokoalmi jokoalmi      554 Aug 20 13:26 episodic_ledger.jsonl
+-rw-rw-r--  1 jokoalmi jokoalmi    10221 Sep 25 14:37 lecciones_ledger.jsonl
+-rw-rw-r--  1 jokoalmi jokoalmi     9453 Sep 25 14:37 lecciones_ledger.jsonl.bak-20260814
+-rw-rw-r--  1 jokoalmi jokoalmi     7987 Sep 25 14:34 lecciones_ledger.jsonl.bak-20260925
+-rw-rw-r--  1 jokoalmi jokoalmi     1429 Sep  6 18:52 local_cloud_ledger.jsonl
+-rw-------  1 jokoalmi jokoalmi     7628 Aug  6 13:53 mel_ledger.jsonl
+-rw-------  1 jokoalmi jokoalmi    67768 Sep 15 18:26 operations_ledger.jsonl
+-rw-rw-r--  1 jokoalmi jokoalmi     7316 Sep  6 18:51 pipeline_seleccion_ledger.jsonl
+-rw-rw-r--  1 jokoalmi jokoalmi      566 Sep 25 13:29 retrabajo_ledger.jsonl
+-rw-rw-r--  1 jokoalmi jokoalmi        0 Sep 25 13:29 retrabajo_ledger.jsonl.bak-20260925-asiento-v0
+---
+/home/jokoalmi/joko-lab/lpa/pattern-incubator/CP-009-instrumento-sin-forzado-se-degrada.md
+/home/jokoalmi/joko-lab/lpa/incidentes/revision-fallos-2026-09-14.md
+/home/jokoalmi/joko-lab/lpa/incidentes/revision-fallos-2026-09-25.md
+/home/jokoalmi/joko-lab/lpa/incidentes/revision-fallos-2026-09-18.md
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md
+/home/jokoalmi/joko-lab/research/.bak-20260925-fe-erratas.md
+/home/jokoalmi/joko-lab/research/analisis-rsi-lab-2026-09-25.md
+
+
+===== ficha del dia / dias sin ficha =====
+2026-09-30 15:26 CEST
+---
+plantilla-cuaderno-block.png
+render_formato_cuaderno_dbms.sh
+serie-ia-agentes
+tarjeta-cumpleanos-maite-20260908

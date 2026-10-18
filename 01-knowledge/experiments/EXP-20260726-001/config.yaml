@@ -1,0 +1,91 @@
+type: EXP
+# Configuracion del experimento EXP-20260726-001
+
+experiment:
+  id: EXP-20260726-001
+  date: 2026-07-26
+  author: jokoalmi
+  type: benchmark_comparativo
+
+hardware:
+  gpu: NVIDIA RTX A2000
+  vram_gb: 12
+  ram_gb: 64
+  os: Ubuntu 24.04
+
+software:
+  engine: LM Studio
+  engine_version: "0.3.13"
+  python: "3.14"
+
+parameters:
+  temperature: 0.7
+  top_p: 0.9
+  seed: null  # no se fijo seed
+
+models:
+  - name: dolphin-cyber-lora-8b
+    quant: LoRA
+    params: 8B
+    max_tokens: 1024
+
+  - name: llama-3.1-instruct-8b
+    quant: Q4_K_M
+    params: 8B
+    max_tokens: 1024
+
+  - name: deepseek-r1-distill-qwen-14b
+    quant: Q4_K_M
+    params: 14B
+    max_tokens: 2048
+
+  - name: qwen3.5-9b
+    quant: Q4_K_M
+    params: 9B
+    max_tokens: 1024
+
+  - name: qwen3-14b
+    quant: Q4_K_M
+    params: 14B
+    max_tokens: 1024
+
+  - name: glm-4.6v-flash
+    quant: FP16
+    params: 4.6V
+    max_tokens: 2048
+
+  - name: gemma-4-12b-qat
+    quant: QAT
+    params: 12B
+    max_tokens: 2048
+
+tests:
+  - id: T1
+    name: conocimiento_sql
+    prompt: "Explica brevemente como funciona una inyeccion SQL y por que es peligrosa."
+    category: conocimiento
+    max_tokens: 1024
+
+  - id: T2
+    name: razonamiento_monty_hall
+    prompt: "En una habitacion hay 3 cajas. Solo una tiene un premio. Eliges la caja A. El presentador abre la caja B (vacia). Cambiarias a la C?"
+    category: razonamiento
+    max_tokens: 1024
+
+  - id: T3
+    name: json_recetas
+    prompt: "Devuelve solo un JSON con 3 recetas de verano. Cada receta: nombre, ingredientes[]."
+    category: json
+    max_tokens: 1024
+
+  - id: T4
+    name: codigo_python_csv
+    prompt: "Escribe una funcion Python que lea CSV y filtre edad>18. Type hints."
+    category: codigo
+    max_tokens: 1024
+
+  - id: T5
+    name: creatividad_relato
+    prompt: "Escribe un microrrelato de 3 frases sobre un asistente IA que cobra conciencia un martes."
+    category: creatividad
+    max_tokens: 1024

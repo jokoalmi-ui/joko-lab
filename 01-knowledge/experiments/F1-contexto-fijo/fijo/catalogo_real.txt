@@ -1,0 +1,37 @@
+Deferred tool catalog (call schemas via `tool_describe`, invoke via `tool_call`):
+animation-server tools (6):
+- mcp__animation_server__clean_manim_media: Limpia el directorio media del servidor.
+- mcp__animation_server__get_prompt: Get a prompt by name from MCP server 'animation-server'
+- mcp__animation_server__list_prompts: List available prompts from MCP server 'animation-server'
+- mcp__animation_server__list_resources: List available resources from MCP server 'animation-server'
+- mcp__animation_server__manin_executable_code: Genera VÍDEOS ANIMADOS estilo 3Blue1Brown usando Manim…
+- mcp__animation_server__read_resource: Read a resource by URI from MCP server 'animation-server'
+cronjob tools (1):
+- cronjob_manage: Manage scheduled cron jobs: action='create' schedules a job…
+lab-db tools (13):
+- mcp__lab_db__buscar_cafe: Busca cafés por nombre, tostador u origen (texto parcial).
+- mcp__lab_db__buscar_marca_futurible: Busca marcas futuribles por nombre o país (texto parcial…
+- mcp__lab_db__buscar_perfume: Busca perfumes por nombre o casa (texto parcial, LIKE).
+- mcp__lab_db__get_prompt: Get a prompt by name from MCP server 'lab-db'
+- mcp__lab_db__list_prompts: List available prompts from MCP server 'lab-db'
+- mcp__lab_db__list_resources: List available resources from MCP server 'lab-db'
+- mcp__lab_db__listar_cafes: Lista los cafés de especialidad (café-ia, BD cafes.db).
+- mcp__lab_db__listar_decants: Lista los decants de la colección (tabla separada, sin…
+- mcp__lab_db__listar_diferencias_precio: Lista diferencias de precio origen vs España (vista…
+- mcp__lab_db__listar_marcas_futuribles: Lista marcas de perfume futuribles (perfume-ia, BD…
+- mcp__lab_db__listar_perfumes: Lista los perfumes de la colección (perfume-ia, BD…
+- mcp__lab_db__listar_precios_marca: Lista precios registrados de una marca futurible (pais…
+- mcp__lab_db__read_resource: Read a resource by URI from MCP server 'lab-db'
+lancedb tools (6):
+- mcp__lancedb__buscar_rag: Busca en el RAG del lab (LanceDB joko_notes, ~21K…
+- mcp__lancedb__get_prompt: Get a prompt by name from MCP server 'lancedb'
+- mcp__lancedb__info_rag: Información del índice RAG del lab: tabla, filas, columnas.
+- mcp__lancedb__list_prompts: List available prompts from MCP server 'lancedb'
+- mcp__lancedb__list_resources: List available resources from MCP server 'lancedb'
+- mcp__lancedb__read_resource: Read a resource by URI from MCP server 'lancedb'
+session_search tools (1):
+- session_search: Recall past conversations: search or read old Hermes…
+terminal tools (1):
+- process_manage: Poll, wait on, or kill background terminal processes (from…
+todo tools (1):
+- todo_list: Track a task list for multi-step work (3+ steps).

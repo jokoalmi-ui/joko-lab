@@ -1,0 +1,42 @@
+{
+ "dailydoseofds_/Dd5sce1DF4W": {
+  "anchor": -1,
+  "carousel_count": null,
+  "media_type": null,
+  "owner": null,
+  "taken_at": null,
+  "n_caps": 0,
+  "caps": [],
+  "caption": "Daily Dose of Data Science en Instagram: \"Google dropped a banger paper 🧠\n\nIf you write or curate skills for your agents, this one is for you.\n\nAgent skills are folders holding the instructions an agent follows for a task. People increasingly let agents write those instructions themselves.\n\nThe loop is simple: run the agent on some tasks, read the runs that failed, rewrite the instructions, and keep the rewrite only if the score goes up on a held-out validation set.\n\nHere is where it breaks.\n\nWorking out why the agent failed means reading full traces and comparing failed runs against successful ones. But that diagnosis never gets written down. The only thing saved is the new instruction text it produced.\n\nSo when that instruction reverts, the finding behind it goes too. The next round reads the same failures, reaches the same conclusion, and often proposes the fix that already lost, with no memory that it was ever tried.\n\nWikiSkill fixes this by splitting the one folder into three:\n\n1️⃣ Raw traces, written once and never touched\n\n2️⃣ A wiki of accumulated knowledge holding what keeps breaking, what has worked, and every edit tried so far with the reason it passed or failed. Nothing here is ever deleted.\n\n3️⃣ The skills themselves, reverted whenever an edit makes things worse\n\nThe instructions can roll back, but the understanding behind them never does.\n\nAn early skill gets rejected for being too vague. Instead of vanishing, that rejection is logged. The next round sees the vague version failed and writes a concrete rule instead. Same failure, same analysis, but the second attempt starts from knowing what already did not work.\n\nTurning the knowledge layer off drops the average score by about a quarter.\n\nTwo other results worth noting: smaller models with evolved skills beat much larger models running without any, and skills evolved by one model transfer across families.\n\nPaper in the comments!\n\n👉 Over to you: Are you currently logging why skill edits failed, or just whether they did?\n\n#agents #skills #google\""
+ },
+ "datasciencebrain/Dd5X-6WGH1n": {
+  "anchor": -1,
+  "carousel_count": null,
+  "media_type": null,
+  "owner": null,
+  "taken_at": null,
+  "n_caps": 0,
+  "caps": [],
+  "caption": "Deepak Jose | Data Science & Gen AI en Instagram: \"Anyone can build a RAG demo.\n\nThe job is explaining why it gave a wrong answer on Tuesday.\n\nThat's RAG observability, and most tutorials skip it.\n\nIn this build you learn:\n→ tracing: every step timed, saved as JSON\n→ LLM-as-judge: a second model grades what retrieval served\n→ context precision and recall, from your own data\n→ how to check the judge itself (mine matched my labels on 38-40 of 40, and I show where it wobbles)\n\n8 small Python files. Free Groq key. About 40 minutes.\n\nA PDF Version of the complete Guide is shared with our Exclusive Instagram Subscribers 👑. Get access to it with 1000+ other FREE Resources for just Rs.45 per month❗️. Click subscribe button in profile to access it now!\n\nFollow @datasciencebrain for daily AI notes 📝,tips ⚙️ and interview Q&A 🎯\n\n.\n.\n.\n.\n.\n.\n[artificialintelligence, deeplearning, bigdata, agenticai, aiagents, datascientist, neuralnetworks, llms, ai]\n\n#genai #aiengineer #datascience #pythonforai #aicareers\""
+ },
+ "codewithbrij/Dd5a_mmuZwY": {
+  "anchor": -1,
+  "carousel_count": null,
+  "media_type": null,
+  "owner": null,
+  "taken_at": null,
+  "n_caps": 0,
+  "caps": [],
+  "caption": "Brij Kishore Pandey en Instagram: \"One diagram to understand how an AI agent works.\n\nFollow one request through the animation: \"Summarize Q3 churn, email the team.\"\n\nThe agent goes around the plan, act, observe loop three times:\nLap 1 queries SQL for the churn numbers\nLap 2 runs Python to build the chart\nLap 3 sends the email after a person approves it\n\nWhat the dot colors mean:\nOrange is the task and every command\nBlue is results coming back from a tool\nPink is short term memory\nYellow is long term memory\nLime is trace events\n\nThe parts:\nInstructions set the goal and the limits\nThe LLM picks the next step\nMemory carries context between steps\nGuardrails check every tool call before it runs\nTools act on real systems\nTraces record each step so the run can be reviewed\n\nThe email waits for a person because it reaches other people and cannot be unsent. Reading data and drafting a chart run on their own.\n\nWhich part of this loop do you think takes the most work to get right in production?\n\n#AIAgents #AgenticAI #LLM\""
+ },
+ "hackproduct/Dd3stOat159": {
+  "anchor": -1,
+  "carousel_count": null,
+  "media_type": null,
+  "owner": null,
+  "taken_at": null,
+  "n_caps": 0,
+  "caps": [],
+  "caption": "HackProduct en Instagram: \"Your RAG system probably isn’t failing at retrieval. It’s failing at chunking. ✂️\n\nMost RAG debugging starts with swapping the embedding model. The better question is what your chunks look like. If the answer got split across two chunks, no model and no vector database can put it back together.\n\nHere are 6 chunking strategies for RAG in one loop 👇\n\n1️⃣ Fixed-size: cut every N tokens, with 10–20% overlap so ideas at the edges aren’t cut in half.\n→ Good for: a fast baseline, uniform text\n\n2️⃣ Semantic: embed each sentence and cut where the meaning shifts.\n→ Good for: long documents that cover several topics\n\n3️⃣ Recursive: split by paragraph, then by sentence, until every piece fits the limit.\n→ Good for: most production pipelines (LangChain’s default splitter works this way)\n\n4️⃣ Hierarchical: document → section → chunk, and each chunk keeps its parent headings.\n→ Good for: manuals, policies, docs with a clear structure\n\n5️⃣ Modality-specific: text, images and tables each get their own chunker.\n→ Good for: PDFs full of tables and charts\n\n6️⃣ Agentic: an LLM reads the document and decides where to split.\n→ Good for: messy, high-value content, if you can afford an LLM call per document\n\n👀 What people miss: a chunk that’s too small loses context, and one that’s too big buries the answer in noise. Tables are where most pipelines break. A table split across two chunks means both halves are useless.\n\nChunk for how people will search, not for how the file is formatted.\n\n📸 Screenshot this before your next RAG design review.\n\nFollow @hackproduct for AI engineering concepts you can actually picture. ⚡\n\n.\n.\n#RAG #chunking #AIengineering #LLM #GenAI vectordatabase semanticsearch embeddings retrievalaugmentedgeneration LangChain contextengineering machinelearning softwareengineering AIagents hackproduct\""
+ }
+}

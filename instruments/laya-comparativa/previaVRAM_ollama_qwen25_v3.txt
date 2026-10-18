@@ -1,0 +1,38 @@
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : 765503df4e84a0a7
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : ollama
+
+METRICAS GLOBALES
+  n=299  accuracy=0.8094  Brier=0.1612  ECE(5 bins)=0.161
+  confianza media=0.5323  sesgo=-0.2771  confiado_y_fallado=32  seguro_y_acertado=120
+  latencia P50=250.8 ms  P95=440.5 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.8773 Brier=0.0789 ECE=0.0896 sesgo=-0.3706
+  B: n=8 accuracy=0.25 Brier=0.5525 ECE=0.65 sesgo=0.4
+  D: n=6 accuracy=1.0 Brier=0.0004 ECE=0.0083 sesgo=-0.0083
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  soporte_parcial  n= 15 accuracy=0.0667 Brier=0.4467 ECE=0.6133
+  trampa           n=  8 accuracy=0.2500 Brier=0.5525 ECE=0.6500
+  multihop         n= 22 accuracy=0.5909 Brier=0.4318 ECE=0.4545
+  cuantificador    n= 20 accuracy=0.6000 Brier=0.3680 ECE=0.4000
+  comparacion      n= 22 accuracy=0.7273 Brier=0.2727 ECE=0.2727
+  distractor       n= 25 accuracy=0.8000 Brier=0.2100 ECE=0.2200
+  negacion         n= 15 accuracy=0.8000 Brier=0.2000 ECE=0.2000
+  aguja            n=  8 accuracy=0.8750 Brier=0.1250 ECE=0.1250
+  no_aparece       n= 25 accuracy=0.9200 Brier=0.0722 ECE=0.0760
+  valor_vecino     n= 30 accuracy=0.9333 Brier=0.0634 ECE=0.0650
+  literal          n= 30 accuracy=0.9667 Brier=0.0334 ECE=0.0350
+  campo_ausente    n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  grounding        n= 13 accuracy=1.0000 Brier=0.0192 ECE=0.0385
+  memoria          n=  6 accuracy=1.0000 Brier=0.0004 ECE=0.0083
+  parafrasis       n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_ollama_qwen257b_v3.json

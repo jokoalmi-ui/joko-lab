@@ -1,0 +1,2133 @@
+0:00 Hola y bienvenido a este curso completo
+0:01 de Cloud Cowork, también conocido como
+0:04 modo colaborar. Cloud Cowork es la
+0:06 funcionalidad de cloud que nos permite
+0:08 tener a varios agentes trabajando en
+0:10 simultáneo. Un agente, para explicarlo
+0:12 de forma sencilla, es como un trabajador
+0:14 que va a hacer todo lo que nosotros le
+0:16 pidamos. Básicamente le vamos a decir,
+0:17 "Quiero que hagas esto." Y es
+0:19 exactamente lo que va a hacer. Y aquí lo
+0:20 interesante es que podemos tener a
+0:22 varios agentes trabajando a la vez. Voy
+0:24 a poner algunos ejemplos para que te
+0:26 puedas hacer una idea del potencial de
+0:28 esta herramienta. Le puedes pedir a los
+0:30 agentes que te envíen un mensaje todos
+0:31 los días con las noticias del día
+0:33 anterior o que te den las noticias de un
+0:35 tema específico que a ti te interese.
+0:37 También le puedes pedir a los agentes
+0:38 que contesten tu email por ti. O bien,
+0:41 si no quieres que contesten todos tus
+0:42 emails, le puedes decir que únicamente
+0:44 contesten un determinado tipo de email
+0:46 que recibes en tu bandeja de entrada.
+0:48 También les puedes pedir que investiguen
+0:49 en internet y que te busquen cierta
+0:52 información y van a hacer una
+0:52 investigación realmente profunda
+0:54 basándose en miles y miles de páginas
+0:56 web. Le puedes pedir que te creen una
+0:58 miniaplicación. Realmente las
+1:00 posibilidades son prácticamente
+1:01 infinitas. Para hacer esta formación lo
+1:03 más útil de ver posible, en la
+1:05 descripción vas a poder ver el índice
+1:07 con todos los temas que vamos a ir
+1:09 tratando. También vas a tener en la
+1:10 descripción un documento con todos los
+1:12 recursos que vamos a ir mencionando a lo
+1:14 largo de la formación. Esta formación la
+1:16 va a impartir Ramón, miembro del canal
+1:18 que utiliza Cloud todos los días, tanto
+1:20 para un uso profesional como para un uso
+1:22 personal. Y sin más dilación,
+1:23 simplemente decir que si este contenido
+1:25 te parece interesante, no dudes en dejar
+1:27 un like. Y dicho esto, empezamos.
+1:29 Muchas gracias, Adrián, por esta
+1:31 presentación y sin más dilación, vamos a
+1:33 empezar. Tal y como comentaba Adrián, la
+1:35 gran diferencia que nos trae Cloud
+1:37 Cowork sobre la mesa es un sistema de
+1:39 agentes muy completo y muy potente. ¿A
+1:42 qué nos referimos con esto de agentes?
+1:44 Pues bien, si pensamos en la
+1:45 inteligencia artificial que hemos ido
+1:47 viendo a lo largo de estos últimos años,
+1:48 lo más probable es que pienses en el
+1:50 típico chat en el que tú le escribes
+1:51 algo y recibes una respuesta. O bien, le
+1:54 escribes algo y te genera una imagen. Es
+1:56 decir, tú le pides algo y te da una
+1:58 respuesta. Esto es la inteligencia
+2:00 artificial que todos conocemos, pero
+2:02 recientemente ha empezado una nueva
+2:04 tendencia que es la inteligencia
+2:06 artificial agéntica. Básicamente, en vez
+2:08 de simplemente ser reactiva, es decir,
+2:10 le escribimos algo y te responde, es
+2:12 proactiva. ¿Qué significa esto? Que va a
+2:15 ir más allá y va a intentar ejecutar esa
+2:17 tarea por nosotros. No solo nos va a
+2:18 decir cómo hacerlo, sino que la va a
+2:20 hacer por nosotros. En este caso, por
+2:22 ejemplo, pues primero diseña un plan,
+2:24 luego ese plan lo va a ir dividiendo por
+2:25 tareas, asigna cada una de estas tareas
+2:28 a un agente que vendría ser como una
+2:29 mini inteligencia artificial que se va a
+2:31 ocupar solo de esa tarea. Se reparte el
+2:33 trabajo entre esos agentes, contrasta
+2:35 cientos de fuentes, por ejemplo, si le
+2:36 pedimos de investigar algo y nos entrega
+2:38 un resultado completo, es decir, nos
+2:40 entrega la tarea ya completada, que
+2:42 puede ser un guion, puede ser una mini
+2:44 aplicación, puede ser una prospección de
+2:46 clientes, como iremos viendo más
+2:47 adelante, pero básicamente hace la tarea
+2:49 de A a Z. no simplemente nos dice cómo
+2:52 hacerla, sino que la lleva a cabo a él
+2:54 mismo, teniendo acceso a distintas
+2:56 herramientas que le deberíamos nosotros
+2:58 dando acceso de forma manual, pero una
+3:00 vez lo hemos dado, pues ya él solo se ha
+3:01 gestionado esas herramientas. Es decir,
+3:03 que tenemos a varios de estos
+3:04 miniagentes, por así decirlo, mini
+3:06 inteligencias artificiales dentro de
+3:07 este ordenador que van ejecutando
+3:09 distintas tareas, buscan internet, leen
+3:11 documentos, buscan en webs, [resoplido]
+3:13 van construyendo toda esa tarea que le
+3:15 hemos pedido, que más adelante veremos
+3:16 qué tareas podemos llevar a cabo,
+3:18 consultan cientos de fuentes, hacen todo
+3:19 ese trabajo con un solo prom nuestro y
+3:21 finalmente nos dan un entregable. Es
+3:23 decir, tú te conviertes en el director
+3:25 de las operaciones y ya no estás
+3:27 simplemente apalancándote en la IA, sino
+3:29 que tú le das las instrucciones a la IA
+3:30 y ya no estás simplemente apalancándote
+3:32 en la IA para redactar algo, por
+3:34 ejemplo, sino que ya directamente te
+3:35 conviertes en una especie de director,
+3:37 en una especie de jefe que le da tareas
+3:39 a una inteligencia artificial para que
+3:40 las complete de forma autónoma. Todo
+3:42 esto potencialmente os suene a chino,
+3:45 así que vamos a bajarlo a tierra con un
+3:48 ejemplo muy rápido para que entendáis
+3:49 mejor a lo que me refiero. Imaginemos
+3:51 que yo le pido a la inteligencia
+3:53 artificial lo siguiente. Analiza el
+3:54 mercado de mi app de nutrición, una app
+3:56 de nutrición que estoy desarrollando y
+3:58 que quiero ver si tiene sentido, quiero
+4:00 ver si invierto en desarrolladores,
+4:01 quiero ver si invierto mi tiempo en
+4:02 desarrollarla. Pues mira, le he pedido a
+4:04 la inteligencia artificial, o estás,
+4:05 analiza mi app de nutrición o mi idea de
+4:07 app de nutrición, que puede ser un
+4:09 voceto, puede ser cuatro anotaciones,
+4:10 pueden ser 1000 cosas. A ver si tiene
+4:12 sentido. Se lo pido y le decimos
+4:13 exactamente lo que queremos. La
+4:15 inteligencia artificial, en este caso
+4:17 cowork, ¿qué va a hacer en este caso con
+4:19 respecto a una inteligencia artificial
+4:20 convencional? No se va a poner
+4:22 directamente a analizar. Lo que va a
+4:24 hacer va a ser ese encargo y lo va
+4:26 a dividir en pequeñas tareas. Pues, por
+4:28 ejemplo, primero una de las tareas va a
+4:30 ser analizar el tamaño del mercado y el
+4:32 crecimiento de la tendencia en este
+4:33 nicho. También va a dividirlo en una
+4:37 tarea que sea un mapa competitivo de
+4:39 apps de nutrición. Otra tarea va a ser
+4:41 analizar los precios y la competencia
+4:44 para ver si tiene sentido, si a nivel de
+4:45 costes tiene sentido. Otra tarea va a
+4:48 ser buscar hueco sin cubrir de hostas.
+4:49 Pues mira, esta app de nutrición tiene
+4:51 sentido si la dirigimos a personas
+4:54 mayores con artrosis, por ejemplo, tiene
+4:57 sentido hacer un app de nutrición en ese
+4:58 nicho en concreto y atacar ese nicho en
+5:00 concreto en vez de buscar algo más
+5:01 generalista o más enfocado al fitness,
+5:03 que podría ser algo más mainstream. Pues
+5:05 bien, va a dividir todas esas tareas, es
+5:07 decir, va a crear toda esa especie de
+5:08 roadmap, va a crear toda esa especie de
+5:12 instrucciones para que posteriormente
+5:14 entren esos subagentes que comentamos,
+5:16 esos agentes que van a ir completando
+5:18 todas y cada una de esas tareas en
+5:19 paralelo, pues porque tenemos tamaño del
+5:21 mercado tal hecho, competencia, 27 apps
+5:23 hecho, precio, trabajando, reviews,
+5:25 trabajando y como veis pues en muchos
+5:27 casos van incluso a ser agentes en
+5:29 paralelo. De hecho, será la mayoría de
+5:30 los casos. No vas a tener un solo gente
+5:31 trabajando, sino que esas tareas, en vez
+5:33 de completarse secuencialmente, siempre
+5:35 y cuando no dependan unas de otras, se
+5:37 completarán en paralelo. Y esto nos
+5:38 permite, en un momento dado, a partir de
+5:40 un prom ultras sencillo, obtener
+5:42 resultados como este que tengo por aquí.
+5:44 Retomando el ejemplo que comentamos
+5:45 antes de la app de nutrición, pues nos
+5:47 entrega un informe ultra completo como
+5:49 esto por aquí. Pues por ejemplo, nos ha
+5:50 dado una nota general, que esto será un
+5:52 resumen de todo, pero si nos vamos a más
+5:55 allá de esa nota general, tenemos un
+5:57 informe superceto. El panorama mercado,
+5:59 pues eh apps de nutrición y dieta, el
+6:03 tamaño global del mercado es de 2,140
+6:06 millones de dólares, ya que esto
+6:08 entiendo que son billones americanos. la
+6:10 proyección, la de nutrición, tal, tal,
+6:12 tal, el la proyección que tiene este
+6:14 mercado, el peso estimado de cada
+6:16 subsegmento, es decir, pues dentro de
+6:18 apps de nutrición, las de contar
+6:20 calorías, las de planificación de
+6:22 comidas, las de coaching con
+6:23 inteligencia artificial, todo dividido
+6:25 por sectores.
+6:27 Luego, em el mapa competitivo, es decir,
+6:31 ¿qué qué herramientas digamos compiten
+6:33 un poco contigo? pues estaría Chat GBT,
+6:35 que al final es generalista y también
+6:37 puede llegar a competir en este sector,
+6:38 pero no an deterior despensa y etcétera,
+6:40 etcétera. Nos pone todos los
+6:41 competidores, incluso no, aquí no es,
+6:43 aquí puedes abrir y ver todo, cada uno
+6:46 de esos competidores más desglosados.
+6:48 Muchísima, muchísima información. Ya
+6:50 veis, todo superceto y todo esto
+6:52 generado a partir de un solo prompt, es
+6:55 decir, decenas de agentes trabajando en
+6:56 paralelo buscando información. Todo esto
+6:58 veremos cómo hacerlo en este tutorial.
+7:00 No tengáis ansias, poco a poco,
+7:02 despacito y con buena letra. Antes de
+7:04 lanzarnos a instalar Cloud y empezar a
+7:06 usar Cloud Cower, quería explicar esto
+7:08 para que se entienda un poco cuál es el
+7:09 cometido, cuál es la función de esta
+7:12 inteligencia artificial, ya que depende
+7:13 de la inteligencia artificial que
+7:15 usemos, se usarán para unas cosas o para
+7:17 otras, a pesar de que es bastante
+7:18 generalista, cada una tiene una función
+7:20 y tiene una especialidad. Y en este
+7:22 caso, las estadísticas del propio
+7:24 Antropic, que es la empresa que está
+7:26 detrás de Cloud, nos dicen que esta
+7:28 función que Cowork nueve de cada 10
+7:31 personas no lo usan para programar. Es
+7:32 decir, no es una función técnica, es una
+7:34 función más para apoyarte en el día a
+7:36 día, pues, por ejemplo, procesos de
+7:37 negocios, para generar informes como el
+7:39 que acabamos de ver, checklist, hojas de
+7:41 cálculo, es decir, para agarrar un Excel
+7:43 y sacar conclusiones de él, creación de
+7:44 contenido, pues si quieres hacer
+7:46 borradores para un guion, para un vídeo,
+7:48 para para un trabajo [resoplido] que
+7:50 tienes que presentar para la
+7:51 universidad, para presentaciones, para
+7:53 propuestas, por ejemplo, esta misma
+7:54 presentación que tenemos por aquí la
+7:56 hemos generado con con Cloud CW, todo
+7:58 esto que estáis viendo aquí. Para
+7:59 muchísimas cosas nos sirve esta
+8:01 aplicación. Bueno, está inteligencia
+8:03 artificial, más bien dicho. Con esto ya
+8:04 deberías empezar a entender el concepto
+8:06 o el paradigma de Cloud Cowork, es
+8:08 decir, cuál es su finalidad, para qué
+8:10 está diseñado y para qué lo puedes usar.
+8:13 Más adelante, a lo largo del vídeo,
+8:14 veremos más ejemplos prácticos con los
+8:16 que terminas de entenderlo y sobre todo
+8:18 también cómo empezar a ganar dinero con
+8:20 esto, cuáles son, cuál es su potencial
+8:22 de cara a empezar a ganar dinero y cómo
+8:24 puedes explotarlo para empezar a generar
+8:26 distintas vías de ingreso. Pero bueno,
+8:27 por resumir y tal y como pone aquí,
+8:29 Cloud Cowork completa tareas que puedes
+8:31 dirigir desde cualquier lugar. Luego
+8:32 veremos también cómo hacerlo desde el
+8:33 móvil.
+8:35 Tú le das un roll y funcionará en todos
+8:37 tus archivos, herramientas y regresará
+8:39 con el trabajo pulido. Es decir, tú le
+8:41 das una instrucción y tal y como
+8:42 decíamos completará esa tarea de la A la
+8:44 Z. El primer paso entonces para empezar
+8:46 a usarlo sería entrar por aquí en prueba
+8:48 cloud y nos crearemos una cuenta. En
+8:51 este punto os va a decir que os va a
+8:52 enviar un código a vuestro email, pero
+8:53 bueno, en algunos casos como es el mío,
+8:54 en vez de un código os va a mandar un
+8:56 enlace, así que simplemente abrís enlace
+8:58 y listo, ya tenemos nuestra cuenta
+9:01 creada. Ahora toca hablar de los planes.
+9:04 Si os fijáis por aquí, el plan básico,
+9:06 el plan de 0, el gratuito, vendría a ser
+9:09 un chat normal, vendría a ser esas
+9:10 funciones que lamos viendo hace años de
+9:12 chat en el que tú le escribes algo y te
+9:14 responde. Si queremos poder aprovechar
+9:15 todas esas funciones de cowork y más
+9:17 herramientas que tiene Cloue, aunque eso
+9:19 lo dejamos para otro vídeo, veis que
+9:21 aquí tendríamos que ir a por el plan de
+9:24 $17, que si lo pagamos mensualmente van
+9:26 a ser 20. Entonces vamos a ir a por este
+9:28 plan. Este plan sea el que usaremos a lo
+9:30 largo de todo el vídeo. Yo os puedo
+9:32 decir con casi total certeza que no os
+9:34 vais a arrepentir de estos $ y que os va
+9:37 a cambiar por completo vuestra forma de
+9:38 trabajar. De hecho, yo mismo pago el
+9:40 plan de $200, que no aparece aquí. Es un
+9:42 plan superior a este, es decir, pago el
+9:44 plan más caro que hay. Y os diría
+9:47 incluso que si tuviera que pagar $1,000
+9:50 por ese plan, lo seguiría pagando porque
+9:51 ha cambiado radicalmente mi forma de
+9:53 trabajar y mi productividad. Es decir,
+9:55 me ha permitido hacer cosas que hasta
+9:56 ahora no creía posibles. Así que nada,
+9:58 vamos a por este plan. Rellenamos los
+10:00 datos de pago y una vez rellenados le
+10:02 damos a suscribirse. Y listo. Con esto
+10:04 ya tenemos nuestra cuenta activa y
+10:06 podríamos empezar a usar Cloue desde la
+10:09 interfaz web, pero yo os recomiendo
+10:11 encarecidamente descargaros la app de
+10:14 escritorio, ya que la app de escritorio
+10:15 nos va a permitir, entre otras cosas,
+10:17 trabajar sobre los archivos de nuestro
+10:19 ordenador, que más adelante veréis para
+10:21 qué es útil. Y eso solo podemos hacer si
+10:23 tenemos una app instalar en nuestro
+10:24 escritorio, que esto sirve para Windows
+10:26 o para Mac. Entonces, nada, para
+10:27 descargarlo. En mi caso, yo tengo
+10:29 Windows, así que me sale para Windows.
+10:30 Si tenéis Mac, os va a salir para Mac.
+10:32 Pulsamos aquí, luego lo damos en una
+10:33 carpeta que tengamos localizada. Una vez
+10:35 instalado, veremos esto aquí. A mí me
+10:37 sale en inglés porque tengo el ordenador
+10:38 inglés, pero si lo tenéis en castellano,
+10:39 no saldrá en castellano. Pulsamos el
+10:41 único botón que hay. Entramos en nuestra
+10:43 cuenta, la misma que hemos creado antes.
+10:45 De nuevo, nos va a estar llegando un
+10:46 email tipo esto. Aquí entramos en
+10:48 nuestra cuenta desde el email. Una vez
+10:49 dentro, se nos abrirá una ventana
+10:51 parecida a esta, pulsamos aquí en abrir
+10:53 clou, incluso le podéis pulsar aquí para
+10:55 futuras sesiones para que no os aparezca
+10:57 este mensaje. Se nos vuelve a poner la
+10:58 ventana de antes y listo, ya estamos
+11:00 dentro de nuestra cuenta. Aceptamos
+11:02 estas dos cosas, pulsamos aquí en crear
+11:04 cuenta,
+11:06 continuar. Ponemos un nombre, voy a
+11:08 poner el mío, continuar.
+11:11 Y todo esto lo podéis completar ahora o
+11:13 lo podéis completar más tarde. Yo lo voy
+11:15 a dar a completar más tarde. Esto son
+11:17 configuraciones internas que le damos a
+11:19 Cloue para que sepa un poco sobre
+11:21 nosotros, sepa qué tipo de respuestas
+11:22 buscamos, cuál es nuestro rol, etcétera,
+11:24 y así adaptar sus respuestas a nosotros.
+11:27 Pero yo lo voy a pulsar aquí. En vuestra
+11:29 primera instalación de cloue os va a
+11:31 aparecer un mensaje como este para
+11:33 descargar un paquete que permite a Cloud
+11:35 Cowork trabajar en ese modo agéntico.
+11:38 Así que lo primero de todo que hacemos
+11:39 es pulsar aquí en descargar esto aquí
+11:41 que son tips para empezar a usar cloud y
+11:42 lo podéis cerrar. Antes de nada vamos a
+11:44 repasar rápido toda la interfaz, ya que
+11:46 como veis hay muchos botones y mucha
+11:47 cosa y para que no sientáis abrumados,
+11:49 nos vamos a centrar en lo realmente
+11:50 importante. Aquí en la pestaña con
+11:52 vuestro nombre pues os aparecerá todos
+11:54 los apartados de configuración. Esto en
+11:56 principio de montones nos da igual.
+11:57 Luego aquí tenemos el selector entre
+11:59 chat normal y modo cowork, que esto es
+12:01 lo que comentamos antes. El chat normal,
+12:03 pues es ese chat tradicional de toda la
+12:04 vida que le dices algo y te responde. Y
+12:06 el modo cowork es ese que vamos a estar
+12:08 trabajando en este vídeo. Por aquí
+12:10 tenemos distintas funciones más
+12:12 avanzadas de proyectos, artefactos, que
+12:14 veremos luego lo que son, programación
+12:15 de tareas, que luego veremos también lo
+12:17 que son y la sección de personalizar que
+12:18 también trataremos. Aquí irán
+12:20 apareciendo los chats que que vayamos
+12:22 generando, es decir, a medida que vamos
+12:24 escribiendo van aquí ir apareciendo los
+12:25 distintos chats. Y luego por aquí
+12:27 tenemos un selector que es para ir el
+12:29 modo code. El modo Code es un modo
+12:31 completamente distinto, es decir, de la
+12:33 misma forma que Cowork sirve para lanzar
+12:34 tareas con muchos agentes, investigar y
+12:37 trabajar en proyectos complejos, el modo
+12:39 code también sirve para algo parecido,
+12:42 pero en vez de completar tareas, por así
+12:45 decirlo, en vez de hacer trabajo por ti,
+12:47 va a servir más para construir. ¿Para
+12:49 construir qué? Pues para construir
+12:50 páginas web, para construir aplicaciones
+12:53 para Windows, para construir códigos que
+12:55 hagan cosas de forma recurrente, para
+12:57 muchísimas cosas, un pelín más técnicas.
+13:00 en las que no entraremos en este vídeo.
+13:01 Nosotros en este vídeo nos vamos a estar
+13:03 centrando en el modo cowork. Dentro del
+13:05 modo cowork vamos a tener cinco cosas
+13:07 que tenemos que entender cómo funcionan.
+13:09 Lo primero de todo, no tiene misterio.
+13:11 Es la cajita del chat donde le puedo
+13:12 preguntar, por ejemplo, pues, ¿cuándo
+13:15 nació
+13:17 Benjamin Franklin? Pues nada, aquí le
+13:20 preguntamos cosas y nos responde. Le
+13:22 pedimos esas tareas complejas y nos
+13:24 responde. Aquí es donde podremos
+13:26 conectarle distintas herramientas, lo
+13:28 que se llaman como conectores. Es decir,
+13:30 es donde vamos a hacer todas esas
+13:32 configuraciones que veremos más
+13:33 adelante, que ha comentado Adrián al
+13:34 inicio de, "Okay, pues le puedo conectar
+13:35 mi mail para que lea mi email y me lo
+13:37 responda, etcétera, etcétera." Esto será
+13:39 desde la sección aquí de conectores.
+13:41 Aquí también podemos añadir archivos,
+13:42 podemos añadir skills, que más adelante
+13:44 veremos lo que son, así como plugins.
+13:46 Luego tenemos por aquí el selector del
+13:49 modelo. El modelo es básicamente el
+13:51 cerebro que está detrás del modo cowork,
+13:55 es decir, hasta qué punto queremos que
+13:57 piense mucho o piense poco. Y diréis,
+13:59 "Vale, pues vamos siempre con el modelo
+14:00 más potente, el que piensa más, que
+14:02 sería este. Bueno, ahora está Fable,
+14:04 aunque en el modo en el plan que tenemos
+14:05 de 20 horas no viene incluido, pero
+14:07 sería el OP 5, el modo más potente a día
+14:10 de hoy. El problema es que OPU 5 va a
+14:12 conseguir muchos créditos. ¿Significa
+14:14 eso que no lo podemos usar? no significa
+14:16 que lo tenemos que usar con cabeza. No
+14:18 podemos usar siempre el modo OPU 5, ya
+14:21 que eso hará que nuestro consumo de
+14:23 créditos, que lo podemos ver
+14:26 aquí en ajustes
+14:28 y en uso, va a hacer que nuestro consumo
+14:30 de créditos se dispare. Tenemos dos
+14:32 barras de uso de créditos, la de la
+14:33 sesión, que básicamente es una ventana
+14:35 horaria de 5 horas, es decir, cada 5
+14:37 horas vamos a poder usar x cantidad de
+14:39 créditos y al llenarse esta barra, hasta
+14:42 que se cumpla en esa ventana de 5 horas,
+14:44 no podremos seguir usando cloud. Y luego
+14:46 tenemos la ventana semanal, que es una
+14:48 ventana de créditos mucho más amplia en
+14:50 la que podremos usar muchísimo más
+14:52 clude, pero que si la rellenamos pues
+14:55 hasta el lunes siguiente, la siguiente
+14:56 semana no podremos volver a usarlo,
+14:58 ¿vale? Entonces por eso tenemos que
+15:00 hacer un sueficiente. Luego iremos
+15:01 viendo como si usamos opus consume más
+15:03 créditos y si usamos Sonet o Haiku pues
+15:06 usa menos. Generalmente yo recomendaría
+15:08 en el 99% de los casos usar Sonet a no
+15:11 ser que vayáis a hacer algo más
+15:13 complejo. Luego, por otro lado, tenemos
+15:14 el nivel de aprobaciones, que es este
+15:15 selector de aquí. Básicamente en
+15:17 distintas situaciones, Claude nos va a
+15:19 estar preguntando cosas de, "Oye, ¿me
+15:20 permites acceder a esta cuenta o me
+15:22 permites acceder a esta carpeta
+15:23 ordenador o me permites hacer lo otro?"
+15:25 Pues nosotros le podemos decir que lo
+15:27 apruebe todo manualmente, que lo apruebe
+15:30 automáticamente, que básicamente va a ir
+15:31 autoaprobándose la mayoría de cosas, o
+15:34 omitir todas las aprobaciones, es decir,
+15:35 ve con todo, no me pidas permiso para
+15:37 nada y haz lo que tú consideres, ¿vale?
+15:39 Entonces, dependiendo del nivel de
+15:40 seguridad que queramos, escogeremos una
+15:43 u otra. Generalmente, si estáis
+15:45 empezando y no sabéis muy bien qué es lo
+15:47 que estáis haciendo, pues lo mejor será
+15:49 aprobar todo manualmente. Y por último
+15:51 tenemos esta sección de aquí, que es la
+15:54 carpeta de nuestro espacio de trabajo.
+15:55 Esto es básicamente que le vamos a
+15:56 asignar una carpeta dentro de nuestro
+15:58 ordenador que podemos ir cambiando
+16:00 dependiendo del proyecto en el que
+16:01 estemos trabajando para que sea nuestro
+16:03 espacio de trabajo y para que Cloue pues
+16:05 vaya a ir ahí generando los distintos
+16:07 archivos, editando las distintas cosas,
+16:09 etcétera, [carraspeo] etcétera. ¿Qué os
+16:10 recomiendo? Os recomiendo crear una
+16:12 carpeta nueva en vuestro ordenador y
+16:15 dentro de esa carpeta ir poniendo
+16:16 diferentes carpetas para los diferentes
+16:18 proyectos. Entonces, lo vamos a hacer.
+16:19 Vamos a ir aquí a añadir una carpeta.
+16:21 Creamos una nueva carpeta. En mi caso le
+16:23 ha he llamado espacio de trabajo cork.
+16:26 La seleccionamos,
+16:28 le damos clic aquí permitir para decirle
+16:30 que puedes hacer lo que quieras en esta
+16:31 carpeta y ahí ya tenemos una carpeta
+16:33 vacía en la que Cloue pues puede ir
+16:35 haciendo sus distintos proyectos, sus
+16:36 pruebas, generar distintos tipos de
+16:38 archivos y básicamente es como su
+16:40 espacio para trabajar cómodamente sin
+16:42 molestar el resto de archivos para que
+16:43 de repente no te borre un archivo de una
+16:45 carpeta que tú tenías en otro lado,
+16:46 etcétera. Vamos ahora sí que sí a hacer
+16:48 nuestra primera prueba con Cloud Cowork
+16:50 para que veáis el potencial de esta
+16:52 herramienta. Entonces, tengo por aquí,
+16:53 tal y como comentaba, preparar un
+16:55 ejemplo para pedirle una tarea a Cloud y
+16:57 esa tarea que le vamos a pedir es que
+16:58 nos ordene nuestra carpeta de descargas.
+17:01 Básicamente [resoplido] Cloula además de
+17:03 poder hacer esas investigaciones, puede
+17:04 trabajar sobre tus propios archivos. Y
+17:07 lo que le vamos a estar pidiendo es lo
+17:08 siguiente. Ordena mi carpeta de
+17:09 descargas sin tocarla. Es decir, lo que
+17:11 vamos a pedirle por temas de seguridad
+17:13 para que no nos borre archivos es, okay,
+17:15 sin tocar la carpeta como tal, créame
+17:17 una nueva carpeta que sea una copia de
+17:19 esa carpeta de descargas que se llame
+17:21 descargas ordenadas y que está al lado.
+17:23 Entonces, en esa carpeta te voy a pedir
+17:24 que me ordenes todos los archivos. Te
+17:26 voy a pedir que renombres los distintos
+17:28 archivos con lógicas, es decir, que me
+17:29 pongas, por ejemplo, la fecha del
+17:31 archivo y la descripción del mismo para
+17:32 lo que son imágenes. Le voy a pedir que
+17:36 me los ordene también separados por
+17:37 carpetas dependiendo del tipo de
+17:38 archivos, etcétera, etcétera. Y le
+17:40 especificamos sobre todo esto, que la
+17:41 original es solo de lecturas, es decir,
+17:43 la carpeta de descargas original solo la
+17:45 va a usar para leer y va a estar
+17:46 copiando todos archivos en una carpeta
+17:48 nueva. De esta forma conservamos nuestra
+17:50 carpeta de descargas original, que
+17:52 generalmente siempre es una carpeta que
+17:53 tenemos super caótica, y nos va a hacer
+17:55 la misma carpeta preordenada. De esta
+17:57 forma, pues tenemos un resultado super
+17:58 ordenado, lo podemos revisar y luego ya
+18:01 cuando estemos contentos con ello, pues
+18:02 ya borramos la carpeta de descargas
+18:03 original. Para ello tenemos este prom de
+18:05 aquí que lo podemos copiar desde aquí.
+18:07 Me vuelvo a Cloue, le pego el prompt en
+18:09 cuestión
+18:11 y en este caso tendríamos que
+18:13 seleccionar la ubicación donde está esa
+18:15 carpeta de descargas. Entonces, nos
+18:16 iremos aquí a añadir una carpeta y en mi
+18:19 caso, la carpeta de descargas está
+18:21 dentro de esa carpeta que hemos creado
+18:22 al inicio, el espacio de trabajo cowork,
+18:25 ¿vale? Esa carpeta que podéis llamar
+18:26 como queráis, pero que es mi espacio de
+18:27 trabajo para este vídeo. En mi caso
+18:29 sería esta carpeta aquí, el espacio de
+18:30 trabajo Cowork. Como veis, aquí tengo la
+18:32 carpeta de descargas que vais a ver que
+18:35 la tengo por aquí, la misma carpeta y
+18:36 está llena archivos de todo tipo. Hay
+18:38 vídeos, hay gráficos, hay PDFs, hay
+18:42 instaladores. Entonces, vamos a pedir
+18:43 que ordene todo eso. Selecciono la
+18:45 carpeta, pulso en permitir
+18:49 y lanzo el prompt.
+18:52 El PR lo abro por aquí para que lo
+18:53 podáis ver, pero resumiendo vendría a
+18:55 ser lo mismo que habéis visto en el
+18:57 documento de recursos en esa
+18:58 presentación que estamos viendo antes. Y
+19:00 como veis por aquí ya está empezando a
+19:02 ordenar la tarea, es decir, está
+19:05 empezando a dividirla en distintas
+19:06 tareas, en pasos a pasos para tener
+19:08 claro qué es lo que tiene que hacer. Nos
+19:09 dice por aquí que lo primero que hacer
+19:10 va a ser calcular los hashes para
+19:12 detectar duplicados exactos. Los hashes
+19:14 es como una especie de código que se
+19:16 puede calcular a partir de un archivo y
+19:18 que te permite identificar si son
+19:19 exactos bitabit. Entonces va a hacer
+19:21 primero eso para ya descartar todos esos
+19:23 archivos que son literalmente copias,
+19:25 luego creer que es un identificador de
+19:28 archivos, mirar cada imagen, es decir,
+19:30 va a ver visualmente, por así decirlo,
+19:32 las imágenes para ver pues lo que
+19:34 representan, si son parecidas, si puede
+19:36 eliminar una, si puede eliminar otra
+19:37 para ponerles una descripción y
+19:39 clasificará todos esos archivos. Luego
+19:41 crear la estructura de carpetas y copiar
+19:44 esos archivos renombrados, es decir, los
+19:45 va a llevar de la carpeta de descargas a
+19:47 esa carpeta de descargas ordenadas que
+19:48 hemos comentado y finalmente va a
+19:51 verificar el resultado para generaros un
+19:53 informe de cómo ha hecho ese
+19:55 ordenamiento, ese esa reestructuración
+19:59 de nuestra carpeta de descargas. Así que
+20:00 nada, esperamos a ver el resultado.
+20:02 Okay, ya está terminando. Como veis, ha
+20:04 completado ya los cuatro primeros pasos.
+20:06 nos decía por aquí que de los 112 del
+20:09 total había encontrado 104 que le tocaba
+20:11 copiarlos en esa nueva carpeta ya
+20:13 ordenados y etiquetados que habían ocho
+20:15 duplicados entonces que esos no los iba
+20:16 a copiar, que los iba a descartar. Luego
+20:19 nos dijo por aquí que, mira, justo ahora
+20:21 ha terminado, creo. Nos dice por aquí
+20:23 que ya estaba, que ahora hacía la
+20:25 verificación y aquí nos dice por aquí
+20:27 que ya está todo listo, que la carpeta
+20:28 original quedó intacta y que ya tenemos
+20:31 la carpeta de descargas ordenadas con
+20:33 esos 104 archivos. Vamos a ver si es
+20:35 verdad. Tengo por aquí la carpeta
+20:38 original de descargas.
+20:41 Y si nos vamos a descargar las
+20:42 ordenadas,
+20:43 pues efectivamente tenemos todo dividido
+20:46 por carpetas, documentos, imágenes,
+20:47 etcétera. [resoplido] Y si nos vamos a
+20:49 documentos, los tenemos todos con la
+20:51 fecha y todos explicando a qué
+20:54 corresponde cada documento. Es decir, si
+20:56 por ejemplo me voy a esto, me dice que
+20:59 es un manual de reformas de vehículos,
+21:01 tal, factura, profor, etcétera, cuando
+21:04 realmente si nos vamos a la carpeta de
+21:06 descargas original
+21:08 y busco los archivos PDF,
+21:12 pues tenían nombres raros, es decir,
+21:15 nombres muy muy mal etiquetados. En
+21:17 cambio, pues en esta nueva, en las
+21:19 descargas ordenadas, pues tenemos
+21:22 PDF,
+21:24 todos los PDFs con su fecha, con un
+21:27 nombre que es coherente, etcétera,
+21:28 etcétera. E incluso si nos vamos, por
+21:30 ejemplo, la sección de imágenes, lo que
+21:32 comentamos antes de que mira las
+21:33 imágenes, bueno, mira, nos las ha puesto
+21:34 por fechas, lo cual es superútil
+21:37 y por meses entiendo que es esto. La
+21:39 verdad que es brutal.
+21:41 Y nos pone, por ejemplo, pues aquí una
+21:42 foto que tenemos
+21:45 del equipo en la barbería.
+21:48 [resoplido]
+21:49 Tenemos por aquí más fotos, pues por
+21:51 ejemplo este directo que era una tarjeta
+21:52 gráfica y lo etiquet como tal y
+21:54 básicamente ha ido mirando todas esas
+21:56 fotos y nos las ha puesto con su fecha y
+21:59 con lo que corresponde un producto que
+22:01 es una pelota de masaje. Bueno,
+22:03 realmente no es de masaje, pero lo lo ha
+22:05 tequitado bastante bien. Era una pelota
+22:06 de entrenamiento para el grip
+22:08 pentagonal, etcétera, etcétera. La
+22:10 verdad que ha hecho un trabajo impecable
+22:12 y lo mismo con el resto de archivos, los
+22:14 instaladores,
+22:17 otros, pues cosas que que tenía por ahí,
+22:20 proyectos divido por distintas carpetas,
+22:23 etcétera, etcétera, etcétera. La verdad
+22:26 que una absoluta barbaridad. ¿Cómo ha
+22:27 hecho esto? Pues bien, si nos vamos por
+22:29 aquí y desplegamos esto aquí, veis aquí
+22:32 que pone bash bash bash bash bash.
+22:33 Básicamente lo que hace Cowork
+22:35 internamente para hacer todo esto es lo
+22:37 mismo que harías tú con el ratón, pero
+22:38 en vez de hacerlo con el ratón, lanza
+22:39 comandos de Windows, es decir, va
+22:41 lanzando comandos, comandos de código
+22:43 para que todo ese proceso que tú harías
+22:45 pues arrastrando un archivo, escribiendo
+22:47 el nombre, etcétera, lo hace
+22:48 algorítmicamente, lo hace mediante
+22:50 comandos y es por eso que puede llegar a
+22:52 trabajar sobre esos archivos que que le
+22:54 has pedido que trabaje. Y tenemos luego
+22:56 por aquí el resumen de todo lo que he
+22:57 ido haciendo, pues el tamaño de cada uno
+22:59 de los archivos, cuánto, o sea, cada una
+23:00 de las categorías de archivos, cuántos
+23:02 archivos había en cada categoría,
+23:04 algunos ejemplos de los cambios que ha
+23:05 hecho. Pues la verdad que brutal. Por
+23:07 ejemplo, images 1 JPG, que es el típico
+23:09 nombre que te descargas una imagen
+23:11 random, pues nos lo ha etiquetado por
+23:12 fecha, no se ha puesto qué es. Es un
+23:13 póster de Los Simpsons 2. Entiendo que
+23:15 esa película de Los Simpsons. Aquí otro
+23:17 archivo con un nombre random, producto
+23:19 Amazon enchufe luz nocturna, un archivo
+23:22 que se llama Valores separados por
+23:23 comas, pues nos ha dicho que son los
+23:25 datos de minería de Bitcoin de mayo.
+23:27 ¿Sabéis? Ha leído cada uno de los
+23:28 archivos que cada uno de una distinta
+23:30 naturaleza y los ha etiquetado en base a
+23:32 lo que era cada archivo, ya sea una
+23:34 foto, ya sea un PDF, ya sea un Excel.
+23:36 Indiferentemente del tipo de archivo, ha
+23:37 sido capaz de leerlos todos y
+23:38 etiquetarlos. De la misma forma que
+23:40 podemos hacer este ejemplo que acabáis
+23:41 de ver, el ejemplo de ordenar la carpeta
+23:44 de descargas, [resoplido] podemos hacer
+23:47 otras cosas con esos archivos. Imaginar
+23:48 que tenemos una carpeta con 100
+23:50 facturas, que es un ejemplo que he
+23:51 preparado antes mientras estaba
+23:53 ejecutándose el otro comando. Pues bien,
+23:55 podemos pedirle que a partir de esas
+23:57 facturas que las clasifique dependiendo
+23:59 del gasto, dependiendo de la actividad,
+24:02 si es personal o si es dudoso, si es
+24:05 actividad profesional, es decir, si son
+24:06 facturas de tu trabajo o si son cosas
+24:08 personales, que nos lo entregue todo en
+24:10 un Excel con fórmulas y un dashboard y
+24:14 que además renombre todos esos PDFs para
+24:16 tenerlos pues de nuevo más ordenados.
+24:19 Esto se lo he pedido, este mismo que
+24:20 acabáis de ver, se lo he pedido por este
+24:21 chat de aquí.
+24:23 Y como veis por aquí, pues ha hecho de
+24:25 nuevo, se ha leído todos los archivos.
+24:27 Por aquí podemos ver que ha lanzado
+24:29 distintos distintos pasos al igual que
+24:31 lo ha hecho antes. Y tenemos por aquí el
+24:33 resultado. A ver qué tal lo ha hecho.
+24:34 Partíamos de esto aquí que era una
+24:36 carpeta con pues 100 facturas, tal y
+24:39 como ponía ahí en la presentación, todas
+24:41 con un nombre raro que no es
+24:42 descriptivo, etcétera. Aquí tengo una
+24:44 [resoplido] de ejemplo. Son facturas
+24:45 sintéticas que hemos generado con el
+24:46 propio cloud, es decir, facturas falsas.
+24:49 Y a partir de esto nos ha generado esto
+24:52 de aquí y de nuevo pues ha renombrado
+24:55 todos archivos, les ha puesto un nombre
+24:58 que nos ayude a identificarlos IKEA,
+25:01 Movistar, Google Cloud con la fecha y
+25:02 tal, al igual que lo ha hecho que lo ha
+25:04 hecho antes con con los archivos de la
+25:06 carpeta de descargas, ha categorizado la
+25:08 actividad del archivo, el proveedor, es
+25:11 decir, la persona que emite la factura,
+25:13 el precio, el IVA, todos los datos aquí
+25:15 bien
+25:17 estructurados. nos ha puesto si estaba
+25:18 duplicado, por ejemplo, que esto también
+25:20 es útil de car hacer la contabilidad. Y
+25:22 aquí nos ha puesto un pequeño dashboard
+25:23 con todo resumido, las incidencias que
+25:25 se ha ido encontrando. Pues por ejemplo,
+25:27 aquí pone que hay un descuadre de 1
+25:29 céntimo, aquí hay un descuadre de 1
+25:31 céntimo. Y el resumen, la verdad que una
+25:34 absoluta barbaridad. Ahora bien, ¿qué
+25:36 nos ha costado todo esto? Pues bien, si
+25:38 nos vamos por aquí en ajustes,
+25:41 el coste como tal no es monetario, por
+25:43 así decirlo, pero hemos gastado un 38%
+25:46 del plan, es decir, hemos consumido un
+25:48 38% de los créditos, ojo, de la sesión
+25:52 actual. Esto, la sesión es lo que
+25:54 comentaba antes, como hemos empezado una
+25:55 sesión hace exactamente 37 minutos, pues
+25:59 nos quedan 4 horas con23 hasta que esta
+26:02 barra se vuelva al 0%. Es decir,
+26:04 nosotros podremos seguir usando la hasta
+26:06 que esto lleggaue al 100%. En cuanto
+26:07 llega al 100% nos lo cortan y tenemos
+26:10 que esperar a que este contador llegue a
+26:11 cero. Y lo mismo con la barra semanal.
+26:14 Hemos usado un 6% del consumo semanal y
+26:17 si lo llenáramos al 100% tendremos que
+26:19 esperar al próximo jueves a las 6:59
+26:22 para poder volver a usar cloud.
+26:23 Entonces, de momento tenemos margen,
+26:25 pero caba decir que tenemos margen
+26:27 porque hemos usado Sonet, que es el
+26:28 modelo normal, no es el modelo más flojo
+26:30 que sería Haiku, que es el que menos
+26:33 inteligentes es por así decirlo, y
+26:34 también el que menos tokens consume,
+26:36 pero tampoco es el más potente, es el
+26:38 normalito. que quisiéramos usar Opus
+26:40 porque queremos hacer una tarea más
+26:41 compleja o porque queremos asegurarnos
+26:43 que el resulta es mejor, lo podemos
+26:44 hacer sin problema, pero en ese caso, si
+26:47 nos volvemos aquí al panel de consumo,
+26:49 en vez de consumir un 38%, habríamos
+26:51 consumido cerca de un 80%. Es decir,
+26:54 Opus aproximadamente consume tokens el
+26:56 doble de rápido que lo hace Sonet. Esto
+26:59 que acabamos de ver lo podemos hacer de
+27:01 una forma mucho más visual usando los
+27:02 artefactos de cloud. Los artefactos de
+27:05 Cloude no son más que una pequeña pieza
+27:08 de código que te genera el propio cloud,
+27:09 pero sin que tú tengas que programar una
+27:11 sola línea de código para generarte una
+27:13 mini aplicación. Esa miniaplicación
+27:16 puede ser, pues, por ejemplo, algo es
+27:18 sencillamente visual que tú lees, como
+27:19 ese informe que hemos visto antes al
+27:21 inicio del vídeo en el que teníamos una
+27:23 auditoría de esa aplicación de nutrición
+27:26 con Iía, pero también puede ser algo
+27:29 mucho más funcional, por ejemplo, un
+27:31 tracker de hábitos, un tracker de
+27:32 finanzas, etcétera. Para que se entienda
+27:34 mejor, he preparado por aquí un ejemplo
+27:36 en el que tenemos un extracto bancario
+27:37 inventado, de hecho, pone aquí cliente
+27:40 demo con distintos gastos. Veis aquí que
+27:42 es un documento larguísimo. Lo que le he
+27:45 pedido a Claude es lo siguiente. Le he
+27:47 pedido que a partir de este documento
+27:49 que tenemos por aquí, que actúe como una
+27:51 lista financiera y que convierta ese
+27:53 extracto de banco en una foto clara de
+27:55 en qué se va el dinero, que lo haga como
+27:57 una mini aplicación, como un artefacto,
+28:00 que sea con el extracto este que acabo
+28:01 de enseñar de 12 meses, que tenga estos
+28:04 datos en pantalla y en un solo archivo,
+28:07 sin librerías ni historias raras. Esto
+28:09 se lo he pedido a Claude en este chat de
+28:12 aquí con este prom de aquí que lo
+28:13 tendréis de nuevo al igual como el resto
+28:15 de promps aquí en el documento de
+28:17 recursos. Veis por aquí el prompt que
+28:18 está un poco más detallado, pero vendría
+28:20 a decir lo mismo que lo que os acabo de
+28:21 comentar. Ha hecho todo ese proceso de
+28:23 investigación, de revisar el documento,
+28:26 incluso tenemos por aquí el progreso
+28:27 desglasado como lo teníamos antes en los
+28:29 otros archivos de cowork. Y con eso nos
+28:32 ha generado esto aquí que pone finanzas
+28:34 HTML, que si hago doble clic lo puedo
+28:36 abrir por aquí.
+28:37 Voy a ocultar esto para que lo veáis
+28:38 mejor. Y es un archivo ultra completo
+28:43 con todos los datos de eso de ese
+28:45 extracto bancario puestos de forma
+28:47 visual y nos dice, pues mira, en
+28:49 vivienda se tenía 800 € en ocio, esto,
+28:51 en comida esto, esto mes a mes de media.
+28:54 Luego suscripciones y cargos
+28:56 recurrentes. Pues mira, el alciler te
+28:57 está costando esto, el recibo de
+28:59 Movistar fusión de la telefonía, esto,
+29:01 etcétera, etcétera. Y toda una forma
+29:04 mucho más fácil, digamos, de visualizar,
+29:07 incluso con funciones, pues, por
+29:08 ejemplo, para cambiar la categoría, si
+29:10 de repente algo está mal categorizado,
+29:12 etcétera, etcétera. Puedo tocar todo y
+29:15 no es sencillamente un PDF convencional
+29:18 en el que veis información, sino que es
+29:20 todo interactivo, como si una mini
+29:22 aplicación. Incluso me permite por aquí
+29:25 pulsando este botón exportarlo como un
+29:27 fichero CSV que es un tipo de formato. O
+29:30 lo mismo con formato o lo mismo si
+29:33 quiero importar, disculpad. Es decir, lo
+29:35 puedo exportar con un formato o lo puedo
+29:36 importar, es decir, traer los datos a
+29:39 este panel y cambiar también de modo
+29:41 claro a modo oscuro, así como obviamente
+29:43 cambiar la vista entre los distintos
+29:45 meses. Aquí tenemos la vista general de
+29:47 todos los meses, pero también puedo
+29:48 cambiar, por ejemplo, a enero de 2026, a
+29:51 octubre, etcétera, etcétera, y van
+29:52 cambiando los datos. Esto en este
+29:54 ejemplo lo he hecho para visualizar de
+29:56 forma interactiva pues todo ese extracto
+29:58 bancario que le he pasado a Cloulaude,
+30:00 pero también pues tal y como comentemos
+30:01 usar para muchas otras cosas. Y la
+30:03 gracia de esto es que estos artefactos,
+30:06 si volvemos un momento aquí a cloud, nos
+30:09 los genera como un archivo HTML, que es
+30:12 básicamente un archivo web. Entonces, si
+30:13 me voy por aquí en ese archivo que nos
+30:15 ha generado y doy clic aquí a muestrar
+30:17 en carpeta, se nos va a abrir, que la
+30:18 tengo por aquí, esta carpeta aquí con el
+30:20 archivo HTML que puedo abrir como si
+30:22 fuese una web convencional y la puedo
+30:24 ver también desde el navegador, lo cual
+30:26 me permite, pues, si por ejemplo lo
+30:27 estoy usando como un tracker de hábitos
+30:29 de forma sencilla, me pongo esto como
+30:31 enlace directo a mi escritorio y tener
+30:33 mi mini aplicación para lo que yo
+30:34 necesite. Pasamos ahora a explicar los
+30:37 conectores, que en mi humilde opinión es
+30:39 donde realmente entra el potencial de
+30:41 Cloud Cowork. ¿Recordáis que al inicio
+30:43 del vídeo Adrián ha comentado que con
+30:45 esto podemos revisar nuestro email,
+30:47 conectarlo con nuestro calendario y que
+30:48 hagan muchas cosas por nosotros? Pues
+30:50 bien, aquí creo que es donde está la
+30:51 clave de Cloud Cowork. Si tú le tienes
+30:53 que ir pasando los archivos, si le
+30:55 tienes que pasar toda la información
+30:56 cada vez, copiar un email, pasárselo
+30:59 para que te lo responda, etcétera, no se
+31:01 aleja demasiado de un chat convencional.
+31:03 Y aquí es donde entran la magia de los
+31:04 conectores. Tenemos conectores de todo
+31:06 tipo. Por ejemplo, un conector de Gmail
+31:08 que puede leer tu bandeja de entrada,
+31:09 clasificar emails, etcétera. Un colector
+31:11 de Google Calendar, es decir, que puede
+31:12 leer tu calendario y agendar eventos,
+31:15 uno de Word Drive para leer tus
+31:16 archivos. The Slack, de la aplicación
+31:18 que muchos conoceréis si lo usáis en el
+31:19 trabajo, The Notion, que es esa
+31:22 aplicación de productividad para ordenar
+31:23 ideas y ordenar proyectos. Canva N8N,
+31:27 que es esa aplicación para montar
+31:29 automatizaciones, Microsoft 365, que
+31:32 sería el equivalente a la Switch de
+31:33 herramientas de Google, es decir, Gmail,
+31:35 Calendar, Drive, etcétera, pero la
+31:37 versión de Microsoft. Para todo esto
+31:39 tenemos conectores, es decir, tenemos
+31:41 unas funciones dentro de Cloud Cover que
+31:43 nos permiten conectarnos a esas
+31:45 herramientas y que sea el propio cloud
+31:47 que directamente va a leer la
+31:49 información directamente de esas
+31:51 herramientas. ¿Qué significa esto? Pues
+31:52 bien, imagínate que yo a lo largo del
+31:54 día recibo varios emails como estos de
+31:56 aquí que me he mandado yo personalmente
+31:57 de ejemplo para hacer esta prueba. Pues
+31:59 bien, lo que podría hacer es conectar mi
+32:00 cuenta de cloue a esta cuenta de Gmail y
+32:03 a gente, si es que lo ve necesario,
+32:06 diferentes citas en base a los
+32:08 compromisos que recibo en estos emails
+32:11 que recib mi cuenta. Es decir, lo mismo
+32:12 queríamos nosotros de, "Okay, pues he
+32:14 recibido este mail y tengo que agendar
+32:15 una reunión con esta persona, etcétera,
+32:17 etcétera, etcétera." lo podríamos hacer
+32:19 automáticamente con Cloue y que nuestro
+32:21 calendario, que ahora veis que está
+32:22 vacío, nos agende esas citas, esas
+32:25 reuniones. Vamos a hacerlo para que lo
+32:26 veáis en directo. Para empezar a usar
+32:29 estos conectores, o bien desde el
+32:31 apartado de personalizar o bien desde
+32:33 este botón de aquí, nos vamos a
+32:34 conectores, gestionar conectores
+32:37 y aquí ya por defecto nos aparecen tres
+32:40 que son Gmail, Google Drive y Slack,
+32:43 pero hay muchísimos más. Si vamos aquí a
+32:45 explorar conectores, pues podemos ver
+32:46 que hay de muchísimas aplicaciones
+32:48 distintas, la mayoría ni ni las conozco.
+32:51 Por ejemplo, tenemos aquí de Canva,
+32:52 Denion, Microsoft 365, Slash, Atlasian,
+32:57 Hotspot. Hay absolutamente de
+33:00 prácticamente cualquier tipo de
+33:01 herramienta y para la que no haya
+33:02 conector, más adelante veremos cómo
+33:04 igualmente lo podemos llegar a hacer.
+33:06 Entonces nosotros nos vamos a quedar con
+33:11 Gmail,
+33:12 que lo tenemos por aquí.
+33:14 Pulsamos aquí para añadirlo y
+33:16 automáticamente nos va a abrir una
+33:17 ventana para loguear nuestra cuenta,
+33:19 para entrar en nuestra cuenta, ya que si
+33:20 no entramos en nuestra cuenta, Clou no
+33:22 va a tener acceso a todos esos emails.
+33:24 Así que entramos, continuar, nos va a
+33:26 pedir permisos, seleccionamos todo y le
+33:28 damos todos los permisos y listo. Ahora
+33:30 mismo es posible que os aparezca esta
+33:31 ventana, pero si os aparece simplemente
+33:33 lo cerramos por aquí porque si abrimos
+33:35 por aquí ya parece que está conectado.
+33:36 Es posible que se quede la ventana y
+33:37 flotando, pero lo tendríamos.
+33:40 Ahora tenemos que conectar también con
+33:42 calendar para llevar a cabo eso. Así que
+33:44 hacemos exactamente lo mismo. Añadir
+33:45 conector, explorar conectores.
+33:48 Y ahora tenemos por aquí calendar, así
+33:50 que no hace falta ni buscarlo. Pulso
+33:51 aquí, conectar. Igual que con Gmail se
+33:54 nos abre esto. Seleccionamos la cuenta,
+33:56 seleccionamos todos los permisos,
+33:58 continuar. Y de nuevo ya nos aparece
+33:59 aquí conectado, así que esto lo podemos
+34:00 cerrar.
+34:02 Y ya nos aparece por aquí que está
+34:03 conectado. De hecho, ahora si cerramos
+34:05 la pestaña interior y nos vamos aquí, ya
+34:07 vamos a por aquí que nos aparece que ya
+34:09 tenemos en nuestra lista de conectores
+34:10 instalados Gmail y World Calendar. Bien,
+34:13 tengo por aquí el ejemplo que comentaba
+34:16 antes, es decir, leer nuestros emails y
+34:18 ordenarlos. Y básicamente lo que le
+34:20 pediríamos a Cloud es lo que pone aquí.
+34:21 Aquí tengo el prompt completo que ya lo
+34:22 voy a ir copiando, pero básicamente lo
+34:24 que pone dentro del prompt es pues que
+34:26 es nuestro jefe de gabinete que tiene
+34:28 que filtrar con criterio los correos
+34:30 para no perder el tiempo. Es decir, que
+34:31 si de repente hay un loco que nos dice,
+34:33 "No, es que quiero 18 reuniones
+34:35 contigo." pues que no las agende,
+34:37 obviamente, que lo haga con criterio,
+34:38 que entre en el Gmail, que los lea, que
+34:40 lea todos los mensajes de las últimas 24
+34:42 horas, que los clasifique en base a la
+34:45 importancia del email, que [resoplido]
+34:47 son clientes y proveedores, que los
+34:49 borradores escrito, o sea, que que nos
+34:52 redacte emails para los que merecen una
+34:54 respuesta y los guarden borradores y que
+34:56 no envíe nada, que el envío lo decidimos
+34:59 nosotros, que simplemente nos los deje
+35:00 en borrador. Así que nada, copiamos el
+35:02 prompt que dice exactamente esto mismo.
+35:04 Nos vamos a Clou, le pasamos el prompt y
+35:08 antes de mandarle este mensaje nos vamos
+35:10 a ir aquí en conectores y vamos a
+35:12 asegurarnos que esto está activado, ya
+35:14 que si no no va a poder llevar a cabo
+35:15 esa tarea.
+35:17 Ahora sí que sí se lo mando
+35:21 y esperamos. Ya tenemos aquí a Claude
+35:24 trabajando. Está revisando, bueno, lo
+35:26 pone en inglés, pero básicamente está
+35:27 revisando nuestro email. está revisando
+35:29 qué es lo que hemos recibido, que
+35:31 [resoplido] es exactamente lo que pone
+35:32 aquí. Buscar correos no leídos de las
+35:33 últimas 24 horas, clasificar correos en
+35:36 cuatro montones, luego va a redactar los
+35:38 borradores, revisará las propuestas y
+35:40 valorará si agendar una reunión o una
+35:42 llamada y al final no nos redactará un
+35:44 briefing, es decir, un resumen de todo
+35:46 eso que ha ido haciendo. Y aquí ya nos
+35:49 aparece [resoplido] que está usando
+35:51 ahora mismo el conector de Gmail. Vemos
+35:53 por aquí que a pesar de que no se ha
+35:55 actualizado el progreso, parece que ya
+35:56 está terminando porque aquí en el
+35:59 progreso pone que ya está de nuevo pues
+36:02 interactuando con el calendario.
+36:04 Entonces entiendo que mira, justo ahora
+36:05 se ha actualizado. Efectivamente ya está
+36:07 agendando las cosas en el calendario y
+36:08 es por ello que también aquí nos aparece
+36:09 que ya entrado un juego el conector de
+36:11 calendar. Aquí no os ha dicho que haya
+36:13 correos sospechosos porque pues son
+36:16 correos que me he mandado a mí mismo y
+36:18 algunos los he mandado desde la misma
+36:19 dirección, etcétera. Entonces, nada,
+36:20 antes de revisar el resultado, le voy a
+36:22 decir que trate los sospechoses como si
+36:24 fuesen reales. ¿Vale? Ahora sí que sí,
+36:25 ya ha terminado. Nos pone aquí el
+36:28 recuento de emails. nos dice que hay
+36:29 cuatro emails urgentes, que hay uno que
+36:31 hay que responder hoy 100%, que hay dos
+36:34 que pueden esperar y que hay tres que
+36:36 podemos ignorar, que serían pues por
+36:37 ejemplo este de aquí que será una
+36:39 factura de hostinger, es decir, el
+36:41 típico mail que te notifican de te vamos
+36:43 a cobrar esto tal día o te hemos cobrado
+36:44 esto tal día o una alta de seguridad de
+36:47 Google, por ejemplo, que es el tipo que
+36:49 te dicen, "Has entrado tu cuenta desde
+36:51 aquí, pues tú ya sabes que has entrado."
+36:54 y notificaciones, por ejemplo. Pero en
+36:56 cambio todo lo importante, pues, por
+36:57 ejemplo, resúmenes de KPIs, es decir,
+36:59 resumen de la performance de algún
+37:01 proyecto que tienes, pues no te la ha
+37:03 puesto como ignorar, pero sí que te ha
+37:04 dicho, esto puede esperar, no es
+37:06 importante, no hace falta que respondas
+37:08 hoy. Esto aquí, por ejemplo, que es una
+37:10 respuesta para una persona que queremos
+37:12 contatar que tiene otra oferta o que se
+37:14 quiere de la empresa, creo que tiene
+37:16 otra oferta, pues hay que buscar hueco
+37:17 para hacer llamada, etcétera, etcétera.
+37:20 nos ha dejado ya los borradores, los
+37:22 borradores creados, que ahora los vamos
+37:23 a ver, y nos ha creado eventos. Pues
+37:24 bien, nos volvemos de nuevo al email y
+37:26 vemos que efectivamente en esos emails
+37:27 que eran importantes, ya tenemos aquí
+37:29 los borradores preparados para enviar.
+37:32 Hola, propuesta concreta para ACME antes
+37:35 de la ta tal ta tal, 15% de descuento,
+37:37 etcétera. Y ya tiene el mail listo para
+37:38 enviar y simplemente nos vamos aquí, lo
+37:40 revisamos y le damos clic a enviar. Tal
+37:43 tal tal, habí este problema con el
+37:44 servidor, etcétera. Adelante con el
+37:45 rollback. prioriza estabilidad, aunque
+37:47 haya downside, aunque haya downtown a
+37:49 los tres clientes con SLA, etcétera,
+37:51 etcétera, etcétera, y respondemos y
+37:52 simplemente tendríamos que responder,
+37:54 bueno, revisar el email, que sea
+37:56 coherente, etcétera. Y luego si nos
+37:57 vamos al calendario, pues efectivamente
+38:00 vemos que por aquí nos ha agendado la
+38:02 reunión con el colaborador, aquí nos ha
+38:05 agendado la otra reunión con el
+38:06 colaborador, ya está todo preparado con
+38:07 el enlace de Meet y si no me equivoco,
+38:11 no, esas eran las dosas agendas que
+38:14 teníamos. Entonces nada, aquí
+38:15 sencillamente nos llegaría la
+38:17 notificación tanto a nosotros como a esa
+38:19 otra persona que colaborará en la
+38:21 llamada para que nos sudamos y lo ha
+38:23 hecho el cloud de forma totalmente
+38:25 autónoma sin que nosotros tengamos que
+38:26 tocar nada manualmente. Es simplemente
+38:28 esa revisión y de hecho incluso la
+38:30 revisión de estos borradores podríamos
+38:32 saltárnosla. Lo que pasa es que es
+38:33 recomendable pues hacerlo nosotros
+38:35 manualmente el enviar al email para que
+38:36 no se manden locuras. Como veis, esto
+38:39 los conectores es increíble. Básicamente
+38:40 nos permite hacer de forma automática
+38:43 con clou todo aquello que normalmente
+38:45 haríamos de forma anual. Es decir, leer
+38:46 un email normalmente solo lo podemos
+38:47 hacer entrando nuestro email, moviendo
+38:49 el ratón, pulsando, abriendo el email,
+38:51 leyéndolo. Pues bien, todo esto lo va a
+38:52 hacer Cloue por nosotros gracias a estos
+38:55 conectores. Ahora bien, ¿qué ocurre
+38:57 cuando no existe el conector que
+38:58 nosotros queremos? Imaginemos que yo soy
+39:00 entrenador fitness y quiero conectar My
+39:04 Fitness P, es decir, la aplicación de
+39:06 finitness de mis clientes a Claude para
+39:09 analizar las métricas de mis clientes o
+39:11 de cómo están comiendo. Pues bien, me
+39:13 iría aquí a conectores, gestionar
+39:16 conectores, añadir conector, explorar
+39:19 conectores
+39:21 y buscando aquí my fitness
+39:25 pal no me sale nada. Resulta que el
+39:28 conector no está disponible. Soluciones
+39:30 para esto. Tenemos dos soluciones. La
+39:33 primera es la que tengo por aquí, que
+39:36 son los MCPs. Un MCP es un conector que
+39:41 no está en ese marketplace de conectores
+39:43 de cloud. ¿Qué ocurre con estos MCPs?
+39:45 Pues bien, que a veces no son
+39:48 del todo seguros, ya que el propio clou
+39:50 no los ha verificado, pero el 99% de los
+39:54 casos sí. Entonces, sencillamente hay
+39:55 que ir con un poco de cuidado. Cuando tú
+39:57 vas a añadir un MCP, es tan sencillo
+39:59 como introducir esos parámetros que usa
+40:01 el conector para hacer todas estas
+40:03 tareas de forma manual. Por ejemplo,
+40:05 tenemos el conector de AutoS, que es un
+40:08 proveedor de dropshipping, que en este
+40:11 caso lo añadiríamos a través de las
+40:12 configuraciones del MCP. ¿Cómo hacemos
+40:14 entonces para añadir esos conectores que
+40:16 no aparecen en la pestaña explorar? Pues
+40:17 bien, muy sencillo desde aquí, desde
+40:19 donde estamos antes, pulsamos en añadir
+40:21 y en vez de pulsar en explorar, pulsamos
+40:23 añadir conector personalizado. Y aquí se
+40:25 nos abrirán unos campos. Esto
+40:26 generalmente no hace falta. Aquí ponemos
+40:28 el nombre del conector. En mi caso
+40:30 hablamos del proveedor en cuestión de
+40:32 dropshipping que os comentaba antes, así
+40:33 que pongo Auto S. Pero aquí podéis poner
+40:35 lo que vosotros queráis realmente. Y
+40:37 donde sí que es importante que pongáis
+40:38 la información correcta es en la URL el
+40:41 enlace del conector del MCP, que esto es
+40:45 una un enlace que os facilitará pues en
+40:47 este caso auto DS. Aquí [resoplido] le
+40:49 doy clic a añadir
+40:52 y automáticamente veis que ya sale el
+40:53 logo, ya nos ha cargado el conector. Nos
+40:56 pide loguearnos, es decir, de entrar en
+40:58 nuestra cuenta, en este caso de Auto DS.
+41:00 Esto generalmente va a ocurrir con
+41:01 prácticamente todos los conectores. Y
+41:03 aquí ya se nos abrirá el panel para
+41:04 entrar en nuestra cuenta, en este caso
+41:05 de AutoS, pero va a depender del
+41:07 conector. Esto es lo mismo que hemos
+41:08 visto antes con Google, que se abría
+41:10 Google para entrar en tu cuenta y dar
+41:11 permisos. Pues sería exactamente lo
+41:14 mismo, pero en este caso pues con otra
+41:15 aplicación. Rellenamos nuestros datos y
+41:17 entramos. nos dice aquí un botón para
+41:20 volver a la aplicación de cloud, lo
+41:21 pulsamos y listo. Y aparece aquí que
+41:23 tenemos el conector activo con nuestra
+41:26 cuenta conectada y desde aquí pues
+41:27 podemos cambiar algunos ajustes. Pues
+41:30 por ejemplo, aquí tenemos las distintas
+41:31 acciones que puede realizar este
+41:33 conector en concreto, que son de buscar
+41:36 productos, buscar cuál es nuestro
+41:38 usuario, buscar productos similares,
+41:40 listar tiendas, listar productos,
+41:42 etcétera, etcétera. Y esto pues nos dice
+41:44 si lo queríamos dejar así requiriendo
+41:46 aprobación, pero por ejemplo lo podemos
+41:47 poner permitir siempre y así que siempre
+41:49 puede realizar todas esas acciones, por
+41:51 ejemplo, publicar productos, subir los
+41:53 productos a la tienda, etcétera,
+41:54 etcétera. ¿Qué nos permite hacer esto?
+41:55 Pues bien, esto es un proveedor de
+41:57 dropshipping que nos permite consultar
+41:58 productos y subirlos a nuestra tienda.
+42:00 Pues eso mismo es lo que podemos hacer,
+42:02 pero gracias a la inteligencia
+42:03 artificial, con este conector en
+42:04 concreto. ¿Qué significa? que de repente
+42:07 podemos pedirle, por ejemplo, que nos
+42:09 busque una lista superceta de productos
+42:11 en base a ciertos criterios, que es el
+42:12 ejemplo que tenemos por aquí.
+42:13 Básicamente le habíamos pedido eso, que
+42:15 nos busque una lista superceta de
+42:17 productos y usando ese conector se ha
+42:20 conectado el proveedor, ha analizado más
+42:22 de 1028 productos y ha seleccionado los
+42:24 50 que más encajaban con lo que le hemos
+42:26 pedido, que básicamente le hemos pedido
+42:28 que resuelva un problema real, que no se
+42:30 encuentren en tiendas físicas, que sea
+42:32 un alto valor precipido para poder
+42:33 venderlo por tres veces su coste, que
+42:35 cuesten entre 5 y $30 y que sean
+42:38 pequeños y fáciles de enviar. Así
+42:40 resumiendo y básicamente nos ha puesto
+42:41 este dashboard increíble en el que
+42:43 podemos pulsar los distintos productos y
+42:45 ver todas sus métricas, ver todas sus
+42:46 fotos y abrirlos dentro del propio
+42:49 proveedor. Una absoluta locura. Y todo
+42:51 esto pues obviamente gracias a Clou que
+42:54 el conector lo úico lo único que hace es
+42:56 acceder a esa información, pero
+42:58 realmente el que hace el trabajo pesado
+43:00 de analizar toda esa información es
+43:02 Cloue, en este caso con el modelo Sonet.
+43:04 Y si la herramienta que queremos usar o
+43:05 la información que queremos extraer no
+43:08 tiene ni conector ni tiene MCP, ¿qué
+43:10 usamos entonces? Pues bien, el conector
+43:13 es la forma más limpia, por así decirlo,
+43:17 de conectar cloud con una herramienta
+43:19 externa, pero si por lo que sea no
+43:20 existe ese conector SMCP, que vendría a
+43:22 ser lo mismo, lo único que uno se
+43:24 configura manualmente, tenemos las APIs.
+43:26 Las APIs realmente es lo que contienen
+43:30 los conectores, es decir, un conector lo
+43:31 que hace es conectarse una API y una API
+43:33 no es más que un puente que permite
+43:35 acceder a ciertos servicios de ciertas
+43:37 aplicaciones. lo que comentamos antes de
+43:39 todas esas cosas que haces de forma
+43:40 anual, pues las puede hacer a través del
+43:42 conector cloud. Pues bien, para hacerlo
+43:44 lo que hace el conector es documentar la
+43:46 API, es decir, le dice, mira, en la API
+43:48 para llevar a cabo esta acción tienes
+43:49 que tirar este comando de programación.
+43:52 Pues eso es lo que empaqueta el
+43:53 conector, le da esa información a Cloud.
+43:55 Para que se entienda un poco mejor a qué
+43:57 me refiero, pues bien, tenéis APIs que
+43:58 simplemente sacan información de
+43:59 internet, por ejemplo, esta de aquí que
+44:01 encont
+44:10 sobre sobre el clima en base a la
+44:12 latitud, que es un parámetro que habría
+44:14 que introducir, la longitud, la API key,
+44:17 ya que normalmente muchas APIs, muchos
+44:19 de estos códigos te van a pedir una
+44:21 clave que normalmente la consigues
+44:22 registrándote, como es este caso.
+44:25 las unidades de pues de estándar,
+44:28 métrica imperial, es decir, pues si son
+44:30 metros, si son yardas, etcétera,
+44:32 [resoplido] y distintos parámetros. Y
+44:33 como veis aquí, pues son muchos códigos,
+44:36 que es lo que usa internamente un
+44:37 conector para darle toda esa información
+44:39 al cloue de cómo querar esos datos. Y
+44:41 esto, este esto que llamamos APIS lo
+44:43 tenemos pues por ejemplo para sacar
+44:44 información del clima, pero lo tenemos
+44:45 también por ejemplo para sacar
+44:47 información de valores de bolsa, como
+44:49 sería por ejemplo la API de Trading View
+44:50 que te permite sacar todo tipo de
+44:53 valores de bolsa, pues con todos estos
+44:54 comandos. Y lo tenemos también para
+44:56 sacar información de YouTube, así como
+44:59 para editar vídeos de YouTube. Es decir,
+45:01 existe una API de YouTube igual al igual
+45:02 que existe como hemos visto antes, de
+45:04 Gmail, de calendar, etcétera, que nos
+45:06 permite llevar a cabo distintas
+45:08 acciones, pues por ejemplo, como editar
+45:09 los subtítulos, e cambiar el banner,
+45:13 consultar información del canal, revisar
+45:15 comentarios, e revisar las
+45:18 suscripciones, cambiar la miniatura,
+45:20 subir, bueno, subir vídeos, actualizar
+45:23 vídeos, sacar métricas del vídeo,
+45:25 etcétera, etcétera. Todo esto se hace
+45:26 desde la API. ¿Cómo lo usaríamos esto?
+45:28 Pues bien, ya que no tenemos un
+45:30 conector, bueno, en este caso estoy casi
+45:31 convencido que habrá un conector de
+45:33 YouTube, pero si no lo hubiese,
+45:34 sencillamente le pasaríamos este enlace
+45:36 a Cloue y le pediríamos que use la API
+45:38 directamente. Si no tenemos conector y
+45:41 tampoco tenemos API, ¿qué hacemos
+45:42 entonces? Siempre existe la opción del
+45:44 scrapping. El scrapping consiste en que
+45:47 un servicio a lo mejor no tiene esa API,
+45:49 es decir, no tiene esos comandos
+45:51 preparados para que tú te puedas
+45:52 conectar algorítmicamente a través de
+45:54 él, pero podemos extraer la información
+45:56 mediante scrapping, es decir, simular
+45:57 que somos un humano visitando la web y
+45:59 extraer toda esa información mediante
+46:01 código. Y esto también lo puede hacer el
+46:03 propio cloud. De hecho, ese informe que
+46:05 hemos visto antes de la aplicación de
+46:06 nutrición con inteligencia artificial en
+46:08 el que sacamos información de
+46:09 competidores, de la tendencia de
+46:11 mercado, etcétera, todo eso se ha hecho
+46:13 mediante scrapping, se ha hecho mediante
+46:15 rascar información de esos competidores,
+46:16 de sus páginas webs, de los precios a
+46:18 los que ofertan, etcétera. Y si no
+46:21 tenemos ni la opción del conector, ni la
+46:22 opción de la API, ni la opción de
+46:24 scrapping, porque por ejemplo en el caso
+46:26 de scrapping, muchas veces la propia web
+46:28 te va a bloquear, ya que a muchos no les
+46:30 gusta que saques esa información,
+46:32 tenemos la opción de activar el modo
+46:35 navegador de Cloud, que para ello
+46:36 tenemos que instalar una aplicación de
+46:38 Google Chrome y que Cloue empiece a
+46:40 mover el ratón por tu navegador como si
+46:42 fuese un humano y así pues es más fácil
+46:45 saltar esos pasos o si de repente esa
+46:48 información se encuentra detrás de una
+46:50 cuenta, es decir, tienes que crearte una
+46:51 cuenta y entrar físicamente en esa
+46:54 cuenta, pues lo podrías hacer y luego
+46:56 que sea Clou quien tome el control, ya
+46:57 que eso no lo podrías hacer mediante
+46:59 scrapping. Es decir, que realmente las
+47:01 opciones son infinitas. Simplemente
+47:02 tienes que saber cuándo usar la opción
+47:04 correcta en cada caso, siempre que
+47:06 puedas usar el conector. Si no puedes
+47:07 con conector, intenta encontrar una API
+47:09 y pasarle la documentación de la API
+47:11 Cloud para que la use él. Si no puedes,
+47:14 scrapping. Y si ese scrapping que
+47:16 quieres hacer o eso que quieres hacer
+47:17 está detrás de una cuenta, entonces
+47:19 siempre tienes la opción del navegador,
+47:20 que será la peor, la más lenta y la
+47:21 menos eficiente, pero siempre está ahí.
+47:23 Vamos con otro aspecto que me parece
+47:25 superpotente de Cloude. Recordarás que
+47:27 al inicio de este vídeo te he dicho que
+47:30 desde mi punto de vista lo mejor
+47:31 descargarse a la aplicación de
+47:32 escritorio, ya que es la que más cosas
+47:34 te permite hacer con Cloud Cowork. Pues
+47:37 bien, esto es cierto, pero es una verdad
+47:39 mediodías, ya que desde hace poco Cloud
+47:42 Cowork funciona también en la nube, es
+47:44 decir, tú puedes lanzar un prompt,
+47:45 apagar tu ordenador y aún así va a
+47:48 completar la tarea en cuestión. Ahora
+47:50 bien, no puedo hacerlo todo en la nube y
+47:52 esto realmente no es algo técnico, no es
+47:55 algo que tengas que ser muy espabilado
+47:57 para identificarlo, sino que es bastante
+47:59 sentido común.
+48:00 [resoplido]
+48:00 Por ejemplo, leer tu Gmail. Al final va
+48:02 a estar conectando los servidores de
+48:03 Cloue con los servidores de Gmail. Tu
+48:06 ordenador ahí no intervienen nada. Los
+48:07 emails no están en tu ordenador y Cloud,
+48:09 a pesar de que visualmente está en tu
+48:10 ordenador, se ejecutan los servidores de
+48:12 Cloude. En consecuencia, es algo que
+48:14 podrá hacer en la nube. Pero, por
+48:15 ejemplo, lo que hemos hecho antes de
+48:16 ordenar tu carpeta de descargas en la
+48:18 que tiene que leer tu carpeta, mirar los
+48:20 archivos, copiarlos, moverlos, todo lo
+48:22 que tenga que ver con cosas de tu
+48:23 ordenador, eso sí que va a necesitar que
+48:25 tenga tu ordenador encendido. Por eso
+48:27 comentaba que es bastante de sentido
+48:29 común. Vamos con un par de ejemplos más.
+48:30 Por ejemplo, e mandate un informe de lo
+48:33 que has hecho a lo largo de la semana en
+48:35 en base a tus archivos de WDrive.
+48:36 Imagínate que todo el trabajo que haces
+48:38 lo haces a través de Word Drive. Pues
+48:40 bien, te puede mandar un informe cada
+48:41 semana y como los archivos de World
+48:42 Drive, como bien sabrás, están en la
+48:44 nube y Cloud se ejecuta en la nube, pues
+48:46 lo puedes hacer sin problema. Pero, por
+48:48 ejemplo, renombrar tus fotos, es decir,
+48:50 revisar visualmente tus fotos y
+48:51 cambiarles el nombre, como son fotos que
+48:53 están en tu ordenador. Aquí hablamos de
+48:55 fotos de tus carpetas. Obviamente si
+48:56 estuviese en Drive lo podría hacer en la
+48:58 nube, pero si hablamos de fotos que
+48:59 están en tus carpetas solo lo podrá
+49:01 hacer en local si tu ordenador está
+49:03 encendido. Y luego, por ejemplo,
+49:04 conseguir leads, es decir, conseguir
+49:05 potenciales clientes investigando webs,
+49:07 etcétera, pues obviamente está
+49:09 conectando Cloue que está en la nube con
+49:12 información que está a internet, es
+49:13 decir, que también está en la nube, por
+49:14 lo que lo puedes hacer con el ordenador
+49:16 apagado. El hecho de que Cloue pueda
+49:18 funcionar en la nube nos desbloquea
+49:20 capacidades muy interesantes con
+49:22 respecto a las tareas programadas. Desde
+49:24 hace un tiempo cloud Cowork te permitía
+49:26 programar tareas. Le podías decir, pues
+49:28 mira, cada día ordéname la carpeta de
+49:30 descargas a las 9 de la noche. ¿Qué
+49:32 ocurre? Antes, para hacer esto tenías
+49:35 que tener el ordenador encendido, pero
+49:36 ahora para muchas de las tareas que
+49:38 quieras programar ya no hace falta.
+49:40 Imagínate lo que hemos hecho antes de
+49:42 ordenar nuestro email y dejar los
+49:44 borradores enviados y el calendario y
+49:46 todo de las últimas 24 horas. Pues bien,
+49:48 lo podríamos programar como una tarea
+49:50 para que se ejecute cada 24 horas. Y de
+49:52 esta forma no tener que ordenar nunca
+49:55 nuestro email, no tener que responder
+49:56 nunca a los emails y que simplemente nos
+49:58 despertemos y nos lo encontremos hecho.
+50:00 O por ejemplo, imagínate que eres un
+50:01 inversor o simplemente te gustan las
+50:02 inversiones y tienes tu portafolio con
+50:05 tu Bitcoin, con tu Ethereum, con tu CTFS
+50:08 del SP500, con tu cuenta remunerat
+50:11 republic, etcétera. Pues bueno, tú le
+50:12 puedes dar contexto a Cloue de cuál es
+50:16 tu portfolio y que automáticamente a las
+50:18 8 de la mañana revise todas las noticias
+50:20 únicamente las relacionadas con los
+50:22 activos que tú tienes y te haga un
+50:24 resumen de las noticias para que puedas
+50:25 tomar decisiones en consecuencia de,
+50:26 ostras, mira, pues han subido los tipos
+50:29 de interés, voy a mover dinero de
+50:30 Bitcoin que está bajando a mi cuenta
+50:32 remunerada de TR Republic porque ahora
+50:34 mismo me interesa tenerlo ahí y tú
+50:36 simplemente con un vistazo ya te manda
+50:38 cloud briefing cada mañana para que lo
+50:39 leas o simplemente si te interesa el
+50:41 mundo financiero.
+50:42 Pues bien, este último ejemplo es justo
+50:43 que vamos a hacer ahora. Vamos a
+50:45 preparar una de esas tareas programadas
+50:47 para que veáis cómo es. Lo tenemos por
+50:48 aquí. Es literalmente lo que estaba
+50:49 comentando ahora. Así que simplemente
+50:51 copiamos este prompt, nos vamos al
+50:53 apartado de programado,
+50:57 nueva tarea, configurar manualmente.
+51:00 Esto realmente caba decir que se puede
+51:01 hacer directamente por el chat y
+51:03 automáticamente el chat detecta cuando
+51:04 le estás pidiendo una tarea programada y
+51:06 la va a dejar configurada así, pero
+51:08 bueno, yo prefiero hacerlo manual ya que
+51:09 ahí menos falló. Aquí pego las
+51:11 instrucciones, que sería ese PROM que
+51:12 acabo de copiar, que recordemos el
+51:13 documento lo tendréis en la descripción.
+51:16 En cuanto a permisos, omitir todas las
+51:18 aprobaciones. Esto realmente como
+51:20 tenemos la opción de descargar la
+51:22 aplicación de cloud en el móvil, si es
+51:24 algo que requiere permisos, por ejemplo,
+51:25 enviar emails, podríamos poner e aprobar
+51:29 manualmente y que te pidiera permiso
+51:31 para cada uno de esos emails que envías
+51:32 y tú simplemente vas aprobando desde
+51:33 móvil a medida que te va comentando.
+51:35 Pero bueno, en nuestro caso, como es
+51:36 leer noticias, como no va a vender
+51:38 acciones ni nada por el estilo, le
+51:40 omitimos todos los permisos y luego
+51:42 tenemos que escoger el modelo. En mi
+51:44 caso es esonet porque quiero
+51:45 ahorrar esos créditos y luego le tenemos
+51:47 que poner un nombre, pues por ejemplo,
+51:49 noticias diarias
+51:52 financieras
+51:55 y aquí en descripción repasa las
+51:58 noticias
+51:59 asociadas a los
+52:03 activos en los que invierto.
+52:08 Y aquí pues básicamente tenemos el
+52:09 prompt en el que le decimos que revise
+52:11 las noticias financieras de Europa de
+52:12 las últimas 24 horas, prensa económica,
+52:14 decisiones, declaraciones de Banco
+52:16 Central Europeo, etcétera, etcétera. Y
+52:18 dime solo lo que toca mi cartera, es
+52:20 decir, lo que está relacionado con mi
+52:21 cartera. Y aquí le digo la composición
+52:23 de mi cartera, 45% indexados en este
+52:25 índice, en esto y en esto, etcétera,
+52:27 etcétera, etcétera. Las acciones
+52:29 individuales, las criptonales que tengo,
+52:31 un poco todo lo que compone mi cartera
+52:33 para que sepa sobre qué darme noticias.
+52:36 En cuanto a la frecuencia le decimos a
+52:38 diario y en cuanto a la hora le
+52:40 pondremos a las 8 de la mañana y le
+52:42 damos clic aquí a guardar. Y como veis
+52:44 por aquí ya nos aparece aquí que tenemos
+52:47 esta tarea programada. Aquí la podemos
+52:49 ver resumida todo lo que le hemos
+52:51 configurado manualmente. La podemos
+52:53 editar si por lo que se queremos cambiar
+52:54 algo, la podemos eliminar si ya no lo
+52:56 queremos. Y aquí la tenemos también
+52:58 accesible desde el panel de programado,
+53:00 es decir, aquí vemos que la noticia se
+53:01 va a lanzar a diario. Que la quiero
+53:04 probar ahora para enseñarosla. Pues
+53:06 sencillamente pulsamos aquí ejecutar
+53:07 ahora
+53:10 y aquí se empieza a ejecutar la tarea en
+53:11 chat. Esto que estamos haciendo ahora a
+53:13 través del chat, para que lo veáis ahora
+53:15 cómo funciona y qué es lo que va a
+53:16 llevar a cabo esta tarea, funcionaría de
+53:18 forma autónoma. Es decir, yo le he
+53:19 pulsado el botón ahora para que lleva a
+53:21 cabo la tarea y me dé esas noticias,
+53:23 pero esto se va a ejecutar cada día a
+53:24 las 8 de la mañana. De hecho, lo que voy
+53:26 a hacer es que os voy a poner aquí un
+53:27 pantallazo de cómo se ha ejecutado a las
+53:29 8 de la mañana y cómo recibido la
+53:30 notificación sin tener que hacer yo
+53:32 absolutamente nada. Pero ahora vamos a
+53:34 hacerlo así para que veáis un poco cómo
+53:35 revisa todas esas webs y cómo lleva a
+53:37 cabo la tarea. Pues primero busca las
+53:39 noticias del Balcon Central, ahora está
+53:41 buscando noticias de las acciones, luego
+53:43 de mirar las de Estados Unidos, veis
+53:45 aquí que está abriendo muchísimas
+53:46 páginas web para consultar todas esas
+53:48 noticias. Luego hará lo mismo con
+53:50 criptomonedas y luego nos redactará ese
+53:53 resumen. Espero tener la respuesta. y os
+53:55 comento en cuanto lo tengamos. Ya
+53:56 tenemos por aquí la respuesta y nos ha
+53:58 respondido briefing financiero 30 de
+54:00 julio 2026. Lo que más te afecta hoy,
+54:03 número uno, Microsoft se dispara, más
+54:05 16% de resultados, crecimiento de nu
+54:08 rápido en 4 años, etcétera, etcétera. Y
+54:11 básicamente nos dice cuándo han subido
+54:13 los distintos índices y nos dice que la
+54:15 dirección es claramente positiva. Petro
+54:17 de Viren sube tras ataques de Estados
+54:18 Unidos a Irán, pues han habido ataques
+54:20 de Estados Unidos, en consecuencia hay
+54:22 escasez de petróleo porque pues al haber
+54:25 conflicto se produce menos. Entonces
+54:27 hace que mi crudo, es decir, mis
+54:29 acciones de bueno, entiendo que tendría
+54:31 este fest de petróleo en el prom que he
+54:33 mandado antes, no no lo he revisado,
+54:35 pero entiendo que tenía de eso. Entonces
+54:37 me dice que ha subido un 2,6%. Entonces,
+54:39 perfecto, pero riesgo a vigilar porque
+54:41 si se prolonga, presiona inflación y
+54:43 complica al Banco Central Europeo de
+54:45 cara a septiembre. La Fed mantiene los
+54:47 tipos en 350, 375, la reserva general de
+54:51 Estados Unidos, etcétera, etcétera. Y
+54:53 más información, básicamente mandando un
+54:55 resumen de todo lo que encontrado
+54:57 relacionado con las noticias financieras
+54:59 que a mí me interesan y me lo podrá
+55:01 mandar cada día a las 8 de la mañana. De
+55:03 nuevo, os dejo por aquí por pantalla
+55:05 cómo ha sido el resultado de lo que he
+55:06 recibido la mañana del día siguiente, ya
+55:08 que al tener la la tela programada, en
+55:11 aproximadamente unas 14 horas, voy a
+55:14 recibir la siguiente el siguiente
+55:16 resumen de las noticias actualizado al
+55:19 día 31 de julio. Ahora bien, en este
+55:23 ejemplo concreto lo he hecho con
+55:25 información de internet, es decir,
+55:26 Cowork ha lanzado esa tela programada en
+55:29 la que ha buscado información de
+55:30 internet, pero donde entra la magia,
+55:33 donde ocurre la magia, más bien dicho,
+55:35 es cuando juntas esto a las tareas
+55:36 programadas con los conectores. Por
+55:39 ejemplo, yo podría hacer esa acción que
+55:41 he hecho antes de responder correos en
+55:44 borrador, enviar la, bueno, agendar todo
+55:47 en el calendario, etcétera. Eso de
+55:49 revisar las últimas 24 horas de mi mail
+55:51 y agendar todo eso, lo podría hacer con
+55:53 una tarea programada. Podría decir cada
+55:54 día házmelo a las 8 y como mi cloue ya
+55:56 tiene configurado el conector de Gmail y
+55:58 de calendar lo podría hacer de forma
+55:59 autónoma. O por ejemplo revisar que han
+56:02 publicado mis competidores. Por ejemplo,
+56:03 si yo tengo una tienda de nutrición y de
+56:07 repente empieza una hoyx y yo no me he
+56:10 enterado, pues a lo mejor mi competidor
+56:11 está publicando sobre eso en Instagram.
+56:12 puedo tener una automatización, una
+56:14 tarea programada que cada día revise las
+56:16 cuentas de Instagram de todos mis
+56:18 competidores y me diga que ver qué han
+56:19 publicado, que les está funcionando
+56:21 mejor a nivel de publicaciones para
+56:22 tráfico orgánico, etcétera, etcétera. Un
+56:25 resumen de cada reunión, como tiene
+56:27 acceso a mi calendario, puede mirar qué
+56:29 reuniones tengo ese día y a las 8 de la
+56:31 mañana me manda un resumen de todas las
+56:33 personas con las que me reúno. Pues
+56:34 mira, esta persona hablaste con ella
+56:35 hace un mes y quedasteis en hablar de
+56:37 esto. o esta persona para la cual
+56:39 estabas preparando un podcast es este
+56:42 perfil y puedes hacerle estas preguntas
+56:44 y le puedes pedir estos datos, etcétera,
+56:46 etcétera. Por ejemplo, también extraer
+56:48 list, extraer clientes potenciales cada
+56:50 mañana para ponerte a llamar e ordenar
+56:52 tus facturas, revisar los precios de tu
+56:54 competencia. De repente, si vendes un
+56:56 producto, como por ejemplo joyas de oro,
+56:59 que el precio del oro varía cada día, y
+57:00 tu competencia pues tiene estrategias de
+57:02 pricing en las que de repente un día te
+57:04 lo sube y otro día te lo baja, puedes
+57:06 revisar los precios de tu competencia
+57:07 para adaptarte a ello y ser siempre más
+57:09 barato. Puedes, por ejemplo, también
+57:11 hacer lo mismo de
+57:13 de revisar tu correo de cada mañana,
+57:16 algo parecido con tu Google Drive.
+57:17 Imagínate que tú siempre trabajas todo
+57:19 en Google Drive, tienes ahí tus
+57:20 documentos de texto, tus Excels, lo
+57:22 tienes todo ahí, pues puedes hacer que
+57:23 cada día el viernes te haga un resumen
+57:25 de todo lo que has hecho a lo largo de
+57:27 la semana para que así el lunes cuando
+57:29 la persona que tienes por encima o
+57:30 simplemente para tú tenerlo documentado,
+57:32 pues tener ese resumen para comentarlo
+57:33 el lunes. O por ejemplo lo que hemos
+57:35 hecho antes de ordenar las carpetas de
+57:37 descargas, hacerlo pues cada x tiempo de
+57:39 forma automática con esta tarea
+57:41 programada. Aunque en este caso, al no
+57:43 ser algo que se puede hacer 100% en la
+57:45 nube, ya que requiere tubs activos, pues
+57:47 sí que tendrías que tener el ordenador
+57:48 entendido cuando se ejecute. Pasamos
+57:50 ahora a mi bloque favorito y es cómo
+57:52 podemos generar dinero con esto. ¿Qué
+57:54 estrategias seguiría yo para empezar a
+57:56 ganar dinero con Cloud Cowork? Pues
+57:58 bien, el primer paso va a seguir elegir
+58:00 qué vender. Al final todo va de vender.
+58:02 Siempre estamos vendiendo algo, aunque
+58:03 sea un servicio, aunque no sea algo
+58:05 abstracto, es decir, asesorar, por
+58:07 ejemplo, a alguien sobre algo, siempre
+58:09 vas a estar vendiendo. Entonces,
+58:10 imagínate que tú eres experto en SEO,
+58:12 sabes mucho de SEO, pues bien, podrías
+58:14 vender auditoría SEO. Es importante que
+58:16 las entiendas porque si generas una
+58:18 auditoría SEO, a pesar de que Clou, como
+58:20 veremos ahora con este ejemplo, es muy
+58:22 bueno en esa tarea, [resoplido] pues te
+58:24 va a entregar un informe su completo. Si
+58:25 tú no se lo sabes transmitir al cliente
+58:27 y a partir de eso no puedes elaborar una
+58:29 estrategia, de nada te va a servir esa
+58:31 auditoría SEO. Pero bueno, como veis por
+58:33 aquí voy a abrir la auditoría SEO para
+58:34 que veáis el ejemplo. Imaginemos que
+58:36 Axa, toquemos madera, ojalá AXA nos
+58:38 contate, para una auditoría SEO, pues
+58:41 bien, podríamos generar esto con Cloud
+58:43 Cowork como servicio porque nosotros
+58:45 somos expertos en Senseo y se lo podemos
+58:47 explicar. Repito, te tienes que centrar
+58:49 en algo en lo que seas experto. Que eres
+58:51 bueno programando, pues puedes hacer
+58:54 investigaciones de desarrollo de
+58:57 aplicación y recomendar a las distintas
+59:00 empresas en qué herramientas vender, eh,
+59:03 bueno, vender, montar esas aplicaciones,
+59:05 en qué herramientas deberían
+59:06 programarlo. O, por ejemplo, si eres
+59:08 experto en metaads, pues puedes hacer
+59:09 analíticas de Metaads, pero debes
+59:11 entender lo que estás analizando. Si no,
+59:12 de nada te sirve. Aquí, como veis, pues
+59:14 es uniforme muy técnico con cosas como,
+59:17 por ejemplo, esto de aquí de e a t y m,
+59:20 que no tengo ni idea de lo que es, por
+59:22 eso tienes que ser un experto cuando
+59:23 haces este tipo de de
+59:26 informes, pero bueno, sería una de las
+59:28 opciones de cosas que tienes que vender.
+59:29 Puedes vender esto, puedes vender
+59:31 auditorías, pues lo que comentamos de un
+59:33 stack técnico, puedes vender auditorías
+59:35 de cómo funcionan los anuncios, puedes
+59:37 incluso crear contenido con Cloud
+59:40 Cowork, puedes crear diseños con Cloud
+59:41 Cowork y vender esos diseños. Puedes
+59:43 hacer una infinidad de cosas, pero
+59:45 tienes que decir qué vender en base a
+59:47 cuáles son tus habilidades, en base a lo
+59:49 que se te da bien. No sabes exactamente
+59:50 qué se te da bien, pues puedes
+59:51 preguntárselo al propio Claude, puedes
+59:53 hablarle de tu background y que te
+59:55 sugiera qué producto vender que pueda
+59:57 apalancarse en inteligencia artificial.
+59:59 Una vez sepamos exactamente qué vender,
+1:00:00 el segundo paso será conseguir clientes.
+1:00:02 Y este segundo paso también lo podemos
+1:00:04 hacer con Cloud Cowork. Existe una skill
+1:00:06 que se llama scrapling. Recordáis que
+1:00:07 antes os he comentado que hay una cosa
+1:00:10 que se llama scrapeo, que consiste en
+1:00:12 rascar información de internet. Pues
+1:00:13 bien, scrapling lo que hace es optimizar
+1:00:15 ese proceso de rascar información de
+1:00:17 internet y una de las cosas que hace muy
+1:00:19 bien es rascar información de Google
+1:00:20 Maps. Google Maps es una fuente
+1:00:22 increíble para encontrar clientes. ¿Por
+1:00:24 qué? Porque, por ejemplo, si yo estoy
+1:00:25 vendiendo páginas web en Google Maps,
+1:00:27 puedo ver los detalles de contacto,
+1:00:29 puedo ver las fotos del local, la
+1:00:31 información del local, las fotos del
+1:00:33 local para saber un poco de qué trata el
+1:00:34 local. Puedo extraer muchísima
+1:00:36 información sobre ese local y sobre todo
+1:00:37 puedo ver si tiene página web. Entonces,
+1:00:39 si yo, por ejemplo, quisiera encontrar e
+1:00:42 clientes para venderle este servicio de
+1:00:43 creación de páginas web, porque se me va
+1:00:45 muy bien generar páginas web, podría
+1:00:47 pedirle a través de este prom que os
+1:00:49 dejaré en el documento de la descripción
+1:00:51 que me encuentre a distintos locales que
+1:00:54 estén con muchas reseñas y con mucho
+1:00:56 tráfico, pero que me tengan página web y
+1:00:58 que me ponga toda su información de
+1:00:59 contacto usando la skill que se instala
+1:01:01 como el resto de skills que hemos visto
+1:01:02 hasta ahora. Y nos entregará algo
+1:01:04 parecido a esto. Aquí como veis por
+1:01:06 aquí, pues lo podemos exar como PDF. ha
+1:01:08 analizado 79,
+1:01:11 perdón, no ha analizado más de 300
+1:01:12 locales. Esto no nos lo pone por aquí,
+1:01:14 pero me acuerdo yo.
+1:01:17 Y de esos casi 300 locales ha encontrado
+1:01:20 79 que son clientes potenciales, es
+1:01:22 decir, que no tenían página web. ha
+1:01:24 cubierto nuevos barrios, un total de
+1:01:26 50,000 reseñas, etcétera, etcétera. No
+1:01:28 se ha entregado toda esta información y
+1:01:30 luego yo lo único que tendría que hacer
+1:01:32 es directamente, pues mira, por ejemplo,
+1:01:33 quiero venderle a este local de aquí, lo
+1:01:35 abro aquí, me aquí al enlace del local y
+1:01:37 puedo aquí llamarlo directamente, ya que
+1:01:39 me saco la información del contacto, lo
+1:01:41 llamo, le ofrezco mi servicio, me dice
+1:01:43 que no tiene ni web ni red social
+1:01:45 enlazadas, etcétera, etcétera. Entonces,
+1:01:47 sencillamente le podría ofrecer ese
+1:01:49 servicio de creación de página web. ¿Es
+1:01:51 esto sencillo? No, eh, cuando llamas a
+1:01:54 este tipo de locales, en el 99% de los
+1:01:57 casos vas a recibir muchísimos rechazos.
+1:02:00 Pero si tu servicio vale la pena y lo
+1:02:01 puedes vender relativamente caro, con
+1:02:03 que hagas dos ventas al día ya puedes
+1:02:04 llegar a sacarte un sueldo. De hecho,
+1:02:06 nosotros hicimos este mismo experimento,
+1:02:08 el de vender páginas web a locales.
+1:02:10 Hicimos exactamente esto. logramos
+1:02:12 vender dos páginas web a 72 € cada una
+1:02:15 más una fi anual de mantenimiento, es
+1:02:17 decir, que además nos da ingresos
+1:02:18 recurrentes y
+1:02:21 logramos venderlo en 72 € cada una, es
+1:02:25 decir, 144 € en un solo día, por lo que
+1:02:28 esto lo multiplicas por 30 y ya son más
+1:02:30 de 3,000 € deduciendo impuestos y ya
+1:02:32 tenemos un sueldo bastante decente,
+1:02:34 sobre todo para lo que es España.
+1:02:35 Entonces, una estrategia muy
+1:02:38 interesante, sobre todo porque nos
+1:02:40 permite apalancarnos en Cloue para hacer
+1:02:42 ese trabajo que normalmente nos tomaría
+1:02:43 muchísimas horas que consistiría en
+1:02:45 revisar manualmente todos esos locales.
+1:02:47 De hecho, incluso como lo pone por aquí,
+1:02:49 podemos pedirle que nos redacte un mail
+1:02:51 en vez de contactar por teléfono, aunque
+1:02:53 generalmente yo prefiero teléfono y que
+1:02:55 es más efectivo, pero podríamos pedirle
+1:02:56 que lo redacte un mail en base a un
+1:02:59 detalle que detecté por internet en esa
+1:03:01 ficha de Google Maps e incluso que lo
+1:03:03 mande automáticamente, ya que tenemos
+1:03:05 ese conector de Gmail. Pero bueno,
+1:03:07 personalmente creo que en estos casos lo
+1:03:09 mejor es contactar por teléfono ya que
+1:03:11 es más humano y te suelen hacer más
+1:03:13 caso. En esta línea ya hemos visto cómo
+1:03:16 generar ese servicio, pues tienes
+1:03:17 distintas opciones. Gracias a Cloud Core
+1:03:19 puedes generar ese servicio, es decir,
+1:03:20 te libera trabajo. También has visto
+1:03:22 cómo liberarte ese tiempo de encontrar
+1:03:25 clientes, cómo hacerlo todo mucho más
+1:03:26 eficiente. Y una vez tienes esas dos
+1:03:29 cosas, el siguiente paso es
+1:03:31 automatizarlo. Es decir, eso que has
+1:03:33 hecho de forma semimanual con Cloue,
+1:03:35 hacerlo mucho más automatizado. Hay un
+1:03:38 concepto, una metáfora que suele usar
+1:03:40 Adrián y que me gusta mucho, que es la
+1:03:41 metáfora del barco. Hay mucho trabajo
+1:03:44 que consiste en mantener el barco a
+1:03:46 flote, tanto elegir que vas a vender y
+1:03:48 ejecutar ese servicio como encontrar
+1:03:50 clientes y ponerte a llamar a esos
+1:03:52 clientes consiste en mantener el barco a
+1:03:53 flote. Es lo que hace que tu negocio
+1:03:56 siga funcionando y siga generando
+1:03:57 ingresos, pero para hacerlo crecer
+1:03:59 tienes que hacer avanzar el barco. Pues
+1:04:00 bien, siguiendo esta analogía, el hecho
+1:04:02 de pedir cosas a Cloue usando los
+1:04:04 conectores y el [resoplido] hecho de
+1:04:06 empaquetizarlo en una skill para que el
+1:04:08 workflow sea mucho más optimizado. Es
+1:04:10 decir, lo que comentamos antes de, okay,
+1:04:11 una vez sigue un proceso, le he pido cla
+1:04:14 de que me lo convierta en una skill y ya
+1:04:15 me guardo esa skill para mí para repetir
+1:04:16 ese proceso. Todo eso sería mantener a
+1:04:19 flote del barco. Básicamente estás
+1:04:20 haciendo que tu trabajo sea más sencillo
+1:04:22 y lo mantienes a flote porque te va a
+1:04:24 permitir que esa tarea recurrente la
+1:04:26 puedes ejecutar cada día de forma
+1:04:27 sencilla con la IA. Pero para hacer
+1:04:29 avanzar el barco, en mi opinión, la
+1:04:32 clave está en programar, porque si todo
+1:04:34 esto que estás haciendo de conseguir
+1:04:35 esos clientes, de entregar el servicio,
+1:04:37 etcétera, lo puedes llegar a programar,
+1:04:39 pues mira, e cada [resoplido] día saca
+1:04:41 una lista de clientes. Para cada uno de
+1:04:43 esos clientes, créame una web y esas
+1:04:45 webs mándaselas por email. Si todo eso
+1:04:47 usando todos estos conectores lo puedes
+1:04:49 llegar a automatizar, obviamente habrá
+1:04:51 muchos clientes que no te van a pagar
+1:04:52 por esa web, pero tú le puedes mandar la
+1:04:54 web y habrán 10 de cada 100 que a lo
+1:04:57 mejor te dicen, "Ostras, pues me gusta,
+1:04:59 te la te la quiero comprar." O cinco de
+1:05:02 cada 100 te van a decir, "Ostras, pues
+1:05:03 me gusta, te la quiero comprar."
+1:05:05 Y eso te permite tener un workflow ultra
+1:05:07 automatizado al cual ya le estás
+1:05:09 entregando el producto final, es decir,
+1:05:10 ya le estás entregando la web
+1:05:12 construida. Como te lo has automatizado
+1:05:14 con todo este workflow y con todas estas
+1:05:16 tareas programadas, te ha costado cero
+1:05:17 tiempo, solo te ha costado créditos de
+1:05:19 la suscripción de cloue y puedes empezar
+1:05:21 a conseguir clientes en piloto
+1:05:22 automático. Luego es verdad que el
+1:05:24 segundo contacto ya cuando te responden,
+1:05:26 pues obviamente tienes que intervenir tú
+1:05:27 y tal y como comentaba, pues es más
+1:05:29 efectivo llamar, pero esto te lo planteo
+1:05:31 solo como un ejemplo. Es decir, puedes
+1:05:32 llegar a crear workflows automatizados
+1:05:35 que te quiten un 90% del trabajo y tú
+1:05:37 solo tengas que llegar a intervenir en
+1:05:38 ese 10% al final del proceso. Entendido
+1:05:41 esto, quiero que te comprometas a llevar
+1:05:43 a cabo lo que te comenté de ahora. El
+1:05:45 día uno quiero que instales Cloudador y
+1:05:48 hagas la prueba de usando Cloud Corar tu
+1:05:51 carpeta de descargas para que tomes el
+1:05:53 contacto y ya pierdas esa fricción y ese
+1:05:55 miedo de empezar a usar esta
+1:05:56 inteligencia artificial con archivos de
+1:05:57 tu ordenador. El segundo día quiero que
+1:06:00 en caso de que tengas esas facturas que
+1:06:02 ordenes tus facturas para ver un poco
+1:06:05 cómo funciona trabajar con archivos,
+1:06:07 generarte un dashboard en un Excel o
+1:06:08 generarte un dashboard HTML tipo
+1:06:10 artefacto, lo que hemos visto antes.
+1:06:12 Quiero que hagas esa prueba, que no
+1:06:13 tienes facturas porque no eres autónomo,
+1:06:15 no hay problema. Te dejarán este
+1:06:16 documento el documento de facturas
+1:06:18 sintéticas, lo que he usado yo en ese en
+1:06:19 el ejemplo que hemos visto antes para
+1:06:21 que puedas hacer la prueba. Luego,
+1:06:22 prueba de lanzar una investigación tipo
+1:06:24 auditoría, por ejemplo, lo que hemos
+1:06:26 visto antes de AXA, para familiarizarte
+1:06:27 con estas búsquedas masivas de internet
+1:06:29 con varios agentes en paralelo. Prueba
+1:06:31 de conectar tu email y tu calendario.
+1:06:33 Experimenta con estos dos conectores y
+1:06:35 con más si puedes. Es decir, salta un
+1:06:37 poco de lo que te he enseñado yo en este
+1:06:38 vídeo para que no sea sencillamente
+1:06:40 seguir el paso a paso, sino un poco de
+1:06:43 proactividad y probar cosas por tu
+1:06:44 cuenta adaptadas a lo que tú necesitas.
+1:06:48 empaqueta ese proceso que haces tú en tu
+1:06:50 día a día en una skill para que ese
+1:06:52 proceso que haces tú en tu día a día
+1:06:53 usando inteligencia artificial ahora sea
+1:06:55 mucho más práctico, porque Clou tendrá
+1:06:57 las instrucciones concretas de cómo
+1:06:59 llevar a cabo ese proceso. Programa ese
+1:07:03 proceso, es decir, una vez ya lo tienes
+1:07:05 empaquetado, ya lo has testeado y lo has
+1:07:06 usado varias veces, prográmalo para que
+1:07:08 se ejecute de forma autónoma cada
+1:07:10 mañana, cada tarde, cuando a ti te venga
+1:07:11 bien. Y por último, repasa de todo esto
+1:07:14 que hemos hecho ahora, qué te ha
+1:07:15 ahorrado tiempo, si ha sido el hecho de
+1:07:17 automatizar, si ha sido el hecho de
+1:07:19 tener una skill específica que te haado
+1:07:21 mucho tiempo, si ha sido una combinación
+1:07:22 de todo, verifica qué es lo que
+1:07:24 realmente te ha sido útil de todo esto y
+1:07:26 potencialo, púlelo, mejora esa skill,
+1:07:28 générate una segunda versión de de esa
+1:07:30 skill que sea más óptima, que tenga más
+1:07:32 funciones para que tus procesos sean
+1:07:34 cada vez más óptimos y puedas empezar a
+1:07:36 pensar ya en pues lo que comentabamos
+1:07:38 antes, en qué vender y en a quién
+1:07:40 vendérselo a través de salir. lista del,
+1:07:42 pero primero las haz pruebas con lo que
+1:07:44 ya haces en tu día a día, porque eso va
+1:07:46 a ser lo que realmente te va a llevar a
+1:07:48 entender el potencial, básicamente
+1:07:50 porque estarás haciendo algo que ya
+1:07:51 estabas haciendo hasta ahora y te darás
+1:07:53 cuenta del tiempo que te ahorra hacerlo
+1:07:55 con este tipo de procesos. Llegado hasta
+1:07:57 este punto, no me queda más que
+1:07:58 agradecerte por quedarte hasta el final
+1:07:59 de este vídeo. Quiero recordar también
+1:08:01 que en este canal tenemos un vídeo de
+1:08:04 más de 6 horas en el que enseñamos paso
+1:08:06 a paso el resto de funciones de cloud.
+1:08:08 Recordáis que al inicio hemos hablado de
+1:08:09 Cloud Code, que es eso que te permite
+1:08:11 construir cosas, programas, páginas web,
+1:08:13 automatizaciones, etcétera. Todo eso lo
+1:08:15 tenéis explicado en este curso de más
+1:08:17 hay 6 horas que tendréis el enlace aquí
+1:08:19 en este documento que encontraréis en la
+1:08:20 descripción. Y nada, soy Ramón Alcaide.
+1:08:23 Muchísimas gracias porque está hasta el
+1:08:24 final. Dale like a este vídeo y nos
+1:08:26 vemos en el próximo.
+1:08:27 Para concluir esta formación, me
+1:08:28 gustaría darte las gracias por haber
+1:08:30 llegado hasta el final. De verdad que
+1:08:31 espero que te haya resultado útil. Si ha
+1:08:33 sido el caso, no dudes en dejar un like,
+1:08:34 es algo que no te cuesta nada y a
+1:08:36 nosotros de verdad que nos ayudas un
+1:08:37 montón. También decirte que en la
+1:08:39 descripción de este vídeo te voy a dejar
+1:08:40 el enlace a nuestro curso completo y
+1:08:42 gratuito de cloud de más de 6 horas. Es
+1:08:44 una formación realmente completa donde
+1:08:46 no únicamente hablamos de Cloud Cowork,
+1:08:48 sino que hablamos de todas las
+1:08:49 funcionalidades que nos ofrece esta
+1:08:51 increíble herramienta de inteligencia
+1:08:53 artificial. Y nada, soy Adrián Sacience
+1:08:55 y nos vemos en el próximo vídeo.

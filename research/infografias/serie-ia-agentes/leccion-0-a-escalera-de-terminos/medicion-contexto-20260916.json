@@ -1,0 +1,45 @@
+{
+  "modelo": "qwen2.5:7b",
+  "fecha": "2026-09-16",
+  "modo": "Ollama, num_gpu=0 (CPU), temperature=0",
+  "sin_aciertos": 0,
+  "sin_dice_no_sabe": 0,
+  "con_aciertos": 3,
+  "n": 3,
+  "detalle": [
+    {
+      "pregunta": "modelos instalados",
+      "sin_contexto": "1",
+      "sin_acierta": false,
+      "sin_dice_que_no_sabe": false,
+      "sin_segundos": 17.0,
+      "con_contexto": "15",
+      "con_acierta": true,
+      "con_segundos": 2.1,
+      "esperado": "15"
+    },
+    {
+      "pregunta": "piezas de la serie",
+      "sin_contexto": "45",
+      "sin_acierta": false,
+      "sin_dice_que_no_sabe": false,
+      "sin_segundos": 1.5,
+      "con_contexto": "8",
+      "con_acierta": true,
+      "con_segundos": 1.9,
+      "esperado": "8"
+    },
+    {
+      "pregunta": "total del albaran 4712",
+      "sin_contexto": "1234.56",
+      "sin_acierta": false,
+      "sin_dice_que_no_sabe": false,
+      "sin_segundos": 2.4,
+      "con_contexto": "30.50",
+      "con_acierta": false,
+      "con_segundos": 3.0,
+      "esperado": "30,50"
+    }
+  ],
+  "nota_evaluacion": "Recalculo con normalizacion numerica correcta (1.234,56 y 30.50 equivalentes). El script inicial dio 2/3 por un bug de comparacion de texto al quitar los puntos."
+}

@@ -1,0 +1,849 @@
+TRANSCRIPCION LITERAL (VLM local) -- carrusel Instagram DeDqYXvGDqE (@datasciencebrain)
+Titulo del documento: "Build an LLM Router That Survives Provider Outages - in 40 Minutes"
+Transcrito: 2026-10-04 con glm-4.6v-flash (LM Studio headless, http://localhost:1234) sobre 20 laminas 1440x1800
+Metodo: OCR por VLM, sin redimensionar; prompt 'Transcribe LITERALMENTE'. Lote: 20/20 en 1136 s.
+AVISO: es una transcripcion OCR de laminas (1 pagina de PDF por lamina). Las lineas de codigo largas
+aparecen cortadas por el ancho de la lamina y la indentacion se pierde -> NO es codigo copiable.
+Las laminas 1-19 reproducen el documento (portada + paginas 1-18); la lamina 20 es el CTA de suscripcion.
+
+===== LAMINA 01 / 20 =====
+[1440x1800 px | 38.0 s | 3707 tokens | finish=stop]
+
+@DATASCIENCEBRAIN
+BUILD AN LLM ROUTER
+THAT SURVIVES
+PROVIDER OUTAGES
+IN 40 MINUTES
+SWIPE TO KNOW MORE 👉
+PIEZA:
+
+===== LAMINA 02 / 20 =====
+[1440x1800 px | 235.7 s | 5491 tokens | finish=stop]
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes
+Created by https://www.instagram.com/datasciencebrain/
+Your AI app keeps working even when an AI provider goes down
+
+[Diagram: Left "Customer tickets" with three user icons; middle "Smart Router" box ("Picks a working AI") with three traffic lights below labeled "Retry", "Breaker", "Backup plan"; right "Gemini" (1st choice), "Groq" (Backup), "Local AI (Ollama)"; arrows from Smart Router to each provider, then to "Customer gets a reply"; also "Human team" path if all AIs are down.]
+
+Retry with waits
+Skip broken providers
+Switch to backup
+Never crash
+
+Verified 2026-10-03 — google-genai==2.28.0, groq==1.7.0, ollama==0.6.3 (Ollama app 0.35.0),
+litellm==1.103.2, python-dotenv==1.2.4, Python 3.12. Models: Gemini gemini-3.5-flash-lite,
+Groq openai/gpt-oss-20b, Ollama llama3.2:3b
+
+Table of Contents
+1. What You're Building
+2. Architecture Overview
+3. Prerequisites & Setup
+4. Config
+5. One Error Type for Three SDKs
+6. Three Providers, One Interface
+7. Retry With Backoff
+8. The Circuit Breaker
+9. The Router
+10. Chaos: Outages on Cue
+11. The Agent
+12. A Self-Test That Costs Nothing
+13. The Command Line
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 1
+PIEZA: Página de documento, tutorial sobre enrutador LLM para sobrevivir a apagones de proveedores
+
+===== LAMINA 03 / 20 =====
+[1440x1800 px | 167.4 s | 4895 tokens | finish=stop]
+
+14. Run It End-to-End
+15. The Same Router in LiteLLM
+16. Common Errors & Fixes
+17. What to Build Next
+
+1. What You're Building
+Your agent calls one LLM API. The API returns a 429, or a 503 "model is experiencing high demand", and your agent dies halfway through its job. On free tiers this isn't rare: Gemini's free tier returns 503s on busy days.
+You'll build the fix every production team ends up writing: one complete(messages) call with three providers behind it. Gemini goes first, Groq is the fallback, and a small model on your own laptop is the last resort.
+A support agent triages six tickets in one run. You'll knock providers out mid-run and watch the router retry, give up, switch, stop calling the dead one, and later test whether it's back. The customer-facing replies look the same throughout.
+You'll learn four ideas by building each one: provider abstraction, retry with backoff, circuit breakers and graceful degradation. At the end you'll rebuild the same thing with LiteLLM and see what a library gives you and what it hides.
+
+2. Architecture Overview
+[Diagram showing flow from "Support agent" → "LLM router" → "Gemini primary" (fails) → "Groq fallback" (fails) → "Ollama on your laptop" (fails) → "Holding reply and human flag" → "Customer reply"]
+The agent only ever talks to the router. The router walks the providers in order. Each provider gets its own retries and its own circuit breaker.
+A provider "fails" when its retries run out, or when the error isn't worth retrying at all, like a bad API key. Then the router moves to the next one. If all three are down, the customer gets an honest holding message and the ticket gets flagged for a human. The run never crashes.
+The pieces, in the order you'll build them:
+File | Job
+config.py | keys, model IDs, retry and breaker settings
+errors.py | turns any SDK's exception into one ProviderError
+providers.py | three adapters with the same complete() method
+resilience.py | retry with backoff, and the circuit breaker
+router.py | walks the providers, never raises
+chaos.py | makes providers fail on cue for the demo
+tickets.py | the agent: six tickets, one shared history
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 2
+PIEZA: Hoja de trabajo, Construir un enrutador LLM que sobrevive a apagones de proveedores
+
+===== LAMINA 04 / 20 =====
+[1440x1800 px | 82.3 s | 4162 tokens | finish=stop]
+
+| File | Job |
+|------|-----|
+| selftest.py, main.py | free checks, and the CLI |
+| litellm_router.py | the same job done by LiteLLM |
+
+3. Prerequisites & Setup
+You need Python 3.12, uv, and Ollama installed and running. You'll also need two free API keys, no credit card:
+* Gemini: aistudio.google.com/apikey
+* Groq: console.groq.com/keys
+
+Create the project:
+
+uv init failover-router --python 3.12
+cd failover-router
+uv add google-genai groq ollama litellm python-dotenv
+mkdir src
+ollama pull llama3.2:3b
+
+Delete the main.py that uv init creates. Your code lives in src/.
+
+llama3.2:3b is a 2 GB download. It's the last resort, so it only has to be fast and answer in valid JSON, and it does both in about 3 seconds on a laptop.
+
+Create .env:
+
+GEMINI_API_KEY=your_gemini_key
+GROQ_API_KEY=gsk_your_groq_key
+
+Create .env.example with the same two names and empty values, so the repo shows what's needed without leaking keys:
+
+GEMINI_API_KEY=
+GROQ_API_KEY=
+
+And .gitignore:
+
+.env
+.venv/
+_pycache_/
+*.pyc
+
+Every run command in this guide starts with PYTHONPATH=. On Windows PowerShell,
+run $env:PYTHONPATH="." once per terminal and drop the prefix.
+
+4. Config
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 3
+PIEZA: Pagina de documento, Guía técnica (prerrequisitos y configuración)
+
+===== LAMINA 05 / 20 =====
+[1440x1800 px | 167.8 s | 4788 tokens | finish=stop]
+
+Everything you might tune lives in one file. The provider order is the failover order.
+The retry numbers decide how hard you push one provider before giving up on it. The breaker numbers
+decide how long you stop calling a provider once it has proven broken. You'll meet each one properly in
+sections 7 and 8.
+load_dotenv gets an explicit path. Called with no path, it searches from the folder of the script that calls it,
+not from where you ran the command. That's an easy way to end up with empty keys.
+Save as src/config.py :
+"""Settings for the failover router: API keys, model IDs and resilience knobs.
+Inputs: .env in the project root (GEMINI_API_KEY, GROQ_API_KEY).
+Outputs: module-level constants imported by every other file.
+"""
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+
+ROOT = Path(__file__).resolve().parent.parent
+load_dotenv(ROOT / ".env")
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
+
+# Provider order is the failover order: primary first, last resort last.
+GEMINI_MODEL = "gemini-3.5-flash-lite"
+GROQ_MODEL = "openai/gpt-oss-20b"
+OLLAMA_MODEL = "llama3.2:3b"
+PROVIDER_ORDER = ["gemini", "groq", "ollama"]
+
+# Retry: how hard we push one provider before moving to the next.
+CALL_TIMEOUT_S = 30.0 # one attempt, one provider
+MAX_RETRIES = 2 # extra attempts after the first one
+BACKOFF_BASE_S = 0.5 # 0.5s, 1s, 2s ... before jitter
+BACKOFF_CAP_S = 8.0 # longer waits than this mean "fail over instead"
+
+# Circuit breaker: when we stop calling a provider at all for a while.
+BREAKER_THRESHOLD = 2 # consecutive failed calls that open the breaker
+BREAKER_COOLDOWN_S = 30.0 # how long it stays open before one probe call
+
+Why gemini-3.5-flash-lite and not the bigger Flash? Free-tier Gemini models take turns being overloaded.
+On the day this was tested, gemini-3.5-flash answered a plain "say hi" with a 503 on the first try, and Flash-
+Lite answered in under a second. Any Flash model your key can reach will work here. When one is
+overloaded, that's exactly the failure the router exists to absorb.
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 4
+PIEZA: Pagina de documento, Configuración de enrutador LLM (failover)
+
+===== LAMINA 06 / 20 =====
+[1440x1800 px | 216.0 s | 5263 tokens | finish=stop]
+
+5. One Error Type for Three SDKs
+Here's the first real problem. Gemini raises google.genai.errors.ClientError with a .code. Groq raises groq.RateLimitError with a .status_code. Ollama raises ollama.ResponseError, or a plain Python ConnectionError when the app isn't running.
+
+If the router had to know all of that, adding a fourth provider would mean editing the router. So every exception gets translated into one ProviderError that answers the only question the router cares about: is it worth trying again?
+
+Start with the type and the retry rule. Save as src/errors.py :
+
+"""
+One error type for every provider, so the router never imports an SDK.
+
+Inputs: any exception raised by google-genai, groq, ollama or the network.
+Outputs: ProviderError with `retryable` and an optional `retry_after` (seconds).
+"""
+
+import groq
+import httpx
+import ollama
+from google.genai import errors as genai_errors
+
+# Status codes worth trying again: rate limits, timeouts and server-side troubl e.
+# Everything else (400 bad request, 401 bad key, 404 wrong model) fails the same # way every time, so retrying only burns the clock.
+RETRYABLE_STATUS = {408, 429, 500, 502, 503, 504}
+
+class ProviderError(Exception):
+    """A provider call failed. `retryable` decides retry vs. instant failove r."""
+    
+    def __init__(self, provider: str, reason: str, status: int | None,
+                 retryable: bool, retry_after: float | None = None) -> None:
+        super().__init__(f"{provider}: {reason}")
+        self.provider = provider
+        self.reason = reason # short label for logs: "429" or "ConnectionError (...)"
+        self.status = status
+        self.retryable = retryable
+        self.retry_after = retry_after
+
+The split between retryable and fatal is the most important decision in the whole project. A 429 means "slow down", so trying again later can work. A 401 means "this key is wrong". Retrying a 401 three times just makes the customer wait three times longer for the same failure.
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 5
+PIEZA: página, Construir un enrutador de LLM que sobrevive a apagones de proveedores
+
+===== LAMINA 07 / 20 =====
+[1440x1800 px | 164.1 s | 4742 tokens | finish=stop]
+
+Next, the two ways providers tell you how long to wait. Gemini puts a RetryInfo block inside the error body, like "retryDelay": "41s". Groq sends a standard Retry-After header. Add these below the class:
+
+def _gemini_retry_after(err: genai_errors.APIError) -> float | None:
+    """Read Gemini's RetryInfo.retryDelay (e.g. '41s') from the error detail
+    s."""
+    details = err.details.get("error", {}).get("details", []) if isinstance(err.
+    details, dict) else []
+    for item in details:
+        if item.get("@type", "").endswith("RetryInfo"):
+            return float(str(item.get("retryDelay", "0s")).rstrip("s") or 0)
+    return None
+
+def _header_retry_after(headers: httpx.Headers) -> float | None:
+    """Read a numeric Retry-After header, the way Groq sends it on a 429."""
+    value = headers.get("retry-after")
+    try:
+        return float(value) if value else None
+    except ValueError:
+        return None
+
+Now the translation itself. Each SDK gets one isinstance branch that pulls out the status code. Anything with no status code is either a network failure (worth retrying) or a bug in our own code (not worth retrying).
+
+_reason builds the short label you'll see in the logs: 429 for HTTP errors, or the exception type plus its first sentence for everything else.
+
+def _status_and_wait(exc: Exception) -> tuple[int | None, float | None, bool]:
+    """Map an SDK exception to (status, retry_after, is_network_error)."""
+    if isinstance(exc, genai_errors.APIError):
+        return exc.code, _gemini_retry_after(exc), False
+    if isinstance(exc, groq.APISStatusError):
+        return exc.status_code, _header_retry_after(exc.response.headers), False
+    if isinstance(exc, ollama.ResponseError):
+        return exc.status_code, None, False
+    network = (groq.APIConnectionError, httpx.TransportError, ConnectionError, TimeoutError)
+    return None, None, isinstance(exc, network)
+
+def _reason(exc: Exception, status: int | None) -> str:
+    """'429' for HTTP errors; 'ValueError(GROQ_API_KEY is not set)' for the res
+    t.'"
+    if status:
+        return str(status)
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes
+6
+PIEZA: Pagina de documento, tema desarrollo de software (LLM router para sobrevivir a apagones de proveedores)
+
+===== LAMINA 08 / 20 =====
+[1440x1800 px | 172.4 s | 4811 tokens | finish=stop]
+
+first_sentence = str(exc).split(".")[0][:50]
+return f"{type(exc).__name__}({first_sentence})" if first_sentence else type(exc).__name__
+
+def to_provider_error(provider: str, exc: Exception) -> ProviderError:
+    """Classify any exception from a provider call as retryable or fatal."""
+    if isinstance(exc, ProviderError):
+        return exc
+    status, retry_after, network = _status_and_wait(exc)
+    retryable = network or status in RETRYABLE_STATUS
+    return ProviderError(provider, _reason(exc, status), status, retryable, retr y_after)
+
+TimeoutError is in the network list on purpose. A provider that hangs is as useless as one that's down, and the next section turns a hang into a TimeoutError.
+
+6. Three Providers, One Interface
+This is the provider abstraction. Every provider gets the same method: await
+provider.complete(messages) returns a string or raises ProviderError. The messages always come in one shape,
+the OpenAI-style list most of the ecosystem already uses:
+[{"role": "system", "content": "..."}, {"role": "user", "content": "..."}]
+
+The base class does three jobs once, so the subclasses don't repeat them. It puts a timeout on every call,
+it runs the chaos hook you'll build in section 10, and it translates every exception through to_provider_error.
+Each subclass writes only _call_, the one SDK call.
+
+Save as src/providers.py :
+"""Three adapters behind one interface: `await provider.complete(messages)`.
+Inputs: chat history in one common shape - [{"role": "system"|"user"|"assistant",
+    "content": str}, ...] - the same list no matter who answers.
+Outputs: the reply text as a str, or a ProviderError (see errors.py).
+"""
+
+import asyncio
+from collections.abc import Callable
+
+import ollama
+from google import genai
+from google.genai import types
+from groq import AsyncGroq
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 7
+PIEZA: hoja, tema: código y texto técnico sobre abstracción de proveedores para LLM
+
+===== LAMINA 09 / 20 =====
+[1440x1800 px | 182.2 s | 4871 tokens | finish=stop]
+
+from src import config
+from src.errors import to_provider_error
+
+Messages = list[dict[str, str]]
+
+Messages is the shared shape every adapter accepts. Now the base class. Everything a provider does goes through complete , so this one try block is the only place an SDK exception can escape, and it always leaves as a ProviderError :
+
+class Provider:
+    """Base adapter: timeout, chaos hook and error translation live here once."""
+    
+    name = "base"
+    
+    def __init__(self) -> None:
+        self.chaos: Callable[[str], None] | None = None  # set by chaos.py for demos
+
+    async def complete(self, messages: Messages) -> str:
+        """Ask the model for a JSON reply. Raises ProviderError on any failure."""
+        
+        try:
+            if self.chaos:
+                self.chaos(self.name)
+                return await asyncio.wait_for(self._call(messages), config.CALL_TIME_OUT_S)
+            
+        except Exception as exc:
+            raise to_provider_error(self.name, exc) from exc
+
+    async def _call(self, messages: Messages) -> str:
+        """The one SDK call each subclass implements."""
+        
+        raise NotImplementedError
+
+Gemini is the adapter that does real work. It has no system role; the system prompt goes into system_instruction instead. It also calls the assistant role model . The adapter converts the shared history into Gemini's shape on every call, which is how the conversation survives a failover: the history never belongs to a provider.
+
+Two details protect the router. A missing key creates no client, so the provider fails like a dead one instead of crashing the program at startup. And google-genai only retries when you pass it retry_options ; we don't, so every retry you see in the logs is ours.
+
+class GeminiProvider(Provider):
+    """Primary: Gemini via google-genai. It has no 'system' or 'assistant' roles."""
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes
+8
+PIEZA:
+
+===== LAMINA 10 / 20 =====
+[1440x1800 px | 113.2 s | 4336 tokens | finish=stop]
+
+name = "gemini"
+def __init__(self, api_key: str) -> None:
+    super().__init__()
+    # No key = no client. The provider then fails like a dead one instead of crashing
+    # startup. No retry_options passed, so the SDK never retries behind our back.
+    self.client = genai.Client(api_key=api_key) if api_key else None
+
+async def _call(self, messages: Messages) -> str:
+    """Move the system prompt into config and rename 'assistant' to 'mode
+l'."""
+    if self.client is None:
+        raise ValueError("GEMINI_API_KEY is not set")
+    system = "\n".join(m["content"] for m in messages if m["role"] == "syste
+m")
+
+contents = [
+    types.Content(role="model" if m["role"] == "assistant" else "user",
+                  parts=[types.Part(text=m["content"])])
+    for m in messages if m["role"] != "system"
+]
+response = await self.client.aio.models.generate_content(
+    model=config.GEMINI_MODEL,
+    contents=contents,
+    config=types.GenerateContentConfig(
+        system_instruction=system,
+        response_mime_type="application/json",
+        automatic_function_calling=types.AutomaticFunctionCallingConfig
+        (disable=True),
+    )
+)
+return response.text or ""
+
+Groq and Ollama both accept the shared message shape as-is, so their adapters are short.
+Watch max_retries=0 on Groq. AsyncGroq retries twice on its own by default. Leave that on, and every "1
+attempt" in your logs could secretly be three. Your backoff would also stack on top of theirs. One layer
+should own retries, and here that layer is the router.
+
+class GroqProvider(Provider):
+    """Fallback: Groq speaks the OpenAI message format, so messages pass straigh
+t through."""
+
+name = "groq"
+
+def __init__(self, api_key: str) -> None:
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 9
+PIEZA: Pagina de documento técnico sobre ruteadores LLM y proveedores de servicios.
+
+===== LAMINA 11 / 20 =====
+[1440x1800 px | 205.4 s | 5221 tokens | finish=stop]
+
+super().__init__()
+# max_retries=0: AsyncGroq retries twice by default, and our router owns retries.
+self.client = AsyncGroq(api_key=api_key, max_retries=0) if api_key else None
+
+async def _call(self, messages: Messages) -> str:
+    """One chat completion in JSON mode."""
+    if self.client is None:
+        raise ValueError("GROQ_API_KEY is not set")
+    response = await self.client.chat.completions.create(
+        model=config.GROQ_MODEL,
+        messages=messages,
+        response_format={"type": "json_object"},
+    )
+    return response.choices[0].message.content or ""
+
+class OllamaProvider(Provider):
+    """Last resort: a small model on this machine. No key, no quota, no interne t."""
+    
+    name = "ollama"
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.client = ollama.AsyncClient()
+
+    async def _call(self, messages: Messages) -> str:
+        """One local chat call with JSON output forced."""
+        response = await self.client.chat(model=config.OLLAMA_MODEL, messages=me ssages, format="json")
+        return response.message.content or ""
+
+Finally, a factory that builds the three in failover order. The keys are parameters so the CLI can swap in a broken one later:
+
+def build_providers(gemini_key: str = config.GEMINI_API_KEY,
+groq_key: str = config.GROQ_API_KEY) -> list[Provider]:
+    """Create the providers in failover order (see config.PROVIDER_ORDER)."""
+    by_name: dict[str, Provider] = {
+        "gemini": GeminiProvider(gemini_key),
+        "groq": GroqProvider(groq_key),
+        "ollama": OllamaProvider(),
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes
+10
+PIEZA: Slide, Build an LLM Router That Survives Provider Outages
+
+===== LAMINA 12 / 20 =====
+[1440x1800 px | 200.6 s | 5134 tokens | finish=stop]
+
+}
+return [by_name[name] for name in config.PROVIDER_ORDER]
+
+Check it. Send the same message to all three providers and confirm each one answers:
+PYTHONPATH=. uv run python -c "import asyncio; from src.providers import build_p
+roviders; print([[(p.name, asyncio.run(p.complete([{'role': 'user', 'content': 'R
+eply in JSON with one key, ok, set to true.'}])) for p in build_providers())]]"
+[('gemini', '{\n "ok": true\n}'), ('groq', '{"ok":true}'), ('ollama', '{"ok": true}')
+Three SDKs, one call shape, three answers. Groq's JSON mode needs the word "JSON" somewhere in the
+messages, which is why the test prompt says it.
+7. Retry With Backoff
+A 429 or a 503 often clears up in a second or two. So before giving up on a provider, try it again. The
+question is how long to wait between tries.
+Waiting a fixed second is the naive answer, and it breaks under load. If a thousand clients all hit a 429 at
+the same moment, a fixed wait sends a thousand retries at the same moment too. Exponential
+backoff doubles the wait each time (0.5 s, 1 s, 2 s). Full jitter picks a random wait between zero and that
+number, which spreads the retries out.
+There's one exception: if the server says how long to wait, believe it. Unless it says something like 41
+seconds. A customer won't wait 41 seconds, and you have two other providers. So any server-requested
+wait longer than cap means "give up and fail over now".
+Save as src/resilience.py:
+"""Retry with backoff, and a circuit breaker. No provider code in here.
+Inputs: an async function that may raise ProviderError.
+Outputs: its result, or the last ProviderError once retrying stops making sense.
+"""
+import asyncio
+import random
+import time
+from collections.abc import Awaitable, Callable
+from typing import TypeVar
+
+from src.errors import ProviderError
+
+T = TypeVar("T")
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 11
+PIEZA: página, Construir un enrutador de LLM que sobrevive a apagones de proveedores
+
+===== LAMINA 13 / 20 =====
+[1440x1800 px | 216.4 s | 5256 tokens | finish=stop]
+
+def backoff_delay(attempt: int, base: float, cap: float,
+retry_after: float | None = None) -> float | None:
+    """Seconds to wait before retry number `attempt` (0-based), or None = give u
+p.
+    
+If the server said how long to wait, believe it - unless that is longer than
+`cap`, in which case waiting is worse than failing over. Otherwise use
+exponential backoff with full jitter: a random wait between 0 and base * 2^
+n,
+so many clients that failed together do not all retry together.
+"""
+if retry_after is not None:
+    return retry_after if retry_after <= cap else None
+return random.uniform(0, min(cap, base * 2**attempt))
+
+The retry loop itself reads `retryable` and nothing else. A fatal error goes straight back to the caller with no wait, and so does the last failure once the retries run out. The `on_retry` callback lets the router log each retry without this file needing to know about logging.
+
+async def retry_with_backoff(fn: Callable[[], Awaitable[T]], *, max_retries: in
+t,
+base: float, cap: float,
+on_retry: Callable[[ProviderError, float], None]) -
+> T:
+    """Call `fn`; retry only retryable errors, at most `max_retries` extra time
+s."""
+for attempt in range(max_retries + 1):
+    try:
+        return await fn()
+    except ProviderError as err:
+        if not err.retryable or attempt == max_retries:
+            raise
+    delay = backoff_delay(attempt, base, cap, err.retry_after)
+if delay is None:
+    raise
+on_retry(err, delay)
+await asyncio.sleep(delay)
+raise AssertionError("unreachable")
+
+With `MAX_RETRIES = 2`, a dead provider costs you three attempts and at most 1.5 seconds of waiting. That's the price of finding out it's dead. The next section is about not paying that price on every single ticket.
+
+8. The Circuit Breaker
+Say Gemini is down for ten minutes. With retries alone, every ticket in those ten minutes tries Gemini three times, waits up to 1.5 seconds, and only then moves to Groq. You'd keep paying for an outage you already
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 12
+PIEZA: Hoja de cálculo, Construcción de un enrutador de LLM que sobrevive a interrupciones del proveedor
+
+===== LAMINA 14 / 20 =====
+[1440x1800 px | 154.8 s | 4634 tokens | finish=stop]
+
+know about.  
+A circuit breaker remembers. It has three states:  
+- closed: calls go through as normal. After `threshold` failures in a row, it opens.  
+- open: calls get skipped instantly. Nobody waits, and nothing gets sent to a provider that's down.  
+  After `cooldown_s`, the next call goes through as a probe, and the breaker is half-open.  
+- half-open: that one probe decides. Success closes the breaker; failure opens it again for another cooldown.  
+
+The name comes from the electrical breaker in your fuse box: it trips so the fault doesn't keep damaging everything downstream. Add this to the bottom of `src/resilience.py`:  
+
+class CircuitBreaker:  
+    """Stops calling a provider that keeps failing, then tests it again later.  
+    closed -> calls go through. `threshold` failures in a row -> open.  
+    open -> calls are skipped instantly, no time wasted. After `cooldown_s`  
+      the next caller gets through as a probe -> half_open.  
+    half_open -> the probe decides: success -> closed, failure -> open again.  
+    """  
+
+def __init__(self, threshold: int, cooldown_s: float,  
+              clock: Callable[[], float] = time.monotonic) -> None:  
+    self.threshold = threshold  
+    self.cooldown_s = cooldown_s  
+    self.clock = clock  # injectable, so the self-test can fast-forward time  
+    self.state = "closed"  
+    self.failures = 0  
+    self.opened_at = 0.0  
+
+The clock is a parameter. In production it's `time.monotonic`, which never jumps backwards when the system clock changes. In the self-test you'll pass in a fake clock and skip 30 seconds instantly.  
+
+The four methods are the whole state machine. `allow()` is the only place that moves the breaker from open to half-open, and it does so lazily, the moment someone asks:  
+
+def allow(self) -> bool:  
+    """True if a call may go through right now."""  
+    if self.state == "open" and self.seconds_left() <= 0:  
+        self.state = "half_open"  
+        return self.state != "open"  
+
+def seconds_left(self) -> float:  
+    """How long until an open breaker lets a probe through."""  
+    return max(0.0, self.opened_at + self.cooldown_s - self.clock())  
+
+def record_success(self) -> None:  
+
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 13
+PIEZA:
+
+===== LAMINA 15 / 20 =====
+[1440x1800 px | 185.2 s | 4959 tokens | finish=stop]
+
+"""
+"A call worked: forget past failures."
+self.state = "closed"
+self.failures = 0
+
+def record_failure(self) -> None:
+    """A call failed (after its retries): maybe open the breaker."""
+    self.failures += 1
+    if self.state == "half_open" or self.failures >= self.threshold:
+        self.state = "open"
+        self.opened_at = self.clock()
+
+Note what counts as one failure: one call that failed after all its retries, not each attempt. A blip that one retry fixes never touches the breaker. That's the split between the two tools: retries handle blips, the breaker handles outages.
+
+9. The Router
+The router is the one interface the agent sees. It owns a breaker per provider and walks the providers in order. For each one: skip it if its breaker is open, otherwise try it with retries. On success, record it and return. On failure, record it and move on.
+complete() never raises. If every provider fails, it returns a degraded Reply with a safe holding message.
+That's graceful degradation: the customer gets something honest, and the ticket gets flagged for a human.
+Nobody gets a stack trace.
+
+Save as src/router.py. First, the reply type and the holding message:
+"""
+The one interface the agent sees: `await router.complete(messages)`.
+
+Inputs: chat history (common shape, see providers.py) and the providers in order.
+Outputs: a Reply - text plus which provider answered, attempts, failovers, latency.
+    It never raises: if every provider is down it returns a degraded Reply.
+"""
+
+import time
+from dataclasses import dataclass
+
+from src import config
+from src.errors import ProviderError
+from src.providers import Messages, Provider
+from src.resilience import CircuitBreaker, retry_with_backoff
+
+# What the customer gets when nothing can answer: honest, safe, and a human follows up.
+DEGRADED_TEXT = ('{"category": "other", "priority": "high", "reply": "Thanks for writing in. '
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes
+14
+PIEZA: Página de documento, tema: Construcción de un router LLM que sobrevive a apagones de proveedores
+
+===== LAMINA 16 / 20 =====
+[1440x1800 px | 192.0 s | 5048 tokens | finish=stop]
+
+'A member of our team will get back to you within a few hour s."}'
+
+@dataclass
+class Reply:
+    """One answer, plus the operator-only story of how it was produced."""
+
+    text: str
+    provider: str  # "gemini" | "groq" | "ollama" | "degraded"
+    attempts: int
+    failovers: int
+    latency_s: float
+
+The holding message is the same JSON shape a model returns, so the agent reads it with the same code. The agent never needs a special case for "no model answered".
+
+Next, the router's constructor and its retry helper. _try wraps one provider in retry_with_backoff and counts every attempt, so the summary can show what each answer really cost:
+
+class LLMRouter:
+    """Walk providers in order; retry the retryable, skip the broken, never cras h."""
+
+    def __init__(self, providers: list[Provider], cooldown_s: float = config.BRE AKER_COOLDOWN_S) -> None:
+        self.providers = providers
+        self.breakers = {p.name: CircuitBreaker(config.BREAKER_THRESHOLD, cooldo wn_s) for p in providers}
+    
+    def _log(self, line: str) -> None:
+        """Operator log. The customer never sees these lines."""
+        print(f"  [router] {line}")
+    
+    async def _try(self, provider: Provider, messages: Messages, counter: list[i nt]) -> str:
+        """One provider, with retries. Counts every attempt into counter[0]."""
+        async def attempt() -> str:
+            counter[0] += 1
+            return await provider.complete(messages)
+    
+        def on_retry(err: ProviderError, delay: float) -> None:
+            self._log(f"{provider.name}: {err.reason} retryable -> retry in {del ay:.1f}s")
+        
+        return await retry_with_backoff(attempt, max_retries=config.MAX_RETRIES, base=config.BACKOFF_BASE_S,
+
+PIEZA: Pagina de documento, tema: Construir un router LLM que sobrevive a apagones de proveedores
+
+===== LAMINA 17 / 20 =====
+[1440x1800 px | 184.3 s | 4961 tokens | finish=stop]
+
+cap=config.BACKOFF_CAP_S, on_retry=on_re
+try)
+
+And the loop that puts everything together. Read it top to bottom: breaker check, probe notice, try with retries, record the result.
+async def complete(self, messages: Messages) -> Reply:
+    """Get a reply from the first provider that can give one."""
+    start = time.perf_counter()
+    counter = [0]
+    failovers = 0
+    for provider in self.providers:
+        breaker = self.breakers[provider.name]
+        if not breaker.allow():
+            self._log(f"{provider.name}: breaker OPEN -> skipped ({breaker.s
+econds_left():.0f}s left)")
+            failovers += 1
+            continue
+        if breaker.state == "half_open":
+            self._log(f"{provider.name}: breaker HALF-OPEN -> sending one pr
+obe call")
+            try:
+                text = await self.try(provider, messages, counter)
+            except ProviderError as err:
+                breaker.record_failure()
+                kind = "retryable, out of retries" if err.retryable else "fatal,
+no retry"
+                self._log(f"{provider.name}: {err.reason} {kind} -> failover"
+f"{' (breaker now OPEN)' if breaker.state == 'open' el
+se ''}")
+                failovers += 1
+                continue
+            breaker.record_success()
+            return Reply(text, provider.name, counter[0], failovers, time.perf_c
+ounter() - start)
+    self._log("every provider failed -> degraded reply, flagged for a huma
+n")
+    return Reply(DEGRADED_TEXT, "degraded", counter[0], failovers, time.perf
+_counter() - start)
+
+The router imports nothing from Gemini, Groq or Ollama. Adding a fourth provider means writing one adapter and adding one name to PROVIDER_ORDER; this file doesn't change.
+10. Chaos: Outages on Cue
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes
+16
+PIEZA: Página de documento, Construir un router LLM que sobrevive a apagones de proveedores
+
+===== LAMINA 18 / 20 =====
+[1440x1800 px | 188.4 s | 4979 tokens | finish=stop]
+
+You can't wait for Gemini to have a bad day before you test failover. You need to break providers when you choose. That's chaos testing.
+The trick is to fail realistically. chaos.py doesn't raise some made-up exception. It builds the exact exception type the real SDK raises: a google.genai.ClientError with code 429, a groq.RateLimitError wrapping an HTTP 429 response, the ConnectionError Ollama raises when its app isn't running.
+Because the fake failure looks identical to a real one, to_provider_error, the retries and the breakers all run the same code path they'd run in a real outage. Save as src/chaos.py :
+
+"""Fault injection: make providers fail on cue, so the demo does not wait for a real outage.
+
+Inputs: CLI specs like "gemini@3-4" (down for tickets 3 and 4), "gemini,groq" (down for the whole run) and a set of flaky providers (fail once).
+
+Outputs: a hook on each provider that raises that SDK's own exception type, so errors.py, the retries and the breakers all run exactly as in a real outage.
+"""
+
+import groq
+import httpx
+import ollama
+from google.genai import errors as genai_errors
+
+from src.providers import Provider
+
+def _sdk_error(provider: str, status: int) -> Exception:
+    """Build the exception the real SDK would raise for this status code."""
+    if provider == "gemini":
+        label = {429: "RESOURCE_EXHAUSTED", 400: "INVALID_ARGUMENT"}.get(status,
+        "UNAVAILABLE")
+        body = {"error": {"code": status, "message": "chaos: injected failure",
+        "status": label}}
+        cls = genai_errors.ClientError if status < 500 else genai_errors.ServerE
+        return cls(status, body)
+    if provider == "groq":
+        response = httpx.Response(status, request=httpx.Request("POST", "http s://api.groq.com/openai/v1/chat/completions"))
+        cls = {429: groq.RateLimitError, 401: groq.AuthenticationError}.get(stat
+us, groq.InternalServerError)
+        return cls("chaos: injected failure", response=response, body=None)
+    if status == 503:
+        return ollama.ResponseError("chaos: injected failure", status)
+    return ConnectionError("Failed to connect to Ollama (chaos: injected)")
+
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 17
+PIEZA: Pagina de documento, tema: Desarrollo de software (router LLM)
+
+===== LAMINA 19 / 20 =====
+[1440x1800 px | 133.4 s | 4520 tokens | finish=stop]
+
+def _parse_steps(spec: str) -> set[int] | None:
+    """'3-4' -> {3, 4}; '5' -> {5}; '' -> None, meaning every ticket."""
+    if not spec:
+        return None
+    low, _, high = spec.partition("-")
+    return set(range(int(low), int(high or low) + 1))
+
+The plan reads two CLI flags. --kill gemini@3-4 takes Gemini down for tickets 3 and 4 only, then lets it recover. --flaky groq makes Groq fail exactly once with a 503. The agent loop tells the plan which ticket it's on, and attach installs inject as the hook the base Provider calls before every request:
+
+class ChaosPlan:
+    """Which providers fail, and on which tickets."""
+
+    def __init__(self, kill: str = "", flaky: str = "") -> None:
+        self.down: dict[str, set[int] | None] = {}
+        for part in filter(None, kill.split(",")):
+            name, _, steps = part.partition("@")
+            self.down[name] = _parse_steps(steps)
+        self.flaky = set(filter(None, flaky.split(",")))
+        self.step = 0
+
+    def begin_ticket(self, step: int) -> None:
+        """Called by the agent loop before each ticket."""
+        self.step = step
+
+    def inject(self, provider: str) -> None:
+        """Raise a fake outage for `provider` if the plan says so; else do nothi
+ng."""
+
+        if provider in self.flaky:
+            self.flaky.discard(provider)  # fail exactly once, then behave
+            raise _sdk_error(provider, 503)
+        if provider in self.down:
+            steps = self.down[provider]
+            if steps is None or self.step in steps:
+                raise _sdk_error(provider, 429 if provider != "ollama" else 0)
+
+    def attach(self, providers: list[Provider]) -> None:
+        """Install the hook on every provider."""
+        for provider in providers:
+            provider.chaos = self.inject
+
+A bad API key needs no fake at all. The CLI will pass a wrong key, and you'll get a real 400 from Gemini or a real 401 from Groq.
+Build an LLM Router That Survives Provider Outages - in 40 Minutes 18
+PIEZA: Pagina de documento, tema: Desarrollo de software (router LLM)
+
+===== LAMINA 20 / 20 =====
+[1440x1800 px | 130.6 s | 4599 tokens | finish=stop]
+
+11. The Agent
+The agent triages a morning's tickets for Kumkum Home, a fictional Indian store selling sarees and brass decor. Each ticket is one router call that return priority and a reply.
+The interesting part is the shared history. t 6 is Arjun ing again: "Any update on what I wrote about earlier?" Only a model that can see t at 2 (his crack diayas) can answer it. If ticket 2 went to Gemini and ticket 6 goes to Groq, the conv ation has to c providers intact. That's why the history is a plain list owned by the agent, never by a
+Save as src/tickets.py . First the prompt a
+""The agent: triage a morning or Kumkum Home in one run.
+Inputs: six hand-written tick LMRouter.
+Outputs: one result dict per ticket category, priority, the reply the customer sees, and the operator-only routing facts. History is shared across the run, so ticket 6 only makes sense if ticket 2 survived any failover.
+from collections abc import Callable
+Want Complete Version?
+All Notes are shared as PDF with
+👑 Exclusive Instagram Subscribers
+With 1000+ Other Resources.
+How to get them 👇
+Go to our bio and subscribe to our page &
+join our exclusive subscribers channel ⭐
+Followi... Message Subscribe
+@DATASCIENCEBRAIN
+
+PIEZA: Imagen de contenido educativo (notas) con llamada a suscripción para acceso completo.

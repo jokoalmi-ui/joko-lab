@@ -1,0 +1,33 @@
+{
+  "modelo": "lfm2.5-2.6b",
+  "tamano": "2,6B",
+  "motivo": "repeticion con presupuesto de tokens suficiente",
+  "max_tokens": {
+    "clas": 900,
+    "extrae": 1600,
+    "calc": 1600
+  },
+  "fecha": "2026-09-18",
+  "clasificar": {
+    "aciertos": 5,
+    "n": 5,
+    "segundos": 18.2,
+    "finish_reason": "stop",
+    "salida": "1=POSITIVA\n2=NEGATIVA\n3=POSITIVA\n4=NEGATIVA\n5=POSITIVA"
+  },
+  "extraer": {
+    "acierto": false,
+    "segundos": 31.6,
+    "finish_reason": "length",
+    "salida": "",
+    "razonamiento": "\nThinking Process:\n\n1.  **Analyze the Request:**\n    *   Input: A text snippet describing an invoice (Factura F-2026-0918).\n    *   Content:\n        *   Client: Erandio Hosteleria SL.\n        *   Item: 4 x Cafetera Compacta a 89,50 EUR la unidad.\n        *   Transport: 12,00 EUR.\n        *   Discount applied: 10,00 EUR.\n    *   Constraint: Dime UNICAMENTE (ONLY) the import amount of transport in e"
+  },
+  "calcular": {
+    "acierto": true,
+    "segundos": 6.5,
+    "finish_reason": "stop",
+    "salida": "360",
+    "razonamiento": "\nThinking Process:\n\n1.  **Analyze the Request:**\n    *   Input: A text describing an invoice (Factura F-2026-0918).\n    *   Details:\n        *   Item: 4 x Cafetera Compacta at 89,50 EUR each.\n        *   Transport: 12,00 EUR.\n        *   Discount applied: 10,00 EUR.\n    *   Task: Calculate the total of the invoice in euros using the formula provided (4 x 89.50 - 10.00 + 12.00).\n    *   Constraint:"
+  },
+  "segundos_total": 56.3
+}

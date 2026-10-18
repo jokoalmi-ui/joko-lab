@@ -1,0 +1,435 @@
+=== MEDICION LAYA (set v3, 299 casos) — INICIO 2026-09-24 07:06:00 CEST ===
+log: /home/jokoalmi/joko-lab/instruments/laya-comparativa/medicion_laya_20260924_0706.log
+
+--- GPU antes ---
+NVIDIA RTX A2000 12GB, 809 MiB, 12282 MiB, 0 %, 43
+
+--- python / torch / cuda ---
+torch 2.13.0+cu126 cuda_ok True | NVIDIA RTX A2000 12GB
+transformers 5.17.0
+
+--- selftest del motor de metricas (debe dar PASS/0 FALLO) ---
+SELFTEST: 15 PASS / 0 FALLO de 15 comprobaciones (motor de metricas verificado)
+selftest exit=0
+
+
+################ CHECKPOINT router ################
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : 765503df4e84a0a7
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : laya (router)
+
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  40%|████      | 2/5 [00:00<00:00,  7.15it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 14.65it/s]
+/home/jokoalmi/joko-lab/instruments/laya-comparativa/.venv/lib/python3.11/site-packages/laya/router.py:226: RuntimeWarning: laya: this checkpoint ships invalid temperatures or values outside [0.5, 5]; using choice:11+=0.10058280825614929 -> 0.5. Treat confidence from the affected entries as uncalibrated.
+  agent = Agent(repo, device=self.device, token=self.token, subfolder=sub)
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  60%|██████    | 3/5 [00:00<00:00, 11.13it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 18.11it/s]
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files:  40%|████      | 2/5 [00:00<00:00,  7.27it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 15.12it/s]
+METRICAS GLOBALES
+  n=299  accuracy=0.602  Brier=0.319  ECE(5 bins)=0.2911
+  confianza media=0.726  sesgo=0.124  confiado_y_fallado=78  seguro_y_acertado=108
+  latencia P50=27.7 ms  P95=33.5 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.7055 Brier=0.2192 ECE=0.2446 sesgo=-0.0315
+  B: n=8 accuracy=1.0 Brier=0.0059 ECE=0.0675 sesgo=-0.9325
+  D: n=6 accuracy=0.0 Brier=0.8374 ECE=0.9128 sesgo=0.0872
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  memoria          n=  6 accuracy=0.0000 Brier=0.8374 ECE=0.9128
+  negacion         n= 15 accuracy=0.0000 Brier=0.8361 ECE=0.9127
+  no_aparece       n= 25 accuracy=0.3200 Brier=0.3543 ECE=0.4166
+  soporte_parcial  n= 15 accuracy=0.3333 Brier=0.4783 ECE=0.5875
+  comparacion      n= 22 accuracy=0.4091 Brier=0.5875 ECE=0.5880
+  valor_vecino     n= 30 accuracy=0.4333 Brier=0.3726 ECE=0.5231
+  distractor       n= 25 accuracy=0.4800 Brier=0.4698 ECE=0.5216
+  aguja            n=  8 accuracy=0.5000 Brier=0.4831 ECE=0.4908
+  cuantificador    n= 20 accuracy=0.5000 Brier=0.4974 ECE=0.4815
+  multihop         n= 22 accuracy=0.6364 Brier=0.3293 ECE=0.3492
+  grounding        n= 13 accuracy=0.7692 Brier=0.1652 ECE=0.1962
+  campo_ausente    n= 30 accuracy=0.9000 Brier=0.0771 ECE=0.1696
+  literal          n= 30 accuracy=1.0000 Brier=0.0033 ECE=0.0215
+  parafrasis       n= 30 accuracy=1.0000 Brier=0.0090 ECE=0.0352
+  trampa           n=  8 accuracy=1.0000 Brier=0.0059 ECE=0.0675
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_laya_router_v3.json
+>>> checkpoint router: exit=0  duracion=23 s
+--- GPU tras router ---
+809 MiB, 0 %, 50
+
+################ CHECKPOINT english ################
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : 765503df4e84a0a7
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : laya (english)
+
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 1456.86it/s]
+/home/jokoalmi/joko-lab/instruments/laya-comparativa/.venv/lib/python3.11/site-packages/laya/agent.py:647: RuntimeWarning: laya: this checkpoint ships invalid temperatures or values outside [0.5, 5]; using choice:11+=0.10058280825614929 -> 0.5. Treat confidence from the affected entries as uncalibrated.
+  return Agent(model_id_or_path, device=device, token=token, subfolder=subfolder, fast=fast)
+METRICAS GLOBALES
+  n=299  accuracy=0.7458  Brier=0.1784  ECE(5 bins)=0.0626
+  confianza media=0.4607  sesgo=-0.2851  confiado_y_fallado=8  seguro_y_acertado=50
+  latencia P50=35.1 ms  P95=45.5 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.8957 Brier=0.0871 ECE=0.1531 sesgo=-0.4169
+  B: n=8 accuracy=1.0 Brier=0.0059 ECE=0.0675 sesgo=-0.9325
+  D: n=6 accuracy=0.0 Brier=0.8374 ECE=0.9128 sesgo=0.0872
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  memoria          n=  6 accuracy=0.0000 Brier=0.8374 ECE=0.9128
+  distractor       n= 25 accuracy=0.4800 Brier=0.3247 ECE=0.2879
+  comparacion      n= 22 accuracy=0.5000 Brier=0.3788 ECE=0.3848
+  multihop         n= 22 accuracy=0.5455 Brier=0.2896 ECE=0.1713
+  no_aparece       n= 25 accuracy=0.6000 Brier=0.2238 ECE=0.1070
+  cuantificador    n= 20 accuracy=0.6500 Brier=0.2085 ECE=0.2062
+  soporte_parcial  n= 15 accuracy=0.7333 Brier=0.1643 ECE=0.3098
+  aguja            n=  8 accuracy=0.7500 Brier=0.1861 ECE=0.2216
+  valor_vecino     n= 30 accuracy=0.7667 Brier=0.1305 ECE=0.2917
+  campo_ausente    n= 30 accuracy=0.9333 Brier=0.0877 ECE=0.2554
+  literal          n= 30 accuracy=0.9333 Brier=0.0909 ECE=0.2564
+  negacion         n= 15 accuracy=0.9333 Brier=0.0363 ECE=0.1335
+  parafrasis       n= 30 accuracy=0.9667 Brier=0.0522 ECE=0.2118
+  grounding        n= 13 accuracy=1.0000 Brier=0.0262 ECE=0.1381
+  trampa           n=  8 accuracy=1.0000 Brier=0.0059 ECE=0.0675
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_laya_english_v3.json
+>>> checkpoint english: exit=0  duracion=19 s
+--- GPU tras english ---
+826 MiB, 0 %, 56
+
+################ CHECKPOINT multilingual ################
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : 765503df4e84a0a7
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : laya (multilingual)
+
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 1755.23it/s]
+METRICAS GLOBALES
+  n=299  accuracy=0.6054  Brier=0.3172  ECE(5 bins)=0.2961
+  confianza media=0.7289  sesgo=0.1236  confiado_y_fallado=78  seguro_y_acertado=109
+  latencia P50=28.3 ms  P95=29.3 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.7055 Brier=0.2189 ECE=0.2487 sesgo=-0.0274
+  B: n=8 accuracy=1.0 Brier=0.002 ECE=0.0353 sesgo=-0.9647
+  D: n=6 accuracy=0.1667 Brier=0.7614 ECE=0.8342 sesgo=-0.0009
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  negacion         n= 15 accuracy=0.0000 Brier=0.8361 ECE=0.9127
+  memoria          n=  6 accuracy=0.1667 Brier=0.7614 ECE=0.8342
+  no_aparece       n= 25 accuracy=0.3200 Brier=0.3543 ECE=0.4166
+  soporte_parcial  n= 15 accuracy=0.3333 Brier=0.4783 ECE=0.5875
+  comparacion      n= 22 accuracy=0.4091 Brier=0.5875 ECE=0.5880
+  valor_vecino     n= 30 accuracy=0.4333 Brier=0.3726 ECE=0.5231
+  distractor       n= 25 accuracy=0.4800 Brier=0.4698 ECE=0.5216
+  aguja            n=  8 accuracy=0.5000 Brier=0.4831 ECE=0.4908
+  cuantificador    n= 20 accuracy=0.5000 Brier=0.4974 ECE=0.4815
+  multihop         n= 22 accuracy=0.6364 Brier=0.3293 ECE=0.3492
+  grounding        n= 13 accuracy=0.7692 Brier=0.1622 ECE=0.1925
+  campo_ausente    n= 30 accuracy=0.9000 Brier=0.0771 ECE=0.1696
+  literal          n= 30 accuracy=1.0000 Brier=0.0033 ECE=0.0215
+  parafrasis       n= 30 accuracy=1.0000 Brier=0.0090 ECE=0.0352
+  trampa           n=  8 accuracy=1.0000 Brier=0.0020 ECE=0.0353
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_laya_multilingual_v3.json
+>>> checkpoint multilingual: exit=0  duracion=20 s
+--- GPU tras multilingual ---
+813 MiB, 0 %, 56
+
+################ CHECKPOINT typed-decisions ################
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : 765503df4e84a0a7
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : laya (typed-decisions)
+
+Fetching 5 files:   0%|          | 0/5 [00:00<?, ?it/s]Fetching 5 files: 100%|██████████| 5/5 [00:00<00:00, 1701.96it/s]
+/home/jokoalmi/joko-lab/instruments/laya-comparativa/.venv/lib/python3.11/site-packages/laya/agent.py:647: RuntimeWarning: laya: this checkpoint ships invalid temperatures or values outside [0.5, 5]; using choice:11+=0.10058280825614929 -> 0.5. Treat confidence from the affected entries as uncalibrated.
+  return Agent(model_id_or_path, device=device, token=token, subfolder=subfolder, fast=fast)
+METRICAS GLOBALES
+  n=299  accuracy=0.786  Brier=0.1856  ECE(5 bins)=0.112
+  confianza media=0.4034  sesgo=-0.3826  confiado_y_fallado=0  seguro_y_acertado=0
+  latencia P50=35.1 ms  P95=40.4 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.9264 Brier=0.1298 ECE=0.2271 sesgo=-0.5062
+  B: n=8 accuracy=1.0 Brier=0.0433 ECE=0.1949 sesgo=-0.8051
+  D: n=6 accuracy=0.0 Brier=0.6415 ECE=0.7934 sesgo=0.2066
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  memoria          n=  6 accuracy=0.0000 Brier=0.6415 ECE=0.7934
+  multihop         n= 22 accuracy=0.4091 Brier=0.2889 ECE=0.2067
+  no_aparece       n= 25 accuracy=0.4800 Brier=0.2783 ECE=0.2321
+  comparacion      n= 22 accuracy=0.5909 Brier=0.2569 ECE=0.1902
+  distractor       n= 25 accuracy=0.6400 Brier=0.2303 ECE=0.1309
+  aguja            n=  8 accuracy=0.7500 Brier=0.2194 ECE=0.0710
+  parafrasis       n= 30 accuracy=0.8333 Brier=0.1970 ECE=0.4377
+  grounding        n= 13 accuracy=0.8462 Brier=0.1458 ECE=0.3678
+  soporte_parcial  n= 15 accuracy=0.8667 Brier=0.1405 ECE=0.3521
+  valor_vecino     n= 30 accuracy=0.9333 Brier=0.1102 ECE=0.3097
+  literal          n= 30 accuracy=0.9667 Brier=0.1501 ECE=0.3839
+  campo_ausente    n= 30 accuracy=1.0000 Brier=0.0838 ECE=0.2741
+  cuantificador    n= 20 accuracy=1.0000 Brier=0.1836 ECE=0.2879
+  negacion         n= 15 accuracy=1.0000 Brier=0.0610 ECE=0.2437
+  trampa           n=  8 accuracy=1.0000 Brier=0.0433 ECE=0.1949
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_laya_typed-decisions_v3.json
+>>> checkpoint typed-decisions: exit=0  duracion=19 s
+--- GPU tras typed-decisions ---
+812 MiB, 0 %, 60
+
+=============== COMPARATIVA (misma puntuacion para todos) ===============
+==============================================================================
+COMPARACION DE MODELOS — mismo set, mismo codigo de puntuacion
+==============================================================================
+modelo                                n     acc   Brier    ECE5   P50ms conf.err
+ibm/granite4.2:8b-q4_K_M [v3]       299  0.9164  0.0836  0.0836   473.7       11
+qwen2.5:7b [v3]                     299  0.7993  0.1674  0.1701   273.1       34
+deepseek-r1-distill-qwen-14b:lates  299  0.8060  0.1908  0.1923   737.8       34
+resultados_laya_router_v3.json/rou  299  0.6020  0.3190  0.2911    27.7       78
+resultados_laya_english_v3.json/en  299  0.7458  0.1784  0.0626    35.1        8
+resultados_laya_multilingual_v3.js  299  0.6054  0.3172  0.2961    28.3       78
+resultados_laya_typed-decisions_v3  299  0.7860  0.1856  0.1120    35.1        0
+
+POR SUBTIPO (accuracy). Columnas en el orden de arriba:
+  subtipo            n  ibm/granite4.2:8        qwen2.5:7b  deepseek-r1-dist  resultados_laya_  resultados_laya_  resultados_laya_  resultados_laya_
+  aguja              8            0.8750            0.8750            0.7500            0.5000            0.7500            0.5000            0.7500
+  campo_ausente     30            1.0000            1.0000            1.0000            0.9000            0.9333            0.9000            1.0000
+  comparacion       22            0.9545            0.7273            0.4091            0.4091            0.5000            0.4091            0.5909
+  cuantificador     20            0.5500            0.5500            0.5500            0.5000            0.6500            0.5000            1.0000
+  distractor        25            0.8000            0.8000            0.8000            0.4800            0.4800            0.4800            0.6400
+  grounding         13            1.0000            1.0000            1.0000            0.7692            1.0000            0.7692            0.8462
+  literal           30            1.0000            0.9667            1.0000            1.0000            0.9333            1.0000            0.9667
+  memoria            6            1.0000            1.0000            1.0000            0.0000            0.0000            0.1667            0.0000
+  multihop          22            0.7727            0.5909            0.8636            0.6364            0.5455            0.6364            0.4091
+  negacion          15            1.0000            0.7333            0.9333            0.0000            0.9333            0.0000            1.0000
+  no_aparece        25            0.8800            0.9200            0.4000            0.3200            0.6000            0.3200            0.4800
+  parafrasis        30            1.0000            1.0000            1.0000            1.0000            0.9667            1.0000            0.8333
+  soporte_parcial   15            0.9333            0.0667            0.7333            0.3333            0.7333            0.3333            0.8667
+  trampa             8            1.0000            0.1250            0.2500            1.0000            1.0000            1.0000            1.0000
+  valor_vecino      30            1.0000            0.9333            1.0000            0.4333            0.7667            0.4333            0.9333
+
+DISCREPANCIAS (casos donde los modelos NO coinciden en acertar):
+  gen-003   valor_vecino    gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  gen-005   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-012   parafrasis      gt=True  OK  OK  OK  OK  FALLA  OK  OK
+  gen-015   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-018   valor_vecino    gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-020   soporte_parcial gt=False OK  FALLA  FALLA  OK  OK  OK  OK
+  gen-024   campo_ausente   gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-025   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-028   valor_vecino    gt=False OK  OK  OK  OK  FALLA  OK  OK
+  gen-030   soporte_parcial gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-033   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-035   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-036   literal         gt=True  OK  OK  OK  OK  FALLA  OK  OK
+  gen-038   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-040   soporte_parcial gt=False OK  OK  FALLA  OK  OK  OK  OK
+  gen-043   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-045   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-048   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-050   soporte_parcial gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-053   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-055   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-058   valor_vecino    gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  gen-060   soporte_parcial gt=False OK  FALLA  OK  FALLA  FALLA  FALLA  OK
+  gen-063   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-065   negacion        gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-066   literal         gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  gen-068   valor_vecino    gt=False OK  OK  OK  OK  OK  OK  FALLA
+  gen-069   campo_ausente   gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-070   soporte_parcial gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-072   parafrasis      gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  gen-073   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-075   negacion        gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-080   soporte_parcial gt=False OK  FALLA  OK  FALLA  FALLA  FALLA  FALLA
+  gen-082   parafrasis      gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  gen-083   valor_vecino    gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-085   negacion        gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-088   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-090   soporte_parcial gt=False OK  FALLA  OK  OK  OK  OK  OK
+  gen-095   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-098   valor_vecino    gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  gen-099   campo_ausente   gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-100   soporte_parcial gt=False OK  FALLA  OK  FALLA  FALLA  FALLA  OK
+  gen-105   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-108   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-110   soporte_parcial gt=False OK  FALLA  FALLA  OK  OK  OK  OK
+  gen-112   parafrasis      gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  gen-114   campo_ausente   gt=False OK  OK  OK  OK  FALLA  OK  OK
+  gen-115   negacion        gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-117   parafrasis      gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  gen-118   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-120   soporte_parcial gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-124   campo_ausente   gt=False OK  OK  OK  OK  FALLA  OK  OK
+  gen-125   negacion        gt=False OK  OK  FALLA  FALLA  FALLA  FALLA  OK
+  gen-128   valor_vecino    gt=False OK  OK  OK  OK  FALLA  OK  OK
+  gen-130   soporte_parcial gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  gen-135   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-138   valor_vecino    gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  gen-140   soporte_parcial gt=False OK  FALLA  OK  OK  OK  OK  OK
+  gen-142   parafrasis      gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  gen-143   valor_vecino    gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-145   negacion        gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  gen-146   literal         gt=True  OK  FALLA  OK  OK  OK  OK  OK
+  gen-148   valor_vecino    gt=False OK  OK  OK  OK  FALLA  OK  FALLA
+  gen-150   soporte_parcial gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  ctx-04    grounding       gt=True  OK  OK  OK  FALLA  OK  FALLA  FALLA
+  ctx-06    grounding       gt=True  OK  OK  OK  FALLA  OK  FALLA  OK
+  ctx-07    grounding       gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  mem-01    memoria         gt=True  OK  OK  OK  FALLA  FALLA  FALLA  FALLA
+  mem-02    memoria         gt=True  OK  OK  OK  FALLA  FALLA  FALLA  FALLA
+  mem-03    memoria         gt=True  OK  OK  OK  FALLA  FALLA  OK  FALLA
+  mem-04    memoria         gt=True  OK  OK  OK  FALLA  FALLA  FALLA  FALLA
+  mem-05    memoria         gt=True  OK  OK  OK  FALLA  FALLA  FALLA  FALLA
+  mem-06    memoria         gt=True  OK  OK  OK  FALLA  FALLA  FALLA  FALLA
+  trap-02   trampa          gt=False OK  FALLA  FALLA  OK  OK  OK  OK
+  trap-03   trampa          gt=False OK  FALLA  FALLA  OK  OK  OK  OK
+  trap-04   trampa          gt=False OK  FALLA  FALLA  OK  OK  OK  OK
+  trap-05   trampa          gt=False OK  FALLA  OK  OK  OK  OK  OK
+  trap-06   trampa          gt=False OK  FALLA  FALLA  OK  OK  OK  OK
+  trap-07   trampa          gt=False OK  FALLA  FALLA  OK  OK  OK  OK
+  trap-08   trampa          gt=False OK  FALLA  FALLA  OK  OK  OK  OK
+  ficha-01  grounding       gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  hard-001  multihop        gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  hard-004  multihop        gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  hard-005  multihop        gt=False FALLA  FALLA  OK  FALLA  FALLA  FALLA  FALLA
+  hard-006  multihop        gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  hard-007  multihop        gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  hard-008  multihop        gt=True  FALLA  OK  OK  OK  FALLA  OK  FALLA
+  hard-009  multihop        gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-010  multihop        gt=True  OK  FALLA  OK  OK  FALLA  OK  FALLA
+  hard-011  multihop        gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-012  multihop        gt=True  FALLA  OK  FALLA  OK  FALLA  OK  FALLA
+  hard-014  multihop        gt=False OK  FALLA  OK  FALLA  OK  FALLA  OK
+  hard-015  multihop        gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-016  multihop        gt=False FALLA  FALLA  OK  FALLA  OK  FALLA  OK
+  hard-017  multihop        gt=True  OK  FALLA  OK  OK  FALLA  OK  FALLA
+  hard-018  multihop        gt=True  OK  FALLA  FALLA  OK  OK  OK  FALLA
+  hard-019  multihop        gt=False OK  FALLA  OK  FALLA  FALLA  FALLA  OK
+  hard-020  multihop        gt=True  FALLA  OK  FALLA  OK  OK  OK  FALLA
+  hard-021  multihop        gt=False OK  OK  OK  FALLA  FALLA  FALLA  FALLA
+  hard-022  multihop        gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  hard-023  comparacion     gt=False OK  OK  FALLA  FALLA  OK  FALLA  OK
+  hard-024  comparacion     gt=False OK  FALLA  FALLA  FALLA  FALLA  FALLA  OK
+  hard-025  comparacion     gt=False FALLA  OK  FALLA  FALLA  OK  FALLA  OK
+  hard-026  comparacion     gt=False OK  FALLA  FALLA  FALLA  FALLA  FALLA  OK
+  hard-027  comparacion     gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-028  comparacion     gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-029  comparacion     gt=False OK  OK  FALLA  FALLA  OK  FALLA  OK
+  hard-030  comparacion     gt=False OK  FALLA  FALLA  FALLA  OK  FALLA  OK
+  hard-031  comparacion     gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  hard-032  comparacion     gt=False OK  FALLA  FALLA  FALLA  FALLA  FALLA  OK
+  hard-033  comparacion     gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-034  comparacion     gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-035  comparacion     gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-036  comparacion     gt=False OK  OK  FALLA  FALLA  OK  FALLA  OK
+  hard-037  comparacion     gt=False OK  FALLA  FALLA  FALLA  OK  FALLA  OK
+  hard-038  comparacion     gt=False OK  OK  FALLA  FALLA  OK  FALLA  OK
+  hard-039  comparacion     gt=False OK  OK  FALLA  FALLA  FALLA  FALLA  OK
+  hard-040  comparacion     gt=True  OK  OK  OK  OK  OK  OK  FALLA
+  hard-041  comparacion     gt=False OK  OK  FALLA  FALLA  OK  FALLA  OK
+  hard-042  comparacion     gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-043  comparacion     gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-044  comparacion     gt=False OK  FALLA  FALLA  FALLA  OK  FALLA  OK
+  hard-045  distractor      gt=True  FALLA  FALLA  FALLA  OK  OK  OK  OK
+  hard-046  distractor      gt=False OK  OK  OK  FALLA  FALLA  FALLA  FALLA
+  hard-050  distractor      gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-054  distractor      gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-055  distractor      gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-058  distractor      gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-060  distractor      gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-061  distractor      gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-062  distractor      gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-063  distractor      gt=True  OK  OK  OK  OK  FALLA  OK  OK
+  hard-065  distractor      gt=True  OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-066  distractor      gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-067  distractor      gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-068  distractor      gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-069  distractor      gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-070  no_aparece      gt=True  OK  OK  FALLA  FALLA  OK  FALLA  FALLA
+  hard-071  no_aparece      gt=False FALLA  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-072  no_aparece      gt=True  OK  OK  FALLA  FALLA  FALLA  FALLA  FALLA
+  hard-073  no_aparece      gt=False OK  FALLA  FALLA  FALLA  OK  FALLA  OK
+  hard-074  no_aparece      gt=True  OK  OK  FALLA  OK  OK  OK  FALLA
+  hard-075  no_aparece      gt=False FALLA  OK  OK  FALLA  OK  FALLA  OK
+  hard-076  no_aparece      gt=True  OK  OK  FALLA  FALLA  OK  FALLA  FALLA
+  hard-077  no_aparece      gt=False OK  OK  FALLA  OK  FALLA  OK  OK
+  hard-078  no_aparece      gt=True  OK  OK  OK  FALLA  FALLA  FALLA  FALLA
+  hard-079  no_aparece      gt=False FALLA  OK  OK  OK  OK  OK  OK
+  hard-080  no_aparece      gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-081  no_aparece      gt=False OK  OK  FALLA  FALLA  OK  FALLA  OK
+  hard-082  no_aparece      gt=True  OK  OK  FALLA  FALLA  OK  FALLA  FALLA
+  hard-083  no_aparece      gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-084  no_aparece      gt=True  OK  OK  OK  FALLA  FALLA  FALLA  FALLA
+  hard-085  no_aparece      gt=False OK  OK  FALLA  FALLA  FALLA  FALLA  OK
+  hard-086  no_aparece      gt=True  OK  OK  FALLA  OK  OK  OK  FALLA
+  hard-088  no_aparece      gt=True  OK  OK  OK  FALLA  OK  FALLA  FALLA
+  hard-089  no_aparece      gt=False OK  FALLA  FALLA  FALLA  FALLA  FALLA  OK
+  hard-090  no_aparece      gt=True  OK  OK  FALLA  FALLA  FALLA  FALLA  FALLA
+  hard-091  no_aparece      gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-092  no_aparece      gt=True  OK  OK  FALLA  FALLA  OK  FALLA  FALLA
+  hard-093  no_aparece      gt=False OK  OK  FALLA  OK  OK  OK  OK
+  hard-094  no_aparece      gt=True  OK  OK  FALLA  OK  OK  OK  FALLA
+  hard-095  cuantificador   gt=True  FALLA  FALLA  FALLA  OK  OK  OK  OK
+  hard-096  cuantificador   gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-097  cuantificador   gt=True  FALLA  FALLA  OK  OK  OK  OK  OK
+  hard-098  cuantificador   gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-099  cuantificador   gt=True  FALLA  OK  FALLA  OK  OK  OK  OK
+  hard-100  cuantificador   gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-101  cuantificador   gt=True  FALLA  FALLA  FALLA  OK  OK  OK  OK
+  hard-102  cuantificador   gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-103  cuantificador   gt=True  OK  FALLA  FALLA  OK  OK  OK  OK
+  hard-104  cuantificador   gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-105  cuantificador   gt=True  FALLA  FALLA  FALLA  OK  OK  OK  OK
+  hard-106  cuantificador   gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-107  cuantificador   gt=True  FALLA  FALLA  FALLA  OK  OK  OK  OK
+  hard-108  cuantificador   gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-109  cuantificador   gt=True  FALLA  FALLA  FALLA  OK  OK  OK  OK
+  hard-110  cuantificador   gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-111  cuantificador   gt=True  FALLA  FALLA  FALLA  OK  OK  OK  OK
+  hard-112  cuantificador   gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-113  cuantificador   gt=True  FALLA  FALLA  FALLA  OK  OK  OK  OK
+  hard-114  cuantificador   gt=False OK  OK  OK  FALLA  FALLA  FALLA  OK
+  hard-115  aguja           gt=True  FALLA  FALLA  FALLA  OK  OK  OK  OK
+  hard-116  aguja           gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-117  aguja           gt=True  OK  OK  OK  OK  FALLA  OK  OK
+  hard-118  aguja           gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-119  aguja           gt=True  OK  OK  FALLA  OK  OK  OK  FALLA
+  hard-120  aguja           gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  hard-121  aguja           gt=True  OK  OK  OK  OK  FALLA  OK  FALLA
+  hard-122  aguja           gt=False OK  OK  OK  FALLA  OK  FALLA  OK
+  total casos con discrepancia: 189
+
+--- ficheros generados ---
+-rw-rw-r-- 1 jokoalmi jokoalmi 56373 Sep 24 07:06 resultados_laya_english_v3.json
+-rw-rw-r-- 1 jokoalmi jokoalmi 57860 Sep 24 07:07 resultados_laya_multilingual_v3.json
+-rw-rw-r-- 1 jokoalmi jokoalmi 60139 Sep 24 07:06 resultados_laya_router_v3.json
+-rw-rw-r-- 1 jokoalmi jokoalmi 58783 Sep 24 07:07 resultados_laya_typed-decisions_v3.json
+
+--- sha256 de los resultados (calculado, nunca transcrito) ---
+c83e6e228861a30db46129b57233798ea5ce0f6e6227c460a09e3c209a2dc036  resultados_laya_english_v3.json
+ca59128152b4e3c6ba24b3c8905c651d337c7edb8479bf2fd813b97689c8f695  resultados_laya_multilingual_v3.json
+178d4ddab969ee3c1c7a7fe2ccbca4317b09a4f5a16f345fc0809628133fed41  resultados_laya_router_v3.json
+07370f8f59535ff9bbe1691139f6070a0d35eafeffc544dbe415cde3c8989369  resultados_laya_typed-decisions_v3.json
+
+=== FIN 2026-09-24 07:07:23 CEST — checkpoints con fallo: ninguno ===

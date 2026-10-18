@@ -1,0 +1,108 @@
+id: DEC-006
+type: DEC
+decision_origin: experimento
+status: activo
+version: 1
+created: '2026-10-09'
+last_validated: '2026-10-09'
+next_review: '2026-11-09'
+expires: '2027-01-09'
+title: "MoE que no cabe en VRAM: lanzar con --moe-cache-mib 512 (caché de expertos en GPU)"
+desc: >-
+  Cuando un MoE no cabe en la GPU y hay que repartir expertos a CPU, añadir la caché de
+  expertos de llama.cpp (--moe-cache-mib) sube el rendimiento un ~55 % con la misma máquina,
+  el mismo fichero y el mismo reparto. Medido en el lab: 5,55 -> 8,54 tok/s (entrada
+  estructurada) y 7,54 -> 11,88 tok/s (prosa). El techo práctico se alcanza con 512 MiB;
+  con 2048 el arranque muere. El flag NO lo expone el lanzador de LM Studio: hay que lanzar
+  llama-server 2.55.0 a mano en un puerto propio.
+confidence: 0.6
+confidence_label: MEDIA
+evidence:
+- 'EXP-20261009-008 (01-knowledge/experiments/EXP-20261009-008-moe-cache-mib/): 11 celdas, 2 rondas intercaladas, temp=0, mismo fichero y mismos parametros (-ngl 99 -ncmoe 28 -c 2048 -ub 128)'
+- 'E1 (JSON estructurado): 0 -> 5,55 tok/s; 256 -> 7,47; 512 -> 8,95; 1024 -> 8,54/9,01 (3 replicas sin solape con las 3 de C=0; banda de ruido medida 9-11 %)'
+- 'E2 (prosa): 0 -> 7,54 tok/s; 1024 -> 11,88 tok/s (+58 %)'
+- 'Saturacion medida: 512-1024 dan el techo practico; C=1024 aporta +0-0,5 tok/s sobre 512 a cambio de ~1 GiB de VRAM'
+- 'C=2048 NO arranca: "failed to allocate CUDA0 buffer of size 2147450880" en los buffers de la cache MoE'
+- 'P2 falsada: la ganancia NO depende de la clase de entrada (prosa +58 %, estructurada +54 %) — el modelo mental "la cache solo paga con routing repetitivo" no se sostiene'
+- 'La salida a temp=0 no es identica entre configuraciones en E2 (595 vs 597 chars; mismo text_md5 en E1) — el determinismo cruzado no esta garantizado'
+- 'El flag solo existe en el runtime llama.cpp 2.55.0 (libllama-common.so.0.6.0) y NO lo expone lms load (verificado en solo lectura, commit 4b1e425)'
+- 'Antecedente NO comparable: OBS-111 midio 1,44 tok/s con el quant Q4_K_M de 21,1 GiB, borrado del disco el 02-10-2026'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: tok_s_moe_35b_a3b_con_cache
+  baseline: 5.55
+  current: 11.88
+  last_checked: '2026-10-09'
+  log_file: '01-knowledge/experiments/EXP-20261009-008-moe-cache-mib/f1-resultados.md'
+  indicador_semanal: 'tok/s del MoE con el reparto fijo. <8 tok/s con cache = revisar (regresion del runtime o reparto distinto). Si el modelo cabe entero, esta DEC no aplica.'
+history:
+- date: '2026-10-09'
+  event: created
+  note: 'Origen: EXP-20261009-008 (pedido del usuario, ejecucion secuencial). Veredicto del usuario (RULE-013) "si" a registrar la DEC. Sustituye la regla operativa anterior de la skill medicion-aceleracion-inferencia-local ("el offload arranca el modelo, no sirve para trabajar con el"), que estaba basada en el quant ya borrado.'
+body: |
+  # MoE que no cabe en VRAM: lanzar con la cache de expertos (`--moe-cache-mib 512`)
+
+  ## Decision
+
+  Para el patron "MoE que no cabe en la GPU y hay que repartir expertos a CPU",
+  lanzar `llama-server` con reparto fijo MAS la cache de expertos:
+
+  ```
+  --ncmoe 28 --moe-cache-mib 512
+  ```
+
+  y NO con `--moe-cache-mib 0` (el default). El valor recomendado es **512 MiB**;
+  256 MiB si la VRAM escasea; 1024 solo si sobran ~1 GiB (compra +0-0,5 tok/s).
+
+  ## Por que (medido, no estimado)
+
+  | `--moe-cache-mib` | E1 estructurada | E2 prosa |
+  |---|---|---|
+  | 0 | 5,55 tok/s | 7,54 tok/s |
+  | 256 | 7,47 (+35 %) | — |
+  | 512 | 8,95 (+61 %) | — |
+  | 1024 | 8,54 / 9,01 | 11,88 (+58 %) |
+  | 2048 | NO ARRANCA (reserva de los buffers de cache) | — |
+
+  La cache guarda en VRAM los expertos que el reparto deja en CPU: si el routing
+  vuelve a pedir el mismo experto, no se re-copia por PCIe. Sube el pico de VRAM
+  ~1 MiB por MiB pedido -> el C maximo es "VRAM libre menos margen".
+
+  Efecto operativo: el MoE de 35B-A3B pasa de **1,44-5,55 tok/s** a **8,5-11,9 tok/s**,
+  es decir del orden de la referencia de trabajo del lab (~11 tok/s). Sigue lejos de
+  un modelo que cabe entero (~40 tok/s): **no sustituye al modelo de trabajo**, es la
+  opcion para cuando ese MoE concreto hace falta.
+
+  ## Alcance y limites
+
+  - Medido con Qwen3.6-35B-A3B MXFP4 (18,9 GiB) en RTX A2000 12 GB, LM Studio en `:1234`
+    (esta DEC no toca `:1234`, Ollama, n8n ni ComfyUI: el `llama-server` va en puerto propio).
+  - **No aplica a modelos densos** ni a modelos que caben enteros: ahi la cache sobra.
+  - Cifras absolutas NO extrapolables: se midio con **swap al 100 %** y ComfyUI de fondo
+    (~190 MiB); n=3 replicas en C=0/1024 y n=1 en 256/512; una sola maquina. El contraste
+    relativo (intercalado) si es valido.
+  - La salida de texto NO es identica entre configuraciones a temp 0 (E2 cambio 1 token):
+    no comparar calidad de texto entre C=0 y C>0 como si fuera la misma corrida.
+
+  ## Como se lanza (bloqueo del lanzador)
+
+  `lms load` no expone flags de llama.cpp, asi que LM Studio no puede pedir la cache.
+  Comando verificado (runtime 2.55.0 + libs del vendor CUDA):
+
+  ```
+  LD_LIBRARY_PATH=/home/jokoalmi/.lmstudio/extensions/backends/vendor/linux-llama-cuda12-vendor-v1 \
+  /home/jokoalmi/.lmstudio/extensions/backends/llama.cpp-linux-x86_64-nvidia-cuda12-avx2-2.55.0/llama-server \
+    -m "/mnt/ssd_ia_datos/LM STUDIO/noctrex/Qwen3.6-35B-A3B-MXFP4_MOE-GGUF/Qwen3.6-35B-A3B-MXFP4_MOE.gguf" \
+    --host 127.0.0.1 --port 8099 -c 2048 -ngl 99 -ncmoe 28 --moe-cache-mib 512 -t 6
+  ```
+
+  ## Cuando se revisa
+
+  - Si un runtime de LM Studio expone el flag en `lms load` (entonces esta DEC se simplifica).
+  - Si cambia el modelo MoE objetivo (otro quant, otro reparto `-ncmoe` o contexto grande).
+  - Si `tok/s` con cache baja de 8 en el reparto de referencia.
+  - `next_review` 2026-11-09; `expires` 2027-01-09 (la cifra caduca: otro runtime/motor la invalida).

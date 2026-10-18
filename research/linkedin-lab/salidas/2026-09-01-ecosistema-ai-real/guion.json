@@ -1,0 +1,133 @@
+{
+  "tema": "El ecosistema AI que YO uso de verdad (y no es el de los cheat sheets)",
+  "slides": [
+    {
+      "tipo": "gancho",
+      "titulo": "Los cheat sheets del ecosistema AI <span class='accent'>olvidan la mitad</span>",
+      "subtitulo": "LLMs, RAG, MCP, vectores... Todo suena impresionante. Pero el ecosistema que YO uso de verdad es más pequeño, local y medible.",
+      "dato": "11",
+      "unidad": "modelos locales cargados en mi GPU de 12 GB"
+    },
+    {
+      "tipo": "concepto",
+      "num": "1",
+      "titulo": "Qué es un ecosistema AI (en serio)",
+      "items": [
+        [
+          "Modelos",
+          "LLM, visión, embeddings — cada uno para una tarea (no uno para todo)"
+        ],
+        [
+          "Datos y RAG",
+          "el conocimiento propio, recuperado en el momento (no en el prompt)"
+        ],
+        [
+          "Automatización",
+          "orquestación: n8n, cron, agentes — el 'quién llama a quién'"
+        ],
+        [
+          "Observabilidad",
+          "saber qué pasó, cuánto tardó y cuánto costó — sin eso, es magia"
+        ]
+      ]
+    },
+    {
+      "tipo": "metricas",
+      "num": "2",
+      "titulo": "Mi stack real (verificado hoy)",
+      "subtitulo": "Todo en una máquina con GPU RTX A2000 de 12 GB. Local primero, cloud solo cuando hace falta.",
+      "metricas": [
+        [
+          "11",
+          "modelos en LM Studio + Ollama (LLM, visión, embeddings)"
+        ],
+        [
+          "1.9 GB",
+          "mi RAG LanceDB: conocimiento del lab buscable"
+        ],
+        [
+          "4",
+          "servicios Docker: n8n, ollama, pdf-cleaner, stirling-pdf"
+        ],
+        [
+          "3",
+          "servidores MCP conectados (BD, RAG, animación)"
+        ]
+      ]
+    },
+    {
+      "tipo": "concepto",
+      "num": "3",
+      "titulo": "Cómo se conecta de verdad",
+      "items": [
+        [
+          "Entrada real",
+          "un post o vídeo → lo extraigo con visión local (GLM)"
+        ],
+        [
+          "Verificación y RAG",
+          "análisis verificado (1/0) y guardado en mi LanceDB"
+        ],
+        [
+          "Orquestación",
+          "n8n para flujos, crons para programación"
+        ],
+        [
+          "Router local-first",
+          "local si es barato, cloud solo cuando aporta"
+        ]
+      ]
+    },
+    {
+      "tipo": "por_que",
+      "num": "4",
+      "titulo": "Por qué local-first cambia todo",
+      "items": [
+        [
+          "Coste predecible",
+          "los modelos locales cuestan 0 € por consulta — el cloud solo cuando aporta"
+        ],
+        [
+          "Privacidad real",
+          "mi RAG y mis datos no salen de la máquina"
+        ],
+        [
+          "Aprendes de verdad",
+          "ves cada pieza: VRAM, latencia, límites — no un botón 'magia'"
+        ],
+        [
+          "Medible",
+          "recall, TTFB, tokens: cada decisión con datos, no con humo"
+        ]
+      ]
+    },
+    {
+      "tipo": "escala",
+      "num": "5",
+      "titulo": "El dato que más me costó aprender",
+      "items": [
+        [
+          "No necesitas el modelo más grande",
+          "un modelo de 8 GB bien usado supera a uno de 400B mal usado"
+        ],
+        [
+          "El RAG vale más que el fine-tuning",
+          "para conocimiento propio: recuperar gana a re-entrenar"
+        ],
+        [
+          "La validación es la mitad del trabajo",
+          "sin verificar, un agente inventa URLs (me pasó: example.com)"
+        ]
+      ]
+    },
+    {
+      "tipo": "cta",
+      "titulo": "Sigo con <span class='accent'>'La IA que yo uso'</span>",
+      "subtitulo": "1 ficha/semana: conceptos explicados con datos reales de mi laboratorio local. ¿Cuál quieres ver primero?",
+      "hashtags": "#IALocal #AIAgents #RAG #LLM #MLOps"
+    }
+  ],
+  "caption": "Los cheat sheets del ecosistema AI muestran 30 herramientas y suenan impresionantes. El ecosistema que yo uso de verdad es más pequeño, local y medible.\n\nMi stack real (verificado hoy):\n• 11 modelos locales (LLM, visión, embeddings) en una GPU de 12 GB\n• RAG LanceDB de 1.9 GB con mi conocimiento del lab\n• 4 servicios Docker (n8n, ollama, pdf-cleaner, stirling-pdf)\n• 3 servidores MCP conectados\n\nLo que aprendí: no necesitas el modelo más grande ni el stack más largo. Necesitas saber qué pieza hace qué, y medirla.\n\nFicha nueva de mi serie 'La IA que yo uso': conceptos con datos reales, sin humo. 1 ficha/semana.",
+  "alt": "Carrusel: el ecosistema AI real del lab — 11 modelos locales, RAG 1.9GB, 4 servicios Docker, 3 MCPs, GPU 12GB local-first.",
+  "hashtags": "#IALocal #AIAgents #RAG #LLM #MLOps #AprendizajeIA"
+}

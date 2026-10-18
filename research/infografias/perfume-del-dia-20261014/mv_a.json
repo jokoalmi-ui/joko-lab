@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261014/ficha_a.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261014/renaissance_figura.png",
+ "rect": [
+  88,
+  84,
+  227,
+  450
+ ],
+ "fondo_L": 120.09519999999999,
+ "tapon_L": 93.44659999999999,
+ "cuerpo_L": 225.262,
+ "contraste_tapon": 1.4831801364200117,
+ "contraste_cuerpo": 3.3800315186806147,
+ "pct_claros": 38.71169848262359,
+ "min_claros": null,
+ "min_contraste": null
+}

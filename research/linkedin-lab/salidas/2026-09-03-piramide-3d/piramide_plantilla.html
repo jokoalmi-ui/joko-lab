@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter','Helvetica Neue',Arial,sans-serif; }
+  .slide { width:1080px; height:1350px; position:relative; overflow:hidden;
+    background:radial-gradient(1200px 800px at 50% -10%, #2a3550 0%, #1a2035 45%, #10131f 100%); }
+  .stars { position:absolute; inset:0; opacity:.55;
+    background-image:
+      radial-gradient(1.2px 1.2px at 120px 90px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 340px 60px, #fff 50%, transparent 51%),
+      radial-gradient(1.4px 1.4px at 520px 140px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 700px 70px, #fff 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 900px 120px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 980px 50px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 60px 220px, #fff 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 260px 300px, rgba(255,255,255,.6) 50%, transparent 51%),
+      radial-gradient(1px 1px at 1000px 280px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 150px 400px, rgba(255,255,255,.5) 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 820px 380px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 460px 200px, rgba(255,255,255,.4) 50%, transparent 51%),
+      radial-gradient(1px 1px at 640px 320px, rgba(255,255,255,.35) 50%, transparent 51%);
+  }
+  .content { position:absolute; inset:0; padding:54px 80px 44px; display:flex; flex-direction:column; }
+  .marca { display:flex; align-items:center; gap:10px; }
+  .marca .logo { width:34px; height:34px; border-radius:50%; background:#FFC55A;
+    display:flex; align-items:center; justify-content:center; color:#1a2035;
+    font-weight:800; font-size:14px; box-shadow:0 0 18px rgba(255,197,90,.4); }
+  .marca .nombre { font-weight:700; font-size:15px; color:#cfd6e8; letter-spacing:.4px; }
+  .marca .nombre span { color:#FFC55A; }
+  .titulo { font-size:44px; font-weight:800; color:#f5f1e6; letter-spacing:-1.2px;
+    line-height:1.1; margin-top:24px; }
+  .titulo .accent { color:#FFC55A; }
+  .sub { font-size:18px; color:#9aa3bd; font-weight:500; margin-top:10px; line-height:1.5; }
+  .sub b { color:#cfd6e8; }
+  .escena { flex:1; position:relative; display:flex; align-items:center; justify-content:center; min-height:0; }
+  .pie { display:flex; align-items:center; justify-content:space-between; margin-top:8px; }
+  .pie .tec { font-size:12.5px; color:#77809c; letter-spacing:.3px; }
+  .pie .tec b { color:#cfd6e8; font-weight:600; }
+  .chip { background:rgba(255,197,90,.12); border:1px solid rgba(255,197,90,.35);
+    color:#FFC55A; font-size:12.5px; font-weight:700; padding:7px 16px; border-radius:20px;
+    letter-spacing:.5px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="stars"></div>
+  <div class="content">
+    <div class="marca">
+      <div class="logo">JL</div>
+      <div class="nombre">JOKO <span>LAB</span> · PRUEBA DE VOLUMEN 3D</div>
+    </div>
+    <div class="titulo">Pirámide <span class="accent">isométrica</span><br>con detalle de bloque</div>
+    <div class="sub">Hiladas en perspectiva · luz y sombra por cara · <b>0&nbsp;€ · 100% local · SVG generado</b></div>
+    <div class="escena">
+      <!--SVG-->
+    </div>
+    <div class="pie">
+      <div class="tec">SVG generado por script · gradientes por cara · textura de hiladas en perspectiva</div>
+      <div class="chip">PRUEBA · VOLUMEN 2.5D</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

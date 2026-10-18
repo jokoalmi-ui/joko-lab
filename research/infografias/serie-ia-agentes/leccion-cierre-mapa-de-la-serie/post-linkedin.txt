@@ -1,0 +1,28 @@
+Después de ocho piezas, esta es la que faltaba: el mapa.
+
+«IA y agentes, de cero a producción» está completa. Ocho entregas, seis niveles, una idea por pieza. Y como ya son muchas, he hecho lo que hago con todo lo que crece: un índice.
+
+Cada nivel resuelve un atasco concreto:
+
+· Nivel 0 — Qué es un LLM y qué se le puede pedir. La máquina no busca: genera.
+· Nivel 1 — Instrucciones: el prompt. La misma pregunta, pedida de otra forma, da otra respuesta.
+· Nivel 2 — El modelo conectado al mundo: tus documentos y tus herramientas.
+· Nivel 3 — El agente: el bucle. Contestar no es lo mismo que hacer.
+· Nivel 4 — De uno a muchos: varios agentes colaborando. Cuesta ×3,90 en tokens y ×4,68 en tiempo para el mismo acierto (medido, no estimado).
+· Nivel 5 — Producción: fiabilidad, coste y límites. El listón lo pone una batería de casos, no una demo.
+
+Tres cosas que me llevo de haberlo escrito:
+
+1. El orden no es decorativo. Casi todos los atascos que veo son una pieza usada sin la anterior.
+2. Medir cambia la conversación. La última medición de la serie: 0 invenciones en 81 respuestas (27 casos × 3 pasadas). Y el fallo estaba en mi medidor, no en el modelo.
+3. Ninguna pieza pide programar. Piden leerlas en orden.
+
+¿Y por dónde entras tú?
+
+· ¿Aún no sabes qué es un LLM? Nivel 0.
+· ¿Ya lo usas y quieres que haga cosas? Niveles 1 y 2.
+· ¿Quieres que trabaje solo y sin sustos? Niveles 3, 4 y 5.
+
+La serie queda completa en mi perfil: ocho piezas, de cero a producción.
+
+¿Cuál te falta?

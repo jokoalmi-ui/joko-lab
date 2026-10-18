@@ -1,0 +1,74 @@
+{
+ "fecha": "2026-10-18 14:59 CEST",
+ "modelo": "/mnt/ssd_ia_datos/LM STUDIO/lmstudio-community/gemma-4-12B-it-QAT-GGUF/gemma-4-12B-it-QAT-Q4_0.gguf",
+ "draft": "/home/jokoalmi/joko-lab/05-inference/models/gemma-4-12B-it-qat-assistant-MTP-Q8_0.gguf",
+ "clase": "prosa",
+ "ngl": 99,
+ "n_predict": 200,
+ "rondas": 1,
+ "filas": [
+  {
+   "tag": "none",
+   "ronda": 1,
+   "clase": "prosa",
+   "spec": "none",
+   "extra": [],
+   "tok_s": 28.674,
+   "n_gen": 200,
+   "draft_n": null,
+   "aceptados": null,
+   "unused": 0,
+   "vram_mib": 9894,
+   "texto": "*   Topic: Why the sky is blue during the day and what color it changes to at sunset.\n*   Format: Exactly two paragraphs.\n*   Language: Spanish.\n*   Constraint: No lists (sin listas).\n\n    *   *Daytime:* Rayleigh scattering. Sunlight (white light) hits the atmosphere. Shorter wavelengths (blue/violet) scatter more easily off gas molecules and particles. Our eyes are more sensitive to blue than violet.\n    *   *Sunset:* The sun is lower on the horizon. Light travels a longer path through the atmosphere. Most of the blue/violet light is scattered away before reaching our eyes. The longer wavelengths (red/orange/yellow) remain and reach us.\n\n    *   *Paragraph 1 (Daytime):* El cielo se ve azul durante el día debido a un fenómeno físico llamado dispersión de Rayleigh. Cuando la luz del sol, que contiene todos los colores del arcoíris,"
+  },
+  {
+   "tag": "n4",
+   "ronda": 1,
+   "clase": "prosa",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "4"
+   ],
+   "tok_s": 46.853,
+   "n_gen": 200,
+   "draft_n": 248,
+   "aceptados": 137,
+   "unused": 0,
+   "vram_mib": 10400,
+   "texto": "*   Topic: Why the sky is blue during the day and what color it changes to at sunset.\n*   Format: Exactly two paragraphs.\n*   Language: Spanish.\n*   Constraint: No lists (sin listas).\n\n    *   *Daytime:* Rayleigh scattering. Sunlight (white light) hits the atmosphere. Shorter wavelengths (blue/violet) scatter more easily off gas molecules and particles. Our eyes are more sensitive to blue than violet.\n    *   *Sunset:* The sun is lower on the horizon. Light travels a longer path through the atmosphere. Most of the blue/violet light is scattered away before reaching our eyes. Longer wavelengths (red/orange/yellow) remain and reach us.\n\n    *   *Paragraph 1 (Daytime):* El cielo se ve azul durante el día debido a un fenómeno físico llamado dispersión de Rayleigh. Cuando la luz del sol, que contiene todos los colores del arcoíris, entra"
+  }
+ ],
+ "resumen": {
+  "none": {
+   "tok_s_mediana": 28.67,
+   "valores": [
+    28.674
+   ],
+   "aceptacion_pct": null,
+   "ganancia_pct": null,
+   "unused": [
+    0
+   ],
+   "vram_mib": [
+    9894
+   ],
+   "coincidencia_texto": 1.0
+  },
+  "n4": {
+   "tok_s_mediana": 46.85,
+   "valores": [
+    46.853
+   ],
+   "aceptacion_pct": 55.2,
+   "ganancia_pct": 63.4,
+   "unused": [
+    0
+   ],
+   "vram_mib": [
+    10400
+   ],
+   "coincidencia_texto": 0.993
+  }
+ }
+}

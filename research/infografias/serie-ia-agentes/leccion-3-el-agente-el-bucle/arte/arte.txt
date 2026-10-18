@@ -1,0 +1,11 @@
+ARTE — Lección 3 «El agente: el bucle» (serie IA y agentes)
+Generado con SDXL local (tools/gen_lab.py), 768 px, 24 pasos, vía ComfyUI del stack (8188).
+Estilo de la serie: objeto pequeño centrado, fondo crema dominante, mucho aire,
+líneas negras finas, un acento naranja, sin texto.
+
+s1-noria.png            seed 5   a small ferris wheel of a fairground ride
+s2-caja-herramientas.png seed 29  a small open metal toolbox with a few hand tools beside a small closed notebook
+s5-etiquetas-precio.png  seed 13  three small blank paper price tags on strings next to a small notebook
+s7-llave-etiqueta.png    seed 77  a small brass key with a plain paper tag tied to it
+
+Fecha de generación: 2026-09-24 (madrugada del 25).

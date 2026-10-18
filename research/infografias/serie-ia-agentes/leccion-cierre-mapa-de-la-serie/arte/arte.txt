@@ -1,0 +1,30 @@
+arte.txt — manifiesto del arte de la PIEZA DE CIERRE (serie «IA y agentes»)
+
+Generado con tools/gen_lab.py (SDXL en ComfyUI local, 768x768, 24 pasos), con el estilo
+de la serie:
+  tiny object centered, plain warm cream paper background filling almost the entire image,
+  lots of empty space, thin black ink outlines, one small vivid orange accent, clean,
+  no text, no words, no letters
+
+ESCENAS Y SEMILLAS (3 escenas, 3 usadas)
+  S1 portada  (escalera de hojalata)  s1-escalera.png      seed 303  borde origen (233,226,206)  58,4 % px  OK
+  S5 ejemplo  (torre de capas)        s5-torre-capas.png   seed 214  borde origen (184,177,176)  66,5 % px  OK
+  S7 cierre   (llave de hojalata)     s7-llave.png         seed 226  borde origen (219,210,196)  75,0 % px  OK
+
+DESCARTES (documentados, no se usan)
+  s1 seed 202  borde origen (160,158,155) GRIS -> NO normaliza con ningun umbral (30/45/60)
+  s1 seed 404  borde origen (239,232,208) normaliza (39,7 %) pero el borde final (236,230,221)
+               queda en el limite de la tolerancia -> se prefiere 303
+  s1 seed 515  borde origen (192,186,177) -> NO normaliza
+  Los candidatos crudos viven en /tmp/s1cand (no versionados: el repo es solo texto y codigo).
+
+NORMALIZACION (fondo al crema EXACTO de la serie, #F5EFE6 = 245,239,230)
+  Comando:  python3 normalizar_crema.py arte/
+  Metodo:   relleno del fondo CONECTADO al borde desde 8 semillas, umbral escalonado
+            30/45/60 y remapeo al crema; escribe <nombre>-crema.png (no toca el original).
+  Verificacion: anillo de borde de cada imagen a tolerancia 12 -> 3/3 en crema.
+  (El umbral global no vale: la semilla 202 con tolerancia 12 no pasaba ni 1 de 3 fondos.)
+
+REPRODUCIR
+  bash gen_arte.sh        # reanudable: salta los PNG ya existentes; lock en /tmp/cierre_arte.lock
+  Nota: ComfyUI (systemctl --user start comfyui) y el VLM de revision NO conviven en la GPU.

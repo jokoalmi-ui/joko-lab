@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>LAB NOTES — Portada</title>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1350px; }
+  body {
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    background: #F5F0E8;
+    overflow: hidden;
+  }
+  /* Fondo papel con líneas horizontales */
+  .paper {
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(
+        transparent 0 46px,
+        rgba(163,193,219,0.55) 46px 47px
+      ),
+      #F5F0E8;
+    z-index: 0;
+  }
+  /* Lomo del cuaderno a la izquierda */
+  .spine {
+    position: absolute; top: 0; bottom: 0; left: 0; width: 88px;
+    background: linear-gradient(to right, #E8DFC9, #F5F0E8 80%);
+    z-index: 1;
+  }
+  /* Contenedor espiral SVG */
+  .spiral-wrap { position: absolute; top: 0; left: 0; height: 1350px; width: 110px; z-index: 4; pointer-events: none; }
+  .content { position: absolute; z-index: 5; left: 118px; top: 70px; right: 60px; bottom: 60px; display: flex; flex-direction: column; }
+
+  /* Cabecera */
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+  .handle { font-family: 'Caveat', cursive; font-size: 36px; font-weight: 600; color: #555; }
+  .pagebox { background: #DCEFEA; border: 3px solid #2D8B7E; border-radius: 10px; padding: 8px 20px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: 0.08em; color: #1A1A1A; }
+
+  /* Título */
+  .title-num { font-family: 'Caveat', cursive; font-size: 100px; font-weight: 700; color: #00A99D; line-height: 0.9; margin-bottom: 6px; }
+  h1 { font-family: 'Open Sans', sans-serif; font-size: 92px; font-weight: 800; letter-spacing: -1px; color: #1A1A1A; line-height: 1.02; margin-bottom: 14px; }
+  h1 .accent { color: #00A99D; }
+  .tagline { font-family: 'Caveat', cursive; font-size: 44px; font-weight: 600; color: #333; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+  .tagline .arrow { color: #FF9800; font-size: 48px; font-weight: 700; }
+  .premium { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: 0.22em; text-transform: uppercase; color: #8a8372; margin-bottom: 26px; }
+  .subtitle { font-family: 'Open Sans', sans-serif; font-size: 30px; font-weight: 600; color: #333; line-height: 1.4; margin-bottom: 30px; }
+
+  /* Diagrama flujo */
+  .flow { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 34px; flex-wrap: wrap; }
+  .fnode { background: #fff; border: 3px solid #00A99D; border-radius: 14px; padding: 14px 18px; text-align: center; min-width: 120px; box-shadow: 3px 3px 0 rgba(0,169,157,0.15); }
+  .fnode .t { font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: #00A99D; }
+  .fnode .d { font-family: 'Open Sans', sans-serif; font-size: 15px; font-weight: 600; color: #333; margin-top: 4px; }
+  .farrow { font-size: 28px; color: #FF9800; font-weight: 800; }
+
+  /* Banner key topics */
+  .keytopics { background: #FDE7B6; border: 3px solid #F5B800; border-radius: 12px; padding: 16px 24px; text-align: center; margin-bottom: 30px; }
+  .keytopics .k { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: #7a5a00; }
+
+  /* 3 columnas */
+  .cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; flex: 1; }
+  .col { background: rgba(255,255,255,0.6); border: 3px solid #CCCCCC; border-radius: 14px; padding: 20px 22px; }
+  .col h3 { font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #00A99D; border-bottom: 3px solid #00A99D; padding-bottom: 10px; margin-bottom: 14px; }
+  .col ul { list-style: none; }
+  .col li { font-family: 'Open Sans', sans-serif; font-size: 18px; font-weight: 600; color: #333; line-height: 1.35; margin-bottom: 9px; padding-left: 30px; position: relative; }
+  .col li::before { content: "✓"; position: absolute; left: 0; top: 0; color: #00A99D; font-weight: 800; font-size: 18px; }
+  .col .num { font-family: 'Caveat', cursive; font-size: 34px; font-weight: 700; color: #FF9800; line-height: 1; margin-bottom: 8px; }
+  .col .num b { color: #00A99D; }
+
+  /* Footer */
+  .footer { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 19px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #555; margin-top: 22px; }
+</style>
+</head>
+<body>
+  <div class="paper"></div>
+  <div class="spine"></div>
+  <svg class="spiral-wrap" width="110" height="1350" viewBox="0 0 110 1350" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+        <feGaussianBlur stdDeviation="2.5" />
+      </filter>
+      <linearGradient id="wireGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2a2a2a"/>
+        <stop offset="0.5" stop-color="#4a4a4a"/>
+        <stop offset="1" stop-color="#1a1a1a"/>
+      </linearGradient>
+    </defs>
+    <script type="text/javascript"><![CDATA[
+      const NS = 'http://www.w3.org/2000/svg';
+      const svg = document.querySelector('.spiral-wrap');
+      const holes = 24;
+      const step = 1350 / holes;
+      const HOLE_X = 52;
+      const RING_W = 26;
+      for (let i = 0; i < holes; i++) {
+        const cy = step * i + step / 2;
+        // perforación en la hoja
+        const hole = document.createElementNS(NS, 'ellipse');
+        hole.setAttribute('cx', HOLE_X); hole.setAttribute('cy', cy);
+        hole.setAttribute('rx', 13); hole.setAttribute('ry', 9);
+        hole.setAttribute('fill', '#E6DBB9');
+        hole.setAttribute('stroke', 'none');
+        hole.setAttribute('style', 'filter: url(#softShadow)');
+        svg.appendChild(hole);
+        // sección trasera del alambre (oscura, dentro del agujero)
+        const back = document.createElementNS(NS, 'ellipse');
+        back.setAttribute('cx', HOLE_X); back.setAttribute('cy', cy);
+        back.setAttribute('rx', 12); back.setAttribute('ry', 8);
+        back.setAttribute('fill', '#1a1a1a');
+        svg.appendChild(back);
+      }
+      // hélice continua: cada vuelta une agujero i con i+1
+      for (let i = 0; i < holes - 1; i++) {
+        const y1 = step * i + step / 2;
+        const y2 = step * (i + 1) + step / 2;
+        const d = `M ${HOLE_X} ${y1} A 46 30 0 0 1 ${HOLE_X} ${y2}`;
+        const p = document.createElementNS(NS, 'path');
+        p.setAttribute('d', d);
+        p.setAttribute('fill', 'none');
+        p.setAttribute('stroke', 'url(#wireGrad)');
+        p.setAttribute('stroke-width', 8);
+        p.setAttribute('stroke-linecap', 'round');
+        svg.appendChild(p);
+      }
+    ]]></script>
+  </svg>
+
+  <div class="content">
+    <div class="header">
+      <span class="handle">@jokoalmi</span>
+      <span class="pagebox">LAB NOTES • PAGE 01</span>
+    </div>
+
+    <div class="title-num">01</div>
+    <h1>JOKO <span class="accent">LAB</span></h1>
+    <div class="tagline"><span>De la respuesta a la memoria verificable</span><span class="arrow">→</span></div>
+    <div class="premium">— Notas premium del laboratorio —</div>
+    <p class="subtitle">Un laboratorio de IA que aprende, valida y recuerda — 100% local, sin depender de servicios externos.</p>
+
+    <div class="flow">
+      <div class="fnode"><div class="t">Usuario</div><div class="d">pregunta</div></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="t">Agente</div><div class="d">conversa</div></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="t">Modelos</div><div class="d">4 cerebros</div></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="t">Conocimiento</div><div class="d">valida</div></div>
+      <div class="farrow">→</div>
+      <div class="fnode"><div class="t">Memoria</div><div class="d">recuerda</div></div>
+    </div>
+
+    <div class="keytopics">
+      <span class="k">Temas: Cerebros • Conocimiento • Memoria • Enrutador • Productos • Ética</span>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <h3>Qué incluye</h3>
+        <ul>
+          <li>4 cerebros con roles separados</li>
+          <li>Conocimiento con ciclo de vida</li>
+          <li>Memoria local con RAG</li>
+          <li>Enrutador de reglas (7 ms)</li>
+          <li>Productos reales en uso</li>
+          <li>Ética en la arquitectura</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Por los números</h3>
+        <ul>
+          <li>Salud del conocimiento: 31 → 88</li>
+          <li>Consulta: 15 s → 3 s</li>
+          <li>Decisión del enrutador: 7 ms</li>
+          <li>Perfume IA atrapa 95% de alucinaciones</li>
+          <li>RAG 100% local</li>
+          <li>Datos que no salen del equipo</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Hilo conductor</h3>
+        <div class="num">Acto <b>1</b> · Problema</div>
+        <div class="num">Acto <b>2</b> · Solución</div>
+        <div class="num">Acto <b>3</b> · Piezas</div>
+        <div class="num">Acto <b>4</b> · Validación</div>
+      </div>
+    </div>
+
+    <div class="footer">Máster IA e Innovación · Founderz — TFM</div>
+  </div>
+</body>
+</html>

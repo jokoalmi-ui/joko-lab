@@ -1,0 +1,32 @@
+# MANIFEST de la evidencia - curator-skills-20260930
+# generado 2026-09-30 20:30:05 por keeper_traslado.py
+# origen: /tmp/ig-4posts  |  27 ficheros, 238114 B
+#
+# subcarpeta | fichero | bytes | md5 | mtime del origen
+evidencia | counts.txt | 3221 | 7b0fc0ec636026c50d72d1cf619d54d2 | 2026-09-30 16:24
+evidencia | curator_diff.txt | 2927 | 03b2b5a3a22eff4ca9ab0104e457e5f1 | 2026-09-30 16:18
+evidencia | evidencia.txt | 11867 | 1b667313368d443c42195a5a26437f75 | 2026-09-30 15:25
+evidencia | evidencia2.txt | 15357 | 86d96f52a5af133033c01034c480d2ce | 2026-09-30 15:26
+evidencia | evidencia3.txt | 4568 | 77b282c2fbd9bf4dcc4e15448ff3cf0f | 2026-09-30 15:26
+evidencia | evidencia4.txt | 6770 | bd68dcfd864fc143281c2c2e09e4e3e4 | 2026-09-30 15:26
+evidencia | evidencia5.txt | 7541 | 6622a7001fbccf108d3fbc4b1d97b10c | 2026-09-30 15:26
+evidencia | ko_ctx.txt | 6990 | 2459c18661fd1ad02d96972517b1bf6a | 2026-09-30 16:43
+evidencia | medidas2.txt | 3867 | 4654267556edc0427c40ddc74e1dabb5 | 2026-09-30 17:01
+evidencia | medir_ko.txt | 14237 | 9b16f6196ea9ad89bd0ab21fb79d82e6 | 2026-09-30 16:41
+evidencia | raw1.json | 13525 | a3653641708fa5755e4b35ca8685cf90 | 2026-09-30 15:22
+evidencia | raw2.json | 4733 | ba78f5bb9854e58be49baf0a5e52abff | 2026-09-30 15:23
+evidencia | raw3.json | 6900 | 723948cdf8bd915d953ea5235254e9f7 | 2026-09-30 15:23
+evidencia | refusals.txt | 12301 | 3701cc3b1b6b09927e4e9496d4363b37 | 2026-09-30 16:43
+evidencia | registro.txt | 4870 | f465c98d4b76949d5d6b1dc66ab6f2d5 | 2026-09-30 16:12
+evidencia | writer.txt | 20532 | 7111d507829300bd0109f09626b97304 | 2026-09-30 16:17
+evidencia | writer2.txt | 36474 | 4bcbb36c72cd6ab45ee0c9fcd54b6716 | 2026-09-30 16:18
+scripts-de-la-sesion | add_entrada_4posts.py | 13495 | 1ef63ed6f967ab548e3258f3b8dc130a | 2026-09-30 16:10
+scripts-de-la-sesion | addend_obs154.py | 10005 | b8362ce8dc7f30e9dd5c5da403ec610c | 2026-09-30 17:04
+scripts-de-la-sesion | alta_obs154.py | 5389 | 750be6464652410619d813b76865441e | 2026-09-30 16:25
+scripts-de-la-sesion | alta_pendiente_curador.py | 5969 | be071f67976c537bbbf8553cac566332 | 2026-09-30 16:25
+scripts-de-la-sesion | commit.sh | 1879 | eb8ae5357e998ca38b0bd2666776fac6 | 2026-09-30 16:16
+scripts-de-la-sesion | commit2.sh | 1822 | b590de2a069a377f2c053b955af8990f | 2026-09-30 16:40
+scripts-de-la-sesion | commit3.sh | 3354 | 85683202057c78301ae1f44c643d61b0 | 2026-09-30 17:05
+scripts-de-la-sesion | curator_forense.py | 3215 | 08a4b17ad992aa5e9d35db04bb5983a8 | 2026-09-30 16:18
+scripts-de-la-sesion | fix_rule018.py | 8481 | 9a554d2a32061c945b2e54974176d8b1 | 2026-09-30 16:44
+scripts-de-la-sesion | fix_rule018_figs.py | 7825 | 4be8da368f01e7481f6417f2f55d0317 | 2026-09-30 17:03

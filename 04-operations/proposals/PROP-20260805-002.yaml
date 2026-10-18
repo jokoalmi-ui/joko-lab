@@ -1,0 +1,10 @@
+id: PROP-20260805-002
+fecha: 2026-08-05T22:46:39
+tipo: conocimiento
+id: "RULE-006"
+problema: confianza baja (0.3)
+accion_sugerida: revisar confianza: subirla con evidencia o bajarla a hipotesis
+fuente: knowledge_health
+estado: aprobada
+decision: revisar confianza: subirla con evidencia o bajarla a hipotesis
+decision_fecha: 2026-08-05T23:08:32

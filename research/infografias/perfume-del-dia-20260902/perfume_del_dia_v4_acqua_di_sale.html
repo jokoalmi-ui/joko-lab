@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Caveat:wght@600&family=Inter:wght@400;600;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body {
+    font-family:'Inter',sans-serif;
+    background:url('acqua_di_sale_fondo.png') center/cover no-repeat;
+    color:#123; display:flex; flex-direction:column;
+    position:relative;
+  }
+  .velo {
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(255,255,255,0.30) 0%, rgba(255,255,255,0.38) 45%, rgba(255,255,255,0.55) 100%);
+  }
+  .content {
+    position:relative; z-index:2; flex:1; display:flex; flex-direction:column;
+    padding:34px 44px 26px;
+  }
+  .topline { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+  .sello {
+    background:rgba(255,255,255,0.85); border:3px solid #0d6b8c; color:#0d6b8c;
+    border-radius:50%; width:118px; height:118px; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; text-align:center;
+    font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:1px; line-height:1.25;
+    box-shadow:0 4px 12px rgba(0,0,0,0.18); flex-shrink:0;
+  }
+  .sello b { font-size:15px; color:#b2452a; }
+  .fecha-sep { font-size:13px; font-weight:600; background:rgba(255,255,255,0.8); padding:5px 12px; border-radius:20px; color:#444; }
+  .hero { display:flex; align-items:center; gap:34px; margin:6px 0 12px; }
+  .hero-left { flex:1; }
+  .casa { font-size:22px; font-weight:800; letter-spacing:4px; text-transform:uppercase; color:#0d6b8c; text-shadow:0 1px 3px rgba(255,255,255,0.9); }
+  h1 {
+    font-family:'Playfair Display',serif; font-weight:800;
+    font-size:68px; line-height:1.02; margin:2px 0 8px;
+    background:linear-gradient(100deg,#0b4a63,#12789e 45%,#b2452a);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 2px 0 rgba(255,255,255,0.35);
+  }
+  .sub { font-size:17px; font-weight:600; color:#1c3a4a; background:rgba(255,255,255,0.55); display:inline-block; padding:4px 14px; border-radius:20px; }
+  .frasco-wrap { flex-shrink:0; }
+  .frasco-wrap img {
+    width:235px; height:294px; object-fit:contain; display:block;
+    border-radius:18px; border:4px solid rgba(255,255,255,0.95);
+    box-shadow:0 10px 26px rgba(0,0,0,0.28); background:rgba(255,255,255,0.85);
+  }
+  .grid-datos { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:12px; }
+  .tarjeta-mini {
+    background:rgba(255,255,255,0.88); border-radius:14px; padding:10px 12px;
+    border-top:4px solid #12789e; box-shadow:0 3px 10px rgba(0,0,0,0.12);
+  }
+  .tarjeta-mini .k { font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:0.6px; color:#777; }
+  .tarjeta-mini .v { font-size:16.5px; font-weight:800; color:#0b2f3f; margin-top:2px; line-height:1.15; }
+  .rating-row { display:flex; align-items:center; gap:10px; margin-bottom:12px; }
+  .rating-box { background:rgba(255,255,255,0.9); border-radius:12px; padding:7px 16px; box-shadow:0 2px 8px rgba(0,0,0,0.12); }
+  .rating-box b { font-size:24px; color:#b2452a; }
+  .rating-box span { font-size:13px; color:#555; }
+  .stars { color:#e8a33d; font-size:20px; letter-spacing:2px; }
+  .resto { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .col { display:flex; flex-direction:column; gap:14px; }
+  .panel {
+    background:rgba(255,255,255,0.88); border-radius:16px; padding:13px 18px;
+    box-shadow:0 3px 12px rgba(0,0,0,0.13); border-top:4px solid #0d6b8c;
+  }
+  .panel h3 { font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#0d6b8c; margin-bottom:8px; }
+  .panel p { font-size:15.5px; line-height:1.45; color:#15323f; }
+  .piramide { display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .nivel { width:100%; border-radius:8px; padding:5px 12px; text-align:center; font-size:13.5px; font-weight:700; color:#fff; }
+  .n-salida { background:linear-gradient(135deg,#f4c34a,#e39a2a); }
+  .n-corazon { background:linear-gradient(135deg,#2f9db5,#12789e); }
+  .n-fondo { background:linear-gradient(135deg,#3e6b8c,#244c63); }
+  .nivel small { display:block; font-weight:600; opacity:0.9; font-size:10.5px; text-transform:uppercase; letter-spacing:1px; }
+  .alt { display:flex; flex-direction:column; gap:8px; }
+  .alt-item { display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:14px; }
+  .alt-item .nom { font-weight:700; color:#0b2f3f; }
+  .alt-item .rt { background:#eef6f8; border-radius:10px; padding:3px 10px; font-size:12.5px; font-weight:700; color:#0d6b8c; white-space:nowrap; }
+  .cita { font-size:14.5px; font-style:italic; line-height:1.5; color:#1d3a48; }
+  .cita .fuente { font-style:normal; font-size:11.5px; color:#888; font-weight:600; }
+  .qr-line { display:flex; align-items:center; justify-content:space-between; gap:14px; }
+  .qr-line img { width:92px; height:92px; border-radius:8px; border:2px solid #ccc; }
+  .pie {
+    margin-top:auto; padding-top:10px; display:flex; justify-content:space-between; align-items:flex-end; gap:12px;
+  }
+  .pie-txt { font-size:13.5px; color:#23404d; background:rgba(255,255,255,0.75); padding:6px 14px; border-radius:14px; line-height:1.4; font-weight:600; }
+  .nota-fondo { font-size:10.5px; color:#7a8f99; background:rgba(255,255,255,0.55); padding:3px 10px; border-radius:10px; text-align:right; }
+  .caveat { font-family:'Caveat',cursive; font-size:26px; color:#b2452a; font-weight:600; }
+  .app { font-size:14.5px; font-weight:700; color:#0b2f3f; }
+</style>
+</head>
+<body>
+  <div class="velo"></div>
+  <div class="content">
+    <div class="topline">
+      <div class="fecha-sep">MIÉRCOLES · 02 SEPTIEMBRE 2026</div>
+      <div class="sello"><div>Elección<br>del Lab</div><b>2026</b></div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-left">
+        <div class="casa">Profumum Roma</div>
+        <h1>Acqua di Sale</h1>
+        <div class="sub">El mar embotellado de Cerdeña</div>
+      </div>
+      <div class="frasco-wrap"><img src="frasco_acqua_di_sale.png" alt="Acqua di Sale Profumum Roma"></div>
+    </div>
+
+    <div class="grid-datos">
+      <div class="tarjeta-mini"><div class="k">Año</div><div class="v">1996</div></div>
+      <div class="tarjeta-mini"><div class="k">Concentración</div><div class="v">Extrait de Parfum</div></div>
+      <div class="tarjeta-mini"><div class="k">Género</div><div class="v">Unisex</div></div>
+      <div class="tarjeta-mini"><div class="k">Familia</div><div class="v">Marina · Aromática acuática</div></div>
+    </div>
+
+    <div class="rating-row">
+      <div class="rating-box"><b>4,15</b><span>/5</span> <span class="stars">★★★★★</span></div>
+      <div class="rating-box">2.494 votos · 273 reseñas · Fragrantica</div>
+      <div class="rating-box">Perfumista: Felice, Luciano y Maria Durante</div>
+    </div>
+
+    <div class="resto">
+      <div class="col">
+        <div class="panel">
+          <h3>🌊 Inspiración oficial</h3>
+          <p>“Las olas que rompen en la orilla regalan nuevas conchas a la arena que brilla bajo el sol de agosto. En la playa desierta flotan la despreocupación y la libertad.” — Casa Profumum Roma. Un clásico marino de 1996, tan concentrado (43–46 % de aceite) que cada spray huele a costa salvaje.</p>
+        </div>
+        <div class="panel">
+          <h3>Pirámide olfativa</h3>
+          <div class="piramide">
+            <div class="nivel n-salida">Sal · Lavanda · Mirto<small>Salida — el rocío que golpea</small></div>
+            <div class="nivel n-corazon">Alga · Notas marinas · Jengibre<small>Corazón — el alma del mar</small></div>
+            <div class="nivel n-fondo">Cedro de Virginia · Almizcle · Mirra · Vainilla<small>Fondo — la orilla que queda</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="panel">
+          <h3>Si te gusta, prueba</h3>
+          <div class="alt">
+            <div class="alt-item"><span class="nom">Megamare · Orto Parisi</span><span class="rt">3,89/5 · 8.485</span></div>
+            <div class="alt-item"><span class="nom">Kenzo pour Homme · Kenzo</span><span class="rt">4,07/5 · 3.984</span></div>
+            <div class="alt-item"><span class="nom">Costarela · Carner Barcelona</span><span class="rt">3,71/5 · 663</span></div>
+          </div>
+          <p style="margin-top:8px;font-size:13px;color:#5a7684;">Lo que asocia la comunidad: “recrea el mar como Acqua di Sale” (Kenzo pH) · mar profundo y salino (Megamare) · campo similar a mejor precio (Costarela).</p>
+        </div>
+        <div class="panel">
+          <h3>💬 Voz de la comunidad</h3>
+          <p class="cita">“Robusto en aroma, duración y proyección… una bestia. Marcar un precedente en su arquetipo lo convierte en un aroma legendario (a considerar que es de 1996).”<br><span class="fuente">— Reseña en Fragrantica [ES]</span></p>
+        </div>
+        <div class="panel qr-line">
+          <div>
+            <div class="app">Uso: 2 sprays · piel seca</div>
+            <div class="pie-txt" style="margin-top:6px;">Duración ~10 h · Estela intensa<br>Precio 100 ml: 206,61 € (web oficial)</div>
+          </div>
+          <img src="qr_fragrantica.png" alt="QR Fragrantica">
+        </div>
+      </div>
+    </div>
+
+    <div class="pie">
+      <div>
+        <div class="pie-txt">☀️ 27 °C · 0 % lluvia · final de verano — 🌿 marino mineral para el calor</div>
+        <div class="pie-txt" style="margin-top:6px;">Estela intensa: en interior, 1–2 sprays; al aire libre, 3.</div>
+      </div>
+      <div class="nota-fondo">fondo: arte generado con ComfyUI · SDXL local<br><span class="caveat">Que huela a mar todo el día</span></div>
+    </div>
+  </div>
+</body>
+</html>

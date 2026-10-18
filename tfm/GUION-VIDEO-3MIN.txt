@@ -1,0 +1,137 @@
+GUION VIDEO TFM — JOKO LAB (max 3 min, 11 slides)
+Serie de slides: narr-01 a narr-11 (formato hoja cuaderno)
+Fecha: 10-ago-2026 · Actualizado: 11 slides (opción a: condensado)
+
+RITMO: ~390 palabras totales. A 130-135 palabras/min hablado =
+3:00 - 2:53. Objetivo de locución: ~2,2 palabras/segundo.
+Si se habla más lento de 125 ppm, se pasa de 3:00.
+
+------------------------------------------------------------
+[0:00-0:10] Portada — Joko Lab (10s)
+  "Hola. Esto es Joko Lab: un laboratorio personal de inteligencia
+  artificial, cien por cien local. Su meta: que la IA no solo
+  responda, sino que recuerde, verifique y mejore cada decisión."
+
+  Decision clave: 22 palabras en 10s — solo la promesa, sin relleno.
+
+------------------------------------------------------------
+[0:10-0:28] El problema — la IA sin memoria (18s)
+  "El problema: la IA normal no tiene memoria. Ayer te lo explicó;
+  hoy empieza de cero. No acumula conocimiento ni deja comprobar de
+  dónde sale lo que dice. Joko Lab nació de un incidente real: el
+  entorno del agente desapareció sin copia de seguridad."
+
+  Decision clave: los dos chats + la línea de tiempo del incidente
+  dicen visualmente lo que el guion resume en dos frases.
+
+------------------------------------------------------------
+[0:28-0:44] El circuito — la solución (16s)
+  "La respuesta es un circuito: el usuario habla con un agente; el
+  agente usa modelos con roles separados; los modelos consultan el
+  conocimiento del sistema; y las decisiones vuelven a ese
+  conocimiento, mejorándolo. Todo en un ordenador doméstico."
+
+  Decision clave: esta slide es el mapa mental. "Recorremos sus
+  piezas" se dice en la transición visual de la barra de pasos.
+
+------------------------------------------------------------
+[0:44-0:56] Pieza 1 — Modelos (12s)
+  "Primera pieza: cuatro cerebros con roles separados. La nube
+  decide, el motor local ve y evalúa, el motor secundario simula y
+  la telemetría mide. Regla: quien decide no ve, quien ve no decide,
+  quien mide no opina."
+
+  Decision clave: condensado a una frase por cerebro + la regla
+  dura. El resto lo muestra el diagrama de delegación.
+
+------------------------------------------------------------
+[0:56-1:08] Pieza 2 — Conocimiento (12s)
+  "Segunda pieza: el conocimiento vive en piezas con ciclo de vida:
+  nacen, se validan, se revisan, caducan y se retiran. Nada se
+  borra: lo obsoleto se marca como sustituido. Su salud ha pasado de
+  31 a 88 sobre 100."
+
+  Decision clave: ciclo de vida + cifra 31→88. El recuadro ¿Qué es
+  un KO? refuerza sin necesidad de decirlo todo.
+
+------------------------------------------------------------
+[1:08-1:20] Pieza 3 — Memoria (12s)
+  "Tercera pieza: la memoria. Cuando preguntas, el sistema no
+  responde de memoria: busca en sus documentos y responde con ese
+  contexto real. La consulta pasó de quince segundos a tres."
+
+  Decision clave: "no responde de memoria" + un solo número (15→3).
+  El resto del antes/después está en la slide.
+
+------------------------------------------------------------
+[1:20-1:32] Pieza 4 — Enrutador (12s)
+  "Cuarta pieza: el enrutador decide qué modelo se usa en cada
+  tarea, con reglas puras, no con otro modelo de lenguaje: decide en
+  siete milisegundos."
+
+  Decision clave: reglas puras + 7 ms. Las 8 políticas y el ejemplo
+  de decisión quedan para la slide.
+
+------------------------------------------------------------
+[1:32-1:52] Productos — validación real (20s)
+  "Y todo se comprueba en el mundo real. El laboratorio produce
+  productos: Perfume IA atrapa el 95 por ciento de las respuestas
+  inventadas; Forense Digital hace peritaje con cadena de evidencia;
+  el lab juega a la bolsa en simulación con mil euros virtuales y
+  estudia biohacking con medición real. Cada problema se convierte
+  en principio del sistema."
+
+  Decision clave: 4 productos en 4 frases. El bucle
+  producto→problema→principio se ve arriba en la slide.
+
+------------------------------------------------------------
+[1:52-2:10] Tecnologías — el cómo (18s)
+  "Tecnologías implementadas: el RAG local usa BGE-M3 y LanceDB con
+  búsqueda híbrida; y hay un loop agentic — plan, busca, evalúa,
+  reformula — que pasa de cinco a seis aciertos de siete sobre el
+  RAG clásico. Todo verificado con un banco de preguntas y un
+  comparador determinista."
+
+  Decision clave: loop agentic (6/7 vs 5/7) es el dato estrella; el
+  resto de tecnologías queda en píldoras en la slide.
+
+------------------------------------------------------------
+[2:10-2:28] Ética — IA responsable (18s)
+  "Y la ética no es una promesa: es sistema. POLICY-003 alinea el
+  lab con valores humanos; el EU AI Act marca la selección de
+  personal como alto riesgo y el lab incorpora el checklist de
+  sesgos en cinco fases; y la privacidad es por diseño, porque los
+  datos no salen del equipo."
+
+  Decision clave: "ética = sistema, no capa externa". POLICY-003 +
+  EU AI Act + datos locales en una sola respiración.
+
+------------------------------------------------------------
+[2:28-3:00] Resultados y cierre (32s)
+  "En resumen: cuatro cerebros con roles separados, conocimiento con
+  ciclo de vida, memoria real y local, tecnologías verificadas y
+  ética en la arquitectura. Los números: salud del conocimiento 88
+  sobre 100, 95 por ciento de alucinaciones atrapadas, consulta RAG
+  en tres segundos, y todo local. La pregunta final: ¿cómo construir
+  una IA que no solo responda, sino que acumule conocimiento
+  verificable y mejore sus decisiones con el tiempo?"
+
+  Decision clave: el cierre repite la promesa de la portada —
+  empieza y termina en la misma pregunta (memoria verificable).
+
+------------------------------------------------------------
+TABLA RESUMEN
+Bloque                    | Tiempo | Lo esencial
+Portada                   | 0:00-0:10 | Promesa: memoria verificable
+El problema               | 0:10-0:28 | La IA normal no recuerda; incidente
+El circuito               | 0:28-0:44 | Mapa: usuario→agente→modelos→conocimiento
+Modelos                   | 0:44-0:56 | 4 cerebros; quien decide no ve
+Conocimiento              | 0:56-1:08 | Ciclo de vida; salud 31→88
+Memoria (RAG)             | 1:08-1:20 | Busca en documentos; 15s→3s
+Enrutador                 | 1:20-1:32 | Reglas puras; 7 ms
+Productos                 | 1:32-1:52 | Perfume, Forense, Bolsa, Biohacking
+Tecnologías               | 1:52-2:10 | Agentic loop 6/7; RAG local; verificación
+Ética                     | 2:10-2:28 | POLICY-003; EU AI Act; datos locales
+Resultados                | 2:28-3:00 | 4 ideas; cifras; pregunta final
+
+TOTAL: ~390 palabras ≈ 3:00 a 130 ppm.

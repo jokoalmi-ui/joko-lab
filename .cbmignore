@@ -1,0 +1,30 @@
+# .cbmignore de la repo VIVA (~/joko-lab) — creado 26-sep-2026
+# codebase-memory-mcp v0.11.0 (probado antes sobre una copia aislada en ~/cbm-prueba).
+# Objetivo: recuperar los directorios que CBM se salta por su lista interna
+# (docs/, tools/, 03-automation/scripts/ ...) porque en Joko Lab son contenido
+# propio, no material de terceros. Se mantienen fuera .bak, datos y trazas.
+#
+# Negaciones (un-skip de la lista interna; el nucleo de seguridad .git/node_modules
+# no es negociable):
+!tools/
+!docs/
+!03-automation/scripts/
+!research/archify-test/archify/scripts/
+!research/archify-test/archify/examples/
+!research/archify-test/archify/migrations/
+
+# Basura, entornos y datos que NO queremos en el grafo:
+*.bak*
+*.BACKUP*
+.BACKUP*/
+.lancedb/
+.pytest_cache/
+__pycache__/
+*.pyc
+*.pyo
+.venv*/
+venv/
+site-packages/
+.codebase-memory/
+04-operations/metrics/sesiones/
+04-operations/metrics/*.jsonl

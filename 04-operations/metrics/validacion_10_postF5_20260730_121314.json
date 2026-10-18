@@ -1,0 +1,244 @@
+[
+  {
+    "id": "P01",
+    "tipo": "decision",
+    "prompt": "Necesito generar un prompt creativo para un relato literario. Que modelo uso y c",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": true,
+      "M5": "pendiente_lmstudio",
+      "M6": true
+    },
+    "activation": {
+      "total_active": 2,
+      "model_selection": "RULE-001",
+      "blocks": [
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 5,
+    "max_score": 5
+  },
+  {
+    "id": "P02",
+    "tipo": "busqueda",
+    "prompt": "Por que se descarto Qwen 3.5? Busca la decision y el experimento que lo respalda",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": true,
+      "M5": "pendiente_lmstudio",
+      "M6": false
+    },
+    "activation": {
+      "total_active": 3,
+      "model_selection": null,
+      "blocks": [
+        "RULE-004",
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 4,
+    "max_score": 5
+  },
+  {
+    "id": "P03",
+    "tipo": "prompt",
+    "prompt": "Dime algo sobre IA",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": "n/a",
+      "M5": "pendiente_lmstudio",
+      "M6": false
+    },
+    "activation": {
+      "total_active": 2,
+      "model_selection": null,
+      "blocks": [
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 3,
+    "max_score": 5
+  },
+  {
+    "id": "P04",
+    "tipo": "anti-patron",
+    "prompt": "Usando GLM 4.6V, haz lo siguiente: 1) analiza esta imagen, 2) dime que colores p",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": true,
+      "M5": "pendiente_lmstudio",
+      "M6": false
+    },
+    "activation": {
+      "total_active": 2,
+      "model_selection": null,
+      "blocks": [
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 4,
+    "max_score": 5
+  },
+  {
+    "id": "P05",
+    "tipo": "analisis",
+    "prompt": "Compara Granite 4.1 con DeepSeek R1 para generacion de codigo Python. Dame datos",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": "n/a",
+      "M5": "pendiente_lmstudio",
+      "M6": false
+    },
+    "activation": {
+      "total_active": 2,
+      "model_selection": null,
+      "blocks": [
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 3,
+    "max_score": 5
+  },
+  {
+    "id": "P06",
+    "tipo": "compilador",
+    "prompt": "Genera un prompt optimizado para Gemini 2.5 Pro que pida disenar una arquitectur",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": "n/a",
+      "M5": "pendiente_lmstudio",
+      "M6": false
+    },
+    "activation": {
+      "total_active": 2,
+      "model_selection": null,
+      "blocks": [
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 3,
+    "max_score": 5
+  },
+  {
+    "id": "P07",
+    "tipo": "inter-sesion",
+    "prompt": "Que decidimos sobre el umbral de confianza para E3 en la auditoria de Claude? Bu",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": "n/a",
+      "M5": "pendiente_lmstudio",
+      "M6": false
+    },
+    "activation": {
+      "total_active": 2,
+      "model_selection": null,
+      "blocks": [
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 3,
+    "max_score": 5
+  },
+  {
+    "id": "P08",
+    "tipo": "fallback",
+    "prompt": "Cual es la capital de Mongolia?",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": "n/a",
+      "M5": "pendiente_lmstudio",
+      "M6": false
+    },
+    "activation": {
+      "total_active": 2,
+      "model_selection": null,
+      "blocks": [
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 3,
+    "max_score": 5
+  },
+  {
+    "id": "P09",
+    "tipo": "nueva-decision",
+    "prompt": "He probado Qwen 3.5 con temperature=0.2 y max_tokens=4096 y sigue dando content ",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": true,
+      "M5": "pendiente_lmstudio",
+      "M6": true
+    },
+    "activation": {
+      "total_active": 3,
+      "model_selection": null,
+      "blocks": [
+        "RULE-004",
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 5,
+    "max_score": 5
+  },
+  {
+    "id": "P10",
+    "tipo": "pipeline-completo",
+    "prompt": "Quiero crear un benchmark para evaluar modelos locales en generacion de workflow",
+    "metrics": {
+      "M1": true,
+      "M2": true,
+      "M3": true,
+      "M4": "n/a",
+      "M5": "pendiente_lmstudio",
+      "M6": true
+    },
+    "activation": {
+      "total_active": 2,
+      "model_selection": null,
+      "blocks": [
+        "POLICY-001",
+        "POLICY-002"
+      ]
+    },
+    "decision": {},
+    "score": 4,
+    "max_score": 5
+  }
+]

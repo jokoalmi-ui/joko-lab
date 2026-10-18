@@ -1,0 +1,67 @@
+{
+  "tag": "r5",
+  "arnes": "v2",
+  "corrector": "v2",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "num_ctx": 8192,
+  "temperature": 0.0,
+  "seed": 42,
+  "sha_corrector_v2": "e7772b7a8466274197d628641d7b7f9cb7df8f5020fb04d3ee6d3c02e1d5b0bc",
+  "banco": "research/rsi-v0/examen-v2.json",
+  "sha_banco": "05bef9c70bb5f130b618d23643540e6710d357563997391c4c0d174688479edd",
+  "casos": [
+    "calc-anidado-iva"
+  ],
+  "segundos_totales": 425.6,
+  "resumen": {
+    "razona": {
+      "pasan": 0,
+      "total": 1,
+      "segundos": 420.1,
+      "segundos_por_llamada": 420.1,
+      "thinking_chars_medio": 0.0,
+      "instr_len": 0,
+      "origen": "modo razonamiento (think ausente)",
+      "think": null,
+      "think_payload": "<AUSENTE>",
+      "casos_fallados": [
+        "calc-anidado-iva"
+      ]
+    },
+    "no-razona": {
+      "pasan": 0,
+      "total": 1,
+      "segundos": 5.5,
+      "segundos_por_llamada": 5.46,
+      "thinking_chars_medio": 0.0,
+      "instr_len": 0,
+      "origen": "think=false",
+      "think": false,
+      "think_payload": false,
+      "casos_fallados": [
+        "calc-anidado-iva"
+      ]
+    }
+  },
+  "pareto": [
+    {
+      "variante": "no-razona",
+      "pasan": 0,
+      "segundos": 5.5,
+      "dominada": false,
+      "casos_fallados": [
+        "calc-anidado-iva"
+      ]
+    },
+    {
+      "variante": "razona",
+      "pasan": 0,
+      "segundos": 420.1,
+      "dominada": true,
+      "casos_fallados": [
+        "calc-anidado-iva"
+      ]
+    }
+  ],
+  "jsonl": "/home/jokoalmi/joko-lab/research/rsi-v0/variantes_v2_r5.jsonl"
+}

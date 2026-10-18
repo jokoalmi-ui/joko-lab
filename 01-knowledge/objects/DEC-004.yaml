@@ -1,0 +1,39 @@
+id: DEC-004
+type: DEC
+decision_origin: auditoria
+status: activo
+version: 1
+created: '2026-08-06'
+last_validated: '2026-08-06'
+next_review: '2026-11-06'
+expires: '2027-02-06'
+confidence: 0.85
+confidence_label: ALTA
+evidence:
+- 'EXP KVC-001 (06-ago): 2 de 4 DECs del lab con confidence null (DEC-001, DEC-002)'
+- 'Decision de gobierno 06-ago (Joseba): NO reconstruir confianza retrospectivamente; declarar legacy'
+- 'Coherencia con modelo epistemologico del lab: el conocimiento historico se conserva como fue creado; las limitaciones se declaran, no se rellenan'
+dependencies:
+- 'DEC-001'
+- 'DEC-002'
+- 'Gate-003 KVC (research/gate-003-kvc.md)'
+contradicts: []
+superseded_by: null
+domain: gobernanza
+scope: knowledge-objects-historicos
+monitoring:
+  metric: integridad_epistemica
+  baseline: '2/4 DECs con confidence presente (50%) antes del fix'
+  current: '4/4 DECs evaluables (2 con confidence + 2 con legacy declarado) tras el fix'
+  last_checked: '2026-08-06'
+history:
+- date: '2026-08-06'
+  event: created
+  note: 'Decision de gobierno tras EXP KVC-001: las DECs historicas con confidence null se marcan como legacy (confidence_origin: legacy, confidence_status: missing_historical_data, review_required: true). No se rellena el valor: seria reconstruir un dato historico.'
+body: "Normalizacion de metadatos historicos. Las primeras DECs (DEC-001, DEC-002) carecen de confidence numerica porque se crearon antes de que el esquema KO exigiera confidence obligatoria. Decision: NO rellenar confidence retrospectivamente (un valor inventado contaminaria cualquier modelo que aprenda del historico: 'antes no mediamos esto' es informacion valida; 'la confianza era 0.5' seria falso). En su lugar: confidence_origin: legacy + confidence_status: missing_historical_data + review_required: true, y MEL contabiliza la incompletitud como metrica de integridad epistemica (MEL-Integrity, research/metacognitive-layer-diseno.md). Nota de correccion 06-ago: la referencia previa a 'RULE-CONF-001' era incorrecta — no existe tal KO; la politica de confianza del lab vive en el esquema KO (confidence + confidence_label, ver RULE-007 con confidence 1.0 como referencia de formato) y en MEL-Integrity."
+legacy_fields:
+  afecta_a:
+  - DEC-001
+  - DEC-002
+  alternativa_rechazada:
+    reconstruir_confianza: 'Rechazada: mezclaria "la confianza era 0.5" con "hoy creemos que probablemente era 0.5"'

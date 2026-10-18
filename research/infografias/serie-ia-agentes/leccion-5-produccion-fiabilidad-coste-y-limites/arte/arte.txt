@@ -1,0 +1,22 @@
+Manifiesto del arte — Lección 5 (serie «IA y agentes»)
+
+Generado: 2026-09-30 · SDXL vía tools/gen_lab.py · 768 px · 24 pasos · semillas fijas
+Estilo de la serie: objeto pequeño centrado, fondo crema dominante, trazo negro fino,
+un acento naranja, sin texto.
+
+Escenas
+  s1-balanza.png          seed 21  · báscula de hojalata             → portada (mide y cuesta)
+  s2-fichero-pruebas.png  seed 53  · fichero de fichas en blanco     → qué es (la batería)
+  s5-iman-trampa.png      seed 72  · imán de herradura con clips     → ejemplo real (el cebo)
+  s7-candado-limite.png   seed 96  · candado con cadena              → cierre (los límites)
+
+Fondo: normalizar_crema.py (relleno desde los bordes, umbral 30) deja el fondo en #F5EFE6
+y escribe los hermanos *-crema.png, que son los que usa build_slides.py.
+  s1: borde (238,228,207) → (245,239,230) · 27,3 % de píxeles
+  s2: borde (209,203,191) → (242,236,227) · 67,3 % de píxeles
+  s5: borde (221,221,227) → (245,239,230) · 51,4 % de píxeles
+  s7: borde (219,212,198) → (245,239,230) · 40,8 % de píxeles
+Resultado: 4/4 con el borde en crema (tolerancia 12).
+
+Verificación: los 7 slide PNG dan 0 píxeles no-crema en el anillo de borde, y la revisión
+visual (glm-4.6v-flash) dio 7/7 SIN DEFECTOS. Los PNG sin sufijo son el original de SDXL.

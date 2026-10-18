@@ -1,0 +1,90 @@
+{
+  "tag": "r3",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "num_ctx": 8192,
+  "think": false,
+  "temperature": 0.0,
+  "seed": 42,
+  "sha_corrector": "849c12fe093420bae89971566e190653c5ca50d3322b7e404e144d9f012e6121",
+  "sha_examen": "30557a9df6ee2fca82f3a823ed8e5dea20baa56ebc21d00c7b6f51f011493080",
+  "casos": [
+    "json-plano",
+    "json-anidado",
+    "json-enum",
+    "json-nulo-honesto",
+    "json-numeros-es",
+    "tool-eleccion",
+    "tool-args",
+    "tool-dos-pasos"
+  ],
+  "segundos_totales": 435.1,
+  "resumen": {
+    "r3-low": {
+      "pasan": 8,
+      "total": 8,
+      "segundos": 91.7,
+      "instr_len": 0,
+      "origen": "ronda 3: modo de inferencia think='low' sin instruccion. Punto intermedio bajo (el piloto de 2 casos paso 2/2 en 38.3 s).",
+      "think": "low",
+      "casos_fallados": []
+    },
+    "r3-medium": {
+      "pasan": 8,
+      "total": 8,
+      "segundos": 103.5,
+      "instr_len": 0,
+      "origen": "ronda 3: think='medium' sin instruccion. Punto intermedio medio (piloto 2/2 en 30.4 s).",
+      "think": "medium",
+      "casos_fallados": []
+    },
+    "r3-high": {
+      "pasan": 8,
+      "total": 8,
+      "segundos": 100.5,
+      "instr_len": 0,
+      "origen": "ronda 3: think='high' sin instruccion. Nivel alto explicito, comparable con think=None de la ronda 2 (8/8 en 162.7 s).",
+      "think": "high",
+      "casos_fallados": []
+    },
+    "r3-medium-v2": {
+      "pasan": 8,
+      "total": 8,
+      "segundos": 139.3,
+      "instr_len": 306,
+      "origen": "ronda 3: la candidata v2-calculo de la ronda 2 (8/8 con think=None), ahora con nivel 'medium' declarado. Cruce instruccion x modo de inferencia.",
+      "think": "medium",
+      "casos_fallados": []
+    }
+  },
+  "pareto": [
+    {
+      "variante": "r3-low",
+      "pasan": 8,
+      "segundos": 91.7,
+      "dominada": false,
+      "casos_fallados": []
+    },
+    {
+      "variante": "r3-high",
+      "pasan": 8,
+      "segundos": 100.5,
+      "dominada": true,
+      "casos_fallados": []
+    },
+    {
+      "variante": "r3-medium",
+      "pasan": 8,
+      "segundos": 103.5,
+      "dominada": true,
+      "casos_fallados": []
+    },
+    {
+      "variante": "r3-medium-v2",
+      "pasan": 8,
+      "segundos": 139.3,
+      "dominada": true,
+      "casos_fallados": []
+    }
+  ],
+  "jsonl": "/home/jokoalmi/joko-lab/research/rsi-v0/variantes_r3.jsonl"
+}

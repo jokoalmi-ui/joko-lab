@@ -1,0 +1,35 @@
+{
+  "url": "https://www.instagram.com/reel/DeFOltJDOXe/",
+  "cuenta": "notfound404.es",
+  "published": "2026-10-04",
+  "leido": "2026-10-09 16:31 CEST",
+  "metricas_visibles": {
+    "likes": 328,
+    "comentarios": 323
+  },
+  "video": {
+    "duracion_s": null,
+    "w": 720,
+    "h": 1280,
+    "codecs": "h264/aac",
+    "bytes": 5376921
+  },
+  "caption": "Me pedisteis el tutorial del cerebro y ya está hecho, pero no aquí. Un tutorial de verdad no cabe en un minuto, así que lo he subido entero a YouTube: cinco pasos, sin programar, copiando los prompts de la descripción y pegándolos en Claude Code. El cerebro es una carpeta con una ficha por proyecto para que Claude sepa cómo va todo sin que se lo expliques otra vez, y el mismo sirve para ChatGPT (Codex). Necesitas Claude Code, que va con plan de pago. Comenta TUTORIAL y te paso el enlace. #claudecode #ia #chatgpt",
+  "tutorial_youtube": {
+    "id": "1T5b47WEcQs",
+    "url": "https://youtu.be/1T5b47WEcQs",
+    "titulo": "Cómo crear un cerebro para Claude Code y ChatGPT FÁCIL",
+    "canal": "@NOTFOUND404dev",
+    "duracion_s": 346,
+    "vistas": 6935,
+    "publicado": "2026-10-04T11:13:26-07:00",
+    "desc_chars": 4637,
+    "prompts_en": [
+      "PROMPT 1 crear el cerebro",
+      "PROMPT 2 bloque El cerebro (CLAUDE.md/AGENTS.md)",
+      "PROMPT 3 revision mensual",
+      "PROMPT 4 buscador cerebro.py FTS5"
+    ]
+  },
+  "requiere": "Claude Code con plan de pago (o replicarlo con Hermes)"
+}

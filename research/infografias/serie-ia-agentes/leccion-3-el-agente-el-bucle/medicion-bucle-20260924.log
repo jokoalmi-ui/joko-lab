@@ -1,0 +1,112 @@
+A_una_vuelta_sin_herramientas  T1 pasos=1 llamadas=0 resuelta=False tokens=582 (22s)
+A_una_vuelta_sin_herramientas  T2 pasos=1 llamadas=0 resuelta=False tokens=474 (26s)
+A_una_vuelta_sin_herramientas  T3 pasos=1 llamadas=0 resuelta=False tokens=881 (45s)
+A_una_vuelta_sin_herramientas  T4 pasos=1 llamadas=0 resuelta=False tokens=700 (41s)
+A_una_vuelta_sin_herramientas  T5 pasos=1 llamadas=0 resuelta=False tokens=1155 (61s)
+A_una_vuelta_sin_herramientas  T6 pasos=1 llamadas=0 resuelta=False tokens=1926 (89s)
+D_bucle_sin_herramientas       T1 pasos=2 llamadas=0 resuelta=False tokens=3899 (111s)
+D_bucle_sin_herramientas       T2 pasos=3 llamadas=0 resuelta=False tokens=7692 (226s)
+D_bucle_sin_herramientas       T3 pasos=2 llamadas=0 resuelta=False tokens=2179 (56s)
+D_bucle_sin_herramientas       T4 pasos=2 llamadas=0 resuelta=False tokens=2783 (75s)
+D_bucle_sin_herramientas       T5 pasos=2 llamadas=0 resuelta=False tokens=3280 (90s)
+D_bucle_sin_herramientas       T6 pasos=3 llamadas=0 resuelta=False tokens=5574 (156s)
+B_bucle_con_herramientas       T1 pasos=2 llamadas=1 resuelta=False tokens=3648 (91s)
+B_bucle_con_herramientas       T2 pasos=2 llamadas=1 resuelta=True tokens=1558 (28s)
+B_bucle_con_herramientas       T3 pasos=3 llamadas=2 resuelta=True tokens=3280 (57s)
+B_bucle_con_herramientas       T4 pasos=5 llamadas=4 resuelta=True tokens=7166 (127s)
+B_bucle_con_herramientas       T5 pasos=3 llamadas=2 resuelta=True tokens=3217 (66s)
+B_bucle_con_herramientas       T6 pasos=3 llamadas=2 resuelta=True tokens=14429 (448s)
+C_control_temp_alta            T1 pasos=2 llamadas=1 resuelta=False tokens=2493 (54s)
+C_control_temp_alta            T2 pasos=2 llamadas=1 resuelta=True tokens=2083 (44s)
+C_control_temp_alta            T3 pasos=2 llamadas=1 resuelta=True tokens=2887 (69s)
+C_control_temp_alta            T4 pasos=2 llamadas=1 resuelta=True tokens=3141 (75s)
+C_control_temp_alta            T5 pasos=3 llamadas=2 resuelta=True tokens=3087 (62s)
+C_control_temp_alta            T6 pasos=3 llamadas=2 resuelta=True tokens=14321 (514s)
+
+RESUMEN: {
+  "A_una_vuelta_sin_herramientas": {
+    "n": 6,
+    "resueltas": 0,
+    "aciertos_numero": 0,
+    "aciertos_texto": 0,
+    "resueltas_con_fin_declarado": 0,
+    "con_fin_declarado": 0,
+    "cierres": {
+      "fin": 0,
+      "agotado": 6,
+      "json_invalido": 0
+    },
+    "pct_resueltas": 0.0,
+    "sin_respuesta_final": 0,
+    "pasos_medios": 1.0,
+    "pasos_medios_resueltas": null,
+    "herramientas_por_tarea": 0.0,
+    "tokens_total": 5703,
+    "tokens_por_tarea_resuelta": null,
+    "segundos_totales": 262.1
+  },
+  "D_bucle_sin_herramientas": {
+    "n": 6,
+    "resueltas": 0,
+    "aciertos_numero": 0,
+    "aciertos_texto": 0,
+    "resueltas_con_fin_declarado": 0,
+    "con_fin_declarado": 6,
+    "cierres": {
+      "fin": 6,
+      "agotado": 0,
+      "json_invalido": 0
+    },
+    "pct_resueltas": 0.0,
+    "sin_respuesta_final": 0,
+    "pasos_medios": 2.33,
+    "pasos_medios_resueltas": null,
+    "herramientas_por_tarea": 0.0,
+    "tokens_total": 25407,
+    "tokens_por_tarea_resuelta": null,
+    "segundos_totales": 714.3
+  },
+  "B_bucle_con_herramientas": {
+    "n": 6,
+    "resueltas": 5,
+    "aciertos_numero": 5,
+    "aciertos_texto": 2,
+    "resueltas_con_fin_declarado": 5,
+    "con_fin_declarado": 6,
+    "cierres": {
+      "fin": 6,
+      "agotado": 0,
+      "json_invalido": 0
+    },
+    "pct_resueltas": 83.3,
+    "sin_respuesta_final": 0,
+    "pasos_medios": 3.0,
+    "pasos_medios_resueltas": 3.2,
+    "herramientas_por_tarea": 2.0,
+    "tokens_total": 33298,
+    "tokens_por_tarea_resuelta": 6660.0,
+    "segundos_totales": 816.3
+  },
+  "C_control_temp_alta": {
+    "n": 6,
+    "resueltas": 5,
+    "aciertos_numero": 5,
+    "aciertos_texto": 2,
+    "resueltas_con_fin_declarado": 5,
+    "con_fin_declarado": 6,
+    "cierres": {
+      "fin": 6,
+      "agotado": 0,
+      "json_invalido": 0
+    },
+    "pct_resueltas": 83.3,
+    "sin_respuesta_final": 0,
+    "pasos_medios": 2.33,
+    "pasos_medios_resueltas": 2.4,
+    "herramientas_por_tarea": 1.33,
+    "tokens_total": 28012,
+    "tokens_por_tarea_resuelta": 5602.0,
+    "segundos_totales": 817.2
+  }
+}
+escrito: medicion-bucle-20260924.json

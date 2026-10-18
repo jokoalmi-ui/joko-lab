@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Slide TFM — base hoja cuaderno + contenido</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     MONTAR CONTENIDO SOBRE "hoja cuaderno base.png" SIN TOCARLA
+     La base es la IMAGEN original del usuario (1824x2310).
+     El contenido se superpone dentro del area util del papel,
+     dejando libre la espiral (x<190) y los margenes.
+     ============================================================ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1824px; height: 2310px; }
+  body {
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    background: #141414;   /* fondo por si la imagen no cubre el 100% */
+  }
+  /* La base: la imagen original SIN MODIFICAR */
+  .base {
+    position: absolute;
+    inset: 0;
+    width: 1824px;
+    height: 2310px;
+    display: block;
+    object-fit: fill;
+    z-index: 1;
+  }
+
+  /* ============================================================
+     ZONA DE CONTENIDO — area util del papel (medida sobre el PNG):
+     papel de x=87 a 1766; espiral/agujeros hasta x~185;
+     contenido de x=200 a x=1720, y de 80 a 2240
+     ============================================================ */
+  .content {
+    position: absolute;
+    z-index: 2;
+    left: 200px;
+    top: 80px;
+    right: 100px;
+    bottom: 70px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .badge {
+    display: inline-block;
+    background: #2D5D62;
+    color: #FDF8E9;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 12px 34px;
+    border-radius: 999px;
+    margin-bottom: 46px;
+    align-self: flex-start;
+  }
+  h1 {
+    font-family: 'Special Elite', serif;
+    font-size: 150px;
+    font-weight: 700;
+    letter-spacing: -3px;
+    color: #1e1e1e;
+    line-height: 1.02;
+    margin-bottom: 18px;
+  }
+  h1 .accent { color: #2D5D62; }
+  .subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #2D5D62;
+    margin-bottom: 52px;
+  }
+  .dashed-box {
+    border: 4px dashed #333333;
+    border-radius: 26px;
+    padding: 34px 52px;
+    font-family: 'Caveat', cursive;
+    font-size: 52px;
+    font-weight: 600;
+    color: #333333;
+    text-align: center;
+    background: rgba(255,255,255,0.35);
+    margin-bottom: 52px;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .col {
+    background: rgba(232, 241, 242, 0.55);
+    border: 4px dashed #333333;
+    border-radius: 22px;
+    padding: 36px 40px;
+  }
+  .col h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #2D5D62;
+    margin-bottom: 24px;
+    border-bottom: 4px dashed #D4A017;
+    padding-bottom: 14px;
+  }
+  .col ul { list-style: none; }
+  .col li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #1A1A1A;
+    line-height: 1.4;
+    margin-bottom: 16px;
+    padding-left: 46px;
+    position: relative;
+  }
+  .col li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 12px;
+    width: 16px; height: 16px;
+    background: #2D5D62;
+    border-radius: 3px;
+  }
+  .spacer { flex: 1; }
+  .footer {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1A1A1A;
+  }
+  .stars { color: #D4A017; font-size: 36px; letter-spacing: 0.35em; }
+</style>
+</head>
+<body>
+  <img class="base" src="hoja-cuaderno-base.png" alt="hoja cuaderno base">
+
+  <div class="content">
+    <!-- ============ CONTENIDO DE CADA SLIDE ============ -->
+    <span class="badge">Joko Lab · TFM Máster IA 2026</span>
+    <h1>PRUEBA DE <span class="accent">MONTAJE</span></h1>
+    <p class="subtitle">Base original intacta · solo se añade información</p>
+
+    <div class="dashed-box">La hoja que ves de fondo es tu PNG sin tocar. Aquí va el mensaje de cada slide.</div>
+
+    <div class="cols">
+      <div class="col">
+        <h3>Qué se monta</h3>
+        <ul>
+          <li>Texto e información</li>
+          <li>Bloques y listas</li>
+          <li>Diagramas sobre la hoja</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Qué no se toca</h3>
+        <ul>
+          <li>El papel cuadriculado</li>
+          <li>La espiral y perforaciones</li>
+          <li>Colores y textura</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="footer">
+      <div class="stars">★ ★</div>
+      montaje sobre hoja-cuaderno-base.png · 08-ago-2026
+    </div>
+    <!-- ============ /CONTENIDO ============ -->
+  </div>
+</body>
+</html>

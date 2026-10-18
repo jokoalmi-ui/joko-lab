@@ -1,0 +1,9 @@
+Deferred tool catalog (call schemas via `tool_describe`, invoke via `tool_call`):
+cronjob tools (1):
+- cronjob_manage: Manage scheduled cron jobs: action='create' schedules a job…
+session_search tools (1):
+- session_search: Recall past conversations: search or read old Hermes…
+terminal tools (1):
+- process_manage: Poll, wait on, or kill background terminal processes (from…
+todo tools (1):
+- todo_list: Track a task list for multi-step work (3+ steps).

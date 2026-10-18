@@ -1,0 +1,367 @@
+AUDITORIA DEL PATRON EVALUATOR-OPTIMIZER
+===========================================
+Fecha: 2026-07-29
+Archivo: tools/evaluator_optimizer.py
+Autor: jokoalmi (banco de pruebas)
+
+FASE 1 - AUTODESCUBRIMIENTO
+
+1. ¿Que componentes del laboratorio intervienen?
+
+| Componente | Rol | Archivo |
+|---|---|---|
+| evaluator_optimizer.py | Orquestador del bucle | tools/evaluator_optimizer.py |
+| preflight_checklist.py | Inspiracion para la rubrica | tools/preflight_checklist.py |
+| LM Studio (Granite 4.1) | Backend LLM para critica y optimizacion | API local :1234 |
+| Rubrica interna (6 reglas hardcodeadas) | Criterios de evaluacion | Dentro del propio script |
+
+2. ¿Que parte ejecuta el rol de Evaluator?
+
+Dos sistemas diferentes:
+
+- Evaluator automatico (funcion evaluate_prompt()): 6 reglas sintacticas hardcodeadas.
+  Sin LLM. Sin contexto. Sin modelo.
+
+- Evaluator LLM (funcion critic_llm()): Llama a Granite 4.1 con un system prompt de
+  "critico de prompts experto". Recibe el prompt + los fallos automaticos y genera
+  critica semantica.
+
+3. ¿Que parte ejecuta el rol de Optimizer?
+
+La funcion optimize_llm(). Llama a Granite 4.1 con un system prompt de
+"optimizador de prompts". Recibe el prompt original + la critica.
+Devuelve un prompt reescrito.
+
+4. ¿Existe separacion real entre ambos?
+
+NO. Ambos roles (Evaluator LLM y Optimizer) usan el MISMO modelo (Granite 4.1).
+No hay separacion de contexto, de modelo ni de datos de entrenamiento.
+El Evaluator LLM y el Optimizer son el mismo LLM con distinto system prompt.
+No hay adversarial real - es el mismo modelo criticandose y reescribiendose a si mismo.
+
+5. ¿Que informacion intercambian?
+
+Evaluator automatico -> [fallos detectados (6 booleanos)] -> codigo
+Evaluator LLM -> [critica textual] -> Optimizer
+Optimizer -> [prompt reescrito] -> Evaluator (siguiente ronda)
+
+6. ¿Que criterios utiliza el Evaluator para decidir que algo necesita mejora?
+
+6 reglas sintacticas:
+1. Longitud > 50 caracteres y sin "?" al principio
+2. Menos de 10 saltos de linea y menos de 3 "y"
+3. Contiene palabras clave de formato (json, markdown, devuelve...)
+4. Contiene palabras clave de restriccion (no inventes, solo, maximo...)
+5. Longitud > 100 caracteres
+6. Contiene palabras clave de rol (eres, actua, como...)
+
+7. ¿Que criterios utiliza para decidir que NO debe modificarse?
+
+El mismo Evaluator: si el score >= 80% (5/6 reglas), se considera "aprobado"
+y el bucle termina. Pero el Evaluator NO verifica si el Optimizer cambio algo
+que no debia. Solo verifica la nueva version contra las mismas 6 reglas.
+
+8. ¿Donde termina exactamente el Evaluator y empieza el Optimizer?
+
+En la funcion improve_prompt(), linea que llama a critic_llm() o genera critica
+automatica, seguida inmediatamente de optimize_llm(). El limite es difuso cuando
+se usa el Evaluator LLM porque la critica incluye sugerencias de reescritura,
+mezclando diagnostico con prescripcion.
+
+
+FASE 2 - AUDITORIA DEL FLUJO
+
+Usuario -> "Dime algo sobre IA"
+    |
+    v
+1. improve_prompt() recibe input
+   Entrada: "Dime algo sobre IA"
+   Transformacion: ninguna (paso directo)
+   Riesgo: ninguno
+    |
+    v
+2. evaluate_prompt() (automatico)
+   Entrada: "Dime algo sobre IA" (50 chars)
+   Reglas checkeadas:
+     - especifico: NO (solo 50 chars)
+     - una_tarea: SI (1 linea, sin "y")
+     - formato: NO (sin palabras clave)
+     - restricciones: NO (sin palabras clave)
+     - contexto: NO (< 100 chars)
+     - rol: NO (sin palabras clave)
+   Salida: score 16% (1/6), NO pasa
+   Riesgo: las reglas son arbitrarias. Un prompt bueno pero corto ("Hola") siempre falla.
+    |
+    v
+3. critic_llm() (si >2 fallos y modo LLM)
+   Entrada: prompt + lista de fallos
+   Transformacion: prompt -> critica textual
+   Informacion anadida: opinion del LLM sobre por que falla
+   Informacion eliminada: ninguna
+   Riesgo: el LLM puede alucinar problemas que no existen
+    |
+    v
+4. optimize_llm()
+   Entrada: prompt original + critica
+   Transformacion: prompt -> prompt reescrito
+   Informacion anadida: estructura, palabras clave, contexto
+   Informacion eliminada: esencia original (riesgo alto)
+   Riesgo: el Optimizer puede cambiar el significado del prompt
+    |
+    v
+5. evaluate_prompt() (siguiente ronda)
+   Entrada: prompt reescrito
+   Si score >= 80% -> fin. Si no -> repetir 3-4-5.
+    |
+    v
+6. Resultado final: prompt optimizado O estancado O timeout
+
+Riesgos del flujo:
+- El Evaluator automatico solo mide sintaxis, no semantica. Un prompt puede ser peor
+  semanticamente pero mejor sintacticamente.
+- No hay verificacion de que el Optimizer no haya anadido informacion falsa.
+- El bucle puede oscilar si el Optimizer cambia algo que el Evaluator aprueba, pero
+  el cambio era cosmetico y no mejora el prompt real.
+
+
+FASE 3 - PRUEBAS FUNCIONALES
+
+CASO A - Entrada perfecta:
+"Eres un experto en Python. Escribe una funcion que lea un CSV y filtre filas donde
+edad > 18. Devuelve SOLO el codigo con type hints y docstring. No expliques nada mas."
+
+- especifico: SI (>50 chars, sin ?)
+- una_tarea: SI
+- formato: SI ("devuelve SOLO el codigo")
+- restricciones: SI ("No expliques nada mas")
+- contexto: SI (>100 chars)
+- rol: SI ("Eres un experto")
+- Score: 100% -> pasa sin modificarse
+
+Problema: el codigo tiene una condicion if not eval_result["passed"] que detiene el
+bucle. Pero el Optimizer NUNCA se ejecuta si el score inicial ya pasa. Correcto.
+Sin embargo, si el score es exactamente 80% (5/6), pasa aunque tenga un fallo real.
+
+CASO B - Entrada mediocre:
+"Dime algo sobre Python"
+- Score estimado: 16% (solo pasa "una_tarea")
+- El Evaluator LLM genera critica
+- El Optimizer reescribe
+- Probablemente anade rol, contexto, restricciones
+- Riesgo: el Optimizer puede anadir informacion que no estaba en el original
+  (inventar un tema concreto de Python)
+
+CASO C - Entrada contradictoria:
+"Eres un experto. No uses jerga tecnica. Explica en detalle el concepto de
+gradient descent."
+- "No uses jerga tecnica" <-> "gradient descent" (contradiccion)
+- Las reglas sintacticas NO detectan contradicciones semanticas
+- El Evaluator LLM podria detectarlo, pero depende de Granite 4.1
+- Fallo estructural: no hay detector de contradicciones en la rubrica
+
+CASO D - Entrada imposible:
+"Hazme un cafe"
+- Un LLM no puede hacer cafe fisicamente
+- Las reglas sintacticas no verifican factibilidad
+- El Evaluator LLM probablemente ignorara la imposibilidad fisica y sugerira mejoras
+  de formato
+- Fallo estructural: no hay verificacion de viabilidad
+
+
+FASE 4 - AUDITORIA DE DECISIONES
+
+| Decision | Regla | Evidencia | Documento | Alternativa descartada | Confianza |
+|---|---|---|---|---|---|
+| Prompt necesita mejora | Score 16% < 80% | 1/6 checks pasan | Codigo evaluate_prompt() | Ninguna (es binario) | ALTA (100%, matematico) |
+| Usar LLM como critico | >2 fallos automaticos | Condicion if len(failures) <= 2 | Codigo improve_prompt() | Critica 100% automatica | BAJA (threshold arbitrario, sin evidencia) |
+| Prompt esta "aprobado" | Score >= 80% | 5/6 checks | Linea score >= max_score * 0.8 | Umbral diferente (90%, 70%) | MEDIA (80% es arbitrario) |
+| El Optimizer no empeoro | Solo se compara improved == current | Igualdad de strings | Linea if improved == current | Diferencia semantica (embedding) | BAJA (comparacion textual) |
+
+NINGUNA decision esta respaldada por documentos del laboratorio. No se consultaron
+experimentos (EXP-), decisiones (DEC-), fichas de modelo ni anti-patrones.
+
+
+FASE 5 - DETECCION DE FALLOS
+
+| Fallo | Gravedad | Explicacion |
+|---|---|---|
+| Optimizaciones redundantes | MEDIA | Si un prompt ya tiene score 83%, el bucle para. Pero si falla una regla no critica, se aprueba sin mejorar ese ultimo punto |
+| Optimizaciones cosmeticas | ALTA | El Optimizer puede anadir "Eres un experto" sin cambiar el contenido real. El Evaluator detecta "rol" como cumplido aunque no haya mejora semantica |
+| Bucle infinito | MEDIA | Hay proteccion (max_rounds=5, deteccion de estancamiento). Pero si el Optimizer cambia y deshace alternativamente, oscilaria |
+| Falta de criterio de parada | ALTA | Unico criterio: score >= 80%. No hay mejora minima por ronda, degradacion maxima permitida, ni verificacion semantica |
+| Reoptimizacion innecesaria | BAJA | No ocurre porque el bucle para al aprobar |
+| Cambios sin justificacion | ALTA | El Optimizer recibe critica pero no hay trazabilidad de que cambio corresponde a que critica |
+| Perdida de informacion | ALTA | El Optimizer recibe "reescribe el prompt" sin garantia de conservar el significado original |
+| Introduccion de informacion nueva | CRITICA | El Optimizer puede inventar datos. No hay verificacion post-optimizacion |
+| Cambios de significado | CRITICA | Si el prompt original pedia "explica X" y el Optimizer lo convierte en "explica X con ejemplos", cambio el significado |
+| Optimizacion basada en opinion | ALTA | El Evaluator LLM usa Granite 4.1. No hay evidencia de que sea buen critico de prompts |
+| Optimizacion sin evidencia | CRITICA | Ninguna optimizacion esta respaldada por experimentos, decisiones o patrones del lab |
+| Dependencia excesiva del modelo | ALTA | Si Granite 4.1 no responde, todo falla |
+| Riesgo de alucinacion | ALTA | El Evaluator LLM puede alucinar problemas; el Optimizer puede alucinar soluciones |
+| Riesgo de sobreoptimizacion | MEDIA | El Optimizer puede anadir tanta estructura que el prompt pierda naturalidad |
+| Casos donde el Evaluator no detectaria errores | CRITICA | Contradicciones semanticas, inviabilidad fisica, peticiones ilegales, datos incorrectos |
+
+
+FASE 6 - METRICAS
+
+| Dimension | Nota | Justificacion |
+|---|---|---|
+| Arquitectura | 4/10 | Monolito. Todo en un solo archivo |
+| Robustez | 3/10 | Sin fallback si Granite no responde. Sin verificacion post-optimizacion |
+| Modularidad | 5/10 | Funciones separadas pero acopladas al mismo modelo LLM |
+| Trazabilidad | 2/10 | No se registra que cambio corresponde a que critica. Sin log persistente |
+| Reproducibilidad | 6/10 | Misma entrada + mismo modelo = mismo resultado. Pero sin seed fijo |
+| Explicabilidad | 3/10 | Reglas claras. Decisiones del LLM son caja negra |
+| Facilidad de mantenimiento | 5/10 | Codigo simple, 300 lineas |
+| Escalabilidad | 2/10 | Cada ronda: 2 llamadas LLM. 5 rondas = 10 llamadas. Sin paralelismo |
+| Capacidad de aprendizaje | 1/10 | No aprende. No retroalimenta el laboratorio |
+| Capacidad de reutilizacion | 4/10 | Rubrica hardcodeada. Para reusar hay que editar codigo |
+| Calidad de las optimizaciones | 4/10 | Depende de Granite 4.1. Sin validacion externa |
+| Coste computacional | 3/10 | 2-10 llamadas por prompt. Cada llamada ~10s. Total: 20-100s |
+
+
+FASE 7 - PRUEBA DE ESTRES
+
+(500 patrones, 250 skills, 40K docs, 500 decisiones, 5K experimentos, 100 modelos)
+
+Cuellos de botella:
+1. La rubrica no escala. 6 reglas hardcodeadas. No consulta los 500 patrones.
+2. El Evaluator LLM no usa el RAG. Con 40K documentos, el critico deberia consultar.
+3. El Optimizer no conoce fichas de modelo. Podria generar prompts que violen FATAL.
+4. Sin cache. Cada ejecucion: 2-10 llamadas a LM Studio.
+5. Sin paralelismo. Rondas secuenciales.
+
+Conclusion: No escala mas alla de ~10 prompts/dia.
+
+
+FASE 8 - CRITICA (como arquitecto senior)
+
+Ataque 1 - Bucle semantico:
+Prompt: "Eres un experto. Explica X." Evaluator da 100%. Pero el prompt es malo
+(ambiguo, sin restricciones). El patron lo aprueba sin mejorar.
+
+Ataque 2 - Inyeccion de informacion falsa:
+Prompt: "Explicame como hackear un sistema." Las reglas no detectan contenido
+malicioso. El Optimizer lo mejora haciendo el prompt mas claro.
+
+Ataque 3 - Degradacion por sobreoptimizacion:
+Prompt conversacional simple. Optimizer anade rol, estructura, restricciones.
+El Evaluator lo aprueba porque cumple mas reglas. El resultado es peor.
+
+Ataque 4 - Dependencia total del LLM:
+Si Granite 4.1 esta caido, el patron falla. Sin fallback.
+
+Ataque 5 - Sin metricas de mejora real:
+Mide mejora sintactica, no calidad real de la respuesta del modelo destino.
+
+
+FASE 9 - PROPUESTAS
+
+| Mejora | Impacto | Complejidad | Tiempo | ROI | Dependencias |
+|---|---|---|---|---|---|
+| Separar Evaluator y Optimizer en modelos distintos | ALTO | BAJA | 10 min | ALTO | Ninguna |
+| Integrar con RAG (anti-patrones, decisiones) | ALTO | MEDIA | 1h | ALTO | context_builder.py |
+| Verificacion semantica post-optimizacion | ALTO | MEDIA | 30 min | ALTO | knowledge_resolver.py |
+| Registrar rondas en 04-operations/metrics/ | MEDIO | BAJA | 15 min | MEDIO | Ninguna |
+| Rubrica configurable desde YAML | MEDIO | BAJA | 20 min | MEDIO | Ninguna |
+| Umbral dinamico basado en experimentos | MEDIO | ALTA | 2h | BAJO | RAG |
+| Cache de resultados | BAJO | BAJA | 15 min | BAJO | Ninguna |
+
+
+FASE 10 - VEREDICTO
+
+NO. No esta preparado para produccion.
+
+Justificacion:
+El patron es un prototipo funcional pero tiene tres fallos estructurales:
+
+1. No hay separacion real entre Evaluator y Optimizer. Ambos usan el mismo modelo
+   LLM. No hay adversarial real.
+
+2. No consulta el conocimiento del laboratorio. Ignora anti-patrones, fichas de
+   modelo, decisiones y experimentos.
+
+3. Mide sintaxis, no semantica. Un prompt puede mejorar su puntuacion mientras
+   empeora su calidad real.
+
+Modificaciones minimas antes de considerarlo estable:
+1. Separar Evaluator y Optimizer en modelos distintos (Gemma evalua, Granite optimiza)
+2. Integrar context_builder.py para consultar anti-patrones y decisiones
+3. Anyadir verificacion semantica (el prompt optimizado no debe perder el significado)
+4. Rubrica configurable desde YAML
+5. Log persistente en 04-operations/metrics/
+
+==========================================
+FIN DE LA AUDITORIA
+
+==========================================
+ANEXO: EVALUACION EXTERNA (Luis, 2026-07-29)
+==========================================
+
+Valoracion global de la auditoria:
+
+| Area | Auditoria | Evaluacion externa |
+|---|---|---|
+| Arquitectura | 9/10 | Muy acertada |
+| Flujo | 8/10 | Acertada |
+| Riesgos | 9/10 | Muy acertada |
+| Metricas | 7/10 | Algunas son subjetivas |
+| Propuestas | 8/10 | Buenas, pero falta priorizacion |
+| Veredicto final | 8/10 | Correcto, aunque demasiado duro |
+
+Observaciones principales:
+
+1. El patron evalua reglas, no calidad. Un prompt puede cumplir el checklist
+   y seguir siendo malo. El Evaluator responde "cumple mi checklist?" pero
+   deberia responder "produce mejores resultados?".
+
+2. No existe prueba contra el modelo destino. El flujo actual es:
+   Prompt -> Evaluator -> Optimizer -> Evaluator.
+   Falta: Prompt -> Modelo destino -> Respuesta -> Evaluator.
+   Sin esto, la optimizacion es una hipotesis, no una evidencia.
+
+3. El laboratorio no participa. Ignora Pattern Library, Decision Memory,
+   Experimentos, Anti-patterns, Benchmarks y Fichas de modelo.
+
+4. No protege el significado. El Optimizer puede cambiar el objetivo del
+   prompt sin que nadie lo detecte.
+
+Discrepancias:
+
+- "Evaluator y Optimizer deben ser modelos distintos": No es obligatorio.
+  Lo importante es que tengan objetivos distintos (system prompts diferentes).
+  Modelos distintos es mejor, pero no necesario.
+
+- "No esta preparado para produccion": Depende. Para producto comercial, no.
+  Para laboratorio experimental, si.
+
+Fallo no detectado por la auditoria:
+
+El Evaluator solo evalua el prompt, nunca el objetivo del usuario.
+Deberia preguntarse: "Que quiere conseguir el usuario? Este prompt
+consigue ese objetivo? Como podria mejorarlo?" No optimizar texto,
+optimizar intencion.
+
+Prioridad de implementacion propuesta:
+
+1. Verificacion semantica (el Optimizer no puede cambiar el significado)
+2. Integrar context_builder.py (consultar Pattern Library, Anti-patterns,
+   Decision Memory, Model Cards antes de optimizar)
+3. Anyadir evaluador de respuesta (ejecutar prompt sobre modelo objetivo
+   y comparar calidad contra version anterior)
+4. Extraer rubrica a YAML
+5. Separar Evaluator y Optimizer (solo despues de los 4 anteriores)
+
+Mejora adicional - Evidence Collector:
+
+Entre el Evaluator y el laboratorio, un componente que decide si la
+evidencia es suficiente para actualizar Pattern Library, Decision Memory
+o Experimentos. Solo cuando una mejora supera un umbral de evidencia
+(repeticion en varios experimentos o mejora consistente) se incorpora
+al conocimiento permanente. Conecta con la filosofia LPA y evita reglas
+basadas en observaciones aisladas.
+
+==========================================
+FIN DEL ANEXO
+==========================================
+==========================================

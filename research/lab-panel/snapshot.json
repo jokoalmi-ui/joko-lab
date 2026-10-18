@@ -1,0 +1,775 @@
+{
+ "snap": {
+  "ts": "2026-09-28 23:29 CEST",
+  "capas": {
+   "01-knowledge": 20,
+   "02-infrastructure": 7,
+   "03-automation": 4,
+   "04-operations": 15,
+   "05-inference": 7
+  },
+  "carpetas_sueltas": [
+   ".BACKUP-frontmatter-20260817",
+   ".codebase-memory",
+   ".git",
+   ".lancedb",
+   ".pytest_cache",
+   "USAGE",
+   "assets",
+   "docs",
+   "founderz",
+   "inbox",
+   "instruments",
+   "lpa",
+   "reports",
+   "research",
+   "tests",
+   "tfm",
+   "tools",
+   "verification"
+  ],
+  "objetos": {
+   "total": 55,
+   "bak": 22,
+   "por_tipo": {
+    "CANALES-NO": 1,
+    "DEC": 5,
+    "DEC-GAIPRO": 1,
+    "FUENTES": 1,
+    "PATTERN": 1,
+    "POLICY": 3,
+    "PRED": 3,
+    "RULE": 18
+   }
+  },
+  "conocimiento": {
+   "benchmarks": 0,
+   "data": 0,
+   "decisions": 0,
+   "experiments": 37,
+   "hypotheses": 5,
+   "models": 11,
+   "objects": 21,
+   "observations": 149,
+   "patterns": 5,
+   "policies": 0,
+   "prompt-compiler": 2,
+   "references": 2886,
+   "rules": 0
+  },
+  "knowledge_health": {
+   "rc": 0,
+   "salida": "EXP:               19\n  OBS:               149\n  RULE:              18\n  POLICY:            3\n  PATTERN:           15\n\nAlertas:\n  Expiradas:         0\n  Próximas a expirar:0\n  Sin expiración:    0\n  Nunca validadas:   0\n  Sin revisión >180d:0\n  Confianza baja:    0\n  Sin evidencia:     0\n  Contradicciones:   0\n  Patrones E0:       0\n\nEvidence Contract:\n  Cumplen contrato:  0/31\n\nEstructura documental (docs .md de conocimiento):\n  Total docs:        900\n  Frontmatter:       792/900 (88%)\n  H1:                899/900 (99%)\n  H2:                878/900 (97%)\n  H3:                249/900 (27%)\n  Con enlaces:       38/900 (4%)\n\nKNOWLEDGE HEALTH:    100/100\n============================================================\n\nKNOWLEDGE SURVIVAL RATE:\n  DEC creadas:       6\n  DEC activas:       6\n  DEC retiradas:     0\n  DEC expiradas:     0\n  DEC revalidadas:   27\n  Supervivencia:     100%\n============================================================",
+   "parsed": {
+    "score": 100,
+    "docs": 900,
+    "frontmatter": [
+     792,
+     900
+    ],
+    "h1": [
+     899,
+     900
+    ],
+    "h3": [
+     249,
+     900
+    ],
+    "enlaces": [
+     38,
+     900
+    ],
+    "contrato": [
+     0,
+     31
+    ],
+    "supervivencia": 100,
+    "dec_activas": 6
+   },
+   "py": "/usr/bin/python3"
+  },
+  "tools": {
+   "total": 139,
+   "bak": 2
+  },
+  "tests": {
+   "total": 25,
+   "lista": [
+    "__pycache__",
+    "test_activation_engine.py",
+    "test_auditar_cobertura_backups.py",
+    "test_auditor_deuda_tools.py",
+    "test_buscar_perfume.py",
+    "test_buscar_perfume.py.bak-20260928",
+    "test_consolidador_sesiones.py",
+    "test_context_builder_estructurado.py"
+   ]
+  },
+  "verification": {
+   "total": 17,
+   "lista": [
+    ".venv",
+    "__pycache__",
+    "analizar_historial.py",
+    "bank.yaml",
+    "bateria_modelos.py",
+    "comparador.py",
+    "history-agentic.jsonl",
+    "history.jsonl"
+   ]
+  },
+  "lpa": {
+   "total": 16,
+   "lista": [
+    "CHANGELOG.md",
+    "DEFINITION.md",
+    "EPISTEMOLOGY.md",
+    "HYPOTHESIS.md",
+    "KNOWN.md",
+    "PENDING_POSITIONING.md",
+    "UNKNOWN.md",
+    "constitucion"
+   ]
+  },
+  "docs": {
+   "total": 12,
+   "lista": [
+    "analisis-5-patrones-agente.md",
+    "auditoria-conocimiento-001.md",
+    "engineering-hardening-plan.md",
+    "fase1-apagar-fuegos-detalle.md",
+    "guia-prioridades-2026-07-30.md",
+    "index.md",
+    "index.md.bak-20260925-okf",
+    "pendientes-2026-07-29.md"
+   ]
+  },
+  "research": {
+   "total": 404,
+   "lista": [
+    ".archive-20260902",
+    ".bak-20260925-fe-erratas.md",
+    "analisis-10-repos-agentes-briascoi.md",
+    "analisis-12-agentic-ai-harness-patterns.md",
+    "analisis-200ok-mcp-2026.md",
+    "analisis-22-frameworks-agentes.md",
+    "analisis-3-posts-vigilante-ig.md",
+    "analisis-37-agentes-maurys.md"
+   ]
+  },
+  "assets": {
+   "total": 1,
+   "lista": [
+    "simple-icons"
+   ]
+  },
+  "inbox": {
+   "total": 1,
+   "lista": [
+    "images"
+   ]
+  },
+  "reports": {
+   "total": 1,
+   "lista": [
+    "informe-estado-2026-07-29.txt"
+   ]
+  },
+  "instruments": {
+   "total": 2,
+   "lista": [
+    "critic-loop",
+    "laya-comparativa"
+   ]
+  },
+  "repos": {
+   "/home/jokoalmi/joko-lab": {
+    "git": true,
+    "last": "b4eed43|2026-09-28|serie(ia-agentes): L4 registrada como publicada (28-09-2026) y material de la leccion 4 versionado",
+    "sin_commitear": 88
+   },
+   "/home/jokoalmi/hermes-lab": {
+    "git": true,
+    "last": "e582864|2026-09-28|fix(backup): versionar las ediciones del 24-sep de backup-joko-lab.sh y git-backup.sh",
+    "sin_commitear": 6
+   },
+   "/home/jokoalmi/perfume-ia": {
+    "git": true,
+    "last": "454ec89|2026-07-18|phase-1-embodiment: Fase 1 completada",
+    "sin_commitear": 126
+   },
+   "/home/jokoalmi/lmstudio_real_monitor": {
+    "git": false,
+    "evidencia": "fatal: no es un repositorio git (ni ninguno de los directorios superiores): .git"
+   }
+  },
+  "crons": {
+   "total": 45,
+   "enabled": 43,
+   "error": [
+    {
+     "nombre": "rag-reindex-daily",
+     "streak": 1,
+     "last": "2026-09-28T08:05:57.539407+02:00",
+     "script": "rag-reindex.sh"
+    }
+   ],
+   "ok": 44,
+   "sin_ejecutar": 0,
+   "top": [
+    {
+     "n": "Founderz Watchdog",
+     "s": "ok",
+     "last": "2026-09-28T23:28"
+    },
+    {
+     "n": "session-heartbeat-cli",
+     "s": "ok",
+     "last": "2026-09-28T23:28"
+    },
+    {
+     "n": "watchdog-control-cli",
+     "s": "ok",
+     "last": "2026-09-28T23:28"
+    },
+    {
+     "n": "telegram-watchdog",
+     "s": "ok",
+     "last": "2026-09-28T23:21"
+    },
+    {
+     "n": "rag-reindex-catchup",
+     "s": "ok",
+     "last": "2026-09-28T23:13"
+    },
+    {
+     "n": "detector-perdida-contexto",
+     "s": "ok",
+     "last": "2026-09-28T23:10"
+    }
+   ]
+  },
+  "crontab": [
+   "5 * * * * cd \"/home/jokoalmi/hermes-lab/skills/docker-admin/scripts\" && bash healthcheck.sh --cron >> \"/home/jokoalmi/hermes-lab/skills/docker-admin/logs/healthcheck.log\" 2>&1 || notify-send \"docker-admin\" \"Healthcheck falló: algún servicio no responde\"",
+   "*/30 * * * * bash /home/jokoalmi/hermes-lab/skills/n8n-admin/healthcheck-n8n.sh >> \"/home/jokoalmi/hermes-lab/skills/docker-admin/logs/healthcheck-n8n.log\" 2>&1 || notify-send \"n8n-admin\" \"Healthcheck n8n falló\"",
+   "35 22 * * * /home/jokoalmi/hermes-lab/scripts/git-backup.sh --quiet >> /home/jokoalmi/hermes-lab/logs/git-backup.log 2>&1",
+   "0 12 * * * /home/jokoalmi/hermes-lab/decision-engine/apply-decision.sh >> /mnt/ssd_ia_datos/lab-state/logs/apply-decision.log 2>&1",
+   "*/30 * * * * /home/jokoalmi/hermes-lab/decision-engine/apply-decision.sh >> /mnt/ssd_ia_datos/lab-state/logs/apply-decision.log 2>&1",
+   "* * * * * cd /home/jokoalmi/hermes-lab && python3 state-manager/state-manager.py >> /mnt/ssd_ia_datos/lab-state/logs/state-manager-cron.log 2>&1",
+   "0 23 * * * notify-send -u critical 'Joko Lab — Rescue' 'Conecta el USB de backup' 2>/dev/null",
+   "30 22 * * * /home/jokoalmi/hermes-lab/scripts/cloud-backup.sh >> /home/jokoalmi/hermes-lab/logs/cloud-backup.log 2>&1",
+   "0 22 * * * bash /home/jokoalmi/hermes-lab/scripts/checkpoint.sh >> /home/jokoalmi/hermes-lab/recovery/checkpoint.log 2>&1"
+  ],
+  "skills": {
+   "total": 167,
+   "por_categoria": {
+    "joko-lab": 41,
+    "software-development": 28,
+    "productivity": 15,
+    "creative": 13,
+    "research": 12,
+    "media": 8,
+    "autonomous-ai-agents": 7,
+    "mlops": 7,
+    "github": 5,
+    "diagnostico-stack-local": 4,
+    "social-media": 4,
+    "hermes-lab": 3,
+    "mantenimiento-host": 3,
+    "education": 2,
+    "viajes": 2,
+    "smart-home": 1,
+    "yuanbao": 1,
+    "data-science": 1,
+    "auditoria-integral-lab": 1,
+    "web": 1,
+    "note-taking": 1,
+    "bizkaia": 1,
+    "computer-use": 1,
+    "render-html-a-imagen": 1,
+    "devops": 1,
+    "telegran-cross-session-setup": 1,
+    "email": 1,
+    "instagram-monitor": 1
+   }
+  },
+  "mcp": [
+   "animation-server",
+   "lab-db",
+   "lancedb",
+   "codebase-memory"
+  ],
+  "inferencia": {
+   "lmstudio": "/bin/sh: 1: lms: not found",
+   "lmstudio_cargado": false,
+   "ollama_raw": "{\"object\":\"list\",\"data\":[{\"id\":\"ibm/granite4.2:8b-q4_K_M\",\"object\":\"model\",\"created\":1789384467,\"owned_by\":\"ibm\"},{\"id\":\"qwen2.5:7b\",\"object\":\"model\",\"created\":1788527960,\"owned_by\":\"library\"},{\"id\":\"deepseek-r1-distill-qwen-14b:latest\",\"object\":\"model\",\"created\":1787570492,\"owned_by\":\"library\"}]}",
+   "comfyui": "active",
+   "ollama_modelos": [
+    "ibm/granite4.2:8b-q4_K_M",
+    "qwen2.5:7b",
+    "deepseek-r1-distill-qwen-14b:latest"
+   ]
+  },
+  "gpu": "NVIDIA RTX A2000 12GB, 9552 MiB, 12282 MiB, 0 %, 46",
+  "puertos": [
+   53,
+   631,
+   1234,
+   4000,
+   5000,
+   5050,
+   5678,
+   8000,
+   8081,
+   8099,
+   8188,
+   8384,
+   8765,
+   9222,
+   9224,
+   9749,
+   9911,
+   11434,
+   22000,
+   33061,
+   41343
+  ],
+  "logs": {
+   "docker_health": {
+    "existe": true,
+    "lineas": 0,
+    "ultima": ""
+   },
+   "n8n_health": {
+    "existe": false,
+    "lineas": 0,
+    "ultima": ""
+   }
+  },
+  "backups": {
+   "destino_existe": true,
+   "jobs": []
+  },
+  "resumen": {
+   "nodos": 26,
+   "huecos": 10,
+   "p0": 1,
+   "p1": 6,
+   "p2": 3
+  }
+ },
+ "capas": [
+  {
+   "code": "05-inference",
+   "nombre": "Inferencia",
+   "meta": "7 entradas · GPU NVIDIA RTX A2000 12GB",
+   "nodes": [
+    {
+     "id": "lmstudio",
+     "t": "LM Studio (puerto 1234)",
+     "s": "warn",
+     "d": "Motor principal de inferencia local.",
+     "meas": "/bin/sh: 1: lms: not found",
+     "evid": "$ lms ps\n/bin/sh: 1: lms: not found",
+     "fix": "Nada."
+    },
+    {
+     "id": "ollama",
+     "t": "Ollama (puerto 11434)",
+     "s": "ok",
+     "d": "Segundo motor, API compatible OpenAI.",
+     "meas": "3 modelos: ibm/granite4.2:8b-q4_K_M, qwen2.5:7b, deepseek-r1-distill-qwen-14b:latest",
+     "evid": "$ curl -s localhost:11434/v1/models\n{\"object\":\"list\",\"data\":[{\"id\":\"ibm/granite4.2:8b-q4_K_M\",\"object\":\"model\",\"created\":1789384467,\"owned_by\":\"ibm\"},{\"id\":\"qwen2.5:7b\",\"object\":\"model\",\"created\":1788527960,\"owned_by\":\"library\"},{\"id\":\"deepseek-r1-distill-qwen-14b:latest\",\"object\":\"model\",\"created\":1787570492,\"owned_by\":\"library\"}]}",
+     "fix": "Nada."
+    },
+    {
+     "id": "comfyui",
+     "t": "ComfyUI (bajo demanda)",
+     "s": "ok",
+     "d": "Generación de imagen local para arte de fichas e infografías.",
+     "meas": "systemctl --user is-active comfyui → active",
+     "evid": "$ systemctl --user is-active comfyui\nactive",
+     "fix": "Pararlo cuando no se usa es lo correcto: libera VRAM."
+    },
+    {
+     "id": "gpu",
+     "t": "GPU NVIDIA RTX A2000 12GB",
+     "s": "ok",
+     "d": "Memoria y temperatura reales del acelerador.",
+     "meas": "NVIDIA RTX A2000 12GB, 9552 MiB, 12282 MiB, 0 %, 46",
+     "evid": "$ nvidia-smi --query-gpu=name,memory.used,memory.total,utilization.gpu,temperature.gpu --format=csv,noheader\nNVIDIA RTX A2000 12GB, 9552 MiB, 12282 MiB, 0 %, 46",
+     "fix": "Si la VRAM va justa: descargar el modelo de visión antes de generar imagen."
+    },
+    {
+     "id": "mcp",
+     "t": "MCP del lab (4)",
+     "s": "ok",
+     "d": "Herramientas del agente contra las bases del lab.",
+     "meas": "animation-server · lab-db · lancedb · codebase-memory",
+     "evid": "$ grep -A20 '^mcp_servers' ~/.hermes/config.yaml → animation-server, lab-db, lancedb, codebase-memory",
+     "fix": "No hay MCP de git ni de inventario de crons: son justo los dos huecos P0/P1 de la lista."
+    }
+   ]
+  },
+  {
+   "code": "03-automation",
+   "nombre": "Automatización",
+   "meta": "4 entradas · 45 crons",
+   "nodes": [
+    {
+     "id": "crones",
+     "t": "Crons de Hermes",
+     "s": "warn",
+     "d": "El motor real del lab: jobs diarios, horarios y semanales.",
+     "meas": "45 total · 43 activos · 1 en error · 44 ok",
+     "evid": "$ cat ~/.hermes/cron/jobs.json (recuento)\ntotal=45 enabled=43 error=['rag-reindex-daily']",
+     "fix": "Ver el hueco P0 de los jobs en error."
+    },
+    {
+     "id": "ragjob",
+     "t": "job: rag-reindex-daily",
+     "s": "bad",
+     "d": "Job del RAG que alimenta las búsquedas del agente.",
+     "meas": "last_status=error · streak=1 · 2026-09-28T08:05:57.539407+02:00",
+     "evid": "job 'rag-reindex-daily' {status:'error', failure_streak:1, last:'2026-09-28T08:05:57.539407+02:00'}",
+     "fix": "Leer su log y decidir si el catchup lo cubre.",
+     "crit": true,
+     "prio": "P0"
+    },
+    {
+     "id": "crontab",
+     "t": "crontab del sistema (9 líneas)",
+     "s": "warn",
+     "d": "Automatizaciones fuera de Hermes: healthchecks, state-manager, backups.",
+     "meas": "/home/jokoalmi/hermes-lab/decision · /home/jokoalmi/hermes-lab/scripts/ · bash · cd",
+     "evid": "5 * * * * cd \"/home/jokoalmi/hermes-lab/skills/docker-admin/scripts\" && bash healthcheck.sh --cron >> \"/home/jokoalmi/he\n*/30 * * * * bash /home/jokoalmi/hermes-lab/skills/n8n-admin/healthcheck-n8n.sh >> \"/home/jokoalmi/hermes-lab/skills/doc\n35 22 * * * /home/jokoalmi/hermes-lab/scripts/git-backup.sh --quiet >> /home/jokoalmi/hermes-lab/logs/git-backup.log 2>&\n0 12 * * * /home/jokoalmi/hermes-lab/decision-engine/apply-decision.sh >> /mnt/ssd_ia_datos/lab-state/logs/apply-decisio",
+     "fix": "Los vigilantes apuntan a logs que hay que comprobar (ver nodo de logs)."
+    },
+    {
+     "id": "logsvig",
+     "t": "Logs de los vigilantes",
+     "s": "bad",
+     "d": "Un vigilante del que no queda registro no es un vigilante.",
+     "meas": "docker_health: sin registro · n8n_health: sin registro",
+     "evid": "$ tail -2 docker_health\n(sin salida)\n$ tail -2 n8n_health\n(sin salida)",
+     "fix": "Arreglar la ruta del log y verificar que escribe también cuando todo va bien.",
+     "prio": "P1"
+    }
+   ]
+  },
+  {
+   "code": "01-knowledge",
+   "nombre": "Conocimiento",
+   "meta": "20 entradas · 900 docs · 55 objetos",
+   "nodes": [
+    {
+     "id": "salud",
+     "t": "Knowledge health",
+     "s": "ok",
+     "d": "El propio lab puntúa su estructura documental.",
+     "meas": "KNOWLEDGE HEALTH 100/100 · supervivencia DEC 100%",
+     "evid": "$ /usr/bin/python3 tools/knowledge_health.py\n  DEC activas:       6\n  DEC retiradas:     0\n  DEC expiradas:     0\n  DEC revalidadas:   27\n  Supervivencia:     100%\n============================================================",
+     "fix": "Es puntuación de estructura, no de utilidad: mira los nodos de al lado."
+    },
+    {
+     "id": "objetos",
+     "t": "Objetos de conocimiento",
+     "s": "warn",
+     "d": "Los ficheros que gobiernan el lab: reglas, decisiones, predicciones, patrones.",
+     "meas": "55 entradas · vivos 33 · .bak 22 · {'CANALES-NO': 1, 'DEC': 5, 'DEC-GAIPRO': 1, 'FUENTES': 1, 'PATTERN': 1, 'POLICY': 3, 'PRED': 3, 'RULE': 18}",
+     "evid": "$ ls 01-knowledge/objects | wc -l → 55\npor tipo: {'CANALES-NO': 1, 'DEC': 5, 'DEC-GAIPRO': 1, 'FUENTES': 1, 'PATTERN': 1, 'POLICY': 3, 'PRED': 3, 'RULE': 18}",
+     "fix": "Sacar los .bak de la carpeta canónica."
+    },
+    {
+     "id": "corpus",
+     "t": "Corpus documental",
+     "s": "ok",
+     "d": "Experimentos, observaciones, modelos y patrones documentados.",
+     "meas": "experiments 37 · hypotheses 5 · models 11 · objects 21 · observations 149 · patterns 5 · prompt-compiler 2 · references 2886",
+     "evid": "01-knowledge/{ experiments:37, hypotheses:5, models:11, objects:21, observations:149, patterns:5, prompt-compiler:2, references:2886 }",
+     "fix": "Nada."
+    },
+    {
+     "id": "enlaces",
+     "t": "Enlaces entre documentos",
+     "s": "bad",
+     "d": "Cuánto se referencian los documentos entre sí.",
+     "meas": "Con enlaces: 38/900",
+     "evid": "Estructura documental:\n  Frontmatter: 792/900\n  Con enlaces: 38/900",
+     "fix": "Enlazar al reutilizar una DEC, un patrón o una observación.",
+     "prio": "P1"
+    },
+    {
+     "id": "contrato",
+     "t": "Contrato de evidencia",
+     "s": "bad",
+     "d": "Regla del lab: cada afirmación con su fuente.",
+     "meas": "Cumplen contrato: 0/31",
+     "evid": "Evidence Contract:\n  Cumplen contrato:  0/31",
+     "fix": "Validar el medidor antes de tocar documentos.",
+     "prio": "P1"
+    },
+    {
+     "id": "reports",
+     "t": "Carpeta reports/",
+     "s": "bad",
+     "d": "Capa prevista para informes consolidados.",
+     "meas": "1 entradas",
+     "evid": "reports: 1 entradas",
+     "fix": "Generador de informes o fuera del árbol.",
+     "prio": "P1"
+    }
+   ]
+  },
+  {
+   "code": "04-operations",
+   "nombre": "Operaciones",
+   "meta": "15 entradas · tools, tests, verificación",
+   "nodes": [
+    {
+     "id": "tools",
+     "t": "tools/",
+     "s": "ok",
+     "d": "Cajas de herramientas del lab. Crecen rápido y sin poda.",
+     "meas": "139 ficheros · 2 son .bak (1 %)",
+     "evid": "$ ls tools | wc -l → 139\n$ ls tools/*.bak* | wc -l → 2",
+     "fix": "Archivar los .bak antiguos fuera de tools/.",
+     "prio": "P2"
+    },
+    {
+     "id": "gitlab",
+     "t": "Control de versiones del lab",
+     "s": "ok",
+     "d": "El lab ya está versionado.",
+     "meas": "b4eed43|2026-09-28|serie(ia-agentes): L4 registrada como publicada (28-09-2026) y material de la leccion 4 versionado",
+     "evid": "$ git log -1 → b4eed43|2026-09-28|serie(ia-agentes): L4 registrada como publicada (28-09-2026) y material de la leccion 4 versionado",
+     "fix": "Inicializar repo y sumarlo a git-backup.sh.",
+     "crit": false,
+     "prio": ""
+    },
+    {
+     "id": "repos",
+     "t": "Repos hermanos",
+     "s": "warn",
+     "d": "Comparativa de qué proyectos sí tienen historial.",
+     "meas": "joko-lab SÍ · hermes-lab SÍ · perfume-ia SÍ · lmstudio_real_monitor NO",
+     "evid": "REPO: /home/jokoalmi/joko-lab b4eed43|2026-09-28|serie(ia-agentes): L4 registrada como pub\nREPO: /home/jokoalmi/hermes-lab e582864|2026-09-28|fix(backup): versionar las ediciones del \nREPO: /home/jokoalmi/perfume-ia 454ec89|2026-07-18|phase-1-embodiment: Fase 1 completada\nSIN GIT: /home/jokoalmi/lmstudio_real_monitor fatal: no es un repositorio git (ni ninguno de los directori",
+     "fix": "Que el proyecto principal sea el único sin historial es la incoherencia a corregir."
+    },
+    {
+     "id": "verif",
+     "t": "tests/ y verification/",
+     "s": "ok",
+     "d": "Red de seguridad del código del lab.",
+     "meas": "tests 25 · verification 17",
+     "evid": "tests/ → 25 · verification/ → 17",
+     "fix": "Nada."
+    },
+    {
+     "id": "instr",
+     "t": "instruments/",
+     "s": "bad",
+     "d": "Instrumentos de medida del lab.",
+     "meas": "2 entradas: critic-loop, laya-comparativa",
+     "evid": "instruments/ → critic-loop, laya-comparativa",
+     "fix": "Faltan medidor de contrato de evidencia, gate de veracidad y medidor de alucinaciones.",
+     "prio": "P2"
+    },
+    {
+     "id": "varias",
+     "t": "assets/ · inbox/",
+     "s": "warn",
+     "d": "Carpetas creadas y casi sin uso.",
+     "meas": "assets 1 · inbox 1",
+     "evid": "assets: 1 entradas\ninbox: 1 entradas\nreports: 1 entradas\ninstruments: 2 entradas",
+     "fix": "Unificar criterio: se usan o se retiran.",
+     "prio": "P2"
+    },
+    {
+     "id": "lpadocs",
+     "t": "lpa/ · docs/ · research/",
+     "s": "ok",
+     "d": "Programa de investigación, documentación oficial y research.",
+     "meas": "lpa 16 · docs 12 · research 404",
+     "evid": "lpa/ → 16 · docs/ → 12 · research/ → 404",
+     "fix": "Nada."
+    }
+   ]
+  },
+  {
+   "code": "02-infrastructure",
+   "nombre": "Infraestructura",
+   "meta": "7 entradas · red, Docker, backups",
+   "nodes": [
+    {
+     "id": "puertos",
+     "t": "Servicios escuchando",
+     "s": "ok",
+     "d": "Lo que hay realmente levantado en el host.",
+     "meas": "21 puertos: 53 631 1234 4000 5000 5050 5678 8000 8081 8099 8188 8384",
+     "evid": "$ ss -ltn | awk '{print $4}' | sed 's/.*://' | sort -n | uniq\n53 631 1234 4000 5000 5050 5678 8000 8081 8099 8188 8384 8765 9222 9224 9749 9911 11434 22000 33061 41343",
+     "fix": "Falta el inventario 'puerto → servicio → para qué sirve' dentro del lab."
+    },
+    {
+     "id": "dockerlog",
+     "t": "Vigilancia de servicios",
+     "s": "warn",
+     "d": "Healthchecks de Docker y n8n del crontab.",
+     "meas": "docker_health: 0 líneas · n8n_health: 0 líneas",
+     "evid": "docker_health: existe=True lineas=0 ultima=(sin salida)\nn8n_health: existe=False lineas=0 ultima=(sin salida)",
+     "fix": "El estado del stack se consulta en solo lectura (docker compose ps); nunca reiniciando a ciegas.",
+     "prio": "P1"
+    },
+    {
+     "id": "n8n",
+     "t": "n8n (puerto 5678)",
+     "s": "ok",
+     "d": "Servicio protegido del lab: workflows y credenciales.",
+     "meas": "escuchando en 5678",
+     "evid": "puertos en escucha: … 5678 …",
+     "fix": "Solo se vigila. No se para, ni reinicia, ni recrea sin confirmación explícita."
+    },
+    {
+     "id": "backups",
+     "t": "Backups",
+     "s": "ok",
+     "d": "Copia diaria del lab y del estado de Hermes.",
+     "meas": "jobs con 'backup': 0 · destino /mnt/ssd_ia_datos/backups: existe",
+     "evid": "jobs: —\ndestino existe: True",
+     "fix": "Hay copia, pero sin git no hay historial navegable: los dos arreglos van juntos.",
+     "prio": "P1"
+    }
+   ]
+  }
+ ],
+ "huecos": [
+  {
+   "p": "P0",
+   "t": "cron 'rag-reindex-daily' en error",
+   "capa": "Automatización",
+   "ev": "last_status=error · failure_streak=1 · último intento 2026-09-28T08:05:57.539407+02:00 · script rag-reindex.sh",
+   "fix": "Leer su log y decidir: si el catchup ya cubre el trabajo, retirar el job; si no, arreglarlo."
+  },
+  {
+   "p": "P1",
+   "t": "Contrato de evidencia: 0/31",
+   "capa": "Conocimiento",
+   "ev": "Evidence Contract:\n  Cumplen contrato:  0/31",
+   "fix": "Validar primero el medidor (un 0 absoluto apunta a instrumento mal calibrado, no a N documentos incumplidores)."
+  },
+  {
+   "p": "P1",
+   "t": "Documentos enlazados: 4 % (38/900)",
+   "capa": "Conocimiento",
+   "ev": "Con enlaces: 38/900 (4 %)\nH3: 249/900",
+   "fix": "Enlazar cuando se reutiliza una DEC, un patrón o una observación; sin índice cruzado el corpus es opaco."
+  },
+  {
+   "p": "P1",
+   "t": "reports/ con 1 fichero(s)",
+   "capa": "Conocimiento",
+   "ev": "reports: 1 entradas (frente a 149 observaciones)",
+   "fix": "O generador de informes periódicos, o retirar la carpeta del árbol."
+  },
+  {
+   "p": "P1",
+   "t": "22 .bak dentro de objects/",
+   "capa": "Conocimiento",
+   "ev": "objects/ = 55 entradas · 22 con .bak · vivos: {'CANALES-NO': 1, 'DEC': 5, 'DEC-GAIPRO': 1, 'FUENTES': 1, 'PATTERN': 1, 'POLICY': 3, 'PRED': 3, 'RULE': 18}",
+   "fix": "Mover los .bak a cuarentena con fecha y dejar objects/ solo con objetos vivos."
+  },
+  {
+   "p": "P1",
+   "t": "log de vigilancia vacío/inexistente: docker_health",
+   "capa": "Infraestructura",
+   "ev": "docker_health: existe=True · líneas=0",
+   "fix": "Corregir la ruta del log y comprobar que escribe algo cuando todo va bien, no solo al fallar."
+  },
+  {
+   "p": "P1",
+   "t": "log de vigilancia vacío/inexistente: n8n_health",
+   "capa": "Infraestructura",
+   "ev": "n8n_health: existe=False · líneas=0",
+   "fix": "Corregir la ruta del log y comprobar que escribe algo cuando todo va bien, no solo al fallar."
+  },
+  {
+   "p": "P2",
+   "t": "instruments/ con 2 instrumento(s)",
+   "capa": "Operaciones",
+   "ev": "instruments: 2 → ['critic-loop', 'laya-comparativa']",
+   "fix": "Faltan al menos: medidor del contrato de evidencia, gate de veracidad, medidor de alucinaciones."
+  },
+  {
+   "p": "P2",
+   "t": "carpetas casi vacías: assets, inbox, reports",
+   "capa": "Operaciones",
+   "ev": "assets: 1 entradas\ninbox: 1 entradas\nreports: 1 entradas",
+   "fix": "Decidir por carpeta: se usa o se retira. Carpetas vacías prometen algo que no existe."
+  },
+  {
+   "p": "P2",
+   "t": "proyectos sin git: lmstudio_real_monitor",
+   "capa": "Operaciones",
+   "ev": "SIN GIT: /home/jokoalmi/lmstudio_real_monitor",
+   "fix": "Mismo tratamiento que el lab: repo + primer commit."
+  }
+ ],
+ "kpis": [
+  {
+   "v": "45",
+   "l": "crons Hermes",
+   "n": "43 activos · 1 en error",
+   "s": "warn",
+   "go": "capa-03-automation"
+  },
+  {
+   "v": "167",
+   "l": "skills",
+   "n": "41 de dominio joko-lab",
+   "s": "info",
+   "go": "resumen"
+  },
+  {
+   "v": "900",
+   "l": "docs de conocimiento",
+   "n": "frontmatter 792/900",
+   "s": "ok",
+   "go": "capa-01-knowledge"
+  },
+  {
+   "v": "10",
+   "l": "huecos detectados",
+   "n": "1 críticos · 6 altos · 3 menores",
+   "s": "bad",
+   "go": "falt"
+  },
+  {
+   "v": "4",
+   "l": "MCP conectados",
+   "n": "animation-server · lab-db · lancedb · codebase-memory",
+   "s": "ok",
+   "go": "capa-05-inference"
+  },
+  {
+   "v": "1",
+   "l": "motores vivos",
+   "n": "LM Studio + Ollama",
+   "s": "ok",
+   "go": "capa-05-inference"
+  },
+  {
+   "v": "33",
+   "l": "objetos vivos",
+   "n": "1 CANALES-NO · 5 DEC · 1 DEC-GAIPRO",
+   "s": "info",
+   "go": "capa-01-knowledge"
+  },
+  {
+   "v": "2",
+   "l": ".bak en tools/",
+   "n": "de 139 ficheros",
+   "s": "bad",
+   "go": "capa-04-operations"
+  }
+ ]
+}

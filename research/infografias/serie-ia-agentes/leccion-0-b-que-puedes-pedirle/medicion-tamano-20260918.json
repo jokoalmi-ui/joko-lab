@@ -1,0 +1,95 @@
+{
+  "fecha": "2026-09-18",
+  "hora_inicio": "07:32:25",
+  "api": "LM Studio (localhost:1234), temperature 0",
+  "aviso": "Los modelos 8B y 35B solo cargan tras descargar glm-4.6v-flash (VRAM).",
+  "prueba": {
+    "clasificar": "5 resenas -> POSITIVA/NEGATIVA (esperado: POSITIVA,NEGATIVA,POSITIVA,NEGATIVA,POSITIVA)",
+    "extraer": "importe del transporte de una factura (esperado 12,00 EUR)",
+    "calcular": "4 x 89,50 - 10,00 + 12,00 (esperado 370,00 EUR)"
+  },
+  "modelos": [
+    {
+      "tamano": "2,6B",
+      "modelo": "lfm2.5-2.6b",
+      "clasificar": {
+        "aciertos": 5,
+        "n": 5,
+        "segundos": 18.8,
+        "finish_reason": "stop",
+        "salida": "1=POSITIVA\n2=NEGATIVA\n3=POSITIVA\n4=NEGATIVA\n5=POSITIVA",
+        "razonamiento": "The user wants me to classify each review as POSITIVA or NEGATIVA based on the customer's opinion.\nI must respond ONLY with one line per review in the format: \"NUMBER=POSITIVA\" or \"NUMBER=NEGATIVA\".\n\nLet's analyze each review:\n\n1. \"Pedí dos tazas y llegaron en 48 horas, muy bien embaladas.\"\n- Delivery time (48 hours) is acceptable/good.\n- Packaging (\"muy bien embaladas\") is positive.\n- Sentiment: "
+      },
+      "extraer": {
+        "acierto": false,
+        "segundos": 7.4,
+        "finish_reason": "length",
+        "salida": "",
+        "razonamiento": "\nThinking Process:\n\n1.  **Analyze the Request:**\n    *   Input: A text snippet describing an invoice (Factura F-2026-0918).\n    *   Content:\n        *   Client: Erandio Hosteleria SL.\n        *   Item: 4 x Cafetera Compacta a 89,50 EUR la unidad.\n        *   Transport: 12,00 EUR.\n        *   Discount applied: 10,00 EUR.\n    *   Constraint: Dime UNICAMENTE (ONLY) the import amount of transport in e"
+      },
+      "calcular": {
+        "acierto": false,
+        "segundos": 6.5,
+        "finish_reason": "stop",
+        "salida": "360",
+        "razonamiento": "\nThinking Process:\n\n1.  **Analyze the Request:**\n    *   Input: A text describing an invoice (Factura F-2026-0918).\n    *   Details:\n        *   Item: 4 x Cafetera Compacta at 89,50 EUR each.\n        *   Transport: 12,00 EUR.\n        *   Discount applied: 10,00 EUR.\n    *   Task: Calculate the total of the invoice in euros using the formula provided (4 x 89.50 - 10.00 + 12.00).\n    *   Constraint:"
+      },
+      "segundos_total": 32.7
+    },
+    {
+      "tamano": "8B",
+      "modelo": "granite-4.1-8b",
+      "clasificar": {
+        "aciertos": 5,
+        "n": 5,
+        "segundos": 13.8,
+        "finish_reason": "stop",
+        "salida": "1=POSITIVA  \n2=NEGATIVA  \n3=POSITIVA  \n4=NEGATIVA  \n5=POSITIVA",
+        "razonamiento": ""
+      },
+      "extraer": {
+        "acierto": true,
+        "segundos": 0.3,
+        "finish_reason": "stop",
+        "salida": "12,00",
+        "razonamiento": ""
+      },
+      "calcular": {
+        "acierto": false,
+        "segundos": 0.2,
+        "finish_reason": "stop",
+        "salida": "342.00",
+        "razonamiento": ""
+      },
+      "segundos_total": 14.3
+    },
+    {
+      "tamano": "35B",
+      "modelo": "qwen3.6-35b-a3b-mtp",
+      "clasificar": {
+        "aciertos": 5,
+        "n": 5,
+        "segundos": 119.6,
+        "finish_reason": "stop",
+        "salida": "1=POSITIVA\n2=NEGATIVA\n3=POSITIVA\n4=NEGATIVA\n5=POSITIVA",
+        "razonamiento": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - **Task:** Classify each review as POSITIVE or NEGATIVE based on customer opinion.\n   - **Output Format:** ONLY one line per review, in the format: `1=POSITIVA` (or `NEGATIVA`).\n   - **Input Reviews:**\n     1. Pedí dos tazas y llegaron en 48 horas, muy bien embaladas.\n     2. El paquete tardó once días y nadie contestó a mis correos.\n    "
+      },
+      "extraer": {
+        "acierto": true,
+        "segundos": 48.8,
+        "finish_reason": "stop",
+        "salida": "12,00",
+        "razonamiento": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - Invoice number: F-2026-0918\n   - Client: Erandio Hosteleria SL\n   - Item: 4 x Cafetera Compacta at 89.50 EUR each\n   - Transport: 12.00 EUR\n   - Discount applied: 10.00 EUR\n   - Request: \"Dime UNICAMENTE el importe del transporte en euros, sin texto adicional.\" (Tell me ONLY the transport amount in euros, without additional text.)\n\n2.  *"
+      },
+      "calcular": {
+        "acierto": false,
+        "segundos": 49.1,
+        "finish_reason": "stop",
+        "salida": "360",
+        "razonamiento": "Here's a thinking process:\n\n1.  **Analyze User Input:**\n   - Invoice: F-2026-0918 (irrelevant for calculation)\n   - Client: Erandio Hosteleria SL (irrelevant)\n   - Item: 4 x Cafetera Compacta at 89.50 EUR each\n   - Transport: 12.00 EUR\n   - Discount applied: 10.00 EUR\n   - Formula given: 4 x 89,50 - 10,00 + 12,00\n   - Request: Calculate the total in euros, respond ONLY with the number.\n\n2.  **Perf"
+      },
+      "segundos_total": 217.5
+    }
+  ],
+  "hora_fin": "07:36:49"
+}

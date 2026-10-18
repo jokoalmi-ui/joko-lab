@@ -1,0 +1,58 @@
+id: RULE-009
+type: RULE
+decision_origin: experimento
+status: activo
+version: 1
+created: '2026-08-06'
+last_validated: '2026-08-06'
+next_review: '2026-11-06'
+expires: '2027-02-06'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-08-06T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-06T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-08-06T00:00:00Z
+confidence: 0.8
+confidence_label: ALTA
+evidence:
+- 'Bateria modelos 06-ago: lfm2.5-2.6b 7/7, 55.3 tok/s (el mas rapido del lab)'
+- 'Estudio autor 06-ago: tool calling EXCELENTE (OpenCode+MCP), codigo flojo, espanol bien'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: latencia y precision en tareas ageneticas
+  baseline: '55.3 tok/s (bateria 06-ago)'
+  current: null
+  last_checked: null
+history:
+- date: '2026-08-06'
+  event: created
+- date: '2026-08-06'
+  event: validated_by_battery
+  note: '7/7 en bateria de 8 dimensiones; 55.3 tok/s; 1.67 GB'
+body: "Usar LFM 2.5 (lfm2.5-2.6b) para tool calling y tareas ageneticas ligeras (enrutamiento, agentes, MCP, function calling). Modelo mas rapido del lab (55 tok/s) con tool calling excelente. NO usar para codigo one-shot complejo ni creatividad (debilidades documentadas). No sustituye a granite (estandar RAG/JSON) ni a gemma-4 (creatividad)."
+legacy_fields:
+  condicion:
+    tipo_tarea:
+    - tool_calling
+    - function_calling
+    - agente
+    - enrutamiento
+    - mcp
+    - tool_use
+  accion:
+    modelo: lfm2.5-2.6b
+    proveedor: lmstudio
+    params:
+      temperature: 0.3
+      max_tokens: 2000
+  prioridad: 85
+  activa: true
+  nota: 'Requiere leer reasoning_content (razonamiento encubierto). max_tokens < 800 deja content vacio. 1.67 GB, el mas ligero.'
+  validaciones: 1

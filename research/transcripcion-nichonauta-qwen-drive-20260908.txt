@@ -1,0 +1,190 @@
+0:00 El día de hoy vamos a ver Qend Drive
+0:02 1.04B,
+0:04 el cual es un modelo lanzado por la
+0:06 gente de Alibaba Quen con un tamaño de
+0:08 poco más de 4 billions de parámetros y
+0:11 menor a 5 billions. Es un modelo que se
+0:14 libera bajo licencia Apache 2.0, el cual
+0:17 tiene como entrada imagen y texto. Y de
+0:19 hecho, parte de lo importante de este
+0:22 modelo está por aquí. Este es un Fine
+0:24 tuning muy completo y complejo del Quen
+0:27 3.54B que a su vez está basado en el
+0:30 Quen 3.54B
+0:32 base que inicialmente solo predice
+0:34 siguientes palabras. Si traducimos su
+0:36 repositorio, por aquí vamos a ver cosas
+0:39 bastante interesantes, entre ellas lo
+0:41 siguiente. Quen Drive 1.0 conserva la
+0:45 arquitectura del modelo de lenguaje
+0:46 visual Qen 3.5 preentrenado e integra
+0:50 percepción 3D. Respuesta a preguntas
+0:53 visuales y planificación de movimiento
+0:56 dentro de un marco unificado. El modelo
+0:59 Quen 3.54B nativamente multimodal actúa
+1:02 como el VLM compartido con dos módulos
+1:05 externos conectados. Un cabezal de
+1:07 percepción web, que realiza
+1:10 conjuntamente detección de objetos 3D,
+1:12 predicción de ocupación semántica y
+1:14 segmentación de mapas BEV y un experto
+1:17 en planificación que se basa en las
+1:19 representaciones VLM compartidas para
+1:21 generar futuras trayectorias del ego
+1:24 mediante coincidencia de flujo. Es
+1:26 decir, este modelo principalmente está
+1:28 diseñado con el objetivo de mejorar su
+1:31 percepción de imágenes y entender los
+1:34 elementos 3D que puede haber a partir de
+1:37 la misma con el objetivo no únicamente
+1:39 de entender el entorno, sino también de
+1:42 llevar a cabo tareas de movimiento en
+1:44 dichas escenas. Si visualizamos por aquí
+1:46 esta imagen, vamos a ver más o menos
+1:48 cómo es que el modelo entiende las
+1:49 cosas. Y es que a partir de cierta
+1:52 imagen logra trazar un mapa 3D de lo que
+1:55 está viendo en la misma para con ello
+1:57 pues tomar cierta decisión. Esto está
+2:00 muy interesante porque si bien
+2:02 inicialmente es un modelo de lenguaje
+2:03 preparado para otra cosa, una vez con un
+2:06 entrenamiento bastante sofisticado para
+2:08 este tipo de tareas, se logra hacer que
+2:10 un modelo de lenguaje se vuelva algo que
+2:13 entiende el camino, entiende los
+2:16 escenarios y a partir de ahí lograr
+2:18 avanzar en los mismos. Esto comparado
+2:21 contra el Quen 3.54B original, pues hace
+2:24 que en muchas de las cosas mejore y para
+2:27 mucho en este tipo de tareas. Por
+2:29 ejemplo, en el benchmark CC all pasamos
+2:33 de 2.6 de puntuación a un total de 41.3.
+2:38 Es decir, mientras que para otras tareas
+2:40 probablemente haya perdido habilidad,
+2:42 para este tipo de entornos, para este
+2:44 tipo de pruebas, la verdad es que ha
+2:46 mejorado mucho. Y no solo como prueba,
+2:48 sino como algo realmente utilizable.
+2:50 Realmente se mejoró muchísimo su
+2:52 entendimiento de las imágenes para con
+2:54 ello entender de forma espacial en 3D lo
+2:58 que está observando para después tomar
+3:01 dichas decisiones. Por aquí vemos más
+3:04 información, por ejemplo, acerca sobre
+3:06 la percepción 3D. Y a partir de lo que
+3:08 va viendo en las imágenes, vemos como
+3:10 logra entender de distintas formas lo
+3:13 que hay en la misma. no es simplemente
+3:15 que entiende la imagen de forma plana,
+3:17 sino que trata de darle una percepción
+3:19 3D que nosotros comúnmente hacemos de
+3:21 forma automática, sin darnos cuenta. Sin
+3:24 embargo, aquí también lo es lo hace
+3:26 actualmente este modelo de lenguaje.
+3:28 Claramente no es un modelo de lenguaje
+3:30 que nos pueda servir para todo tipo de
+3:31 usos en lo más mínimo. Sin embargo, en
+3:34 el momento en el que requeramos algo
+3:35 como esto, lo interesante es que ya no
+3:37 tenemos que empezar de cero, sino que ya
+3:39 está este modelo totalmente preparado
+3:41 para ello. Y lo más interesante aún es
+3:43 que lo podemos utilizar no únicamente
+3:45 para entornos reales. Por ejemplo, lo
+3:47 podemos probar para ver qué tal funciona
+3:50 hasta dentro de un videojuego, un juego
+3:52 de carreras o lo que sea para ver qué
+3:54 tal determina las cosas. Sin embargo,
+3:57 según entiendo, dado las imágenes que
+3:59 estábamos viendo, está principalmente
+4:00 pensado para el mundo real, con lo cual,
+4:03 quién sabe qué tal se comporte en otro
+4:05 tipo de dibujos, en otro tipo de
+4:07 gráficos, además de en otro tipo de
+4:10 ciudades, porque no es lo mismo en una
+4:11 ciudad bien construida como las que
+4:13 tenemos aquí comparado contra un campo
+4:16 en medio de la nada en la que muy apenas
+4:18 se alcanza a distinguir lo que es camino
+4:20 y no. Es un modelo bastante interesante,
+4:22 tal como menciono, que para su campo y
+4:24 su tipo de uso es muy muy bueno, sin
+4:27 embargo, pues no es lo típico que vamos
+4:29 a utilizar. Sin embargo, vemos que bajo
+4:31 este tipo de entrenamiento se puede
+4:33 cambiar totalmente el comportamiento del
+4:35 modelo y sus habilidades para este tipo
+4:37 de tareas, pero con un entrenamiento
+4:39 completo, no con un simple lora, en este
+4:42 caso, si un entrenamiento SFT, es decir,
+4:45 a todos los parámetros del mismo modelo
+4:47 para con ello pues potenciar sus
+4:49 habilidades. La verdad es que está
+4:50 bastante interesante, sin embargo, pues
+4:52 tal como decía, no es algo que yo vaya a
+4:54 utilizar, que me vaya a servir, pero muy
+4:56 muy bien, porque además es en un tamaño
+4:58 bastante reducido. es el Qen 3.54B,
+5:01 que de hecho comúnmente se utiliza para
+5:03 muchos de estos fine tunings
+5:05 específicos, dado que de por sí el
+5:07 modelo original ya es bastante bastante
+5:09 bueno para todo tipo de áreas, pues una
+5:12 vez que se le hace un fine tuning para
+5:13 un área en concreto, pues nos demuestra
+5:15 que aumenta muchísimo sus capacidades.
+5:18 Esto se suma a estos fine tunings
+5:20 interesantes que tenemos de la gente de
+5:22 Quen a sus modelos, como lo puede ser el
+5:24 Quen Agent World, que esto simula mundos
+5:27 virtuales pero de uso de la terminal,
+5:30 por ejemplo, de un sistema operativo.
+5:32 Aquí lo tenemos simulando mundos
+5:34 virtuales y en este nuevo modelo no es
+5:36 simularlo, es ejecutar cosas, pero en un
+5:39 mundo real [resoplido]
+5:41 o mundo virtual como un videojuego. Tal
+5:43 como comento, otro modelo interesante
+5:45 que habíamos visto a partir de ese Qen
+5:47 3.5 54B era el del agente de Microsoft,
+5:50 este Fara 1.5,
+5:52 este Fara 1.54B,
+5:55 el cual está preparado para uso agéntico
+5:57 del PC, principalmente del navegador.
+6:01 Muy interesante, la verdad, lo que estos
+6:02 modelos pequeñitos logran hacer, siendo
+6:05 completamente superiores a modelos
+6:07 enormes en estas áreas en concreto, una
+6:09 vez que se preparan para ellos y todo
+6:11 ello a partir de Quen 3.54B.
+6:14 Así que esto nos da una gran pista de
+6:16 que si queremos hacer algún tipo de fine
+6:18 tuning o demás muy específico, muy
+6:20 elaborado, pues quizá la colección de
+6:23 Quen 3.5 sigue siendo de las más
+6:25 sobresalientes. Y no solo ello, sino que
+6:27 además probablemente en muchos de los
+6:29 casos ni siquiera hace falta Fine Tuner,
+6:32 sino que descargamos el modelo original,
+6:34 vemos que tiene muchas descargas y
+6:36 preparándole el entorno en cuanto a
+6:38 sistem herramientas y demás, comúnmente
+6:40 sería suficiente. De lo contrario, pues
+6:43 no solo eso, sino hacer un fine tuning,
+6:45 tal como hemos visto. Este es un modelo
+6:47 diferente a lo típico que traemos al
+6:48 canal, que me parece interesante también
+6:50 hablar un poco de ello. Sin embargo,
+6:52 pues probar quizá no porque no es la
+6:54 tarea típica que vamos a hacer. De igual
+6:56 forma, si les interesa que lo probemos
+6:59 esto, por ejemplo, dentro de algún
+7:01 entorno virtual, pues coméntenmelo y lo
+7:03 podemos ver. Mientras tanto, pues por
+7:05 aquí mismo tenemos una aplicación demo
+7:08 en la que podemos subir nuestra imagen o
+7:09 probar con alguna de las que ya vienen.
+7:12 Si quieres seguir viendo este tipo de
+7:13 videos, simplemente da like y
+7:15 suscríbete.

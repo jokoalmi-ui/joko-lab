@@ -1,0 +1,85 @@
+id: RULE-022
+type: RULE
+decision_origin: directriz_usuario
+status: activo
+version: 1
+created: '2026-10-18'
+last_validated: '2026-10-18'
+next_review: '2026-11-18'
+expires: '2027-02-18'
+generated:
+  at: 2026-10-18T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-18T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-10-18T00:00:00Z
+  - by: machine:hermes
+    at: 2026-10-18T00:00:00Z
+sources:
+  - resource: tools/validar_ficha_preenvio.py
+  - resource: tools/medir_visibilidad_frasco.py
+  - resource: ~/.hermes/cron/jobs.json
+  - resource: ~/.hermes/skills/joko-lab/perfume-del-dia/SKILL.md
+  - resource: /home/jokoalmi/perfume-ia/data/coleccion.db
+title: "Un fallo detectado no se cierra corrigiendo el artefacto: se cierra corrigiendo el instrumento que lo dejo pasar, y se escribe la norma"
+desc: >-
+  Norma de proceso en tres clausulas y un control. (1) CORREGIR EL ARTEFACTO:
+  el dato o el fichero que salio mal se arregla con la fuente real delante (BD,
+  etiqueta del producto, web oficial), nunca de memoria. (2) CORREGIR EL
+  INSTRUMENTO: lo que produjo el fallo (puerta de validacion, docstring, prompt
+  de un cron, esquema de la BD, umbral heredado) se toca en el mismo trabajo;
+  arreglar solo la salida deja el mismo agujero abierto para el dia siguiente.
+  (3) ESCRIBIR LA NORMA: la leccion queda en la skill del flujo o en una RULE con
+  las cifras medidas, y se anota como se evito el fallo, no solo que se evito.
+  (4) CONTROL NEGATIVO OBLIGATORIO: toda correccion de una puerta o de un
+  instrumento se verifica ademas con un caso que DEBE fallar (una copia del
+  artefacto con el defecto reintroducido). Que el caso bueno siga pasando no
+  demuestra nada: la puerta ya lo dejaba pasar antes de tocarla.
+  Alcance: todo_joko_lab. Se aplica hacia delante: no autoriza rehacer fichas,
+  informes ni artefactos ya publicados (regla de no-retrofit), que se corrigen
+  solo si el usuario lo pide y como fichero nuevo.
+confidence: 0.9
+confidence_label: ALTA
+evidence:
+- 'Directriz explicita del usuario (18-oct-2026, tras la auditoria de la ficha de Safran Colognise): «Aplica estas mejoras perfume del Dia. De todas maneras esta idea de mejora al detectar errores y fallos debe ser la filosofia de trabajo del LAB»'
+- 'Caso 1, umbral inventado: la ficha del 18-oct se reporto con «ambos >=2,0» y el tapon media 2,07:1, cuando la ficha aprobada el 17-oct tenia tapon 3,92:1 y cuerpo 3,16:1. El 2.0 salia del EJEMPLO de sintaxis del docstring de medir_visibilidad_frasco.py, no de ninguna norma; el propio instrumento imprime «(sin umbrales: esto es medicion, no veredicto)» y sus flags valen None (RULE-015). Corregido en el docstring (--min-contraste <ratio>) y en el prompt del cron (0 ocurrencias de «--min-contraste 2.0», 2 de vis.json, 3 de klein, verificado leyendo jobs.json)'
+- 'Caso 2, puerta laxa: A4 solo exigia que apareciera «consultad» o un dd/mm/yyyy en cualquier parte del texto, asi que una ficha con el precio consultado la semana pasada pasaba. Reescrita para buscar la fecha DENTRO de la ventana del simbolo del euro. Control negativo ejecutado: copia de la ficha del 18-oct con la fecha cambiada a 11-10-2026 -> [FALTA] A4 y veredicto NO ENVIAR; el original -> ENVIAR (con avisos); la ficha del 17-oct con --fecha 2026-10-17 -> ENVIAR, y sin el flag -> NO ENVIAR (la puerta ahora caduca sola)'
+- 'Caso 3, dato que no cabe en el esquema: la etiqueta de Safran Colognise dice «Extrait de Cologne (18 %)» y perfumes.concentracion solo admitia EDT/EDP/Parfum/Cologne/Otro. En vez de forzar el valor se anadio perfumes.concentracion_detalle (TEXT) y se guardo el literal exacto con la fila 982 verificada por SELECT'
+- 'Caso 4, tabla maestra compartida: notas.tipo es global, asi que mover azafran, pimienta rosa y magnolia a corazon (piramide oficial de nishane.com) habria cambiado OTROS perfumes. La correccion no fue tocar la maestra: se anadieron perfume_notas.tipo_propio y tipo_fuente y se marcaron SOLO las 9 relaciones del perfume 982, con la fuente escrita en cada fila'
+- 'Verificacion posterior a la migracion: PRAGMA integrity_check = ok, 1378 relaciones intactas, 9 filas con tipo_propio, y la discrepancia visible (Magnolia/Pink Pepper/Saffron maestro=salida vs oficial=corazon; Leather maestro=corazon vs oficial=fondo)'
+dependencies:
+- RULE-012
+- RULE-013
+- RULE-015
+- RULE-021
+contradicts: []
+superseded_by: null
+domain: proceso
+scope: todo_joko_lab
+monitoring:
+  metric: correcciones_que_tocan_el_instrumento
+  baseline: 4
+  current: 4
+  last_checked: '2026-10-18'
+  log_file: 04-operations/reports
+  indicador: >-
+    Por cada fallo detectado, contar cuantas de estas cuatro piezas se han
+    corregido en el mismo trabajo: artefacto, instrumento (gate/docstring/prompt/
+    esquema), norma escrita y control negativo ejecutado. baseline 4/4 el
+    18-oct-2026. Si una auditoria futura encuentra el mismo fallo repetido, la
+    pieza que faltaba es la que se corrige; repetir el mismo fallo no se
+    considera mala suerte sino instrumento sin arreglar.
+history:
+- date: '2026-10-18'
+  event: created
+  note: >-
+    Elevada a norma por instruccion literal del usuario al cerrar la auditoria
+    de la ficha del 18-oct (Safran Colognise). Los cuatro casos de esa auditoria
+    son los que sostienen la confidence 0.9: umbral 2.0 tomado de un ejemplo de
+    docstring, A4 que no caducaba, concentracion que no cabia en el CHECK y
+    notas.tipo global. Pendiente declarado: las otras fichas e informes viejos
+    NO se rehacen con estas puertas (no-retrofit); si se auditan, se les pasa
+    --fecha con su dia. Revision 18-nov-2026: comprobar si alguna ficha nueva ha
+    vuelto a salir con precio sin fecha o con contraste reportado sin umbral
+    declarado; si ocurre, el instrumento volvio a aflojarse.

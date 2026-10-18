@@ -1,0 +1,751 @@
+AUDITORIA TECNICA — SISTEMA DE REGISTRO DE CAMBIOS (CHANGE TRACKING SYSTEM)
+=============================================================================
+Joko Lab — 2026-07-28
+Auditor: Arquitecto de software senior
+Estado: PRIMERA AUDITORIA COMPLETA
+
+═══════════════════════════════════════════════════════════
+FASE 1: INVENTARIO
+═══════════════════════════════════════════════════════════
+
+1.1 COMPONENTES DEL SISTEMA
+
+Se han identificado 14 componentes implicados en el registro
+de cambios de Joko Lab:
+
+  A. inicio.sh          — ~/joko-lab/02-infrastructure/inicio/inicio.sh
+     Protocolo de apertura. Ejecuta 7 checks, genera
+     estado-inicial.json, diff contra ultimo estado-final.json.
+
+  B. fin.sh (nuevo)     — ~/joko-lab/02-infrastructure/fin/fin.sh
+     Protocolo de cierre de la nueva estructura. Captura estado,
+     compara con inicial, hace commit si hay cambios, guarda
+     estado-final.json, escribe informe en reports/.
+
+  C. fin.sh (antiguo)   — ~/hermes-lab/scripts/fin.sh
+     Version anterior. Solo ejecuta checkpoint.sh y muestra
+     mensaje de cierre. No guarda estado propio.
+
+  D. checkpoint.sh      — ~/hermes-lab/scripts/checkpoint.sh
+     Snapshot de 12 pasos: doctor, status, gateway, backup,
+     sesiones, docker, GPU, discos, RAM, ollama, git, config.
+     Genera recovery/YYYY-MM-DD_HH-MM/ con archivos individuales
+     + recovery.md de resumen.
+
+  E. rescue.sh          — ~/hermes-lab/scripts/rescue.sh
+     Backup completo a USB. 10 pasos irremplazables (config,
+     SSH, runtime, Hermes, n8n, exports, lab-state, repos,
+     docker-compose) + 7 pasos de inventario (Ollama, Docker
+     images, LM Studio, Python, Git, apt, rutas). Rotacion a
+     2 copias. Notificacion desktop.
+
+  F. rescue-trigger.sh  — ~/hermes-lab/scripts/rescue-trigger.sh
+     Activado por udev al conectar USB. Espera 30s el mount
+     y ejecuta rescue.sh como jokoalmi.
+
+  G. estado-final.json  — ~/joko-lab/02-infrastructure/fin/estado-final.json
+     JSON con timestamp, git (branch, commit, dirty), docker
+     (running/total), tools (uv, cargo). ~30 lineas.
+
+  H. estado-inicial.json — ~/joko-lab/02-infrastructure/inicio/estado-inicial.json
+     Misma estructura que final. Generado al arrancar.
+     Solo un template, no se ha ejecutado nunca en produccion.
+
+  I. state-manager.py   — ~/hermes-lab/state-manager/state-manager.py
+     Script Python que se ejecuta CADA MINUTO via cron.
+     No se ha podido leer el contenido completo pero esta
+     activo con log en /mnt/ssd_ia_datos/lab-state/logs/.
+
+  J. decision-engine/   — ~/hermes-lab/decision-engine/
+     apply-decision.sh + decision_engine.py. Se ejecuta via
+     cron 3 veces al dia (3:00, 12:00, cada 30min). Gestiona
+     politicas de proveedor/modelo segun horario.
+
+  K. crontab            — 9 tareas programadas
+     - healthcheck stack (cada hora)
+     - healthcheck n8n (cada 30min)
+     - git-backup (3:15)
+     - apply-decision (3:00, 12:00, cada 30min)
+     - state-manager (cada minuto)
+     - rescue recordatorio (23:00)
+
+  L. informes de cierre — ~/joko-lab/04-operations/reports/*cierre*.txt
+     3 informes disponibles: 2026-07-15, 2026-07-17, 2026-07-28.
+     Formato texto plano, contenido variable.
+
+  M. recovery/          — ~/hermes-lab/recovery/
+     1 unico punto de recuperacion: 2026-07-28_13-19.
+     Con 12 archivos de snapshot.
+
+  N. Skills relacionadas
+     - diagnostico-stack-local: skill de diagnostico Docker
+     - hermes-salud: autodiagnostico estructural
+     - hermes-expert: operacion de Hermes
+
+1.2 MAPA DE FLUJO ACTUAL
+
+  INICIO (manual)
+    │
+    ├── [OPCIONAL] inicio.sh (NUEVO, no ejecutado aun)
+    │     ├── 7 checks
+    │     ├── estado-inicial.json
+    │     └── diff vs estado-final.json
+    │
+    └── [REAL] El usuario simplemente arranca Hermes
+          └── Sin comprobacion de estado
+
+  SESION
+    │
+    ├── checkpoint.sh (MANUAL, cuando el usuario se acuerda)
+    │     └── recovery/YYYY-MM-DD_HH-MM/ (12 archivos)
+    │
+    ├── state-manager.py (CADA MINUTO via cron)
+    │     └── log en /mnt/ssd_ia_datos/lab-state/logs/
+    │
+    ├── rescue-trigger.sh (AL CONECTAR USB)
+    │     └── rescue.sh → USB externo
+    │
+    ├── rescue.sh (MANUAL o automatico al conectar USB)
+    │     ├── 10 pasos irremplazables
+    │     └── 7 pasos inventario
+    │
+    └── decision-engine (CADA 30MIN, 3:00, 12:00)
+          └── politicas de modelo/proveedor
+
+  CIERRE
+    │
+    ├── [NUEVO] fin.sh (NUNCA EJECUTADO)
+    │     ├── diff contra estado-inicial
+    │     ├── commit si cambios
+    │     └── estado-final.json
+    │
+    └── [ANTIGUO] fin.sh (el que se usaba)
+          └── checkpoint.sh + mensaje de cierre
+
+═══════════════════════════════════════════════════════════
+FASE 2: FLUJO DETALLADO (ESTADO ACTUAL)
+═══════════════════════════════════════════════════════════
+
+Paso 1: El usuario abre terminal y escribe "hermes"
+  - NO se ejecuta inicio.sh automaticamente
+  - NO hay comprobacion de integridad
+  - NO hay diff contra estado anterior
+  - Si ~/.local/share/uv desaparecio, NO se detecta
+
+Paso 2: Hermes carga configuracion
+  - Desde ~/.hermes/config.yaml
+  - NO se registra que configuracion se ha cargado
+  - NO se compara con la configuracion del dia anterior
+
+Paso 3: Trabajo durante la sesion
+  - state-manager.py se ejecuta CADA MINUTO via cron
+  - checkpoint.sh SOLO si el usuario lo ejecuta manualmente
+  - rescue.sh SOLO si se conecta USB o se ejecuta manualmente
+  - NO hay registro automatico de:
+    * Que skills se cargaron
+    * Que archivos se modificaron
+    * Que comandos se ejecutaron
+    * Que experimentos se hicieron
+    * Que modelos se usaron
+
+Paso 4: Cierre de sesion
+  - [ANTIGUO] fin.sh ejecuta checkpoint.sh
+  - checkpoint.sh genera recovery/ con 12 snapshots
+  - NO genera estado-final.json
+  - NO hace diff contra el inicio
+  - NO clasifica los cambios
+  - NO verifica integridad del backup
+
+Paso 5: Backup nocturno
+  - git-backup.sh a las 3:15 (solo repositorio)
+  - rescue.sh SOLO si el USB esta conectado
+  - NO hay backup automatico sin USB
+
+═══════════════════════════════════════════════════════════
+FASE 3: RIESGOS
+═══════════════════════════════════════════════════════════
+
+3.1 INTERRUPCION ELECTRICA / KILL -9 / CTRL+C
+
+  Impacto: PERDIDA TOTAL DE LA SESION
+  - No hay estado-final.json de la sesion interrumpida
+  - No hay diff de cambios
+  - No hay registro de lo que se estaba haciendo
+  - estado-inicial.json (si existia) queda huerfano
+  - El proximo inicio no detectara anomalias
+  - Recuperacion: SOLO si hay checkpoint manual reciente
+
+  Probabilidad: MEDIA (entorno de sobremesa)
+
+3.2 OOM (OUT OF MEMORY)
+
+  Impacto: PERDIDA PARCIAL
+  - state-manager.py puede morir sin registrar el ultimo minuto
+  - Si OOM mata el proceso de Hermes, mismo impacto que kill -9
+  - Los logs de state-manager pueden quedar corruptos
+  - Los JSON de estado pueden quedar incompletos (escritura truncada)
+
+  Probabilidad: BAJA (RTX A2000 12GB, 64GB RAM)
+
+3.3 FALLO DE DISCO
+
+  Impacto: PERDIDA COMPLETA SIN BACKUP FRESCO
+  - rescue.sh solo si USB conectado
+  - git-backup.sh solo repositorio, no entorno
+  - backups en /mnt/ssd_ia_datos/ — mismo disco que los datos
+  - No hay backup off-site ni en la nube
+  - El unico backup externo es el USB (si esta conectado)
+
+  Probabilidad: BAJA pero CONSECUENCIA: CATASTROFICA
+
+3.4 CORRUPCION DE JSON
+
+  Impacto: FALLO EN CADENA
+  - Si estado-final.json se corrompe:
+    * inicio.sh no puede cargarlo
+    * diff falla
+    * No se detectan anomalias
+  - Si estado-inicial.json se corrompe:
+    * fin.sh no puede comparar
+    * El diff de sesion se pierde
+  - Los JSON se escriben con heredoc de bash (>) no con escritura
+    atomica. Una interrupcion en medio de la escritura deja el
+    archivo truncado.
+
+  Probabilidad: BAJA pero DETECCION: DIFICIL
+
+3.5 ESTADO INCONSISTENTE
+
+  Impacto: FALLA SILENCIOSA
+  - Dos componentes pueden tener vision distinta del estado:
+    * estado-final.json dice una cosa
+    * state-manager.py registra otra
+    * checkpoint.sh capturo otra en otro momento
+  - NO hay un unico source of truth
+  - NO hay validacion cruzada entre fuentes
+  - Una discrepancia puede pasar desapercibida durante sesiones
+
+  Probabilidad: MEDIA
+
+3.6 BACKUP CORRUPTO / INCOMPLETO
+
+  Impacto: FALSA SENSACION DE SEGURIDAD
+  - rescue.sh no verifica integridad de los archivos copiados
+  - Los tar.gz se crean pero no se validan (tar -tzf)
+  - Los git bundle se crean pero no se verifican (git bundle verify)
+  - Si el USB se desconecta durante la escritura, el backup
+    queda corrupto SIN AVISO
+
+  Probabilidad: BAJA pero DETECCION: NULA
+
+3.7 ROTACION DE BACKUPS
+
+  Impacto: PERDIDA DE HISTORIAL
+  - rescue.sh mantiene SOLO 2 copias en USB
+  - No hay retencion semanal/mensual
+  - Si no te das cuenta de una corruption durante 3 rescates,
+    la unica copia buena se borra por rotacion
+
+  Probabilidad: BAJA a MEDIO PLAZO
+
+═══════════════════════════════════════════════════════════
+FASE 4: REPRODUCIBILIDAD
+═══════════════════════════════════════════════════════════
+
+4.1 INFORMACION QUE SE REGISTRA ACTUALMENTE
+
+  estado-final.json:
+    - Timestamp, fecha, hora
+    - Git branch, commit, dirty_files
+    - Docker running/total
+    - uv_installed, cargo_installed
+
+  checkpoint.sh (recovery/):
+    - Hermes doctor output
+    - Hermes status output
+    - Gateway status
+    - Sesiones export (JSONL)
+    - Docker ps
+    - GPU (nvidia-smi)
+    - Discos (df -h)
+    - RAM (free -h)
+    - Modelos Ollama
+    - Git status + log
+    - Hermes config snapshot
+
+  rescue.sh (USB):
+    - .bashrc, .profile, crontab, systemd units
+    - SSH keys
+    - ~/.local/share/uv, ~/.local/bin, ~/.cargo/bin
+    - Hermes backup (.zip)
+    - n8n workflows
+    - Exports
+    - lab-state
+    - Git bundles (hermes-lab, perfume-ia)
+    - docker-compose.yml
+
+4.2 INFORMACION QUE NO SE REGISTRA (Y DEBERIA)
+
+  CRITICO:
+  - Version del SO: kernel, drivers NVIDIA, CUDA version
+  - Version de Python, Node, npm/pip globales
+  - PATH completo (no solo 2 rutas)
+  - Modelos de LM Studio (solo se intenta via API, no hay fallback)
+  - Estado de los contenedores Docker individual (no solo count)
+  - Hash de archivos de configuracion criticos
+  - Variables de entorno activas
+
+  IMPORTANTE:
+  - Seed de random usado en experimentos
+  - Quantificacion exacta de cada modelo cargado
+  - Context window usado en cada inferencia
+  - Temperatura y parametros exactos de cada llamada
+  - Latencia y tokens/s de cada operacion
+  - Errores de API (timeouts, rate limits, content filters)
+  - Memoria de sesiones de Hermes (solo se exportan en checkpoint)
+
+  CONVENIENTE:
+  - Plugins de Hermes activos
+  - Skills cargadas durante la sesion
+  - Comandos ejecutados (historial bash)
+  - Archivos modificados durante la sesion
+  - Paquetes pip/npm/apt instalados durante la sesion
+  - Cambios en .gitignore, .env, config.yaml
+  - Upstream de git remotes
+  - Estado de los .venv
+
+4.3 LO QUE IMPIDE LA REPRODUCIBILIDAD AHORA MISMO
+
+  1. No se registra el contexto completo de cada experimento
+     (seed, config, modelo exacto con quant, timestamp inicio/fin)
+
+  2. No hay correlacion entre experimentos y estado del sistema
+     (un experimento se ejecuta con el sistema en un estado,
+     pero ese estado no se captura automaticamente)
+
+  3. No hay versionado de configuraciones
+     (config.yaml cambia pero no hay historial de cambios)
+
+  4. No hay linea base de rendimiento
+     (cuanto tarda cada modelo, cuanta VRAM consume, en que
+     condiciones)
+
+═══════════════════════════════════════════════════════════
+FASE 5: MEJORAS
+═══════════════════════════════════════════════════════════
+
+5.1 CRITICAS (implementar antes de la proxima sesion)
+
+  C-01: Escritura atomica de JSON
+    Problema: Los JSON se escriben con > (sobrescritura directa).
+    Una interrupcion deja el archivo truncado.
+    Solucion: Escribir a .tmp y renombrar (mv es atomico en Linux).
+    Beneficio: JSON nunca corrupto por interrupcion.
+    Coste: 2 lineas por escritura.
+    Riesgo: Ninguno.
+    Prioridad: INMEDIATA.
+
+  C-02: Verificacion de integridad de backups
+    Problema: rescue.sh no valida los archivos que crea.
+    Solucion: Anadir tar -tzf y git bundle verify tras cada copia.
+    Beneficio: Se detecta backup corrupto inmediatamente.
+    Coste: ~1s por archivo.
+    Riesgo: Ninguno.
+    Prioridad: INMEDIATA.
+
+  C-03: Captura del entorno completo en estado.json
+    Problema: estado-final.json solo captura 6 campos.
+    Solucion: Anadir kernel, drivers, CUDA, Python, Node,
+    PATH completo, LM Studio models, Docker container names.
+    Beneficio: El diff de arranque detecta cambios en el SO.
+    Coste: ~10 lineas mas en los scripts.
+    Riesgo: Ninguno.
+    Prioridad: INMEDIATA.
+
+  C-04: Proteccion contra escritura truncada en checkpoint
+    Problema: checkpoint.sh escribe 12 archivos individuales.
+    Si se interrumpe a mitad, hay 6 archivos y 6 no.
+    Solucion: Escribir en temp dir y renombrar al final.
+    Beneficio: Checkpoint siempre completo o no existe.
+    Coste: 2 lineas.
+    Riesgo: Ninguno.
+    Prioridad: INMEDIATA.
+
+5.2 IMPORTANTES (implementar esta semana)
+
+  I-01: inicio.sh automatico al arrancar Hermes
+    Problema: El protocolo inicio es manual, no se ejecuta.
+    Solucion: Hook en .bashrc o alias que ejecute inicio.sh
+    antes de lanzar Hermes. O integrar en hermes config.
+    Beneficio: Deteccion de anomalias siempre activa.
+    Coste: 1 alias + 1 linea en .bashrc.
+    Riesgo: Si inicio.sh falla, Hermes no arranca (deseable).
+    Prioridad: ALTA.
+
+  I-02: Version unica de fin.sh (eliminar duplicacion)
+    Problema: Hay DOS fin.sh (hermes-lab/ y joko-lab/).
+    Hacen cosas distintas. El antiguo solo llama a checkpoint.
+    Solucion: Unificar. El nuevo fin.sh (joko-lab) debe
+    ser el unico. El antiguo pasa a ser alias.
+    Beneficio: Un solo punto de cierre, un solo comportamiento.
+    Coste: 5 min de edicion.
+    Riesgo: Bajo (el nuevo es superior en todo).
+    Prioridad: ALTA.
+
+  I-03: Clasificacion automatica de cambios
+    Problema: No se clasifica el TIPO de cambio detectado
+    Solucion: En fin.sh, al detectar cambios, clasificarlos:
+    - infraestructura (docker, ollama, python, uv)
+    - configuracion (config.yaml, .env)
+    - codigo (scripts, skills)
+    - conocimiento (experimentos, docs)
+    - automatizacion (cron, workflows)
+    Beneficio: Consultas tipo "que cambio en infra esta mes".
+    Coste: Logica de clasificacion en fin.sh.
+    Riesgo: Bajo.
+    Prioridad: ALTA.
+
+  I-04: Proteger inicio/fin con flock
+    Problema: Si se ejecuta inicio.sh dos veces en paralelo
+    o fin.sh mientras se ejecuta otro script, los JSON
+    pueden entremezclarse.
+    Solucion: Anadir flock (lock file) al inicio de ambos.
+    Beneficio: Exclusividad mutua garantizada.
+    Coste: 3 lineas por script.
+    Riesgo: Ninguno.
+    Prioridad: ALTA.
+
+  I-05: Seed y configuracion en experimentos
+    Problema: Los experimentos no registran seed ni config
+    completa del sistema.
+    Solucion: En el template de EXP-YYYYMMDD-NNN/config.yaml,
+    anadir campos: seed, kernel_version, cuda_version,
+    python_version, hermes_version, lm_studio_version.
+    Beneficio: Reproducibilidad exacta.
+    Coste: 5 campos en un YAML.
+    Riesgo: Ninguno.
+    Prioridad: ALTA.
+
+5.3 CONVENIENTES (proximas semanas)
+
+  D-01: Source of truth unico
+    Problema: 3 fuentes de estado (estado.json, state-manager,
+    checkpoint) sin sincronizacion.
+    Solucion: Un unico JSON de estado del laboratorio
+    (~/joko-lab/estado-actual.json) alimentado por todos
+    los componentes. Cada componente escribe su seccion.
+    Beneficio: Vista unificada, validacion cruzada.
+    Coste: Medio (refactorizar el estado).
+    Riesgo: Bajo si se hace por fases.
+
+  D-02: Backup periodico automatico sin USB
+    Problema: rescue.sh solo funciona con USB conectado.
+    Solucion: Backup a disco local + subida nocturna a
+    Google Drive (ya existe para git bundle).
+    Beneficio: Backup aunque el USB no este conectado.
+    Coste: Bajo (ya hay subida a Drive, solo extender).
+    Riesgo: Bajo.
+
+  D-03: Versionado de config.yaml
+    Problema: ~/.hermes/config.yaml cambia sin historial.
+    Solucion: Antes de cada cambio, copiar a
+    ~/.hermes/config-history/config-YYYY-MM-DD_HH-MM.yaml.
+    Beneficio: Se puede volver a cualquier config anterior.
+    Coste: Hook en el script de cambio de config.
+    Riesgo: Bajo.
+
+  D-04: Healthcheck post-arranque
+    Problema: Los healthchecks de cron existen pero son
+    independientes del estado de la sesion.
+    Solucion: Al ejecutar inicio.sh, comprobar que los
+    healthchecks se estan ejecutando correctamente.
+    Beneficio: El sistema se autocomprueba.
+    Coste: 1 check adicional.
+    Riesgo: Bajo.
+
+  D-05: Log de sesion en 04-operations/metrics/sesiones/
+    Problema: No se registra duracion de sesion, ni actividades.
+    Solucion: inicio.sh crea un log de sesion que fin.sh
+    completa con duracion y resumen de cambios.
+    Beneficio: Metricas de uso del laboratorio.
+    Coste: Bajo (ya existe el informe de cierre).
+    Riesgo: Ninguno.
+
+5.4 IDEAS FUTURAS (visibles a largo plazo)
+
+  F-01: Sistema de auditoria consultable
+    Vision: Poder preguntar "que cambio ayer" y obtener
+    respuesta estructurada.
+    Requisito: Clasificacion de cambios + base de datos
+    de eventos + interfaz de consulta.
+    Coste: Alto. Depende de tener las fases anteriores.
+
+  F-02: Correlacion automatica experimento-estado
+    Vision: Cada experimento registra automaticamente el
+    estado completo del sistema en el momento de ejecucion.
+    Requisito: Hook en el engine de inferencia que capture
+    estado antes/despues de cada ejecucion.
+    Coste: Alto. Depende del Inference Engine.
+
+  F-03: Pruebas de restauracion periodicas
+    Vision: Cada mes, restaurar desde backup a un directorio
+    temporal y verificar que todo funciona.
+    Requisito: Script automatizado + espacio en disco.
+    Coste: Medio. Prueba de fuego del sistema de backup.
+
+  F-04: Linea base de rendimiento
+    Vision: Ejecutar un benchmark estandar al inicio de cada
+    sesion y comparar con la linea base historica.
+    Requisito: Automatizar EXP-20260726-001 como check de
+    inicio.
+    Coste: Medio. Detectaria degradacion de GPU o modelos.
+
+═══════════════════════════════════════════════════════════
+FASE 6: ARQUITECTURA
+═══════════════════════════════════════════════════════════
+
+6.1 EVALUACION DEL SISTEMA ACTUAL
+
+  El sistema actual tiene las piezas para ser un sistema de
+  auditoria solido, pero estan DESCONECTADAS entre si:
+
+  - inicio.sh genera estado (pero no se ejecuta)
+  - fin.sh genera estado (pero no se ejecuta)
+  - checkpoint.sh captura snapshots (pero manual)
+  - rescue.sh hace backup (pero solo con USB)
+  - state-manager.py registra continuamente (pero no se sabe
+    exactamente que registra ni donde)
+  - decision-engine cambia configuracion (pero sin registrar
+    el cambio en el historial de estado)
+  - Los informes de cierre existen (pero en texto plano,
+    sin estructura consultable)
+
+  El problema NO es de funcionalidad. Es de INTEGRACION y
+  AUTOMATIZACION. Cada pieza hace lo suyo, pero no hay un
+  orquestador que las coordine.
+
+6.2 ¿PUEDE EVOLUCIONAR A UN SISTEMA DE AUDITORIA?
+
+  SI, pero requiere:
+
+  1. UNIFICAR el estado en un solo archivo JSON
+     (~/joko-lab/estado-actual.json) que todos los
+     componentes lean y escriban.
+
+  2. AUTOMATIZAR inicio.sh como paso obligatorio al arrancar
+     (no opcional).
+
+  3. AUTOMATIZAR fin.sh como paso obligatorio al cerrar
+     (no opcional).
+
+  4. CLASIFICAR los cambios por tipo (Fase 7).
+
+  5. HISTORIAL de cambios: cada vez que se genera
+     estado-final.json, guardar una copia en
+     04-operations/metrics/estado/history/.
+
+  6. CONSULTAS: con el historial de estados + clasificacion,
+     se pueden responder preguntas como:
+     - "Que cambio ayer?" → diff entre estados de ayer y hoy
+     - "Cuando aparecio este fallo?" → buscar en cambios
+     - "Que version funcionaba?" → commit + estado
+     - "Que skill lo modifico?" → clasificacion + timestamp
+     - "Que modelo se anadio?" → cambios en tools/models
+     - "Que configuracion cambio?" → diff de config
+
+6.3 ARQUITECTURA PROPUESTA (evolutiva, no rupturista)
+
+  ┌─────────────────────────────────────────────────────┐
+  │           state-manager.py (cada minuto)             │
+  │  Escribe en estado-actual.json seccion "live"       │
+  └────────────────────┬────────────────────────────────┘
+                       │
+  ┌────────────────────┴────────────────────────────────┐
+  │              estado-actual.json                       │
+  │  {                                                    │
+  │    "live": { ... }  ← state-manager cada minuto      │
+  │    "session": { ... }  ← inicio.sh al arrancar      │
+  │    "checks": { ... }  ← inicio.sh                    │
+  │    "last_close": { ... }  ← ultimo estado-final.json │
+  │  }                                                    │
+  └────────────────────┬────────────────────────────────┘
+                       │
+  ┌────────────────────┴────────────────────────────────┐
+  │           historial de cambios                        │
+  │  04-operations/metrics/estado/history/               │
+  │  estado-YYYY-MM-DD_HH-MM.json (copia al cerrar)     │
+  │  cambios-YYYY-MM-DD_HH-MM.json (diff clasificado)   │
+  └─────────────────────────────────────────────────────┘
+
+  Esto NO requiere reescribir nada. Solo:
+  1. Unificar las escrituras de estado en un unico archivo
+  2. Anadir clasificacion en fin.sh
+  3. Mover copias al historial
+  4. Hacer inicio.sh obligatorio
+
+═══════════════════════════════════════════════════════════
+FASE 7: CLASIFICACION DE CAMBIOS
+═══════════════════════════════════════════════════════════
+
+7.1 TAXONOMIA PROPUESTA
+
+  Cada cambio detectado por fin.sh debe clasificarse en UNA
+  de estas categorias:
+
+  [INFRA]     Infraestructura
+    - Docker: contenedores, imagenes, redes
+    - Ollama: modelos, version, estado
+    - LM Studio: modelos cargados, version
+    - Python/uv: toolchain, version, paquetes
+    - Node: version, paquetes globales
+    - SO: kernel, drivers, CUDA, PATH
+
+  [CONFIG]    Configuracion
+    - config.yaml (Hermes)
+    - .env (variables de entorno)
+    - docker-compose.yml
+    - crontab
+    - systemd units
+
+  [CODIGO]    Codigo
+    - scripts/ (checkpoint, rescue, inicio, fin)
+    - skills/ (SKILL.md, templates, scripts)
+    - plugins/
+    - state-manager/
+    - decision-engine/
+
+  [CONOC]     Conocimiento
+    - experiments/ (nuevos EXP)
+    - models/ (fichas actualizadas)
+    - benchmarks/ (nuevos resultados)
+    - data/ (nuevos datasets)
+    - anti-patterns.md
+
+  [AUTO]      Automatizacion
+    - cron (nuevas tareas, cambios)
+    - workflows/n8n (nuevos workflows)
+    - tests (nuevos tests)
+
+  [INCID]     Incidencias
+    - bug detectado
+    - recuperacion manual
+    - corruptcion detectada
+    - rollback aplicado
+
+  [SEG]       Seguridad
+    - credenciales
+    - permisos
+    - tokens
+    - SSH keys
+
+  [DEP]       Dependencias
+    - pip install/update
+    - npm install/update
+    - apt install/update
+
+7.2 EJEMPLO DE SALIDA CON CLASIFICACION
+
+  === FIN: Joko Lab ===
+  Fecha: 2026-07-28 22:15:00 CEST
+  Duracion sesion: 2h 45m
+
+  --- CAMBIOS CLASIFICADOS ---
+  [INFRA] Docker: 4/4 -> 3/4 contenedores (ollama caido)
+  [CONOC] Nuevo experimento: EXP-20260728-001
+  [CONFIG] config.yaml: temperature default 0.7 -> 0.5
+  [CODIGO] inicio.sh: anadido check-ollama.sh
+  [AUTO] Cron: nueva tarea healthcheck cada 30min
+
+  --- BACKUP ---
+  Commit: OK (5 archivos, 3 categorias)
+  Bundle: OK
+
+7.3 CONSULTAS POSIBLES CON ESTA CLASIFICACION
+
+  "Que cambios de infraestructura este mes?"
+  → grep '\[INFRA\]' cambios-*.json | sort
+
+  "Que modificaciones afectaron a Ollama?"
+  → grep -i 'ollama' cambios-*.json
+
+  "Que skills cambiaron desde el ultimo backup?"
+  → grep '\[CODIGO\].*skill' cambios-*.json
+
+  "Que experimentos coincidieron con degradacion?"
+  → grep '\[CONOC\].*EXP-' cambios-*.json (correlacion manual)
+
+═══════════════════════════════════════════════════════════
+RESUMEN EJECUTIVO
+═══════════════════════════════════════════════════════════
+
+FORTALEZAS DEL SISTEMA ACTUAL:
+  - checkpoint.sh es completo (12 pasos, 12 archivos)
+  - rescue.sh cubre irremplazables + inventario
+  - rescue-trigger.sh automatiza backup al conectar USB
+  - state-manager monitoriza cada minuto
+  - Duplicidad de copias: git bundle + backup + snapshot
+  - Rotacion de rescues (2 copias)
+
+DEBILIDADES PRINCIPALES:
+  1. inicio.sh NO se ejecuta automaticamente
+  2. Hay dos fin.sh haciendo cosas distintas
+  3. JSON sin escritura atomica → corruptible
+  4. Sin clasificacion de cambios → no consultable
+  5. Sin verificacion de integridad de backups
+  6. state-manager.py no tiene visibilidad (no se sabe que hace)
+  7. Sin backup sin USB
+  8. 3 fuentes de estado no sincronizadas
+  9. Rotacion a solo 2 copias puede borrar la unica buena
+
+PRIORIDAD DE IMPLEMENTACION:
+
+  INMEDIATA (antes de la proxima sesion):
+    1. Escritura atomica de JSON (tmp + mv)
+    2. Verificacion de integridad en rescue.sh
+    3. Captura de entorno completo en estado.json
+    4. Proteccion contra escritura truncada en checkpoint
+
+  ALTA (esta semana):
+    5. inicio.sh automatico al arrancar
+    6. Version unica de fin.sh
+    7. Clasificacion automatica de cambios
+    8. Proteger con flock
+    9. Seed + config en experimentos
+
+  MEDIA (proximas semanas):
+    10. Source of truth unico
+    11. Backup sin USB
+    12. Versionado de config.yaml
+    13. Healthcheck post-arranque
+    14. Log de sesion estructurado
+
+  LARGO PLAZO:
+    15. Sistema de auditoria consultable
+    16. Correlacion experimento-estado
+    17. Pruebas de restauracion periodicas
+    18. Linea base de rendimiento
+
+═══════════════════════════════════════════════════════════
+NOTAS ADICIONALES
+═══════════════════════════════════════════════════════════
+
+- state-manager.py se ejecuta CADA MINUTO. Esto es una
+  frecuencia muy alta para un watchdog. Genera ~1440 logs
+  al dia. Habria que revisar si realmente necesita esa
+  frecuencia o si cada 5-10 minutos es suficiente.
+
+- El schedule actual de decision-engine (cada 30min + 3:00
+  + 12:00) sugiere que cambia de modelo segun la hora del
+  dia (modelos locales vs cloud segun precio). Esto es
+  relevante para la reproducibilidad: un experimento
+  ejecutado a las 2:59 puede usar un modelo distinto que
+  a las 3:01. Los experimentos deberian registrar el
+  proveedor activo en ese momento.
+
+- Hay 9 tareas cron activas. No hay un inventario central
+  de que cronjobs existen, cuando se anadieron, o si
+  siguen siendo necesarios.
+
+═══════════════════════════════════════════════════════════
+FIN DEL INFORME DE AUDITORIA
+═══════════════════════════════════════════════════════════

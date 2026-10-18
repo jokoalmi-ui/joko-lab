@@ -1,0 +1,47 @@
+# task_keywords.yaml — Fuente unica de mapeo palabras clave → tipo de tarea
+# Cargado por decision_router.py y task_understanding.py
+# Editar aqui, no en el codigo.
+
+# Mapeo para decision_router (tipo de tarea → modelo)
+task_types:
+  razonamiento:
+    keywords: [razon, "paso a paso", logica, demostrar, "por que", analiza]
+    tipo: razonamiento
+  creatividad:
+    keywords: [creativo, relato, historia, poema, arte, inspira, "escribe un cuento"]
+    tipo: creatividad
+  codigo_python:
+    keywords: [python, codigo, funcion, script, programa, csv, api]
+    tipo: codigo_python
+  json:
+    keywords: [json, estructurado, "formato json", "devuelve solo json"]
+    tipo: json
+  tool_use:
+    keywords: ["function call", tool, "api call", endpoint, agente]
+    tipo: tool_use
+  chat_rapido:
+    keywords: [hola, dime, "que es", "explica breve", rapido]
+    tipo: chat_rapido
+
+# Mapeo para task_understanding (artefacto esperado)
+artifact_types:
+  prompt:
+    keywords: [prompt, instruccion, "pregunta al modelo", "genera un prompt"]
+  codigo:
+    keywords: [codigo, python, script, funcion, implementa, programa]
+  analisis:
+    keywords: [analiza, evalua, compara, audita, diagnostica]
+  informe:
+    keywords: [informe, documento, reporte, explica, documenta]
+  workflow:
+    keywords: [workflow, n8n, flujo, automatiza, pipeline, nodo]
+  configuracion:
+    keywords: [configura, instala, setup, docker, servicio]
+  busqueda:
+    keywords: [busca, encuentra, "donde esta", "que es", "cual es"]
+  decision:
+    keywords: [decide, recomienda, elige, "que modelo", "cual uso"]
+  benchmark:
+    keywords: [benchmark, "evaluar modelos", comparativa, "test de modelos", "experimento controlado"]
+  diseno:
+    keywords: [crear, disenar, "diseñar", arquitectura, prototipo, estructura, poema, creativo, relato, historia, brainstorming]

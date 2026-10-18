@@ -1,0 +1,118 @@
+0:00 Is fine-tuning large language models still needed today?
+0:05 Well let's take a well-known legal AI company because back in 2023 they fine- tuned their own model, their own custom AI,
+0:18 in partnership with the Frontier Lab, and in blind tests attorneys preferred this
+0:24 fine-tune model over the Frontier model at the time, which was GPT-4.
+0:29 They preferred it 97% of the time.
+0:34 A win for fine tuning.
+0:37 They built a custom AI that lawyers actually preferred over the off the shelf leading model.
+0:41 So the lesson is, if a general purpose model isn't quite right for some specific use case like legal work, then fine tune it.
+0:53 Right?
+0:54 Well, first let's define what fine tuning actually is.
+0:59 So we're going to start off with a base model, a base LLM.
+1:06 This is what comes off the shelf.
+1:09 So this is either working with a Frontier lab directly or maybe picking out an open source model.
+1:15 Now the base model is trained on a massive chunk of data.
+1:21 Effectively we're kind of scraping information off the internet.
+1:27 And using it to train that base model so there's lots of general knowledge that's
+1:32 going to be baked into the weights of the model.
+1:35 Now fine tuning takes that base model and it customizes it how by continuing its training,
+1:42 but now it's doing it on a much more focused data set so we've just got some
+1:47 specific documents here which are really focused in one particular area.
+1:53 So it might be legal contracts or maybe a an organization's internal support tickets,
+1:58 just like stuff that's not sitting around on the internet waiting to be scraped by base models.
+2:04 And then what this results in is we get a new model out of this,
+2:10 a fine-tuned model, and that fine-tuned model incorporates, well, the information
+2:18 from the focus data set plus all of the weights from the base model as well.
+2:24 They're now adjusted with that additional data.
+2:26 So this resulting model should get better at certain narrow tasks.
+2:31 That is the wonder of fine tuning.
+2:34 But in practice how well does it work?
+2:38 Well let's go back to this legal AI company.
+2:42 So, in 2025, they created their own legal benchmark.
+2:48 So benchmark would measure how effective their models were.
+2:53 At performing particular tasks and they tested their find tune system against the latest crop of Frontier AI models.
+3:03 So we've got the custom model here and then we've a bunch of Frontier AI models
+3:09 as well, kind of the mess general purpose models available at the time.
+3:14 Now what was the result of this benchmark?
+3:17 Well the result was that seven of the general purpose models.
+3:22 Had now surpassed the company's custom model in the benchmark.
+3:27 So this was by models that had never actually received any custom legal fine tuning, but they were still better.
+3:35 And Bloomberg saw something similar to this.
+3:37 They famously trained BloombergGPT from scratch
+3:40 and later evaluations found GPT-4 and ChatGPT outperforming Bloomberg GPT on many financial benchmarks.
+3:49 So where does that leave fine-tuning today?
+3:52 Is all that custom training worth doing when big frontier general models keep getting smarter on their own?
+4:01 Well to answer that I think it's worth considering how general models have in many cases caught up to custom trained ones.
+4:09 There's a few reasons for that and one it's just context windows have got really really big.
+4:16 So the original GPT-3 that used a token window of 2k, 2000 tokens,
+4:24 and today Frontier models they routinely handle much much more than that, like 1 million tokens plus of input.
+4:32 So if a if a model can read say 500 pages of legal documents directly in its
+4:38 prompt, then why bake those documents into the weights at all?
+4:42 Just pass the stuff that's contextually relevant when prompting.
+4:46 Now, second is reasoning models.
+4:50 They do extended thinking inference time working through a problem step by step before answering.
+4:58 So reasoning is coming from how hard the model thinks at the moment of the question at inference time
+5:04 rather than just from how it was trained months earlier.
+5:09 And then third is just cheaper inference,
+5:13 as in models are getting more efficient and smarter.
+5:16 So when the frontier model is constantly getting smarter and cheaper,
+5:21 training a custom version becomes a bit of a moving target,
+5:25 where by the time the fine tune model ships well the next frontier release may have leapfrogged it already.
+5:31 Okay so so general models have got better but if we're not adjusting weight..how do we make a general model behave like 
+5:41 a specialist? Like a legal scholar for example.
+5:43 Well it turns out there is a whole stack of customization techniques that don't touch the model weights at all.
+5:52 And the first of those is RAG, retrieval augmented generation.
+5:57 Instead of training the documents into the model the application retrieves, that's the R in RAG,
+6:03 retrieves the documents at query time and then feeds them into the prompt.
+6:08 There is also the consideration of context, specifically context engineering.
+6:15 And the idea is that a good prompt is a carefully assembled bundle of context.
+6:21 The system prompt, the relevant data, maybe some format guidelines and the like, they're all kind of packaged together.
+6:27 And, the third thing I think we need to consider are agent skills.
+6:33 These MD files that you can create.
+6:36 So skills are folders of files that package up procedural knowledge, basically...
+6:41 How to do something and the tools to use to do it and the model loads them
+6:46 on demand when it sees a task back cause for them.
+6:50 So instead of fine-tuning a model to know how to write SQL queries against a very specific schema,
+6:56 a SQL agent skill can tell the model exactly what to do and any general purpose model can use that skill.
+7:05 So essentially what I'm trying to say is fine tuning isn't the only path to customization.
+7:11 There's a whole stack of options that work without ever actually touching model weights.
+7:17 Which is a good thing because fine tuning is not free.
+7:20 In addition to the training run itself there's a cost in collecting the examples, and evaluating results, and avoiding regressions,
+7:28 and there's a cost of maintaining the custom models as the frontier models move on.
+7:33 So all of this really begs the question.
+7:36 Does anyone still need to fine tune at all?
+7:40 Well, yes, but just for a much narrower set of reasons than back in 2023.
+7:46 Now there is a modern technique called LoRa,
+7:52 that's low rank adaptation, that lets a team fine tune by training a small
+7:59 adapter, and this adapter sits on top of an existing base model.
+8:06 So we've got the base model with its weights and then this adapter that sits on top of it.
+8:12 So most of the original weights are staying locked,
+8:15 and then really a lot of what gets labeled as fine tuning in production today is
+8:20 some flavor of LoRa or a related parameter efficient method.
+8:26 And fine tuning does still make sense in certain situations.
+8:29 Well, like for example, when we are concerned about reduced latency if that's super important.
+8:38 If a model has to respond in real time like a like a voice agent answering a phone call,
+8:43 well frontier reasoning models with all their thinking time are often too slow.
+8:48 So if real-time responsiveness is the constraint, small fine-tuned models might still be the way to go.
+8:57 Another reason is because of distillation.
+9:01 Now the idea is to take a huge front-end model.
+9:04 Generate high quality outputs from it then fine-tune a much smaller model on those outputs.
+9:10 So you're essentially generating reasoning traces from a large parameter
+9:15 teacher model and using that to fine- tune smaller models.
+9:19 And there's also reinforcement fine-tuning, RFT.
+9:26 So instead of training only on fixed correct answers,
+9:30 RFT uses a prompt data set plus a grader and the model samples candidate answers,
+9:36 the grader scores those answers and training updates the model to make high scoring answers more likely.
+9:43 Of course, the catch is that RFT only really works when the output can be programmatically graded,
+9:48 which is to say when there's a definitive right answer.
+9:51 So..so fine tuning
+9:54 isn't dead.
+9:55 From a practical decision framework today I think of it as the order going something like this.
+10:01 So start with a base model and then you can implement prompt and context engineering.
+10:10 If knowledge is fresh or proprietary well you might want to add in capabilities for RAG as well,
+10:19 and if procedural know-how is the thing that's missing...
+10:24 Well then at that point you might want to add in agent skills.
+10:28 And then maybe only reach for the fine tuning if there's a specific bottleneck that the rest of this stack can't solve.
+10:36 But what do you think?
+10:37 Does fine tuning still have its place?
+10:40 Let me know in the comments.

@@ -1,0 +1,191 @@
+{
+ "meta": {
+  "backend": "ollama",
+  "set": "v2",
+  "fichero_casos": "casos_v2_choice.json",
+  "casos": 20,
+  "casos_sha256": "85528b1d7c367d47fe641737b0830554d06f5601790c4160a35a3661f5ab4684",
+  "ejecutado": "2026-09-23T20:06:36+02:00",
+  "host": {
+   "python": "Python 3.11.16",
+   "laya": true,
+   "torch": false,
+   "gpu": "NVIDIA RTX A2000 12GB, 2391, 12282, 2",
+   "ollama": [
+    "ibm/granite4.2:8b-q4_K_M",
+    "qwen2.5:7b",
+    "deepseek-r1-distill-qwen-14b:latest"
+   ],
+   "disco_home": "/dev/nvme0n1p2   468G   287G  158G  65% /",
+   "fecha": "mié 23 sept 2026 20:06:36 CEST"
+  }
+ },
+ "metricas": {
+  "n": 20,
+  "accuracy": 1.0,
+  "p50_ms": 3109.3,
+  "p95_ms": 3484.4
+ },
+ "registros": [
+  {
+   "id": "cho-01",
+   "gt": "2019",
+   "elegida": "2019",
+   "acierto": true,
+   "ms": 3109.3,
+   "conf": null
+  },
+  {
+   "id": "cho-02",
+   "gt": "Cítrica",
+   "elegida": "Cítrica",
+   "acierto": true,
+   "ms": 3388.1,
+   "conf": null
+  },
+  {
+   "id": "cho-03",
+   "gt": "2006",
+   "elegida": "2006",
+   "acierto": true,
+   "ms": 2985.9,
+   "conf": null
+  },
+  {
+   "id": "cho-04",
+   "gt": "2019",
+   "elegida": "2019",
+   "acierto": true,
+   "ms": 2989.0,
+   "conf": null
+  },
+  {
+   "id": "cho-05",
+   "gt": "EDP",
+   "elegida": "EDP",
+   "acierto": true,
+   "ms": 3075.6,
+   "conf": null
+  },
+  {
+   "id": "cho-06",
+   "gt": "EDT",
+   "elegida": "EDT",
+   "acierto": true,
+   "ms": 3004.8,
+   "conf": null
+  },
+  {
+   "id": "cho-07",
+   "gt": "EDP",
+   "elegida": "EDP",
+   "acierto": true,
+   "ms": 2952.9,
+   "conf": null
+  },
+  {
+   "id": "cho-08",
+   "gt": "2023",
+   "elegida": "2023",
+   "acierto": true,
+   "ms": 3262.1,
+   "conf": null
+  },
+  {
+   "id": "cho-09",
+   "gt": "Aromática",
+   "elegida": "Aromática",
+   "acierto": true,
+   "ms": 3257.4,
+   "conf": null
+  },
+  {
+   "id": "cho-10",
+   "gt": "Floral",
+   "elegida": "Floral",
+   "acierto": true,
+   "ms": 3484.4,
+   "conf": null
+  },
+  {
+   "id": "cho-11",
+   "gt": "EDP",
+   "elegida": "EDP",
+   "acierto": true,
+   "ms": 3002.9,
+   "conf": null
+  },
+  {
+   "id": "cho-12",
+   "gt": "EDP",
+   "elegida": "EDP",
+   "acierto": true,
+   "ms": 3099.4,
+   "conf": null
+  },
+  {
+   "id": "cho-13",
+   "gt": "Floral",
+   "elegida": "Floral",
+   "acierto": true,
+   "ms": 2955.6,
+   "conf": null
+  },
+  {
+   "id": "cho-14",
+   "gt": "Floral",
+   "elegida": "Floral",
+   "acierto": true,
+   "ms": 3015.6,
+   "conf": null
+  },
+  {
+   "id": "cho-15",
+   "gt": "Gourmand",
+   "elegida": "Gourmand",
+   "acierto": true,
+   "ms": 3283.7,
+   "conf": null
+  },
+  {
+   "id": "cho-16",
+   "gt": "EDP",
+   "elegida": "EDP",
+   "acierto": true,
+   "ms": 3007.7,
+   "conf": null
+  },
+  {
+   "id": "cho-17",
+   "gt": "Amaderada",
+   "elegida": "Amaderada",
+   "acierto": true,
+   "ms": 3148.2,
+   "conf": null
+  },
+  {
+   "id": "cho-18",
+   "gt": "2020",
+   "elegida": "2020",
+   "acierto": true,
+   "ms": 3213.8,
+   "conf": null
+  },
+  {
+   "id": "cho-19",
+   "gt": "EDP",
+   "elegida": "EDP",
+   "acierto": true,
+   "ms": 3914.0,
+   "conf": null
+  },
+  {
+   "id": "cho-20",
+   "gt": "2019",
+   "elegida": "2019",
+   "acierto": true,
+   "ms": 3270.3,
+   "conf": null
+  }
+ ]
+}

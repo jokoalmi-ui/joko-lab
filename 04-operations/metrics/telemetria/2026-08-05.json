@@ -1,0 +1,85 @@
+{
+  "fecha": "2026-08-05",
+  "decisiones": {
+    "total": 375,
+    "por_politica": {
+      "Horario": 319,
+      "Gpu": 44,
+      "Privacidad": 11,
+      "Disponibilidad": 1
+    },
+    "por_dia": {
+      "2026-07-29": 25,
+      "2026-07-30": 30,
+      "2026-07-31": 38,
+      "2026-08-01": 33,
+      "2026-08-02": 27,
+      "2026-08-03": 30,
+      "2026-08-04": 163,
+      "2026-08-05": 29
+    },
+    "fallback_rate": 0.0027
+  },
+  "activaciones": {
+    "total": 13,
+    "por_rule": {},
+    "por_politica_activada": {
+      "POLICY-001": 13,
+      "POLICY-002": 13
+    },
+    "blocks": {
+      "RULE-004": 4
+    },
+    "model_selection": {
+      "RULE-003": 8,
+      "RULE-001": 1
+    },
+    "reglas_conocidas": 9,
+    "reglas_nunca_activadas": [
+      "RULE-001",
+      "RULE-002",
+      "RULE-003",
+      "RULE-004",
+      "RULE-005",
+      "RULE-006",
+      "RULE-007",
+      "RULE-008",
+      "RULE-009"
+    ]
+  },
+  "rag": {
+    "total_consultas": 15,
+    "paths_top": {
+      "01-knowledge/experiments/EXP-20260730-005/resultados.md": 5,
+      "GUIA-JOKO-LAB.md": 5,
+      "04-operations/backlogs/2026-07-31-backlog.md": 5,
+      "01-knowledge/objects/RULE-008.yaml": 4,
+      "lpa/contracts/evidence-contract.md": 3,
+      "01-knowledge/objects/RULE-003.yaml": 2,
+      "01-knowledge/models/deepseek-r1-14b.md": 2,
+      "01-knowledge/objects/DEC-002.yaml": 2,
+      "01-knowledge/objects/RULE-001.yaml": 2,
+      "01-knowledge/patterns/inference-patterns/large-creative-model.md": 2,
+      "01-knowledge/experiments/EXP-20260729-004/resultados.md": 2,
+      "research/prompt-experiments.md": 2,
+      "01-knowledge/objects/RULE-006.yaml": 2,
+      "01-knowledge/objects/RULE-009.yaml": 2,
+      "lpa/constitucion/normas-jl.md": 2
+    },
+    "kos_conocidos": 19,
+    "kos_nunca_recuperados": [
+      "DEC-001",
+      "DEC-003",
+      "DEC-GAIPRO-001",
+      "PATTERN-001",
+      "POLICY-001",
+      "POLICY-002",
+      "POLICY-003",
+      "PRED-001",
+      "PRED-002",
+      "RULE-002",
+      "RULE-005",
+      "RULE-007"
+    ]
+  }
+}

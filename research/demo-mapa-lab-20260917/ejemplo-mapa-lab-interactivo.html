@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joko Lab · Mapa interactivo de estado (ejemplo)</title>
+<style>
+  :root{
+    --bg:#0a0d13; --bg2:#0f141d; --panel:#141b26; --panel2:#1a2331; --line:#243044;
+    --txt:#e8eef7; --dim:#8ea0b8; --dim2:#5f7186;
+    --ok:#33d17a; --warn:#f5b942; --bad:#ff5d5d; --info:#4ea1ff; --acc:#a074ff;
+    --r:14px; --mono:ui-monospace,"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+    --sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#16233a 0%,var(--bg) 55%) no-repeat,var(--bg);color:var(--txt);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1600px;margin:0 auto;padding:26px 26px 60px}
+  header.top{display:flex;flex-wrap:wrap;gap:18px;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:16px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .logo{width:46px;height:46px;border-radius:13px;background:linear-gradient(145deg,#2b3f63,#111826);display:grid;place-items:center;font-weight:800;letter-spacing:.5px;color:#cfe3ff;font-size:19px;border:1px solid #33405e}
+  h1{margin:0;font-size:23px;letter-spacing:-.3px}
+  .sub{color:var(--dim);font-size:13px;margin-top:3px}
+  .stamp{font-family:var(--mono);font-size:11.5px;color:var(--dim2);text-align:right;line-height:1.7}
+  .stamp b{color:var(--ok);font-weight:600}
+  .bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:18px 0 14px}
+  .seg{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+  .seg button{background:none;border:0;color:var(--dim);padding:9px 15px;font:600 12.5px var(--sans);cursor:pointer;transition:.15s}
+  .seg button.on{background:#22314a;color:#fff}
+  .seg button:hover{color:#fff}
+  input.search{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 13px;color:var(--txt);font:13px var(--sans);min-width:230px;outline:none}
+  input.search:focus{border-color:#3c5a86}
+  .spacer{flex:1}
+  .kpibar{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;margin:6px 0 20px}
+  .kpi{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:12px 13px;cursor:pointer;transition:.15s}
+  .kpi:hover{transform:translateY(-2px);border-color:#3a537a}
+  .kpi .v{font-size:22px;font-weight:750;letter-spacing:-.5px}
+  .kpi .l{font-size:11px;color:var(--dim);text-transform:uppercase;letter-spacing:.7px;margin-top:3px}
+  .kpi .n{font-size:11px;color:var(--dim2);margin-top:6px}
+  .kpi.bad .v{color:var(--bad)} .kpi.warn .v{color:var(--warn)} .kpi.ok .v{color:var(--ok)} .kpi.info .v{color:var(--info)}
+
+  /* Mapa */
+  .map{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;align-items:start}
+  @media(max-width:1180px){.map{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:680px){.map{grid-template-columns:1fr}}
+  .layer{background:linear-gradient(180deg,rgba(26,35,49,.85),rgba(15,20,29,.85));border:1px solid var(--line);border-radius:var(--r);padding:12px}
+  .layer h3{margin:2px 0 2px;font-size:13.5px;letter-spacing:.2px;display:flex;align-items:center;gap:7px}
+  .layer .code{font-family:var(--mono);font-size:10.5px;color:var(--dim2);background:#0e141e;border:1px solid var(--line);padding:1px 6px;border-radius:6px}
+  .layer .meta{font-size:11px;color:var(--dim2);margin-bottom:10px}
+  .node{position:relative;background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--dim2);border-radius:10px;padding:9px 10px 9px 11px;margin-bottom:8px;cursor:pointer;transition:.14s}
+  .node:hover{background:#1c2739;transform:translateX(2px)}
+  .node.sel{background:#22314a;border-color:#4a6ea8}
+  .node .t{font-size:12.5px;font-weight:600;display:flex;align-items:center;gap:7px}
+  .node .d{font-size:11px;color:var(--dim);margin-top:3px;line-height:1.45}
+  .node .meas{font-family:var(--mono);font-size:10.5px;color:#9fb4cf;margin-top:5px}
+  .dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}
+  .ok .dot,.node.ok{border-left-color:var(--ok)} .dot.ok{background:var(--ok);box-shadow:0 0 8px rgba(51,209,122,.5)}
+  .node.warn{border-left-color:var(--warn)} .dot.warn{background:var(--warn);box-shadow:0 0 8px rgba(245,185,66,.5)}
+  .node.bad{border-left-color:var(--bad)} .dot.bad{background:var(--bad);box-shadow:0 0 8px rgba(255,93,93,.55)}
+  .node.crit{background:linear-gradient(90deg,rgba(255,93,93,.12),var(--panel));border-color:#5a2b2b}
+  .node.hide,.kpi.hide{opacity:.14;filter:grayscale(.7)}
+  .tag{font-size:9.5px;font-family:var(--mono);padding:1px 5px;border-radius:5px;border:1px solid var(--line);color:var(--dim);text-transform:uppercase;letter-spacing:.5px}
+  .tag.p0{color:#ffd0d0;border-color:#7a3333;background:#3a1a1a}
+  .tag.p1{color:#ffe6bf;border-color:#7a5a2b;background:#3a2c14}
+  .tag.p2{color:#cfe0ff;border-color:#33507a;background:#16233a}
+
+  /* Panel detalle */
+  .layout{display:grid;grid-template-columns:1fr 372px;gap:16px;align-items:start}
+  @media(max-width:1180px){.layout{grid-template-columns:1fr}}
+  aside.det{position:sticky;top:16px;background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:15px}
+  aside.det h2{margin:0 0 4px;font-size:15px}
+  aside.det .kind{font-size:11px;color:var(--dim2);font-family:var(--mono);margin-bottom:11px}
+  aside.det p{font-size:12.5px;color:#c6d3e4;line-height:1.6;margin:0 0 11px}
+  .evid{background:#0b1119;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-family:var(--mono);font-size:10.5px;color:#9fd4b4;white-space:pre-wrap;word-break:break-word;line-height:1.55;margin-bottom:11px}
+  .evid.bad{color:#ffb3b3;border-color:#4a2727;background:#160e0e}
+  .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim2);margin:12px 0 5px;font-weight:700}
+  .fix{border-left:2px solid var(--info);padding-left:10px;font-size:12.5px;color:#d6e3f5;line-height:1.6}
+  .empty{color:var(--dim2);font-size:12.5px;line-height:1.7}
+
+  /* Tabla huecos / lista */
+  table.falt{width:100%;border-collapse:collapse;font-size:12.5px}
+  table.falt th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--dim2);border-bottom:1px solid var(--line);padding:8px 9px}
+  table.falt td{border-bottom:1px solid #1b2431;padding:10px 9px;vertical-align:top;color:#cfdcec}
+  table.falt tr:hover td{background:#141d2a;cursor:pointer}
+  table.falt tr.sel td{background:#1d2941}
+  .mono{font-family:var(--mono);font-size:11px;color:#9fb4cf}
+  .view{display:none} .view.on{display:block}
+  footer.note{margin-top:22px;border-top:1px solid var(--line);padding-top:14px;color:var(--dim2);font-size:11.5px;line-height:1.75}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--dim);margin-bottom:12px}
+  .legend span{display:flex;align-items:center;gap:6px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="brand">
+      <div class="logo">JL</div>
+      <div>
+        <h1>Joko Lab · mapa de estado interactivo</h1>
+        <div class="sub">Ejemplo de representación visual — <b>todos los números son lecturas reales del sistema</b>, no datos de muestra.</div>
+      </div>
+    </div>
+    <div class="stamp">
+      instantánea: <b id="ts">—</b><br>
+      fuente: ~/joko-lab + ~/.hermes/{cron,jobs.json,config.yaml}<br>
+      método: solo lectura (ls, jobs.json, knowledge_health.py, lms ps, nvidia-smi, ss)
+    </div>
+  </header>
+
+  <div class="bar">
+    <div class="seg" id="views">
+      <button data-v="map" class="on">Mapa por capas</button>
+      <button data-v="falt">Qué falta (9)</button>
+      <button data-v="list">Inventario</button>
+    </div>
+    <div class="seg" id="filters">
+      <button data-f="all" class="on">Todo</button>
+      <button data-f="bad">Huecos</button>
+      <button data-f="warn">Parcial</button>
+      <button data-f="ok">OK</button>
+    </div>
+    <input class="search" id="q" placeholder="filtrar por nombre…  (p. ej. git, rag, mcp)">
+    <div class="spacer"></div>
+    <div class="seg"><button id="expand">Expandir todo</button></div>
+  </div>
+
+  <div class="kpibar" id="kpibar"></div>
+
+  <!-- ───────── VISTA MAPA ───────── -->
+  <section class="view on" id="v-map">
+    <div class="legend">
+      <span><i class="dot ok"></i> funcionando</span>
+      <span><i class="dot warn"></i> parcial / sin uso</span>
+      <span><i class="dot bad"></i> hueco o error</span>
+      <span style="color:var(--dim2)">· clic en cualquier nodo → detalle, dato real y evidencia</span>
+    </div>
+    <div class="layout">
+      <div class="map" id="map"></div>
+      <aside class="det" id="det"></aside>
+    </div>
+  </section>
+
+  <!-- ───────── VISTA QUÉ FALTA ───────── -->
+  <section class="view" id="v-falt">
+    <div class="legend"><span>ordenado por impacto sobre el lab · cada fila trae la evidencia literal y cómo se cerraría</span></div>
+    <table class="falt">
+      <thead><tr><th style="width:64px">Prior.</th><th style="width:230px">Hueco</th><th>Evidencia real</th><th style="width:300px">Cómo se cierra</th></tr></thead>
+      <tbody id="faltbody"></tbody>
+    </table>
+  </section>
+
+  <!-- ───────── VISTA LISTA ───────── -->
+  <section class="view" id="v-list">
+    <table class="falt">
+      <thead><tr><th style="width:150px">Capa</th><th style="width:230px">Componente</th><th style="width:92px">Estado</th><th>Medición real</th></tr></thead>
+      <tbody id="listbody"></tbody>
+    </table>
+  </section>
+
+  <footer class="note">
+    Esto es un <b>ejemplo de formato</b>, no el panel definitivo. Lo que ya se puede hacer con estos mismos datos:
+    (1) regenerarlo solo con un script y servirlo en <span class="mono">localhost</span> cada mañana;
+    (2) enganchar los tres MCP del lab para que el detalle de cada nodo se consulte en vivo;
+    (3) que cada hueco genere automáticamente una entrada en el backlog con su evidencia.
+    Nada de lo que ves aquí modifica el sistema: la instantánea se tomó en modo lectura.
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   DATOS: instantánea real del sistema (17-sep-2026)
+   ============================================================ */
+const SNAP = { fecha: "17-sep-2026", hora: "20:00 CEST" };
+
+const KPIS = [
+  {v:"43", l:"crons Hermes", n:"41 activos · 1 con error", s:"warn", go:"crons"},
+  {v:"163", l:"skills", n:"36 de dominio joko-lab", s:"info", go:"objetos"},
+  {v:"800", l:"docs de conocimiento", n:"frontmatter 92% · H1 99%", s:"ok", go:"objetos"},
+  {v:"9", l:"huecos detectados", n:"1 crítico · 3 altos", s:"bad", go:"huecos"},
+  {v:"3/3", l:"MCP conectados", n:"lab-db · lancedb · animation", s:"ok", go:"mcp"},
+  {v:"2", l:"motores de inferencia", n:"LM Studio + Ollama vivos", s:"ok", go:"infer"},
+  {v:"68", l:"objetos de conocimiento", n:"17 RULE · 15 DEC · 4 PRED", s:"warn", go:"objetos"},
+  {v:"165", l:"backups sueltos .bak", n:"de 290 ficheros en tools/", s:"bad", go:"tools"},
+];
+
+const LAYERS = [
+  {
+    code:"05-inference", nombre:"Inferencia", meta:"7 entradas · GPU RTX A2000 12 GB",
+    nodes:[
+      {id:"lmstudio", t:"LM Studio (puerto 1234)", s:"ok", d:"Motor principal. Modelo cargado y escuchando.",
+       meas:"glm-4.6v-flash · IDLE · 7.95 GB · ctx 21504",
+       evid:"$ lms ps\nIDENTIFIER        MODEL             STATUS    SIZE       CONTEXT\nlm-4.6v-flash    glm-4.6v-flash    IDLE      7.95 GB    21504",
+       fix:"Nada. Si hace falta liberar VRAM para ComfyUI: lms unload glm-4.6v-flash.", capa:"Inferencia"},
+      {id:"ollama", t:"Ollama (puerto 11434)", s:"ok", d:"Segundo motor, API compatible OpenAI. Usado por Hermes y por scripts del lab.",
+       meas:"3 modelos: granite4.2:8b, qwen2.5:7b, deepseek-r1-14b",
+       evid:"$ curl -s localhost:11434/v1/models\n{\"object\":\"list\",\"data\":[{\"id\":\"ibm/granite4.2:8b-q4_K_M\"},{\"id\":\"qwen2.5:7b\"},{\"id\":\"deepseek-r1-distill-qwen-14b:latest\"}]}",
+       fix:"Nada.", capa:"Inferencia"},
+      {id:"comfyui", t:"ComfyUI (bajo demanda)", s:"ok", d:"Generación de imagen local para arte de fichas/infografías. Parado a propósito cuando no se usa.",
+       meas:"systemctl --user is-active comfyui → inactive",
+       evid:"$ systemctl --user is-active comfyui\ninactive",
+       fix:"Correcto así: es un servicio puntual, no permanente (evita comer VRAM).", capa:"Inferencia"},
+      {id:"gpu", t:"GPU RTX A2000 12 GB", s:"warn", d:"Con 7,95 GB del modelo de visión cargado queda poco margen para otro modelo grande a la vez.",
+       meas:"11550 / 12282 MiB · 9% · 45 °C",
+       evid:"$ nvidia-smi --query-gpu=name,memory.used,memory.total,utilization.gpu,temperature.gpu --format=csv,noheader\nNVIDIA RTX A2000 12GB, 11550 MiB, 12282 MiB, 9 %, 45",
+       fix:"Política clara de swap: descargar GLM antes de generar imagen. Ya se hace a mano; se puede automatizar en el script de arte.", capa:"Inferencia"},
+      {id:"mcp", t:"MCP del lab (3)", s:"ok", d:"Herramientas del agente contra las bases del lab.",
+       meas:"animation-server · lab-db · lancedb (enabled: true)",
+       evid:"$ grep -A20 '^mcp_servers' ~/.hermes/config.yaml\nmcp_servers:\n  animation-server: enabled: true\n  lab-db: enabled: true\n  lancedb: enabled: true",
+       fix:"Falta un cuarto enchufe evidente: no hay MCP para Git del lab, ni para el inventario de crons — justo los dos huecos P0/P1 de esta lista.", capa:"Inferencia"},
+      {id:"eval", t:"Evaluación de modelos locales", s:"ok", d:"Ledger de alucinaciones y batería de modelos con datos reales.",
+       meas:"alucinaciones_ledger.jsonl + bateria_modelos.jsonl presentes",
+       evid:"$ ls ~/joko-lab/04-operations/metrics\nalucinaciones_ledger.jsonl\nbateria_modelos.jsonl  bateria_modelos_gptoss.jsonl",
+       fix:"Nada.", capa:"Inferencia"},
+    ]
+  },
+  {
+    code:"03-automation", nombre:"Automatización", meta:"4 entradas · n8n + crons + RAG",
+    nodes:[
+      {id:"crondb", t:"Crons de Hermes", s:"warn", d:"El motor real del lab: 41 jobs activos cada día.",
+       meas:"43 total · 41 enabled · 1 error · 1 deshabilitado por diseño",
+       evid:"$ cat ~/.hermes/cron/jobs.json  (recuento)\ntotal=43  enabled=41  error=['rag-reindex-daily']",
+       fix:"Ver el hueco P0-2: un job lleva fallando. Todo lo demás en verde.", capa:"Automatización"},
+      {id:"rag", t:"rag-reindex-daily", s:"bad", d:"Reindexado diario del RAG (LanceDB). Es el que alimenta las búsquedas del agente.",
+       meas:"last_status = error · failure_streak = 1 · último intento 17-sep 08:05",
+       evid:"job 'rag-reindex-daily' {enabled:true, last:'2026-09-17T08:05:07', status:'error', script:'rag-reindex.sh'}",
+       fix:"Leer el log del job y decidir: si el catchup horario (rag-reindex-catchup, en verde) ya cubre el índice, el diario sobra; si no, hay que arreglarlo.", capa:"Automatización", prio:"P0", crit:true},
+      {id:"crontab", t:"crontab del sistema (9 líneas)", s:"warn", d:"Automatizaciones fuera de Hermes: healthchecks de Docker y n8n, state-manager cada minuto, backups.",
+       meas:"healthcheck docker-admin (5 * * * *) · n8n (cada 30 min) · git-backup 22:35 · cloud-backup 22:30 · checkpoint 22:00",
+       evid:"5 * * * *  cd hermes-lab/skills/docker-admin/scripts && bash healthcheck.sh --cron\n*/30 * * * * bash hermes-lab/skills/n8n-admin/healthcheck-n8n.sh >> .../healthcheck-n8n.log",
+       fix:"P2-8: el log al que apunta el healthcheck de n8n no existe, así que ese vigilante lleva tiempo escribiendo al vacío (o fallando en silencio).", capa:"Automatización"},
+      {id:"n8nmon", t:"Vigilancia de n8n", s:"bad", d:"Hay un healthcheck cada 30 min apuntando a un log concreto, pero ese fichero no está.",
+       meas:"tail: no se puede abrir '…/n8n-admin/logs/healthcheck-n8n.log': No existe el archivo o directorio",
+       evid:"$ tail -2 ~/hermes-lab/skills/n8n-admin/logs/healthcheck-n8n.log\ntail: no se puede abrir '…/healthcheck-n8n.log' para lectura: No existe el archivo o directorio",
+       fix:"Comprobar dónde escribe realmente el script (o si el directorio logs/ no se creó nunca) y dejar el log en un sitio que exista. Sin tocar n8n: solo el vigilante.", capa:"Automatización", prio:"P1"},
+      {id:"watchdogs", t:"Watchdogs activos", s:"ok", d:"Capa de vigilancia amplia: salud del sistema, lab, sesiones, Telegram, Founderz, empleo, canales IG/YT, RAG catchup.",
+       meas:"26 jobs con última ejecución correcta el 17-sep",
+       evid:"lab-health-watchdog 08:30 ok · watchdog-salud-sistema 16:01 ok · telegram-watchdog 19:53 ok · vigilar-canales-ig 13:44 ok",
+       fix:"Nada. Es la parte más madura del lab.", capa:"Automatización"},
+    ]
+  },
+  {
+    code:"01-knowledge", nombre:"Conocimiento", meta:"21 entradas · 800 docs · 68 objetos",
+    nodes:[
+      {id:"salud", t:"Knowledge health", s:"ok", d:"El script del propio lab puntúa la estructura documental.",
+       meas:"KNOWLEDGE HEALTH 100/100 · supervivencia DEC 100% (6/6)",
+       evid:"$ python3 tools/knowledge_health.py\nKNOWLEDGE HEALTH:    100/100\n  DEC creadas: 6 · activas: 6 · revalidadas: 26 · Supervivencia: 100%",
+       fix:"Nada. Ojo: el 100 es de estructura, no de utilidad — mira los dos siguientes nodos.", capa:"Conocimiento"},
+      {id:"objetos", t:"Objetos de conocimiento", s:"warn", d:"Los ficheros que gobiernan el lab: reglas, decisiones, predicciones, patrones.",
+       meas:"68 entradas · RULE 17 · DEC 6 · PRED 4 · PATTERN 1 (+ .bak)",
+       evid:"$ ls 01-knowledge/objects | wc -l → 68\nprefijos: R-prefijo 32 (15 .bak) · D 15 (9 .bak) · P 16 (9 .bak)",
+       fix:"P1-6: hay 33 ficheros .bak mezclados con los objetos vivos. Un .bak dentro de la carpeta canónica confunde a cualquiera que la lea (persona o agente).", capa:"Conocimiento"},
+      {id:"corpus", t:"Corpus documental", s:"ok", d:"Experimentos, observaciones, modelos y patrones documentados.",
+       meas:"experiments 33 · observations 113 · models 11 · patterns 5 · hypotheses 5",
+       evid:"01-knowledge/{experiments:33, observations:113, models:11, patterns:5, hypotheses:5} (docs .md)",
+       fix:"Nada.", capa:"Conocimiento"},
+      {id:"grafo", t:"Enlaces entre documentos", s:"bad", d:"El corpus existe, pero casi ningún documento apunta a otro: es una biblioteca sin índice cruzado.",
+       meas:"Con enlaces: 38/800 = 4 %",
+       evid:"Estructura documental (docs .md de conocimiento):\n  Frontmatter: 737/800 (92%)  H3: 240/800 (30%)  Con enlaces: 38/800 (4%)",
+       fix:"P1-4: cuando una observación reutiliza un patrón o una DEC, añadir el enlace en la misma línea. Sin enlaces, la memoria del lab se vuelve opaca para el propio agente.", capa:"Conocimiento", prio:"P1"},
+      {id:"contract", t:"Contrato de evidencia", s:"bad", d:"Regla del lab: cada afirmación con su fuente. El medidor dice que hoy no la cumple ninguno.",
+       meas:"Cumplen contrato: 0/30",
+       evid:"Evidence Contract:\n  Cumplen contrato:  0/30",
+       fix:"P1-3: o el contrato no está bien definido, o los 30 documentos no lo cumplen. Antes de tocar 30 ficheros hay que mirar el medidor (un instrumento que da 0/30 suele estar mal calibrado).", capa:"Conocimiento", prio:"P1"},
+      {id:"reports", t:"Carpeta reports/", s:"bad", d:"Capa prevista para informes consolidados… con un solo fichero dentro.",
+       meas:"1 entrada",
+       evid:"$ ls 01-knowledge/../reports | wc -l → 1",
+       fix:"P1-5: decidir qué es: si es la capa de informes, falta el generador; si nadie la usa, sobra del árbol.", capa:"Conocimiento", prio:"P1"},
+    ]
+  },
+  {
+    code:"04-operations", nombre:"Operaciones", meta:"19 entradas · tools, tests, verificación",
+    nodes:[
+      {id:"tools", t:"tools/", s:"bad", d:"Cajas de herramientas del lab. Crecen rápido y sin poda.",
+       meas:"290 ficheros · 165 son .bak (57 %)",
+       evid:"$ ls tools | wc -l → 290   $ ls tools/*.bak* | wc -l → 165",
+       fix:"P2-7: política de higiene — los .bak de más de 30 días se archivan fuera de tools/ (o se borran con OK explícito). Hoy más de la mitad de la carpeta es ruido.", capa:"Operaciones", prio:"P2"},
+      {id:"git", t:"Control de versiones del lab", s:"bad", d:"El lab principal no es un repositorio git: no hay historial ni vuelta atrás de 800 docs y 290 herramientas.",
+       meas:"git status → fatal: no es un repositorio git",
+       evid:"$ git -C ~/joko-lab status -sb\nfatal: no es un repositorio git (ni ninguno de los directorios superiores): .git",
+       fix:"P0-1: lo único que protege hoy el lab es el backup diario comprimido (22:15). Inicializar repo en ~/joko-lab y sumarlo al git-backup.sh que ya existe para hermes-lab es el cambio de mayor retorno y menor riesgo.", capa:"Operaciones", prio:"P0", crit:true},
+      {id:"repo_comp", t:"Repos hermanos sí versionados", s:"warn", d:"Comparativa que hace visible el hueco anterior: unos proyectos sí están en git, otros no.",
+       meas:"hermes-lab SÍ (último commit 06-sep) · perfume-ia SÍ (18-jul) · joko-lab NO · lmstudio_real_monitor NO",
+       evid:"REPO: hermes-lab (e7947b8 2026-09-06)\nREPO: perfume-ia (454ec89 2026-07-18)\nSIN GIT: joko-lab · lmstudio_real_monitor",
+       fix:"Que el lab (el proyecto principal) sea el único sin historial es la incoherencia que más urge corregir.", capa:"Operaciones"},
+      {id:"verif", t:"tests/ y verification/", s:"ok", d:"Red de seguridad del código del lab.",
+       meas:"tests 22 entradas · verification 31 entradas",
+       evid:"tests/ → 22 · verification/ → 31",
+       fix:"Nada.", capa:"Operaciones"},
+      {id:"instr", t:"instruments/", s:"bad", d:"Carpeta pensada para instrumentos de medida del lab. Un solo instrumento dentro.",
+       meas:"1 entrada: critic-loop",
+       evid:"$ ls instruments → critic-loop",
+       fix:"P2-9: nudo con 'Evidence Contract 0/30' — falta un instrumento que mida de verdad el cumplimiento de evidencia. Esta carpeta debería tener al menos: contrato de evidencia, gate de veracidad, medidor de alucinaciones.", capa:"Operaciones", prio:"P2"},
+      {id:"assets", t:"assets/ · inbox/", s:"warn", d:"Dos carpetas creadas y prácticamente sin uso.",
+       meas:"assets 1 entrada · inbox 1 entrada",
+       evid:"assets: 1 entradas   inbox: 1 entradas   reports: 1 entradas   instruments: 1 entradas",
+       fix:"P2-9: o se usan (inbox como bandeja de entrada real) o se retiran del árbol. Carpetas vacías = interfaz que promete algo que no existe.", capa:"Operaciones", prio:"P2"},
+      {id:"lpa", t:"lpa/ · docs/", s:"ok", d:"Programa de investigación y documentación oficial.",
+       meas:"lpa 28 entradas · docs 11 entradas",
+       evid:"lpa/ → 28 · docs/ → 11",
+       fix:"Nada.", capa:"Operaciones"},
+    ]
+  },
+  {
+    code:"02-infrastructure", nombre:"Infraestructura", meta:"7 entradas · Docker, red, backups",
+    nodes:[
+      {id:"puertos", t:"Servicios escuchando", s:"ok", d:"Lo que hay realmente levantado en el host ahora mismo.",
+       meas:"18 puertos: 1234 LM Studio · 5678 n8n · 11434 Ollama · 5000 monitor · 8384/22000 Syncthing · 4000/5050/8081/8765/9911 varios",
+       evid:"$ ss -ltn | awk '{print $4}' | sed 's/.*://' | sort -n | uniq\n53 631 1234 4000 5000 5050 5678 8000 8081 8384 8765 9222 9224 9911 11434 22000 41343 45057",
+       fix:"Falta el paso que cierra el círculo: un inventario 'puerto → servicio → para qué sirve' en el propio lab. Hoy hay 18 puertos abiertos y no existe ese mapa en ningún sitio.", capa:"Infraestructura"},
+      {id:"docker", t:"Stack Docker", s:"warn", d:"El healthcheck horario de Docker existe, pero su log no contiene nada legible.",
+       meas:"healthcheck.log → sin líneas de salida",
+       evid:"$ tail -3 ~/hermes-lab/skills/docker-admin/logs/healthcheck.log\n(sin salida)",
+       fix:"P2-8: un vigilante sin registro no es un vigilante. Y por política del lab, el estado del stack se consulta con solo lectura (docker compose ps), nunca reiniciando servicios a ciegas.", capa:"Infraestructura"},
+      {id:"n8n", t:"n8n (puerto 5678)", s:"warn", d:"Servicio protegido del lab: workflows y credenciales. Aquí solo interesa que esté vigilado, no tocarlo.",
+       meas:"escuchando en 5678 · vigilante cada 30 min (log inexistente, ver P2-8)",
+       evid:"puertos en escucha: … 5678 …",
+       fix:"Revisar solo el vigilante y el log. No se para, no se reinicia, no se recrea nada de n8n sin confirmación explícita.", capa:"Infraestructura"},
+      {id:"backups", t:"Backups", s:"warn", d:"Copia diaria del lab y del estado de Hermes, más el destino en el SSD de datos.",
+       meas:"backup-joko-lab-diario 22:15 ok · backup-hermes-diario 22:20 ok · destino /mnt/ssd_ia_datos/backups existe",
+       evid:"backup-joko-lab-diario {last:'2026-09-16T22:16:22', status:'ok', script:'backup-joko-lab.sh'}\n$ ls -d /mnt/ssd_ia_datos/backups → existe",
+       fix:"P1-7: hay copia, pero sin git no hay historial navegable: restaurar 'la versión de hace tres cambios' es hoy imposible. Los dos huecos P0/P1 se arreglan juntos.", capa:"Infraestructura"},
+      {id:"red", t:"Red / WiFi", s:"ok", d:"Enlace del PC por cable al router (el interna se reserva para otros equipos).",
+       meas:"eno1 (cable) en uso · servicios locales accesibles",
+       evid:"puerto 1234, 11434, 5678 responden en localhost",
+       fix:"Nada relevante para el mapa.", capa:"Infraestructura"},
+    ]
+  },
+];
+
+const HUECOS = [
+  {p:"P0", t:"~/joko-lab sin control de versiones",
+   ev:"$ git -C /home/jokoalmi/joko-lab status -sb\nfatal: no es un repositorio git (ni ninguno de los directorios superiores): .git",
+   fix:"Inicializar repo, primer commit del árbol y añadirlo al git-backup.sh que ya corre a las 22:35 para hermes-lab.",
+   capa:"Operaciones", crit:true},
+  {p:"P0", t:"rag-reindex-daily termina en error",
+   ev:"job 'rag-reindex-daily' {last:'2026-09-17T08:05:07', status:'error', failure_streak:1, script:'rag-reindex.sh'}",
+   fix:"Leer su log y decidir si el catchup horario lo cubre (entonces el diario sobra) o si hay que arreglarlo.",
+   capa:"Automatización", crit:true},
+  {p:"P1", t:"Contrato de evidencia: 0/30",
+   ev:"Evidence Contract:\n  Cumplen contrato:  0/30",
+   fix:"Revisar primero el medidor (un 0 absoluto huele a instrumento mal calibrado, no a 30 documentos incumplidores).",
+   capa:"Conocimiento"},
+  {p:"P1", t:"Casi ningún documento enlaza con otro (4 %)",
+   ev:"Con enlaces: 38/800 (4 %) · H3: 240/800 (30 %)",
+   fix:"Enlazar en la misma línea cuando se reutiliza una DEC, un patrón o una observación.",
+   capa:"Conocimiento"},
+  {p:"P1", t:"reports/ con 1 solo fichero",
+   ev:"reports: 1 entradas  (frente a 800 docs de conocimiento y 430 de research)",
+   fix:"O generador de informes periódicos, o retirar la carpeta del árbol.",
+   capa:"Conocimiento"},
+  {p:"P1", t:"33 ficheros .bak dentro de objects/",
+   ev:"objects/ = 68 entradas · R-prefijo 32 (15 .bak) · D 15 (9 .bak) · P 16 (9 .bak)",
+   fix:"Mover los .bak a una carpeta de cuarentena con fecha y dejar objects/ solo con objetos vivos.",
+   capa:"Conocimiento"},
+  {p:"P1", t:"Vigilante del stack sin registro útil",
+   ev:"healthcheck.log → sin salida · healthcheck-n8n.log → No existe el archivo o directorio",
+   fix:"Arreglar la ruta del log y comprobar que el script escribe algo cuando todo va bien (no solo cuando falla).",
+   capa:"Infraestructura"},
+  {p:"P2", t:"tools/ con más backups que herramientas (57 %)",
+   ev:"$ ls tools | wc -l → 290   $ ls tools/*.bak* | wc -l → 165",
+   fix:"Archivar los .bak de más de 30 días en 04-operations/archive/ (borrado solo con OK explícito).",
+   capa:"Operaciones"},
+  {p:"P2", t:"instruments/ y carpetas casi vacías (assets, inbox)",
+   ev:"instruments 1 (critic-loop) · assets 1 · inbox 1 · reports 1",
+   fix:"Decidir por carpeta: se usa o se retira. Para instruments, el candidato claro es el medidor del contrato de evidencia.",
+   capa:"Operaciones"},
+];
+
+/* ============================================================
+   RENDER
+   ============================================================ */
+const $ = s => document.querySelector(s);
+document.getElementById('ts').textContent = SNAP.fecha + " · " + SNAP.hora;
+
+function dot(s){return `<i class="dot ${s}"></i>`}
+
+// KPIs
+$('#kpibar').innerHTML = KPIS.map((k,i)=>`
+  <div class="kpi ${k.s}">
+    <div class="v">${k.v}</div><div class="l">${k.l}</div><div class="n">${k.n}</div>
+  </div>`).join('');
+
+// Mapa
+$('#map').innerHTML = LAYERS.map(L=>`
+  <div class="layer" data-layer="${L.code}">
+    <h3>${L.nombre} <span class="code">${L.code}</span></h3>
+    <div class="meta">${L.meta}</div>
+    ${L.nodes.map(n=>`
+      <div class="node ${n.s} ${n.crit?'crit':''}" data-id="${n.id}" data-s="${n.s}"
+           data-t="${n.t}" data-capa="${L.nombre}" data-d="${n.d}" data-m="${n.meas}"
+           data-e="${n.evid.replace(/"/g,'&quot;')}" data-f="${n.fix.replace(/"/g,'&quot;')}"
+           data-p="${n.prio||''}">
+        <div class="t">${dot(n.s)}${n.t}${n.prio?` <span class="tag ${n.prio.toLowerCase()}">${n.prio}</span>`:''}</div>
+        <div class="d">${n.d}</div>
+        <div class="meas">${n.meas}</div>
+      </div>`).join('')}
+  </div>`).join('');
+
+// Tabla huecos
+$('#faltbody').innerHTML = HUECOS.map(h=>`
+  <tr data-capa="${h.capa}" data-t="${h.t}" data-ev="${h.ev.replace(/"/g,'&quot;')}" data-fix="${h.fix.replace(/"/g,'&quot;')}" data-p="${h.p}">
+    <td><span class="tag ${h.p.toLowerCase()}">${h.p}</span></td>
+    <td><b>${h.t}</b><div class="mono">${h.capa}</div></td>
+    <td class="mono">${h.ev.split("\n").join("<br>")}</td>
+    <td>${h.fix}</td>
+  </tr>`).join('');
+
+// Inventario
+$('#listbody').innerHTML = LAYERS.flatMap(L=>L.nodes.map(n=>`
+  <tr data-id="${n.id}">
+    <td class="mono">${L.code}</td><td><b>${n.t}</b></td>
+    <td>${dot(n.s)}<span style="font-size:11.5px;color:var(--dim)">${n.s==='ok'?'OK':(n.s==='warn'?'parcial':'hueco')}</span></td>
+    <td class="mono">${n.meas}</td>
+  </tr>`)).join('');
+
+// Panel detalle
+const DET_DEFAULT = `<h2>Elige un nodo</h2><div class="kind">mapa por capas</div>
+  <p class="empty">Cada nodo del mapa es un componente real del lab con su estado, su medición de hoy y el comando exacto que la produjo.<br><br>
+  Los nodos en rojo son huecos: no “cosas que van mal”, sino cosas que <b>no existen todavía</b> (git del lab, medidor de evidencia, inventario de puertos).<br><br>
+  Pestaña <b>Qué falta</b> → los 9 huecos ordenados por impacto.</p>`;
+$('#det').innerHTML = DET_DEFAULT;
+
+function pintarDetalle(o){
+  $('#det').innerHTML = `
+    <h2>${o.t}</h2>
+    <div class="kind">${o.capa}${o.p?` · ${o.p}`:''}</div>
+    <div class="lbl">Estado</div>
+    <p>${o.d}</p>
+    <div class="lbl">Medición de hoy</div>
+    <div class="evid">${o.m}</div>
+    <div class="lbl">Evidencia (comando literal)</div>
+    <div class="evid ${o.e.toLowerCase().includes('fatal')||o.e.toLowerCase().includes('no existe')||o.e.toLowerCase().includes('error')?'bad':''}">${o.e}</div>
+    ${o.f?`<div class="lbl">Qué falta / qué haría</div><div class="fix">${o.f}</div>`:''}`;
+}
+
+function abrirNodo(id){
+  const n = LAYERS.flatMap(L=>L.nodes.map(x=>({...x,capa:L.nombre}))).find(x=>x.id===id);
+  if(!n) return;
+  pintarDetalle({t:n.t,capa:"capa "+n.capa,d:n.d,m:n.meas,e:n.evid,f:n.fix,p:n.prio});
+  document.querySelectorAll('.node').forEach(el=>el.classList.toggle('sel', el.dataset.id===id));
+  cambiarVista('map');
+}
+
+document.addEventListener('click', e=>{
+  const node = e.target.closest('.node');
+  if(node){ abrirNodo(node.dataset.id); return; }
+  const tr = e.target.closest('tr[data-t]');
+  if(tr){
+    pintarDetalle({t:tr.dataset.t,capa:"hueco · "+tr.dataset.capa,d:"Hueco detectado en la instantánea.",m:"",e:tr.dataset.ev,f:tr.dataset.fix,p:tr.dataset.p});
+    cambiarVista('map');
+  }
+});
+
+// Vistas
+function cambiarVista(v){
+  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on', s.id==='v-'+v));
+  document.querySelectorAll('#views button').forEach(b=>b.classList.toggle('on', b.dataset.v===v));
+}
+document.querySelectorAll('#views button').forEach(b=>b.onclick=()=>cambiarVista(b.dataset.v));
+
+// Filtros
+let filtro='all', texto='';
+function aplicar(){
+  document.querySelectorAll('.node').forEach(el=>{
+    const okF = filtro==='all' || el.dataset.s===filtro;
+    const okT = !texto || (el.dataset.t+el.dataset.capa+el.dataset.d).toLowerCase().includes(texto);
+    el.classList.toggle('hide', !(okF&&okT));
+  });
+  document.querySelectorAll('#faltbody tr').forEach(tr=>{
+    const okF = filtro==='all' || (filtro==='bad'? true : (filtro==='warn'? tr.dataset.p!=='P0' : false));
+    const okT = !texto || (tr.dataset.t+tr.dataset.capa+tr.dataset.ev).toLowerCase().includes(texto);
+    tr.style.display = (okF&&okT)? '' : 'none';
+  });
+  document.querySelectorAll('#listbody tr').forEach(tr=>{
+    const n = LAYERS.flatMap(L=>L.nodes).find(x=>x.id===tr.dataset.id);
+    const okF = filtro==='all' || n.s===filtro;
+    const okT = !texto || (n.t+n.d+n.id).toLowerCase().includes(texto);
+    tr.style.display = (okF&&okT)? '' : 'none';
+  });
+}
+document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
+  filtro=b.dataset.f;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));
+  aplicar();
+});
+$('#q').oninput = e => { texto = e.target.value.toLowerCase().trim(); aplicar(); };
+
+// KPI → salta a la vista correspondiente
+$('#kpibar').onclick = e => {
+  const k = e.target.closest('.kpi'); if(!k) return;
+  const i = [...document.querySelectorAll('.kpi')].indexOf(k);
+  const go = KPIS[i].go;
+  if(go==='huecos'){ cambiarVista('falt'); filtro='bad'; document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x.dataset.f==='bad')); aplicar(); }
+  else { cambiarVista('map'); document.querySelector('#det').scrollIntoView({behavior:'smooth',block:'nearest'}); }
+};
+
+// Expandir: muestra el detalle de todos los huecos seguidos
+let exp=false;
+$('#expand').onclick = ()=>{
+  exp=!exp; $('#expand').textContent = exp? 'Ver huecos seguidos (off)':'Expandir todo';
+  if(exp){ cambiarVista('falt'); filtro='all'; document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x.dataset.f==='all')); aplicar(); }
+};
+</script>
+</body>
+</html>

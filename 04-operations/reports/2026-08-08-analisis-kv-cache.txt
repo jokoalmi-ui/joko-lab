@@ -1,0 +1,39 @@
+ANALISIS: REEL "KV CACHE: THE SECRET BEHIND FAST LLM INFERENCE"
+Fecha: 2026-08-08
+Fuente: https://www.instagram.com/reel/DbxLv6IIO_A/ (genaixpiyush / Piiyush Kashyap)
+Estado: guardado (usuario 08-ago-2026)
+
+CONTENIDO
+Divulgacion breve sobre KV Cache en inferencia de LLM:
+- La KV Cache guarda las representaciones Key (K) y Value (V) de los tokens
+  ya generados y las reutiliza en la generacion, evitando recomputar la
+  atencion desde cero en cada token.
+- Beneficios: menos computo redundante, menor latencia, mayor throughput.
+- Limitacion: la KV Cache crece con la longitud del contexto y puede ser el
+  cuello de botella de VRAM en GPU.
+- Tecnicas modernas de mitigacion: PagedAttention, Prefix Caching,
+  cuantizacion de KV Cache, GQA (Grouped Query Attention), Continuous
+  Batching y Cache Offloading.
+- Mensaje: training hace inteligentes a los LLM; la inferencia eficiente los
+  hace practicos a escala.
+
+RELEVANCIA PARA JOKO LAB
+Toca directamente el stack, no es teoria suelta:
+1. GPU RTX A2000 12GB: la KV Cache es el factor que decide cuanto contexto
+   cabe en VRAM. Cuando un modelo "cabe" en VRAM pero un contexto largo tira
+   a CPU/RAM o re-procesa, el culpable suele ser la KV Cache creciendo.
+2. GQA ya se usa: los modelos Q4_K_M de LM Studio (glm-4.6v, granite, etc.)
+   incorporan GQA, que reduce el tamano de la KV Cache. La observabilidad del
+   pipeline (TTFB, tokens/s) mide parte del efecto de estas tecnicas.
+3. PagedAttention / Continuous Batching es lo que implementa vLLM (skill
+   serving-llms-vllm disponible). Si el lab sirve modelos a mas usuarios,
+   es la pieza que falta en LM Studio/Ollama.
+4. Palancas practicas en Ollama: OLLAMA_KEEP_ALIVE y el numero de slots /
+   tamano de KV cache controlan cuanta cache se mantiene en GPU. Para
+   hardware limitado, Prefix Caching (reutilizar prompt fijo) es la tecnica
+   mas barata de aplicar.
+
+VALORACION
+Divulgacion breve y correcta. No aporta nada nuevo al pipeline, pero
+confirma la teoria detras de decisiones ya tomadas (GQA, contextos
+moderados, modelos cuantizados).

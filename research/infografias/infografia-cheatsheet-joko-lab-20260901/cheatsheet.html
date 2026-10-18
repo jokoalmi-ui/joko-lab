@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Joko Lab Cheat Sheet — IA local</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1080px; height:1350px; overflow:hidden;
+    font-family:'Inter',sans-serif; background:#ffffff; color:#111;
+    display:flex; flex-direction:column; padding:42px 44px 36px;
+  }
+  /* ===== TOP ===== */
+  .top { display:flex; align-items:center; justify-content:space-between; margin-bottom:20px; }
+  .page-idx { font-size:15px; font-weight:700; color:#999; border:1.5px solid #d0d7de; border-radius:8px; padding:6px 12px; }
+  .title-block { text-align:center; }
+  h1 { font-size:44px; font-weight:900; letter-spacing:1px; }
+  h1 .green { color:#2ea44f; }
+  .subtitle { font-size:14px; color:#666; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; margin-top:2px; }
+  .badge-note { border:1.5px solid #d0d7de; border-radius:8px; padding:6px 12px; font-size:12px; color:#57606a; font-weight:600; text-align:center; }
+  .badge-note b { color:#2ea44f; }
+  /* ===== GRID ===== */
+  .row { display:grid; gap:14px; margin-bottom:14px; }
+  .r1 { grid-template-columns:1fr 1fr 1fr; }
+  .r2 { grid-template-columns:1fr 1fr 1fr; }
+  .box {
+    border:1.5px solid #d0d7de; border-radius:14px; padding:16px 18px;
+    background:#fff;
+  }
+  .box-title { display:flex; align-items:center; gap:8px; font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#24292f; margin-bottom:10px; }
+  .box-title .ic { font-size:17px; }
+  .box .sub { font-size:12px; color:#57606a; font-weight:600; margin-bottom:8px; }
+  .mono { font-family:'JetBrains Mono',monospace; font-size:12.5px; background:#f6f8fa; border:1px solid #e1e4e8; border-radius:6px; padding:8px 10px; line-height:1.7; color:#24292f; }
+  .mono .c { color:#2ea44f; font-weight:700; }
+  /* lista con checks */
+  .checks { list-style:none; }
+  .checks li { display:flex; gap:8px; font-size:12.5px; line-height:1.5; margin-bottom:7px; color:#24292f; font-weight:500; }
+  .checks li::before { content:'✔'; color:#2ea44f; font-weight:900; flex-shrink:0; }
+  /* chips en DÓNDE BRILLA */
+  .chips { display:flex; flex-wrap:wrap; gap:6px; }
+  .chip { font-size:11.5px; font-weight:700; border-radius:999px; padding:5px 10px; border:1.5px solid; }
+  .chip.g { color:#2ea44f; border-color:#2ea44f; }
+  .chip.b { color:#0969da; border-color:#0969da; }
+  .chip.o { color:#d97706; border-color:#d97706; }
+  .chip.r { color:#cf222e; border-color:#cf222e; }
+  /* flujo vertical */
+  .flow-step { display:flex; align-items:center; gap:8px; font-size:12.5px; font-weight:600; margin-bottom:2px; }
+  .flow-step .dot { width:26px; height:26px; border-radius:50%; background:#eef2f7; border:1.5px solid #d0d7de; display:flex; align-items:center; justify-content:center; font-size:13px; flex-shrink:0; }
+  .flow-arrow { text-align:center; color:#b0b8c1; font-size:14px; line-height:1; padding:1px 0 3px 18px; }
+  .flow-note { font-size:11px; color:#57606a; margin-left:34px; margin-top:2px; }
+  /* ===== MENTAL MODEL (bloque ancho) ===== */
+  .mental { border:1.5px solid #2ea44f; border-radius:14px; padding:16px 20px; margin-bottom:14px; background:#f7fbf8; }
+  .mental-title { font-size:14px; font-weight:800; text-transform:uppercase; letter-spacing:1px; color:#1a7f37; margin-bottom:12px; }
+  .mental-flow { display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; }
+  .mf-item { display:flex; flex-direction:column; align-items:center; gap:6px; }
+  .mf-item .icon { width:52px; height:52px; border-radius:12px; background:#fff; border:2px solid #2ea44f; display:flex; align-items:center; justify-content:center; font-size:24px; }
+  .mf-item .lab { font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; color:#1a7f37; }
+  .mf-item .desc { font-size:10.5px; color:#57606a; text-align:center; max-width:110px; line-height:1.3; }
+  .mf-op { font-size:22px; font-weight:900; color:#2ea44f; }
+  /* ===== FÓRMULA (fila final) ===== */
+  .formula { border:1.5px solid #2ea44f; border-radius:14px; padding:14px 20px; background:#f7fbf8; display:flex; align-items:center; justify-content:center; gap:12px; margin-top:auto; }
+  .formula .f-icon { font-size:26px; }
+  .formula .f-text { font-family:'JetBrains Mono',monospace; font-size:13.5px; font-weight:700; color:#24292f; }
+  .formula .f-text .plus { color:#2ea44f; font-weight:900; }
+  .formula .f-text .eq { color:#2ea44f; font-weight:900; }
+  .formula .f-result { font-size:13.5px; font-weight:900; color:#1a7f37; text-transform:uppercase; letter-spacing:1px; }
+  .footer-line { display:flex; justify-content:space-between; align-items:center; margin-top:14px; }
+  .footer-line .left { font-size:12px; color:#57606a; font-weight:600; }
+  .footer-line .right { font-size:12px; color:#999; font-weight:600; }
+  .star { color:#f5a623; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="page-idx">JOKO LAB · 01-09-2026</div>
+    <div class="title-block">
+      <h1>JOKO <span class="green">LAB</span> CHEAT SHEET</h1>
+      <div class="subtitle">Inteligencia artificial · 100% local · gratis</div>
+    </div>
+    <div class="badge-note">DATOS REALES<br><b>medidos, no estimados</b></div>
+  </div>
+
+  <div class="row r1">
+    <div class="box">
+      <div class="box-title"><span class="ic">🧠</span> Core stack</div>
+      <div class="sub">LO QUE CORRE EN MI MÁQUINA</div>
+      <ul class="checks">
+        <li><b>11 modelos locales</b> — LM Studio + Ollama (LLM, visión, voz)</li>
+        <li><b>RAG LanceDB</b> — 21.975 embeddings · 1,9 GB · recall 100%</li>
+        <li><b>3 servidores MCP</b> — lab-db · lancedb · animation</li>
+        <li><b>4 servicios Docker</b> — n8n, Ollama, PDF, herramientas</li>
+        <li><b>GPU RTX A2000 12 GB</b> — todo el peso local</li>
+      </ul>
+    </div>
+    <div class="box">
+      <div class="box-title"><span class="ic">⚙️</span> En acción</div>
+      <div class="sub">CÓMO RESPONDE UNA CONSULTA</div>
+      <div class="flow-step"><span class="dot">🧑</span> Usuario pregunta</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="dot">🤖</span> Hermes razona (modelo local)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="dot">🔍</span> RAG recupera contexto (LanceDB)</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="dot">🛠️</span> MCP ejecuta herramientas</div>
+      <div class="flow-arrow">↓</div>
+      <div class="flow-step"><span class="dot">✅</span> Verificación fail-closed</div>
+      <div class="flow-note">¿fiable? sí → respuesta · no → cloud acotada</div>
+    </div>
+    <div class="box" style="background:#fffdf5;">
+      <div class="box-title"><span class="ic">✨</span> Dónde brilla</div>
+      <div class="sub">USOS REALES DEL LAB</div>
+      <div class="chips" style="margin-bottom:8px;">
+        <span class="chip g">Perfume del día</span>
+        <span class="chip b">Base de datos cafés</span>
+        <span class="chip o">Búsqueda RAG</span>
+        <span class="chip r">Automatización n8n</span>
+      </div>
+      <div class="chips">
+        <span class="chip g">Imágenes ComfyUI</span>
+        <span class="chip b">Infografías</span>
+        <span class="chip o">Verificación GLM</span>
+        <span class="chip r">Vigilancia canales</span>
+      </div>
+      <div class="sub" style="margin-top:14px;">COSTE</div>
+      <div class="mono"><span class="c">0 €</span> suscripciones de IA<br>todo local · privado · open source</div>
+    </div>
+  </div>
+
+  <div class="row r2">
+    <div class="box">
+      <div class="box-title"><span class="ic">🔌</span> Capacidades</div>
+      <div class="sub">LO QUE HERMES SABE HACER</div>
+      <ul class="checks">
+        <li>Responder con datos reales (BD, logs)</li>
+        <li>Generar imágenes, vídeo, audio (GPU local)</li>
+        <li>Automatizar tareas (cron, Telegram, n8n)</li>
+        <li>Verificar con modelo de visión local</li>
+        <li>Investigar en web y documentar</li>
+      </ul>
+    </div>
+    <div class="box">
+      <div class="box-title"><span class="ic">⌨️</span> Comandos rápidos</div>
+      <div class="sub">EJEMPLOS REALES</div>
+      <div class="mono"><span class="c">hermes</span> send --to telegram:…<br><span class="c">lms</span> load glm-4.6v-flash<br><span class="c">docker compose</span> ps<br><span class="c">curl</span> localhost:11434/v1/models<br><span class="c">python3</span> gen_comfy.py "prompt"</div>
+    </div>
+    <div class="box">
+      <div class="box-title"><span class="ic">✅</span> Checklist servidor</div>
+      <div class="sub">ANTES DE RESPONDER</div>
+      <ul class="checks">
+        <li>GPU activa (nvidia-smi) · VRAM libre</li>
+        <li>API LM Studio respondiendo (1234)</li>
+        <li>Ollama activo (11434) si se necesita</li>
+        <li>MCPs registrados y verificados</li>
+        <li>Docker / n8n según tarea</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mental">
+    <div class="mental-title">★ El modelo mental definitivo</div>
+    <div class="mental-flow">
+      <div class="mf-item">
+        <div class="icon">🖥️</div>
+        <div class="lab">Local intenta</div>
+        <div class="desc">GPU propia · modelos propios · datos propios</div>
+      </div>
+      <div class="mf-op">+</div>
+      <div class="mf-item">
+        <div class="icon">🧭</div>
+        <div class="lab">Verificación</div>
+        <div class="desc">gate fail-closed · sin LLM · datos reales</div>
+      </div>
+      <div class="mf-op">=</div>
+      <div class="mf-item">
+        <div class="icon">🛡️</div>
+        <div class="lab">Soberanía</div>
+        <div class="desc">nada sale de casa · 0 € · sin vigilancia</div>
+      </div>
+      <div class="mf-op" style="font-size:16px; color:#57606a;">(cloud solo si falla)</div>
+    </div>
+  </div>
+
+  <div class="formula">
+    <span class="f-icon">🖥️</span>
+    <span class="f-text">RTX A2000 <span class="plus">+</span> Ollama <span class="plus">+</span> LM Studio <span class="plus">+</span> LanceDB <span class="plus">+</span> ComfyUI</span>
+    <span class="f-text"><span class="eq">=</span></span>
+    <span class="f-result">IA local de verdad</span>
+    <span class="f-icon">🏆</span>
+  </div>
+
+  <div class="footer-line">
+    <div class="left">Joko Lab · <span class="star">★</span> datos reales del sistema, no marketing</div>
+    <div class="right">esquema replicado de @thevectorforge (MCP cheat sheet)</div>
+  </div>
+</body>
+</html>

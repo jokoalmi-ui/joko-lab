@@ -1,0 +1,23 @@
+Le pedí lo mismo dos veces al mismo modelo. Las dos veces acertó las seis reseñas. Solo una de las dos respuestas se podía usar.
+
+La diferencia no fue el modelo: fue lo que escribí.
+
+1.600 caracteres frente a 228. Misma tarea, misma tanda de reseñas, temperatura 0:
+
+· Sin decir el formato: seis clasificaciones correctas envueltas en un párrafo con explicación por ítem. Perfecta para leerla yo, imposible de procesar.
+· Con el formato exigido: un JSON válido tal cual, listo para pegar en cualquier sitio. Y 22 segundos más rápido.
+
+En el carrusel de esta semana:
+
+· Las tres piezas de una instrucción útil: la tarea, el formato y el rol. Y por qué el rol es la única que no es obligatoria.
+· Los dos mitos: la «frase mágica» y el «cuanto más largo, mejor». El rol cambia el tono, no los datos.
+· La misma petición en dos formas, con las dos respuestas literales.
+· Una trampa de al lado: subir la temperatura no hace al modelo más listo. En la prueba cambió la respuesta —205 frente a 228 caracteres— pero mantuvo el formato.
+
+La regla que me llevo: el formato no arregla los aciertos, arregla el uso. Si la salida la lees tú, la prosa vale; si la lee un programa, exige el formato.
+
+¿Tú le pides el formato a la IA, o le dejas que elija?
+
+Esta es la pieza 4 de una serie donde estoy aprendiendo IA y agentes de lo básico a lo avanzado, con pruebas hechas en mi propio ordenador. Lección 1: la instrucción.
+
+#IA #InteligenciaArtificial #LLM #Productividad #Automatizacion

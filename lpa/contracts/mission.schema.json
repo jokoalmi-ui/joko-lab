@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "joko-lab:mission.schema.json",
+  "title": "Mission Contract",
+  "description": "Contrato de estado de una misión en Joko Lab. Una misión es trabajo encadenado en fases con estado, evidencia y ciclo de vida. Motor-agnóstico: puede ejecutarse con n8n, Python, LangGraph u otro. Origen: research/mission-contract-diseno.md (PROPUESTA 07-ago-2026, validada contra caso Indra 2026).",
+  "type": "object",
+  "required": ["id", "goal", "status", "current_node", "plan"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^M-[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{3}$",
+      "description": "Identificador único de la misión, ej: M-2026-08-07-001."
+    },
+    "goal": {
+      "type": "string",
+      "description": "Objetivo expresado como resultado verificable."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pendiente",
+        "en_ejecucion",
+        "en_espera",
+        "reintentando",
+        "completada",
+        "fallida",
+        "cancelada"
+      ],
+      "description": "Estado de ciclo de vida. Terminales: completada, fallida, cancelada. Una misión nunca desaparece; conserva su registro."
+    },
+    "current_node": {
+      "type": ["string", "null"],
+      "description": "Fase o nodo en el que está la ejecución ahora mismo."
+    },
+    "waiting_on": {
+      "type": ["string", "null"],
+      "enum": ["humano", "servicio", "recurso", null],
+      "description": "Solo cuando status=en_espera. Distingue el tipo de espera. Ajuste derivado de la validación contra el caso Indra: la revisión con el trabajador (roleplay judicial) fue un nodo humano obligatorio entre fases."
+    },
+    "plan": {
+      "type": "array",
+      "description": "Plan de fases: el grafo de la misión. Cada nodo puede ser determinista, LLM o humano.",
+      "items": {
+        "type": "object",
+        "required": ["name", "kind"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nombre de la fase/nodo."
+          },
+          "kind": {
+            "type": "string",
+            "enum": ["determinista", "llm", "humano", "validacion"],
+            "description": "Tipo de nodo. Ajuste derivado del caso Indra: un nodo humano (revisión, validación) se registra igual que uno determinista; la puntuación automática (fase 2) alimentaba una decisión cualitativa humana (fase 3)."
+          },
+          "inputs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Nombres de las fases que alimentan este nodo (shared_state)."
+          },
+          "outputs": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Claves de shared_state que este nodo produce."
+          },
+          "retry_policy": {
+            "type": ["object", "null"],
+            "description": "Política de reintentos del nodo (reintentos semánticos, con conocimiento del fallo anterior).",
+            "properties": {
+              "max_retries": { "type": "integer", "minimum": 0 },
+              "backoff_seconds": { "type": "integer", "minimum": 0 },
+              "semantic": {
+                "type": "boolean",
+                "description": "true = reintentar con conocimiento del fallo anterior, no repetir la misma llamada."
+              }
+            }
+          },
+          "checkpoint": {
+            "type": "boolean",
+            "default": false,
+            "description": "true = se puede reanudar desde este nodo si la misión se interrumpe."
+          }
+        }
+      }
+    },
+    "completed": {
+      "type": "array",
+      "description": "Fases terminadas con su resultado.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "node": { "type": "string" },
+          "finished_at": { "type": "string", "format": "date-time" },
+          "result": { "type": ["string", "object", "null"] }
+        }
+      }
+    },
+    "pending": {
+      "type": "array",
+      "description": "Fases pendientes.",
+      "items": { "type": "string" }
+    },
+    "retries": {
+      "type": "object",
+      "description": "Contador de reintentos por nodo, con el motivo de cada uno.",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "at": { "type": "string", "format": "date-time" },
+            "reason": { "type": "string" }
+          }
+        }
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "description": "Datos de entrada de cada fase (clave = nombre de fase)."
+    },
+    "outputs": {
+      "type": "object",
+      "description": "Datos de salida de cada fase (clave = nombre de fase)."
+    },
+    "shared_state": {
+      "type": "object",
+      "description": "Estado compartido entre nodos. NO es la memoria del sistema (policy de privacidad del lab); es el acumulador de datos intermedios que fluye entre fases, como el state de LangGraph."
+    },
+    "evidence": {
+      "type": "object",
+      "description": "Evidencia por fase. Puede ser texto o ruta de archivo (ajuste derivado del caso Indra: la evidencia era un artefacto por fase — JSON, CSV, PDF, ZIP).",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "text": { "type": "string" },
+          "path": { "type": "string", "description": "Ruta de archivo del artefacto de evidencia." },
+          "command": { "type": "string", "description": "Comando o llamada ejecutada." },
+          "timestamp": { "type": "string", "format": "date-time" },
+          "verified": { "type": "boolean", "default": false }
+        },
+        "anyOf": [
+          { "required": ["text"] },
+          { "required": ["path"] }
+        ]
+      }
+    },
+    "checkpoints": {
+      "type": "array",
+      "description": "Puntos de estado guardados desde los que se puede reanudar.",
+      "items": {
+        "type": "object",
+        "required": ["node", "saved_at"],
+        "properties": {
+          "node": { "type": "string" },
+          "saved_at": { "type": "string", "format": "date-time" },
+          "state_snapshot": { "type": "object" }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "finished_at": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    }
+  }
+}

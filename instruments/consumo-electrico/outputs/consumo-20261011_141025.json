@@ -1,0 +1,74 @@
+{
+ "instrumento": "consumo-electrico v0.1",
+ "fecha": "2026-10-11T14:10:25+02:00",
+ "etiqueta": "reposo (sin carga del lab)",
+ "ventana_pedida_s": 20.0,
+ "ventana_real_s": 20.042,
+ "intervalo_s": 1.0,
+ "gpu": {
+  "muestras": 21,
+  "error": null,
+  "potencia_w": {
+   "media": 9.37,
+   "max": 10.26,
+   "min": 8.94
+  },
+  "energia_wh_integrada": 0.0521,
+  "util_pct_media": 7.0,
+  "vram_mib_max": 6224.0,
+  "temp_c_max": 42.0
+ },
+ "rapl": [
+  {
+   "dominio": "intel-rapl",
+   "nombre": null,
+   "legible": false,
+   "error": "energy_uj: no existe"
+  },
+  {
+   "dominio": "intel-rapl:0",
+   "nombre": "package-0",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  },
+  {
+   "dominio": "intel-rapl:0:0",
+   "nombre": "core",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  },
+  {
+   "dominio": "intel-rapl:0:1",
+   "nombre": "uncore",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  },
+  {
+   "dominio": "intel-rapl:0:2",
+   "nombre": "dram",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  },
+  {
+   "dominio": "intel-rapl:1",
+   "nombre": "psys",
+   "legible": false,
+   "error": "energy_uj: PermissionError (requiere privilegio)"
+  }
+ ],
+ "cpu": {
+  "loadavg_1_5_15": [
+   "1.83",
+   "1.82",
+   "1.77"
+  ],
+  "ocupacion_pct_ventana": 23.32
+ },
+ "coste_eur": null,
+ "limites_de_medicion": [
+  "GPU: potencia muestreada con nvidia-smi (integracion trapezoidal sobre las muestras reales).",
+  "CPU/RAM/SoC: solo medibles por RAPL; si energy_uj no es legible, NO se estiman.",
+  "NO cubre discos, ventiladores, USB ni perdidas de la fuente.",
+  "La medida 'de pared' exige un medidor fisico: este instrumento no la sustituye."
+ ]
+}

@@ -1,0 +1,77 @@
+# Rubrica de evaluacion de prompts — Joko Lab
+# Archivo YAML externo (no hardcodeado en el codigo)
+# Cada regla tiene: id, descripcion, check (tipo), parametros, peso
+
+rules:
+  - id: especifico
+    desc: "El prompt es especifico y no ambiguo"
+    type: length
+    params:
+      min: 50
+    weight: 2
+
+  - id: una_tarea
+    desc: "El prompt pide una sola tarea (no multiple)"
+    type: complexity
+    params:
+      max_newlines: 10
+      max_and: 3
+    weight: 2
+
+  - id: formato
+    desc: "El prompt especifica el formato de salida esperado"
+    type: keyword
+    params:
+      keywords: [json, texto, markdown, formato, devuelve, tabla, lista]
+    weight: 2
+
+  - id: restricciones
+    desc: "El prompt incluye restricciones explicitas"
+    type: keyword
+    params:
+      keywords: ["no inventes", "solo", "maximo", "minimo", "exactamente", "sin", "unicamente"]
+    weight: 2
+
+  - id: contexto
+    desc: "El prompt proporciona contexto suficiente"
+    type: length
+    params:
+      min: 100
+    weight: 1
+
+  - id: rol
+    desc: "El prompt asigna un rol al modelo"
+    type: keyword
+    params:
+      keywords: [eres, "actua como", "tu eres", rol, experto, especialista]
+    weight: 1
+
+# Umbral de aprobacion (porcentaje de peso total)
+threshold: 0.8
+
+# Maximo de rondas de mejora
+max_rounds: 5
+
+# Nivel semantico: palabras que indican que el prompt NO es valido
+semantic_checks:
+  contradictions:
+    - ["no uses jerga", "explica en detalle"]
+    - ["breve", "explica todo"]
+    - ["solo una palabra", "responde en frases"]
+  
+  impossible_requests:
+    - "hazme un cafe"
+    - "viaja al pasado"
+    - "crea un archivo sin permisos"
+    - "hackea"
+  
+  information_loss_risk:
+    keywords: ["cambia el significado", "reescribe completamente", "ignora el original"]
+
+# Binding: consultar el laboratorio antes de evaluar
+integrate_lab:
+  enabled: true
+  anti_patterns: true      # Consultar anti-patrones
+  model_cards: true        # Consultar fichas de modelo
+  decisions: true          # Consultar decisiones
+  experiments: false       # No necesario para evaluacion de prompts

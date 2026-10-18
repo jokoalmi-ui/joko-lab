@@ -1,0 +1,102 @@
+{
+  "tag": "r4b",
+  "arnes": "v2",
+  "corrector": "v2",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "num_ctx": 8192,
+  "temperature": 0.0,
+  "seed": 42,
+  "sha_corrector_v2": "e7772b7a8466274197d628641d7b7f9cb7df8f5020fb04d3ee6d3c02e1d5b0bc",
+  "banco": "research/rsi-v0/propuesta-examen-v2.json",
+  "sha_banco": "2d2772973c82f840db98e5c80204ccf3883300664dfd4e2efb21f3e7b47cd023",
+  "casos": [
+    "calc-anidado-iva",
+    "fecha-iso-vencimiento",
+    "nulo-con-senuelo",
+    "tool-dos-llamadas",
+    "tool-sin-herramienta"
+  ],
+  "segundos_totales": 814.1,
+  "resumen": {
+    "razona": {
+      "pasan": 3,
+      "total": 5,
+      "segundos": 222.5,
+      "segundos_por_llamada": 44.49,
+      "thinking_chars_medio": 3692.8,
+      "instr_len": 0,
+      "origen": "modo razonamiento (clave think AUSENTE, igual que en las rondas 1-3)",
+      "think": null,
+      "think_payload": "<AUSENTE>",
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "nulo-con-senuelo"
+      ]
+    },
+    "no-razona": {
+      "pasan": 2,
+      "total": 5,
+      "segundos": 9.3,
+      "segundos_por_llamada": 1.87,
+      "thinking_chars_medio": 0.0,
+      "instr_len": 0,
+      "origen": "think=false (modo rapido, sin razonamiento)",
+      "think": false,
+      "think_payload": false,
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "fecha-iso-vencimiento",
+        "tool-dos-llamadas"
+      ]
+    },
+    "nivel-high": {
+      "pasan": 3,
+      "total": 5,
+      "segundos": 222.1,
+      "segundos_por_llamada": 44.43,
+      "thinking_chars_medio": 3692.8,
+      "instr_len": 0,
+      "origen": "think='high' declarado (primer nivel que llega de verdad al modelo)",
+      "think": "high",
+      "think_payload": "high",
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "nulo-con-senuelo"
+      ]
+    }
+  },
+  "pareto": [
+    {
+      "variante": "nivel-high",
+      "pasan": 3,
+      "segundos": 222.1,
+      "dominada": false,
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "nulo-con-senuelo"
+      ]
+    },
+    {
+      "variante": "razona",
+      "pasan": 3,
+      "segundos": 222.5,
+      "dominada": true,
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "nulo-con-senuelo"
+      ]
+    },
+    {
+      "variante": "no-razona",
+      "pasan": 2,
+      "segundos": 9.3,
+      "dominada": false,
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "fecha-iso-vencimiento",
+        "tool-dos-llamadas"
+      ]
+    }
+  ],
+  "jsonl": "/home/jokoalmi/joko-lab/research/rsi-v0/variantes_v2_r4b.jsonl"
+}

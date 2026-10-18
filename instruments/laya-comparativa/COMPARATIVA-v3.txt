@@ -1,0 +1,94 @@
+========================================================================
+COMPARATIVA v3 — TRES MODELOS LOCALES SOBRE EL MISMO SET (299 casos)
+Joko Lab · ~/joko-lab/instruments/laya-comparativa
+2026-09-23 20:43 CEST · coste 0 EUR · sin descargas
+========================================================================
+
+QUE ES ESTO
+  Los tres modelos que el lab YA tiene instalados en Ollama, medidos sobre los
+  mismos 299 casos de casos_v3_noul.json (sha256 d86aed0600a3f1b7...), con el
+  MISMO codigo de puntuacion (motor.py) y la MISMA salida restringida por
+  esquema JSON. La verdad de cada caso la define el texto del estado entregado.
+
+  Datos crudos: ollama_*_v3.txt + resultados_*.json + comparativa_v3.txt
+  Reproducir:   .venv/bin/python comparar_modelos.py resultados_ollama_v3.json \
+                  resultados_ollama_qwen257b_v3.json \
+                  resultados_ollama_deepseekr1distillqwen14blatest_v3.json
+
+------------------------------------------------------------------------
+TABLA GLOBAL
+------------------------------------------------------------------------
+  modelo                          n     acc   Brier    ECE5   P50ms  err.conf
+  granite4.2:8b-q4_K_M          299  0.9264  0.0736  0.0736  2957.1     10
+  qwen2.5:7b                    299  0.8094  0.1612  0.1610   250.8     32
+  deepseek-r1-distill-qwen-14b  299  0.7960  0.2015  0.2027  1997.4     36
+
+  err.conf = errores con p>=0,8 (fallos CONVENCIDOS, no dudas).
+  Discrepancias entre modelos: 77 casos de 299 (26%). El set separa modelos.
+
+------------------------------------------------------------------------
+MATRIZ POR SUBTIPO (accuracy)
+------------------------------------------------------------------------
+  subtipo            n   granite  qwen2.5   r1-14b
+  trampa             8    1.0000   0.2500   0.2500   <-- DECISIVO
+  soporte_parcial   15    1.0000   0.0667   0.6667
+  comparacion       22    1.0000   0.7273   0.4091
+  multihop          22    0.8182   0.5909   0.8182
+  no_aparece        25    0.8800   0.9200   0.3600
+  cuantificador     20    0.6000   0.6000   0.5500   <-- debil en los tres
+  distractor        25    0.8000   0.8000   0.8000
+  negacion          15    0.9333   0.8000   1.0000
+  aguja              8    0.8750   0.8750   0.7500
+  valor_vecino      30    1.0000   0.9333   0.9667
+  literal           30    1.0000   0.9667   1.0000
+  campo_ausente     30    1.0000   1.0000   1.0000
+  grounding         13    1.0000   1.0000   1.0000
+  memoria            6    1.0000   1.0000   1.0000
+  parafrasis        30    1.0000   1.0000   1.0000
+
+------------------------------------------------------------------------
+HALLAZGO DECISIVO: LAS TRAMPAS
+------------------------------------------------------------------------
+  Los 8 casos de `trampa` son hechos FABRICADOS (no existen). La respuesta
+  correcta es siempre "falso".
+    granite4.2:8b  8/8   (rechaza el 100% de las fabricaciones)
+    qwen2.5:7b     2/8   (acepta 3 de cada 4)
+    r1-14b         2/8   (acepta 3 de cada 4)
+  Y no fallan dubitativamente: qwen tiene ECE 0.65 en ese subtipo (se equivoca
+  con seguridad alta). Para un gate de VERACIDAD esto descalifica a qwen y a
+  r1-14b: decir "si" a un hecho inventado es justo lo que el gate debe impedir.
+
+------------------------------------------------------------------------
+CONCLUSION OPERATIVA PARA EL LAB
+------------------------------------------------------------------------
+  1. GATE DE VERACIDAD -> granite4.2:8b. Es el unico que rechaza las trampas,
+     el que mejor calibra (ECE 0.0736) y el de mayor acierto (92.6%).
+     Coste: P50 2.957 ms por decision.
+  2. FILTRADO BARATO DE BAJO RIESGO -> qwen2.5:7b. P50 250.8 ms (12x mas
+     rapido) pero 12 puntos menos exacto y mucho peor calibrado. Sirve para
+     descartar ruido evidente, NUNCA para decidir veracidad.
+  3. r1-14b: sin ventaja. Peor acierto, peor calibracion, 9 GB de VRAM y
+     8x mas lento que qwen. No se justifica para esta tarea.
+  4. PUNTO DEBIL COMUN (los tres): `cuantificador` (0.55-0.60). Ninguno maneja
+     bien "todas las fichas indican X". Si el lab necesitara esa decision,
+     habria que resolverla con codigo determinista, no con un modelo.
+
+------------------------------------------------------------------------
+CAVEAT DE LATENCIA (importante)
+------------------------------------------------------------------------
+  Las medidas se tomaron con LM Studio ocupando ~9 GB de los 12 GB de la
+  RTX A2000. granite (5.35 GB) y sobre todo r1-14b (8.99 GB) pueden estar
+  desbordando a CPU, asi que sus P50 NO representan una maquina dedicada.
+  qwen2.5:7b (4.68 GB) es el unico que casi seguro cabe entero.
+  Para una comparacion de latencia limpia habria que liberar la VRAM primero
+  (parar LM Studio), y eso requiere decision explicita del usuario.
+
+------------------------------------------------------------------------
+Laya SIGUE SIN MEDIR
+------------------------------------------------------------------------
+  Estos tres son los modelos YA instalados. Laya no aparece porque sigue
+  bloqueado: falta numpy/torch/transformers y los checkpoints (~843 MB cada
+  uno, ~2,5 GB los tres). Nada descargado. El backend laya se bloquea limpio
+  (exit 5) y no toca la red.
+  Con este v3 ya discriminando (26% de discrepancias), medir a Laya tendria
+  sentido para las dos cosas: acierto y latencia.

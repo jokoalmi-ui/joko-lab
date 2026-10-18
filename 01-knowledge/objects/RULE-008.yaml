@@ -1,0 +1,72 @@
+id: RULE-008
+type: RULE
+decision_origin: incidente
+status: activo
+version: 1
+created: '2026-08-04'
+last_validated: '2026-08-04'
+next_review: '2026-11-04'
+expires: '2027-02-04'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-08-04T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-04T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-08-04T00:00:00Z
+sources:
+  - resource: tools/check-backup-huerfanos.sh
+confidence: 0.9
+confidence_label: ALTA
+evidence:
+- 'JL-014: backup antes de cambios grandes'
+- 'Verificado 04-ago con find/ls: los .bak-wikilinks-20260803/-infra/-ops EXISTEN en ~/ desde 22:52-22:58 del 03-ago (12+4+3 docs). Viven FUERA del arbol respaldado (joko-lab/): no cubiertos por backup-joko-lab.sh ni por el tar de cierre. search_files NO lista dotfiles -> falso negativo de diagnostico (04-ago). Riesgo real: perdida si se limpia home.'
+dependencies:
+- JL-014
+contradicts: []
+superseded_by: null
+domain: joko-lab
+scope: todo_joko_lab
+monitoring:
+  metric: backups_fuera_del_arbol
+  baseline: 3
+  current: 0
+  last_checked: '2026-08-04'
+history:
+- date: '2026-08-04'
+  event: created
+  note: Regla derivada de la desaparicion de backups puntuales creados en home
+body: >-
+  Los backups ".bak-YYYYMMDD" de ficheros del laboratorio se crean SIEMPRE en la
+  MISMA carpeta del fichero original (dentro del arbol que respaldan, p.ej.
+  joko-lab/ o hermes-lab/), NUNCA en ~/ ni en ninguna ruta fuera del arbol
+  respaldado. Un backup que vive fuera del arbol no lo cubre backup-joko-lab.sh
+  (rsync de joko-lab/), ni el tar de cierre, ni la rotacion diaria: es un backup
+  de riesgo (se pierde si se limpia home) y ademas es invisible para search_files
+  (dotfiles) -> falso negativo de diagnostico. Si por la razon que sea un backup
+  puntual debe vivir fuera del arbol, registrarlo en shared-events y verificarlo
+  con find/ls -la, nunca con search_files. Verificacion:
+  tools/check-backup-huerfanos.sh (avisa si hay .bak-* en home).
+legacy_fields:
+  condicion:
+    tipo_tarea:
+    - backup
+    - cambio_estructural
+    keywords:
+    - backup
+    - .bak
+    - copia
+  accion:
+    accion: backup_dentro_del_arbol
+    reglas:
+    - 'El .bak-YYYYMMDD vive en la misma carpeta del fichero original'
+    - 'Prohibido crear .bak-* en ~/ (home) o fuera de joko-lab//hermes-lab/'
+    - 'Si un backup ya existe fuera del arbol: moverlo dentro o registrarlo'
+    - 'Verificar backups con find/ls -la (search_files no ve dotfiles)'
+  prioridad: 90
+  activa: true
+  nota: 'Backup fuera del arbol = riesgo y falso negativo de diagnostico. Origen: .bak-wikilinks-20260803 de la noche del 03-ago (existen en ~/ pero no cubiertos por copias automaticas).'
+  canal: no_engine
+  canal_nota: 'Regla de procedimiento (backup dentro del arbol). Supervisada via JL-014/PIL y tools/check-backup-huerfanos.sh, no via task_type. Declarado 07-ago (sync telemetria).'
+  validaciones: 1

@@ -1,0 +1,16 @@
+[
+  {
+    "id": "razona",
+    "instr": "",
+    "origen": "modo razonamiento (think ausente)",
+    "nota": "ronda r10: repeticion de la r9, invalidada 25-sep 23:27 por corte de conexion (host apagado). Mismos ids y mismo origen que r7/r8/r9 para que los resumenes sean comparables.",
+    "think": null
+  },
+  {
+    "id": "no-razona",
+    "instr": "",
+    "origen": "think=false",
+    "nota": "ronda r10: mismo banco con think=false, sin instruccion.",
+    "think": false
+  }
+]

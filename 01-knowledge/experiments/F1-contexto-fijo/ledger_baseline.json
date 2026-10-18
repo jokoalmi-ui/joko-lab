@@ -1,0 +1,109 @@
+{
+ "ruta": "/home/jokoalmi/joko-lab/04-operations/metrics/pipeline_obs.jsonl",
+ "lineas_totales": 33252,
+ "lineas_descartadas": 3181,
+ "llamadas_limpias": 30071,
+ "filtro_dia": null,
+ "por_modelo": {
+  "deepseek-v4-flash": {
+   "n": 30055,
+   "min": 85,
+   "p10": 54532,
+   "mediana": 192799,
+   "p90": 353083,
+   "max": 557409
+  },
+  "deepseek-v4-pro": {
+   "n": 16,
+   "min": 26061,
+   "p10": 26061,
+   "mediana": 115640,
+   "p90": 135628,
+   "max": 139364
+  }
+ },
+ "modelo_dominante": "deepseek-v4-flash",
+ "sondas_menores_de_1000_tok": {
+  "n": 1120,
+  "min": 85,
+  "nota": "NO son arranques de sesion: son sondeos del proxy. Contarlos como 'contexto fijo' seria un falso suelo (el 85 que aparece en el ledger)"
+ },
+ "candidatas_arranque_sesion": [
+  {
+   "timestamp": "2026-09-08T21:04:01",
+   "prompt_tokens": 1009,
+   "completion_tokens": 141
+  },
+  {
+   "timestamp": "2026-09-14T14:04:04",
+   "prompt_tokens": 1015,
+   "completion_tokens": 111
+  },
+  {
+   "timestamp": "2026-09-14T17:38:32",
+   "prompt_tokens": 1016,
+   "completion_tokens": 238
+  },
+  {
+   "timestamp": "2026-09-04T18:20:16",
+   "prompt_tokens": 1021,
+   "completion_tokens": 90
+  },
+  {
+   "timestamp": "2026-08-16T08:35:24",
+   "prompt_tokens": 1025,
+   "completion_tokens": 112
+  },
+  {
+   "timestamp": "2026-09-09T16:14:52",
+   "prompt_tokens": 1026,
+   "completion_tokens": 508
+  },
+  {
+   "timestamp": "2026-08-18T08:18:29",
+   "prompt_tokens": 1032,
+   "completion_tokens": 146
+  },
+  {
+   "timestamp": "2026-08-17T10:19:46",
+   "prompt_tokens": 1034,
+   "completion_tokens": 166
+  },
+  {
+   "timestamp": "2026-09-08T21:19:39",
+   "prompt_tokens": 1034,
+   "completion_tokens": 152
+  },
+  {
+   "timestamp": "2026-09-15T08:21:41",
+   "prompt_tokens": 1037,
+   "completion_tokens": 75
+  },
+  {
+   "timestamp": "2026-09-07T10:44:18",
+   "prompt_tokens": 1041,
+   "completion_tokens": 310
+  },
+  {
+   "timestamp": "2026-09-14T12:21:37",
+   "prompt_tokens": 1044,
+   "completion_tokens": 92
+  },
+  {
+   "timestamp": "2026-09-14T07:41:13",
+   "prompt_tokens": 1045,
+   "completion_tokens": 143
+  },
+  {
+   "timestamp": "2026-09-08T20:29:14",
+   "prompt_tokens": 1054,
+   "completion_tokens": 42
+  },
+  {
+   "timestamp": "2026-09-14T13:32:54",
+   "prompt_tokens": 1056,
+   "completion_tokens": 92
+  }
+ ],
+ "lectura": "El suelo del prompt de una sesion NUEVA es el menor prompt NO-sonda (>= 1000 tok), no el minimo absoluto. Las consultas siguientes crecen por acumulacion de conversacion. Tokenizador DeepSeek, distinto al local -> comparar ORDEN DE MAGNITUD, nunca igualdad."
+}

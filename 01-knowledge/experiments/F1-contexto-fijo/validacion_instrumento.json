@@ -1,0 +1,57 @@
+{
+ "base": "http://127.0.0.1:1234/v1",
+ "modelo": "openai/gpt-oss-20b",
+ "checks": {
+  "V1_determinismo": {
+   "valores": [
+    551,
+    551,
+    551
+   ],
+   "varianza_cero": true
+  },
+  "V2_linealidad": {
+   "t1": 591,
+   "t2": 1111,
+   "t3": 1631,
+   "delta_1_2": 520,
+   "delta_2_3": 520,
+   "desviacion_relativa": 0.0,
+   "lineal_2pct": true
+  },
+  "V3_suelo": {
+   "tokens_con_1_char": 71
+  },
+  "V4_ratio_chars_token": {
+   "prosa": {
+    "chars": 7380,
+    "tokens": 1751,
+    "chars_por_token": 4.21
+   },
+   "json": {
+    "chars": 12520,
+    "tokens": 3430,
+    "chars_por_token": 3.65
+   },
+   "codigo": {
+    "chars": 6300,
+    "tokens": 2140,
+    "chars_por_token": 2.94
+   },
+   "rango_relativo": 0.3015,
+   "bloqueante": false,
+   "consecuencia": "toda estimacion chars->tokens lleva +-30% de error; las cifras de F1.2 NO se derivan asi, se miden"
+  },
+  "V5_contraste_ledger": {
+   "disponible": true,
+   "n_llamadas_limpias": 30079,
+   "n_sondas_menores_1000": 1120,
+   "minimo_prompt_tokens_no_sonda": 1009,
+   "minimo_timestamp": "2026-09-08T21:04:01",
+   "minimo_modelo": "deepseek-v4-flash",
+   "minimo_absoluto_del_ledger": 85,
+   "nota": "suelo del prompt REAL del pipeline cloud (tokenizador DeepSeek, distinto al local): sirve de orden de magnitud, no de igualdad"
+  }
+ },
+ "veredicto_instrumento": "VALIDADO (V1 determinismo y V2 linealidad OK; V3 fija el offset; V4 informativo: el ratio chars/token depende del tipo de contenido y F1.2 no lo usa)"
+}

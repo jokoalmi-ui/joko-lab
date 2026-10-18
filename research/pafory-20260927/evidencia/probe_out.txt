@@ -1,0 +1,65 @@
+NEXT_DATA encontrado: True
+len NEXT_DATA: 614185
+top keys: ['props', 'page', 'query', 'buildId', 'isFallback', 'isExperimentalCompile', 'gssp', 'locale', 'locales', 'defaultLocale', 'scriptLoader']
+pageProps keys: ['_nextI18Next', 'rawProducts', 'influencerBySlug']
+buildId: dffaee868f8dfab4ae3c4f616c43f7de85522331
+KW api. []
+KW influencer ['/inspiration/influencer/', 'influencer', 'influencer-card', 'influencer-detail-layout', 'influencer-page-layout', 'influencer-promo-code']
+KW influencers ['influencers']
+KW strapi []
+KW graphql []
+KW cms. []
+--- landingpages (29) ---
+taboola-1 -> https://pafory.com/landingpage/taboola-1/
+dupes -> https://pafory.com/landingpage/dupes/
+max -> https://pafory.com/landingpage/max/
+jasmin -> https://pafory.com/landingpage/jasmin/
+xenia -> https://pafory.com/landingpage/xenia/
+selectthescent -> https://pafory.com/landingpage/selectthescent/
+buon-profumo -> https://pafory.com/landingpage/buon-profumo/
+angelina -> https://pafory.com/landingpage/angelina/
+davisa -> https://pafory.com/landingpage/davisa/
+minambery -> https://pafory.com/landingpage/minambery/
+luigi -> https://pafory.com/landingpage/luigi/
+hanan -> https://pafory.com/landingpage/hanan/
+olfactory-ambition -> https://pafory.com/landingpage/olfactory-ambition/
+swana -> https://pafory.com/landingpage/swana/
+franka -> https://pafory.com/landingpage/franka/
+jamina -> https://pafory.com/landingpage/jamina/
+jusebeauty -> https://pafory.com/landingpage/jusebeauty/
+neues-parfum -> https://pafory.com/landingpage/neues-parfum/
+niia -> https://pafory.com/landingpage/niia/
+mitgliedschaft -> https://pafory.com/landingpage/mitgliedschaft/
+addictedtomakeup -> https://pafory.com/landingpage/addictedtomakeup/
+max-aoud -> https://pafory.com/landingpage/max-aoud/
+insporia -> https://pafory.com/landingpage/insporia/
+niklas-steenfatt -> https://pafory.com/landingpage/niklas-steenfatt/
+winter -> https://pafory.com/landingpage/winter/
+neues_parfum -> https://pafory.com/landingpage/neues_parfum/
+luxusparfum -> https://pafory.com/landingpage/luxusparfum/
+abfuellungen -> https://pafory.com/landingpage/abfuellungen/
+abonnement -> https://pafory.com/landingpage/abonnement/
+--- slugs OK: 10 de 51 ---
+('lenisscents', 200, 'Leni - PAFORY', '3FOR2,LENI55,aktiv')
+('max-aoud', 200, 'Max Aoud - PAFORY', '3FOR2,MAXAOUD55,aktiv')
+('meloshmusc', 200, 'Meloshmusc - PAFORY', '3FOR2,MELO55,aktiv')
+('lubella', 200, 'Lubella - PAFORY', '3FOR2,LUBELLA55,aktiv')
+('yvonne', 200, 'Yvonne - PAFORY', '3FOR2,YVONNE55,aktiv')
+('tamara', 200, 'Tamara - PAFORY', '3FOR2,TAMARA55,aktiv')
+('miriam', 200, 'Miriam - PAFORY', '3FOR2,MIRIAM55,aktiv')
+('swana', 200, 'Frühstück in der Parfümerie - PAFORY', '3FOR2,SWANA60,aktiv')
+('nico', 200, 'Nico - PAFORY', '3FOR2,NICO55,aktiv')
+('erika', 200, 'Erika - PAFORY', '3FOR2,ERIKA55,aktiv')
+--- 404 (primeros 12) ---
+schikitasplace
+schikitas_place
+frankasfavorites
+franka
+claudiswelt
+claudi
+echtkathrin
+kathrin
+thetays
+tays
+rosa87lie
+jennyshighlights

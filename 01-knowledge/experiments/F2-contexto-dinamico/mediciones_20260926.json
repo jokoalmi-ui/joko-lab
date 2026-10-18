@@ -1,0 +1,431 @@
+{
+  "_meta": {
+    "experimento": "F2-contexto-dinamico",
+    "fecha_recogida": "2026-09-26T17:57-18:01+02:00",
+    "fase": "F2.1 y F2.2 ejecutadas (tokenizado real por bloque, 26-sep 17:57-18:32 CEST)",
+    "plataforma": "telegram",
+    "perfil": "default",
+    "correccion_260926": "La primera pasada del instrumento D obligo a corregir dos cifras de la version inicial: el p50 del ledger con sondas filtradas es 154309 (no 131685) y no existe 'usage' en ningun dump (comprobado por clave, no por subcadena).",
+    "nota_original_f2_0": "Ninguna cifra de tokens del contexto DINAMICO: F2.1/F2.2 no ejecutadas. Este fichero contiene solo lo medido.",
+    "nota": "F2.1/F2.2 SI ejecutadas el 26-sep: ver RESULTADOS-F2.md. Ninguna cifra de este fichero es estimacion: todas salen de instrumentos ejecutados."
+  },
+  "fijo_prompt_size_hoy": {
+    "instrumento": "hermes prompt-size --platform telegram --json (offline, sin API)",
+    "modelo": "deepseek-v4-flash",
+    "system_prompt_chars": 52541,
+    "system_prompt_bytes": 53492,
+    "skills_index_chars": 16401,
+    "skills_index_bytes": 16495,
+    "memory_chars": 3092,
+    "memory_bytes": 3404,
+    "user_profile_chars": 1509,
+    "user_profile_bytes": 1745,
+    "tools_count": 26,
+    "tools_json_bytes": 43398,
+    "entradas_indice_skills": 163,
+    "toolsets": 14,
+    "contraste_con_F1": {
+      "system_prompt_bytes_F1": 53489,
+      "system_prompt_bytes_hoy": 53492,
+      "delta_bytes": 3,
+      "lectura": "el fijo no se ha movido en 10 dias: sigue vigente el baseline de F1 (23.292 tok netos)"
+    }
+  },
+  "ledger_pipeline_obs": {
+    "ruta": "/home/jokoalmi/joko-lab/04-operations/metrics/pipeline_obs.jsonl",
+    "bytes": 12012739,
+    "filas_totales": 41795,
+    "rango": [
+      "2026-08-06T23:35:45",
+      "2026-09-26T18:00:49"
+    ],
+    "con_filtro_sondas": {
+      "umbral_sonda_tokens": 1000,
+      "n": 36263,
+      "sondas_descartadas": 2302,
+      "min": 1000,
+      "p50": 154309,
+      "p90": 327173,
+      "max": 557409,
+      "media": 175068
+    },
+    "sin_filtrar": {
+      "n_con_prompt_tokens": 38541,
+      "min": 85,
+      "p50": 131685,
+      "p90": 319800,
+      "max": 557409,
+      "media": 164711,
+      "aviso": "el minimo 85 es una sonda del proxy, NO contexto de arranque"
+    },
+    "limite": "no tiene campo de sesion ni de cliente: es DISTRIBUCION, no patron oro",
+    "aviso_agregado": "el p50 agregado 154309 mezcla eras (W32 316775 -> W39 80293): no describe el hoy; usar regimen_actual_7d"
+  },
+  "dumps_de_peticion": {
+    "ruta": "/home/jokoalmi/.hermes/sessions/request_dump_*.json",
+    "total": 27,
+    "bytes_suma": 11241450,
+    "bytes_min_fichero": 78681,
+    "bytes_max_fichero": 1472674,
+    "modos_fichero": {
+      "0600": 27
+    },
+    "modo_directorio": "0700",
+    "dentro_del_rango_del_ledger": 11,
+    "esquema_claves_top": [
+      "timestamp",
+      "session_id",
+      "reason",
+      "request",
+      "error"
+    ],
+    "esquema_claves_request": [
+      "method",
+      "url",
+      "headers",
+      "body"
+    ],
+    "esquema_claves_body": [
+      "model",
+      "messages",
+      "tools",
+      "extra_body"
+    ],
+    "guarda_la_respuesta": false,
+    "con_usage": 0,
+    "falso_positivo_usage": "la subcadena 'usage' aparece en 23 de los 27 ficheros (esquemas/prompts) si se busca con grep; comprobado por clave: 0/27",
+    "todos_son_volcados_de_fallo": true,
+    "motivos": [
+      "max_retries_exhausted",
+      "non_retryable_client_error"
+    ],
+    "consecuencia": "no existe patron oro por peticion; la escala se toma del ledger (instrumento D)",
+    "hallazgo_seguridad": "cada dump guarda Authorization: Bearer <clave> EN CLARO ademas de la conversacion completa",
+    "session_id_disponible": true
+  },
+  "composicion_dump_20260914_223232": {
+    "fichero": "request_dump_20260914_172635_d00cc0_20260914_223232_202514.json",
+    "bytes_fichero": 348786,
+    "host": "127.0.0.1:9911",
+    "messages_json_bytes": 286366,
+    "mensajes": 73,
+    "tools_en_la_peticion": {
+      "n": 20,
+      "json_bytes": 37389
+    },
+    "por_rol": {
+      "assistant": {
+        "n": 34,
+        "bytes": 115700,
+        "pct": 40.4
+      },
+      "tool": {
+        "n": 25,
+        "bytes": 73356,
+        "pct": 25.6
+      },
+      "system": {
+        "n": 1,
+        "bytes": 56553,
+        "pct": 19.7
+      },
+      "user": {
+        "n": 13,
+        "bytes": 40611,
+        "pct": 14.2
+      }
+    },
+    "compactaciones_en_el_historial": {
+      "n": 1,
+      "bytes": 35096,
+      "pct_del_total": 12.3
+    },
+    "tool_calls_emitidas": {
+      "execute_code": 17,
+      "web_search": 5,
+      "web_extract": 1,
+      "browser_exec": 1,
+      "clarify": 1
+    },
+    "limite": "en este dump los mensajes role=tool NO llevan campo name: hay que emparejarlos por orden con los tool_calls del assistant previo"
+  },
+  "composicion_dump_20260803_231400": {
+    "fichero": "request_dump_20260803_154237_873858_20260803_231400_835197.json",
+    "bytes_fichero": 1472674,
+    "host": "api.deepseek.com",
+    "messages_json_bytes": 1258640,
+    "mensajes": 1154,
+    "tools_en_la_peticion": {
+      "n": 30,
+      "json_bytes": 63289
+    },
+    "por_rol": {
+      "assistant": {
+        "n": 567,
+        "bytes": 714959,
+        "pct": 56.8
+      },
+      "tool": {
+        "n": 466,
+        "bytes": 438014,
+        "pct": 34.8
+      },
+      "user": {
+        "n": 120,
+        "bytes": 60193,
+        "pct": 4.8
+      },
+      "system": {
+        "n": 1,
+        "bytes": 43166,
+        "pct": 3.4
+      }
+    },
+    "tool_outputs_bytes": {
+      "terminal": {
+        "bytes": 190915,
+        "llamadas": 284
+      },
+      "skill_view": {
+        "bytes": 88435,
+        "llamadas": 7
+      },
+      "patch": {
+        "bytes": 31856,
+        "llamadas": 30
+      },
+      "read_file": {
+        "bytes": 30005,
+        "llamadas": 13
+      },
+      "web_search": {
+        "bytes": 19870,
+        "llamadas": 33
+      },
+      "write_file": {
+        "bytes": 16583,
+        "llamadas": 50
+      },
+      "browser_navigate": {
+        "bytes": 14659,
+        "llamadas": 5
+      },
+      "cronjob": {
+        "bytes": 14069,
+        "llamadas": 8
+      },
+      "session_search": {
+        "bytes": 12208,
+        "llamadas": 3
+      },
+      "skill_manage": {
+        "bytes": 10622,
+        "llamadas": 17
+      },
+      "memory": {
+        "bytes": 6110,
+        "llamadas": 4
+      },
+      "process": {
+        "bytes": 1228,
+        "llamadas": 6
+      },
+      "web_extract": {
+        "bytes": 602,
+        "llamadas": 1
+      },
+      "clarify": {
+        "bytes": 422,
+        "llamadas": 1
+      },
+      "todo": {
+        "bytes": 324,
+        "llamadas": 3
+      }
+    },
+    "compactaciones_en_el_historial": {
+      "n": 1,
+      "bytes": 34392
+    },
+    "nota": "este dump es del 03-ago: FUERA del rango del ledger (que arranca el 06-ago)"
+  },
+  "avance_f2_0": {
+    "estado": "SUPERADO por F2.1/F2.2 (ver RESULTADOS-F2.md)",
+    "base": "2 dumps, en BYTES (sin tokenizar): no es veredicto",
+    "lectura": "la palanca apunta a historial assistant + salidas de terminal; el fijo (system+tools) pesa poco en los dumps largos, pero mucho en los cortos",
+    "pendiente": [
+      "F2.1 validacion del instrumento",
+      "F2.2 desglose en tokens"
+    ]
+  },
+  "instrumento_tokenizador_endpoint": {
+    "endpoint": "http://127.0.0.1:1234/v1/chat/completions",
+    "modelo": "openai/gpt-oss-20b",
+    "metodo": "usage.prompt_tokens con max_tokens=1",
+    "offset_suelo_tok": 68,
+    "offset_F1_16sep": {
+      "A": 71,
+      "B": 67,
+      "nota": "mismo modelo, arranque distinto: el offset NO es perfectamente estable (+-3 tok)"
+    },
+    "determinismo": "contenido 'x' en dos procesos distintos -> 68 y 68",
+    "sin_termino_oculto": "'x', 'y' y 'xy' -> 68 los tres",
+    "aditividad": {
+      "tramos_tok": [
+        746,
+        685,
+        721
+      ],
+      "suma": 2152,
+      "medido_en_un_solo_mensaje": 2154,
+      "epsilon_tok": 2,
+      "epsilon_pct": 0.09
+    },
+    "framing_por_mensaje_tok": 6.8,
+    "framing_serie_F_k": {
+      "k1": 0,
+      "k2": 10,
+      "k3": 12,
+      "k4": 22,
+      "k5": 24,
+      "k6": 34
+    },
+    "contexto_cargado_tok": 8192,
+    "limites_medidos": [
+      "25000 chars -> OK; 50000 chars -> HTTP 400 del motor",
+      "array con el system del dump (10470 tok) -> 'exceeds the available context size (8192)'",
+      "tokenizado por trozos de 20000 chars con reintento adaptativo"
+    ]
+  },
+  "composicion_tokens_dump_20260803_231400": {
+    "fichero": "request_dump_20260803_154237_873858_20260803_231400_835197.json",
+    "metodo": "por bloque, offset 68 descontado, trozos de 20000 chars",
+    "por_bloque": {
+      "assistant": {
+        "tok": 168845,
+        "pct_tok": 51.0,
+        "bytes_contenido": 516591,
+        "bytes_json_crudo": 714959,
+        "msgs": 567,
+        "tok_por_kB": 334.7
+      },
+      "tool": {
+        "tok": 123305,
+        "pct_tok": 37.3,
+        "bytes_contenido": 389781,
+        "bytes_json_crudo": 438014,
+        "msgs": 466,
+        "tok_por_kB": 323.9
+      },
+      "user": {
+        "tok": 14564,
+        "pct_tok": 4.4,
+        "bytes_contenido": 56343,
+        "bytes_json_crudo": 60193,
+        "msgs": 120,
+        "tok_por_kB": 264.7
+      },
+      "tools_json": {
+        "tok": 13688,
+        "pct_tok": 4.1,
+        "bytes_contenido": 58295,
+        "bytes_json_crudo": 63289,
+        "msgs": 30,
+        "tok_por_kB": 240.4
+      },
+      "system": {
+        "tok": 10369,
+        "pct_tok": 3.1,
+        "bytes_contenido": 42780,
+        "bytes_json_crudo": 43166,
+        "msgs": 1,
+        "tok_por_kB": 248.2
+      }
+    },
+    "contenido_total_tok": 330771,
+    "framing_total_tok": 7840,
+    "peticion_real_estimada_tok": 338611,
+    "dinamico_pct": 92.7,
+    "fijo_por_peticion_pct": 7.3,
+    "aviso_dos_bases_de_bytes": "bytes_contenido = texto de los mensajes; bytes_json_crudo = json.dumps del mensaje (incluye role, tool_call_id, claves y escapes). No mezclar ambas bases.",
+    "aviso_era": "dump de la semana 32 (era de peticiones ~300k) y volcado de fallo: la composicion del regimen actual (~80k) NO esta medida"
+  },
+  "regimen_ledger_por_semana": {
+    "fuente": "/home/jokoalmi/joko-lab/04-operations/metrics/pipeline_obs.jsonl",
+    "filas_totales_260926_1830": 41935,
+    "filas_chat_completions_ge1000": 36405,
+    "por_semana_p50_p90_pct_mayor_131k": {
+      "2026-W32": [
+        316775,
+        451399,
+        86.6
+      ],
+      "2026-W33": [
+        278271,
+        444877,
+        91.4
+      ],
+      "2026-W34": [
+        213900,
+        286303,
+        84.3
+      ],
+      "2026-W35": [
+        218551,
+        287681,
+        82.1
+      ],
+      "2026-W36": [
+        121001,
+        273347,
+        47.2
+      ],
+      "2026-W37": [
+        78299,
+        119836,
+        8.7
+      ],
+      "2026-W38": [
+        76467,
+        94961,
+        0.4
+      ],
+      "2026-W39": [
+        80293,
+        98253,
+        4.5
+      ]
+    },
+    "lectura": "la mediana ha caido de 316775 a 80293 tok (factor ~4) en 7 semanas",
+    "cache_prompt": {
+      "disponible_desde": "2026-W36",
+      "hit_pct_por_semana": [
+        97.4,
+        94.9,
+        93.7,
+        93.9
+      ],
+      "nota": "el coste real de un prompt grande NO es proporcional a prompt_tokens"
+    }
+  },
+  "regimen_actual_7d": {
+    "n": 5343,
+    "min": 1000,
+    "p25": 67581,
+    "p50": 79964,
+    "p75": 91324,
+    "p90": 97732,
+    "max": 209050,
+    "media": 80343,
+    "pct_mayor_131k": 4.0,
+    "pct_mayor_200k": 0.1,
+    "nota": "linea base congelada para el A/B de F2.3"
+  },
+  "reparto_con_regimen_actual": {
+    "fijo_F1_tok": 23292,
+    "p50_actual_tok": 79964,
+    "fijo_pct": 29.1,
+    "dinamico_pct": 70.9,
+    "corrige": "el diseno decia fijo ~15% / dinamico ~85%: ese 15% salia del AGREGADO (p50 154309), no de una semana real de hoy"
+  }
+}

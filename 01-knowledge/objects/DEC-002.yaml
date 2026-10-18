@@ -1,0 +1,44 @@
+id: DEC-002
+type: DEC
+decision_origin: experimento
+status: activo
+version: 1
+created: '2026-07-28'
+last_validated: '2026-07-31'
+next_review: '2026-10-26'
+expires: '2027-01-24'
+confidence: null
+confidence_label: MEDIA
+confidence_origin: legacy
+confidence_status: missing_historical_data
+review_required: true
+label_updated: '2026-08-04'
+evidence:
+- 'EXP-20260728-003: Superior en razonamiento lógico multi-paso'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: null
+  baseline: null
+  current: null
+  last_checked: null
+history:
+- date: '2026-07-28'
+  event: created
+- date: '2026-07-30'
+  event: migrated_to_ko
+  note: Migrado de formato YAML plano a Knowledge Object v1
+- date: '2026-07-31'
+  event: validated
+  note: Primera validación tras migración a Knowledge Object
+body: "DeepSeek R1 destilado en Qwen 14B para tareas de razonamiento paso a paso. Límite de tokens: max_tokens 2048 (nunca menos, nunca 512/768/1024). Ver [[RULE-003]]."
+legacy_fields:
+  modelos_afectados:
+  - deepseek-r1-distill-qwen-14b
+  params:
+    temperature: 0.3
+    max_tokens: 2048
+  nota: No usar max_tokens < 2048. DeepSeek R1 necesita contexto amplio.

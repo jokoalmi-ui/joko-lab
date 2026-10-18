@@ -1,0 +1,34 @@
+CIERRE JOKO LAB — 2026-08-03 23:11:31 CEST
+========================================
+
+Git: master @ 4031e3f
+Docker: 4/4 contenedores
+uv: OK
+cargo: OK
+
+Cambios detectados: SI
+
+  [CODIGO] Git: 2 archivos sin commit
+
+--- Fin del informe ---
+
+--- Salida del cierre Docker (23:11:42 CEST) ---
+ Container pdf-cleaner Stopping 
+ Container ollama Stopping 
+ Container n8n Stopping 
+ Container stirling-pdf Stopping 
+ Container ollama Stopped 
+ Container ollama Removing 
+ Container ollama Removed 
+ Container n8n Stopped 
+ Container n8n Removing 
+ Container n8n Removed 
+ Container stirling-pdf Stopped 
+ Container stirling-pdf Removing 
+ Container stirling-pdf Removed 
+ Container pdf-cleaner Stopped 
+ Container pdf-cleaner Removing 
+ Container pdf-cleaner Removed 
+ Network automation_net Removing 
+ Network automation_net Removed 
+--- Fin del cierre Docker ---

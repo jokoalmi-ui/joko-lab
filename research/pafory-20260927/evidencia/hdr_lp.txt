@@ -1,0 +1,28 @@
+HTTP/2 200 
+date: Sun, 27 Sep 2026 07:03:57 GMT
+content-type: application/json; charset=UTF-8
+server: cloudflare
+x-xss-protection: 1; mode=block
+vary: Accept-Encoding
+set-cookie: PHPSESSID=h3e26gcec5ehlauvjs5d5tjhcl; path=/
+expires: Thu, 19 Nov 1981 08:52:00 GMT
+cache-control: private, must-revalidate
+pragma: no-cache
+x-robots-tag: noindex
+link: <https://pafory.com/wp-json/>; rel="https://api.w.org/"
+x-content-type-options: nosniff
+access-control-expose-headers: X-WP-Total, X-WP-TotalPages, Link
+access-control-allow-headers: Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type
+x-wp-total: 29
+x-wp-totalpages: 1
+allow: GET
+x-upstream: 127.0.0.1:81
+x-frame-options: SAMEORIGIN
+cf-cache-status: DYNAMIC
+strict-transport-security: max-age=7776000
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=a77h%2BQ%2B%2F2LsASpvyvRQwEkWTLwN1hjSaAmaV4GN%2BTnt0tHKfSMCHFjU4RGiKaE8ZDrJp05%2F47r3%2B4s%2Bm1cqC3f%2FrD89T07niBQgL26lFpSuTTWJz4MvdXTgEeZU%3D"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+expect-ct: max-age=86400, enforce
+referrer-policy: same-origin
+cf-ray: a418a6c63ad5f76d-MAD
+

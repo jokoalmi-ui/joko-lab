@@ -1,0 +1,491 @@
+===============================================================================
+  INFORME DE IMPLEMENTACIONES ESTRATEGICAS
+  Joko Lab — Julio 2026
+  "De donde estamos a donde deberiamos estar"
+===============================================================================
+
+INDICE
+  1. Resumen ejecutivo
+  2. Metodologia de evaluacion
+  3. Ficha 1 — Integracion de memoria vectorial (BGE-M3 + LanceDB)
+  4. Ficha 2 — Optimizacion automatica de prompts (DSPy)
+  5. Ficha 3 — Graph Engineering (grafo de ejecucion)
+  6. Ficha 4 — Observabilidad y metricas
+  7. Ficha 5 — Automatizacion del AI Router
+  8. Ficha 6 — Hardware: ruta de actualizacion
+  9. Mapa de dependencias entre implementaciones
+ 10. Plan de ejecucion recomendado (roadmap 3 meses)
+
+
+================================================================================
+1. RESUMEN EJECUTIVO
+================================================================================
+
+Joko Lab esta alineado con el estado del arte en filosofia (local-first,
+skills procedurales, arquitectura hibrida), pero por detras en 5 areas
+concretas. De estas, 3 ya estan empezadas y solo requieren cerrar el
+circuito. Las otras 2 requieren trabajo nuevo pero con impacto
+desproporcionadamente alto.
+
+IMPACTO GENERAL ESTIMADO:
+  Implementar las 5 mejoras = saltar de un nivel 4/10 a un 8.5/10
+  en madurez tecnica respecto al estado del arte de 2026.
+
+
+================================================================================
+2. METODOLOGIA DE EVALUACION
+================================================================================
+
+Cada ficha usa esta escala:
+
+  ESFUERZO (en sesiones de trabajo):
+    Bajo    = 1-2 sesiones (<4h total)
+    Medio   = 3-5 sesiones (<10h total)
+    Alto    = 6-12 sesiones (<20h total)
+    Muy alto = >12 sesiones
+
+  IMPACTO EN CAPACIDADES:
+    1-3 = Mejora marginal
+    4-6 = Mejora significativa
+    7-9 = Salto cualitativo
+   10   = Revolucionario
+
+  MADUREZ ACTUAL (donde estamos):
+    % de avance hacia la solucion ideal
+
+
+================================================================================
+3. FICHA 1 — MEMORIA VECTORIAL DEL AGENTE
+================================================================================
+
+QUÉ ES: Que el agente (Hermes) pueda consultar su propio historial,
+decisiones anteriores y conocimiento acumulado mediante busqueda semantica,
+no solo por palabras clave.
+
+ESTADO ACTUAL:
+  [========================================----------------]
+  65% completado
+
+  LO QUE YA TENEMOS:
+  ✅ BGE-M3 instalado como modelo de embeddings en LM Studio
+  ✅ LanceDB instalado en el sistema
+  ✅ Indice con 11,332 fragmentos de sesiones de Hermes
+  ✅ Skill joko-context que ejecuta context_builder.py
+  ✅ Embeddings funcionando (se genera el vector)
+
+  LO QUE FALTA (35%):
+  ❌ El resultado de la busqueda semantica no se inyecta
+     automaticamente en el contexto del agente
+  ❌ No hay fallback cuando el embedding falla
+  ❌ No hay re-indexacion programada (las nuevas sesiones no
+     se incorporan solas)
+
+ESFUERZO: BAJO (1-2 sesiones)
+  - Solo hay que conectar las piezas existentes
+  - No requiere instalar nada nuevo
+  - Es trabajo de integracion, no de investigacion
+
+IMPACTO EN CAPACIDADES: 8/10
+  - El agente dejaria de depender de session_search (textual)
+    y pasaria a busqueda semantica
+  - Recuperaria decisiones pasadas aunque no recuerde las
+    palabras exactas
+
+GRADO DE AVANCE QUE SUPONDRIA:
+  Salto de "memoria procedural" (skills) a "memoria semantica
+  completa" (skills + vectores). Esto es lo que separa un
+  laboratorio artesanal de uno profesional.
+
+TAREA CONCRETA INMEDIATA:
+  Conectar el output de context_builder.py al system prompt
+  de Hermes. Verificar que el reranker funciona. Programar
+  re-indexacion diaria con cron.
+
+
+================================================================================
+4. FICHA 2 — OPTIMIZACION AUTOMATICA DE PROMPTS (DSPy)
+================================================================================
+
+QUE ES: Substituir el ajuste manual de prompts (la skill actual)
+por un sistema que automaticamente prueba variaciones, mide
+resultados y se queda con la mejor, como DSPy.
+
+ESTADO ACTUAL:
+  [==========----------------------------------------]
+  15% completado
+
+  LO QUE YA TENEMOS:
+  ✅ Skill prompt-engineering con 35 experimentos
+     documentados
+  ✅ Catalogo de 7 modelos con patrones y anti-patrones
+  ✅ Base de datos de resultados reales (que serviran como
+     dataset de entrenamiento para DSPy)
+
+  LO QUE FALTA (85%):
+  ❌ No tenemos DSPy instalado
+  ❌ No tenemos pipeline de test automatico
+  ❌ No tenemos metricas objetivas para evaluar prompts
+  ❌ Los 35 experimentos actuales son observacionales,
+     no sirven directamente como ground truth
+
+ESFUERZO: ALTO (8-12 sesiones)
+  - Requiere aprender DSPy (framework nuevo)
+  - Diseñar metricas de evaluacion por tarea
+  - Crear dataset de ground truth
+  - Integrar con LM Studio local
+
+IMPACTO EN CAPACIDADES: 9/10
+  - Es lo que separa el prompt engineering "artesanal"
+    del "industrial"
+  - Cada vez que cambiemos de modelo, en vez de estar
+    2h ajustando prompts, DSPy lo hace en 20min
+
+GRADO DE AVANCE QUE SUPONDRIA:
+  Pasariamos de ser "los que mejor documentan prompts"
+  a "los que los optimizan automaticamente". Esto es
+  tecnologia de equipo de 10 personas aplicada a
+  laboratorio unipersonal.
+
+TAREA CONCRETA INMEDIATA:
+  pip install dspy-ai. Probar con un modelo simple
+  (Dolphin) y una tarea concreta (generacion de JSON).
+  Si funciona, escalar al resto.
+
+
+================================================================================
+5. FICHA 3 — GRAPH ENGINEERING (GRAFO DE EJECUCION)
+================================================================================
+
+QUE ES: Implementar el primer grafo de ejecucion real,
+aunque sea sencillo. Pasar de la teoria (informe) a la
+practica. Un grafo donde nodos son agentes especializados
+y aristas son flujos de decision.
+
+ESTADO ACTUAL:
+  [======------------------------------------------]
+  8% completado
+
+  LO QUE YA TENEMOS:
+  ✅ Informe completo de Graph Engineering (9 secciones)
+  ✅ Concepto de roles (Obrero, Pensador, Director
+     Creativo, etc.)
+  ✅ n8n como posible orquestador
+  ✅ Experiencia con pipelines multi-modelo
+     (GLM → Gemma para diseño)
+
+  LO QUE FALTA (92%):
+  ❌ Ningun grafo ejecutable
+  ❌ n8n no esta configurado para routing condicional
+     entre modelos
+  ❌ No hay estado compartido entre nodos del grafo
+  ❌ No hay mecanismo de recuperacion ante fallo de un nodo
+
+ESFUERZO: MEDIO (4-6 sesiones)
+  - No hace falta hacer un LangGraph completo
+  - Un script Python con 3-4 nodos + condicionales
+    basta como prueba de concepto
+  - Se puede hacer en n8n o en Python puro
+
+IMPACTO EN CAPACIDADES: 7/10
+  - Valida (o refuta) la teoria del informe
+  - Demuestra si el concepto aporta valor real
+  - Abre la puerta a arquitecturas multi-agente
+
+GRADO DE AVANCE QUE SUPONDRIA:
+  Pasar de "sabemos que existe" a "lo hemos probado".
+  Esto es importante porque el informe concluia que
+  el 95% del esfuerzo esta fuera del LLM. Un prototipo
+  confirmara o desmentira esa afirmacion.
+
+TAREA CONCRETA INMEDIATA:
+  Elegir un caso de uso simple (ej: "investigar un tema
+  y generar un informe") y construir un grafo de 3 nodos:
+  Buscador → Redactor → Validador. El primer nodo busca,
+  el segundo escribe, el tercero verifica. Si falla,
+  vuelve al segundo.
+
+
+================================================================================
+6. FICHA 4 — OBSERVABILIDAD Y METRICAS
+================================================================================
+
+QUE ES: Un dashboard que muestre en tiempo real que modelo
+esta activo, cuanta VRAM consume, latencia media, coste
+(0 para local, X para cloud), cuantos tokens se han
+generado hoy, etc.
+
+ESTADO ACTUAL:
+  [====--------------------------------------------]
+  5% completado
+
+  LO QUE YA TENEMOS:
+  ✅ lmstudio_real_monitor (proyecto Flask existente)
+  ✅ nvidia-smi accesible desde scripts
+  ✅ Logs de sesiones de Hermes
+
+  LO QUE FALTA (95%):
+  ❌ El monitor Flask no esta corriendo (puerto 5000
+     caido en el watchdog)
+  ❌ No hay metricas historicas (solo instantaneas)
+  ❌ No hay registro de latencia por modelo
+  ❌ No hay alertas (si un modelo tarda mas de X, avisar)
+
+ESFUERZO: MEDIO (3-5 sesiones)
+  - Reactivar lmstudio_real_monitor
+  - Añadir endpoint de metricas
+  - Añadir almacenamiento historico simple (SQLite)
+  - Integrar con el shared state
+  - Las piezas ya existen, solo hay que conectarlas
+
+IMPACTO EN CAPACIDADES: 6/10
+  - No cambia lo que el laboratorio puede hacer
+  - Pero cambia como se gestiona: decisiones basadas
+    en datos en vez de intuicion
+
+GRADO DE AVANCE QUE SUPONDRIA:
+  De "laboratorio que funciona" a "laboratorio que se
+  mide". La observabilidad es lo que permite mejorar
+  sistematicamente en vez de por ensayo-error.
+
+TAREA CONCRETA INMEDIATA:
+  Averiguar por que el puerto 5000 esta caido
+  (proceso zombie? cambio de puerto?). reactivar
+  Flask + nvidia-smi + mostrar modelo activo.
+
+
+================================================================================
+7. FICHA 5 — AUTOMATIZACION DEL AI ROUTER
+================================================================================
+
+QUE ES: Que la decision de donde ejecutar cada tarea
+(local o cloud, que modelo local, que parametros) sea
+automatica, no manual. El sistema deberia saber que
+tareas merecen DeepSeek cloud y cuales puede resolver
+Dolphin en local.
+
+ESTADO ACTUAL:
+  [==========----------------------------------------]
+  15% completado
+
+  LO QUE YA TENEMOS:
+  ✅ AI Router como concepto (ai-router en el stack)
+  ✅ Roles de modelos definidos (Obrero, Pensador, etc.)
+  ✅ Skill prompt-engineering con catalogo
+  ✅ combined-mode skill para cloud vs local
+
+  LO QUE FALTA (85%):
+  ❌ La decision es manual: "carga Dolphin", "carga
+     DeepSeek"
+  ❌ No hay heuristica automatica de enrutamiento
+  ❌ No hay perfil de coste por tarea
+  ❌ No hay registro de "que modelo funciono mejor
+     para que tarea" que alimente decisiones futuras
+
+ESFUERZO: MEDIO (4-6 sesiones)
+  - Construir un modulo Python que decida basado en:
+    tipo de tarea, VRAM disponible, latencia tolerada
+  - Conectar con LPA para aprender de resultados previos
+  - No necesita ser complejo al principio: reglas + tabla
+
+IMPACTO EN CAPACIDADES: 7/10
+  - Reduce la friccion cognitiva: no pensar "que modelo
+    uso" sino "que necesito hacer"
+  - Es el paso logico tras JL-011 (capacidades sobre
+    herramientas)
+
+GRADO DE AVANCE QUE SUPONDRIA:
+  De "seleccion manual de modelo" a "enrutamiento
+  inteligente". Es lo que diferencia un conjunto de
+  herramientas de un sistema integrado.
+
+TAREA CONCRETA INMEDIATA:
+  Escribir un modulo router.py con reglas del tipo:
+  SI tarea=creativa Y hora>20h → Gemma
+  SI tarea=JSON Y rapido → Dolphin
+  SI tarea=razonamiento → DeepSeek R1
+  SI tarea=vision → GLM
+  SI local_falla → cloud (DeepSeek API)
+
+
+================================================================================
+8. FICHA 6 — HARDWARE: RUTA DE ACTUALIZACION
+================================================================================
+
+QUE ES: La RTX A2000 12GB es correcta para 2026 pero
+en el limite inferior. Los modelos de 30B+ (Gemma 3 27B,
+Llama 4, Mistral Large) ya no caben. Una GPU con 24GB
+desbloquearia toda una categoria de modelos.
+
+ESTADO ACTUAL:
+  [============--------------------------------------]
+  20% del camino a 24GB
+
+  LO QUE YA TENEMOS:
+  ✅ RTX A2000 12GB (actual)
+  ✅ i9-9900K + 740W Corsair
+  ✅ Experiencia con modelos 7-14B
+
+  OPCIONES:
+
+  OPCION A — RTX 3090 usada (24GB)
+    Coste: ~600-800 EUR (mercado segunda mano 2026)
+    Ganancia: modelos 30B en Q4, 70B en Q2
+    Consumo: 350W (hay que verificar fuente 740W)
+    Nota: PCIe 3.0 compatible con placa Z390
+
+  OPCION B — RTX 4090 usada (24GB)
+    Coste: ~1200-1500 EUR
+    Ganancia: misma VRAM que 3090 pero 2x velocidad
+    Consumo: 450W (fuente 740W justa, recomendable 850W+)
+
+  OPCION C — Mantener A2000 + cloud para modelos grandes
+    Coste: 0 EUR
+    Ganancia: DeepSeek API para tareas que requieren
+              modelos grandes
+    Limitacion: dependencia de internet para tareas
+                complejas
+
+ESFUERZO (instalacion): BAJO (1 sesion)
+  - Cambio fisico de GPU + DDU drivers + verificacion
+
+IMPACTO EN CAPACIDADES: 9/10 (si se hace)
+  - Desbloquea Gemma 3 27B, Llama 4, Qwen3 32B
+  - Permite ejecutar 2 modelos simultaneamente
+    (ej: Dolphin + Gemma en diferente VRAM)
+
+GRADO DE AVANCE QUE SUPONDRIA:
+  De "laboratorio de 12GB" a "laboratorio de 24GB".
+  Esto nos pondria en el segmento de "prosumer",
+  no de "entusiasta".
+
+
+================================================================================
+9. MAPA DE DEPENDENCIAS
+================================================================================
+
+Las implementaciones NO son independientes. Algunas
+desbloquean otras:
+
+  F1 (Memoria vectorial)
+    │
+    ├──→ F4 (Observabilidad) — compartir metricas
+    │      de uso de memoria para decidir que
+    │      indices priorizar
+    │
+    └──→ F5 (AI Router) — la memoria vectorial
+           registra que modelo funciono mejor
+           para cada tarea, el router consulta
+           ese historial
+
+  F2 (DSPy)
+    │
+    └──→ F5 (AI Router) — DSPy optimiza prompts
+           por modelo, el router necesita prompts
+           optimizados para cada modelo
+
+  F3 (Graph Engineering)
+    │
+    └──→ F5 (AI Router) — los nodos del grafo
+           necesitan saber que modelo ejecuta
+           cada nodo
+
+ORDEN RECOMENDADO:
+
+  Fase 1 (semanas 1-2):  F1 (memoria vectorial)
+                          F4 (observabilidad)
+  ── Ya tenemos las piezas. Es conectar. ──
+
+  Fase 2 (semanas 3-4):  F3 (primer grafo simple)
+                          F5 (router basado en reglas)
+  ── Empieza lo nuevo, pero prototipos pequeños. ──
+
+  Fase 3 (semanas 5-8):  F2 (DSPy)
+  ── Lo mas complejo, requiere aprendizaje previo. ──
+
+  Fase 4 (opcional):     F6 (hardware)
+  ── Solo si se justifica economicamente. ──
+
+
+================================================================================
+10. PLAN DE EJECUCION RECOMENDADO (3 MESES)
+================================================================================
+
+MES 1 — CIMENTACION
+  Semana 1:
+    - F1: Conectar context_builder.py al system prompt
+    - F4: Reactivar lmstudio_real_monitor
+    - Verificar que BGE-M3 + LanceDB responden
+
+  Semana 2:
+    - F1: Programar re-indexacion diaria (cron)
+    - F4: Añadir endpoint de metricas historicas
+    - F5: Escribir router.py v1 (reglas estaticas)
+
+  Logro del mes: El agente recuerda. El laboratorio
+  se mide. Las decisiones de modelo son automaticas.
+
+
+MES 2 — PRIMER GRAFO
+  Semana 3:
+    - F3: Elegir caso de uso "investigacion automatica"
+    - F3: Construir nodo Buscador (web_search)
+
+  Semana 4:
+    - F3: Construir nodo Redactor (Dolphin)
+    - F3: Construir nodo Validador (DeepSeek R1)
+    - F3: Conectar con aristas condicionales
+
+  Logro del mes: El primer grafo de ejecucion funciona.
+  Se puede pedir "investiga X" y el sistema orquesta
+  3 modelos sin intervencion manual.
+
+
+MES 3 — OPTIMIZACION
+  Semana 5:
+    - F2: Instalar DSPy
+    - F2: Elegir tarea concreta (generacion de JSON)
+    - F2: Crear dataset de ground truth con los 35
+          experimentos
+
+  Semana 6:
+    - F2: Primera optimizacion automatica
+    - F2: Comparar resultado manual vs DSPy
+
+  Semana 7:
+    - F5: Router v2 (heuristica + historial LPA)
+    - Integrar todo en un solo flujo
+
+  Logro del mes: Los prompts se optimizan solos.
+  El router aprende de la experiencia.
+
+  OPCIONAL Semana 8:
+    - F6: Evaluar necesidad de 24GB
+    - Si procede: buscar RTX 3090 usada
+
+
+===============================================================================
+ANEXO: RESUMEN DE COSTES TOTALES ESTIMADOS
+===============================================================================
+
+  Implementacion  | Esfuerzo | Impacto | Ya tenemos | Prioridad
+  ----------------|----------|---------|------------|----------
+  F1 Memoria vect | Bajo     | 8/10    | 65%        | 1 (INMEDIATA)
+  F4 Obsrvabilid  | Medio    | 6/10    | 5%         | 1 (INMEDIATA)
+  F5 AI Router    | Medio    | 7/10    | 15%        | 2 (SEMANA 2-3)
+  F3 Graph Eng    | Medio    | 7/10    | 8%         | 2 (SEMANA 3-4)
+  F2 DSPy         | Alto     | 9/10    | 15%        | 3 (MES 2)
+  F6 Hardware     | Bajo     | 9/10    | 20%        | Opcional
+
+  TOTAL ESTIMADO: 20-35 sesiones de trabajo distribuidas en 3 meses.
+  COSTE ECONOMICO: 0 EUR (excepto F6 que serian 600-1500 EUR)
+
+  AVANCE ESTIMADO:
+    Sin cambios:     Joko Lab en nivel 4/10 frente al estado del arte
+    Con F1+F4+F5:   Joko Lab en nivel 6/10
+    Con F1-F5:      Joko Lab en nivel 8.5/10
+    Con F1-F6:      Joko Lab en nivel 9/10
+
+===============================================================================
+  Fin del informe
+  Joko Lab — Julio 2026
+===============================================================================

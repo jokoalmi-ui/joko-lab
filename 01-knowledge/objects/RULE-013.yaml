@@ -1,0 +1,32 @@
+id: RULE-013
+type: RULE
+decision_origin: incidente
+status: activo
+version: 1
+created: '2026-09-02'
+last_validated: '2026-09-02'
+next_review: '2026-12-02'
+expires: '2027-03-02'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-09-02T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-12-02T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-09-02T00:00:00Z
+title: "Confianza solo en datos reales; veredicto final del usuario"
+desc: >
+  La confianza se gana con datos reales (salida de terminal, BD, logs), nunca
+  con autoinforme. Ante un fallo, el veredicto final lo da el usuario, no el
+  agente. Cuando algo falla, corregir el proceso (no la persona): registro en
+  backlog/ledger/skill, sin pullas ni comentarios valorativos.
+confidence: 0.9
+confidence_label: ALTA
+evidence:
+- 'Principio recurrente del usuario: exige datos reales, detecta respuestas prefabricadas'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: proceso
+scope: asistente_hermes

@@ -1,0 +1,55 @@
+{
+  "fecha": "2026-09-30T22:15:50+0200",
+  "modelo": "glm-4.6v-flash",
+  "slides": [
+    {
+      "slide": "slide-1-portada.png",
+      "segundos": 18.8,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 17.7,
+      "control": "TITULAR: A PRODUCCIÓN\nPIE: 6 LECCIONES · DE LO BÁSICO A LO AVANZADO"
+    },
+    {
+      "slide": "slide-2-que-es.png",
+      "segundos": 11.7,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 30.9,
+      "control": "TITULAR: MEDIR, VERIFICAR, LIMITAR\nPIE: NO LEGIBLE"
+    },
+    {
+      "slide": "slide-3-como-funciona.png",
+      "segundos": 12.3,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 49.2,
+      "control": "TITULAR: CINCO PIEZAS, UN SISTEMA  \nPIE: NO LEGIBLE"
+    },
+    {
+      "slide": "slide-4-confusion.png",
+      "segundos": 9.2,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 49.4,
+      "control": "TITULAR: SI FUNCIONA EN LA DEMO, FUNCIONA  \nPIE: La pregunta útil no es «¿falla?» — falla siempre. Es: ¿cuánto falla, de qué forma y cuánto cuesta cada fallo?"
+    },
+    {
+      "slide": "slide-5-ejemplo.png",
+      "segundos": 10.0,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 55.2,
+      "control": "TITULAR: LA PREGUNTA QUE NO TIENE RESPUESTA\nPIE: NO LEGIBLE"
+    },
+    {
+      "slide": "slide-6-dato.png",
+      "segundos": 17.5,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 37.7,
+      "control": "TITULAR: 0 VECES SE LO INVENTÓ\nPIE: MEDICIÓN PROPIA · IBM/GRANITE4.2:8B EN OLLAMA (LOCAL) · NUM_CTX 8192 · TEMPERATURA 0,2 · RAZONAMIENTO DESACTIVADO · 27 CASOS × 3 PASADAS (SEEDS 42/43/44) · 14-SEP-2026"
+    },
+    {
+      "slide": "slide-7-cierre.png",
+      "segundos": 14.6,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 25.2,
+      "control": "TITULAR: EN 1 MINUTO\nPIE: FIN DEL RECORRIDO · 5 LECCIONES"
+    }
+  ]
+}

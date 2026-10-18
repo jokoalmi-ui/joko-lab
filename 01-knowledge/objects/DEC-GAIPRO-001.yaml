@@ -1,0 +1,117 @@
+id: DEC-GAIPRO-001
+type: DEC
+decision_origin: auditoria
+status: active
+version: 1
+created: '2026-08-03'
+last_validated: '2026-10-04'
+next_review: '2026-11-03'
+expires: '2026-12-03'
+confidence: 0.6
+confidence_label: MEDIA
+evidence:
+- 'Verificacion gemini.google/es/subscriptions (2026-06): Google AI Pro incluye Gemini 3.1 Pro, limites altos, Gems, NotebookLM Plus, Deep Research, Live, Canvas, Flow, imagenes, integracion Workspace'
+- 'No incluye creditos de API: Gemini API (AI Studio) se paga aparte por uso, con free tier'
+- 'NotebookLM: API solo NotebookLM Enterprise (pago); sin API publica para consumidores'
+- 'Gems: sin API publica oficial para gestionarlos'
+- 'No existe via oficial de puente programatico web->LAB: la suscripcion no da creditos de API y el OAuth de Gemini CLI se cerro el 18-jun-2026 (verificado 05-sep-2026) -> el unico puente posible es manual'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: joko-lab
+scope: estrategia-uso-gemini
+monitoring:
+  metric: tareas_exclusivas_gemini_semana
+  baseline: 0
+  current: 3
+  last_checked: '2026-09-05'
+  log_file: '04-operations/registro-uso-gemini.md'
+  indicador_semanal: 'Tareas exclusivas realizadas en Gemini web (3.1 Pro / NotebookLM / Deep Research). <2/semana = no renta; >=3-4 = mantener.'
+history:
+- date: '2026-08-03'
+  event: created
+  note: 'Estrategia de aprovechamiento de Google AI Pro (~20 EUR/mes). Origen: el usuario quiere maximo rendimiento a la suscripcion; verificadas las APIs (no hay API de Gems; NotebookLM API solo Enterprise).'
+- date: '2026-09-05'
+  event: review
+  note: 'Revisión mensual vencida (03-sep) realizada 05-sep. Registro semanal quedó VACÍO (fallo de medición); veredicto del usuario (RULE-013): uso real 3+ veces/semana (3.1 Pro/NotebookLM/Deep Research) → MANTENER. Monitoring.current=3 (testimonio usuario). Contexto: investigacion 04-05-sep sobre conectar la licencia sin API (vias gratuitas) → veredicto del gate: no existe via oficial (OAuth CLI cerrado 18-jun-2026; AI Pro no da API); alternativas = scraping con riesgo de baneo (no recomendado, politica LAB). Ref: skill google-ai-pro references/gemini-gratis-20260905.md. Proximo review 2026-10-03 con registro semanal rellenado.'
+- date: '2026-10-04'
+  event: review
+  note: 'Revisión mensual vencida (03-oct) realizada 04-oct. El registro semanal volvió a quedar VACÍO — segundo mes consecutivo con la misma causa (el fallo de medición detectado el 05-sep no se corrigió). Veredicto del usuario con OK explícito (RULE-013) — MANTENER la suscripción. next_review renovado a 2026-11-03. Aviso — sin registro rellenado, la revisión de noviembre se decidirá otra vez por testimonio. Ref — 04-operations/registro-uso-gemini.md (semanas vacías).'
+- date: '2026-10-12'
+  event: instrumented
+  note: 'Instrumento de medida MONTADO (peticion del usuario, opcion 1 de 3). El registro semanal llevaba todas las semanas vacio porque no habia forma de rellenarlo sin friccion: no existe via programatica (la suscripcion no da creditos de API; el OAuth de Gemini CLI se cerro el 18-jun-2026; automatizar la web viola los ToS) -> puente MANUAL en 04-operations/puente-gemini/ (README, plantilla-prompt.md, registro-puente.md, outbox/inbox/procesados + .gitignore propio) con la herramienta tools/puente_gemini.py (nuevo/estado/archivar). Antes de estrenarlo se probo DOS veces en sandbox (incluso un bug de acentos, corregido); el puente real quedo virgen (outbox 0 / inbox 0 / procesados 0). monitoring.current NO se toca: sigue 3 como testimonio del 05-sep y hoy no se ha medido ninguna tarea nueva (no se inventa el dato). La revision del 2026-11-03 sera la primera con registro propio si hay tareas. Ref: 04-operations/puente-gemini/README.md.'
+
+body: |
+  # Estrategia Google AI Pro (~20 EUR/mes)
+
+  Objetivo: sacar el maximo rendimiento a la suscripcion Google AI Pro,
+  usandola SOLO donde es insuperable, y dejando lo automatizable en local
+  (Hermes + RAG + crons, ya pagado). Decision con datos al mes.
+
+  ## Que incluye el plan (verificado 2026-08-03)
+
+  - Gemini 3.1 Pro en gemini.google.com con limites muy superiores al gratis
+  - Gems: asistentes personalizados (se usan en la web, manualmente)
+  - NotebookLM Plus: cuadernos con mas fuentes + podcasts de audio (Deep Dive) + guias
+  - Deep Research (informes largos), Gemini Live (voz), Canvas, Google Flow, imagenes
+  - Integracion Workspace: Gemini en Gmail, Docs, Drive
+
+  ## Que NO incluye
+
+  - Creditos de API. La Gemini API (AI Studio) se paga aparte; su free tier
+    cubre uso ligero sin coste. No pagar la suscripcion esperando API.
+
+  ## Reparto de tareas
+
+  | Tarea | Donde | Por que |
+  |---|---|---|
+  | Documentos enormes / contexto 1M (papers, juicio, informes largos) | Gemini web (3.1 Pro) | Capacidad que el local no alcanza |
+  | Investigacion larga con informe | Gemini web (Deep Research) | Exclusivo del plan |
+  | Asistentes personalizados manuales | Gemini web (Gems) | Equivalente web de las skills de Hermes |
+  | Cuadernos de fuentes + podcasts de audio | NotebookLM Plus | No replicable local |
+  | Resumir/redactar en Gmail y Docs | Gemini en Workspace | Integracion nativa |
+  | Pipelines, RAG, crons, skills, monitorizacion | Local (Hermes) | Ya pagado y automatizable |
+  | Automatizacion puntual con Gemini (vision de fotos, etc.) | API AI Studio (free tier) | No requiere pagar |
+  | Prompts que exigen contexto 1M / Deep Research / NotebookLM | Puente manual `04-operations/puente-gemini/` | El LAB prepara el prompt; el usuario lo pega en la web |
+
+  ## Gems candidatos
+
+  - Analista de papers: resumir y extraer evidencia (nivel, dosis, resultados)
+  - Resumidor de documentos del juicio
+  - Consultor de suplementos: dosis vs evidencia (en paralelo a biohacking)
+  - Revisor de entregables Founderz
+  - Asesor de compras de perfume (en paralelo a perfume-ia, con la BD)
+
+  ## Cuadernos NotebookLM rentables
+
+  - Biohacking: las 12 fuentes curadas + papers nuevos + registros
+  - Juicio: documentos y piezas (resumen + busqueda en las fuentes)
+  - Founderz: material de modulos
+  - Perfume IA: reviews de Parfumo/Fragrantica (alternativas)
+
+  ## Registro mensual de uso (rellenar en 04-operations/registro-uso-gemini.md)
+
+  | Semana | Tareas exclusivas en Gemini web | Valor (1-5) | Alternativa local? | Notas |
+  |---|---|---|---|---|
+  | 1 (03-09 ago) | | | | |
+  | 2 (10-16 ago) | | | | |
+  | 3 (17-23 ago) | | | | |
+  | 4 (24-30 ago) | | | | |
+
+  ## Como se ejecuta hoy (12-oct-2026): puente manual
+
+  El registro mensual de arriba deja de depender del recuerdo. El puente
+  `04-operations/puente-gemini/` escribe el prompt con el contexto redactado en
+  `outbox/`, el usuario lo pega en Gemini web, la respuesta se guarda en `inbox/`
+  y `tools/puente_gemini.py archivar` la mueve a `procesados/` anotando la linea
+  en `04-operations/puente-gemini/registro-puente.md` (herramienta + valor 1-5).
+  No hay via programatica: la suscripcion no da creditos de API, el OAuth de
+  Gemini CLI se cerro el 18-jun-2026 y automatizar la web viola los ToS.
+
+  ## Regla de decision (dia ~30, next_review 2026-11-03)
+
+  - Uso real de lo exclusivo (3.1 Pro / NotebookLM / Deep Research) >= 3-4 veces
+    por semana -> mantener la suscripcion
+  - Uso trivial (chat normal que el local cubre) -> considerar Google AI Plus
+    (escalon mas barato) o plan gratis + API free tier
+  - Decidir con datos, no por impresion

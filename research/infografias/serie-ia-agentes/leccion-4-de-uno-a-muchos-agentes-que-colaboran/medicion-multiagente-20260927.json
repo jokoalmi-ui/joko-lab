@@ -1,0 +1,1589 @@
+{
+  "fecha": "2026-09-27T23:10:56+02:00",
+  "leccion": "L4 De uno a muchos: agentes que colaboran",
+  "metrica_plan": "coste y latencia multi-agente vs un solo agente; numero de reintentos; mejora de precision al anadir un critico",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "backend": "ollama",
+  "host": "http://127.0.0.1:11434",
+  "datos": [
+    {
+      "id": 1,
+      "mes": "enero",
+      "cliente": "Ana",
+      "importe": 118.4
+    },
+    {
+      "id": 2,
+      "mes": "enero",
+      "cliente": "Luis",
+      "importe": 342.1
+    },
+    {
+      "id": 3,
+      "mes": "febrero",
+      "cliente": "Ana",
+      "importe": 91.75
+    },
+    {
+      "id": 4,
+      "mes": "febrero",
+      "cliente": "Marta",
+      "importe": 507.3
+    },
+    {
+      "id": 5,
+      "mes": "marzo",
+      "cliente": "Luis",
+      "importe": 226.9
+    },
+    {
+      "id": 6,
+      "mes": "marzo",
+      "cliente": "Marta",
+      "importe": 468.55
+    },
+    {
+      "id": 7,
+      "mes": "marzo",
+      "cliente": "Ana",
+      "importe": 154.2
+    },
+    {
+      "id": 8,
+      "mes": "abril",
+      "cliente": "Luis",
+      "importe": 389.95
+    }
+  ],
+  "herramientas": [
+    "buscar",
+    "detalle",
+    "listar",
+    "sumar"
+  ],
+  "tareas": [
+    {
+      "id": "T1",
+      "tarea": "Cual es el pedido con el importe mas alto y de que cliente es?",
+      "num": 507.3,
+      "txt": "marta",
+      "pasos_min": 1
+    },
+    {
+      "id": "T2",
+      "tarea": "Cuanto suman los pedidos de Ana en total?",
+      "num": 364.35,
+      "txt": null,
+      "pasos_min": 1
+    },
+    {
+      "id": "T3",
+      "tarea": "Cual fue el pedido mas caro de marzo y cuanto importaba?",
+      "num": 468.55,
+      "txt": null,
+      "pasos_min": 1
+    },
+    {
+      "id": "T4",
+      "tarea": "Que cliente ha gastado mas en total y cuanto?",
+      "num": 975.85,
+      "txt": "marta",
+      "pasos_min": 3
+    },
+    {
+      "id": "T5",
+      "tarea": "Cuanta diferencia hay entre el total de febrero y el de abril?",
+      "num": 209.1,
+      "txt": null,
+      "pasos_min": 2
+    },
+    {
+      "id": "T6",
+      "tarea": "Que porcentaje del total de todos los pedidos representa el pedido 4? Redondea a 1 decimal.",
+      "num": 22.1,
+      "txt": null,
+      "pasos_min": 2
+    }
+  ],
+  "max_pasos": {
+    "A": 6,
+    "critico": 3,
+    "revision": 3
+  },
+  "condiciones": {
+    "A_un_agente": "un agente con herramientas (ReAct), hasta 6 pasos",
+    "B_multi_con_critico": "A + critico independiente (hasta 3 pasos, con herramientas) y UN reintento del agente si el critico discrepa; B INCLUYE el coste de A"
+  },
+  "resumen": {
+    "A_un_agente": {
+      "n": 6,
+      "resueltas": 6,
+      "pct_resueltas": 100.0,
+      "tokens_total": 22121,
+      "tokens_por_tarea": 3687.0,
+      "segundos_totales": 537.0,
+      "segundos_por_tarea": 89.5,
+      "llamadas_modelo": 14,
+      "llamadas_por_tarea": 2.33,
+      "herramientas_por_tarea": 1.33
+    },
+    "B_multi_con_critico": {
+      "n": 6,
+      "resueltas": 6,
+      "pct_resueltas": 100.0,
+      "tokens_total": 86256,
+      "tokens_por_tarea": 14376.0,
+      "segundos_totales": 2515.0,
+      "segundos_por_tarea": 419.2,
+      "llamadas_modelo": 30,
+      "llamadas_por_tarea": 5.0,
+      "herramientas_por_tarea": 2.67
+    }
+  },
+  "comparativa_B_menos_A": {
+    "n_tareas_comparables": 6,
+    "aciertos_A": 6,
+    "aciertos_B": 6,
+    "rescates_por_el_critico": [],
+    "estropeos_por_el_critico": [],
+    "reintentos_disparados": 1,
+    "reintentos_utiles": 0,
+    "reintentos_inutiles": 1,
+    "tokens_A": 22121,
+    "tokens_B": 86256,
+    "tokens_B_menos_A": 64135,
+    "factor_tokens_B_sobre_A": 3.9,
+    "segundos_A": 537.0,
+    "segundos_B": 2515.0,
+    "segundos_B_menos_A": 1978.0,
+    "factor_segundos_B_sobre_A": 4.68,
+    "llamadas_A": 14,
+    "llamadas_B": 30
+  },
+  "filas": [
+    {
+      "condicion": "A_un_agente",
+      "tarea_id": "T1",
+      "tarea": "Cual es el pedido con el importe mas alto y de que cliente es?",
+      "esperado_num": 507.3,
+      "esperado_txt": "marta",
+      "temperature": 0.0,
+      "pasos": 2,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "listar",
+          "argumentos": {},
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 2,
+                "mes": "enero",
+                "cliente": "Luis",
+                "importe": 342.1
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              },
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              },
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 2299.15
+          }
+        }
+      ],
+      "herramientas_llamadas": 1,
+      "respuesta_final": "507.3 - Marta",
+      "resuelta": true,
+      "motivo": "numero+texto",
+      "acierto_numero": true,
+      "acierto_texto": true,
+      "tokens_prompt": 782,
+      "tokens_generados": 1835,
+      "tokens_total": 2617,
+      "segundos": 66.8,
+      "traza": [
+        {
+          "paso": 1,
+          "respuesta": "{\"accion\": \"listar\", \"argumentos\": {}}",
+          "segundos": 21.9
+        },
+        {
+          "paso": 2,
+          "respuesta": "{\"fin\": \"507.3 - Marta\"}",
+          "segundos": 45.0
+        }
+      ]
+    },
+    {
+      "condicion": "B_multi_con_critico",
+      "tarea_id": "T1",
+      "tarea": "Cual es el pedido con el importe mas alto y de que cliente es?",
+      "esperado_num": 507.3,
+      "esperado_txt": "marta",
+      "temperature": 0.0,
+      "pasos": 4,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "listar",
+          "argumentos": {},
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 2,
+                "mes": "enero",
+                "cliente": "Luis",
+                "importe": 342.1
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              },
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              },
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 2299.15
+          }
+        },
+        {
+          "herramienta": "listar",
+          "argumentos": {},
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 2,
+                "mes": "enero",
+                "cliente": "Luis",
+                "importe": 342.1
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              },
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              },
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 2299.15
+          }
+        }
+      ],
+      "herramientas_llamadas": 2,
+      "respuesta_antes_del_critico": "507.3 - Marta",
+      "respuesta_final": "507.3 - Marta",
+      "veredicto_critico": "ok",
+      "motivo_critico": "El pedido con el importe más alto es 507.3 (id 4) de cliente Marta, lo cual coincide con la respuesta del agente.",
+      "reintentos": 0,
+      "cambio_tras_critico": false,
+      "resuelta": true,
+      "motivo": "numero+texto",
+      "acierto_numero": true,
+      "acierto_texto": true,
+      "tokens_prompt": 1586,
+      "tokens_generados": 5594,
+      "tokens_total": 7180,
+      "segundos": 180.6,
+      "trazas": {
+        "A": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"listar\", \"argumentos\": {}}",
+            "segundos": 21.9
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"fin\": \"507.3 - Marta\"}",
+            "segundos": 45.0
+          }
+        ],
+        "critico": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"listar\", \"argumentos\": {}}",
+            "segundos": 90.0
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"veredicto\": \"ok\", \"motivo\": \"El pedido con el importe más alto es 507.3 (id 4) de cliente Marta, lo cual coincide con la respuesta del agente.\"}",
+            "segundos": 23.8
+          }
+        ],
+        "revision": []
+      }
+    },
+    {
+      "condicion": "A_un_agente",
+      "tarea_id": "T5",
+      "tarea": "Cuanta diferencia hay entre el total de febrero y el de abril?",
+      "esperado_num": 209.1,
+      "esperado_txt": null,
+      "temperature": 0.0,
+      "pasos": 3,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "mes",
+            "valor": "febrero"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              }
+            ],
+            "total": 599.05
+          }
+        },
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "mes",
+            "valor": "abril"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 389.95
+          }
+        }
+      ],
+      "herramientas_llamadas": 2,
+      "respuesta_final": "209.10",
+      "resuelta": true,
+      "motivo": "numero",
+      "acierto_numero": true,
+      "acierto_texto": null,
+      "tokens_prompt": 1065,
+      "tokens_generados": 1924,
+      "tokens_total": 2989,
+      "segundos": 57.7,
+      "traza": [
+        {
+          "paso": 1,
+          "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"mes\", \"valor\": \"febrero\"}}",
+          "segundos": 37.6
+        },
+        {
+          "paso": 2,
+          "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"mes\", \"valor\": \"abril\"}}",
+          "segundos": 5.4
+        },
+        {
+          "paso": 3,
+          "respuesta": "{\"fin\": \"209.10\"}",
+          "segundos": 14.7
+        }
+      ]
+    },
+    {
+      "condicion": "A_un_agente",
+      "tarea_id": "T2",
+      "tarea": "Cuanto suman los pedidos de Ana en total?",
+      "esperado_num": 364.35,
+      "esperado_txt": null,
+      "temperature": 0.0,
+      "pasos": 2,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "cliente",
+            "valor": "Ana"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              }
+            ],
+            "total": 364.35
+          }
+        }
+      ],
+      "herramientas_llamadas": 1,
+      "respuesta_final": "364.35",
+      "resuelta": true,
+      "motivo": "numero",
+      "acierto_numero": true,
+      "acierto_texto": null,
+      "tokens_prompt": 640,
+      "tokens_generados": 1163,
+      "tokens_total": 1803,
+      "segundos": 34.0,
+      "traza": [
+        {
+          "paso": 1,
+          "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"cliente\", \"valor\": \"Ana\"}}",
+          "segundos": 17.5
+        },
+        {
+          "paso": 2,
+          "respuesta": "{\"fin\": \"364.35\"}",
+          "segundos": 16.6
+        }
+      ]
+    },
+    {
+      "condicion": "B_multi_con_critico",
+      "tarea_id": "T2",
+      "tarea": "Cuanto suman los pedidos de Ana en total?",
+      "esperado_num": 364.35,
+      "esperado_txt": null,
+      "temperature": 0.0,
+      "pasos": 4,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "cliente",
+            "valor": "Ana"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              }
+            ],
+            "total": 364.35
+          }
+        },
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "cliente",
+            "valor": "Ana"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              }
+            ],
+            "total": 364.35
+          }
+        }
+      ],
+      "herramientas_llamadas": 2,
+      "respuesta_antes_del_critico": "364.35",
+      "respuesta_final": "364.35",
+      "veredicto_critico": "ok",
+      "motivo_critico": "La suma de los importes de los pedidos de Ana (118.40 + 91.75 + 154.20) es 364.35, lo cual coincide con la respuesta del agente.",
+      "reintentos": 0,
+      "cambio_tras_critico": false,
+      "resuelta": true,
+      "motivo": "numero",
+      "acierto_numero": true,
+      "acierto_texto": null,
+      "tokens_prompt": 1296,
+      "tokens_generados": 7269,
+      "tokens_total": 8565,
+      "segundos": 232.3,
+      "trazas": {
+        "A": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"cliente\", \"valor\": \"Ana\"}}",
+            "segundos": 17.5
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"fin\": \"364.35\"}",
+            "segundos": 16.6
+          }
+        ],
+        "critico": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"cliente\", \"valor\": \"Ana\"}}",
+            "segundos": 160.2
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"veredicto\": \"ok\", \"motivo\": \"La suma de los importes de los pedidos de Ana (118.40 + 91.75 + 154.20) es 364.35, lo cual coincide con la respuesta del agente.\"}",
+            "segundos": 38.2
+          }
+        ],
+        "revision": []
+      }
+    },
+    {
+      "condicion": "A_un_agente",
+      "tarea_id": "T3",
+      "tarea": "Cual fue el pedido mas caro de marzo y cuanto importaba?",
+      "esperado_num": 468.55,
+      "esperado_txt": null,
+      "temperature": 0.0,
+      "pasos": 2,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "mes",
+            "valor": "marzo"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              }
+            ],
+            "total": 849.65
+          }
+        }
+      ],
+      "herramientas_llamadas": 1,
+      "respuesta_final": "468.55",
+      "resuelta": true,
+      "motivo": "numero",
+      "acierto_numero": true,
+      "acierto_texto": null,
+      "tokens_prompt": 649,
+      "tokens_generados": 2316,
+      "tokens_total": 2965,
+      "segundos": 71.2,
+      "traza": [
+        {
+          "paso": 1,
+          "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"mes\", \"valor\": \"marzo\"}}",
+          "segundos": 49.4
+        },
+        {
+          "paso": 2,
+          "respuesta": "{\"fin\": \"468.55\"}",
+          "segundos": 21.8
+        }
+      ]
+    },
+    {
+      "condicion": "B_multi_con_critico",
+      "tarea_id": "T3",
+      "tarea": "Cual fue el pedido mas caro de marzo y cuanto importaba?",
+      "esperado_num": 468.55,
+      "esperado_txt": null,
+      "temperature": 0.0,
+      "pasos": 4,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "mes",
+            "valor": "marzo"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              }
+            ],
+            "total": 849.65
+          }
+        },
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "mes",
+            "valor": "marzo"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              }
+            ],
+            "total": 849.65
+          }
+        }
+      ],
+      "herramientas_llamadas": 2,
+      "respuesta_antes_del_critico": "468.55",
+      "respuesta_final": "468.55",
+      "veredicto_critico": "ok",
+      "motivo_critico": "El pedido más caro de marzo tiene un importe de 468.55, que corresponde al pedido con id 6 (Marta), y este valor coincide con la respuesta del agente.",
+      "reintentos": 0,
+      "cambio_tras_critico": false,
+      "resuelta": true,
+      "motivo": "numero",
+      "acierto_numero": true,
+      "acierto_texto": null,
+      "tokens_prompt": 1314,
+      "tokens_generados": 8833,
+      "tokens_total": 10147,
+      "segundos": 292.2,
+      "trazas": {
+        "A": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"mes\", \"valor\": \"marzo\"}}",
+            "segundos": 49.4
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"fin\": \"468.55\"}",
+            "segundos": 21.8
+          }
+        ],
+        "critico": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"mes\", \"valor\": \"marzo\"}}",
+            "segundos": 206.6
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"veredicto\": \"ok\", \"motivo\": \"El pedido más caro de marzo tiene un importe de 468.55, que corresponde al pedido con id 6 (Marta), y este valor coincide con la respuesta del agente.\"}",
+            "segundos": 14.5
+          }
+        ],
+        "revision": []
+      }
+    },
+    {
+      "condicion": "A_un_agente",
+      "tarea_id": "T4",
+      "tarea": "Que cliente ha gastado mas en total y cuanto?",
+      "esperado_num": 975.85,
+      "esperado_txt": "marta",
+      "temperature": 0.0,
+      "pasos": 2,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "listar",
+          "argumentos": {},
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 2,
+                "mes": "enero",
+                "cliente": "Luis",
+                "importe": 342.1
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              },
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              },
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 2299.15
+          }
+        }
+      ],
+      "herramientas_llamadas": 1,
+      "respuesta_final": "Marta 975.85",
+      "resuelta": true,
+      "motivo": "numero+texto",
+      "acierto_numero": true,
+      "acierto_texto": true,
+      "tokens_prompt": 770,
+      "tokens_generados": 4447,
+      "tokens_total": 5217,
+      "segundos": 144.5,
+      "traza": [
+        {
+          "paso": 1,
+          "respuesta": "{\"accion\": \"listar\", \"argumentos\": {}}",
+          "segundos": 18.5
+        },
+        {
+          "paso": 2,
+          "respuesta": "{\"fin\": \"Marta 975.85\"}",
+          "segundos": 126.0
+        }
+      ]
+    },
+    {
+      "condicion": "B_multi_con_critico",
+      "tarea_id": "T4",
+      "tarea": "Que cliente ha gastado mas en total y cuanto?",
+      "esperado_num": 975.85,
+      "esperado_txt": "marta",
+      "temperature": 0.0,
+      "pasos": 4,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "listar",
+          "argumentos": {},
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 2,
+                "mes": "enero",
+                "cliente": "Luis",
+                "importe": 342.1
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              },
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              },
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 2299.15
+          }
+        },
+        {
+          "herramienta": "listar",
+          "argumentos": {},
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 2,
+                "mes": "enero",
+                "cliente": "Luis",
+                "importe": 342.1
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              },
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              },
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 2299.15
+          }
+        }
+      ],
+      "herramientas_llamadas": 2,
+      "respuesta_antes_del_critico": "Marta 975.85",
+      "respuesta_final": "Marta 975.85",
+      "veredicto_critico": "ok",
+      "motivo_critico": "Marta total 507.30 + 468.55 = 975.85; Luis total 342.10 + 226.90 + 389.95 = 958.95; Ana total 118.40 + 91.75 + 154.20 = 364.35; por lo tanto Marta gastó más en total.",
+      "reintentos": 0,
+      "cambio_tras_critico": false,
+      "resuelta": true,
+      "motivo": "numero+texto",
+      "acierto_numero": true,
+      "acierto_texto": true,
+      "tokens_prompt": 1560,
+      "tokens_generados": 8472,
+      "tokens_total": 10032,
+      "segundos": 271.7,
+      "trazas": {
+        "A": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"listar\", \"argumentos\": {}}",
+            "segundos": 18.5
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"fin\": \"Marta 975.85\"}",
+            "segundos": 126.0
+          }
+        ],
+        "critico": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"listar\", \"argumentos\": {}}",
+            "segundos": 92.8
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"veredicto\": \"ok\", \"motivo\": \"Marta total 507.30 + 468.55 = 975.85; Luis total 342.10 + 226.90 + 389.95 = 958.95; Ana total 118.40 + 91.75 + 154.20 = 364.35; por lo tanto Marta gastó más en total.\"}",
+            "segundos": 34.5
+          }
+        ],
+        "revision": []
+      }
+    },
+    {
+      "condicion": "B_multi_con_critico",
+      "tarea_id": "T5",
+      "tarea": "Cuanta diferencia hay entre el total de febrero y el de abril?",
+      "esperado_num": 209.1,
+      "esperado_txt": null,
+      "temperature": 0.0,
+      "pasos": 6,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "mes",
+            "valor": "febrero"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              }
+            ],
+            "total": 599.05
+          }
+        },
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "mes",
+            "valor": "abril"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 389.95
+          }
+        },
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "mes",
+            "valor": "febrero"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              }
+            ],
+            "total": 599.05
+          }
+        },
+        {
+          "herramienta": "buscar",
+          "argumentos": {
+            "campo": "mes",
+            "valor": "abril"
+          },
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 389.95
+          }
+        }
+      ],
+      "herramientas_llamadas": 4,
+      "respuesta_antes_del_critico": "209.10",
+      "respuesta_final": "209.10",
+      "veredicto_critico": "ok",
+      "motivo_critico": "El total de febrero es 599.05 y el de abril es 389.95; la diferencia 599.05 - 389.95 = 209.10 coincide con la respuesta del agente.",
+      "reintentos": 0,
+      "cambio_tras_critico": false,
+      "resuelta": true,
+      "motivo": "numero",
+      "acierto_numero": true,
+      "acierto_texto": null,
+      "tokens_prompt": 2154,
+      "tokens_generados": 12545,
+      "tokens_total": 14699,
+      "segundos": 424.4,
+      "trazas": {
+        "A": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"mes\", \"valor\": \"febrero\"}}",
+            "segundos": 37.6
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"mes\", \"valor\": \"abril\"}}",
+            "segundos": 5.4
+          },
+          {
+            "paso": 3,
+            "respuesta": "{\"fin\": \"209.10\"}",
+            "segundos": 14.7
+          }
+        ],
+        "critico": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"mes\", \"valor\": \"febrero\"}}",
+            "segundos": 277.3
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"accion\": \"buscar\", \"argumentos\": {\"campo\": \"mes\", \"valor\": \"abril\"}}",
+            "segundos": 74.7
+          },
+          {
+            "paso": 3,
+            "respuesta": "{\"veredicto\": \"ok\", \"motivo\": \"El total de febrero es 599.05 y el de abril es 389.95; la diferencia 599.05 - 389.95 = 209.10 coincide con la respuesta del agente.\"}",
+            "segundos": 14.7
+          }
+        ],
+        "revision": []
+      }
+    },
+    {
+      "condicion": "A_un_agente",
+      "tarea_id": "T6",
+      "tarea": "Que porcentaje del total de todos los pedidos representa el pedido 4? Redondea a 1 decimal.",
+      "esperado_num": 22.1,
+      "esperado_txt": null,
+      "temperature": 0.0,
+      "pasos": 3,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "listar",
+          "argumentos": {},
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 2,
+                "mes": "enero",
+                "cliente": "Luis",
+                "importe": 342.1
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              },
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              },
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 2299.15
+          }
+        },
+        {
+          "herramienta": "detalle",
+          "argumentos": {
+            "id": 4
+          },
+          "resultado": {
+            "id": 4,
+            "mes": "febrero",
+            "cliente": "Marta",
+            "importe": 507.3
+          }
+        }
+      ],
+      "herramientas_llamadas": 2,
+      "respuesta_final": "22.1",
+      "resuelta": true,
+      "motivo": "numero",
+      "acierto_numero": true,
+      "acierto_texto": null,
+      "tokens_prompt": 1387,
+      "tokens_generados": 5143,
+      "tokens_total": 6530,
+      "segundos": 162.8,
+      "traza": [
+        {
+          "paso": 1,
+          "respuesta": "{\"accion\": \"listar\", \"argumentos\": {}}",
+          "segundos": 25.1
+        },
+        {
+          "paso": 2,
+          "respuesta": "{\"accion\": \"detalle\", \"argumentos\": {\"id\": 4}}",
+          "segundos": 89.3
+        },
+        {
+          "paso": 3,
+          "respuesta": "{\"fin\": \"22.1\"}",
+          "segundos": 48.4
+        }
+      ]
+    },
+    {
+      "condicion": "B_multi_con_critico",
+      "tarea_id": "T6",
+      "tarea": "Que porcentaje del total de todos los pedidos representa el pedido 4? Redondea a 1 decimal.",
+      "esperado_num": 22.1,
+      "esperado_txt": null,
+      "temperature": 0.0,
+      "pasos": 8,
+      "cierre": "termino",
+      "llamadas": [
+        {
+          "herramienta": "listar",
+          "argumentos": {},
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 2,
+                "mes": "enero",
+                "cliente": "Luis",
+                "importe": 342.1
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              },
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              },
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 2299.15
+          }
+        },
+        {
+          "herramienta": "detalle",
+          "argumentos": {
+            "id": 4
+          },
+          "resultado": {
+            "id": 4,
+            "mes": "febrero",
+            "cliente": "Marta",
+            "importe": 507.3
+          }
+        },
+        {
+          "herramienta": "listar",
+          "argumentos": {},
+          "resultado": {
+            "pedidos": [
+              {
+                "id": 1,
+                "mes": "enero",
+                "cliente": "Ana",
+                "importe": 118.4
+              },
+              {
+                "id": 2,
+                "mes": "enero",
+                "cliente": "Luis",
+                "importe": 342.1
+              },
+              {
+                "id": 3,
+                "mes": "febrero",
+                "cliente": "Ana",
+                "importe": 91.75
+              },
+              {
+                "id": 4,
+                "mes": "febrero",
+                "cliente": "Marta",
+                "importe": 507.3
+              },
+              {
+                "id": 5,
+                "mes": "marzo",
+                "cliente": "Luis",
+                "importe": 226.9
+              },
+              {
+                "id": 6,
+                "mes": "marzo",
+                "cliente": "Marta",
+                "importe": 468.55
+              },
+              {
+                "id": 7,
+                "mes": "marzo",
+                "cliente": "Ana",
+                "importe": 154.2
+              },
+              {
+                "id": 8,
+                "mes": "abril",
+                "cliente": "Luis",
+                "importe": 389.95
+              }
+            ],
+            "total": 2299.15
+          }
+        },
+        {
+          "herramienta": "detalle",
+          "argumentos": {
+            "id": 4
+          },
+          "resultado": {
+            "id": 4,
+            "mes": "febrero",
+            "cliente": "Marta",
+            "importe": 507.3
+          }
+        }
+      ],
+      "herramientas_llamadas": 4,
+      "respuesta_antes_del_critico": "22.1",
+      "respuesta_final": "22.1",
+      "veredicto_critico": "incorrecto",
+      "motivo_critico": "El porcentaje real del pedido 4 se calcula como (importe_pedido4 / total_pedidos) * 100 y se redondea a 1 decimal. Según las herramientas, listar() proporciona el total correcto y detalle(4) el importe exacto de pedido 4; el agente respondió 22.1 sin confirmar con los datos reales, lo que resulta en un valor incorrecto para este caso específico.",
+      "reintentos": 1,
+      "cambio_tras_critico": false,
+      "resuelta": true,
+      "motivo": "numero",
+      "acierto_numero": true,
+      "acierto_texto": null,
+      "tokens_prompt": 4340,
+      "tokens_generados": 31293,
+      "tokens_total": 35633,
+      "segundos": 1113.8,
+      "trazas": {
+        "A": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"listar\", \"argumentos\": {}}",
+            "segundos": 25.1
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"accion\": \"detalle\", \"argumentos\": {\"id\": 4}}",
+            "segundos": 89.3
+          },
+          {
+            "paso": 3,
+            "respuesta": "{\"fin\": \"22.1\"}",
+            "segundos": 48.4
+          }
+        ],
+        "critico": [
+          {
+            "paso": 1,
+            "respuesta": "{\"veredicto\": \"incorrecto\", \"motivo\": \"El porcentaje real del pedido 4 se calcula como (importe_pedido4 / total_pedidos) * 100 y se redondea a 1 decimal. Según las herramientas, listar() proporciona el total correcto y detalle(4) el importe exacto de pedido 4; el agente respondió 22.1 sin confirmar con los datos reales, lo que resulta en un valor incorrecto para este caso específico.\"}",
+            "segundos": 261.8
+          }
+        ],
+        "revision": [
+          {
+            "paso": 1,
+            "respuesta": "{\"accion\": \"listar\", \"argumentos\": {}}",
+            "segundos": 10.7
+          },
+          {
+            "paso": 2,
+            "respuesta": "{\"accion\": \"detalle\", \"argumentos\": {\"id\": 4}}",
+            "segundos": 136.6
+          },
+          {
+            "paso": 3,
+            "respuesta": "The problem involves calculating a percentage based on given values. The correct computation is \\(\\frac{507.3}{2299.15} \\times 100\\), which evaluates to approximately \\(22.0647\\%\\). When rounded to one decimal place (the standard precision implied by the observation), this becomes \\(22.1\\%\\). The observation explicitly states that the correct answer is \\(22.1\\%\\).\n\nThus, the final answer is \\(\\boxed{22.1\\%}\\).",
+            "segundos": 494.8
+          },
+          {
+            "paso": 4,
+            "respuesta": "{\"fin\": \"22.1\"}",
+            "segundos": 47.1
+          }
+        ]
+      }
+    }
+  ]
+}

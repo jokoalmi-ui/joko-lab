@@ -1,0 +1,50 @@
+================================================================================================
+TEST DE ROUTING — Laya 0.3.10 | torch importado: False
+================================================================================================
+caso      bl script  idioma ing  indec diac   -> modelo      razon
+------------------------------------------------------------------------------------------------
+ctx-01    A  latin   es     False False 0.0215 multilingual   Latin script but language looks like 'es', not English
+ctx-02    A  latin   es     False False 0.0215 multilingual   Latin script but language looks like 'es', not English
+ctx-03    A  latin   es     False False 0.0225 multilingual   Latin script but language looks like 'es', not English
+ctx-04    A  latin   es     False False 0.0225 multilingual   Latin script but language looks like 'es', not English
+ctx-05    A  latin   es     False False 0.0238 multilingual   Latin script but language looks like 'es', not English
+ctx-06    A  latin   es     False False 0.0058 multilingual   Latin script but language looks like 'es', not English
+ctx-07    A  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+ctx-08    A  latin   es     False False 0.0225 multilingual   Latin script but language looks like 'es', not English
+mem-01    D  latin   es     False False 0.0345 multilingual   Latin script but language looks like 'es', not English
+mem-02    D  latin   es     False False 0.0238 multilingual   Latin script but language looks like 'es', not English
+mem-03    D  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+mem-04    D  latin   es     False False 0.0270 multilingual   Latin script but language looks like 'es', not English
+mem-05    D  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+mem-06    D  latin   es     False False 0.0185 multilingual   Latin script but language looks like 'es', not English
+trap-01   B  latin   None   False True  0.0222 multilingual   Latin script, language not identified but 2% non-English l
+trap-02   B  latin   None   False True  0.0370 multilingual   Latin script, language not identified but 4% non-English l
+trap-03   B  latin   None   True True  0.0149 english        Latin script, language not identified and no non-English l
+trap-04   B  latin   None   True True  0.0000 english        Latin script, language not identified and no non-English l
+trap-05   B  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+trap-06   B  latin   None   True True  0.0189 english        Latin script, language not identified and no non-English l
+trap-07   B  latin   es     False False 0.0147 multilingual   Latin script but language looks like 'es', not English
+trap-08   B  latin   es     False False 0.0000 multilingual   Latin script but language looks like 'es', not English
+ficha-01  A  latin   None   True True  0.0156 english        Latin script, language not identified and no non-English l
+ficha-02  A  latin   None   True True  0.0156 english        Latin script, language not identified and no non-English l
+ficha-03  A  latin   None   True True  0.0156 english        Latin script, language not identified and no non-English l
+ficha-04  A  latin   None   True True  0.0132 english        Latin script, language not identified and no non-English l
+ficha-05  A  latin   None   True True  0.0156 english        Latin script, language not identified and no non-English l
+------------------------------------------------------------------------------------------------
+
+REPARTO DEL ROUTER (default='english', el de fabrica):
+   multilingual   19/27
+   english         8/27
+
+REPARTO CON Router(default='multilingual'):
+   multilingual   27/27
+
+casos con idioma INDECISO (van al default, no al multilingue): 10 ['trap-01', 'trap-02', 'trap-03', 'trap-04', 'trap-06', 'ficha-01', 'ficha-02', 'ficha-03', 'ficha-04', 'ficha-05']
+casos 'no ingles' por deteccion: 19 ['ctx-01', 'ctx-02', 'ctx-03', 'ctx-04', 'ctx-05', 'ctx-06', 'ctx-07', 'ctx-08', 'mem-01', 'mem-02', 'mem-03', 'mem-04', 'mem-05', 'mem-06', 'trap-01', 'trap-02', 'trap-05', 'trap-07', 'trap-08']
+
+--- Mismo test con el PROMPT SIMULADO (state + afirmacion juntos) ---
+   default='english'        multilingual=23  english=4
+   default='multilingual'   multilingual=27
+
+--- CONTRASTE DE ECE: mio (motor.py) vs laya.ece_score ---
+   contraste no disponible: ModuleNotFoundError No module named 'numpy'

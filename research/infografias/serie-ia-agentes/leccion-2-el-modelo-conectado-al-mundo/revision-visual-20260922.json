@@ -1,0 +1,41 @@
+{
+  "fecha": "2026-09-22T19:29:19+0200",
+  "modelo": "glm-4.6v-flash",
+  "slides": [
+    {
+      "slide": "slide-1-portada.png",
+      "segundos": 45.9,
+      "respuesta": "SIN DEFECTOS"
+    },
+    {
+      "slide": "slide-2-que-es.png",
+      "segundos": 20.1,
+      "respuesta": "SIN DEFECTOS"
+    },
+    {
+      "slide": "slide-3-como-funciona.png",
+      "segundos": 15.9,
+      "respuesta": "SIN DEFECTOS"
+    },
+    {
+      "slide": "slide-4-confusion.png",
+      "segundos": 17.7,
+      "respuesta": "SIN DEFECTOS"
+    },
+    {
+      "slide": "slide-5-ejemplo.png",
+      "segundos": 17.3,
+      "respuesta": "SIN DEFECTOS"
+    },
+    {
+      "slide": "slide-6-dato.png",
+      "segundos": 17.8,
+      "respuesta": "SIN DEFECTOS"
+    },
+    {
+      "slide": "slide-7-cierre.png",
+      "segundos": 16.4,
+      "respuesta": "SIN DEFECTOS"
+    }
+  ]
+}

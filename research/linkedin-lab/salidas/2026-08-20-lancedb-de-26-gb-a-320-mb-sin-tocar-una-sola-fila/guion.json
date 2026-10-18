@@ -1,0 +1,103 @@
+{
+  "tema": "LanceDB: de 26 GB a 320 MB sin tocar una sola fila",
+  "slides": [
+    {
+      "tipo": "gancho",
+      "titulo": "Mi RAG ocupaba <span class='accent'>26 GB</span> y no lo sabía",
+      "subtitulo": "No era el contenido. Eran las <b>versiones viejas</b> que el índice iba acumulando cada día.",
+      "dato": "98.8%",
+      "unidad": "de disco liberado"
+    },
+    {
+      "tipo": "concepto",
+      "num": "1",
+      "titulo": "El problema: cada reindexado engorda",
+      "items": [
+        [
+          "Cada daily crea una versión nueva",
+          "LanceDB guarda el histórico de cada escritura"
+        ],
+        [
+          "13 días sin limpiar = 453 versiones",
+          "El índice real del lab, medido el 20-ago"
+        ],
+        [
+          "La tabla 'joko_notes' pesaba 26 GB",
+          "Aunque solo tenía ~21.000 fragmentos de texto"
+        ]
+      ]
+    },
+    {
+      "tipo": "metricas",
+      "num": "2",
+      "titulo": "Un fix de una línea… que no era suficiente",
+      "subtitulo": "<b>optimize() solo</b> compacta, pero <b>no borra</b> las versiones viejas",
+      "metricas": [
+        [
+          "453",
+          "versiones"
+        ],
+        [
+          "26 GB",
+          "peso real"
+        ],
+        [
+          "311 MB",
+          "tras limpiar"
+        ]
+      ],
+      "pasos": [
+        "compact_files",
+        "cleanup_old_versions",
+        "optimize"
+      ]
+    },
+    {
+      "tipo": "por_que",
+      "num": "3",
+      "titulo": "Por qué importa (y no es solo disco)",
+      "items": [
+        [
+          "Búsquedas más lentas",
+          "cada consulta mira versiones muertas"
+        ],
+        [
+          "Backups enormes",
+          "copiar 26 GB para guardar 320 MB"
+        ],
+        [
+          "El SSD se llena sin avisar",
+          "en mi caso, en ~2 semanas"
+        ]
+      ]
+    },
+    {
+      "tipo": "escala",
+      "num": "4",
+      "titulo": "Lo que aprendí (datos reales)",
+      "items": [
+        [
+          "Medir antes de optimizar",
+          "no sabía el peso hasta que lo miré"
+        ],
+        [
+          "El recall NO bajó",
+          "100% (8/8) antes y después"
+        ],
+        [
+          "Hoy el daily compacta solo",
+          "1-2 versiones por tabla, estable"
+        ]
+      ]
+    },
+    {
+      "tipo": "cta",
+      "titulo": "¿Tu RAG también <span class='accent'>engorda</span>?",
+      "subtitulo": "Mira cuántas versiones tiene tu índice: du -sh .lancedb te lo dice en 1 segundo",
+      "hashtags": "#RAG #LanceDB #LocalAI #DataEngineering"
+    }
+  ],
+  "caption": "Mi RAG ocupaba 26 GB por un motivo invisible: cada reindexado diario creaba una versión nueva del índice y nadie las borraba.\n\nUn fix de una línea (optimize) no bastaba. La secuencia completa: compact_files + cleanup_old_versions + optimize.\n\nResultado: 26 GB → 320 MB (-98.8%), recall@5 al 100%, y el daily ya compacta solo.\n\n¿Sabías cuánto ocupa tu índice?",
+  "alt": "Carrusel: de 26 GB a 320 MB en un índice LanceDB — el fix de compactación real del lab, con métricas reales.",
+  "hashtags": "#RAG #LanceDB #LocalAI #DataEngineering #OpenSource"
+}

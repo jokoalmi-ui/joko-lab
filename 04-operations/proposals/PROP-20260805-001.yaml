@@ -1,0 +1,10 @@
+id: PROP-20260805-001
+fecha: 2026-08-05T22:46:39
+tipo: conocimiento
+id: "RULE-006"
+problema: nunca validada
+accion_sugerida: programar validacion y fijar last_validated
+fuente: knowledge_health
+estado: aprobada
+decision: programar validacion y fijar last_validated
+decision_fecha: 2026-08-05T23:08:32

@@ -1,0 +1,84 @@
+{
+  "fuente": "/home/jokoalmi/joko-lab/04-operations/metrics/pipeline_obs.jsonl",
+  "generado": "2026-10-11T10:16:40.769158+00:00",
+  "ledger": {
+    "lineas": 53299,
+    "json_ilegible": 1,
+    "tamano_mb": 15.8,
+    "desde": "2026-08-06T23:35:45+00:00",
+    "hasta": "2026-10-11T12:16:37+00:00"
+  },
+  "status": {
+    "200": 50272,
+    "404": 2920,
+    "400": 64,
+    "0": 25,
+    "401": 13,
+    "402": 5
+  },
+  "frenos": {
+    "total_no_200": 3027,
+    "reales": 104,
+    "ruido_api_show": 2923,
+    "por_familia": {
+      "cliente": 66,
+      "auth": 9,
+      "cuota": 5,
+      "red": 24
+    },
+    "por_status": {
+      "400": 64,
+      "0": 24,
+      "401": 9,
+      "402": 5,
+      "404": 2
+    },
+    "por_path": {
+      "/v1/chat/completions": 104
+    },
+    "por_dia": {
+      "2026-09-16": 13,
+      "2026-09-02": 12,
+      "2026-08-18": 8,
+      "2026-09-03": 8,
+      "2026-08-22": 7,
+      "2026-09-01": 6,
+      "2026-10-03": 6,
+      "2026-10-01": 4,
+      "2026-09-09": 3,
+      "2026-09-14": 3
+    },
+    "tokens_gastados_en_fallos": 0
+  },
+  "ritmo": {
+    "rpm_max": 34,
+    "rpm_instante": "2026-10-08T21:30:01+00:00",
+    "tpm_max": 7914755,
+    "tpm_instante": "2026-08-09T23:22:43+00:00",
+    "llamadas_con_tokens": 49980
+  },
+  "reintentos": {
+    "rafagas_identicas_ge3": 1,
+    "lineas_en_rafagas": 6,
+    "top": [
+      {
+        "desde": "2026-08-06T23:36:23+00:00",
+        "n": 6
+      }
+    ],
+    "espera_tras_error_s": {
+      "n": 104,
+      "min": 0.0,
+      "p50": 3.0,
+      "max": 27242.0
+    }
+  },
+  "cabeceras_rate_limit_en_ledger": "NINGUNO",
+  "watchdog": {},
+  "saldo": {
+    "ts": "2026-10-11T10:16:41.851298+00:00",
+    "is_available": true,
+    "currency": "USD",
+    "total_balance": "5.37"
+  }
+}

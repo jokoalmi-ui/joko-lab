@@ -1,0 +1,63 @@
+ANALISIS: REEL "WHERE AGENT DEVELOPMENT IS HEADING (AND WHAT YOU SHOULD LEARN)"
+Fecha: 2026-08-08
+Fuente: https://www.instagram.com/reel/DbyaoPEI0YX/ (genaixpiyush / Piiyush Kashyap)
+Publicado hace 21 min (08-ago-2026)
+Estado: guardado (usuario 08-ago-2026)
+
+CONTENIDO (caption completo)
+Los agentes de IA estan dejando de ser chatbots. La proxima generacion de
+sistemas no solo respondera preguntas: planificara, usara herramientas,
+recordara contexto, ejecutara tareas, se recuperara de fallos y entregara
+resultados. Las habilidades valiosas estan cambiando. En vez de centrarse
+solo en prompt engineering o en dominar un framework, hay que aprender la
+arquitectura detras de los agentes de produccion:
+- Integracion de tools y APIs
+- Arquitectura de agente y orquestacion
+- Contexto y memoria
+- Gestion de estado (state management)
+- Evaluacion
+- Runtime y despliegue
+- Seguridad y sandboxing
+- Planificacion y ejecucion
+
+Formula del autor:
+LLM + Tools + State + Memory + Context + Planning + Execution + Evaluation
++ Deployment
+
+Takeaway: no optimices para aprender un framework; aprende como funcionan
+los agentes reales. Build -> Measure -> Improve -> Scale.
+
+RELEVANCIA PARA JOKO LAB
+El reel describe con exactitud lo que Joko Lab YA ES:
+1. Tools + APIs: Hermes con sus toolsets (terminal, file, web, browser,
+   delegation) y n8n con conectores. Cubierto.
+2. Arquitectura y orquestacion: los 4 cerebros (DeepSeek cloud, LM Studio,
+   Ollama, telemetria) + ai-router + combined-mode. Cubierto.
+3. Contexto y memoria: memoria persistente de Hermes (user profile +
+   memory), skills como memoria procedimental, cross-session-awareness.
+   Cubierto.
+4. Gestion de estado: ledgers (decision, activation, rag-query) en
+   /mnt/ssd_ia_datos/lab-state/ + KEL + SVP. Cubierto y con gobernanza.
+5. Evaluacion: observabilidad del pipeline LLM (TTFB, tokens/s) + SVP +
+   verificacion con datos reales (regla del usuario: no inventar salidas).
+   Cubierto.
+6. Runtime y despliegue: Docker Compose, servicios locales, protocolo de
+   inicio/fin. Cubierto.
+7. Seguridad y sandboxing: reglas de la persona (no ejecutar comandos sin
+   confirmacion, zonas protegidas n8n, no sudo sin permiso). Cubierto.
+8. Planificacion y ejecucion: delegate_task (subagentes), plan mode, cron
+   jobs, todo tool. Cubierto.
+
+VALORACION
+El reel es una checklist divulgativa correcta y alineada al 100% con la
+arquitectura del lab. No propone nada nuevo que falte; funciona como
+validacion externa de las decisiones ya tomadas. La formula
+LLM+Tools+State+Memory+Context+Planning+Execution+Evaluation+Deployment
+se puede citar en la documentacion del TFM como marco de referencia del
+lab (cada termino de la formula tiene su equivalente real en el stack).
+
+OBSERVACION
+El reel del mismo perfil "Fine-Tune an LLM FREE on Google Colab" (07-ago)
+menciona QLoRA/4-bit para GPUs de consumo. Con la RTX A2000 12GB el lab
+podria hacer fine-tuning ligero (QLoRA) si algun dia se necesita ajustar un
+modelo propio; no es pendiente actual, solo contexto.

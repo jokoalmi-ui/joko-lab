@@ -1,0 +1,148 @@
+ANALISIS - "The Organic RDD Story" (canal Gentleman Programming, ~51 min)
+URL: https://youtu.be/t_HEm1om2Ek
+Fecha analisis: 2026-08-03
+
+====================================================================
+1. QUE ES EL VIDEO
+====================================================================
+El autor presenta RDD (Receive-Driven Development), una metodologia
+propia para que las decisiones humanas sobre codigo sean VINCULANTES
+frente a los agentes de IA.
+
+Contexto del dolor que resuelve: quemo 3 resets semanales de Codex
+(~200 EUR cada uno) + Claude porque los agentes "decian que estaba
+todo bien" (tests verdes, todo pasaba) pero en realidad:
+- anadieron 15 funciones muertas que nadie usaba,
+- metieron arquitectura HTTP remoto "enterprise" que el no pidio,
+- tocaron archivos fuera de alcance,
+- el codigo "correcto" nunca estaba conectado a nada utilizable.
+
+Frase central del video:
+  "Las buenas decisiones humanas no sobreviven al contacto con un
+   agente si nada las hace vinculantes."
+
+  "El codigo correcto al que nunca se llega es indistinguible de
+   codigo que nunca se escribio."
+
+====================================================================
+2. MECANISMO RDD (resumen tecnico)
+====================================================================
+1) CONGELAR: hash SHA de los bytes exactos del arbol de cambios
+   (el "candidato"). Se revisa el SHA, no "el cambio".
+
+2) RIESGO CONGELADO AL INICIO (0-4):
+   0 = silencioso, 1 = estandar (1 lente), 4 = severo (4 lentes).
+
+3) 4 LENTES = 4 subagentes en paralelo:
+   - Readability (legibilidad)
+   - Resilience (resiliencia)
+   - Robustness (robustez)
+   - Risk/Security (riesgo/seguridad)
+
+4) HALLAZGOS CON CAUSA BASE: comparar viejo vs nuevo. Si el problema
+   ya existia antes del cambio, NO se arregla en este cambio (evita
+   sobreingenieria): se reporta y se crea issue aparte. Solo se ataca
+   lo introducido por el candidato.
+
+5) CORRECCION ACOTADA: si un lente encuentra un bloqueo corregible,
+   se estima el numero de lineas necesarias (techo, p.ej. 120/200),
+   se restringen los archivos, y se delega UNA sola correccion
+   quirurgica. Validador read-only decide: pass / inconcluso / fail.
+   Fail solo si se puede REPRODUCIR la evidencia del error.
+
+6) RECIBO (autoridad sobre la huella): un documento que certifica
+   "ante estos bytes exactos (SHA), estatus aprobado, riesgo X,
+   lentes ejecutadas Y". Commit, push y PR se BLOQUEAN si el arbol
+   actual no coincide con el SHA del recibo. Un solo byte cambiado
+   = divergencia = re-revision.
+
+7) DETERMINISMO: todo lo que se pueda hacer con algoritmo/CLI se hace
+   con algoritmo (hashing, gates, recibos, estado). Los tokens del
+   LLM solo se gastan en razonamiento. Se pasa git diff al subagente
+   en vez de payloads base64 (ahorra contexto).
+
+8) BENCHMARK DE FRICCION: en vez de arreglar bugs uno a uno,
+   categorizarlos por causa raiz y dar solucion generica por grupo.
+   Clasifica fallos en:
+   - in-band: el agente recibe instrucciones de como recuperarse,
+   - out-of-band: el usuario debe arreglar algo,
+   - dead-end: bloqueado por diseno (requiere decision humana).
+   60+ flujos de prueba; cada PR debe pasar el benchmark.
+
+====================================================================
+3. IDEAS APROVECHABLES PARA JOKO LAB (ordenadas por impacto)
+====================================================================
+A) RECIBO + HASH COMO GATE ANTES DE COMMIT (ALTA)
+   Encaja directo con nuestro Evidence Contract. Concretable como
+   RULE: antes de commit en hermes-lab / joko-lab, generar hash del
+   arbol (git diff | sha256sum), guardarlo junto al cambio, y que el
+   commit/push falle si el hash no coincide. Blindaje contra cambios
+   silenciosos de agentes. Pequeno script pre-commit, determinista.
+
+B) RIESGO CONGELADO + LENTES 4R EN NUESTRAS REVISIONES (ALTA)
+   En el lab tocamos zonas sensibles: n8n, credenciales, secrets,
+   docker-compose, backups, rutas protegidas. Adoptar la escala 0-4
+   y los 4 lentes (legibilidad, resiliencia, robustez, riesgo) como
+   checklist de auditoria de cambios del stack. Complementa a
+   auditoria-arquitectonica.
+
+C) CORRECCION ACOTADA PARA HERMES (MEDIA-ALTA)
+   Cuando Hermes arregle algo, fijar por adelantado: archivos
+   concretos + maximo de lineas + un solo intento. Si se pasa,
+   preguntar por que (posible sobreingenieria). Ya es nuestra regla
+   en la practica (zona protegida n8n); formalizarlo como RULE.
+
+D) CLASIFICAR FALLOS IN-BAND / OUT-OF-BAND / DEAD-END (MEDIA)
+   Aplicar al diagnostico del stack: cuando algo falla (n8n, ollama,
+   reranker), etiquetar si el agente puede recuperarse solo (con
+   instrucciones), si necesita accion del usuario, o si esta
+   bloqueado. Mejora el skill diagnostico-stack-local y evita
+   iteraciones infinitas.
+
+E) "LO DETERMINISTA, DETERMINISTA" (MEDIA)
+   Health checks, comprobacion de puertos, hashes, estado de
+   contenedores: scripts, no LLM. El LLM solo razona. Ya lo
+   hacemos (daemon joko-reranker, scripts de backup); extender a
+   verificacion post-cambio.
+
+F) CATEGORIZAR ISSUES POR CAUSA RAIZ, NO UNO A UNO (MEDIA)
+   Cuando algo falle repetido, parar de parchear: agrupar, buscar
+   causa comun y solucion generica. Encaja con nuestro metodo
+   OBS->HYP->EXP->DEC y el backlog rojo/amarillo/verde.
+
+G) WORK UNITS (git worktree) PARA PARALELIZAR AGENTES (BAJA-MEDIA)
+   Carpetas desechables clonadas del repo para que varios agentes
+   trabajen en paralelo sin conflictos. En el lab: git worktree
+   para tareas paralelas sobre hermes-lab/joko-lab.
+
+H) NOTAS -> SKILLS (Engram) (BAJA)
+   El autor consulta su base de notas (SQLite) con lenguaje natural
+   y de ahi genera skills reutilizables. Nosotros ya tenemos LanceDB
+   (joko_notes) + reranker. Anadir un flujo: "busca en notas toda la
+   info sobre X y genera una skill". Ya casi lo hacemos; formalizar.
+
+====================================================================
+4. LO QUE NO NOS SIRVE / CON PRECAUCION
+====================================================================
+- El video es promocional de su herramienta (Gentlei) y lleva
+  afiliado de HostGator. Las metricas de ahorro ("bajo de 3 resets a
+  60% de uno") son autorreportadas, sin benchmark externo.
+- "No hace falta base vectorial" es matizable: su busqueda era
+  lexica (SQLite FTS). Para busqueda semantica seguimos con
+  LanceDB + reranker; no retroceder.
+- El flujo completo esta pensado para proyectos de codigo. Nuestro
+  lab es config + datos + workflows + servicios; hay que adaptar,
+  no copiar entero.
+- La demo (bench dashboard Astro/Node desplegado en VPS) es
+  marketing del flujo; no aporta nada nuevo al lab.
+
+====================================================================
+5. PROPUESTA DE ACCION (pendiente de OK de Joseba)
+====================================================================
+1) Redactar RULE nueva: "recibo SHA antes de commit en
+   hermes-lab/joko-lab" (script pre-commit determinista).
+2) Anadir escala de riesgo 0-4 + lentes 4R a la revision de cambios
+   del stack (skill auditoria-arquitectonica / requesting-code-review).
+3) Formalizar correccion acotada como regla de edicion de Hermes.
+4) Extender diagnostico-stack-local con clasificacion
+   in-band / out-of-band / dead-end.

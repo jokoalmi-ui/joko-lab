@@ -1,0 +1,91 @@
+{
+  "fecha": "2026-08-16",
+  "decisiones": {
+    "total": 742,
+    "por_politica": {
+      "Horario": 426,
+      "Disponibilidad": 260,
+      "Gpu": 44,
+      "Privacidad": 12
+    },
+    "por_dia": {
+      "2026-08-07": 34,
+      "2026-08-08": 32,
+      "2026-08-09": 22,
+      "2026-08-10": 35,
+      "2026-08-11": 30,
+      "2026-08-12": 35,
+      "2026-08-13": 30,
+      "2026-08-14": 33,
+      "2026-08-15": 33,
+      "2026-08-16": 31
+    },
+    "fallback_rate": 0.3504
+  },
+  "activaciones": {
+    "total": 70,
+    "por_rule": {},
+    "por_politica_activada": {
+      "POLICY-001": 70,
+      "POLICY-002": 70
+    },
+    "blocks": {
+      "RULE-004": 18
+    },
+    "model_selection": {
+      "RULE-003": 22,
+      "RULE-002": 7,
+      "RULE-009": 5,
+      "RULE-001": 1,
+      "RULE-011": 1
+    },
+    "reglas_conocidas": 11,
+    "reglas_nunca_activadas": [
+      "RULE-005",
+      "RULE-006",
+      "RULE-007",
+      "RULE-008",
+      "RULE-010"
+    ]
+  },
+  "rag": {
+    "total_consultas": 79,
+    "paths_top": {
+      "01-knowledge/experiments/EXP-20260730-005/resultados.md": 43,
+      "GUIA-JOKO-LAB.md": 24,
+      "01-knowledge/experiments/EXP-20260729-004/resultados.md": 22,
+      "01-knowledge/objects/RULE-001.yaml": 19,
+      "01-knowledge/patterns/inference-patterns/large-creative-model.md": 16,
+      "GUIA-APRENDIZAJE-JOKO-LAB.md": 15,
+      "01-knowledge/objects/RULE-003.yaml": 10,
+      "01-knowledge/objects/DEC-002.yaml": 10,
+      "research/prompt-experiments.md": 10,
+      "01-knowledge/experiments/prompt-experiments.md": 10,
+      "01-knowledge/objects/RULE-004.yaml": 10,
+      "lpa/constitucion/normas-jl.md": 9,
+      "01-knowledge/models/llama-3.1-instruct-8b.md": 9,
+      "01-knowledge/objects/DEC-001.yaml": 8,
+      "01-knowledge/models/qwen3-14b.md": 7
+    },
+    "kos_conocidos": 22,
+    "kos_nunca_recuperados": [
+      "DEC-003",
+      "DEC-004",
+      "DEC-GAIPRO-001",
+      "POLICY-001",
+      "POLICY-003",
+      "PRED-001",
+      "PRED-002",
+      "RULE-005",
+      "RULE-007",
+      "RULE-010",
+      "RULE-011"
+    ],
+    "no_recuperados_por_tipo": {
+      "DEC": 3,
+      "POLICY": 2,
+      "PRED": 2,
+      "RULE": 4
+    }
+  }
+}

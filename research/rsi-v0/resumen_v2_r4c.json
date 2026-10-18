@@ -1,0 +1,129 @@
+{
+  "tag": "r4c",
+  "arnes": "v2",
+  "corrector": "v2",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "num_ctx": 8192,
+  "temperature": 0.0,
+  "seed": 42,
+  "sha_corrector_v2": "e7772b7a8466274197d628641d7b7f9cb7df8f5020fb04d3ee6d3c02e1d5b0bc",
+  "banco": "research/rsi-v0/propuesta-examen-v2.json",
+  "sha_banco": "2d2772973c82f840db98e5c80204ccf3883300664dfd4e2efb21f3e7b47cd023",
+  "casos": [
+    "calc-anidado-iva",
+    "fecha-iso-vencimiento",
+    "nulo-con-senuelo",
+    "tool-dos-llamadas",
+    "tool-sin-herramienta"
+  ],
+  "segundos_totales": 705.1,
+  "resumen": {
+    "razona": {
+      "pasan": 3,
+      "total": 5,
+      "segundos": 246.9,
+      "segundos_por_llamada": 49.38,
+      "thinking_chars_medio": 4498.2,
+      "instr_len": 0,
+      "origen": "modo razonamiento (clave think AUSENTE: es el modo por defecto)",
+      "think": null,
+      "think_payload": "<AUSENTE>",
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "nulo-con-senuelo"
+      ]
+    },
+    "no-razona": {
+      "pasan": 2,
+      "total": 5,
+      "segundos": 9.3,
+      "segundos_por_llamada": 1.87,
+      "thinking_chars_medio": 0.0,
+      "instr_len": 0,
+      "origen": "think=false (sin razonamiento)",
+      "think": false,
+      "think_payload": false,
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "fecha-iso-vencimiento",
+        "tool-dos-llamadas"
+      ]
+    },
+    "nivel-low": {
+      "pasan": 2,
+      "total": 5,
+      "segundos": 19.5,
+      "segundos_por_llamada": 3.9,
+      "thinking_chars_medio": 200.4,
+      "instr_len": 0,
+      "origen": "think='low' (nivel bajo declarado)",
+      "think": "low",
+      "think_payload": "low",
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "fecha-iso-vencimiento",
+        "nulo-con-senuelo"
+      ]
+    },
+    "nivel-medium": {
+      "pasan": 3,
+      "total": 5,
+      "segundos": 429.3,
+      "segundos_por_llamada": 85.87,
+      "thinking_chars_medio": 7873.0,
+      "instr_len": 0,
+      "origen": "think='medium' (nivel medio declarado)",
+      "think": "medium",
+      "think_payload": "medium",
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "nulo-con-senuelo"
+      ]
+    }
+  },
+  "pareto": [
+    {
+      "variante": "razona",
+      "pasan": 3,
+      "segundos": 246.9,
+      "dominada": false,
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "nulo-con-senuelo"
+      ]
+    },
+    {
+      "variante": "nivel-medium",
+      "pasan": 3,
+      "segundos": 429.3,
+      "dominada": true,
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "nulo-con-senuelo"
+      ]
+    },
+    {
+      "variante": "no-razona",
+      "pasan": 2,
+      "segundos": 9.3,
+      "dominada": false,
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "fecha-iso-vencimiento",
+        "tool-dos-llamadas"
+      ]
+    },
+    {
+      "variante": "nivel-low",
+      "pasan": 2,
+      "segundos": 19.5,
+      "dominada": true,
+      "casos_fallados": [
+        "calc-anidado-iva",
+        "fecha-iso-vencimiento",
+        "nulo-con-senuelo"
+      ]
+    }
+  ],
+  "jsonl": "/home/jokoalmi/joko-lab/research/rsi-v0/variantes_v2_r4c.jsonl"
+}

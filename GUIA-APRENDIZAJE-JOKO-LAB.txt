@@ -1,0 +1,427 @@
+GUÍA DE APRENDIZAJE DE JOKO LAB
+Versión en prosa (texto plano)
+Para Joseba — 04 de septiembre de 2026 (v1.2: cifras reales 04-sep — skills 185, LM Studio 11 modelos con gpt-oss-20b para delegación y lfm2.5-vl-3b de respaldo visión, RAG 42.931 filas; versión estructurada .md en v1.3)
+
+Esta guía está escrita como texto corrido, para leer de principio a fin sin perderte. No tiene tablas ni listas: cada capítulo explica sus términos en el momento en que aparecen, como si te lo contara alguien sentado frente a ti. Al final de cada capítulo hay un pequeño repaso con las ideas clave, para que compruebes que te has quedado con lo importante antes de pasar al siguiente.
+
+El orden importa. Cada capítulo construye sobre el anterior, así que no saltes. Si en algún momento sientes que te pierdes, vuelve al repaso del capítulo anterior antes de seguir adelante.
+
+
+
+
+PARTE 1 — EL CONTEXTO
+
+
+
+
+CAPÍTULO 1 — QUÉ ES JOKO LAB Y POR QUÉ EXISTE
+
+Imagina que tienes un taller en casa. No un taller de madera ni de mecánica, sino un taller de inteligencia artificial: un espacio donde no solo usas la IA para que te responda cosas, sino donde cada vez que trabajas con ella, el propio taller aprende algo nuevo y lo guarda para la próxima vez. Eso es Joko Lab: un laboratorio personal de inteligencia artificial que funciona cien por cien en tu casa, en Erandio, sobre un PC con una tarjeta gráfica NVIDIA RTX A2000 de 12 gigabytes.
+
+La idea de fondo es sencilla de decir y difícil de hacer: que la IA no sea solo una herramienta que contesta, sino un sistema que acumula conocimiento verificable, es decir, conocimiento del que se puede demostrar de dónde sale y que se puede comprobar, para que cada decisión que tomes mañana sea mejor que la que tomaste ayer.
+
+El objetivo completo se puede resumir en una frase con forma de recorrido. Tú le hablas a Hermes Agent, que es el agente que te asiste, la pieza que te lee, decide, ejecuta y documenta. Hermes se apoya en dos tipos de modelos de IA: DeepSeek, que funciona en la nube, y LM Studio, que funciona en tu propia tarjeta gráfica sin necesidad de internet. Con esa ayuda, Hermes consulta y alimenta el conocimiento del laboratorio, que se llama LPA, las siglas de Living Product Architecture, y ese conocimiento es lo que en última instancia te permite tomar mejores decisiones. Tú, el agente, los modelos, el conocimiento y las decisiones: ese es el circuito completo del laboratorio.
+
+La frase que resume todo el espíritu del proyecto es que Joko Lab es un sistema para construir sistemas complejos sin perder coherencia cuando intervienen humanos, inteligencia artificial y el paso del tiempo. Los humanos aportan decisiones y también sesgos. La inteligencia artificial aporta automatización y escala, pero también puede derivar hacia comportamientos no deseados. Y el tiempo aporta obsolescencia y evolución constante. Los tres juntos tienden a degenerar cualquier sistema complejo, y Joko Lab existe precisamente para luchar contra esa degeneración, ordenando cómo nace, se valida, evoluciona y se retira el conocimiento.
+
+Repaso del capítulo 1. Joko Lab es un laboratorio personal de IA en casa, con una tarjeta gráfica RTX A2000 de 12 gigabytes. Su objetivo es que la IA aprenda de cada sesión y mejore tus decisiones futuras. Las piezas del circuito son Hermes, DeepSeek en la nube, LM Studio en local y el conocimiento LPA. Y el propósito profundo es mantener la coherencia de un sistema complejo en el que intervienen humanos, IA y tiempo.
+
+
+
+
+CAPÍTULO 2 — EL HARDWARE, LA RESTRICCIÓN CENTRAL
+
+Para entender cualquier cosa de este laboratorio, lo primero que tienes que entender es su límite físico, porque todo lo demás se organiza alrededor de él. Ese límite es la tarjeta gráfica NVIDIA RTX A2000 con 12 gigabytes de VRAM.
+
+VRAM significa memoria de video, y es el espacio donde se cargan los modelos de inteligencia artificial para que puedan funcionar con rapidez. Piensa en ella como el mostrador de una cocina: solo cabe lo que dejas sobre el mostrador, y si el plato es demasiado grande, no entra. Doce gigabytes es una cantidad modesta para los estándares actuales, porque muchos modelos grandes piden veinte o más, y eso marca todas las decisiones del laboratorio.
+
+¿Qué consecuencias tiene ese límite? Primera, que no caben modelos de más de 12 gigabytes: por ejemplo, un modelo llamado Granite 4.0 H Small, que pesa 19,5 gigabytes, simplemente no entra. Segunda, que solo cabe un modelo grande cargado a la vez, lo que obliga a rotar: cuando quieres usar uno distinto, tienes que descargar el anterior. Tercera, que un modelo grande típico usa entre 7 y 9 gigabytes, dejando entre 3 y 5 libres para el resto de cosas que también quieren usar la tarjeta. Y cuarta, que los embeddings, que son otra pieza que verás en el capítulo del RAG, compiten por esa misma memoria: fue un problema real que se resolvió, y lo verás más adelante.
+
+Hay un dato importante que conviene tener presente y que se confirmó en agosto de 2026: el ordenador actual no es el definitivo. Trabajas con un procesador Intel i5-9500, que tiene 6 núcleos y no tiene hyperthreading, que es una tecnología que permite a cada núcleo atender dos tareas a la vez. El procesador grande, un i9-9900K con su placa base ROG Z390, está comprado pero pendiente de montar. Esto importa porque el i5 tiene pocos hilos de procesamiento, y eso hace que algunas operaciones del RAG, como el reranker, sean lentas cuando dependen del procesador. No es un fallo: es el hardware que hay, y el laboratorio está ajustado a él.
+
+El sistema operativo es Ubuntu, en una versión derivada, con un kernel 7.0.0-28, y la zona horaria es Europe/Madrid. El controlador de la tarjeta gráfica, el driver NVIDIA 595.84, está confirmado como óptimo, y la regla es no actualizarlo salvo que haya una necesidad concreta, como un modelo nuevo que lo exija o un fallo del propio controlador.
+
+El ordenador tiene una rutina: se apaga de madrugada, aproximadamente entre la una y las nueve de la mañana. Por eso no se programan tareas nocturnas, y las tareas automáticas diarias, los cron, se programan a las diez de la noche, justo antes de apagarlo.
+
+Conviene saber también dónde vive cada cosa, porque es una de las primeras cosas que necesitas para no perderte. La ruta /home/jokoalmi/automation-stack contiene el stack Docker, es decir, los contenedores con servicios como n8n, ollama y las utilidades de PDF. La ruta /home/jokoalmi/joko-lab es el corazón del laboratorio: contiene el conocimiento, las herramientas y los protocolos. La ruta /home/jokoalmi/hermes-lab contiene los scripts de sesión, los informes y el repositorio git. La ruta /mnt/ssd_ia_datos guarda los datos persistentes, como los datos de n8n, los modelos y los backups. Hay además un proyecto para monitorizar LM Studio en /home/jokoalmi/lmstudio_real_monitor, los resultados de las pruebas de modelos en /home/jokoalmi/lm-studio-benchmarks, y el producto Perfume IA en /home/jokoalmi/perfume-ia.
+
+Dentro de esas rutas hay tres zonas que están protegidas por una regla dura, y que nunca se tocan sin confirmación explícita. Son /mnt/ssd_ia_datos/n8n, que contiene los datos de n8n, /mnt/ssd_ia_datos/exports, que contiene las exportaciones, y /mnt/ssd_ia_datos/backups, que contiene las copias de seguridad. La razón es obvia: son los datos valiosos del laboratorio, y un error ahí puede ser irreparable.
+
+Repaso del capítulo 2. La tarjeta gráfica A2000 con 12 gigabytes de VRAM es la restricción central: define qué modelos caben y cómo se rota entre ellos. El ordenador actual es un i5-9500 de 6 núcleos, con el i9-9900K pendiente de montar. El driver 595.84 es óptimo y no se actualiza sin motivo. El PC se apaga de madrugada, y hay tres rutas protegidas que nunca se tocan sin confirmación.
+
+
+
+
+CAPÍTULO 3 — LOS CUATRO CEREBROS
+
+Una de las ideas más características de Joko Lab es que no usa un único modelo de inteligencia artificial para todo, como haría un sistema más simple. En su lugar, reparte el trabajo entre cuatro cerebros, cada uno con un rol muy definido, y con reglas estrictas sobre lo que cada uno puede y no puede hacer.
+
+El primer cerebro es DeepSeek, que funciona en la nube. Su rol es pensar, decidir y coordinar: es quien responde a la pregunta de qué tiene sentido hacer. El segundo es LM Studio, que funciona en tu propia tarjeta gráfica. Su rol es ver, evaluar y criticar: es quien responde a la pregunta de si algo es correcto visualmente, porque tiene capacidad de visión. El tercero es Ollama, también local, y su rol es simular, generar y explicar: es quien responde a la pregunta de qué pasaría si cambiáramos alguna variable. Y el cuarto no es un modelo de lenguaje, sino el sistema de telemetría y runtime, que mide, observa y contrasta: es quien responde a la pregunta de qué ocurre realmente en el sistema.
+
+Lo interesante son las reglas duras que gobiernan esta división, porque cada una existe por un motivo. DeepSeek no ve, porque no tiene capacidad de visión, así que cuando hace falta interpretar una imagen, delega en LM Studio. LM Studio no decide, porque su papel es evaluar, y quien decide es DeepSeek. Ollama no critica, porque su papel es generar escenarios, no juzgarlos. Y la telemetría no opina, porque su papel es solo medir, y los datos que produce son sagrados: nadie los interpreta en el momento de medirlos.
+
+¿Por qué tanta separación? Porque cada modelo es bueno en algo distinto, y porque delegar evita el error clásico de que un único modelo lo haga todo mal. Si el que decide fuera también el que ve, podría decidir basándose en una imagen que interpretó mal sin que nadie lo corrigiera. Separando los roles, cada pieza actúa como control de calidad de las demás. Es un principio que vas a encontrar repetido en todo el laboratorio: la separación de responsabilidades como mecanismo de seguridad.
+
+Repaso del capítulo 3. Hay cuatro cerebros con roles separados: DeepSeek decide, LM Studio ve, Ollama simula y la telemetría mide. Las reglas duras son que quien decide no ve, quien ve no decide, quien simula no critica y quien mide no opina. Esta separación es un mecanismo de seguridad por diseño.
+
+
+
+
+PARTE 2 — LA INFRAESTRUCTURA
+
+
+
+
+CAPÍTULO 4 — DOCKER Y LOS SERVICIOS DEL STACK
+
+Para que el laboratorio funcione necesita una serie de servicios auxiliares, y la forma de gestionarlos es Docker. Docker es un sistema de contenedores: piensa en un contenedor como una caja que incluye un programa y todo lo que ese programa necesita para funcionar, con sus dependencias, aislado del resto del sistema. Dos programas distintos pueden vivir en dos contenedores sin pisarse, y puedes levantar o apagar cada caja por separado.
+
+Docker Compose es la herramienta que define varios contenedores juntos en un solo archivo, llamado docker-compose.yml, y permite levantarlos o pararlos como un grupo. En el laboratorio, todos los servicios auxiliares están definidos en /home/jokoalmi/automation-stack/docker-compose.yml, y usan una red interna llamada automation_net, con todos los puertos escuchando solo en 127.0.0.1, es decir, sin exponerlos a la red local.
+
+¿Por qué usar contenedores? Porque servicios como la automatización o un servidor de PDF necesitan entornos completos, con versiones concretas de librerías, y Docker permite tenerlos aislados, reproducibles y fáciles de gestionar. Si algo se rompe, se recrea la caja sin tocar el resto del sistema.
+
+El stack actual tiene cuatro servicios. El primero es n8n, en el puerto 5678, que es una plataforma de automatización de flujos de trabajo de forma visual, conectando nodos como piezas de un circuito, y en el laboratorio se usa para automatizaciones como el flujo de envío de WhatsApp. Es zona protegida: no se reinicia, para, recrea ni actualiza sin confirmación explícita, porque contiene datos valiosos. El segundo es stirling-pdf, en el puerto 8081, una suite de utilidades para PDF, que permite convertir, dividir o hacer OCR. El tercero es pdf-cleaner, en el puerto 8000, un servicio propio del laboratorio para limpiar PDFs. Y el cuarto es ollama, en el puerto 11434, otro motor de inferencia local, que en este laboratorio es secundario, porque el motor principal es LM Studio.
+
+Hay una regla crítica con Docker: siempre se usa el comando docker compose, que es la versión segunda, y nunca docker-compose, que es la versión antigua y obsoleta. Y hay una trampa clásica: para saber si los contenedores están activos, se usa docker compose ps, que muestra el estado real, y nunca docker compose ls -a, que puede engañar. Además, los comandos que cambian el estado del stack, como stop, restart, down, up -d, pull o prune, requieren confirmación explícita, porque el stack completo es una zona sensible.
+
+Además de Docker, hay servicios del propio sistema operativo, gestionados por systemd, que es el sistema de arranque y gestión de servicios de Linux. Los servicios de usuario corren bajo tu cuenta, no como administrador, y sobreviven a la sesión de trabajo. Los principales son lmstudio-headless, que arranca LM Studio en modo headless y carga el modelo de visión GLM; lmstudio-monitor, que sirve el dashboard de observabilidad en el puerto 5000; joko-indexer, que vigila los cambios en los documentos y reindexa el RAG automáticamente; joko-reranker, que mantiene vivo el daemon del reranker en modo CPU; team-bus-watch, que alimenta el sistema de sincronización entre sesiones llamado file bus, del que hablaremos en el capítulo nueve; hermes-gateway, que mantiene vivo el gateway de Telegram; y hermes-pipeline-proxy, que mide la latencia y los tokens de cada consulta al modelo en la nube, un proxy de observabilidad que escucha en el puerto 9911.
+
+El laboratorio tiene además tres protocolos de sesión, que son como el ritual de abrir y cerrar el taller cada día. Al abrir sesión se ejecuta inicio.sh, que hace una serie de comprobaciones, genera un archivo con el estado inicial y lo compara con el estado del último cierre, para detectar qué ha cambiado entre una sesión y otra. Al cerrar se ejecuta fin.sh, que hace una foto del estado final, compara con el inicial, hace copia de seguridad si hubo cambios, genera un informe y, por diseño, apaga el stack Docker para ahorrar energía durante la noche. Por eso al día siguiente hay que levantarlo con inicio.sh o con docker compose up -d. Y durante la sesión existe checkpoint.sh, que crea un punto de recuperación sin cerrar la sesión, por si necesitas volver atrás a mitad de camino.
+
+¿Por qué existen estos protocolos? Para que ninguna sesión pierda el estado. Sabes qué cambió entre una sesión y la anterior, y puedes recuperarte a mitad de camino si algo sale mal.
+
+Repaso del capítulo 4. Docker son contenedores, y Docker Compose define varios juntos en un archivo. El stack tiene n8n para automatización, stirling-pdf y pdf-cleaner para PDF, y ollama como motor secundario. n8n es zona protegida. Siempre se usa docker compose, versión dos, y los comandos que cambian el estado requieren confirmación. Hay servicios systemd que sobreviven a la sesión, y tres protocolos, inicio, fin y checkpoint, para no perder el estado entre sesiones.
+
+
+
+
+CAPÍTULO 5 — LM STUDIO, EL MOTOR DE INFERENCIA LOCAL
+
+LM Studio es el motor que ejecuta modelos de inteligencia artificial directamente en tu tarjeta gráfica, sin necesidad de internet. Expone una interfaz de programación, una API, compatible con la de OpenAI, en la dirección localhost:1234. Eso significa que cualquier programa del laboratorio puede pedirle que genere texto como si le hablara a un servicio de OpenAI, pero todo ocurre en tu propio equipo.
+
+¿Por qué existe este motor local si ya tienes DeepSeek en la nube? Porque no todo debe ir a la nube. Los modelos locales son gratuitos una vez descargados, tus datos no salen del equipo, y funcionan sin conexión. Además, como viste en el capítulo de los cuatro cerebros, los roles están repartidos: DeepSeek piensa y decide en la nube, y LM Studio ve y evalúa en local. Son complementarios, no rivales.
+
+Hay una abstracción importante que conviene entender: la herramienta concreta es LM Studio, pero el conocimiento del laboratorio está abstraído. Los parámetros, la metodología y los modelos se entienden de forma independiente de la herramienta. Si mañana se sustituyera LM Studio por otro motor, como vLLM u Ollama, las capacidades permanecerían. Esto responde a un principio del laboratorio llamado JL-011: el flujo del conocimiento tiene prioridad sobre la optimización de herramientas. Es decir, lo que importa es lo que el sistema sabe y cómo lo usa, no la marca concreta del motor.
+
+Por dentro, LM Studio funciona así: hay un proceso principal, un daemon, que es un proceso que corre en segundo plano de forma continua, y que se inicia al abrir la interfaz gráfica o por autoarranque. Ese proceso principal lanza un hijo llamado llama-server, que es quien atiende las peticiones en el puerto 1234. La interfaz gráfica no es accesible automáticamente, pero existe una herramienta de línea de comandos llamada lms que permite cargar y descargar modelos sin intervención manual.
+
+Los modelos que tiene el laboratorio se dividen en tres familias. La primera son los modelos no-reasoning, que responden directamente, sin una fase previa de pensamiento. Ahí están dolphin3.0-llama3.1-8b, que responde en unos 5,6 segundos y pasa los cinco tests; granite-4.1-8b, el mejor en razonamiento ligero; granite-4.0-h-tiny, el que menos memoria ocupa, con 3,72 gigabytes, útil cuando la tarjeta está muy ocupada; y lfm2.5-2.6b, el más ligero (1,67 GB) y rápido (55 tok/s), especializado en tool calling, que llegó al laboratorio el 06-ago tras superar 7/7 en la batería de modelos.
+
+La segunda familia son los modelos reasoning, que piensan antes de responder, generando una cadena de pensamiento interna. Ahí están deepseek-r1-distill-qwen-14b, gemma-4-12b-qat y glm-4.6v-flash, que es el modelo de visión. Todos pasan los tests excepto glm, que falla uno porque su rol principal es ver imágenes, no razonar con textos largos. Desde septiembre de 2026 se sumaron dos más: gpt-oss-20b, que se validó como el modelo de delegación (el que usan los subagentes para tareas reales, seis de seis correctas el 04-sep), y lfm2.5-vl-3b, un modelo de visión ligero que sirve de respaldo cuando la herramienta habitual de visión falla.
+
+Y la tercera familia son los modelos de embeddings, que no sirven para conversar sino para el RAG, y los verás en el capítulo diez. Son text-embedding-bge-m3, con 1024 dimensiones y ganador por su soporte del español, y text-embedding-nomic-embed-text-v1.5, con 768 dimensiones, como alternativa.
+
+Para leer esas tablas necesitas tres conceptos. La cuantización, que aparece como Q4_K_M o Q4_0, es una técnica para reducir el tamaño del modelo y su uso de memoria, perdiendo un poco de calidad a cambio. Cuatro bits es el equilibrio clásico entre calidad y tamaño. GiB es la unidad de memoria, en la práctica gigabytes, y en la tabla indica cuánta VRAM ocupa el modelo. Y la puntuación de cinco sobre cinco indica que el modelo pasó los cinco tests del protocolo de evaluación del laboratorio, que mide conocimiento, razonamiento, estructura, código y creatividad.
+
+Hay una regla práctica que te va a ahorrar dolores de cabeza, y es la regla del max_tokens. Los modelos reasoning separan su salida en dos canales: uno interno, llamado reasoning_content, donde piensan, y otro visible, llamado content, donde está la respuesta real. El problema es que los tokens de razonamiento, que son las unidades básicas de texto que el modelo cuenta, también gastan del presupuesto máximo. Si ese presupuesto, el max_tokens, es demasiado bajo, el modelo se gasta todo en pensar y la respuesta visible sale vacía. El síntoma típico es una respuesta vacía con un indicador de finalización que dice length, mientras que el canal interno tiene texto perfectamente coherente. La regla es usar como mínimo 400 tokens para preguntas triviales, entre 1024 y 2048 para uso real, y 2000 como mínimo cuando hay visión, porque el modelo necesita espacio para pensar y luego responder.
+
+Para elegir modelo según la necesidad, el laboratorio tiene un criterio claro. Para chatear rápido, dolphin. Para herramientas y agentes, lfm 2.5, porque tiene tool calling excelente y es el más rápido (55 tok/s). Para JSON estructurado, dolphin o granite 4.1. Para razonamiento ligero, granite 4.1. Para mínima memoria, granite h-tiny o lfm. Para razonamiento pesado, deepseek R1 de 14 gigabytes. Para razonamiento profundo, gemma 4 de 12. Para visión, glm.
+
+Además, hay un dashboard de observabilidad, un panel web en el puerto 5000, que muestra en tiempo real la memoria de la tarjeta, la temperatura, el uso del procesador y de la RAM, los modelos cargados y el uso de la API. Es como ver el corazón del motor latiendo, y se construyó con Python, Flask, psutil y nvidia-smi.
+
+Repaso del capítulo 5. LM Studio es el motor local en el puerto 1234, con API compatible con OpenAI. Los modelos se dividen en no-reasoning, que responden directo, reasoning, que piensan antes, y embeddings, que sirven para el RAG. La cuantización reduce el tamaño del modelo. La regla del max_tokens dice que si el presupuesto es bajo, los modelos reasoning se gastan todo en pensar y la respuesta sale vacía. Cada rol tiene su modelo elegido, y el monitor del puerto 5000 vigila todo.
+
+
+
+
+CAPÍTULO 6 — HERMES AGENT, EL CEREBRO QUE EJECUTA
+
+Hermes Agent, de la empresa Nous Research, es el agente que ejecuta las instrucciones del laboratorio. Es quien te lee, quien decide qué hacer, quien ejecuta los comandos y quien documenta los resultados. Vive en la carpeta /home/jokoalmi/.hermes, y se usa desde tres sitios: la línea de comandos, la aplicación de Telegram, a través de una pieza llamada gateway, y las tareas programadas llamadas cron.
+
+¿Por qué existe Hermes? Porque alguien tiene que orquestar todo. Alguien tiene que interpretar lo que pides, decidir qué modelo usar, ejecutar las acciones, documentar los resultados y mantener el conocimiento ordenado. Sin Hermes, el laboratorio sería un montón de piezas sueltas. Con Hermes, es un sistema coordinado.
+
+Hermes se compone de varias partes. La configuración vive en un archivo llamado config.yaml, donde se define el modelo principal y el proveedor. El conocimiento procedimental vive en las skills, que son manuales de instrucciones que Hermes carga cuando necesita hacer una tarea concreta: por ejemplo, la skill local-rag explica cómo usar el RAG, y la skill lm-studio explica cómo operar el motor local. Hay alrededor de veinte skills principales, aunque el total supera las ciento ochenta (185 verificadas el 04-sep-2026). La memoria son datos persistentes que se inyectan en cada turno de conversación: quién eres tú, tus preferencias y las notas del entorno. Hay una regla sobre la memoria: los hechos que van a cambiar en una semana no se guardan en memoria, y los procedimientos reutilizables van a las skills, no a la memoria. Las sesiones son el historial de conversaciones, almacenado en una base de datos, que permite buscar en conversaciones pasadas con una herramienta llamada session_search. Y los cron son tareas programadas, que se ejecutan a ciertas horas o cada cierto tiempo, como el informe diario a las nueve de la mañana, el reindexado del RAG a las ocho, o el consolidador de sesiones a las diez y media de la noche.
+
+El modelo principal del laboratorio es DeepSeek, concretamente la variante deepseek-v4-flash, y el proveedor es la nube de DeepSeek. Desde el 4 de agosto de 2026, la decisión es usar DeepSeek siempre, porque es la opción de coste mínimo, y activar el modo profesional solo manualmente, mediante un comando llamado /model. Es una decisión registrada en el sistema de conocimiento, y verás cómo se toman y registran estas decisiones en el capítulo ocho.
+
+El gateway de Telegram permite hablar con Hermes desde el móvil. Cuando le llega un mensaje, el gateway inyecta antes de responder el contenido del file bus, que es el sistema de sincronización entre sesiones del capítulo nueve, junto con los eventos recientes, para que la sesión de Telegram sepa el estado en vivo de todo el laboratorio. Hay un detalle práctico importante: si cambias la configuración del gateway, hay que reiniciarlo desde otra terminal, con el comando hermes gateway restart, y nunca desde dentro del propio gateway, porque te quedarías sin conexión.
+
+Además de DeepSeek en la nube y los modelos locales, desde el 6 de agosto de 2026 el laboratorio tiene activa una integración con la API de Google Gemini, con una clave de Google AI Studio guardada en la configuración de Hermes. Sirve para tareas puntuales que necesitan visión fina o detalle muy preciso, como analizar una captura de un formato de presentación para extraer sus colores exactos, sus tipografías o su estructura. El modelo que se usa es gemini-3-flash-preview. Conviene saber que la suscripción de pago de Google no da créditos de API: esta clave es de AI Studio, que tiene su propia tarifa.
+
+Hermes opera bajo unas reglas de seguridad que conviene conocer, porque son la razón por la que el laboratorio no se rompe. Primera, no ejecuta comandos automáticamente: propone y espera a que veas la salida real. Segunda, n8n es zona protegida: no se reinicia, para ni modifica sin confirmación. Tercera, no inventa datos: si un dato no aparece en la salida de un comando, lo dice. Cuarta, para diagnosticar usa primero comandos de solo lectura, como ps, ss, df, free, nvidia-smi o curl. Quinta, no usa sudo sin autorización explícita. Sexta, no borra, mueve ni modifica archivos sin autorización. Y séptima, cuando diagnostica, presenta la salida cruda del terminal junto con un resumen en español. Estas reglas existen porque el laboratorio contiene datos valiosos, y un agente que ejecutara comandos sin permiso podría romperlos irreparablemente. La seguridad es por diseño, no una ocurrencia.
+
+Repaso del capítulo 6. Hermes es el agente que orquesta todo, desde la línea de comandos, Telegram o los cron. Sus componentes son configuración, skills, memoria, sesiones y cron. El modelo principal es deepseek-v4-flash, siempre, con el modo profesional solo manual. Y las reglas de seguridad dicen que no ejecuta sin permiso, no toca n8n, no inventa datos y diagnostica primero con lectura.
+
+
+
+
+PARTE 3 — EL CONOCIMIENTO, EL CORAZÓN DEL LABORATORIO
+
+
+
+
+CAPÍTULO 7 — LPA, EL SISTEMA DE CONOCIMIENTO
+
+LPA son las siglas de Living Product Architecture, y es el programa de investigación del laboratorio. La definición oficial es que LPA es un sistema para construir sistemas complejos sin perder coherencia cuando intervienen humanos, inteligencia artificial y el paso del tiempo.
+
+¿Por qué existe LPA? Porque cuando esos tres elementos colaboran en un sistema complejo, ese sistema tiende a degenerar, es decir, a perder coherencia con el tiempo. Los humanos introducen decisiones y sesgos, la inteligencia artificial introduce automatización y escala pero también deriva, y el tiempo introduce obsolescencia y evolución. LPA es la respuesta organizada a ese problema: un sistema para que el conocimiento se acumule, se valide, evolucione y se retire de forma ordenada, en lugar de acumularse sin control.
+
+Es importante entender qué no es LPA. No es una metodología ni un framework. Es una hipótesis fuerte, y esa palabra, hipótesis, te va a aparecer constantemente, porque el laboratorio mide sus propias ideas con niveles de evidencia, que es lo siguiente que vamos a ver.
+
+El laboratorio clasifica todo su conocimiento en niveles de evidencia, de E0 a E4. E0 es una observación única: un experimento, un dominio, y no da ningún derecho especial. E1 es un patrón: dos o más experimentos en contextos distintos, y da derecho a mencionarlo. E2 es una hipótesis: dos o más experimentos más una falsificación fallida, es decir, un intento de demostrar que es falsa que no lo consiguió, y da derecho a usarla como guía. E3 es una validación: tres o más dominios distintos más falsificación fallida, y da derecho a enseñarla. Y E4 es un principio: cinco o más dominios, tres o más categorías y seis meses sin contraejemplos, y da derecho a considerarla fundacional.
+
+Además existe un nivel especial llamado E vacío, que significa revocado: es una afirmación que llegó a ser E1 o más, y que luego fue falseada. Lo importante es que no se elimina, sino que se marca con la fecha y el experimento que la falseó, porque saber que algo fue probado y falló también es conocimiento.
+
+¿Por qué esta escala? Para que una idea no se considere cierta por haberse dicho una vez. La regla de oro es que la evidencia va siempre por delante de la metodología, y que un experimento no confirma una idea: intenta falsearla. Es una inversión de la intuición habitual, y es una de las señas de identidad del laboratorio.
+
+El proceso completo va de la observación al principio, en una cadena que se recorre hacia arriba, y entre el nivel tres y el nivel cuatro existe un estado intermedio llamado principio candidato, donde la hipótesis validada acumula evidencia a lo largo del tiempo. La mayoría de las hipótesis nunca alcanzan el nivel cuatro, y esa tasa de descarte es deliberada: es el mecanismo de defensa del sistema, el que evita que se acumulen como ciertas cosas que no lo son.
+
+Repaso del capítulo 7. LPA es el sistema para construir sistemas complejos sin perder coherencia con humanos, IA y tiempo. No es una metodología, es una hipótesis fuerte. El conocimiento se clasifica en niveles de evidencia de E0 a E4, donde E4 es un principio fundacional. Un experimento no confirma: intenta falsear. Y la tasa de descarte entre E3 y E4 es el mecanismo de defensa del sistema.
+
+
+
+
+CAPÍTULO 8 — LOS KNOWLEDGE OBJECTS, LAS PIEZAS DEL CONOCIMIENTO
+
+Si LPA es el sistema, los Knowledge Objects, abreviados KO, son las piezas con las que el laboratorio almacena su conocimiento. Son decisiones, reglas y políticas guardadas en archivos YAML, que es un formato de texto legible por humanos para representar datos estructurados, con pares de clave y valor. Viven en la carpeta 01-knowledge/objects.
+
+Cada KO tiene un tipo, y cada tipo significa algo distinto. DEC es una decisión, como la de usar DeepSeek siempre. RULE es una regla activa derivada de una decisión, como la regla de hacer copias de seguridad antes de tocar nada. POLICY es una restricción global, que tiene precedencia sobre las reglas. PRED es una predicción con veredicto programado, que se usa para el sistema anti-manipulación del que hablaremos más adelante. PATTERN es un patrón de conocimiento consolidado. OBS es una observación factual, y HYP es una hipótesis. En agosto de 2026 hay veinte Knowledge Objects en total.
+
+¿Por qué existen los KO? Porque antes las decisiones y reglas vivían en archivos sueltos, sin estructura, y era imposible saber cuál estaba vigente, cuál había caducado o cuál había sido sustituida. Ahora cada KO tiene un ciclo de vida: nace, se valida, se revisa, caduca o se sustituye. Eso es lo que permite que el conocimiento no se quede obsoleto en silencio.
+
+Un KO real tiene campos que describen ese ciclo de vida. El campo expires dice cuándo caduca la validez del conocimiento. El campo next_review dice cuándo hay que revisarlo, que suele ser antes de que caduque. El campo last_validated dice cuándo se validó por última vez. El campo confidence_label dice el nivel de confianza, que puede ser no evaluada, baja, media o alta. El campo dependencies dice de qué otros KO depende, y el campo contradicts dice a qué KO contradice, para detectar conflictos. Y el campo superseded_by dice qué KO lo sustituye, que es la forma correcta de retirar uno viejo: no se borra, se marca como sustituido.
+
+Además de las piezas, el laboratorio tiene cuatro motores que hacen vivir al conocimiento, y conviene distinguirlos porque aparecen constantemente. El primero es KAP, las siglas de Knowledge Assimilation Pipeline, que es el procedimiento para que entre conocimiento externo al laboratorio: un vídeo, un artículo, un libro. Tiene tres fases: extracción, revisión adversarial, es decir, una revisión crítica que intenta encontrar fallos, y asimilación, que decide qué cambia en el laboratorio. Y tiene seis preguntas obligatorias, entre ellas si ya lo sabíamos, si cambia realmente cómo trabaja el laboratorio, y qué experimento concreto podremos hacer mañana gracias a esta idea. La regla de oro es que ningún recurso externo entra por ser interesante: solo entra si cambia la forma en que el laboratorio trabaja, aprende o construye.
+
+El segundo motor es KVC, el ciclo de validación de conocimiento. Es un circuito que va de la observación al análisis, a la crítica adversarial, a la falsación, a la decisión, a la aplicación, a la monitorización, y termina preguntándose si mejoró: si sí, se conserva, y si no, se reabre. El principio emergente es que la unidad de progreso no es el componente, sino la decisión validada. Y hay una frase que lo resume: una decisión sin monitorización no es una decisión, es una apuesta. También hay un filtro anti-inflación de decisiones: si una decisión no cambia realmente el comportamiento futuro, no es una decisión, es una observación.
+
+El tercer motor es KEL, el bucle de evolución del conocimiento, que es la máquina de estados por la que pasa el conocimiento: de observación a hipótesis, a experimento, a evidencia, a decisión, a monitorización, a revalidación, y finalmente a conservar o retirar. Su propiedad clave es que incorpora el olvido como una operación de primera clase. Un sistema que solo acumula conocimiento se degrada, igual que un armario que solo se llena y nunca se vacía.
+
+Y el cuarto motor es el pruning, la poda de conocimiento, con siete operaciones: validar, degradar, retirar, dividir, fusionar, versionar y archivar. La regla es la misma que la del KEL: un sistema que solo añade decisiones y experimentos sin retirar los obsoletos se degrada por acumulación.
+
+Para vigilar la salud de todo esto existe un script llamado knowledge_health.py, que mide la salud del conocimiento con una puntuación de cero a cien. La progresión real del laboratorio ha sido de 31 a 43, a 67, a 70, a 76 y finalmente a 88 sobre cien. Cuando la puntuación baja de 50, requiere intervención.
+
+Existe además un contrato de evidencia, que establece umbrales verificables para promocionar un experimento a decisión. Convierte el paso de juicio a contrato verificable. El estado real es que cero de nueve Knowledge Objects cumplen el contrato, y eso se señala como deuda, sin esconderlo: el laboratorio prefiere saber qué debe.
+
+El laboratorio también tiene sus leyes, las normas constitucionales, que se llaman JL y se numeran. Algunas merecen mención porque las vas a ver citadas. La JL-011 dice que el flujo del conocimiento tiene prioridad sobre la optimización de herramientas. La JL-013 dice que la guía del laboratorio se actualiza ante cada cambio estructural, que es justo lo que se ha hecho con esta guía. Y la JL-014 dice que hay que hacer copia de seguridad antes de cambios grandes, que se creó el 3 de agosto de 2026. Además hay dos reglas recientes que conviene conocer: la RULE-008, del 4 de agosto, que obliga a hacer copias de seguridad dentro del árbol de archivos antes de tocar nada, con el sufijo bak y la fecha, y la RULE-009, del 5 de agosto, que obliga a toda sesión que complete una tarea a registrarla en el sistema de sincronización antes de declararla cerrada, como verás en el próximo capítulo.
+
+Repaso del capítulo 8. Los Knowledge Objects son las piezas del conocimiento, con tipos DEC, RULE, POLICY, PRED, OBS y HYP, y cada una tiene un ciclo de vida con caducidad, revisión, validación y sustitución. Los cuatro motores son KAP para asimilar externo, KVC para validar decisiones, KEL para evolucionar el conocimiento y pruning para podar lo obsoleto. El health auditor mide la salud, el contrato de evidencia señala la deuda, y las normas JL son las leyes del laboratorio.
+
+
+
+
+CAPÍTULO 9 — LA SINCRONIZACIÓN ENTRE SESIONES
+
+Hay un problema de fondo que el laboratorio tuvo que resolver, y es el siguiente. Hermes ejecuta sesiones separadas por canal: una sesión en la línea de comandos, otra en Telegram, y otras tantas en las tareas programadas. Cada sesión arranca con el contexto vacío, sin memoria de lo que pasó en las demás. Si trabajas en la terminal y luego sales a la calle y sigues por Telegram, la sesión de Telegram no sabe que estabas a mitad de algo. Es como si cada mañana llegaras a un taller donde nadie te ha dejado notas de lo que se hizo ayer.
+
+La solución es un sistema de estado y eventos compartidos que todas las sesiones leen y escriben, con tres niveles. El primer nivel es shared-state.json, un archivo que guarda el estado vivo de cada sesión, si está activa o inactiva y sobre qué temas trabaja. El segundo es shared-events.jsonl, un archivo de eventos relevantes, como decisiones, pendientes, tareas completadas, cambios y alertas. Y el tercero, que es la capa principal desde el 5 de agosto, es el file bus: una carpeta llamada team-context donde cada dominio del laboratorio tiene su propio archivo de texto, uno para la línea de comandos, otro para Telegram, otro para el laboratorio en general, otro para biohacking, otro para perfumes, otro para founderz, y así sucesivamente.
+
+¿Por qué por dominio? Porque cada sesión escribe solo en su archivo, el que le corresponde, y todas leen todos. Así no se pisan entre ellas: la sesión de Telegram escribe en telegram, la de la terminal en cli, y cada una consulta el resto cuando necesita saber qué pasa. Un proceso en segundo plano, llamado team-bus-watch, vigila la carpeta cada cinco segundos y regenera un resumen consolidado, de modo que la latencia máxima para que un cambio sea visible es de cinco segundos.
+
+Y aquí aparece la regla más importante de este sistema, la RULE-009, que se creó precisamente el 5 de agosto de 2026. Dice que toda sesión que complete una tarea, una fase o un hito debe registrar ese trabajo antes de declararlo cerrado: primero un evento en shared-events, y segundo su dominio en el file bus. La razón es que el bus no se llena solo. Es un sistema de lectura bajo demanda, y si nadie escribe, las otras sesiones ven información congelada aunque el trabajo se haya hecho. Esto ocurrió de verdad: un día, la sesión de Telegram no veía nada del trabajo del día porque nadie lo había escrito en el bus. Desde entonces, la regla es obligatoria.
+
+Para gestionar recursos compartidos existe además un mecanismo llamado claim y release, que es un candado consultivo: antes de tocar un recurso compartido, como un repositorio, un puerto o un archivo, una sesión hace claim, y cuando termina hace release. No es un candado físico que impida el acceso, sino un aviso para que las demás sepan que ese recurso está en uso.
+
+Los comandos prácticos son sencillos. Para escribir un evento se usa shared-events.sh write con el canal, el tipo y el resumen. Para leer los últimos eventos, shared-events.sh read con un límite. Y para el file bus, domain-bus.sh read para leer, domain-bus.sh write para escribir en tu dominio, y claim y release para los candados.
+
+Repaso del capítulo 9. Las sesiones separadas arrancan sin contexto, y el file bus las sincroniza: un archivo por dominio, todos leen todos. La RULE-009 obliga a registrar todo trabajo completado antes de declararlo cerrado, porque el bus no se llena solo. Y hay candados consultivos, claim y release, para recursos compartidos.
+
+
+
+
+PARTE 4 — EL RAG, LA MEMORIA RECUPERABLE
+
+
+
+
+CAPÍTULO 10 — QUÉ ES EL RAG Y POR QUÉ EXISTE
+
+RAG son las siglas de Retrieval-Augmented Generation, que en español sería generación aumentada por recuperación. La idea es que el modelo genera respuestas usando información recuperada de una base de conocimiento, en lugar de apoyarse solo en lo que sabe internamente. Es la diferencia entre responder de memoria y responder consultando la documentación.
+
+¿Por qué es tan importante en el laboratorio? Porque un modelo de inteligencia artificial tiene un conocimiento interno, que es lo que aprendió cuando se entrenó, pero no sabe nada de lo que ha pasado en Joko Lab: tus sesiones, tus decisiones, tus experimentos. El RAG le da acceso a esa memoria. Cuando preguntas algo del laboratorio, Hermes busca en la base los documentos relevantes, y usa ese contexto para responder con datos reales, no con lo que el modelo sepa de memoria. Y todo ocurre en local, sin que tus datos salgan del equipo.
+
+Para entender el RAG necesitas cinco conceptos, y los vamos a ver uno a uno, porque son la base de todo lo demás.
+
+El primero son los embeddings. Un embedding es un vector numérico, es decir, una lista de números, que representa el significado de un texto. La propiedad mágica es que dos textos con significados parecidos tienen vectores parecidos, y por tanto quedan cerca en el espacio. El modelo de embeddings del laboratorio se llama BGE-M3, tiene 1024 dimensiones, que es el tamaño del vector, y es multilingüe, con un español nativo, lo que lo hizo ganador frente a las alternativas.
+
+El segundo es la base vectorial, llamada LanceDB. Es una base de datos especializada en guardar y buscar vectores. En lugar de buscar palabras exactas, busca significados cercanos. Es como una biblioteca donde los libros no están ordenados por título, sino por tema, y donde buscar significa encontrar los libros que tratan de lo mismo aunque usen palabras distintas.
+
+El tercero es el chunk, el fragmento. El indexador, que es el programa que llena la base, parte cada documento en trozos de aproximadamente mil tokens, con un solapamiento de ciento cincuenta entre trozo y trozo, para no cortar ideas por la mitad. Un token es la unidad básica de texto que los modelos cuentan, aproximadamente una palabra o una parte de ella.
+
+El cuarto es el reranker. La primera búsqueda devuelve candidatos por cercanía de significado, pero el reranker es un segundo filtro, más preciso, que reordena esos candidatos por relevancia real. Si la primera búsqueda es una red amplia, el reranker es el experto que revisa la red y decide el orden definitivo.
+
+Y el quinto es el daemon. Un daemon es un proceso persistente que carga un modelo una sola vez y se queda atendiendo peticiones, en lugar de cargarlo y descargarlo en cada consulta. Es un detalle técnico, pero fue la clave de una de las grandes mejoras de velocidad del RAG, como verás en un momento.
+
+El flujo completo funciona así. Los documentos del laboratorio, en formato Markdown o YAML, pasan por el indexador, que los parte en chunks y genera sus embeddings, y esos vectores se guardan en LanceDB. Cuando llega una pregunta, el buscador, llamado search.py, la convierte en un embedding, busca en la base los fragmentos más cercanos por significado, los reordena con el reranker, y devuelve los mejores. Luego el context builder, que es el programa que prepara lo que se le va a mostrar al modelo, inyecta ese contexto en la petición. Después el knowledge resolver sintetiza el conocimiento en hechos, conflictos, decisiones y confianza. Y finalmente el modelo responde con ese contexto real.
+
+Pero el RAG que ves hoy no es el que se construyó el primer día. Ha pasado por una evolución, y cada paso resolvió un problema concreto, así que vale la pena conocerlos, porque explican por qué cada pieza está donde está.
+
+El primer problema fue el cuello de botella de la tarjeta gráfica. El modelo de embeddings, BGE-M3, cargado de forma independiente, competía por la memoria de la tarjeta con el motor local LM Studio, y el resultado era que el 75 por ciento de las consultas devolvían contexto vacío, aunque hubiera documentos relevantes. La solución fue no cargar BGE-M3 por separado, sino usar el servicio de embeddings que ya ofrece LM Studio en su puerto, con una respuesta en 59 milisegundos y sin gastar memoria extra. Así se resolvió la competencia por la tarjeta.
+
+El segundo problema fue la velocidad del buscador. Cada consulta tardaba unos quince segundos, porque cada ejecución importaba librerías pesadas y cargaba el modelo de reordenación en la tarjeta, una y otra vez. La solución fue el daemon del reranker: un proceso persistente que carga el modelo una sola vez y atiende las peticiones por la red local. El resultado fue pasar de quince segundos a menos de tres, una mejora del 82 por ciento.
+
+El tercer problema fue el reindexado. Reindexar todo el conocimiento tardaba unas dos horas, porque se rehacía todo desde cero cada vez. La solución fue el indexador incremental: se calcula una huella digital, un hash, de cada documento, y se guarda en un archivo auxiliar llamado sidecar. Cuando algo cambia, solo se rehacen los fragmentos de los documentos cuyo hash cambió. El resultado es que reindexar unos pocos archivos tarda unos treinta segundos en lugar de dos horas. Y si la tarjeta gráfica está ocupada por otro modelo, el indexador cae automáticamente al procesador, sin romperse.
+
+El cuarto problema fue el cuello de botella del reranker en el procesador. Como el procesador actual es el i5, que tiene pocos hilos, puntuar diez candidatos costaba unos seis segundos, que era el 97 por ciento del tiempo de toda la consulta. La causa era que el modelo de reordenación en el procesador tarda unas seis décimas de segundo por par, y el coste crecía con la longitud del texto. La solución tuvo tres capas: reducir los candidatos a puntuar de diez a cinco, porque se verificó que el resultado final era idéntico, limitar los tokens por fragmento a 256, y dar prioridad al proceso del daemon sobre las demás aplicaciones. El resultado fue pasar de seis segundos a poco más de tres, con la misma calidad, verificada con los mismos resultados antes y después.
+
+Y el quinto problema fue la calidad de la búsqueda. Al principio, el buscador solo buscaba por significado. Pero hay búsquedas donde lo que importa es una palabra exacta, y ahí la búsqueda por significado falla. La solución fue la búsqueda híbrida: se busca por significado, con la búsqueda vectorial, y por palabras exactas, con un índice de texto completo llamado FTS, y los dos resultados se combinan con una técnica llamada RRF, Reciprocal Rank Fusion, que en español sería fusión por rango recíproco. La técnica es necesaria porque las puntuaciones de los dos tipos de búsqueda no son comparables entre sí, así que en lugar de combinar puntuaciones, se combina la posición: un resultado que sale primero en ambas listas gana, y uno que sale primero solo en una de ellas también puntúa bien. Es como un jurado con dos jueces: cada juez ordena a los concursantes, y la posición media decide el ganador.
+
+Además, desde el mismo día, la búsqueda acepta filtros por el frontmatter, que es la cabecera de metadatos de cada documento, con los campos de tipo y estado. Puedes pedirle al buscador que solo devuelva reglas, o solo documentos activos. Un ejemplo real: si buscas reglas del laboratorio con el filtro de tipo RULE, obtienes solo los documentos RULE, mientras que sin el filtro obtienes documentos generales.
+
+Hay un detalle técnico importante que conviene conocer para no asustarse si algo va mal: el indexador recrea los índices de búsqueda después de cada reindexado, porque si no lo hiciera, el proceso automático que vigila los cambios los destruiría silenciosamente y la búsqueda se degradaría sin avisar.
+
+Para medir si todo esto funciona de verdad, y no solo la opinión de un modelo sobre otro, el laboratorio tiene una verificación determinista: un banco de preguntas objetivas, con respuestas esperadas y la ruta del documento donde deberían estar. Un programa ejecuta las preguntas con un modelo, y un comparador comprueba que las respuestas contienen lo esperado. Hay una regla importante: el banco de preguntas no debe estar indexado en el RAG, porque contaminaría la medición. Y hay un evaluador especial llamado completitud parcial, que detecta el fallo más peligroso de un sistema así: una respuesta que suena completa pero a la que le falta uno de los hechos obligatorios, sin avisar de que falta algo.
+
+Los comandos para usar el RAG a mano son sencillos. Para buscar se usa search.py con la opción query y la opción top_k, que indica cuántos resultados devolver. Para filtrar por tipo o estado, se añaden las opciones type y status. Para reindexar, se usa indexer.py con la opción device cpu, y con la opción dry-run se puede ver qué haría sin tocar nada. Y para ver el contexto que realmente se le inyecta al modelo, se usa context_builder.py.
+
+Repaso del capítulo 10. El RAG recupera conocimiento del laboratorio para responder con datos reales, en local. Sus conceptos base son embeddings, vectores de significado, LanceDB, la base vectorial, chunks, los fragmentos, el reranker, el reordenador, y el daemon, el proceso persistente. Ha evolucionado en cinco pasos: resolver la competencia por la tarjeta, daemonizar el reranker, hacer el indexador incremental, optimizar el reranker en el procesador, y añadir la búsqueda híbrida con filtros. La verificación determinista mide si el conocimiento se capitaliza de verdad, con un banco de preguntas y un comparador.
+
+
+
+
+PARTE 5 — LA ARQUITECTURA
+
+
+
+
+CAPÍTULO 11 — EL AI ROUTER Y LAS CUATRO CAPAS
+
+Llegamos a la pieza que decide. El AI Router es el sistema que decide qué modelo y qué proveedor se usan para cada tarea, basándose en políticas y en el estado del sistema. Lo más notable es que es determinista: no usa un modelo de lenguaje para decidir, sino reglas puras. Recibe una entrada, aplica las políticas, y devuelve un resultado en formato JSON, que es un formato de datos estructurado. Decide en unos siete milisegundos.
+
+La arquitectura del laboratorio se organiza en cuatro capas, y entenderlas es entender cómo encaja todo. La capa uno es la infraestructura: los modelos, LM Studio, DeepSeek y Hermes. La capa dos es la recuperación: el RAG, el knowledge resolver y el context builder. La capa tres es el gobierno del conocimiento: el KAP, el health auditor, los Knowledge Objects y el decision engine. Y la capa cuatro es la evolución del conocimiento: el KVC, el KEL, el pruning y el contrato de evidencia.
+
+¿Por qué cuatro capas? Para separar responsabilidades. La infraestructura provee los recursos, la recuperación consulta la memoria, el gobierno regula qué conocimiento es válido, y la evolución mantiene vivo el ciclo de nacimiento, validación y retiro. Cada capa hace una cosa, y no se mezclan.
+
+Dentro del runtime, que es el conjunto de piezas que ejecutan el enrutamiento, hay seis componentes con roles muy separados. El state manager observa el sistema y escribe un archivo de estado cada sesenta segundos, con un coste de procesador despreciable. El policy engine interpreta las políticas, pero nunca decide. El capability registry describe las capacidades de cada modelo, pero tampoco decide. El decision engine es el único que decide, basándose en el estado y las políticas, y es puro, lo que significa que no tiene efectos secundarios. El runtime API es la interfaz estable por la que todo el mundo entra, con un método llamado resolve que devuelve nueve campos. Y las metrics recogen los datos de uso para que las decisiones se basen en evidencia, no en corazonadas.
+
+Hay una regla llamada contract-first, que significa contrato primero: todo componente expone su contrato, es decir, su interfaz documentada, antes que su implementación. ¿Por qué? Porque si todos los componentes hablan a través de contratos estables, se pueden sustituir sin romper nada. Es la misma idea que los enchufes: si el enchufe es estándar, puedes cambiar el aparato.
+
+El flujo de decisión es una cadena. Una tarea programada llama al método resolve del runtime API, que es la única puerta de entrada. Ese método llama al decision engine, que lee el estado y las políticas, y devuelve una decisión con el proveedor, el modelo y el motivo. Luego se guarda la decisión en un registro, se devuelven los nueve campos del contrato, y un script aplica la decisión configurando a Hermes con ese modelo y ese proveedor. Lo importante es que el decision engine es puro: solo recibe entrada y devuelve salida, no escribe archivos, no modifica la configuración, no conoce la carpeta de Hermes. Eso lo hace trivial de probar y a prueba de efectos secundarios.
+
+Las políticas viven en ocho archivos YAML, y cada uno gobierna un aspecto. La política de privacidad fuerza el uso de modelos locales para datos sensibles, y tiene la máxima precedencia. La de disponibilidad define el plan B si un proveedor cae. La de costes establece un saldo mínimo antes de usar la nube. La de GPU quedó desactivada para el modelo principal en agosto de 2026, porque la memoria de la tarjeta dejó de decidir y el uso local pasó a gestionarse por delegación. La de horario dice que todo el día se usa DeepSeek, desde que se eliminó la franja de otro proveedor. La de niveles define el nivel de verificación según la tarea. La de preferencias es el fallback final. Y la de modelos define el modelo por defecto de cada proveedor. La precedencia es fija: privacidad, disponibilidad, costes, GPU, horario, niveles y preferencias, en ese orden.
+
+Cada decisión que toma el router se registra en un archivo de decisiones, con la marca de tiempo, el proveedor, el modelo y el motivo, y ese registro alimenta al sistema de conocimiento, porque las decisiones reales son la materia prima del aprendizaje.
+
+El router no piensa en términos de modelos, sino de capacidades, y esto es una decisión deliberada, la norma JL-007. En lugar de preguntarse qué modelo usar, se pregunta qué capacidad se necesita. Las capacidades se dividen en cognitivas, como conocimiento, razonamiento, creatividad, código, español y consistencia, en funcionales, como JSON, llamada a herramientas, visión y memoria, y en operativas, como velocidad. Luego se busca qué modelo puntúa mejor en la capacidad necesaria. Por ejemplo, para una página de destino, si hace falta visión se usa GLM, si hace falta creatividad alta se usa Gemma, y si hace falta velocidad se usa Dolphin. Y si los modelos locales fallan sistemáticamente en un tipo de problema, se escala a la nube, a DeepSeek en su modo profesional.
+
+Repaso del capítulo 11. El AI Router decide qué modelo usar de forma determinista, sin usar un modelo para decidir. La arquitectura tiene cuatro capas: infraestructura, recuperación, gobierno y evolución. El decision engine es puro, no tiene efectos secundarios. Hay ocho políticas con una precedencia fija, y el router trabaja por capacidades, no por modelos.
+
+
+
+
+PARTE 6 — LOS PRODUCTOS
+
+
+
+
+CAPÍTULO 12 — LOS PRODUCTOS DEL LABORATORIO
+
+Hay una distinción fundamental que conviene tener clara: Joko Lab no es un fin en sí mismo. Es el medio, es decir, la infraestructura, el conocimiento y la metodología, para producir productos reales. Y hay una regla de dirección: el conocimiento fluye siempre desde los productos hacia el sistema de conocimiento, y nunca al revés. Es decir, el sistema de conocimiento se desarrolla construyendo productos reales y observando qué principios sobreviven a la realidad, no teorizando en el vacío.
+
+El circuito es este. Joko Lab produce productos, como el Perfume IA o el Forense Digital. Esos productos generan problemas reales. Esos problemas revelan principios. Esos principios suben al sistema de conocimiento, el LPA. Y el LPA retroalimenta al laboratorio, mejorándolo. Es un bucle, y la dirección siempre es hacia arriba, desde lo concreto hacia lo abstracto.
+
+Los productos actuales son seis. El primero es Perfume IA, que es el experimento número uno, tu colección personal de perfumes gestionada con inteligencia artificial. El segundo es Forense Digital, un servicio de peritaje informático. El tercero es el Monitor de LM Studio, la herramienta de observabilidad interna que ya viste en el capítulo cinco. El cuarto son los Benchmarks, la evaluación sistemática de modelos. El quinto son los Experimentos LPA, en dominios como la bolsa, la mente natural o la psicología. Y el sexto es Biohacking Cerebral, un dominio de optimización cognitiva natural, con pilares de vida como el sueño, el ejercicio, la nutrición y el estrés, más suplementos, técnicas, protocolos y medición.
+
+Perfume IA merece un poco más de detalle, porque es el primer espécimen vivo del sistema de conocimiento: cada problema que revela alimenta el aprendizaje del laboratorio. Es una aplicación web para gestionar y descubrir tu colección de perfumes con inteligencia artificial. Lo importante es que la base de datos refleja tu colección real física, no el catálogo de una página web: los perfumes que no tienes no están, y los que tienes, como los ocho de Mario Galindo, del laboratorio The Lab, están registrados. El tamaño exacto de la colección no se fija en esta guía, porque va cambiando: es una colección amplia, indeterminada, que crece y se modifica con el tiempo.
+
+El chat de Perfume IA consulta la colección real antes de cada mensaje, usando el RAG sobre la colección, y tiene tres capas contra las alucinaciones, que son las respuestas inventadas que un modelo puede dar. La primera capa es un plan B: si el RAG devuelve menos de dos resultados, se usa la lista de los cinco mejores del motor de recomendación. La segunda capa es un prompt estricto, que le ordena al modelo no inventar nunca un perfume que no esté en las listas. Y la tercera capa es un filtro posterior con expresiones regulares, que revisa que los nombres mencionados sean completos y estén en la lista. El resultado es que se atrapan aproximadamente el 95 por ciento de las alucinaciones, sin falsos positivos.
+
+El motor de recomendación usa cinco factores: la temperatura, la humedad, la estación, la hora del día y si es día laborable o fin de semana. Tiene una limitación conocida: usa Erandio como ubicación fija, así que en días de viaje el motor no sirve, y hay que usar el clima real por otra vía.
+
+Forense Digital es el otro producto destacado: un servicio de peritaje informático, que analiza buzones de correo para procedimientos judiciales laborales en España. No es buscar correos, es peritaje con cadena de evidencia, es decir, con una trazabilidad rigurosa de cada pieza: extracción y preservación de las evidencias, clasificación y valoración probatoria, construcción del dossier para abogados y tribunales, mapeo al convenio colectivo y empaquetado para la entrega. El caso real de 2026 analizó 8.545 correos.
+
+Repaso del capítulo 12. El laboratorio produce productos, y el conocimiento fluye desde los productos hacia el sistema, nunca al revés. Los productos son Perfume IA, Forense Digital, el Monitor, los Benchmarks, los Experimentos LPA y Biohacking Cerebral. Perfume IA usa tu colección real con tres capas anti-alucinación, y Forense Digital es peritaje con cadena de evidencia.
+
+
+
+
+PARTE 7 — EL CIERRE
+
+
+
+
+CAPÍTULO 13 — EL MAPA MENTAL DE TODO EL SISTEMA
+
+Para cerrar, te propongo que mires el laboratorio completo de una sola vez, como si estuvieras en un mirador. En el centro está Joko Lab, el laboratorio que produce productos. De él cuelgan cuatro grandes ramas.
+
+La primera rama es el hardware: la tarjeta gráfica A2000 con 12 gigabytes, el procesador i5-9500, los discos y las rutas protegidas. Es la base física, la que pone los límites.
+
+La segunda rama es Hermes, el agente: con sus skills, su memoria, sus cron y sus reglas de seguridad. Es el que orquesta todo, el que habla contigo, el que ejecuta y documenta.
+
+La tercera rama es el conocimiento: el sistema LPA, los Knowledge Objects con su ciclo de vida, los niveles de evidencia de E0 a E4, y los cuatro motores, KAP, KVC, KEL y pruning. Es el cerebro acumulado del laboratorio, lo que le da memoria institucional.
+
+Y la cuarta rama son los productos: Perfume IA, Forense Digital, el Monitor, los Benchmarks y Biohacking. Son los que generan problemas reales, y esos problemas revelan principios que suben al conocimiento.
+
+Del conocimiento cuelga además el RAG, la memoria recuperable: los embeddings, LanceDB, los chunks, la búsqueda híbrida con el reranker, y la verificación determinista que comprueba que todo funciona. Y de Hermes cuelga el router, que decide qué modelo usar para cada tarea, basándose en las políticas.
+
+Si tuvieras que quedarte con cuatro ideas para explicarle a alguien qué es Joko Lab en dos minutos, serían estas. Primera, los cuatro cerebros: DeepSeek decide, LM Studio ve, Ollama simula y la telemetría mide, y quien decide no ve, quien ve no decide. Segunda, el conocimiento vive en piezas con ciclo de vida: nacen, se validan, se revisan, caducan y se retiran, porque un sistema que solo acumula se degrada. Tercera, el RAG da memoria real: los datos del laboratorio no salen del equipo, y las respuestas se basan en ellos, no en la memoria del modelo. Y cuarta, el laboratorio produce productos, no solo conocimiento, y cada producto revela problemas reales que generan principios que suben al sistema.
+
+Repaso del capítulo 13. El mapa tiene cuatro ramas: hardware, Hermes, conocimiento y productos. Del conocimiento cuelga el RAG, y de Hermes cuelga el router. Las cuatro ideas que resumen todo son los cuatro cerebros, el ciclo de vida del conocimiento, la memoria real del RAG, y los productos como fuente de principios.
+
+
+
+
+CAPÍTULO 14 — CÓMO SEGUIR DESPUÉS DE ESTA GUÍA
+
+Ya tienes el mapa. Ahora te doy las pistas para orientarte cuando lo necesites.
+
+Si necesitas un dato exacto, un puerto, un comando o una ruta, abre la guía de consulta, que es la GUIA-JOKO-LAB.md. Esta guía en prosa es para entender; aquella es para consultar, y ahora que has leído esta, aquella te sonará familiar.
+
+Si quieres ver el estado real del sistema en este momento, usa cuatro comandos: nvidia-smi para la tarjeta gráfica, docker compose ps para los contenedores, free -h para la memoria y df -h para los discos.
+
+Si quieres probar el RAG con tus propias preguntas, usa los comandos del capítulo diez, como search.py con tu pregunta y el número de resultados que quieras.
+
+Si quieres entender una skill concreta, pídele a Hermes que cargue esa skill y te la explique, porque las skills son los manuales de instrucciones del laboratorio.
+
+Y recuerda la norma JL-013: cuando el laboratorio cambie, la guía de consulta se actualiza. Esta guía de aprendizaje debería revisarse también cuando haya cambios estructurales, para que siga siendo fiel a la realidad.
+
+Repaso del capítulo 14. Para datos exactos, la guía de consulta. Para el estado real, cuatro comandos. Para probar, el RAG. Para profundizar, las skills. Y cuando el laboratorio cambie, ambas guías deben revisarse.
+
+
+
+
+APÉNDICE — MINI GLOSARIO EN PROSA
+
+Por si en algún momento te pierdes con una palabra, aquí tienes las definiciones simples de los términos que aparecen en esta guía.
+
+VRAM es la memoria de video, los 12 gigabytes de la tarjeta A2000 que ponen el tope al laboratorio.
+
+Un embedding es un vector de números que representa el significado de un texto.
+
+Un token es la unidad básica de texto que los modelos cuentan, más o menos una palabra.
+
+Un chunk es un fragmento de documento: el indexador parte los documentos en trozos para poder buscarlos.
+
+La cuantización es la técnica de reducir el tamaño de un modelo, y Q4_K_M indica cuantización de 4 bits, el equilibrio habitual entre calidad y tamaño.
+
+Un daemon es un proceso que corre en segundo plano de forma continua.
+
+Una API es una interfaz que permite a los programas comunicarse entre sí.
+
+El RAG es la técnica de generar respuestas usando información recuperada de una base de conocimiento.
+
+El reranker es un modelo que reordena los resultados de una búsqueda por relevancia.
+
+FTS es la búsqueda por palabras exactas, que usa una técnica llamada BM25 para puntuar.
+
+RRF, fusión por rango recíproco, es la técnica de combinar dos listas de resultados por su posición, no por su puntuación.
+
+LanceDB es la base de datos vectorial del laboratorio, la que guarda y busca los embeddings.
+
+Un KO, Knowledge Object, es una pieza de conocimiento con ciclo de vida, como una decisión o una regla.
+
+LPA, Living Product Architecture, es el programa de investigación del laboratorio.
+
+E0 a E4 son los niveles de evidencia, de la observación al principio.
+
+KAP es el motor que asimila conocimiento externo, KVC el que valida decisiones, KEL el que evoluciona el conocimiento y pruning la poda de lo obsoleto.
+
+systemd es el sistema de servicios de Linux, y los servicios de usuario corren bajo tu cuenta.
+
+Una skill es un procedimiento reutilizable que Hermes carga cuando lo necesita.
+
+Un cron es una tarea programada.
+
+El gateway es la conexión de Hermes con plataformas como Telegram.
+
+El file bus es el sistema de archivos compartidos que sincroniza las sesiones.
+
+El sidecar es un archivo auxiliar, y en el RAG guarda las huellas digitales de los documentos para indexar solo los cambios.
+
+Y la telemetría es la medición del comportamiento real del sistema, la única voz que no opina, solo mide.
+
+
+
+
+FIN DE LA GUÍA DE APRENDIZAJE EN PROSA
+Versión 1.1 — 06 de agosto de 2026

@@ -1,0 +1,43 @@
+{
+  "timestamp": "2026-10-18T18:19:38+02:00",
+  "fecha": "2026-10-18",
+  "hora": "18:19:38 CEST",
+  "checks": {
+    "total": 8,
+    "pass": 8,
+    "warn": 0,
+    "fail": 0
+  },
+  "git": {
+    "branch": "master",
+    "commit": "5092be0",
+    "dirty_files": 0
+  },
+  "git_joko": {
+    "branch": "master",
+    "commit": "e5639ca",
+    "dirty_files": 58
+  },
+  "docker": {
+    "running": 4,
+    "total": 4,
+    "containers": [{"name": "n8n", "state": "running", "status": "Up 8 hours"}, {"name": "ollama", "state": "running", "status": "Up 8 hours"}, {"name": "pdf-cleaner", "state": "running", "status": "Up 8 hours"}, {"name": "stirling-pdf", "state": "running", "status": "Up 8 hours (healthy)"}]
+  },
+  "tools": {
+    "uv_installed": 1,
+    "cargo_installed": 1,
+    "node_installed": 1,
+    "python_version": "Python 3.14.4"
+  },
+  "path": {
+    "has_local_bin": 1,
+    "has_cargo_bin": 1,
+    "full": "/home/jokoalmi/.cargo/bin:/home/jokoalmi/.local/bin:/home/jokoalmi/.local/bin:/home/jokoalmi/bin:/home/jokoalmi/.local/bin:/home/jokoalmi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jokoalmi/.lmstudio/bin:/home/jokoalmi/.lmstudio/bin:/home/jokoalmi/.lmstudio/bin"
+  },
+  "system": {
+    "kernel": "7.0.0-38-generic",
+    "nvidia_driver": "595.99.02",
+    "cuda_version": ""
+  },
+  "lm_studio_models": ["text-embedding-bge-m3", "qwen3.6-35b-a3b_moe", "lfm2.5-vl-3b", "openai/gpt-oss-20b", "lfm2.5-2.6b", "granite-4.0-h-tiny", "granite-4.1-8b", "deepseek/deepseek-r1-distill-qwen-14b", "dolphin3.0-llama3.1-8b-cyber-lora-test-v0.2", "glm-4.6v-flash", "google/gemma-4-12b-qat", "text-embedding-nomic-embed-text-v1.5"]
+}

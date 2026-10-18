@@ -1,0 +1,59 @@
+{
+  "modelo_tokenizador": "openai/gpt-oss-20b",
+  "plataforma": "telegram",
+  "filas": [
+    {
+      "pieza": "system_prompt (completo)",
+      "chars": 52534,
+      "bytes": 53489,
+      "tokens": 13136
+    },
+    {
+      "pieza": "  tier stable",
+      "chars": 30089,
+      "bytes": 30392,
+      "tokens": 7275
+    },
+    {
+      "pieza": "  tier volatile",
+      "chars": 22443,
+      "bytes": 23095,
+      "tokens": 5928
+    },
+    {
+      "pieza": "  tier context",
+      "chars": 0,
+      "bytes": 0,
+      "tokens": 67
+    },
+    {
+      "pieza": "  skills_index",
+      "chars": 16353,
+      "bytes": 16450,
+      "tokens": 4087
+    },
+    {
+      "pieza": "  memoria",
+      "chars": 3132,
+      "bytes": 3445,
+      "tokens": 1104
+    },
+    {
+      "pieza": "  user_profile",
+      "chars": 1509,
+      "bytes": 1745,
+      "tokens": 565
+    },
+    {
+      "pieza": "tools_json (esquemas)",
+      "chars": 43288,
+      "bytes": 43398,
+      "tokens": 10290
+    }
+  ],
+  "fijo_total_tokens": 23426,
+  "system_tokens": 13136,
+  "tools_tokens": 10290,
+  "tools_count": 26,
+  "nota": "tokens medidos con el tokenizador local; el texto se envia como mensaje de usuario, por lo que incluye un offset de framing no restado (F1.1 lo fijo en 71 tok para un system prompt de prueba)"
+}

@@ -1,0 +1,157 @@
+INFORME DE LA FASE F1 - EXPERIMENTO GEO-baseline v1
+Joko Lab - 04-operations/metrics - 2026-09-22
+Autor: Hermes (agente del lab). Medicion: 2026-09-22, entre las 17:00 y las 17:50 CEST.
+Set congelado: GEO-baseline-v1-queries.txt (sha256 6c3ec4b558abad9e2e1622abc0a547a0eac61c829392c7d8c4cdfac5bf2c34b7).
+Diseno y metrica declarada: GEO-baseline-v1-diseno.txt.
+Evidencia cruda: /tmp/geo_f1_resumen.json y volcados de navegador en /tmp (NO persistentes: ver apartado 8).
+
+
+1) VEREDICTO
+GEO no es aplicable hoy al lab, y la causa NO es la forma del contenido: el lab
+no esta en el indice de ningun buscador medible. Se ha cumplido la condicion de
+invalidez 1 declarada antes de medir (el control positivo falla), por lo que F1
+no mide visibilidad: mide INDIZACION.
+El cuello de botella real es la DESCUBRIBILIDAD, no la optimizacion de texto.
+F2 (las 12 consultas x 2 motores x 3 pasadas) daria 0/72 por construccion: no
+aporta informacion nueva mientras no exista sustrato indexado.
+
+
+2) QUE SE MIDIO (alcance real, sin adornos)
+F1 se ejecuto PARCIAL: 1 consulta de control positivo (C1, nombre exacto del
+repo) en 3 pasadas, mas comprobaciones de indizacion en buscadores web y en el
+buscador de GitHub. NO se lanzaron las 12 consultas del set. Lo que sigue se
+refiere a lo medido, no al set completo.
+
+
+3) RESULTADO DE LAS 3 PASADAS (control positivo C1)
+Motor: Gemini API con grounding de Google Search.
+Modelo: se pidio "gemini-flash-latest"; el motor sirvio gemini-3.8-flash.
+  (El nombre "gemini-2.5-flash" devolvio 404: retirado para usuarios nuevos.)
+Peticion identica en las 3 pasadas, temperature 0.
+
+  Pasada 1: chunks 3 | 1167 chars | termino "joko" en el texto: 10 veces
+  Pasada 2: chunks 2 | 1102 chars | termino "joko" en el texto: 8 veces
+  Pasada 3: chunks 2 |  945 chars | termino "joko" en el texto: 6 veces
+  Las 3: NEGACION de existencia.
+  Consultas que el motor genero por su cuenta: "jokoalmi ui joko lab github" y
+  "site github com jokoalmi ui joko lab" (2, 2 y 1 respectivamente).
+
+Textos representativos (recortados):
+  "Tras realizar busquedas exhaustivas en GitHub y en la web, no existe ningun
+   registro publico, usuario ni repositorio con el nombre jokoalmi-ui/joko-lab."
+  "...no existe ningun repositorio publico, usuario u organizacion bajo el
+   nombre jokoalmi-ui/joko-lab (ni registros indexados para jokoalmi o
+   jokoalmi-ui). Es muy probable que se trate de: 1. Un repositorio privado..."
+
+Consecuencia: el repo es publico (private: false) pero NO esta indexado. Es
+indistinguible, para el motor, de un repo inexistente o privado.
+
+
+4) HALLAZGO QUE CORRIGE EL DISENO (medido en F1)
+El motor escribe "jokoalmi" en su texto 10, 8 y 6 veces MIENTRAS NIEGA SU
+EXISTENCIA. Es decir: la via (a) de la metrica declarada (coincidencia literal en
+el texto de la respuesta) produce FALSOS POSITIVOS por si sola.
+Correccion aplicada al diseno: el veredicto de cita exige coincidencia en
+FUENTE CITADA (titulo o URL resuelta); la aparicion en el texto de la respuesta
+se registra como "mencion", nunca como cita.
+El control negativo ya habia avisado en la misma direccion: un termino inventado
+("Zarandona Quantimetrics Suite") devolvio 5 fuentes citadas. Hay citas de
+cualquier cosa: lo que discrimina es que la ENTIDAD aparezca en la fuente.
+
+
+5) INDIZACION MEDIDA EN BUSCADORES (2026-09-22)
+Bing: 0 apariciones de "jokoalmi". Declara "Aproximadamente 104.000 resultados"
+de temas ajenos (diseno web, educacion): los buscadores ignoran las comillas
+cuando el termino no existe, asi que el NUMERO de resultados no es senal.
+DuckDuckGo: devolvio captcha ("select all squares containing a duck"). No
+medible sin resolverlo; se declara como limite, no como ausencia.
+Google (via grounding de la API): las 3 pasadas niegan su existencia.
+Falso positivo de instrumento, corregido durante F1: los 16 enlaces detectados
+"con jokoalmi" en Bing eran navegacion, filtros de fecha y selector de idioma
+DEL PROPIO BUSCADOR (incluido bing.com/copilotsearch). Un buscador puede citarse
+a si mismo: al medir hay que excluir el dominio del motor.
+Buscador de GitHub: "jokoalmi" devuelve 0 resultados (el buscador de repos no
+indexa por el nombre del propietario); "joko-lab" devuelve 2, uno es el repo.
+
+
+6) EL SUSTRATO PUBLICO DEL LAB (medido, 2026-09-22)
+Unico sustrato publico: github.com/jokoalmi-ui/joko-lab (private: false, fork: false).
+  Contenido: 257 ficheros, de ellos 150 markdown (98 skills, 78 docs, 20 informes,
+  21 scripts). Ultimo push: 2026-09-21.
+  Metadatos: topics VACIOS | description "repositorio del laboratirio joko lab"
+  (con errata) | license: ninguna | homepage: ninguna | has_pages: false
+  | 0 estrellas | 0 forks | 0 watchers.
+  Antiguedad: creado el 2026-07-14. Existe desde hace 2 meses: no es un problema
+  de "es demasiado nuevo".
+  NO hay web publicada: 0 ficheros de sitio (index.html, mkdocs, netlify, CNAME).
+  La URL jokoalmi-ui.github.io/joko-lab devuelve 404.
+Lectura: un repo crudo de GitHub, sin web, sin topics, sin licencia, sin enlaces
+entrantes y sin autoridad (0 estrellas), no es lo que un motor generativo cita
+como fuente. Y el descubrimiento de un repo se hace por enlaces: no hay ninguno.
+Nota lateral medida: el repo publico incluye un fichero llamado "--quiet" (el
+mismo residuo detectado en local); esta publicado.
+
+
+7) FUENTES DEL MARCO TEORICO (verificadas por descarga directa, 2026-09-22)
+arXiv 2311.09735 "GEO: Generative Engine Optimization" (Aggarwal et al.): da
+nombre al termino. Verificado: titulo y autoria presentes en la pagina del paper.
+arXiv 2506.11097 "C-SEO Bench: Does Conversational SEO Work?" (Puerto et al.):
+replica independiente a gran escala. Su abstract, citado literalmente, dice que
+"most current C-SEO methods are not only largely ineffective but also frequently
+have a negative impact on document ranking", que lo que si resulta eficaz es el
+SEO tradicional (mejorar el posicionamiento de la fuente) y que el efecto se
+diluye al aumentar los adoptantes (problema congestivo, de suma cero).
+CORRECCION DE UN DATO PROPIO: en la primera version del veredicto se cito la
+cifra "3 de 54 casos". Esa cifra NO aparece en la fuente: 0 ocurrencias en el
+abstract y en el HTML completo. Procedia de un resumen secundario y queda
+RETIRADA. No se publica ninguna cifra de efecto de GEO que no este en la fuente.
+Coincidencia util: la conclusion de la replica apunta a lo mismo que midio F1:
+primero estar descubrible (posicionamiento), despues discutir la forma del texto.
+
+
+8) EVIDENCIA Y SU PERSISTENCIA
+La evidencia cruda esta en /tmp (resumen de las 3 pasadas, volcados de navegador,
+copia del HTML de los papers): /tmp NO es persistente, se pierde al reiniciar.
+El resumen estructurado de F1 es /tmp/geo_f1_resumen.json (1806 bytes, 3 pasadas
+con sus campos). La conclusion y las cifras clave estan ya dentro de este
+informe y de la pieza del ledger: si se quiere conservar la evidencia cruda,
+hay que copiarla a un destino persistente del lab (decision aparte).
+
+
+9) EXPOSICION DEL REPO PUBLICO (barrido por patron, 2026-09-22)
+0 telefonos, 0 IBAN, 0 DNI. Las 4 coincidencias de 13-16 digitos son FALSO
+POSITIVO: son decision_id con formato DDDDDDDD-DDDDDD en runtime/CONTRACT.md, no
+tarjetas. 3 direcciones de correo (1 dominio github.com, 2 gmail.com): SIN
+verificar si son propias o de ejemplo. Mas visibilidad = mas exposicion: auditar
+antes de empujar cualquier cosa al repo.
+
+
+10) PITFALLS DE INSTRUMENTO DESCUBIERTOS EN F1 (para el inventario del lab)
+P1. "Hay citas" no significa nada: el control negativo devolvio 5 fuentes
+    citadas. Hay que medir aparicion LITERAL de la entidad en la fuente.
+P2. La aparicion del termino en el TEXTO de la respuesta no es una cita: un
+    motor que lo niega lo escribe 10 veces. Exigir coincidencia en fuente citada.
+P3. Las URIs de fuente llegan ofuscadas (vertexaisearch.cloud.google.com): hay
+    que resolver el redirect (302) para atribuir el dominio real.
+P4. Los enlaces internos del propio buscador contaminan la deteccion (navegacion,
+    filtros, copilotsearch): excluir el dominio del motor al medir.
+P5. El numero de resultados declarado por un buscador no es senal: dice 104.000
+    resultados de temas ajenos cuando el termino no existe.
+P6. El modelo servido no es el modelo pedido: registrar siempre la version real
+    (se pidio gemini-flash-latest; se sirvio gemini-3.8-flash).
+
+
+11) COSTE REAL Y ESTADO
+0 GPU, 0 descargas, 0 modelos nuevos, 0 cambios de servicio, 0 escrituras al lab
+durante la medicion (evidencia en /tmp).
+Registro: pieza "TheAgenticAIEngineer" (eje GEO) en aplicabilidad_ledger.jsonl
+el 2026-09-22: veredicto no_entra / motivo sin_datos / cifra_medida false / 1,5 h.
+Estado del ledger tras la pieza: 14 piezas, tasa de aplicabilidad 2/14 = 14,3 %.
+
+
+12) QUE REABRIRIA ESTE EXPERIMENTO
+Si se ejecutase F3 (habilitar sustrato: topics, descripcion util, licencia,
+indice tematico, enlaces entrantes), F1+F2 se re-medirian con el mismo set
+congelado y la misma metrica corregida en el apartado 4 (citacion en fuente, no
+mencion en texto). Sin intervencion sobre el sustrato, re-medir solo confirmaria
+el mismo 0.

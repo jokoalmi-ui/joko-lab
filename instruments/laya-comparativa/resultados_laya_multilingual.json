@@ -1,0 +1,355 @@
+{
+ "meta": {
+  "backend": "laya",
+  "modelo_ollama": null,
+  "num_ctx": null,
+  "checkpoint": "multilingual",
+  "casos": 27,
+  "casos_sha256": "f5bb2a1f6b3d5cde5d182eecb71dd9cac26e45f90b97289e758a62289d84af48",
+  "set": "v1",
+  "fichero_casos": "casos_noul.json",
+  "golden_set_sha256": "2a2da99cc7001128f9c58bc2812f78a590f1a13aa34195191dafa01934fbe1d1",
+  "ejecutado": "2026-09-23T23:21:24+02:00",
+  "host": {
+   "python": "Python 3.11.16",
+   "laya": true,
+   "torch": true,
+   "gpu": "NVIDIA RTX A2000 12GB, 2461, 12282, 31",
+   "ollama": [
+    "ibm/granite4.2:8b-q4_K_M",
+    "qwen2.5:7b",
+    "deepseek-r1-distill-qwen-14b:latest"
+   ],
+   "disco_home": "/dev/nvme0n1p2   468G   307G  137G  70% /",
+   "fecha": "mié 23 sept 2026 23:21:25 CEST"
+  }
+ },
+ "metricas_globales": {
+  "n": 27,
+  "accuracy": 0.7037,
+  "brier": 0.2479,
+  "ece5": 0.2676,
+  "ece15_proveedor": 0.2997,
+  "conf_media": 0.3788,
+  "sesgo_conf_menos_acierto": -0.3249,
+  "confiado_y_fallado": 1,
+  "seguro_y_acertado": 6,
+  "p50_ms": 27.4,
+  "p95_ms": 35.1
+ },
+ "metricas_por_bloque": {
+  "A": {
+   "n": 13,
+   "accuracy": 0.7692,
+   "brier": 0.1622,
+   "ece5": 0.1925,
+   "ece15_proveedor": 0.259,
+   "conf_media": 0.6885,
+   "sesgo_conf_menos_acierto": -0.0807,
+   "confiado_y_fallado": 1,
+   "seguro_y_acertado": 6,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "B": {
+   "n": 8,
+   "accuracy": 1.0,
+   "brier": 0.002,
+   "ece5": 0.0353,
+   "ece15_proveedor": 0.0353,
+   "conf_media": 0.0353,
+   "sesgo_conf_menos_acierto": -0.9647,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "D": {
+   "n": 6,
+   "accuracy": 0.1667,
+   "brier": 0.7614,
+   "ece5": 0.8342,
+   "ece15_proveedor": 0.8342,
+   "conf_media": 0.1658,
+   "sesgo_conf_menos_acierto": -0.0009,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  }
+ },
+ "metricas_por_subtipo": {},
+ "errores": 0,
+ "registros": [
+  {
+   "id": "ctx-01",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.996,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 10374.5
+  },
+  {
+   "id": "ctx-02",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.6944,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 28.1
+  },
+  {
+   "id": "ctx-03",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.6723,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.9
+  },
+  {
+   "id": "ctx-04",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.1556,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 29.1
+  },
+  {
+   "id": "ctx-05",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.9476,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.6
+  },
+  {
+   "id": "ctx-06",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.3711,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.7
+  },
+  {
+   "id": "ctx-07",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.8281,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.4
+  },
+  {
+   "id": "ctx-08",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.5
+  },
+  {
+   "id": "mem-01",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.0271,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 35.1
+  },
+  {
+   "id": "mem-02",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.0337,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 26.0
+  },
+  {
+   "id": "mem-03",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.7307,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 25.8
+  },
+  {
+   "id": "mem-04",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.1366,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 25.4
+  },
+  {
+   "id": "mem-05",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.0154,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 26.0
+  },
+  {
+   "id": "mem-06",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.0511,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.4
+  },
+  {
+   "id": "trap-01",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0609,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.1
+  },
+  {
+   "id": "trap-02",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0199,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 25.7
+  },
+  {
+   "id": "trap-03",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0008,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.2
+  },
+  {
+   "id": "trap-04",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0572,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 25.5
+  },
+  {
+   "id": "trap-05",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0648,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 25.5
+  },
+  {
+   "id": "trap-06",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0663,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 25.7
+  },
+  {
+   "id": "trap-07",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0108,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.1
+  },
+  {
+   "id": "trap-08",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0015,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.3
+  },
+  {
+   "id": "ficha-01",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.994,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.8
+  },
+  {
+   "id": "ficha-02",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.975,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.7
+  },
+  {
+   "id": "ficha-03",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.9991,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.4
+  },
+  {
+   "id": "ficha-04",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.9867,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.3
+  },
+  {
+   "id": "ficha-05",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.3311,
+   "motor": "laya[multilingual]",
+   "error": null,
+   "ms": 27.6
+  }
+ ]
+}

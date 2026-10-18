@@ -1,0 +1,9 @@
+id: PROP-20260808-001
+fecha: 2026-08-08T08:45:39
+tipo: conocimiento
+id: "RULE-010"
+problema: sin fecha de expiración
+accion_sugerida: fijar expires/next_review
+fuente: knowledge_health
+estado: propuesta
+decision: pendiente

@@ -1,0 +1,53 @@
+2026-09-25T09:03:36+02:00
+[integridad] corrector 849c12fe093420ba…  examen 30557a9df6ee2fca…
+[fugas] 5 variantes, 0 valores esperados del examen citados
+[PASA ] v0-sin-instruccion json-plano           15.6s 
+[FALLA] v0-sin-instruccion json-anidado          2.9s | total: esperado 23.0, obtenido 21.5
+[PASA ] v0-sin-instruccion json-enum             1.0s 
+[PASA ] v0-sin-instruccion json-nulo-honesto     1.2s 
+[FALLA] v0-sin-instruccion json-numeros-es       0.6s | a: esperado 2520, obtenido 2100
+[PASA ] v0-sin-instruccion tool-eleccion         1.7s 
+[PASA ] v0-sin-instruccion tool-args             1.8s 
+[PASA ] v0-sin-instruccion tool-dos-pasos        0.8s 
+[PASA ] v1-formato     json-plano            1.3s 
+[FALLA] v1-formato     json-anidado          3.0s | total: esperado 23.0, obtenido 21.5
+[PASA ] v1-formato     json-enum             0.9s 
+[PASA ] v1-formato     json-nulo-honesto     1.3s 
+[FALLA] v1-formato     json-numeros-es       0.7s | a: esperado 2520, obtenido 2100
+[PASA ] v1-formato     tool-eleccion         1.4s 
+[PASA ] v1-formato     tool-args             1.6s 
+[PASA ] v1-formato     tool-dos-pasos        0.7s 
+[PASA ] v2-calculo     json-plano            1.4s 
+[FALLA] v2-calculo     json-anidado          3.0s | total: esperado 23.0, obtenido 31.0
+[PASA ] v2-calculo     json-enum             0.8s 
+[PASA ] v2-calculo     json-nulo-honesto     1.3s 
+[FALLA] v2-calculo     json-numeros-es       0.5s | a: esperado 2520, obtenido 2150
+[PASA ] v2-calculo     tool-eleccion         1.4s 
+[PASA ] v2-calculo     tool-args             1.7s 
+[PASA ] v2-calculo     tool-dos-pasos        0.7s 
+[PASA ] v3-campos      json-plano            1.5s 
+[FALLA] v3-campos      json-anidado          3.0s | total: esperado 23.0, obtenido 21.5
+[PASA ] v3-campos      json-enum             1.0s 
+[PASA ] v3-campos      json-nulo-honesto     1.2s 
+[FALLA] v3-campos      json-numeros-es       0.7s | a: esperado 2520, obtenido 2100
+[PASA ] v3-campos      tool-eleccion         1.1s 
+[PASA ] v3-campos      tool-args             1.7s 
+[PASA ] v3-campos      tool-dos-pasos        0.7s 
+[PASA ] v4-herramientas json-plano            1.4s 
+[FALLA] v4-herramientas json-anidado          3.0s | total: esperado 23.0, obtenido 31.0
+[PASA ] v4-herramientas json-enum             0.9s 
+[PASA ] v4-herramientas json-nulo-honesto     1.3s 
+[FALLA] v4-herramientas json-numeros-es       0.7s | a: esperado 2520, obtenido 2100
+[PASA ] v4-herramientas tool-eleccion         1.0s 
+[PASA ] v4-herramientas tool-args             1.7s 
+[PASA ] v4-herramientas tool-dos-pasos        0.7s 
+
+== RESUMEN (pasan/total) ==
+  v4-herramientas 6/8   10.6s  dominada=False  falla=json-anidado,json-numeros-es
+  v2-calculo     6/8   10.7s  dominada=True  falla=json-anidado,json-numeros-es
+  v3-campos      6/8   10.8s  dominada=True  falla=json-anidado,json-numeros-es
+  v1-formato     6/8   10.9s  dominada=True  falla=json-anidado,json-numeros-es
+  v0-sin-instruccion 6/8   25.7s  dominada=True  falla=json-anidado,json-numeros-es
+
+resumen -> /home/jokoalmi/joko-lab/research/rsi-v0/resumen_r1.json
+EXIT=0

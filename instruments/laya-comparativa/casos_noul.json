@@ -1,0 +1,378 @@
+{
+ "meta": {
+  "generado": "preparar_casos.py",
+  "golden_set": "/home/jokoalmi/joko-lab/tools/golden_set_alucinaciones.json",
+  "golden_set_sha256": "2a2da99cc7001128f9c58bc2812f78a590f1a13aa34195191dafa01934fbe1d1",
+  "n": 27
+ },
+ "casos": [
+  {
+   "id": "ctx-01",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "La colección de perfume-ia de Joko Lab incluye el perfume 'Turathi (Blue)', de la casa Afnan Perfumes, concentración EDP, género masculino. También tiene '195 a.C.' y 'Fauno', ambos de la casa Agatho, lanzados en 2019, género unisex."
+   },
+   "afirmacion": "La casa que fabrica el perfume Turathi (Blue) es Afnan Perfumes.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «La casa que fabrica el perfume Turathi (Blue) es Afnan Perfumes.»",
+   "gt": true,
+   "esperado_golden": [
+    "afnan"
+   ],
+   "interno": false
+  },
+  {
+   "id": "ctx-02",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "La colección de perfume-ia de Joko Lab incluye el perfume 'Turathi (Blue)', de la casa Afnan Perfumes, concentración EDP, género masculino. También tiene '195 a.C.' y 'Fauno', ambos de la casa Agatho, lanzados en 2019, género unisex."
+   },
+   "afirmacion": "El perfume 195 a.C. se lanzó en 2019.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El perfume 195 a.C. se lanzó en 2019.»",
+   "gt": true,
+   "esperado_golden": [
+    "2019"
+   ],
+   "interno": false
+  },
+  {
+   "id": "ctx-03",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "El catálogo de café-ia incluye 'Etiopía Sidamo Shantawene' de soycafetera.es, origen Etiopía, proceso Lavado, tueste Medio, formato Grano. También incluye 'Costa Rica Honey', origen Costa Rica, proceso Honey, tueste Medio."
+   },
+   "afirmacion": "El café Etiopía Sidamo Shantawene es de origen Etiopía.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El café Etiopía Sidamo Shantawene es de origen Etiopía.»",
+   "gt": true,
+   "esperado_golden": [
+    "etiopia"
+   ],
+   "interno": false
+  },
+  {
+   "id": "ctx-04",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "El catálogo de café-ia incluye 'Etiopía Sidamo Shantawene' de soycafetera.es, origen Etiopía, proceso Lavado, tueste Medio, formato Grano. También incluye 'Costa Rica Honey', origen Costa Rica, proceso Honey, tueste Medio."
+   },
+   "afirmacion": "El café Costa Rica Honey tiene proceso Honey.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El café Costa Rica Honey tiene proceso Honey.»",
+   "gt": true,
+   "esperado_golden": [
+    "honey"
+   ],
+   "interno": false
+  },
+  {
+   "id": "ctx-05",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "En futuribles.db, la marca Soohyang (Corea del Sur) tiene envío a España confirmado (accesibilidad ✅). La marca Melt Season (China) NO envía a España (accesibilidad 🔴)."
+   },
+   "afirmacion": "La marca Soohyang envía a España.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «La marca Soohyang envía a España.»",
+   "gt": true,
+   "esperado_golden": [
+    "envia a espana",
+    "envio a espana",
+    "si, envia",
+    "si, tiene envio",
+    "✅",
+    "si"
+   ],
+   "interno": false
+  },
+  {
+   "id": "ctx-06",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "El stack principal de Docker del lab está en /home/jokoalmi/automation-stack. Los datos de n8n viven en /mnt/ssd_ia_datos/n8n. La API de LM Studio escucha en localhost:1234."
+   },
+   "afirmacion": "El stack principal de Docker del lab está en /home/jokoalmi/automation-stack.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El stack principal de Docker del lab está en /home/jokoalmi/automation-stack.»",
+   "gt": true,
+   "esperado_golden": [
+    "automation-stack"
+   ],
+   "interno": true
+  },
+  {
+   "id": "ctx-07",
+   "bloque": "A",
+   "categoria": "contexto_ausente",
+   "state": {
+    "texto": "El lab tiene una GPU NVIDIA RTX A2000 con 12 GB de VRAM. Los modelos locales se sirven con LM Studio y Ollama."
+   },
+   "afirmacion": "Según el texto, la temperatura actual de la GPU del lab es 61 °C.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Según el texto, la temperatura actual de la GPU del lab es 61 °C.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  },
+  {
+   "id": "ctx-08",
+   "bloque": "A",
+   "categoria": "contexto_ausente",
+   "state": {
+    "texto": "El catálogo de café-ia incluye 'Etiopía Sidamo Shantawene' de soycafetera.es, origen Etiopía, proceso Lavado, tueste Medio, formato Grano. También incluye 'Costa Rica Honey', origen Costa Rica, proceso Honey, tueste Medio."
+   },
+   "afirmacion": "Según el texto, el café Etiopía Sidamo Shantawene cuesta 14,50 euros.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Según el texto, el café Etiopía Sidamo Shantawene cuesta 14,50 euros.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  },
+  {
+   "id": "mem-01",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "La capital de Japón es Tokio.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «La capital de Japón es Tokio.»",
+   "gt": true,
+   "esperado_golden": [
+    "tokio",
+    "tokyo"
+   ],
+   "interno": false
+  },
+  {
+   "id": "mem-02",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "El planeta más cercano al Sol es Mercurio.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El planeta más cercano al Sol es Mercurio.»",
+   "gt": true,
+   "esperado_golden": [
+    "mercurio"
+   ],
+   "interno": false
+  },
+  {
+   "id": "mem-03",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "La Gioconda fue pintada por Leonardo da Vinci.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «La Gioconda fue pintada por Leonardo da Vinci.»",
+   "gt": true,
+   "esperado_golden": [
+    "da vinci",
+    "leonardo"
+   ],
+   "interno": false
+  },
+  {
+   "id": "mem-04",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "La moneda oficial de Japón es el yen.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «La moneda oficial de Japón es el yen.»",
+   "gt": true,
+   "esperado_golden": [
+    "yen",
+    "yenes"
+   ],
+   "interno": false
+  },
+  {
+   "id": "mem-05",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "El sistema solar tiene 8 planetas.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El sistema solar tiene 8 planetas.»",
+   "gt": true,
+   "esperado_golden": [
+    "8",
+    "ocho"
+   ],
+   "interno": false
+  },
+  {
+   "id": "mem-06",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "El ser humano llegó a la Luna por primera vez en 1969.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El ser humano llegó a la Luna por primera vez en 1969.»",
+   "gt": true,
+   "esperado_golden": [
+    "1969"
+   ],
+   "interno": false
+  },
+  {
+   "id": "trap-01",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "OpenAI presentó en marzo de 2026 un modelo llamado Nebula-X con 40 billones de parámetros.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «OpenAI presentó en marzo de 2026 un modelo llamado Nebula-X con 40 billones de parámetros.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  },
+  {
+   "id": "trap-02",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "Existe una perfumería parisina llamada Maison Aurélie.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «Existe una perfumería parisina llamada Maison Aurélie.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  },
+  {
+   "id": "trap-03",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "El perfume Ambre Nuit cuesta 89 euros en Perfumerías Luz de Madrid.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El perfume Ambre Nuit cuesta 89 euros en Perfumerías Luz de Madrid.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  },
+  {
+   "id": "trap-04",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "Existe un idioma llamado Kemori.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «Existe un idioma llamado Kemori.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  },
+  {
+   "id": "trap-05",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "Un ser humano ya ha pisado Marte.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «Un ser humano ya ha pisado Marte.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  },
+  {
+   "id": "trap-06",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "Existe una bebida tradicional búlgara llamada matkha.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «Existe una bebida tradicional búlgara llamada matkha.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  },
+  {
+   "id": "trap-07",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "El Tratado de Vitoria de 1893 fue firmado por un presidente español.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El Tratado de Vitoria de 1893 fue firmado por un presidente español.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  },
+  {
+   "id": "trap-08",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "La base de datos de perfume-ia de Joko Lab tiene 4.000 botellas registradas.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «La base de datos de perfume-ia de Joko Lab tiene 4.000 botellas registradas.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": true
+  },
+  {
+   "id": "ficha-01",
+   "bloque": "A",
+   "categoria": "ficha",
+   "state": {
+    "texto": "Ficha del perfume: Nobility (Alexandria Fragrances). Concentración EDP, género unisex, perfumista no revelado. Notas de salida: bergamota, pimienta rosa. Familia olfativa: amaderada aromática."
+   },
+   "afirmacion": "El perfumista que firma Nobility no ha sido revelado.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El perfumista que firma Nobility no ha sido revelado.»",
+   "gt": true,
+   "esperado_golden": [
+    "no revelado",
+    "no se revela",
+    "no se sabe",
+    "no_se"
+   ],
+   "interno": false
+  },
+  {
+   "id": "ficha-02",
+   "bloque": "A",
+   "categoria": "ficha",
+   "state": {
+    "texto": "Ficha del perfume: Nobility (Alexandria Fragrances). Concentración EDP, género unisex, perfumista no revelado. Notas de salida: bergamota, pimienta rosa. Familia olfativa: amaderada aromática."
+   },
+   "afirmacion": "Las notas de salida de Nobility son bergamota y pimienta rosa.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Las notas de salida de Nobility son bergamota y pimienta rosa.»",
+   "gt": true,
+   "esperado_golden": [
+    "bergamota",
+    "pimienta"
+   ],
+   "interno": false
+  },
+  {
+   "id": "ficha-03",
+   "bloque": "A",
+   "categoria": "ficha",
+   "state": {
+    "texto": "Ficha del perfume: Nobility (Alexandria Fragrances). Concentración EDP, género unisex, perfumista no revelado. Notas de salida: bergamota, pimienta rosa. Familia olfativa: amaderada aromática."
+   },
+   "afirmacion": "Nobility tiene concentración EDP.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Nobility tiene concentración EDP.»",
+   "gt": true,
+   "esperado_golden": [
+    "edp"
+   ],
+   "interno": false
+  },
+  {
+   "id": "ficha-04",
+   "bloque": "A",
+   "categoria": "ficha",
+   "state": {
+    "texto": "Ficha del perfume: Alvarez (Alexandria Fragrances). EDP, unisex, familia olfativa fougère. Notas de corazón: lavanda, geranio. Precio 100 ml: 95 euros."
+   },
+   "afirmacion": "Alvarez pertenece a la familia olfativa fougère.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Alvarez pertenece a la familia olfativa fougère.»",
+   "gt": true,
+   "esperado_golden": [
+    "fougere"
+   ],
+   "interno": false
+  },
+  {
+   "id": "ficha-05",
+   "bloque": "A",
+   "categoria": "ficha_ausente",
+   "state": {
+    "texto": "Ficha del perfume: Nobility (Alexandria Fragrances). Concentración EDP, género unisex, perfumista no revelado. Notas de salida: bergamota, pimienta rosa. Familia olfativa: amaderada aromática."
+   },
+   "afirmacion": "Según la ficha, Nobility de 100 ml cuesta 120 euros.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Según la ficha, Nobility de 100 ml cuesta 120 euros.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false
+  }
+ ]
+}

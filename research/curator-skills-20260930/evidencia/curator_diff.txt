@@ -1,0 +1,24 @@
+=== SPILLOVERS (identificacion) ===
+- call_01_CHQJ1kX9UPBnjWdhzxcG4898.txt | mtime 19:35:52 | bytes 100511 | skill? ? | head: {"success": true, "name": "instagram-content-extraction", "description": "Extraer y analizar contenido de Instagram (car
+- call_00_UibHKI9eu6Yksx41KsAn2782.txt | mtime 19:46:57 | bytes 100511 | skill? ? | head: {"success": true, "name": "instagram-content-extraction", "description": "Extraer y analizar contenido de Instagram (car
+- call_00_I86KOApn5U79IE8mi5106306.txt | mtime 20:27:28 | bytes 84146 | skill? ? | head: {"success": true, "name": "documentacion-joko-lab", "description": "Mantener y publicar la documentacion oficial de Joko
+- call_00_5EgWMw5yuyYnrXkbRoT30682.txt | mtime 07:41:10 | bytes 82157 | skill? ? | head: {"success": true, "name": "youtube-content", "description": "YouTube transcripts to summaries, threads, blogs.", "tags":
+- call_00_AB7nEjbJ5VEBzt3o5L8I8633.txt | mtime 15:22:09 | bytes 100511 | skill? ? | head: {"success": true, "name": "instagram-content-extraction", "description": "Extraer y analizar contenido de Instagram (car
+- call_00_xMlnphdlZroXC3sFrxru2493.txt | mtime 15:27:47 | bytes 100511 | skill? ? | head: {"success": true, "name": "instagram-content-extraction", "description": "Extraer y analizar contenido de Instagram (car
+- call_01_AtVqwL4vEMJGqBWrzZIn9285.txt | mtime 16:13:30 | bytes 101589 | skill? ? | head: {"success": true, "name": "instagram-content-extraction", "description": "Extraer y analizar contenido de Instagram (car
+
+=== DIFF: volcado del curador (16:13:30) vs SKILL.md ACTUAL (16:15:08) ===
+ficheros candidatos: ['call_01_AtVqwL4vEMJGqBWrzZIn9285.txt']
+--- diff de call_01_AtVqwL4vEMJGqBWrzZIn9285.txt --- lineas: 7
+    --- curador_16:13:30
+    +++ actual_16:15:08
+    @@ -100,3 +100,3 @@
+     
+    -1. **Caption íntegro e interacciones**: `og:description` los da sin parsear nada (likes/comentarios incluidos).
+    +1. **Caption íntegro e interacciones**: `og:description` los da sin parsear nada (likes/comentarios incluidos). El veredicto de QUÉ es el post (ya estaba / confirma / sin entrada / futurible) y su cruce obligatorio con el lab están en `references/veredicto-y-cruce-con-el-lab.md`.
+     2. **Estructura de slides**: JSON embebido. Volcar el bloque a `/tmp/ig_<short>_embedded.json` y parsearlo **en local** — son ~100 KB y no se imprimen en el navegador; al construir el JS desde Python, evitar escapes anidados (usar `String.fromCharCode(10)` en vez de `\n` embebido).
+
+=== ESTADO ACTUAL DE LAS 3 SKILLS TOCADAS HOY ===
+- media/instagram-content-extraction/SKILL.md | bytes 99517 | lineas 1304 | md5 f813f884c349b0ab93805b38d63e3c7a | mtime 16:15:08
+- joko-lab/edicion-aditiva-registros/SKILL.md | bytes 32074 | lineas 72 | md5 bb0e01cb6b241f43af34012ab9048738 | mtime 16:13:59
+- joko-lab/vigilancia-canales-youtube/SKILL.md | bytes 33174 | lineas 501 | md5 88f37171b4e35ea41289188460888385 | mtime 15:15:16

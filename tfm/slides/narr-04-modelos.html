@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>04 — Pieza 1: Modelos</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1824px; height: 2310px; }
+  body { position: relative; font-family: 'Open Sans', sans-serif; background: #141414; }
+  .base { position: absolute; inset: 0; width: 1824px; height: 2310px; display: block; object-fit: fill; z-index: 1; }
+  .content { position: absolute; z-index: 2; left: 200px; top: 80px; right: 100px; bottom: 70px; display: flex; flex-direction: column; }
+  .badge { display: inline-block; background: #2D5D62; color: #FDF8E9; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px 34px; border-radius: 999px; margin-bottom: 36px; align-self: flex-start; }
+  .steps { display: flex; align-items: center; gap: 10px; margin-bottom: 34px; flex-wrap: wrap; }
+  .step { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 20px; border-radius: 999px; background: rgba(255,255,255,0.4); border: 3px solid #999999; color: #777777; }
+  .step.active { background: #2D5D62; border-color: #2D5D62; color: #FDF8E9; }
+  .step-arrow { color: #D4A017; font-size: 22px; font-weight: 800; }
+  h1 { font-family: 'Special Elite', serif; font-size: 120px; font-weight: 700; letter-spacing: -3px; color: #1e1e1e; line-height: 1.02; margin-bottom: 14px; }
+  h1 .accent { color: #2D5D62; }
+  .subtitle { font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: #2D5D62; margin-bottom: 40px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 34px; }
+  .cell { background: rgba(232, 241, 242, 0.55); border: 4px dashed #333333; border-radius: 22px; padding: 26px 32px; }
+  .cell .num { font-family: 'Special Elite', serif; font-size: 32px; color: #D4A017; margin-bottom: 4px; }
+  .cell h3 { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #2D5D62; margin-bottom: 10px; }
+  .cell p { font-family: 'Open Sans', sans-serif; font-size: 24px; font-weight: 600; color: #1A1A1A; line-height: 1.35; }
+  .cell .rol { font-family: 'Caveat', cursive; font-size: 32px; font-weight: 600; color: #333333; margin-top: 6px; }
+  .dashed-box { border: 4px dashed #333333; border-radius: 26px; padding: 28px 44px; font-family: 'Caveat', cursive; font-size: 44px; font-weight: 600; color: #333333; text-align: center; background: rgba(255,255,255,0.35); margin-bottom: 34px; }
+  .why { background: rgba(255,255,255,0.45); border: 4px dashed #D4A017; border-radius: 22px; padding: 26px 36px; }
+  .why h3 { font-family: 'Montserrat', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #D4A017; margin-bottom: 14px; }
+  .why p { font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: 600; color: #1A1A1A; line-height: 1.4; }
+  .deleg { display: flex; flex-direction: column; gap: 10px; margin-bottom: 34px; }
+  .drow { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.45); border: 3px dashed #D4A017; border-radius: 16px; padding: 14px 22px; }
+  .drow .who { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #2D5D62; min-width: 250px; }
+  .drow .act { font-family: 'Open Sans', sans-serif; font-size: 22px; font-weight: 600; color: #1A1A1A; }
+  .drow .arr { font-size: 26px; color: #D4A017; font-weight: 800; }
+  .spacer { flex: 1; }
+  .footer { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #1A1A1A; }
+  .stars { color: #D4A017; font-size: 36px; letter-spacing: 0.35em; }
+</style>
+</head>
+<body>
+  <img class="base" src="hoja-cuaderno-base.png" alt="hoja cuaderno base">
+
+  <div class="content">
+    <!-- ============ CONTENIDO SLIDE 4 ============ -->
+    <span class="badge">Pieza 1 del circuito</span>
+    <div class="steps">
+      <span class="step active">Modelos</span><span class="step-arrow">→</span>
+      <span class="step">Conocimiento</span><span class="step-arrow">→</span>
+      <span class="step">Memoria</span><span class="step-arrow">→</span>
+      <span class="step">Enrutador</span>
+    </div>
+    <h1>¿QUIÉN HACE <span class="accent">QUÉ?</span></h1>
+    <p class="subtitle">Cuatro cerebros, cada uno con un rol</p>
+
+    <div class="grid">
+      <div class="cell">
+        <div class="num">01</div>
+        <h3>Nube</h3>
+        <p>Piensa, decide y coordina.</p>
+        <p class="rol">¿Qué tiene sentido hacer?</p>
+      </div>
+      <div class="cell">
+        <div class="num">02</div>
+        <h3>Motor local</h3>
+        <p>Ve, evalúa y critica.</p>
+        <p class="rol">¿Es correcto visualmente?</p>
+      </div>
+      <div class="cell">
+        <div class="num">03</div>
+        <h3>Motor secundario</h3>
+        <p>Simula, genera y explica.</p>
+        <p class="rol">¿Qué pasaría si…?</p>
+      </div>
+      <div class="cell">
+        <div class="num">04</div>
+        <h3>Telemetría</h3>
+        <p>Mide, observa y contrasta.</p>
+        <p class="rol">¿Qué ocurre realmente?</p>
+      </div>
+    </div>
+
+    <div class="deleg">
+      <div class="drow"><span class="who">Nube · decide</span><span class="arr">→</span><span class="act">delega la visión en el motor local</span></div>
+      <div class="drow"><span class="who">Motor local · ve</span><span class="arr">→</span><span class="act">evalúa, pero no decide</span></div>
+      <div class="drow"><span class="who">Motor secundario</span><span class="arr">→</span><span class="act">simula escenarios, no critica</span></div>
+      <div class="drow"><span class="who">Telemetría · mide</span><span class="arr">→</span><span class="act">observa, no opina</span></div>
+    </div>
+
+    <div class="dashed-box">Quien decide no ve · Quien ve no decide · Quien mide no opina</div>
+
+    <div class="why">
+      <h3>Por qué separar los roles</h3>
+      <p>Si el que decide fuera también el que ve, podría decidir sobre una imagen que interpretó mal sin que nadie lo corrigiera. Cada pieza actúa como control de calidad de las demás.</p>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="footer">
+      <div class="stars">★ ★</div>
+      slide 04 · pieza 1 — modelos
+    </div>
+    <!-- ============ /CONTENIDO SLIDE 4 ============ -->
+  </div>
+</body>
+</html>

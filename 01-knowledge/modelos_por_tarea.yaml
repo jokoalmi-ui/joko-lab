@@ -1,0 +1,200 @@
+# modelos_por_tarea.yaml — Fuente única de decisión: tipo de tarea → modelo local
+# Cargado por tools/pipeline_seleccion_modelo.py y tools/llm-router.sh (NO hardcodear en código).
+# version: 3 · last_validated: 2026-10-02
+# v3 (01-oct-2026): + campo `alternativas` en todos los buckets (respaldo si el modelo no
+#   carga) y + 2 buckets fuera de LM Studio (generacion_imagen, transcripcion). Se quitó la
+#   clave suelta `imagen` de `vision` (mandaba tareas de generación al VLM) y se corrigió el
+#   comentario que decía que ganaba el "primer bucket en orden" (gana el de más claves).
+# v3, rev 02-oct-2026: salen de `modelos_instalados` y de `sin_asignar` los 2 modelos borrados del
+#   disco (qwen3.6-35b-a3b-mtp y qwen3.5-9b-the-defiant-...-mtp). Las líneas de `mediciones_bateria_v2`
+#   se conservan: son medidas reales de esos modelos (histórico válido).
+# Fuentes: batería v2 de 7 dimensiones (01-oct-2026, 7 modelos nuevos) + batería histórica
+#          (06-ago-2026, 8 modelos) + ledgers de alucinaciones (24-ago, 06-sep, 14-sep-2026).
+#
+# HALLAZGO CLAVE (01-oct-2026): la batería NO discrimina capacidad. 13 de los 15 modelos
+#   medidos sacan 7/7 (mismos prompts, misma GPU, evaluadores deterministas). Por tanto:
+#     - sirve como FILTRO DE DESCARTE (descarta al que falla), no como ranking de calidad;
+#     - el rol de cada modelo lo decide (a) segundos en el MISMO test, (b) VRAM que ocupa,
+#       (c) tasa de alucinación del ledger cuando la tarea es fáctica.
+#
+# Campos por entrada:
+#   modelo:      id EXACTO de la API de LM Studio (verificar antes de editar)
+#   alternativas: ids de respaldo EN ORDEN si `modelo` no llega a cargarse (unload+load falla).
+#                Es respaldo de DISPONIBILIDAD, no equivalencia de calidad: garantiza que
+#                conteste otro modelo validado (7/7) en vez de dejar la tarea sin motor.
+#   cuando:      criterio de activación (palabras clave). OJO: gana el bucket con MAS claves
+#                acertadas (pipeline_seleccion_modelo.py: sort por nº de golpes), NO el primero
+#                del fichero. En empate gana el orden de aparición aquí.
+#   herramienta: el bucket NO se sirve con un LLM de LM Studio (comfyui, whisper...). El
+#                pipeline lo marca fuera_de_lmstudio y no carga nada.
+#   evidencia:   dato real medido que justifica la asignación (fecha + cifra)
+#   prioridad:   "veracidad" | "velocidad" | "balance"  → el pipeline usa esto
+#                si la petición pide explícitamente una prioridad distinta.
+#   max_tokens:  presupuesto sugerido
+#   cloud:       true → NO es local; la tarea no toca LM Studio
+#
+# ALCANCE REAL (medido 01-oct-2026): este router cubre SOLO texto/chat servido por LM Studio.
+#   Fuera de él por diseño: embeddings (RAG usa bge-m3/nomic), transcripción (whisper),
+#   generación de imagen (ComfyUI/SDXL), leer/contar ficheros (shell). Los buckets
+#   `generacion_imagen` y `transcripcion` declaran los dos casos que antes caían en el bucket
+#   equivocado (una tarea de generación llegaba al VLM por la clave suelta `imagen`).
+
+version: 3
+last_validated: "2026-10-02"
+
+modelos_por_tarea:
+
+  veracidad_critica:
+    descripcion: "Hechos/factuales donde alucinar es caro; sin prisa"
+    modelo: qwen3.6-35b-a3b_moe
+    cuando: [verdad, hecho, factual, inventado, alucina, "es cierto", "es falso", verificar dato, confirmar dato, "dato exacto", fiable]
+    evidencia: "Ledger 06-sep-2026: 0% alucinaciones y 100% honestidad (27 casos x 3 seeds = 81 respuestas; mejor ledger del lab). Bateria v2 01-oct-2026: 7/7 pero 7,0 tok/s — el mas lento de todos los medidos (usar solo sin prisa). VRAM medida: 10.686 MiB."
+    prioridad: veracidad
+    max_tokens: 2000
+    alternativas: [openai/gpt-oss-20b, granite-4.1-8b]
+
+  vision:
+    descripcion: "Analizar imágenes, describir visual, OCR de imagen"
+    modelo: glm-4.6v-flash
+    cuando: [foto, screenshot, captura, "analiza esta imagen", "analiza la imagen", "describe la imagen", "qué hay en", visual, gráfica, mirar la, packshot, "lee el texto de esta imagen", "extrae el texto de la imagen"]
+    evidencia: "RULE-014 (vision = GLM local) + bateria de vision lfm-vs-glm 21-ago-2026 + Bateria v2 01-oct-2026: 7/7 en texto y 26,4 tok/s (2o mas rapido de los 7 nuevos). VRAM medida: 9.984 MiB (cabe justo en 12 GB)."
+    prioridad: balance
+    max_tokens: 800
+    alternativas: [google/gemma-4-12b-qat, lfm2.5-vl-3b]
+
+  codigo:
+    descripcion: "Generar/revisar código, scripts, funciones, corregir bugs"
+    modelo: dolphin3.0-llama3.1-8b-cyber-lora-test-v0.2
+    cuando: [codigo, código, script, funcion, función, bug, html, python, javascript, refactoriza, programa que, arregla el error]
+    evidencia: "Mismo test B1 (boton contador HTML, max_tokens=1500): 7/7 en 6,3 s frente a 23,6 s de openai/gpt-oss-20b y 31,4 s de granite-4.1-8b — 3,7x mas rapido con el mismo resultado. Coincide con normas-jl.md L361/L363 (codigo → Dolphin) y cierra la contradiccion gpt-oss vs Dolphin. OJO: medicion de 06-ago-2026 (dolphin no se re-midio el 01-oct)."
+    prioridad: velocidad
+    max_tokens: 1200
+    alternativas: [openai/gpt-oss-20b, granite-4.1-8b]
+
+  redaccion_datos:
+    descripcion: "Redactar informe/resumen/ficha CON fuente delante (verificador de fidelidad aparte)"
+    modelo: google/gemma-4-12b-qat
+    cuando: [informe, resumen, ficha, redacta, describe la escena, analisis textual con fuente, basandote en, segun la fuente, traduce, traduccion, "traduce al"]
+    evidencia: "25-ago-2026 juicio ciego: gano a gpt-oss y a cloud; fiel con fuente presente (verificador_fidelidad.py). Bateria v2 01-oct-2026: 7/7, 15,4 tok/s; D1 (receta espanola con 5 requisitos) en 50,9 s."
+    prioridad: balance
+    max_tokens: 1200
+    alternativas: [glm-4.6v-flash, granite-4.1-8b]
+
+  grounding:
+    descripcion: "Grounding con contexto RAG/documento (citar, responder del contexto)"
+    modelo: deepseek/deepseek-r1-distill-qwen-14b
+    cuando: [contexto, rag, grounding, citando, "según el documento", "en el texto", con fuente, basate en el contexto]
+    evidencia: "RULE-003 + Bateria 06-ago-2026: 7/7 (10,9 tok/s). AVISO del ledger 24-ago-2026: alucinacion muy variable, del 0% al 36,4% segun seed → no usar para hechos, solo para razonar sobre texto presente."
+    prioridad: balance
+    max_tokens: 1200
+    alternativas: [granite-4.1-8b, openai/gpt-oss-20b]
+
+  razonamiento:
+    descripcion: "Razonamiento general/lógica/estructurar datos (JSON, extraer, clasificar)"
+    modelo: openai/gpt-oss-20b
+    cuando: [razon, logica, lógica, "paso a paso", analiza, compara, extrae, clasifica, json, batch, resume esto, resume el, "haz de juez", juez, puntua, evalua esta respuesta]
+    evidencia: "19-ago-2026: 96% razonamiento duro, 3-15x mas rapido que R1. Bateria 06-ago-2026: 7/7; en los dos tests de razonamiento (A1+A2) 12,1 s, el mas rapido de los 7/7. Ledger: 0% alucinaciones con T=0,5 (81 respuestas) y 4,5-9,1% con T=0,2 → NO usar para hechos."
+    prioridad: velocidad
+    max_tokens: 800
+    alternativas: [granite-4.1-8b, granite-4.0-h-tiny]
+
+  interactivo:
+    descripcion: "Chat con espera humana / razonamiento complejo → NO local"
+    modelo: null
+    cloud: true
+    cuando: [hola, conversacion, chat, "hablame", interactivo]
+    evidencia: "Regla del lab: interactivo → cloud DeepSeek (config principal). Si se quiere local rapido: lfm2.5-2.6b (Bateria 06-ago-2026: 7/7, 55,3 tok/s, suma de los 7 tests 75,5 s)."
+    prioridad: velocidad
+    max_tokens: null
+    alternativas: [lfm2.5-2.6b]
+
+  # ── Buckets FUERA de LM Studio (declarados 01-oct-2026) ─────────────────────────
+  # Antes: "genera una imagen de un frasco" caía en `vision` (glm) por la clave suelta
+  # `imagen` y "transcribe este audio" en el fallback (gpt-oss). Ninguno de los dos es
+  # trabajo de un LLM de texto: se declaran aquí para que el pipeline NO cargue nada.
+
+  generacion_imagen:
+    descripcion: "Generar/crear una imagen con IA → ComfyUI/SDXL, NO LM Studio"
+    modelo: null
+    cloud: false
+    herramienta: comfyui
+    cuando: ["genera una imagen", "crea una imagen", "genera una foto", "dibuja", "renderiza una imagen", "hazme una imagen", sdxl, comfyui, img2img, txt2img]
+    evidencia: "Skill generacion-imagen-local (ComfyUI fuera de cgroup: 18G vs 8,9G OOM). El VLM solo analiza imágenes; no las crea."
+    prioridad: null
+    max_tokens: null
+    alternativas: []
+
+  transcripcion:
+    descripcion: "Transcribir audio/vídeo a texto → whisper, NO LM Studio"
+    modelo: null
+    cloud: false
+    herramienta: whisper
+    cuando: [transcribe, transcripcion, transcripción, "pasa a texto el audio", subtitulos, subtítulos, "audio a texto", "del audio a texto"]
+    evidencia: "Skill video-transcription: whisper CPU en el lab. Ningún modelo de LM Studio recibe audio."
+    prioridad: null
+    max_tokens: null
+    alternativas: []
+
+# Fallback si no se detecta tipo
+fallback:
+  modelo: openai/gpt-oss-20b
+  motivo: "Tipo no detectado → gpt-oss-20b (rapido y validado); revisar si la tarea es de hechos → qwen3.6-35b-a3b_moe"
+  alternativas: [granite-4.1-8b]
+
+# Modelos instalados reales (02-oct-2026, API :1234/api/v0/models) — para validación del YAML.
+# 02-oct-2026: ya sin qwen3.6-35b-a3b-mtp ni qwen3.5-9b-the-defiant-... (borrados del disco).
+modelos_instalados:
+  - qwen3.6-35b-a3b_moe
+  - glm-4.6v-flash
+  - google/gemma-4-12b-qat
+  - granite-4.0-h-tiny
+  - granite-4.1-8b
+  - lfm2.5-2.6b
+  - lfm2.5-vl-3b
+  - openai/gpt-oss-20b
+  - deepseek/deepseek-r1-distill-qwen-14b
+  - dolphin3.0-llama3.1-8b-cyber-lora-test-v0.2
+
+# Embeddings (nunca se cargan para chat; los usa el RAG)
+embeddings:
+  - text-embedding-bge-m3
+  - text-embedding-nomic-embed-text-v1.5
+
+# ── Matriz medida en la batería v2 (01-oct-2026) — valores literales del jsonl ──
+# Mismos 7 tests que la batería de 06-ago, misma máquina/GPU, T=0, evaluadores
+# deterministas (sin LLM juez). t_total_s = reloj de la corrida completa; sum_tests =
+# suma de los 7 tests; b1_codigo_s = MISMO test de código en todos (comparable);
+# vram_mib = VRAM al terminar. OJO: 5 de estos 7 se truncaron en E1 (finish_reason=
+# length) y 4 en B2 → los PASS siguen siendo válidos (los evaluadores miran el inicio
+# de la respuesta), pero los tok/s son un proxy basto.
+mediciones_bateria_v2_20261001:
+  glm-4.6v-flash:                                 {puntuacion: "7/7", t_total_s: 166.3, sum_tests_s: 162.8, tokens: 4388, tok_s: 26.4, vram_mib: 9984,  b1_codigo_s: 26.8,  d1_espanol_s: 57.8}
+  qwen3.5-9b-the-defiant-fable-uncensored-heretic-neo-imatrix-max-mtp: {puntuacion: "7/7", t_total_s: 202.9, sum_tests_s: 198.3, tokens: 4256, tok_s: 21.0, vram_mib: 6729, b1_codigo_s: 48.7, d1_espanol_s: 57.1}
+  google/gemma-4-12b-qat:                         {puntuacion: "7/7", t_total_s: 250.0, sum_tests_s: 244.9, tokens: 3842, tok_s: 15.4, vram_mib: 8611,  b1_codigo_s: 93.8,  d1_espanol_s: 50.9}
+  granite-4.0-h-tiny:                             {puntuacion: "7/7", t_total_s: 93.8,  sum_tests_s: 91.0,  tokens: 1205, tok_s: 12.9, vram_mib: 5383,  b1_codigo_s: 21.0,  d1_espanol_s: 22.0}
+  qwen3.6-35b-a3b-mtp:                            {puntuacion: "7/7", t_total_s: 480.6, sum_tests_s: 469.4, tokens: 4004, tok_s: 8.3,  vram_mib: 9469,  b1_codigo_s: 142.2, d1_espanol_s: 173.9}
+  qwen3.6-35b-a3b_moe:                            {puntuacion: "7/7", t_total_s: 484.8, sum_tests_s: 471.3, tokens: 3413, tok_s: 7.0,  vram_mib: 10686, b1_codigo_s: 127.5, d1_espanol_s: 147.0}
+  lfm2.5-vl-3b:                                   {puntuacion: "6/7", t_total_s: 15.7,  sum_tests_s: 15.3,  tokens: 1039, tok_s: 66.0, vram_mib: 3733,  b1_codigo_s: 8.1,   d1_espanol_s: 4.7, nota: "unico FAIL del dia: A2, contesta '20' en 0,1 s"}
+
+# Comparables de la batería de 06-ago-2026 (mismos tests), para contraste. No se
+# re-midieron el 01-oct: la asignación de `codigo` se apoya en esta medición.
+mediciones_bateria_20260806:
+  dolphin3.0-llama3.1-8b-cyber-lora-test-v0.2: {puntuacion: "7/7", sum_tests_s: 40.0,  tokens: 1241, tok_s: 29.8, b1_codigo_s: 6.3,  d1_espanol_s: 9.0,  c1_json_s: 0.8}
+  lfm2.5-2.6b:                                 {puntuacion: "7/7", sum_tests_s: 75.5,  tokens: 4248, tok_s: 55.3, b1_codigo_s: 29.5, d1_espanol_s: 13.7, c1_json_s: 4.3}
+  granite-4.1-8b:                              {puntuacion: "7/7", sum_tests_s: 74.0,  tokens: 1919, tok_s: 25.4, b1_codigo_s: 31.4, d1_espanol_s: 16.4, c1_json_s: 1.0}
+  google/gemma-4-e4b:                          {puntuacion: "7/7", sum_tests_s: 179.4, tokens: 5313, tok_s: 29.2, b1_codigo_s: 52.8, d1_espanol_s: 52.8, c1_json_s: 3.1}
+  openai/gpt-oss-20b:                          {puntuacion: "7/7", sum_tests_s: 84.9,  tokens: 1365, tok_s: 15.3, b1_codigo_s: 23.6, d1_espanol_s: 33.8, c1_json_s: 2.5}
+  deepseek/deepseek-r1-distill-qwen-14b:       {puntuacion: "7/7", sum_tests_s: 353.6, tokens: 3938, tok_s: 10.9, b1_codigo_s: 91.4, d1_espanol_s: 72.2, c1_json_s: 69.4}
+  qwen/qwen3-14b:                              {puntuacion: "7/7", sum_tests_s: 318.1, tokens: 3902, tok_s: 12.0, b1_codigo_s: 68.6, d1_espanol_s: 50.0, c1_json_s: 14.1}
+  meta-llama-3.1-8b-instruct:                  {puntuacion: "4/7", sum_tests_s: 12.1,  tokens: 367,  tok_s: 29.3, b1_codigo_s: 2.6,  d1_espanol_s: 5.4,  c1_json_s: 0.7}
+
+# ── Medidos y SIN bucket asignado (con motivo) ──────────────────────────────────
+sin_asignar:
+  - modelo: granite-4.0-h-tiny
+    motivo: "7/7 y la VRAM mas baja de los que razonan bien (5.383 MiB; A2 en 1,0 s) → candidato a batch/JSON en paralelo con otro modelo dentro de los 12 GB. Sin bucket por falta de evidencia en tareas largas."
+  - modelo: lfm2.5-vl-3b
+    motivo: "El mas rapido de los 15 medidos (66 tok/s) pero 6/7: falla A2 y contesta '20' en 0,1 s — fallo real de razonamiento, no artefacto. Valido como VLM rapido, NO como razonador."
+  - modelo: lfm2.5-2.6b
+    motivo: "7/7, 55,3 tok/s, 5,4 GiB (bateria 06-ago-2026). Alternativa local del bucket interactivo."
+  - modelo: granite-4.1-8b
+    motivo: "7/7, 25,4 tok/s (bateria 06-ago-2026). Reserva de grounding/JSON si r1-14b no convence."

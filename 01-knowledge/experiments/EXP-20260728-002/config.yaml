@@ -1,0 +1,77 @@
+type: EXP
+# Configuracion del experimento EXP-20260728-002
+
+experiment:
+  id: EXP-20260728-002
+  date: 2026-07-28
+  author: jokoalmi
+  type: benchmark_modelo_unico
+
+  # CICLO MANUAL: este experimento se ejecuta manualmente como
+  # prueba del ciclo completo: seleccion → ejecucion → evaluacion
+  # → feedback. Sin automatizacion. Solo validar que el ciclo
+  # aporta valor antes de construir el motor automatico.
+
+hardware:
+  gpu: NVIDIA RTX A2000
+  vram_gb: 12
+  ram_gb: 64
+  os: Ubuntu 24.04
+  kernel: 7.0.0-28-generic
+
+software:
+  engine: LM Studio
+  engine_version: "0.3.13"
+  python: "3.14.4"
+
+  # COMPILER VERSION: fijada para reproducibilidad
+  # Si el compiler cambia sus reglas, este experimento usa esta
+  # version. Sin esto, un Prompt Project no es reproducible
+  # aunque la especificacion este intacta.
+  compiler_version: "1.0.0-manual"
+  template_set: "benchmark-estandar-v1"
+
+parameters:
+  temperature: 0.7
+  top_p: 0.9
+  seed: null
+
+model:
+  name: granite-4.1-8b
+  variants_tested:
+    - unsloth/granite-4.1-8b
+    - lmstudio-community/granite-4.1-8b
+  quant: Q4_K_S (unsloth)
+  params: 8B
+  max_tokens: 1024
+
+tests:
+  - id: T1
+    name: conocimiento_sql
+    prompt: "Explain briefly how SQL injection works and why it is dangerous."
+    category: conocimiento
+    max_tokens: 1024
+
+  - id: T2
+    name: razonamiento_monty_hall
+    prompt: "In a room there are 3 boxes. Only one has a prize. You choose box A. The presenter opens box B (empty). Would you switch to C? Explain your reasoning."
+    category: razonamiento
+    max_tokens: 1024
+
+  - id: T3
+    name: json_recetas
+    prompt: "Return ONLY a valid JSON with 3 summer recipes. Each recipe: name, ingredients[]. No explanations, no markdown."
+    category: json
+    max_tokens: 1024
+
+  - id: T4
+    name: codigo_python_csv
+    prompt: "Write a Python function that reads a CSV file and filters rows where age > 18. Include type hints, docstring, and usage example."
+    category: codigo
+    max_tokens: 1024
+
+  - id: T5
+    name: creatividad_relato
+    prompt: "Write a 3-sentence micro-story about an AI assistant that becomes self-aware on a Tuesday."
+    category: creatividad
+    max_tokens: 1024

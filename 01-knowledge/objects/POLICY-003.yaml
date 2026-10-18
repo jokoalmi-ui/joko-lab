@@ -1,0 +1,44 @@
+id: POLICY-003
+type: POLICY
+decision_origin: revision
+status: activo
+version: 1
+created: '2026-08-04'
+last_validated: '2026-08-04'
+next_review: '2026-11-02'
+expires: '2027-02-01'
+confidence: null
+confidence_label: NO_EVALUADA
+evidence:
+- 'Declaracion de valores del fundador (nivel Constitucion, 04-ago): no requiere evidencia E0-E4; el contrato de evidencia no aplica a politicas constitucionales'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: null
+  baseline: null
+  current: null
+  last_checked: null
+history:
+- date: '2026-08-04'
+  event: created
+- date: '2026-08-04'
+  event: decision_fundador
+  note: "Declaracion de valores del fundador (Joseba) tras M9-01 Founderz (Ley y etica en la IA - Alineamiento y peligros). Nivel Constitucion: no requiere evidencia E0-E4."
+body: "Alineamiento etico del lab: (1) alineacion con valores humanos (dignidad, autonomia, justicia, derechos humanos); (2) beneficio social explicito, no solo eficiencia economica; (3) minimizacion de danos: anticipar riesgos y establecer salvaguardas; (4) diseno guiado por valores desde el inicio, no como correccion a posteriori. Aplicar en todo producto del lab (Perfume IA, Forense Digital, SkillBridge y futuros)."
+legacy_fields:
+  condicion:
+    decisiones_automatizadas: true
+    datos_personales: true
+    productos_lab: true
+  accion:
+    - documentar_impacto_etico
+    - preferir_local
+    - permitir_auditoria
+    - explicabilidad
+  prioridad: 98
+  activa: true
+  nota: "POLICY-003 complementa POLICY-002 (privacidad): donde 002 protege los datos, 003 protege los valores. Origen: M9-01 Founderz + decision del fundador 04-ago-2026."
+  alcance: todo_joko_lab

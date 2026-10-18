@@ -1,0 +1,11 @@
+# Cola del orquestador local/cloud (fase 2 · camino C) — Joko Lab
+# Cada línea es un objeto JSON. Campos:
+#   id      : identificador corto y estable (da nombre al artefacto del día)
+#   estado  : "pendiente" (se ejecuta) | "plantilla" (se ignora, es documentación)
+#   runner  : "orquestador" (batch/batch-json, verifier determinista, 0 tokens de verificación)
+#             "fusion" no implementado todavía (redacción con fuente -> verificador_fidelidad)
+#   tarea   : la tarea. Si contiene {{INFORME_HOY}} se sustituye por el informe local del día
+#             (~/joko-lab/04-operations/reports/YYYYMMDD-informe-local.txt, solo lectura).
+# El productor NO modifica este fichero: el trabajo hecho se marca con el artefacto
+# ~/joko-lab/04-operations/metrics/batch/<fecha>/<id>.json
+{"id":"informe-json","estado":"pendiente","runner":"orquestador","tarea":"Extrae en JSON estricto (solo JSON, sin markdown ni texto alrededor) un objeto con estas claves exactas: fecha, tests_ok, servicios_activos, gpu_mem_usado_mb, gpu_temp_c, problemas. Usa SOLO datos que aparezcan en el informe de abajo; si un dato no aparece, pon null. Los números como número, no como texto. El campo problemas es una lista de strings (vacía si no hay ninguno).\n\nINFORME DEL DÍA:\n{{INFORME_HOY}}"}

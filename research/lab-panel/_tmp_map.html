@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joko Lab · panel de estado</title><style>
+:root{--bg:#0a0d13;--panel:#141b26;--panel2:#1a2331;--line:#243044;--txt:#e8eef7;--dim:#8ea0b8;--dim2:#5f7186;
+--ok:#33d17a;--warn:#f5b942;--bad:#ff5d5d;--info:#4ea1ff;--mono:ui-monospace,"JetBrains Mono",Menlo,Consolas,monospace;
+--sans:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;background:radial-gradient(1200px 600px at 20% -10%,#16233a 0%,var(--bg) 55%) no-repeat,var(--bg);
+color:var(--txt);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1600px;margin:0 auto;padding:24px 24px 60px}
+header.top{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-end;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:14px}
+.brand{display:flex;align-items:center;gap:13px}.logo{width:44px;height:44px;border-radius:12px;background:linear-gradient(145deg,#2b3f63,#111826);
+display:grid;place-items:center;font-weight:800;color:#cfe3ff;border:1px solid #33405e;font-size:18px}
+h1{margin:0;font-size:22px;letter-spacing:-.3px}.sub{color:var(--dim);font-size:12.5px;margin-top:3px}
+.stamp{font-family:var(--mono);font-size:11px;color:var(--dim2);text-align:right;line-height:1.7}.stamp b{color:var(--ok)}
+.bar{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:16px 0 12px}
+.seg{display:flex;background:var(--panel);border:1px solid var(--line);border-radius:11px;overflow:hidden}
+.seg button{background:none;border:0;color:var(--dim);padding:9px 14px;font:600 12.5px var(--sans);cursor:pointer}
+.seg button.on{background:#22314a;color:#fff}.seg button:hover{color:#fff}
+input.search{background:var(--panel);border:1px solid var(--line);border-radius:11px;padding:10px 13px;color:var(--txt);font:13px var(--sans);min-width:220px;outline:none}
+.spacer{flex:1}.kpibar{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:6px 0 18px}
+.kpi{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:12px;cursor:pointer}
+.kpi:hover{border-color:#3a537a}.kpi .v{font-size:21px;font-weight:750;letter-spacing:-.5px}
+.kpi .l{font-size:10.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.7px;margin-top:3px}
+.kpi .n{font-size:10.5px;color:var(--dim2);margin-top:6px}
+.kpi.bad .v{color:var(--bad)}.kpi.warn .v{color:var(--warn)}.kpi.ok .v{color:var(--ok)}.kpi.info .v{color:var(--info)}
+/* ── solapas ── */
+.tabs{display:flex;flex-wrap:wrap;align-items:flex-end;gap:5px;margin:18px 0 0;border-bottom:1px solid var(--line)}
+.tg{display:flex;gap:5px;align-items:flex-end}
+.tsep{width:1px;height:24px;background:var(--line);margin:0 7px 7px}
+.tab{background:#0f1620;border:1px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;color:var(--dim);
+padding:9px 13px;font:600 12.5px var(--sans);cursor:pointer;display:flex;align-items:center;gap:7px;position:relative;top:1px}
+.tab:hover{color:#fff;background:#182233}
+.tab.on{background:var(--panel);color:#fff;border-color:#3a537a;box-shadow:inset 0 2px 0 var(--info)}
+.tab .cnt{font-family:var(--mono);font-size:10px;color:var(--dim2)}
+.tab .cnt.bad{color:var(--bad)}.tab .cnt.warn{color:var(--warn)}
+.view{display:none}.view.on{display:block;padding-top:14px}
+.vhead{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;justify-content:space-between;margin:4px 0 12px}
+.vhead h2{margin:0;font-size:17px;letter-spacing:-.2px}
+.vhead .code{font-family:var(--mono);font-size:10px;color:var(--dim2);background:#0e141e;border:1px solid var(--line);padding:1px 6px;border-radius:6px;margin-left:7px}
+.vhead .meta{color:var(--dim2);font-size:11.5px}
+.caps{display:grid;grid-template-columns:repeat(auto-fit,minmax(208px,1fr));gap:10px;margin-bottom:16px}
+.capcard{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:13px;
+padding:12px;cursor:pointer;transition:.14s}
+.capcard:hover{border-color:#3a537a;transform:translateY(-1px)}
+.capcard .n{font-size:13px;font-weight:650;display:flex;align-items:center;gap:7px}
+.capcard .c{font-family:var(--mono);font-size:10px;color:var(--dim2);margin:3px 0 8px}
+.capcard .st{display:flex;gap:10px;font-size:11.5px;color:var(--dim);flex-wrap:wrap}
+.capcard .st b{font-family:var(--mono)}
+.p0row{display:flex;gap:9px;align-items:center;padding:7px 10px;border:1px solid var(--line);border-left:3px solid var(--bad);
+border-radius:9px;background:var(--panel);margin-bottom:7px;font-size:12.5px;cursor:pointer}
+.p0row:hover{background:#1a2432}
+.p0row .mono{font-size:10.5px;color:var(--dim2);margin-left:auto}
+.nodes{display:grid;grid-template-columns:repeat(auto-fill,minmax(430px,1fr));gap:10px;align-items:start}
+@media(max-width:940px){.nodes{grid-template-columns:1fr}}
+.node{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--dim2);border-radius:11px;padding:10px 12px;cursor:pointer;transition:.14s}
+.node:hover{background:#1c2739}
+.node.ok{border-left-color:var(--ok)}.node.warn{border-left-color:var(--warn)}.node.bad{border-left-color:var(--bad)}
+.node.crit{background:linear-gradient(90deg,rgba(255,93,93,.12),var(--panel));border-color:#5a2b2b}
+.node.hide{opacity:.13;filter:grayscale(.7)}
+.node.open{background:#1a2432;border-color:#3a537a}
+.node .cab{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+.node .t{font-size:12.8px;font-weight:600;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.node .measr{font-family:var(--mono);font-size:10.5px;color:#9fb4cf;text-align:right;max-width:44%}
+.node .chev{color:var(--dim2);font-size:14px;display:inline-block;transition:.16s;margin-left:3px}
+.node.open .chev{transform:rotate(90deg);color:var(--info)}
+.node .det{display:none}
+.node.open .det{display:block;margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+.node .d{font-size:12px;color:var(--dim);line-height:1.55}
+.dot{width:8px;height:8px;border-radius:50%;flex:0 0 auto}.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}.dot.bad{background:var(--bad)}
+.evid{background:#0b1119;border:1px solid var(--line);border-radius:9px;padding:9px 10px;font-family:var(--mono);font-size:10.5px;
+color:#9fd4b4;white-space:pre-wrap;word-break:break-word;line-height:1.55}
+.evid.bad{color:#ffb3b3;border-color:#4a2727;background:#160e0e}
+.lbl{font-size:10px;text-transform:uppercase;letter-spacing:.8px;color:var(--dim2);margin:11px 0 5px;font-weight:700}
+.fix{border-left:2px solid var(--info);padding-left:10px;font-size:12.5px;color:#d6e3f5;line-height:1.6}
+table.falt{width:100%;border-collapse:collapse;font-size:12.5px}
+table.falt th{text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.7px;color:var(--dim2);border-bottom:1px solid var(--line);padding:8px 9px}
+table.falt td{border-bottom:1px solid #1b2431;padding:10px 9px;vertical-align:top;color:#cfdcec}
+tr.main:hover td{background:#141d2a;cursor:pointer}
+tr.detrow{display:none}
+tr.detrow.on{display:table-row}
+tr.detrow>td{background:#0d141d;border-bottom:1px solid var(--line);padding:2px 16px 16px}
+.mono{font-family:var(--mono);font-size:11px;color:#9fb4cf;white-space:pre-wrap}
+.tag{font-size:9.5px;font-family:var(--mono);padding:1px 5px;border-radius:5px;border:1px solid var(--line);color:var(--dim);text-transform:uppercase}
+.tag.p0{color:#ffd0d0;border-color:#7a3333;background:#3a1a1a}.tag.p1{color:#ffe6bf;border-color:#7a5a2b;background:#3a2c14}
+.tag.p2{color:#cfe0ff;border-color:#33507a;background:#16233a}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:11.5px;color:var(--dim);margin-bottom:11px}
+.legend span{display:flex;align-items:center;gap:6px}
+footer.note{margin-top:20px;border-top:1px solid var(--line);padding-top:13px;color:var(--dim2);font-size:11.5px;line-height:1.75}
+</style></head><body><div class="wrap">
+<header class="top"><div class="brand"><div class="logo">JL</div><div>
+<h1>Joko Lab · panel de estado</h1>
+<div class="sub">Instantánea real del sistema — <b>generada por tools/lab_panel.py</b>, sin datos de muestra.</div></div></div>
+<div class="stamp">instantánea: <b id="ts">—</b><br>nodos <span id="nodo-n"></span> · huecos <span id="hueco-n"></span> · críticos 1<br>
+<span id="auto" style="color:var(--ok)"></span><br>
+solo lectura: ls · git status · jobs.json · knowledge_health.py · lms ps · nvidia-smi · ss · tail de logs</div></header>
+<nav class="tabs" id="tabs" role="tablist"></nav>
+<div class="bar"><div class="seg" id="filters"><button data-f="all" class="on">Todo</button><button data-f="bad">Huecos</button>
+<button data-f="warn">Parcial</button><button data-f="ok">OK</button></div>
+<input class="search" id="q" placeholder="filtrar por nombre… (p. ej. git, rag, mcp)"><div class="spacer"></div>
+<span style="color:var(--dim2);font-size:11px">una solapa por sección · el filtro y el buscador se aplican a todas</span></div>
+<section class="view on" id="v-resumen">
+<div class="kpibar" id="kpibar"></div>
+<div class="vhead"><h2>Estado por capa</h2><div class="meta">clic en una tarjeta → esa capa, ya separada en su solapa</div></div>
+<div class="caps" id="caps"></div>
+<div class="vhead"><h2>Prioridades abiertas (P0/P1)</h2><div class="meta">clic en una fila → su evidencia literal en la solapa «Qué falta»</div></div>
+<div id="p0list"></div></section>
+<section class="view" id="v-capa-05-inference"><div class="vhead"><h2>Inferencia<span class="code">05-inference</span></h2><div class="meta">7 entradas · GPU NVIDIA RTX A2000 12GB</div></div><div class="legend"><span><i class="dot ok"></i> funcionando &nbsp; <i class="dot warn"></i> parcial / sin uso &nbsp; <i class="dot bad"></i> hueco o error &nbsp; <span style="color:var(--dim2)">· clic en un componente → se despliega aquí mismo su estado, medición y evidencia literal</span></span></div><div class="nodes" id="nodes-05-inference"></div></section>
+<section class="view" id="v-capa-03-automation"><div class="vhead"><h2>Automatización<span class="code">03-automation</span></h2><div class="meta">4 entradas · 42 crons</div></div><div class="legend"><span><i class="dot ok"></i> funcionando &nbsp; <i class="dot warn"></i> parcial / sin uso &nbsp; <i class="dot bad"></i> hueco o error &nbsp; <span style="color:var(--dim2)">· clic en un componente → se despliega aquí mismo su estado, medición y evidencia literal</span></span></div><div class="nodes" id="nodes-03-automation"></div></section>
+<section class="view" id="v-capa-01-knowledge"><div class="vhead"><h2>Conocimiento<span class="code">01-knowledge</span></h2><div class="meta">21 entradas · 847 docs · 69 objetos</div></div><div class="legend"><span><i class="dot ok"></i> funcionando &nbsp; <i class="dot warn"></i> parcial / sin uso &nbsp; <i class="dot bad"></i> hueco o error &nbsp; <span style="color:var(--dim2)">· clic en un componente → se despliega aquí mismo su estado, medición y evidencia literal</span></span></div><div class="nodes" id="nodes-01-knowledge"></div></section>
+<section class="view" id="v-capa-04-operations"><div class="vhead"><h2>Operaciones<span class="code">04-operations</span></h2><div class="meta">19 entradas · tools, tests, verificación</div></div><div class="legend"><span><i class="dot ok"></i> funcionando &nbsp; <i class="dot warn"></i> parcial / sin uso &nbsp; <i class="dot bad"></i> hueco o error &nbsp; <span style="color:var(--dim2)">· clic en un componente → se despliega aquí mismo su estado, medición y evidencia literal</span></span></div><div class="nodes" id="nodes-04-operations"></div></section>
+<section class="view" id="v-capa-02-infrastructure"><div class="vhead"><h2>Infraestructura<span class="code">02-infrastructure</span></h2><div class="meta">7 entradas · red, Docker, backups</div></div><div class="legend"><span><i class="dot ok"></i> funcionando &nbsp; <i class="dot warn"></i> parcial / sin uso &nbsp; <i class="dot bad"></i> hueco o error &nbsp; <span style="color:var(--dim2)">· clic en un componente → se despliega aquí mismo su estado, medición y evidencia literal</span></span></div><div class="nodes" id="nodes-02-infrastructure"></div></section>
+<section class="view" id="v-falt">
+<div class="vhead"><h2>Qué falta</h2><div class="meta">ordenado por impacto · 11 huecos · P0 1</div></div>
+<div class="legend"><span>cada fila despliega debajo su evidencia literal y cómo se cierra</span></div>
+<table class="falt"><thead><tr><th style="width:64px">Prior.</th><th style="width:250px">Hueco</th><th>Evidencia real</th>
+<th style="width:80px"></th></tr></thead><tbody id="faltbody"></tbody></table></section>
+<section class="view" id="v-list">
+<div class="vhead"><h2>Inventario</h2><div class="meta">26 componentes en una tabla plana · clic en una fila → ese componente en su capa</div></div>
+<table class="falt"><thead><tr><th style="width:150px">Capa</th><th style="width:240px">Componente</th>
+<th style="width:92px">Estado</th><th>Medición real</th></tr></thead><tbody id="listbody"></tbody></table></section>
+<footer class="note">Generado por <span class="mono">~/joko-lab/tools/lab_panel.py</span> a partir de una instantánea en modo lectura.
+Regenerar: <span class="mono">python3 tools/lab_panel.py --once</span> · servir: <span class="mono">python3 tools/lab_panel.py --serve --open --refresh 5</span>.
+Doble clic: <span class="mono">~/joko-lab/tools/lab-panel.sh</span> (o el lanzador del escritorio).
+Enlace directo a una solapa: <span class="mono">index.html#falt</span> · <span class="mono">index.html#capa-04-operations</span> · <span class="mono">index.html#capa-04-operations~gitlab</span>.
+Nada de lo que hay aquí modifica el sistema (n8n incluido: solo se consulta su puerto, nunca se toca el servicio).</footer>
+</div><script>
+const PANEL = {"snap": {"ts": "2026-09-23 19:21 CEST", "capas": {"01-knowledge": 21, "02-infrastructure": 7, "03-automation": 4, "04-operations": 19, "05-inference": 7}, "carpetas_sueltas": [".BACKUP-frontmatter-20260817", ".lancedb", ".pytest_cache", "USAGE", "assets", "docs", "founderz", "inbox", "instruments", "lpa", "reports", "research", "tests", "tfm", "tools", "verification"], "objetos": {"total": 69, "bak": 37, "por_tipo": {"CANALES-NO": 1, "DEC": 5, "DEC-GAIPRO": 1, "PATTERN": 1, "POLICY": 3, "PRED": 3, "RULE": 18}}, "conocimiento": {"benchmarks": 0, "data": 0, "decisions": 0, "experiments": 33, "hypotheses": 5, "models": 11, "objects": 20, "observations": 131, "patterns": 5, "policies": 0, "prompt-compiler": 2, "references": 2886, "rules": 0}, "knowledge_health": {"rc": 0, "salida": "EXP:               19\n  OBS:               131\n  RULE:              18\n  POLICY:            3\n  PATTERN:           14\n\nAlertas:\n  Expiradas:         0\n  Próximas a expirar:0\n  Sin expiración:    0\n  Nunca validadas:   0\n  Sin revisión >180d:0\n  Confianza baja:    0\n  Sin evidencia:     0\n  Contradicciones:   0\n  Patrones E0:       0\n\nEvidence Contract:\n  Cumplen contrato:  0/31\n\nEstructura documental (docs .md de conocimiento):\n  Total docs:        847\n  Frontmatter:       766/847 (90%)\n  H1:                846/847 (99%)\n  H2:                825/847 (97%)\n  H3:                244/847 (28%)\n  Con enlaces:       38/847 (4%)\n\nKNOWLEDGE HEALTH:    100/100\n============================================================\n\nKNOWLEDGE SURVIVAL RATE:\n  DEC creadas:       6\n  DEC activas:       6\n  DEC retiradas:     0\n  DEC expiradas:     0\n  DEC revalidadas:   27\n  Supervivencia:     100%\n============================================================", "parsed": {"score": 100, "docs": 847, "frontmatter": [766, 847], "h1": [846, 847], "h3": [244, 847], "enlaces": [38, 847], "contrato": [0, 31], "supervivencia": 100, "dec_activas": 6}, "py": "/usr/bin/python3"}, "tools": {"total": 303, "bak": 172}, "tests": {"total": 23, "lista": ["__pycache__", "test_activation_engine.py", "test_auditar_cobertura_backups.py", "test_auditor_deuda_tools.py", "test_buscar_perfume.py", "test_consolidador_sesiones.py", "test_context_builder_estructurado.py", "test_contrastar_externo.py"]}, "verification": {"total": 33, "lista": [".venv", "__pycache__", "analizar_historial.py", "bank.yaml", "bank.yaml.bak-20260801", "bank.yaml.bak-20260804", "bateria_modelos.py", "comparador.py"]}, "lpa": {"total": 28, "lista": ["CHANGELOG.md", "DEFINITION.md", "EPISTEMOLOGY.md", "HYPOTHESIS.md", "HYPOTHESIS.md.bak-20260807", "HYPOTHESIS.md.bak-20260807b", "HYPOTHESIS.md.bak-20260807c", "HYPOTHESIS.md.bak-20260807d"]}, "docs": {"total": 11, "lista": ["analisis-5-patrones-agente.md", "auditoria-conocimiento-001.md", "engineering-hardening-plan.md", "fase1-apagar-fuegos-detalle.md", "guia-prioridades-2026-07-30.md", "index.md", "pendientes-2026-07-29.md", "phase3-knowledge-activation-plan.md"]}, "research": {"total": 443, "lista": [".archive-20260902", "analisis-10-repos-agentes-briascoi.md", "analisis-12-agentic-ai-harness-patterns.md", "analisis-200ok-mcp-2026.md", "analisis-22-frameworks-agentes.md", "analisis-3-posts-vigilante-ig.md", "analisis-37-agentes-maurys.md", "analisis-50-conceptos-system-design.md"]}, "assets": {"total": 1, "lista": ["simple-icons"]}, "inbox": {"total": 1, "lista": ["images"]}, "reports": {"total": 1, "lista": ["informe-estado-2026-07-29.txt"]}, "instruments": {"total": 1, "lista": ["critic-loop"]}, "repos": {"/home/jokoalmi/joko-lab": {"git": false, "evidencia": "fatal: no es un repositorio git (ni ninguno de los directorios superiores): .git"}, "/home/jokoalmi/hermes-lab": {"git": true, "last": "24934e9|2026-09-21|feat(backup): capa 1b — copia de ~/hermes-lab (rsync --link-dest, rotacion por fecha del nombre, incluye .git) integrada en backup-joko-lab.sh", "sin_commitear": 2}, "/home/jokoalmi/perfume-ia": {"git": true, "last": "454ec89|2026-07-18|phase-1-embodiment: Fase 1 completada", "sin_commitear": 121}, "/home/jokoalmi/lmstudio_real_monitor": {"git": false, "evidencia": "fatal: no es un repositorio git (ni ninguno de los directorios superiores): .git"}}, "crons": {"total": 42, "enabled": 42, "error": [], "ok": 42, "sin_ejecutar": 0, "top": [{"n": "session-heartbeat-cli", "s": "ok", "last": "2026-09-23T19:20"}, {"n": "watchdog-control-cli", "s": "ok", "last": "2026-09-23T19:20"}, {"n": "Founderz Watchdog", "s": "ok", "last": "2026-09-23T19:19"}, {"n": "telegram-watchdog", "s": "ok", "last": "2026-09-23T19:14"}, {"n": "vigilar-canales-ig", "s": "ok", "last": "2026-09-23T19:07"}, {"n": "scan-empleo-diario", "s": "ok", "last": "2026-09-23T19:04"}]}, "crontab": ["5 * * * * cd \"/home/jokoalmi/hermes-lab/skills/docker-admin/scripts\" && bash healthcheck.sh --cron >> \"/home/jokoalmi/hermes-lab/skills/docker-admin/logs/healthcheck.log\" 2>&1 || notify-send \"docker-admin\" \"Healthcheck falló: algún servicio no responde\"", "*/30 * * * * bash /home/jokoalmi/hermes-lab/skills/n8n-admin/healthcheck-n8n.sh >> \"/home/jokoalmi/hermes-lab/skills/docker-admin/logs/healthcheck-n8n.log\" 2>&1 || notify-send \"n8n-admin\" \"Healthcheck n8n falló\"", "35 22 * * * /home/jokoalmi/hermes-lab/scripts/git-backup.sh --quiet >> /home/jokoalmi/hermes-lab/logs/git-backup.log 2>&1", "0 12 * * * /home/jokoalmi/hermes-lab/decision-engine/apply-decision.sh >> /mnt/ssd_ia_datos/lab-state/logs/apply-decision.log 2>&1", "*/30 * * * * /home/jokoalmi/hermes-lab/decision-engine/apply-decision.sh >> /mnt/ssd_ia_datos/lab-state/logs/apply-decision.log 2>&1", "* * * * * cd /home/jokoalmi/hermes-lab && python3 state-manager/state-manager.py >> /mnt/ssd_ia_datos/lab-state/logs/state-manager-cron.log 2>&1", "0 23 * * * notify-send -u critical 'Joko Lab — Rescue' 'Conecta el USB de backup' 2>/dev/null", "30 22 * * * /home/jokoalmi/hermes-lab/scripts/cloud-backup.sh >> /home/jokoalmi/hermes-lab/logs/cloud-backup.log 2>&1", "0 22 * * * bash /home/jokoalmi/hermes-lab/scripts/checkpoint.sh >> /home/jokoalmi/hermes-lab/recovery/checkpoint.log 2>&1"], "skills": {"total": 161, "por_categoria": {"joko-lab": 38, "software-development": 28, "productivity": 15, "creative": 12, "research": 10, "media": 8, "autonomous-ai-agents": 7, "mlops": 7, "github": 5, "diagnostico-stack-local": 4, "social-media": 4, "hermes-lab": 3, "mantenimiento-host": 3, "education": 2, "viajes": 2, "smart-home": 1, "yuanbao": 1, "data-science": 1, "auditoria-integral-lab": 1, "web": 1, "note-taking": 1, "bizkaia": 1, "computer-use": 1, "render-html-a-imagen": 1, "devops": 1, "telegran-cross-session-setup": 1, "email": 1, "instagram-monitor": 1}}, "mcp": ["animation-server", "lab-db", "lancedb"], "inferencia": {"lmstudio": "/bin/sh: 1: lms: not found", "lmstudio_cargado": false, "ollama_raw": "{\"object\":\"list\",\"data\":[{\"id\":\"ibm/granite4.2:8b-q4_K_M\",\"object\":\"model\",\"created\":1789384467,\"owned_by\":\"ibm\"},{\"id\":\"qwen2.5:7b\",\"object\":\"model\",\"created\":1788527960,\"owned_by\":\"library\"},{\"id\":\"deepseek-r1-distill-qwen-14b:latest\",\"object\":\"model\",\"created\":1787570492,\"owned_by\":\"library\"}]}", "comfyui": "inactive", "ollama_modelos": ["ibm/granite4.2:8b-q4_K_M", "qwen2.5:7b", "deepseek-r1-distill-qwen-14b:latest"]}, "gpu": "NVIDIA RTX A2000 12GB, 8904 MiB, 12282 MiB, 21 %, 39", "puertos": [53, 631, 1234, 4000, 5000, 5050, 5678, 8000, 8081, 8384, 8765, 9222, 9224, 9911, 11434, 22000, 41343, 42625], "logs": {"docker_health": {"existe": true, "lineas": 0, "ultima": ""}, "n8n_health": {"existe": false, "lineas": 0, "ultima": ""}}, "backups": {"destino_existe": true, "jobs": []}, "resumen": {"nodos": 26, "huecos": 11, "p0": 1, "p1": 6, "p2": 4}}, "capas": [{"code": "05-inference", "nombre": "Inferencia", "meta": "7 entradas · GPU NVIDIA RTX A2000 12GB", "nodes": [{"id": "lmstudio", "t": "LM Studio (puerto 1234)", "s": "warn", "d": "Motor principal de inferencia local.", "meas": "/bin/sh: 1: lms: not found", "evid": "$ lms ps\n/bin/sh: 1: lms: not found", "fix": "Nada."}, {"id": "ollama", "t": "Ollama (puerto 11434)", "s": "ok", "d": "Segundo motor, API compatible OpenAI.", "meas": "3 modelos: ibm/granite4.2:8b-q4_K_M, qwen2.5:7b, deepseek-r1-distill-qwen-14b:latest", "evid": "$ curl -s localhost:11434/v1/models\n{\"object\":\"list\",\"data\":[{\"id\":\"ibm/granite4.2:8b-q4_K_M\",\"object\":\"model\",\"created\":1789384467,\"owned_by\":\"ibm\"},{\"id\":\"qwen2.5:7b\",\"object\":\"model\",\"created\":1788527960,\"owned_by\":\"library\"},{\"id\":\"deepseek-r1-distill-qwen-14b:latest\",\"object\":\"model\",\"created\":1787570492,\"owned_by\":\"library\"}]}", "fix": "Nada."}, {"id": "comfyui", "t": "ComfyUI (bajo demanda)", "s": "ok", "d": "Generación de imagen local para arte de fichas e infografías.", "meas": "systemctl --user is-active comfyui → inactive", "evid": "$ systemctl --user is-active comfyui\ninactive", "fix": "Pararlo cuando no se usa es lo correcto: libera VRAM."}, {"id": "gpu", "t": "GPU NVIDIA RTX A2000 12GB", "s": "ok", "d": "Memoria y temperatura reales del acelerador.", "meas": "NVIDIA RTX A2000 12GB, 8904 MiB, 12282 MiB, 21 %, 39", "evid": "$ nvidia-smi --query-gpu=name,memory.used,memory.total,utilization.gpu,temperature.gpu --format=csv,noheader\nNVIDIA RTX A2000 12GB, 8904 MiB, 12282 MiB, 21 %, 39", "fix": "Si la VRAM va justa: descargar el modelo de visión antes de generar imagen."}, {"id": "mcp", "t": "MCP del lab (3)", "s": "ok", "d": "Herramientas del agente contra las bases del lab.", "meas": "animation-server · lab-db · lancedb", "evid": "$ grep -A20 '^mcp_servers' ~/.hermes/config.yaml → animation-server, lab-db, lancedb", "fix": "No hay MCP de git ni de inventario de crons: son justo los dos huecos P0/P1 de la lista."}]}, {"code": "03-automation", "nombre": "Automatización", "meta": "4 entradas · 42 crons", "nodes": [{"id": "crones", "t": "Crons de Hermes", "s": "ok", "d": "El motor real del lab: jobs diarios, horarios y semanales.", "meas": "42 total · 42 activos · 0 en error · 42 ok", "evid": "$ cat ~/.hermes/cron/jobs.json (recuento)\ntotal=42 enabled=42 error=[]", "fix": "Ver el hueco P0 de los jobs en error."}, {"id": "ragjob", "t": "jobs en error: ninguno", "s": "ok", "d": "No hay ningún job con last_status=error.", "meas": "todos en ok", "evid": "sin errores: 42 jobs ok de 42", "fix": "Nada.", "crit": false, "prio": ""}, {"id": "crontab", "t": "crontab del sistema (9 líneas)", "s": "warn", "d": "Automatizaciones fuera de Hermes: healthchecks, state-manager, backups.", "meas": "/home/jokoalmi/hermes-lab/decision · /home/jokoalmi/hermes-lab/scripts/ · bash · cd", "evid": "5 * * * * cd \"/home/jokoalmi/hermes-lab/skills/docker-admin/scripts\" && bash healthcheck.sh --cron >> \"/home/jokoalmi/he\n*/30 * * * * bash /home/jokoalmi/hermes-lab/skills/n8n-admin/healthcheck-n8n.sh >> \"/home/jokoalmi/hermes-lab/skills/doc\n35 22 * * * /home/jokoalmi/hermes-lab/scripts/git-backup.sh --quiet >> /home/jokoalmi/hermes-lab/logs/git-backup.log 2>&\n0 12 * * * /home/jokoalmi/hermes-lab/decision-engine/apply-decision.sh >> /mnt/ssd_ia_datos/lab-state/logs/apply-decisio", "fix": "Los vigilantes apuntan a logs que hay que comprobar (ver nodo de logs)."}, {"id": "logsvig", "t": "Logs de los vigilantes", "s": "bad", "d": "Un vigilante del que no queda registro no es un vigilante.", "meas": "docker_health: sin registro · n8n_health: sin registro", "evid": "$ tail -2 docker_health\n(sin salida)\n$ tail -2 n8n_health\n(sin salida)", "fix": "Arreglar la ruta del log y verificar que escribe también cuando todo va bien.", "prio": "P1"}]}, {"code": "01-knowledge", "nombre": "Conocimiento", "meta": "21 entradas · 847 docs · 69 objetos", "nodes": [{"id": "salud", "t": "Knowledge health", "s": "ok", "d": "El propio lab puntúa su estructura documental.", "meas": "KNOWLEDGE HEALTH 100/100 · supervivencia DEC 100%", "evid": "$ /usr/bin/python3 tools/knowledge_health.py\n  DEC activas:       6\n  DEC retiradas:     0\n  DEC expiradas:     0\n  DEC revalidadas:   27\n  Supervivencia:     100%\n============================================================", "fix": "Es puntuación de estructura, no de utilidad: mira los nodos de al lado."}, {"id": "objetos", "t": "Objetos de conocimiento", "s": "warn", "d": "Los ficheros que gobiernan el lab: reglas, decisiones, predicciones, patrones.", "meas": "69 entradas · vivos 32 · .bak 37 · {'CANALES-NO': 1, 'DEC': 5, 'DEC-GAIPRO': 1, 'PATTERN': 1, 'POLICY': 3, 'PRED': 3, 'RULE': 18}", "evid": "$ ls 01-knowledge/objects | wc -l → 69\npor tipo: {'CANALES-NO': 1, 'DEC': 5, 'DEC-GAIPRO': 1, 'PATTERN': 1, 'POLICY': 3, 'PRED': 3, 'RULE': 18}", "fix": "Sacar los .bak de la carpeta canónica."}, {"id": "corpus", "t": "Corpus documental", "s": "ok", "d": "Experimentos, observaciones, modelos y patrones documentados.", "meas": "experiments 33 · hypotheses 5 · models 11 · objects 20 · observations 131 · patterns 5 · prompt-compiler 2 · references 2886", "evid": "01-knowledge/{ experiments:33, hypotheses:5, models:11, objects:20, observations:131, patterns:5, prompt-compiler:2, references:2886 }", "fix": "Nada."}, {"id": "enlaces", "t": "Enlaces entre documentos", "s": "bad", "d": "Cuánto se referencian los documentos entre sí.", "meas": "Con enlaces: 38/847", "evid": "Estructura documental:\n  Frontmatter: 766/847\n  Con enlaces: 38/847", "fix": "Enlazar al reutilizar una DEC, un patrón o una observación.", "prio": "P1"}, {"id": "contrato", "t": "Contrato de evidencia", "s": "bad", "d": "Regla del lab: cada afirmación con su fuente.", "meas": "Cumplen contrato: 0/31", "evid": "Evidence Contract:\n  Cumplen contrato:  0/31", "fix": "Validar el medidor antes de tocar documentos.", "prio": "P1"}, {"id": "reports", "t": "Carpeta reports/", "s": "bad", "d": "Capa prevista para informes consolidados.", "meas": "1 entradas", "evid": "reports: 1 entradas", "fix": "Generador de informes o fuera del árbol.", "prio": "P1"}]}, {"code": "04-operations", "nombre": "Operaciones", "meta": "19 entradas · tools, tests, verificación", "nodes": [{"id": "tools", "t": "tools/", "s": "bad", "d": "Cajas de herramientas del lab. Crecen rápido y sin poda.", "meas": "303 ficheros · 172 son .bak (57 %)", "evid": "$ ls tools | wc -l → 303\n$ ls tools/*.bak* | wc -l → 172", "fix": "Archivar los .bak antiguos fuera de tools/.", "prio": "P2"}, {"id": "gitlab", "t": "Control de versiones del lab", "s": "bad", "d": "Historial y vuelta atrás del lab entero.", "meas": "git status → fatal: no es un repositorio git (ni ninguno de los directorios superiores): .git", "evid": "$ git -C ~/joko-lab status -sb\nfatal: no es un repositorio git (ni ninguno de los directorios superiores): .git", "fix": "Inicializar repo y sumarlo a git-backup.sh.", "crit": true, "prio": "P0"}, {"id": "repos", "t": "Repos hermanos", "s": "warn", "d": "Comparativa de qué proyectos sí tienen historial.", "meas": "joko-lab NO · hermes-lab SÍ · perfume-ia SÍ · lmstudio_real_monitor NO", "evid": "SIN GIT: /home/jokoalmi/joko-lab fatal: no es un repositorio git (ni ninguno de los directori\nREPO: /home/jokoalmi/hermes-lab 24934e9|2026-09-21|feat(backup): capa 1b — copia de ~/hermes\nREPO: /home/jokoalmi/perfume-ia 454ec89|2026-07-18|phase-1-embodiment: Fase 1 completada\nSIN GIT: /home/jokoalmi/lmstudio_real_monitor fatal: no es un repositorio git (ni ninguno de los directori", "fix": "Que el proyecto principal sea el único sin historial es la incoherencia a corregir."}, {"id": "verif", "t": "tests/ y verification/", "s": "ok", "d": "Red de seguridad del código del lab.", "meas": "tests 23 · verification 33", "evid": "tests/ → 23 · verification/ → 33", "fix": "Nada."}, {"id": "instr", "t": "instruments/", "s": "bad", "d": "Instrumentos de medida del lab.", "meas": "1 entradas: critic-loop", "evid": "instruments/ → critic-loop", "fix": "Faltan medidor de contrato de evidencia, gate de veracidad y medidor de alucinaciones.", "prio": "P2"}, {"id": "varias", "t": "assets/ · inbox/", "s": "warn", "d": "Carpetas creadas y casi sin uso.", "meas": "assets 1 · inbox 1", "evid": "assets: 1 entradas\ninbox: 1 entradas\nreports: 1 entradas\ninstruments: 1 entradas", "fix": "Unificar criterio: se usan o se retiran.", "prio": "P2"}, {"id": "lpadocs", "t": "lpa/ · docs/ · research/", "s": "ok", "d": "Programa de investigación, documentación oficial y research.", "meas": "lpa 28 · docs 11 · research 443", "evid": "lpa/ → 28 · docs/ → 11 · research/ → 443", "fix": "Nada."}]}, {"code": "02-infrastructure", "nombre": "Infraestructura", "meta": "7 entradas · red, Docker, backups", "nodes": [{"id": "puertos", "t": "Servicios escuchando", "s": "ok", "d": "Lo que hay realmente levantado en el host.", "meas": "18 puertos: 53 631 1234 4000 5000 5050 5678 8000 8081 8384 8765 9222", "evid": "$ ss -ltn | awk '{print $4}' | sed 's/.*://' | sort -n | uniq\n53 631 1234 4000 5000 5050 5678 8000 8081 8384 8765 9222 9224 9911 11434 22000 41343 42625", "fix": "Falta el inventario 'puerto → servicio → para qué sirve' dentro del lab."}, {"id": "dockerlog", "t": "Vigilancia de servicios", "s": "warn", "d": "Healthchecks de Docker y n8n del crontab.", "meas": "docker_health: 0 líneas · n8n_health: 0 líneas", "evid": "docker_health: existe=True lineas=0 ultima=(sin salida)\nn8n_health: existe=False lineas=0 ultima=(sin salida)", "fix": "El estado del stack se consulta en solo lectura (docker compose ps); nunca reiniciando a ciegas.", "prio": "P1"}, {"id": "n8n", "t": "n8n (puerto 5678)", "s": "ok", "d": "Servicio protegido del lab: workflows y credenciales.", "meas": "escuchando en 5678", "evid": "puertos en escucha: … 5678 …", "fix": "Solo se vigila. No se para, ni reinicia, ni recrea sin confirmación explícita."}, {"id": "backups", "t": "Backups", "s": "warn", "d": "Copia diaria del lab y del estado de Hermes.", "meas": "jobs con 'backup': 0 · destino /mnt/ssd_ia_datos/backups: existe", "evid": "jobs: —\ndestino existe: True", "fix": "Hay copia, pero sin git no hay historial navegable: los dos arreglos van juntos.", "prio": "P1"}]}], "huecos": [{"p": "P0", "t": "/home/jokoalmi/joko-lab sin control de versiones", "capa": "Operaciones", "ev": "$ git -C ~/joko-lab status -sb\nfatal: no es un repositorio git (ni ninguno de los directorios superiores): .git", "fix": "Inicializar repo, primer commit y sumarlo al git-backup.sh que ya corre a las 22:35 para hermes-lab."}, {"p": "P1", "t": "Contrato de evidencia: 0/31", "capa": "Conocimiento", "ev": "Evidence Contract:\n  Cumplen contrato:  0/31", "fix": "Validar primero el medidor (un 0 absoluto apunta a instrumento mal calibrado, no a N documentos incumplidores)."}, {"p": "P1", "t": "Documentos enlazados: 4 % (38/847)", "capa": "Conocimiento", "ev": "Con enlaces: 38/847 (4 %)\nH3: 244/847", "fix": "Enlazar cuando se reutiliza una DEC, un patrón o una observación; sin índice cruzado el corpus es opaco."}, {"p": "P1", "t": "reports/ con 1 fichero(s)", "capa": "Conocimiento", "ev": "reports: 1 entradas (frente a 131 observaciones)", "fix": "O generador de informes periódicos, o retirar la carpeta del árbol."}, {"p": "P1", "t": "37 .bak dentro de objects/", "capa": "Conocimiento", "ev": "objects/ = 69 entradas · 37 con .bak · vivos: {'CANALES-NO': 1, 'DEC': 5, 'DEC-GAIPRO': 1, 'PATTERN': 1, 'POLICY': 3, 'PRED': 3, 'RULE': 18}", "fix": "Mover los .bak a cuarentena con fecha y dejar objects/ solo con objetos vivos."}, {"p": "P1", "t": "log de vigilancia vacío/inexistente: docker_health", "capa": "Infraestructura", "ev": "docker_health: existe=True · líneas=0", "fix": "Corregir la ruta del log y comprobar que escribe algo cuando todo va bien, no solo al fallar."}, {"p": "P1", "t": "log de vigilancia vacío/inexistente: n8n_health", "capa": "Infraestructura", "ev": "n8n_health: existe=False · líneas=0", "fix": "Corregir la ruta del log y comprobar que escribe algo cuando todo va bien, no solo al fallar."}, {"p": "P2", "t": "tools/ con 57 % de .bak", "capa": "Operaciones", "ev": "tools/ = 303 ficheros · .bak = 172", "fix": "Archivar los .bak de más de 30 días en 04-operations/archive/ (borrado solo con OK explícito)."}, {"p": "P2", "t": "instruments/ con 1 instrumento(s)", "capa": "Operaciones", "ev": "instruments: 1 → ['critic-loop']", "fix": "Faltan al menos: medidor del contrato de evidencia, gate de veracidad, medidor de alucinaciones."}, {"p": "P2", "t": "carpetas casi vacías: assets, inbox, reports, instruments", "capa": "Operaciones", "ev": "assets: 1 entradas\ninbox: 1 entradas\nreports: 1 entradas\ninstruments: 1 entradas", "fix": "Decidir por carpeta: se usa o se retira. Carpetas vacías prometen algo que no existe."}, {"p": "P2", "t": "proyectos sin git: lmstudio_real_monitor", "capa": "Operaciones", "ev": "SIN GIT: /home/jokoalmi/lmstudio_real_monitor", "fix": "Mismo tratamiento que el lab: repo + primer commit."}], "kpis": [{"v": "42", "l": "crons Hermes", "n": "42 activos · 0 en error", "s": "ok", "go": "capa-03-automation"}, {"v": "161", "l": "skills", "n": "38 de dominio joko-lab", "s": "info", "go": "resumen"}, {"v": "847", "l": "docs de conocimiento", "n": "frontmatter 766/847", "s": "ok", "go": "capa-01-knowledge"}, {"v": "11", "l": "huecos detectados", "n": "1 críticos · 6 altos · 4 menores", "s": "bad", "go": "falt"}, {"v": "3", "l": "MCP conectados", "n": "animation-server · lab-db · lancedb", "s": "ok", "go": "capa-05-inference"}, {"v": "1", "l": "motores vivos", "n": "LM Studio + Ollama", "s": "ok", "go": "capa-05-inference"}, {"v": "32", "l": "objetos vivos", "n": "1 CANALES-NO · 5 DEC · 1 DEC-GAIPRO", "s": "info", "go": "capa-01-knowledge"}, {"v": "172", "l": ".bak en tools/", "n": "de 303 ficheros", "s": "bad", "go": "capa-04-operations"}]};
+const esc = s => String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const dot = s => `<i class="dot ${s}"></i>`;
+const TODOS = PANEL.capas.flatMap(L=>L.nodes.map(n=>({...n,capa:L.nombre,cc:L.code})));
+
+document.getElementById('ts').textContent = PANEL.snap.ts;
+document.getElementById('nodo-n').textContent = TODOS.length;
+document.getElementById('hueco-n').textContent = PANEL.huecos.length;
+
+/* ── solapas: Resumen · una por capa · Qué falta · Inventario ── */
+const TABS = [{v:'resumen',t:'Resumen'},
+  ...PANEL.capas.map(L=>({v:'capa-'+L.code,t:L.nombre,cnt:L.nodes.length,
+    bad:L.nodes.filter(n=>n.s==='bad').length, warn:L.nodes.filter(n=>n.s==='warn').length})),
+  {v:'falt',t:'Qué falta',cnt:PANEL.huecos.length,bad:PANEL.huecos.filter(h=>h.p==='P0').length,
+    warn:PANEL.huecos.filter(h=>h.p==='P1').length},
+  {v:'list',t:'Inventario',cnt:TODOS.length}];
+document.getElementById('tabs').innerHTML = TABS.map((t,i)=>{
+  const sep = (i===1 || t.v==='falt') ? '<span class="tsep"></span>' : '';
+  const cnt = t.cnt ? `<span class="cnt ${t.bad?'bad':(t.warn?'warn':'')}">${t.cnt}</span>` : '';
+  return sep+`<button class="tab" role="tab" aria-selected="false" data-v="${t.v}">${t.t}${cnt}</button>`;}).join('');
+
+/* ── resumen: KPIs, estado por capa y prioridades abiertas ── */
+document.getElementById('kpibar').innerHTML = PANEL.kpis.map(k=>`
+  <div class="kpi ${k.s}" data-go="${k.go}"><div class="v">${k.v}</div><div class="l">${esc(k.l)}</div><div class="n">${esc(k.n)}</div></div>`).join('');
+
+document.getElementById('caps').innerHTML = PANEL.capas.map(L=>{
+  const ok=L.nodes.filter(n=>n.s==='ok').length, w=L.nodes.filter(n=>n.s==='warn').length, b=L.nodes.filter(n=>n.s==='bad').length;
+  return `<div class="capcard" data-go="capa-${L.code}"><div class="n">${dot(b?'bad':(w?'warn':'ok'))}${esc(L.nombre)}</div>
+  <div class="c">${esc(L.code)}</div><div class="st"><span>OK <b>${ok}</b></span><span>parcial <b>${w}</b></span><span>hueco <b>${b}</b></span></div></div>`;}).join('');
+
+const ABIERTOS = PANEL.huecos.map((h,i)=>({...h,i})).filter(h=>h.p!=='P2');
+document.getElementById('p0list').innerHTML = ABIERTOS.length ? ABIERTOS.map(h=>`
+  <div class="p0row" data-go="falt" data-i="${h.i}"><span class="tag ${h.p.toLowerCase()}">${h.p}</span>
+  <b>${esc(h.t)}</b><span class="mono">${esc(h.capa)}</span></div>`).join('')
+  : '<i style="color:var(--dim2);font-size:12.5px">ningún hueco P0/P1 en esta instantánea</i>';
+
+/* ── una solapa por capa: cada componente se despliega ahí mismo ── */
+PANEL.capas.forEach(L=>{
+  const cont = document.getElementById('nodes-'+L.code); if(!cont) return;
+  cont.innerHTML = L.nodes.map(n=>`
+    <div class="node ${n.s}${n.crit?' crit':''}" data-id="${n.id}" data-s="${n.s}" data-cc="${L.code}"
+         data-t="${esc(n.t)}" data-capa="${esc(L.nombre)}">
+      <div class="cab"><div class="t">${dot(n.s)}${esc(n.t)}${n.prio?` <span class="tag ${n.prio.toLowerCase()}">${n.prio}</span>`:''}</div>
+      <div style="text-align:right;white-space:nowrap"><span class="measr">${esc(n.meas)}</span><span class="chev">▸</span></div></div>
+      <div class="det"><div class="lbl">Estado</div><div class="d">${esc(n.d)}</div>
+        <div class="lbl">Medición de hoy</div><div class="evid">${esc(n.meas)}</div>
+        <div class="lbl">Evidencia (salida literal)</div><div class="evid ${/fatal|no existe|no aparece|SIN GIT|\(sin salida\)|error/i.test(n.evid)?'bad':''}">${esc(n.evid)}</div>
+        ${n.fix?`<div class="lbl">Qué falta / qué haría</div><div class="fix">${esc(n.fix)}</div>`:''}</div></div>`).join('');
+});
+
+/* ── qué falta: cada fila despliega su evidencia debajo, en la misma solapa ── */
+document.getElementById('faltbody').innerHTML = PANEL.huecos.map((h,i)=>`
+  <tr class="main" data-i="${i}" data-t="${esc(h.t)}" data-capa="${esc(h.capa)}" data-p="${h.p}">
+    <td style="width:64px"><span class="tag ${h.p.toLowerCase()}">${h.p}</span></td>
+    <td style="width:250px"><b>${esc(h.t)}</b><div class="mono">${esc(h.capa)}</div></td>
+    <td class="mono">${esc((h.ev.split('\n')[0]||'').slice(0,150))}</td>
+    <td style="width:80px"><span class="chev">▸</span> ver</td></tr>
+  <tr class="detrow" id="detf-${i}"><td colspan="4">
+    <div class="lbl">Evidencia (salida literal)</div><div class="evid bad">${esc(h.ev)}</div>
+    <div class="lbl">Cómo se cierra</div><div class="fix">${esc(h.fix)}</div></td></tr>`).join('');
+
+/* ── inventario plano (clic en una fila → su solapa de capa, nodo abierto) ── */
+document.getElementById('listbody').innerHTML = TODOS.map(n=>`
+  <tr class="main" data-id="${n.id}" data-cc="${n.cc}"><td class="mono" style="width:150px">${esc(n.cc)}</td>
+  <td style="width:240px"><b>${esc(n.t)}</b></td>
+  <td style="width:92px">${dot(n.s)}<span style="font-size:11.5px;color:var(--dim)">${n.s==='ok'?'OK':(n.s==='warn'?'parcial':'hueco')}</span></td>
+  <td class="mono">${esc(n.meas)}</td></tr>`).join('');
+
+/* ── navegación ── */
+function vista(v, sinScroll){
+  if(!document.getElementById('v-'+v)) v = 'resumen';
+  document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on', s.id==='v-'+v));
+  document.querySelectorAll('#tabs .tab').forEach(b=>{const on=b.dataset.v===v;
+    b.classList.toggle('on',on); b.setAttribute('aria-selected',on?'true':'false');});
+  if(!sinScroll) window.scrollTo({top:0, behavior:'smooth'});
+  return v;
+}
+function abrir(id, sinScroll){
+  const n = TODOS.find(x=>x.id===id); if(!n) return;
+  vista('capa-'+n.cc, true);
+  document.querySelectorAll('.node').forEach(el=>el.classList.toggle('open', el.dataset.id===id));
+  const el = document.querySelector('.node[data-id="'+id+'"]');
+  if(el && !sinScroll) el.scrollIntoView({block:'center', behavior:'smooth'});
+}
+
+document.addEventListener('click', e=>{
+  const tab = e.target.closest('#tabs .tab');
+  if(tab){ vista(tab.dataset.v); return; }
+  const go = e.target.closest('[data-go]');
+  if(go){ const v = vista(go.dataset.go);
+    if(v==='falt' && go.dataset.i!==undefined){
+      const d = document.getElementById('detf-'+go.dataset.i); if(d) d.classList.add('on');
+      const tr = document.querySelector('#faltbody tr.main[data-i="'+go.dataset.i+'"]');
+      if(tr) tr.scrollIntoView({block:'center', behavior:'smooth'});
+    } return; }
+  const nd = e.target.closest('.node'); if(nd){ nd.classList.toggle('open'); return; }
+  const tr = e.target.closest('tr.main');
+  if(tr){
+    if(tr.dataset.i!==undefined){ const d=document.getElementById('detf-'+tr.dataset.i); if(d) d.classList.toggle('on'); return; }
+    if(tr.dataset.id){ abrir(tr.dataset.id); return; }
+  }
+});
+
+/* ── filtro y búsqueda (los nodos se atenúan; las filas se ocultan) ── */
+let filtro='all', texto='';
+function aplicar(){
+  document.querySelectorAll('.node').forEach(el=>{
+    const okF = filtro==='all' || el.dataset.s===filtro;
+    const okT = !texto || (el.dataset.t+' '+el.dataset.capa+' '+el.textContent).toLowerCase().includes(texto);
+    el.classList.toggle('hide', !(okF&&okT));});
+  document.querySelectorAll('#faltbody tr.main').forEach(tr=>{
+    const okF = filtro==='all' || filtro==='bad' || (filtro==='warn' ? tr.dataset.p!=='P0' : false);
+    const okT = !texto || (tr.dataset.t+' '+tr.dataset.capa+' '+tr.textContent).toLowerCase().includes(texto);
+    const ver = okF&&okT; tr.style.display = ver?'':'none';
+    const d = document.getElementById('detf-'+tr.dataset.i); if(d && !ver) d.classList.remove('on');});
+  document.querySelectorAll('#listbody tr.main').forEach(tr=>{
+    const n = TODOS.find(x=>x.id===tr.dataset.id);
+    const okF = filtro==='all' || n.s===filtro;
+    const okT = !texto || (n.t+' '+n.d+' '+n.id).toLowerCase().includes(texto);
+    tr.style.display = (okF&&okT)?'':'none';});
+}
+document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{filtro=b.dataset.f;
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b)); aplicar();});
+document.getElementById('q').oninput = e=>{texto=e.target.value.toLowerCase().trim(); aplicar();};
+
+/* ── la interfaz recuerda dónde estabas (solapa, filtro, búsqueda, nodo) ── */
+const UIKEY='labpanel_ui';
+function guardarUI(){try{sessionStorage.setItem(UIKEY,JSON.stringify({
+  v:(document.querySelector('.view.on')||{id:'v-resumen'}).id.slice(2), f:filtro, t:texto,
+  n:(document.querySelector('.node.open')||{dataset:{}}).dataset.id||''}));}catch(e){}}
+function restaurarUI(){try{const u=JSON.parse(sessionStorage.getItem(UIKEY)||'null'); if(!u)return;
+  if(u.f){const b=[...document.querySelectorAll('#filters button')].find(x=>x.dataset.f===u.f); if(b)b.click();}
+  if(u.t){const q=document.getElementById('q'); q.value=u.t; texto=u.t.toLowerCase().trim(); aplicar();}
+  if(u.v)vista(u.v,true);
+  if(u.n)abrir(u.n,true);}catch(e){}}
+document.addEventListener('click',()=>setTimeout(guardarUI,0));   // diferido: primero cambia la solapa, luego se guarda
+document.getElementById('q').addEventListener('input',()=>setTimeout(guardarUI,0));
+setTimeout(restaurarUI,0);   // al final del script, cuando ya está pintado todo
+
+/* ── enlace directo: #falt · #capa-04-operations · #capa-04-operations~gitlab ── */
+(function(){const h=decodeURIComponent((location.hash||'').replace(/^#/,''));
+  if(!h)return; const p=h.split('~'); if(p[0])vista(p[0],true); if(p[1])abrir(p[1],true);})();
+
+/* ── autorefresco: la instantánea se regenera sola y esta pestaña se recarga ── */
+const REFRESH = 5;
+if(REFRESH>0){
+  const et = document.getElementById('auto');
+  const txt = REFRESH<1 ? Math.round(REFRESH*60)+' s' : REFRESH+' min';
+  if(et) et.textContent = '↻ autorefresco cada '+txt;
+  setTimeout(()=>location.reload(), REFRESH*60000);
+}
+</script></body></html>

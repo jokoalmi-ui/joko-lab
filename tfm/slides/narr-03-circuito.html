@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>03 — El circuito</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1824px; height: 2310px; }
+  body { position: relative; font-family: 'Open Sans', sans-serif; background: #141414; }
+  .base { position: absolute; inset: 0; width: 1824px; height: 2310px; display: block; object-fit: fill; z-index: 1; }
+  .content { position: absolute; z-index: 2; left: 200px; top: 80px; right: 100px; bottom: 70px; display: flex; flex-direction: column; }
+  .badge { display: inline-block; background: #2D5D62; color: #FDF8E9; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px 34px; border-radius: 999px; margin-bottom: 40px; align-self: flex-start; }
+  h1 { font-family: 'Special Elite', serif; font-size: 128px; font-weight: 700; letter-spacing: -3px; color: #1e1e1e; line-height: 1.02; margin-bottom: 16px; }
+  h1 .accent { color: #2D5D62; }
+  .subtitle { font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: #2D5D62; margin-bottom: 52px; }
+  .flow { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 26px; flex-wrap: wrap; }
+  .fbox { background: #FDF8E9; border: 4px solid #2D5D62; border-radius: 18px; padding: 26px 30px; text-align: center; min-width: 210px; }
+  .fbox .t { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #2D5D62; }
+  .fbox .d { font-family: 'Open Sans', sans-serif; font-size: 20px; font-weight: 600; color: #1A1A1A; margin-top: 6px; }
+  .fbox.hl { background: #2D5D62; border-color: #2D5D62; }
+  .fbox.hl .t { color: #FDF8E9; }
+  .fbox.hl .d { color: #DCE7E8; }
+  .arrow { font-size: 40px; color: #D4A017; font-weight: 800; }
+  .loopline { text-align: center; font-family: 'Caveat', cursive; font-size: 36px; font-weight: 600; color: #333333; margin-bottom: 40px; }
+  .dashed-box { border: 4px dashed #333333; border-radius: 26px; padding: 30px 44px; font-family: 'Caveat', cursive; font-size: 46px; font-weight: 600; color: #333333; text-align: center; background: rgba(255,255,255,0.35); margin-bottom: 40px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+  .col { background: rgba(232, 241, 242, 0.55); border: 4px dashed #333333; border-radius: 22px; padding: 30px 36px; }
+  .col h3 { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #2D5D62; margin-bottom: 20px; border-bottom: 4px dashed #D4A017; padding-bottom: 12px; }
+  .col ul { list-style: none; }
+  .col li { font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: 600; color: #1A1A1A; line-height: 1.35; margin-bottom: 13px; padding-left: 44px; position: relative; }
+  .col li::before { content: ""; position: absolute; left: 0; top: 10px; width: 15px; height: 15px; background: #2D5D62; border-radius: 3px; }
+  .return { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+  .rbox { background: rgba(255,255,255,0.5); border: 3px dashed #D4A017; border-radius: 14px; padding: 12px 22px; font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #D4A017; }
+  .rnote { font-family: 'Caveat', cursive; font-size: 30px; font-weight: 600; color: #333333; }
+  .chiprow { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 34px; flex-wrap: wrap; }
+  .chip { display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.5); border: 3px dashed #D4A017; border-radius: 999px; padding: 12px 24px; }
+  .chip .n { font-family: 'Special Elite', serif; font-size: 26px; font-weight: 700; color: #2D5D62; }
+  .chip .t { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: #1A1A1A; }
+  .spacer { flex: 1; }
+  .footer { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #1A1A1A; }
+  .stars { color: #D4A017; font-size: 36px; letter-spacing: 0.35em; }
+</style>
+</head>
+<body>
+  <img class="base" src="hoja-cuaderno-base.png" alt="hoja cuaderno base">
+
+  <div class="content">
+    <!-- ============ CONTENIDO SLIDE 3 ============ -->
+    <span class="badge">Acto 2 · La solución</span>
+    <h1>EL CIRCUITO <span class="accent">COMPLETO</span></h1>
+    <p class="subtitle">La promesa: que la IA recuerde, valide y mejore</p>
+
+    <div class="flow">
+      <div class="fbox"><div class="t">USUARIO</div><div class="d">pregunta y decide</div></div>
+      <div class="arrow">→</div>
+      <div class="fbox"><div class="t">AGENTE</div><div class="d">interpreta y ejecuta</div></div>
+      <div class="arrow">→</div>
+      <div class="fbox"><div class="t">MODELOS</div><div class="d">razonan con roles</div></div>
+      <div class="arrow">→</div>
+      <div class="fbox"><div class="t">CONOCIMIENTO</div><div class="d">lo aprendido, validado</div></div>
+      <div class="arrow">→</div>
+      <div class="fbox hl"><div class="t">DECISIONES</div><div class="d">mejores, con base</div></div>
+    </div>
+    <div class="loopline">↻ y cada decisión vuelve al conocimiento → el circuito mejora solo</div>
+    <div class="return">
+      <div class="rbox">Decisiones</div>
+      <span class="arrow" style="font-size:32px;">↻</span>
+      <div class="rbox">Conocimiento</div>
+      <span class="rnote">el bucle se cierra y mejora</span>
+    </div>
+
+    <div class="dashed-box">Joko Lab construye este circuito completo en un ordenador doméstico (RTX A2000 12 GB).</div>
+
+    <div class="chiprow">
+      <div class="chip"><span class="n">1</span><span class="t">Modelos</span></div>
+      <div class="chip"><span class="n">2</span><span class="t">Conocimiento</span></div>
+      <div class="chip"><span class="n">3</span><span class="t">Memoria</span></div>
+      <div class="chip"><span class="n">4</span><span class="t">Enrutador</span></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <h3>Las 4 piezas del circuito</h3>
+        <ul>
+          <li>Modelos: quién hace qué</li>
+          <li>Conocimiento: dónde vive lo aprendido</li>
+          <li>Memoria (RAG): cómo se accede a ello</li>
+          <li>Enrutador: quién elige cada pieza</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Lo que vamos a ver</h3>
+        <ul>
+          <li>Una pieza por slide</li>
+          <li>Cada una con su pregunta</li>
+          <li>Y al final: validación con productos</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+    <div class="footer">
+      <div class="stars">★ ★</div>
+      slide 03 · el circuito
+    </div>
+    <!-- ============ /CONTENIDO SLIDE 3 ============ -->
+  </div>
+</body>
+</html>

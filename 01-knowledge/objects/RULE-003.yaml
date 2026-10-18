@@ -1,0 +1,63 @@
+id: RULE-003
+type: RULE
+decision_origin: herencia
+status: activo
+version: 1
+created: '2026-07-29'
+last_validated: '2026-07-29'
+next_review: '2026-10-27'
+expires: '2027-01-25'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-07-29T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-10-27T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-07-29T00:00:00Z
+sources:
+  - resource: 01-knowledge/objects/DEC-002.yaml
+confidence: 0.91
+confidence_label: ALTA
+evidence: []
+dependencies:
+- DEC-002
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: null
+  baseline: null
+  current: null
+  last_checked: null
+history:
+- date: '2026-07-29'
+  event: created
+- date: '2026-07-31'
+  event: migrated_to_ko
+  note: Migrado de formato YAML plano a Knowledge Object v1
+body: "Usar gpt-oss-20b (LM Studio) para razonamiento paso a paso y tareas batch. Validado 19-ago-2026: 96% razonamiento duro, 0 cortes, 3-15x más rápido que R1-14B. Ver [[DEC-002]] (límite de tokens)."
+legacy_fields:
+  condicion:
+    tipo_tarea:
+    - razonamiento
+    - razonar
+    - paso a paso
+    - batch
+    keywords:
+    - razona
+    - razonamiento
+    - paso a paso
+    - demostrar
+    - por qué
+  accion:
+    modelo: openai/gpt-oss-20b
+    proveedor: lm-studio
+    params:
+      temperature: 0.3
+      max_tokens: 2048
+  prioridad: 85
+  activa: true
+  nota: gpt-oss-20b (MoE 21B/3.6B activo, MXFP4) necesita max_tokens >= 2048 para razonar (LM Studio expone razonamiento en message.reasoning). Con max_tokens bajos devuelve content vacio + finish=length. Offload parcial obligatorio en 12GB (no carga junto con GLM). Sustituye a R1-14B (RULE-003 v1).
+  validaciones: 5

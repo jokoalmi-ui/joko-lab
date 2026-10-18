@@ -1,0 +1,80 @@
+id: RULE-018
+type: RULE
+decision_origin: incidente
+status: activo
+version: 1
+created: '2026-09-20'
+last_validated: '2026-09-30'
+next_review: '2026-12-20'
+expires: '2027-03-20'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-09-20T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-12-20T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-09-20T00:00:00Z
+  - by: machine:hermes
+    at: 2026-09-30T00:00:00Z
+title: "Un proceso de fondo (curador de Hermes) NO escribe skills del lab sin OK: si una skill cambia bajo tus pies, parar y reportar"
+desc: >-
+  Ningun proceso de fondo del lab (el curador de Hermes u otro pase
+  automatico del gateway) escribe el CONTENIDO de una skill sin OK explicito
+  del usuario: tocar una skill es una ESCRITURA y requiere OK, igual que
+  escribir en el backlog o en la BD. El curador SI lo hace por su cuenta y sin
+  que el agente lo pida (medido 20-sep-2026: 16 mutaciones con actor `curator`
+  en 4 h sobre 4 skills del lab, con el pase informando `llm: skipped
+  (consolidation off)` — la escritura no viene del pase de consolidacion).
+  Re-medido 30-sep-2026 (recuento directo de `.curator_ledger.jsonl`: 1754
+  filas desde el 01-sep (foto de las 16:41 CEST; 1757 filas y curator=1341
+  a las 17:04:04), actores agent=416 / curator=1338; y `hermes curator
+  ledger`): 55 operaciones con actor `curator` en un dia sobre 7-8 nombres de
+  skill (7 en la ventana de las 16:41 y 8 a las 17:03 CEST) y
+  subiendo mientras el agente trabajaba (51 a las 16:22 CEST, 55 a las 16:41);
+  el pase corre POR TURNO dentro de la sesion del propio agente
+  (`evidence.session_id` = sesion del gateway).
+  Procedimiento obligatorio ANTES de escribir en una skill: medir
+  `stat -c '%s %y'` + `md5sum` y comparar con lo medido previamente; si no
+  cuadra, PARAR, leer el fichero ENTERO (puede haber consolidado ya la leccion
+  que ibas a escribir: dos versiones de la misma regla se contradicen al
+  revisarlas) y auditar la autoria con `hermes curator ledger [--skill
+  <nombre>]`, que distingue los actores `curator` / `agent` / `user`. El
+  cambio es reversible por mutacion (`hermes curator rollback <id>`, con el
+  estado previo guardado como blob en `~/.hermes/.curator_backups/blobs/
+  <sha256>`). Si el diff es consolidacion en sitio y la leccion ya esta
+  escrita, NO se escribe nada: se reporta. Nada escrito por un proceso de
+  fondo se atribuye al agente ni al usuario: la autoria se declara por actor.
+  Cortafuegos: `hermes curator pin <skill>` (por skill, deja el curador vivo
+  para el resto — opcion preferida por decision del usuario; la ayuda de
+  la CLI lo describe como "Pin a skill so the curator never auto-transitions
+  it", asi que cubre stale/archive, y NO esta medido que bloquee los parches
+  de contenido) o `hermes curator pause` (global, reversible con `resume`),
+  que MEDIDO 30-sep-2026 NO detiene el pase por turno: `hermes curator
+  status` responde "curator: PAUSED" (13 corridas, la ultima hace 6d,
+  intervalo 7d) y las escrituras con actor `curator` siguieron (25-sep y
+  30-sep: 55 ops en un dia sobre 7-8 nombres de skill: 7 en la ventana de las
+  16:41 y 8 a las 17:03 CEST). El criterio efectivo de que el
+  curador escriba es la PROPIEDAD de la skill (`created_by`): las
+  curator-managed (96: 71 agent-created + 25 bundled) SI se editan, y las 68
+  sin marca (`created_by:null`) se RECHAZAN con el literal "Refusing
+  background curator patch for skill '<X>': the skill is not curator-managed
+  (created_by=None). User-owned skills are off-limits to autonomous
+  curation." (30-sep-2026: `diagnostico-stack-local` 07:59 y 08:16,
+  `perfume-del-dia` 08:32 y 09:05, `perfume-ia` 08:33, `instagram-monitor`
+  15:15). Lo escrito por el
+  curador NO se borra ni se revierte si es correcto: se conserva y se declara.
+confidence: 0.9
+confidence_label: ALTA
+evidence:
+- 'Directriz verbatim del usuario (20-sep-2026): "Deja el curador vivo. Formaliza el rule."'
+- 'Medido 20-sep-2026 (`hermes curator ledger`): 20 mutaciones en 4 h, 16 con actor curator — edicion-aditiva-registros 7, validacion-instrumentos-medicion 5, backups-joko-lab 3, hermes-cron-jobs 1; curador ENABLED (12 corridas, consolidate: off)'
+- 'Caso concreto 20-sep-2026 15:49:17: edicion-aditiva-registros/SKILL.md 38432 B (md5 fb7451d0f6d5bafcca8ab04343c1af0c) -> 40660 B (md5 1ba369f65e7dd04e776f6a16f3cc00df) mientras el agente iba a escribir en ese mismo fichero con OK del usuario; diff = consolidacion en sitio (6 lineas reescritas, 14 nuevas, 5 cabeceras `## ` antes y despues); punto de retorno fiel en .curator_backups/blobs/80b32444… con el md5 previo exacto'
+- 'Re-medido 30-sep-2026 (dos instrumentos: recuento directo de `.curator_ledger.jsonl` (1754 filas desde el 01-sep, foto 16:41, actores agent=416 / curator=1338) y `hermes curator ledger`): 55 operaciones con actor curator en un dia sobre 7-8 nombres de skill (7 en la ventana de las 16:41 y 8 a las 17:03 CEST) y subiendo mientras el agente trabajaba (51 a las 16:22 CEST, 55 a las 16:41 CEST) - hermes-cron-jobs 27, edicion-aditiva-registros 11, render-html-a-imagen 10, instagram-content-extraction 4, +1 en watchdog-salud-sistema, delegacion-subagentes y vigilancia-canales-youtube. Escala x3 respecto al 20-sep (16 en 4 h / 4 skills). El pase corre POR TURNO dentro de la sesion del propio agente: `evidence.session_id` = sesion del gateway (p. ej. 20260930_162343_c83c97 con 4 parches en edicion-aditiva-registros a las 16:27:25-29 CEST, disparada por el turno del agente que reportaba este mismo hallazgo)'
+- 'Corregido 30-sep-2026 (esta edicion): el `desc` afirmaba que `hermes curator pause` es cortafuegos - FALSO medido. `hermes curator status` responde "curator: PAUSED" (runs=13, last run 6d ago, interval 7d, consolidate off) y las mutaciones con actor curator continuaron (25-sep y 30-sep). El corte efectivo es la PROPIEDAD de la skill: 96 curator-managed (agent-created=71, bundled=25) editables frente a 68 unmanaged (`created_by:null`) RECHAZADAS con el literal "the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation." (30-sep-2026: diagnostico-stack-local 07:59 y 08:16, perfume-del-dia 08:32 y 09:05, perfume-ia 08:33, instagram-monitor 15:15; tambien bundled: "Refusing background curator patch for bundled skill" para blocked-page-recovery el 27-sep). Otros dos datos medidos: `.curator_suppressed` (337 B, 23-sep) lista 30 skills del catalogo bundled (medido 30-sep-2026 17:04:04 CEST con `wc -l`: 337 B / 30 nombres, [airtable..xurl], sin solape con las 8 skills del lab editadas hoy) y `~/.hermes/.curator_backups/blobs/` tiene 2716 blobs (medido 30-sep-2026 17:04:04 CEST con `ls -1 .../blobs/ | wc -l`) (reversibilidad por mutacion confirmada: el previo exacto del SKILL.md de instagram-content-extraction esta presente)'
+- 'Corregido 30-sep-2026 (segunda pasada, misma sesion, tras OK del usuario): dos cifras de la entrada anterior estaban mal medidas y se rectifican con instrumento - `.curator_suppressed` NO lista 32 skills sino 30 (337 B, 23-sep, `wc -l` = 30; nombres del catalogo bundled [airtable..xurl], sin solape con las 8 skills del lab editadas hoy), y los blobs del curador NO son 2713 sino 2716 (medido 17:04:04 CEST con `ls -1 .../blobs/ | wc -l`; crecen con cada mutacion, luego la cifra va con fecha). El ledger, recontado a esa hora, da 1757 filas (curator 1341 / agent 416; 55 ops de hoy repartidas en 8 nombres de skill distintos): la deriva del dia sigue viva y los skills distintos tambien (el `desc` y la entrada previa decian 7: se declara el rango sin reescribir la cifra previa). La entrada anterior se conserva tal cual y se rectifica aqui, no se reescribe (RULE-008 / edicion-aditiva-registros).'
+dependencies: [RULE-008, RULE-014]
+contradicts: []
+superseded_by: null
+domain: proceso
+scope: skills_del_lab

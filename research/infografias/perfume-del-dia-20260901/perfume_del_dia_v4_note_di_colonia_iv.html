@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Caveat:wght@600&family=Inter:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1080px; height: 1350px; overflow: hidden; font-family: 'Inter', sans-serif;
+    background: url('note_di_colonia_iv_fondo.png') center/cover no-repeat; }
+  .overlay { position: absolute; inset: 0; background: rgba(255,252,245,0.42);
+    display: flex; flex-direction: column; padding: 34px 44px; }
+  .sparkles { position: absolute; top: 12px; left: 0; right: 0; text-align: center; font-size: 18px; letter-spacing: 18px; color: #b8860b; opacity: .8; }
+  .sello { position: absolute; top: 30px; right: 44px; width: 108px; height: 108px; border-radius: 50%;
+    background: radial-gradient(circle, #1c2a4a 0%, #0f1830 100%); color: #e8d9a0; display: flex;
+    align-items: center; justify-content: center; text-align: center; font-size: 11px; font-weight: 600;
+    letter-spacing: 1px; border: 3px solid #e8d9a0; box-shadow: 0 4px 14px rgba(0,0,0,.35); z-index: 5; }
+  .sello span { transform: rotate(-8deg); line-height: 1.35; }
+  .hero { display: flex; align-items: center; gap: 34px; margin-top: 8px; margin-bottom: 16px; }
+  .hero-img { width: 300px; height: 300px; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(0,0,0,.35)); border-radius: 12px; }
+  .hero-txt { flex: 1; }
+  .casa { font-size: 17px; font-weight: 600; color: #8a6d1d; letter-spacing: 4px; text-transform: uppercase; text-shadow: 0 1px 2px rgba(255,255,255,.8); }
+  h1 { font-family: 'Playfair Display', serif; font-size: 62px; font-weight: 800; color: #16223d;
+    line-height: 1.05; margin: 6px 0 4px; text-shadow: 0 2px 6px rgba(255,255,255,.7); }
+  .subtitulo { font-family: 'Caveat', cursive; font-size: 27px; color: #6b4e12; margin-top: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
+  .chip { background: rgba(255,255,255,.75); border: 1.5px solid #c9a84a; color: #2c2c2c; font-size: 13px;
+    font-weight: 600; padding: 4px 12px; border-radius: 20px; backdrop-filter: blur(2px); }
+  .grid-datos { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0 8px; }
+  .tarjeta { background: rgba(255,255,255,.82); border-radius: 12px; padding: 10px 14px; border-top: 4px solid #b8860b;
+    box-shadow: 0 3px 10px rgba(0,0,0,.10); backdrop-filter: blur(3px); }
+  .tarjeta .k { font-size: 10px; font-weight: 700; color: #8a6d1d; text-transform: uppercase; letter-spacing: 1.5px; }
+  .tarjeta .v { font-size: 16px; font-weight: 600; color: #1c1c1c; margin-top: 2px; }
+  .tarjeta .v small { font-weight: 400; font-size: 13px; color: #555; }
+  .piramide { background: rgba(255,255,255,.82); border-radius: 12px; padding: 12px 16px; margin: 6px 0 8px;
+    border-top: 4px solid #b8860b; box-shadow: 0 3px 10px rgba(0,0,0,.10); backdrop-filter: blur(3px); }
+  .piramide h3 { font-size: 13px; font-weight: 700; color: #8a6d1d; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .nivel { text-align: center; padding: 5px 8px; margin: 3px auto; font-size: 13.5px; font-weight: 600; color: #fff; border-radius: 6px; }
+  .nivel.salida { width: 38%; background: #d9a441; }
+  .nivel.corazon { width: 68%; background: #9c6b1f; }
+  .nivel.fondo { width: 100%; background: #5c3a0e; }
+  .nivel small { display: block; font-weight: 400; font-size: 10px; opacity: .85; }
+  .seccion-alt { background: rgba(255,255,255,.82); border-radius: 12px; padding: 10px 14px; margin: 6px 0 8px;
+    border-top: 4px solid #b8860b; box-shadow: 0 3px 10px rgba(0,0,0,.10); backdrop-filter: blur(3px); }
+  .seccion-alt h3 { font-size: 13px; font-weight: 700; color: #8a6d1d; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 6px; }
+  .alt-item { font-size: 14px; font-weight: 600; color: #1c1c1c; margin-bottom: 4px; }
+  .alt-item small { display: block; font-weight: 400; font-size: 12px; color: #555; }
+  .cita { background: rgba(255,255,255,.85); border-radius: 12px; padding: 10px 14px; margin: 6px 0 6px;
+    border-left: 4px solid #b8860b; font-style: italic; font-size: 14px; color: #333; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  .cita .fuente { display: block; font-style: normal; font-size: 11px; color: #8a6d1d; font-weight: 600; margin-top: 4px; }
+  .pie { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    background: rgba(255,255,255,.75); border-radius: 12px; padding: 10px 16px; backdrop-filter: blur(3px); }
+  .pie .clima { font-size: 14px; font-weight: 600; color: #2c2c2c; }
+  .pie .sprays { font-size: 14px; font-weight: 600; color: #16223d; }
+  .pie .qr { height: 76px; width: 76px; border-radius: 6px; }
+  .nota-fondo { position: absolute; bottom: 8px; right: 14px; font-size: 9px; color: #888; font-style: italic; }
+  .duracion { height: 8px; background: #e5dcc0; border-radius: 4px; margin-top: 5px; overflow: hidden; }
+  .duracion-fill { height: 100%; background: linear-gradient(90deg, #d9a441, #5c3a0e); border-radius: 4px; }
+</style>
+</head>
+<body>
+<div class="overlay">
+  <div class="sparkles">✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦ ✦</div>
+  <div class="sello"><span>ELECCIÓN<br>DEL LAB<br>01·09</span></div>
+
+  <div class="hero">
+    <img class="hero-img" src="note_di_colonia_iv.png" alt="Note di Colonia IV">
+    <div class="hero-txt">
+      <div class="casa">Acqua di Parma</div>
+      <h1>Note di Colonia IV</h1>
+      <div class="subtitulo">Un aria de Puccini, en colonia</div>
+      <div class="chips">
+        <span class="chip">🌿 Verano tardío</span>
+        <span class="chip">☁️ 24,5 °C · 0% lluvia</span>
+        <span class="chip">🏛️ Unisex</span>
+        <span class="chip">🧴 EDC 150 ml</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-datos">
+    <div class="tarjeta"><div class="k">Año</div><div class="v">2017</div></div>
+    <div class="tarjeta"><div class="k">Familia olfativa</div><div class="v">Ámbar Floral <small>(oriental floral)</small></div></div>
+    <div class="tarjeta"><div class="k">Perfumista</div><div class="v">No revelado <small>(colección Note di Colonia)</small></div></div>
+    <div class="tarjeta"><div class="k">Rating comunidad</div><div class="v">4,35 / 5 <small>(190 votos, Fragrantica)</small></div></div>
+    <div class="tarjeta"><div class="k">Longevidad</div><div class="v">7,6 / 10 <small>(Decanto)</small>
+      <div class="duracion"><div class="duracion-fill" style="width:76%"></div></div></div>
+    <div class="tarjeta"><div class="k">Estela / Sillage</div><div class="v">7,2 / 10 <small>(Decanto · moderada)</small></div></div>
+    <div class="tarjeta"><div class="k">Precio</div><div class="v">520 € <small>EDC 150 ml · Perfumería Benegas</small></div></div>
+    <div class="tarjeta"><div class="k">Inspiración</div><div class="v">«Manon Lescaut» <small>de G. Puccini (homenaje oficial)</small></div></div>
+  </div>
+
+  <div class="piramide">
+    <h3>🌗 Pirámide olfativa</h3>
+    <div class="nivel salida">MANDARINA VERDE · BERGAMOTA <small>la chispa cítrica</small></div>
+    <div class="nivel corazon">ROSA TURCA · FLOR DE AZAHAR <small>el alma floral-miel</small></div>
+    <div class="nivel fondo">OPOPÓNACO · LÁDANO · PACHULÍ <small>lo que queda: resina y misterio</small></div>
+  </div>
+
+  <div class="seccion-alt">
+    <h3>💡 Si te gusta, prueba</h3>
+    <div class="alt-item">Cartier L'Envol EDP <small>floral-resinoso similar, más contundente (asociación directa de Basenotes)</small></div>
+    <div class="alt-item">Dior Eau Sauvage Extreme <small>salida cítrica-especiada comparable (mencionada en Fragrantica)</small></div>
+  </div>
+
+  <div class="cita">«La bergamota y la mandarina se aplican con delicadeza antes de transformarse en una creación floral-resinosa ligeramente melosa. Lo que me recuerda, más que a Colonia, es al Eau de Parfum de Cartier L'Envol, aunque Colonia es más delicada y menos contundente.»<span class="fuente">— Basenotes · review de comunidad [traducida]</span></div>
+
+  <div class="pie">
+    <div class="clima">☁️ 24,5 °C · nublado suave · 0% lluvia<br>🌿 verano tardío · día de gestiones</div>
+    <div class="sprays">Sprays: <b>3-4</b> (día cálido)<br><small style="font-weight:400">interior + exterior</small></div>
+    <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https%3A%2F%2Fwww.fragrantica.com%2Fperfume%2FAcqua-di-Parma%2FNote-di-Colonia-IV-46376.html" alt="QR Fragrantica">
+  </div>
+  <div class="nota-fondo">fondo: arte generado con ComfyUI · SDXL local</div>
+</div>
+</body>
+</html>

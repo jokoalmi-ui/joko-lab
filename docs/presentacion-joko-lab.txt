@@ -1,0 +1,569 @@
+JOKO LAB — DOCUMENTO DE PRESENTACION
+======================================
+
+Version: 1.0
+Fecha: 2026-07-28
+Autor: jokoalmi
+Proposito: Presentar Joko Lab a Claude (o cualquier otro interlocutor)
+           para obtener opinion, critica y propuestas no contempladas.
+
+═══════════════════════════════════════════════════════════
+1. ¿QUE ES JOKO LAB?
+═══════════════════════════════════════════════════════════
+
+Joko Lab no es un agente de IA. No es una fabrica de prompts.
+Es un entorno personal de ingenieria de conocimiento. Su
+objetivo no es generar prompts, sino resolver problemas de la
+mejor forma posible utilizando el conocimiento acumulado.
+
+En vez de:
+  Usuario → Prompt → Modelo
+
+La jerarquia real es:
+  Usuario → Objetivo → Analisis → Decision → Producto adecuado
+
+El prompt es solo uno de los posibles productos. Tambien pueden
+ser: workflows n8n, skills, scripts, docker-compose, benchmarks,
+documentacion, informes, procedimientos de recuperacion.
+
+El laboratorio se construyo porque su creador (jokoalmi, 55 anos,
+ex-Indra/Minsait, Master en IA 2026) sufrio un incidente critico:
+el directorio ~/.local/share/uv desaparecio de su sistema Linux
+sin explicacion, dejando a Hermes (su agente principal) inutilizable
+durante horas. No habia backup del entorno de ejecucion, solo del
+repositorio. Ese incidente cambio el enfoque del proyecto: de
+"tener un agente potente" a "tener un laboratorio que sobreviva
+a cualquier putada y aprenda de cada trabajo".
+
+Hardware:
+  - GPU: NVIDIA RTX A2000 12GB
+  - RAM: 64GB
+  - SO: Ubuntu 24.04
+  - Almacenamiento: SSD para datos IA (/mnt/ssd_ia_datos/)
+
+Stack principal:
+  - Docker Compose (n8n, Ollama, Stirling-PDF, pdf-cleaner)
+  - LM Studio (inferencia local de modelos)
+  - Hermes Agent v0.17.0
+  - Gateway Telegram para acceso remoto
+
+═══════════════════════════════════════════════════════════
+2. FILOSOFIA
+═══════════════════════════════════════════════════════════
+
+Joko Lab se basa en 4 principios fundamentales:
+
+A. El laboratorio no produce prompts. Produce soluciones a
+   problemas. Los prompts, workflows, skills y benchmarks son
+   subproductos de ese proceso.
+
+B. Cada trabajo tiene doble beneficio:
+   1. Resolver la necesidad inmediata
+   2. Alimentar el conocimiento del laboratorio
+   Si una tarea no produce aprendizaje, no esta completa.
+
+C. Hermes no es el centro. Hermes es uno de varios backends
+   de ejecucion. El centro es el conocimiento acumulado y el
+   motor que decide como aplicarlo. Los backends (Hermes,
+   Ollama, LM Studio, Claude, Gemini, GPT) son intercambiables.
+
+D. El laboratorio debe ser reproducible. No puede depender de
+   la memoria de nadie. Cada cambio entre sesiones debe quedar
+   registrado. El protocolo inicio/fin es obligatorio.
+
+E. Capitalizacion del conocimiento. No basta con almacenar
+   conocimiento. Debe cambiar automaticamente las decisiones
+   futuras. Si un descubrimiento sobre Gemma 4 no afecta al
+   modelo que se usa para creatividad, el conocimiento esta
+   muerto.
+
+F. Dual Output. Cada tarea produce tres cosas:
+   1. Producto (el artefacto util)
+   2. Conocimiento (lo que aprendimos)
+   3. Accion futura (que cambiar en el laboratorio)
+
+Clasificacion LPA (el sistema de maduracion del conocimiento):
+  - E1: Observacion (hemos visto que ocurre N veces)
+  - E2: Hipotesis (creemos saber por que ocurre)
+  - E3: Validacion (confirmado en modelo o contexto distinto)
+
+═══════════════════════════════════════════════════════════
+3. ARQUITECTURA: LOS 5 PILARES
+═══════════════════════════════════════════════════════════
+
+La estructura fisica en disco:
+
+  ~/joko-lab/
+  │
+  ├── 01-knowledge/         LO QUE SABEMOS
+  │   ├── models/           Fichas individuales por modelo (8 modelos)
+  │   ├── experiments/      Experimentos con ID unico EXP-YYYYMMDD-NNN
+  │   ├── benchmarks/       Resultados agregados y metricas
+  │   ├── patterns/         Patrones reutilizables transversales
+  │   │   ├── prompt-patterns/
+  │   │   ├── inference-patterns/
+  │   │   ├── workflow-patterns/
+  │   │   ├── docker-patterns/
+  │   │   ├── recovery-patterns/
+  │   │   └── anti-patterns/    Lo que NO debe hacerse
+  │   └── data/             Datos originales (raw, processed, exports)
+  │
+  ├── 02-infrastructure/   LO QUE SOSTIENE EL LAB
+  │   ├── docker/
+  │   ├── services/
+  │   ├── recovery/         Procedimientos de recuperacion
+  │   │   ├── procedures/   Incidentes documentados + checklists
+  │   │   └── backups/
+  │   ├── inicio/           Protocolo de apertura de sesion
+  │   │   ├── protocolo.md  Contrato
+  │   │   ├── inicio.sh     Implementacion (7 checks)
+  │   │   └── checks/       Modulos individuales de verificacion
+  │   └── fin/              Protocolo de cierre de sesion
+  │       ├── protocolo.md  Contrato
+  │       ├── fin.sh        Implementacion (snapshot, diff, backup)
+  │       └── estado-final.json
+  │
+  ├── 03-automation/       LO QUE SE EJECUTA SOLO
+  │   ├── scripts/          checkpoint.sh, rescue.sh
+  │   ├── cron/             Tareas programadas (9 activas)
+  │   ├── workflows/n8n/    Workflows exportados
+  │   └── tests/            Smoke tests, tests de integracion
+  │
+  ├── 04-operations/       LO QUE REGISTRAMOS
+  │   ├── reports/          Informes diarios de cierre
+  │   ├── metrics/          GPU, sesiones, estado historico
+  │   ├── decisions/        Memoria de decisiones (DEC-001, DEC-002...)
+  │   ├── incidents/        Incidencias documentadas
+  │   └── changelog/
+  │
+  ├── 05-inference/        LO QUE HACEMOS CON LO QUE SABEMOS
+  │   ├── router/           Decide estrategia y modelo
+  │   │   ├── task-analyzer.md
+  │   │   ├── strategy-router.md
+  │   │   └── model-selector.md
+  │   ├── compiler/         Compilador de prompts
+  │   │   ├── profiles/     Perfiles de modelos
+  │   │   ├── templates/    Plantillas por tipo de tarea
+  │   │   ├── rules/        Reglas de transformacion
+  │   │   └── projects/     Prompt Projects (especificaciones)
+  │   ├── validators/       Validacion pre-ejecucion
+  │   ├── executors/        Ejecucion contra el backend
+  │   │   ├── local/        LM Studio, Ollama, Hermes
+  │   │   └── cloud/        Claude, Gemini, GPT, DeepSeek
+  │   ├── evaluators/       Evaluacion post-ejecucion
+  │   ├── feedback/         Retroalimenta Knowledge
+  │   └── contract.md       Regla del doble beneficio
+  │
+  └── docs/                 DOCUMENTACION TRANSVERSAL
+      ├── architecture.md
+      ├── principios.md
+      ├── glossary.md
+      └── index.md
+
+═══════════════════════════════════════════════════════════
+4. ESTADO ACTUAL DE IMPLEMENTACION
+═══════════════════════════════════════════════════════════
+
+Fase 1 — Proteccion: IMPLEMENTADA
+  - inicio.sh: 7 checks automatizados
+  - fin.sh: snapshot, diff, backup, informe
+  - Incidente uv documentado
+  - Checklist de recuperacion
+
+Fase 2 — Estructura: IMPLEMENTADA
+  - Directorios de los 5 pilares creados
+  - Contenido existente migrado (enlaces desde hermes-lab)
+  - 8 fichas de modelo en 01-knowledge/models/
+  - 1 experimento con ID (EXP-20260726-001)
+  - Catalogo de anti-patrones con gravedad (FATAL/ALTA/MEDIA/BAJA)
+  - Pattern Library con 2 patrones iniciales
+  - Decision Memory con 3 decisiones iniciales
+
+Fase 3 — Conocimiento: PENDIENTE
+  - Clasificar anti-patrones por gravedad (hecho)
+  - Catalogar datos raw en 01-knowledge/data/
+  - Disenar el ciclo feedback de 05-inference/ a 01-knowledge/
+
+Fase 4 — Motor: PENDIENTE
+  - Disenar task-analyzer y strategy-router
+  - Implementar compiler como componente de 05-inference/
+  - Implementar evaluators post-ejecucion
+  - Conectar el ciclo completo
+
+Fase 5 — Maduracion: PENDIENTE
+  - Repositorio de datos historico
+  - Metricas de laboratorio
+  - Router de estrategias completo
+
+Servicios activos:
+  - Docker: 4 contenedores (n8n, ollama, stirling-pdf, pdf-cleaner)
+  - LM Studio: con modelos locales (Dolphin, Llama, Qwen, DeepSeek,
+    GLM, Gemma, Granite)
+  - Ollama: modelos adicionales
+  - Hermes Agent v0.17.0
+  - Gateway Telegram
+  - Cron: 9 tareas programadas
+
+═══════════════════════════════════════════════════════════
+5. MODELOS LOCALES CATALOGADOS (8)
+═══════════════════════════════════════════════════════════
+
+| Modelo | Parametros | Personalidad | Puntuacion | Estado |
+|---|---|---|---|---|
+| Dolphin Cyber LoRA | 8B | Charlatan directo | 5/5 | Activo |
+| Llama 3.1 Instruct | 8B | Agente tool-use | 5/5 | Activo |
+| DeepSeek R1 Distill Qwen | 14B | Pensador del lab | 5/5 | Activo |
+| Gemma 4 QAT | 12B | Director Creativo | 5/5 | Activo |
+| GLM 4.6V Flash | 4.6V | Atomico | 4/5 | Activo |
+| Qwen3 | 14B | Mixto | 3/5 | Activo |
+| Qwen 3.5 | 9B | DESCARTADO | 0/5 | Descartado |
+| Granite 4.1 | 8B | Tool-use nativo | Pendiente | Pendiente |
+
+Condiciones de la comparativa: temperature=0.7, top_p=0.9,
+GPU RTX A2000 12GB, LM Studio. 35 experimentos, 5 tests por modelo.
+
+Clasificacion LPA: 27 E1, 5 E2, 3 E3. E3 validados:
+  - DeepSeek R1 = Pensador del laboratorio
+  - Gemma 4 = Director Creativo
+  - Qwen 3.5 9B = Descartado
+
+═══════════════════════════════════════════════════════════
+6. CONCEPTOS CLAVE
+═══════════════════════════════════════════════════════════
+
+6.1 PROMPT COMPILER
+
+No es un generador de texto. Es un compilador que transforma
+una especificacion (objetivo, restricciones, destino) en el
+prompt optimo para ese modelo concreto.
+
+Ejemplo: el mismo Prompt Project ("crear una SPA de
+aparcamientos") genera prompts radicalmente distintos para
+Gemini (contexto enorme, tablas), GLM (atomico, 1 instruccion)
+y DeepSeek R1 (paso a paso, max_tokens 2048).
+
+No se guarda el prompt final. Se guarda la especificacion
+(Prompt Project). Los prompts compilados son derivados.
+
+6.2 ENGINEERING ENGINE (antes Inference Engine)
+
+El Prompt Compiler es un componente del Engineering Engine.
+El motor completo no solo decide un modelo. Decide:
+
+  - Que construir (prompt, workflow, skill, script, benchmark...)
+  - Como construirlo (estrategia, parametros, herramientas)
+  - Con que modelo (local vs cloud, segun coste y capacidad)
+  - Que informacion consultar (RAG, sesiones previas, documentos)
+  - Si hace falta experimentar antes de producir
+  - Si hace falta preguntar al usuario antes de decidir
+
+El motor se compone de:
+
+  Router → decide estrategia y productor
+  Compilers → cada uno produce un tipo de artefacto
+  Validators → verifica pre-ejecucion
+  Executors → ejecuta contra el backend
+  Evaluators → mide post-ejecucion
+  Feedback → retroalimenta Knowledge
+
+Los compilers no son uno solo. Existen multiples:
+  Prompt Compiler, Workflow Compiler, Skill Compiler,
+  Docker Compiler, Documentation Compiler, Benchmark Compiler,
+  Recovery Compiler. Todos reciben la misma entrada:
+  "Necesito conseguir X" y producen un artefacto distinto.
+
+6.3 PATTERN LIBRARY
+
+Los patrones son conocimiento transversal que aplica a
+multiples modelos. Ejemplo: el patron "Large Creative Model"
+describe como trabajar con Gemma 4, DeepSeek R1 y GLM para
+tareas de creatividad y codigo, con riesgos y mitigaciones
+comunes.
+
+6.4 DECISION MEMORY
+
+No almacena conocimiento. Almacena decisiones operativas
+con caducidad. Cada decision tiene:
+
+  - ID (DEC-NNN)
+  - Decision (que se decidio)
+  - Motivo (por que)
+  - Evidencia (experimento, ficha, benchmark)
+  - Confianza (ALTA, MEDIA, BAJA)
+  - Fecha de revision (cuando re-evaluar)
+  - Sustituida por (cuando una decision nueva la reemplaza)
+  - Aplica a (modelos, scripts, procesos afectados)
+  - Creada desde (experimento que la origino)
+
+Ejemplo: "No usar Qwen 3.5 porque 35 experimentos demostraron
+0/5 tests utiles. Revisar cuando exista nueva version."
+
+DECISION EXPIRATION: Las decisiones tienen fecha de caducidad.
+El conocimiento (Qwen 3.5 fallo en condiciones X) no caduca.
+Pero la decision "no usar Qwen 3.5" caduca cuando sale Qwen 4.
+Separar ambos evita tener reglas muertas.
+
+6.5 DUAL OUTPUT (antes Doble Beneficio)
+
+Cada tarea produce TRES cosas, no dos:
+  1. Producto — el artefacto util (prompt, workflow, skill...)
+  2. Conocimiento — lo que aprendimos (E1/E2/E3, patron...)
+  3. Accion futura — que cambiar en el laboratorio
+     (actualizar ficha, crear decision, modificar patron...)
+
+Sin la accion futura, el conocimiento se queda en un archivo
+que nadie lee. Formalizado en 05-inference/contract.md.
+
+6.6 CAPITALIZACION DEL CONOCIMIENTO
+
+No basta con aprender. El conocimiento debe cambiar
+automaticamente las decisiones futuras. Si descubres que
+Gemma 4 es mejor para creatividad, el sistema deberia
+usar Gemma 4 automaticamente cuando pidas un prompt
+creativo, sin que tengas que recordarlo.
+
+Esto es el salto de "biblioteca" a "laboratorio":
+  - Biblioteca: almacenas conocimiento
+  - Laboratorio: el conocimiento cambia decisiones futuras
+
+6.7 ROI ENGINE (concepto futuro)
+
+Cuando el laboratorio tenga cientos de mejoras, se necesita
+saber cuales realmente aportan valor. Cada mejora deberia
+responder:
+  - ¿Cuanto tiempo me ahorra?
+  - ¿Cuantos errores evita?
+  - ¿Cuantas tareas automatiza?
+  - ¿Cuantas decisiones futuras mejora?
+
+No implementado. Vision a largo plazo.
+
+═══════════════════════════════════════════════════════════
+7. PROTOCOLO DE SESION
+═══════════════════════════════════════════════════════════
+
+INICIO (inicio.sh):
+  1. Check docker (contenedores activos)
+  2. Check ollama (API responde)
+  3. Check gateway (puerto 8080/9090)
+  4. Check path (~/.local/bin, ~/.cargo/bin)
+  5. Check uv (toolchain Python)
+  6. Check cargo (toolchain Rust)
+  7. Check local-bin (binarios esperados)
+  8. Generar estado-inicial.json
+  9. Diff contra ultimo estado-final.json
+  10. Reportar anomalias
+
+FIN (fin.sh):
+  1. Snapshot del estado actual
+  2. Diff contra estado-inicial.json
+  3. Commit automatico si hay cambios
+  4. Guardar estado-final.json
+  5. Escribir informe de cierre en reports/
+  6. Registrar cambios clasificados por tipo
+
+BACKUP (rescue.sh, automatico al conectar USB):
+  10 pasos irremplazables (config, SSH, runtime, Hermes,
+  n8n, exports, lab-state, repos, docker-compose)
+  7 pasos de inventario (Ollama, Docker, LM Studio,
+  Python, Git, apt, rutas)
+  Rotacion: 2 copias en USB
+
+CHECKPOINT (checkpoint.sh, manual):
+  12 snapshots: doctor, status, gateway, backup, sesiones,
+  docker, GPU, discos, RAM, ollama, git, config
+
+STATE-MANAGER (state-manager.py, cada minuto via cron):
+  Monitoriza el estado del sistema en tiempo real
+
+═══════════════════════════════════════════════════════════
+8. AUDITORIA RECIENTE (2026-07-28)
+═══════════════════════════════════════════════════════════
+
+Se realizo una auditoria completa del Change Tracking System
+por un arquitecto de software senior. Hallazgos principales:
+
+FORTALEZAS:
+  - checkpoint.sh es completo (12 pasos)
+  - rescue.sh cubre irremplazables + inventario
+  - rescue-trigger.sh automatiza backup al conectar USB
+  - state-manager monitoriza cada minuto
+  - Duplicidad de copias: git bundle + backup + snapshot
+  - Rotacion de rescues (2 copias)
+
+DEBILIDADES:
+  - inicio.sh NO se ejecuta automaticamente (es manual)
+  - Dos versiones de fin.sh haciendo cosas distintas
+  - JSON sin escritura atomica (corruptible por interrupcion)
+  - Sin clasificacion de cambios → no consultable
+  - Sin verificacion de integridad de backups
+  - 3 fuentes de estado no sincronizadas
+  - Sin backup sin USB conectado
+  - Rotacion a solo 2 copias puede borrar la unica buena
+
+MEJORAS CRITICAS PENDIENTES:
+  1. Escritura atomica de JSON (tmp + mv)
+  2. Verificacion de integridad en rescue.sh
+  3. Campos completos en estado.json (kernel, drivers, CUDA...)
+  4. Proteccion contra escritura truncada en checkpoint
+
+MEJORAS IMPORTANTES PENDIENTES:
+  5. inicio.sh automatico al arrancar
+  6. Version unica de fin.sh
+  7. Clasificacion automatica de cambios por tipo
+  8. Proteger scripts con flock
+  9. Seed + config completa en experimentos
+
+═══════════════════════════════════════════════════════════
+9. CICLO DE MEJORA CONTINUA
+═══════════════════════════════════════════════════════════
+
+El laboratorio se alimenta de trabajo real, no de experimentos
+artificiales. El ciclo actualizado con Dual Output:
+
+  Trabajo real ("necesito resolver X")
+      │
+      v
+  Comprension del objetivo
+      │
+      v
+  Plan (que producto, que modelo, que estrategia)
+      │
+      v
+  Produccion (Engineering Engine: compile + execute)
+      │
+      ├──→ Producto (prompt, workflow, skill, informe...)
+      │
+      └──→ Evaluacion (metricas, verificaciones)
+              │
+              v
+          ¿Hemos aprendido algo nuevo?
+              │
+          si ──┴── no
+              │
+              v
+          Dual Output:
+            ├── Conocimiento nuevo → 01-knowledge/
+            │     ├── Pattern → patterns/
+            │     ├── Ficha actualizada → models/
+            │     ├── Decision → decisions/
+            │     └── Experimento → experiments/
+            │
+            └── Accion futura → cambiar decisiones del motor
+                  ├── Actualizar perfil de modelo
+                  ├── Modificar regla del compiler
+                  ├── Crear/actualizar decision
+                  └── Ajustar umbrales de evaluacion
+                      │
+                      v
+                  Capitalizacion: el conocimiento cambia
+                  automaticamente las decisiones futuras
+                      │
+                      └──→ Siguiente trabajo (mejor que el anterior)
+
+═══════════════════════════════════════════════════════════
+10. PREGUNTAS ABIERTAS Y DESAFIOS
+═══════════════════════════════════════════════════════════
+
+Estas son las cuestiones sobre las que nos gustaria obtener
+opinion externa:
+
+10.1 ARQUITECTURA
+
+  - 5 pilares es la estructura correcta o faltan/sobran?
+  - Tiene sentido un 6o pilar "Intelligence" para la capacidad
+    de aprendizaje del laboratorio, o es una propiedad emergente?
+  - El Inference Engine (router + compiler + executors + evaluators
+    + feedback) esta bien disenado o hay un patron mejor?
+
+10.2 PROMPT COMPILER
+
+  - Tiene sentido guardar "Prompt Projects" (especificaciones)
+    en lugar de prompts finales?
+  - El compiler deberia ser un generador o un transformador?
+    (generar desde cero vs adaptar una plantilla base)
+  - Como manejar modelos que el laboratorio nunca ha visto?
+    (fallback a principios universales?)
+
+10.3 PATTERN LIBRARY
+
+  - Los patrones son suficientemente diferentes de las fichas
+    de modelo o se solapan?
+  - Tiene sentido tener patrones de workflow, docker y recovery
+    o eso extiende demasiado el alcance?
+  - Como evitar que la Pattern Library se convierta en un
+    vertedero de observaciones sin estructura?
+
+10.4 DECISION MEMORY
+
+  - Es util o es over-engineering para un laboratorio pequeno?
+  - Que formato permite consultas utiles sin ser una base de
+    datos relacional?
+  - Las decisiones deberian tener caducidad automatica?
+
+10.5 INFRAESTRUCTURA
+
+  - inicio.sh automatico al arrancar Hermes: recomendable
+    o contraproducente?
+  - Como balancear registro exhaustivo vs sobre-registro?
+    (la regla "solo registrar si permite tomar decisiones")
+  - Backup sin USB: tiene sentido usar la nube (Google Drive)
+    o es preferible un segundo disco local?
+
+10.6 EVOLUCION
+
+  - Hacia donde deberia evolucionar el laboratorio?
+  - Que riesgos no estamos viendo?
+  - Que es lo primero que cambiarias de la arquitectura
+    actual si pudieras?
+
+═══════════════════════════════════════════════════════════
+11. DATOS DEL ENTORNO
+═══════════════════════════════════════════════════════════
+
+  Sistema: Ubuntu 24.04
+  Kernel: Linux 7.0.0-28-generic (x86_64)
+  Hermes: v0.17.0 (2026.6.19)
+  Python: 3.11.15 (Hermes), 3.14.4 (sistema)
+  Docker: compose v2, stack en ~/automation-stack/
+  GPU: NVIDIA RTX A2000 12GB
+  Drivers: NVIDIA (gestionado por nvidia-smi)
+  Usuario: jokoalmi
+  Huso: Europe/Madrid (CEST, +0200)
+  PATH: ~/.local/bin, /usr/local/bin, /usr/bin
+  Shell: bash
+  Git: hermes-lab (master), perfume-ia, joko-lab
+  USB rescate: UUID=10B9-0D9B, 224GB vfat
+  Montaje SSD datos: /mnt/ssd_ia_datos/ (n8n, ollama, exports,
+    backups, lab-state)
+
+═══════════════════════════════════════════════════════════
+12. GLOSARIO RAPIDO
+═══════════════════════════════════════════════════════════
+
+  Hermes:     Agente principal de IA. Backend de ejecucion.
+  LPA:        Living Product Architecture. Metodologia de
+              maduracion del conocimiento (E1/E2/E3).
+  JL-011:     Principio de flujo de conocimiento entre modelos.
+  JL-012:     Principio de interiorizacion (un patron no esta
+              interiorizado hasta que aparece espontaneamente
+              en un proyecto distinto).
+  E1/E2/E3:  Clasificacion de madurez del conocimiento.
+  Prompt Project: Especificacion (no prompt final) que se
+              compila para cada modelo destino.
+  Prompt Compiler: Componente que transforma una especificacion
+              en el prompt optimo para un modelo concreto.
+  Inference Engine: Sistema completo (router + compiler +
+              validators + executors + evaluators + feedback).
+  Pattern:   Conocimiento transversal reutilizable que aplica
+              a multiples modelos o contextos.
+  Decision Memory: Registro de decisiones operativas con
+              motivo, evidencia y fecha de revision.
+  inicio/fin: Protocolo de apertura y cierre de sesion.
+              Garantiza deteccion de anomalias y registro.
+  rescue.sh: Backup a USB del entorno de ejecucion.
+  checkpoint.sh: Snapshot de 12 pasos del estado del sistema.
+
+═══════════════════════════════════════════════════════════
+FIN DEL DOCUMENTO
+═══════════════════════════════════════════════════════════

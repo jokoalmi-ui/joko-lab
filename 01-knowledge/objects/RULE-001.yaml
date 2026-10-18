@@ -1,0 +1,57 @@
+id: RULE-001
+type: RULE
+decision_origin: herencia
+status: activo
+version: 1
+created: '2026-07-29'
+last_validated: '2026-07-29'
+next_review: '2026-10-27'
+expires: '2027-01-25'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-07-29T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-10-27T00:00:00Z
+sources:
+  - resource: 01-knowledge/objects/DEC-003.yaml
+confidence: 0.94
+confidence_label: ALTA
+evidence: []
+dependencies:
+- DEC-003
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: null
+  baseline: null
+  current: null
+  last_checked: null
+history:
+- date: '2026-07-29'
+  event: created
+- date: '2026-07-31'
+  event: migrated_to_ko
+  note: Migrado de formato YAML plano a Knowledge Object v1
+body: "Usar Gemma 4 (google/gemma-4-12b-qat) para tareas de creatividad, brainstorming y código completo. Modelo recomendado para creatividad. Ver [[DEC-003]]."
+legacy_fields:
+  condicion:
+    tipo_tarea:
+    - creatividad
+    - brainstorming
+    - creativo
+    - poema
+    - relato
+    - historia
+  accion:
+    modelo: google/gemma-4-12b-qat
+    proveedor: lmstudio
+    params:
+      temperature: 0.7
+      max_tokens: 2048
+  prioridad: 90
+  activa: true
+  nota: 'Gemma 4 es lento (151s). Alternativa rápida: Granite 4.1 (5-15s) si no necesitas
+    máxima calidad.'
+  validaciones: 3

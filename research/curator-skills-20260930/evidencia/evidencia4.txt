@@ -1,0 +1,134 @@
+
+===== research: dailydoseofds / wikiskill =====
+analisis-8-skills-agentes-davidondrej.md
+analisis-agent-skills-best-practices.md
+analisis-ailabs-hermes-agent-skills-video.md
+analisis-alamin8020ai-12-ai-skills.md
+analisis-askpstudy-50-skills-liderazgo.md
+analisis-dailydoseofds-finetuning-5-tecnicas.md
+analisis-dailydoseofds-qm-yc-20260909.md
+analisis-datastreak-mcp-vs-skills.md
+analisis-faztcode-mcp-vs-skills.md
+analisis-hermes-build-skills-theromanknox.md
+analisis-leadgenman-awesome-claude-skills.md
+analisis-pabloinpublic-3skills.md
+analisis-shiva-bytes-26-skills.md
+analisis-skill-bundles-hermes.md
+analisis-skills-personalizadas-donweb.md
+analisis-wikiskill-2026-09-17.md
+recursos-open-source-skills-mcp-verificados.md
+---
+
+
+===== YA EN LAB: analisis-datasciencebrain-rag.md =====
+1|---
+2|title: "Análisis — \"RAG: la capa de retrieval es el techo\" (datasciencebrain, 24-ago-2026)"
+3|type: research
+4|---
+5|
+6|# Análisis — "RAG: la capa de retrieval es el techo" (datasciencebrain, 24-ago-2026)
+7|
+8|**VERACIDAD:** [VERIFICADO]
+9|
+10|**Fuente:** https://www.instagram.com/p/DcaGJ5BmJAz/ (datasciencebrain / Deepak Jose, 23-08-2026, 17 h)
+11|**Método:** caption íntegro (contiene TODO el conocimiento — criterio codedsoul: caption completo → no extraer imágenes) + verificación contra el estado real del RAG del lab
+12|
+13|## El contenido (resumen del caption)
+14|
+15|**Tesis**: "El 60-70% de la calidad de respuesta se decide ANTES de que el LLM vea la consulta — en el chunking y el retrieval. La capa de retrieval es el techo de todo el sistema."
+16|
+17|| Técnica que menciona | Qué dice |
+18||---|---|
+19|| 6 estrategias de chunking | recursive, semantic, parent-child, contextual, late chunking (+ cuándo cada una es tirar dinero) |
+20|| Vector search puro = naive | Ya no basta — lo que lo ha reemplazado |
+21|| BM25 + RRF fusion | Explicado por qué NO se pueden simplemente sumar las dos puntuaciones |
+22|| **Reranking** | "El mayor salto de calidad disponible: **+17% recall@5 en benchmarks 2026**" |
+23|| Metadata filtering | La razón por la que tu sistema devuelve la política de 2024 en vez de la de 2026 |
+24|| Medición | Golden sets, Recall@k, MRR, nDCG, con código |
+25|
+26|**Venta**: PDF con 17 diagramas + pipeline Python completo, para suscriptores (Rs.45/mes ≈ 0,50 €/mes).
+27|
+28|## 🔴 Aplicación al LAB — VALOR MEDIO-ALTO (validación punto por punto)
+29|
+30|| Claim del post | Estado REAL del lab | Verificación |
+31||---|---|---|
+32|| "Chunking decide el 60-70%" | ✅ RAG local con chunking controlado | Documentado en skill `local-rag` |
+33|| "Vector puro = naive" | ✅ Lab tiene **búsqueda híbrida** | Reranker :8765 + LanceDB |
+34|| "BM25 + RRF" | ✅ Patrón fusion | `llm_as_judge.py` / pipeline usa fusión |
+35|| "**Reranking = +17% recall@5**" | ✅ **El lab tiene reranker en producción** | `evaluar_rag.py`: **recall@5 = 100%** (73-86 ms) — POR ENCIMA del +17% del post |
+36|| "Metadata filtering" | ⚠️ Parcial — el lab filtra por fuente/fecha en algunos flujos | Mejora posible documentada |
+37|| "Golden sets, Recall@k, MRR, nDCG" | ✅ **Golden set REAL + recall@5** | `evaluar_rag.py` con 21.537 fragmentos |
+38|| "Ningún prompt arregla un chunk no recuperado" | ✅ Filosofía del lab | Gate de veracidad + RAG primero |
+39|
+40|## Veredicto: VALOR MEDIO-ALTO (validación, 1 mejora potencial)
+41|
+42|1. **Valida TODO el stack de RAG del lab** — el lab ya impl
+[total_lines=46]
+
+
+===== YA EN LAB: analisis-codewithbrij-top5-rag.md =====
+1|---
+2|title: "Análisis — Top 5 RAG Architectures 2026 (codewithbrij, 20-ago-2026)"
+3|type: research
+4|---
+5|
+6|# Análisis — Top 5 RAG Architectures 2026 (codewithbrij, 20-ago-2026)
+7|
+8|**VERACIDAD:** [VERIFICADO]
+9|
+10|**Fuente:** https://www.instagram.com/codewithbrij/p/DcNJAfgDq07/ (19-ago, Brij Kishore Pandey)
+11|**Método:** alts oficiales IG del DOM (2 slides visibles sin login) + cruce con research/
+12|**Veredicto:** [VERIFICADO]
+13|
+14|## Contenido (transcripción de los alts del DOM real)
+15|
+16|### Slide 1 — "GENAI ARCHITECTURE GUIDE 2026: Top 5 RAG Architectures"
+17|
+18|1. **HYBRID RAG** — Dense Results + Sparse Results → **Reciprocal Rank Fusion** (fusión por ranking)
+19|2. **GRAPH RAG** — Chunks → LLM → Knowledge Graph Extractor (nodos, aristas, relaciones) → query al grafo
+20|3. **AGENTIC RAG** — Query → Planner → Search/WebSearch → Reasoner → Agent
+21|4. **CORRECTIVE RAG (CRAG)** — Query → Retriever → Retrieved Docs → Evaluator → "agente repite hasta confiar" → Rewrite/Fallback → Final Answer
+22|5. **MULTIMODAL RAG** — Unified Vector Indexing → Retrieval → Multimodal LLM → Answer
+23|
+24|### Slide 2 — Comparativa Classic vs Graph vs Agentic (post 13-ago del mismo autor)
+25|
+26|| | Classic RAG | Graph RAG | Agentic RAG |
+27||---|---|---|---|
+28|| Acción | Retrieve | Connect | Reason |
+29|| Carácter | Rápido, simple | Rico en entidades | Adaptativo |
+30|| Salto | Single-hop | Multi-source | Self-correcting |
+31|| Flujo | Embed→VectorDB→Top-K→LLM | Entity extraction→Knowledge Graph→LLM | Reasoning Agent→Web Search→LLM→Self-Eval |
+32|
+33|## 🔴 Conexión con el LAB
+34|
+35|| Arquitectura | Estado en el lab |
+36||---|---|
+37|| **Hybrid RAG (RRF)** | 🔵 **FUTURIBLE YA ANOTADO** (19-ago: "RRF + búsqueda híbrida — señal: RAG con producto real") — este post lo valida como el siguiente nivel |
+38|| Graph RAG | ⚪ No (lab: RAG clásico + reranker; graph = skills, no grafo de conocimiento) |
+39|| Agentic RAG | ⚪ No (el lab itera con gate + revisor manual, no agente RAG) |
+40|| CRAG (correctivo) | 🟡 Parcial — el gate de veracidad del lab ES un evaluador correctivo manual |
+41|| Multimodal RAG | ⚪ No (LanceDB es texto; visión GLM es on-demand, no RAG) |
+42|
+43|## Veredicto
+44|
+45|- El carrusel **valida el camino del lab**: RAG clásico sólido (LanceDB 19.894 filas, recall@5 100%) + el siguiente paso natural es **Hybrid RAG con RRF** (ya anotado)
+[total_lines=51]
+
+
+===== fechas de esos analisis =====
+-rw------- 1 jokoalmi jokoalmi 4574 2026-08-17 23:42 /home/jokoalmi/joko-lab/research/analisis-ai-evaluation-observability.md
+-rw------- 1 jokoalmi jokoalmi 2932 2026-09-03 13:38 /home/jokoalmi/joko-lab/research/analisis-codewithbrij-top5-rag.md
+-rw------- 1 jokoalmi jokoalmi 3413 2026-09-03 13:38 /home/jokoalmi/joko-lab/research/analisis-datasciencebrain-rag.md
+-rw------- 1 jokoalmi jokoalmi 3353 2026-08-16 09:27 /home/jokoalmi/joko-lab/research/analisis-observabilidad-rag.md
+
+
+===== uso real del RAG del lab (fichas y consultas) =====
+---
+evaluar_rag.py
+evaluar_rag_adversarial.py
+index_query_summary.py
+indexar_imagenes.py
+indexer.py
+rag_telemetry.py
+reindex-catchup.sh
+watch_indexer.py

@@ -1,0 +1,74 @@
+{
+ "fecha": "2026-10-18 14:45 CEST",
+ "modelo": "/mnt/ssd_ia_datos/LM STUDIO/lmstudio-community/gemma-4-12B-it-QAT-GGUF/gemma-4-12B-it-QAT-Q4_0.gguf",
+ "draft": "/mnt/ssd_ia_datos/LM STUDIO/google/gemma-4-12B-it-qat-MTP/gemma-4-12B-it-qat-assistant-MTP-Q8_0.gguf",
+ "clase": "lista",
+ "ngl": 99,
+ "n_predict": 96,
+ "rondas": 1,
+ "filas": [
+  {
+   "tag": "none",
+   "ronda": 1,
+   "clase": "lista",
+   "spec": "none",
+   "extra": [],
+   "tok_s": 26.875,
+   "n_gen": 96,
+   "draft_n": null,
+   "aceptados": null,
+   "unused": 0,
+   "vram_mib": 10668,
+   "texto": ""
+  },
+  {
+   "tag": "n4",
+   "ronda": 1,
+   "clase": "lista",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "4"
+   ],
+   "tok_s": 50.547,
+   "n_gen": 96,
+   "draft_n": 104,
+   "aceptados": 68,
+   "unused": 0,
+   "vram_mib": 11184,
+   "texto": ""
+  }
+ ],
+ "resumen": {
+  "none": {
+   "tok_s_mediana": 26.88,
+   "valores": [
+    26.875
+   ],
+   "aceptacion_pct": null,
+   "ganancia_pct": null,
+   "unused": [
+    0
+   ],
+   "vram_mib": [
+    10668
+   ],
+   "coincidencia_texto": 1.0
+  },
+  "n4": {
+   "tok_s_mediana": 50.55,
+   "valores": [
+    50.547
+   ],
+   "aceptacion_pct": 65.4,
+   "ganancia_pct": 88.1,
+   "unused": [
+    0
+   ],
+   "vram_mib": [
+    11184
+   ],
+   "coincidencia_texto": 1.0
+  }
+ }
+}

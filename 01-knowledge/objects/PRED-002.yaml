@@ -1,0 +1,41 @@
+type: PRED
+decision_origin: desconocido
+id: PRED-002
+status: resuelta
+version: 1
+created: 2026-08-04
+
+quien_predice: hermes
+relacionado_con: null   # corregido: no había RULE real que enlazar todavía (ver hallazgo #2 de la revisión)
+
+prediccion: >
+  Inyectar el índice de KOs antes de cada consulta reducirá los
+  fallos de "capitalización automática" (recomendar sin mirar la
+  ficha) a la mitad frente a la línea base actual.
+
+criterio_exito: >
+  Corriendo bank.yaml con --system-prompt-file incluyendo el índice,
+  la proporción de fallos en preguntas de tipo exacto_normalizado
+  sobre qué modelo usar para cada capacidad baja de la tasa base
+  registrada en history.jsonl (antes del índice) a la mitad o menos,
+  medido sobre al menos 3 ejecuciones tras la fecha de revisión.
+
+fecha_revision: 2026-08-18
+
+resultado: sin_veredicto
+resuelto_por: joseba   # cierra un PRED de hermes (nadie se autoevalua); autorizacion del usuario 2026-10-13
+evidencia: >
+  Medido por hermes el 2026-10-13: el experimento del criterio NUNCA se
+  ejecuto. verification/history.jsonl tiene 28 entradas y la ULTIMA es
+  del 2026-08-06T13:20:43 (modelo granite-4.1-8b): ninguna ejecucion
+  posterior a la fecha de revision (18-ago) y por tanto ninguna con el
+  indice de KOs inyectado (bank.yaml --system-prompt-file). El indice
+  existe (verification/indice-okf.md, actualizado 12-oct) pero
+  bateria_modelos_v2.py no lo invoca (grep de system-prompt-file y de
+  exacto_normalizado = 0 coincidencias).
+notas_posteriores: >
+  Cerrada como sin_veredicto el 2026-10-13 (punto 2 del paquete). No es
+  un fallo de la prediccion: es falta de ejecucion del experimento. Si
+  se retoma, va como PRED nueva con fecha_revision futura y 3 corridas
+  de bank.yaml con el indice. Mientras tanto queda fuera de la tasa de
+  acierto (ni suma ni resta).

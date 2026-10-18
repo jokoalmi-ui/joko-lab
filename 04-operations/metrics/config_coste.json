@@ -1,0 +1,30 @@
+{
+  "_nota": "Config del instrumento coste_ahorro.py (joko-lab/tools). observation-only: NO cambia nada. umbral_dias_alerta=null = SIN UMBRAL a priori (el informe se emite igual, sin alerta). Fijarlo solo cuando la serie de coste/saldo tenga datos suficientes (RULE-015).",
+  "umbral_dias_alerta": null,
+  "ventana_dias": 7,
+  "tarifa_fecha_verificada": "2026-10-11",
+  "tarifa_fuente": "https://api-docs.deepseek.com/quick_start/pricing",
+  "nota_tarifa": "DeepSeek V4-Flash: hit 0.003 / miss 0.15 / out 0.60 USD por 1M; PEAK x2 L-V 01-04h y 06-10h UTC (=03-06h y 08-12h Espana). El monitor semanal de precios (monitor-precios-ia.sh) vigila cambios de proveedor; si cambia la tarifa, actualizar TARIFA y TARIFA_FECHA en el script.",
+  "techo_medido": {
+    "_nota": "MAXIMO CALCULABLE si las 3 palancas se aplicaran simultaneamente al mismo trafico; NO es una prevision. Lo recalcula tools/desglose_coste.py --dias 7 en cada pasada (este bloque es la foto del dia que se anota).",
+    "medido": "2026-10-11T23:42:34+02:00",
+    "ventana_dias": 7,
+    "n_consultas": 5537,
+    "gasto_ventana_usd": 9.3767,
+    "a1_salida_menos30pct_usd": 1.197,
+    "a2_miss_menos30pct_usd": 1.2669,
+    "a4_pico_a_valle_usd": 0.9504,
+    "total_teorico_ventana_usd": 3.4143,
+    "total_teorico_dia_usd": 0.4878,
+    "ritmo_actual_dia_usd": 1.3395,
+    "ritmo_con_techo_dia_usd": 0.8518,
+    "nota_alcance": "A1 es la mas rentable (salida = 42.6% del gasto); A4 solo es evitable en parte (la franja de trabajo real) y A2 no se controla del todo."
+  },
+  "palanca_a1_salida": {
+    "_nota": "Estado de la palanca de salida (A1). Aplicada como REGLA PERSISTENTE de estilo el 2026-10-11; el tope DURO de tokens NO esta configurado en ~/.hermes/config.yaml (no existe esa clave) y anadirlo exigiria tocar la config y reiniciar el gateway (bloqueado).",
+    "aplicada": "2026-10-11",
+    "como": "entrada persistente en la memoria de Hermes: respuestas cortas, sin preambulos ni repetir ficheros/salidas largas",
+    "baseline_salida_tokens": {"media": 1073, "p50": 650, "p90": 2539, "p95": 3463, "max": 25718},
+    "comparar_en": "informes posteriores de coste_ahorro.py (renglon 'out ... media N/consulta') y en desglose_coste.py seccion 5"
+  }
+}

@@ -1,0 +1,45 @@
+id: RULE-016
+type: RULE
+decision_origin: incidente
+status: activo
+version: 1
+created: '2026-09-03'
+last_validated: '2026-09-03'
+next_review: '2026-12-03'
+expires: '2027-03-03'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-09-03T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-12-03T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-09-03T00:00:00Z
+title: "Nueva versión de Hermes Agent: investigar incidencias 5 días ANTES de actualizar en el lab"
+desc: >-
+  Cuando el watchdog detecte una NUEVA versión de Hermes Agent (release en
+  GitHub), el lab NO actualiza de inmediato. Durante los 5 días posteriores a
+  la publicación se investigan posibles incidencias derivadas de esa versión
+  (issues/PRs del repo oficial NousResearch/hermes-agent con la etiqueta de
+  riesgo de sesión/estado, foros expertos, patrones de error conocidos) antes
+  de decidir actualizar. La actualización solo procede si el análisis no
+  encuentra bugs conocidos que afecten al lab, o si el fix buscado ya está en
+  la release. Origen: incidente state.db 02-03 sep 2026 — corrupción por bug
+  upstream introducido en la ventana 0.21 (probe _read_sqlite_application_id
+  que cancelaba locks POSIX, issue #100313, fix PR #100519 mergeado DESPUÉS de
+  la release v0.21.0 publicada). Lección: una release .0 puede publicarse sin
+  fixes de corrupción de state.db que se mergean días después; esperar 5 días
+  con investigación activa evita actualizar a una versión con bugs conocidos
+  de persistencia. Excepción: urgencia justificada con análisis previo y
+  aprobación explícita del usuario.
+confidence: 0.9
+confidence_label: ALTA
+evidence:
+- 'Incidente real 02-03 sep 2026: v0.21.0 publicada 31-ago sin el fix del bug de corrupción (PR #100519 mergeado 01-sep, 8h después de nuestro HEAD; 0.21.1 inexistente)'
+- 'Issue #100313 (P1, open): corrupción state.db multi-writer WAL en v0.21.0 con entorno casi idéntico al lab'
+- 'Cluster de issues de corrupción: #90837, #85004, #100896, #101064 — todos abiertos en la ventana 0.21'
+dependencies: [RULE-014]
+contradicts: []
+superseded_by: null
+domain: proceso
+scope: actualizaciones_hermes_agent

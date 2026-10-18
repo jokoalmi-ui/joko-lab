@@ -1,0 +1,163 @@
+
+===== LIVE: chunking =====
+/home/jokoalmi/joko-lab/04-operations/reports/2026-08-05-analisis-rag-atareado.txt
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-hueco
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BAK-20260920-rescate-animada
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-graph-eng
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-opencode-modelo
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grilling
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-limpieza-directiva
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260908-franja-cara
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-borrado-modelos
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-reels-fix
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-aihero
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grill-kanban
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260914-potenzia-va360
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260822-lheurebleue
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-cifras
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-revision-backups
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817b
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BAK-20260915-huecos-obs-hyp
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817e
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260906-reverif-cron
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817c
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260908-qwen-drive
+/home/jokoalmi/joko-lab/04-operations/backlogs/.archive-baks-20260924/MANIFIESTO-baks-20260924.jsonl
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260928-auto-mejora
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260908-mentalhotfix
+---
+
+
+===== LIVE: llm-as-judge =====
+/home/jokoalmi/joko-lab/04-operations/itinerario-revision-implementacion-20260820.md
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-hueco
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BAK-20260920-rescate-animada
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-graph-eng
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-opencode-modelo
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grilling
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-limpieza-directiva
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260908-franja-cara
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-borrado-modelos
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-reels-fix
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-aihero
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grill-kanban
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260914-potenzia-va360
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260822-lheurebleue
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-cifras
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-revision-backups
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817b
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BAK-20260915-huecos-obs-hyp
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817e
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260906-reverif-cron
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817c
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260908-qwen-drive
+/home/jokoalmi/joko-lab/04-operations/backlogs/.archive-baks-20260924/MANIFIESTO-baks-20260924.jsonl
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260928-auto-mejora
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260908-mentalhotfix
+---
+
+
+===== LIVE: skill evolution / auto-mejora =====
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-hueco
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BAK-20260920-rescate-animada
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-graph-eng
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-08-14-backlog.md
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-opencode-modelo
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260930-colognise-familia
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260929-fix-fecha
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grilling
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-limpieza-directiva
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260908-franja-cara
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-borrado-modelos
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-reels-fix
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260929-titulo-981
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-aihero
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260926-f2-contexto
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grill-kanban
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260914-potenzia-va360
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260822-lheurebleue
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-cifras
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-revision-backups
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260925-kaggle-f6
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817b
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BAK-20260915-huecos-obs-hyp
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260927-codesimple-opencode2
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817e
+---
+
+
+===== LIVE: config chunk del RAG del lab =====
+/home/jokoalmi/joko-lab/tools/indexer.py:125:    chunks = splitter.split_text(body)
+/home/jokoalmi/joko-lab/tools/indexer.py:145:        chunk_size=1000, chunk_overlap=150,
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/PIL/FliImagePlugin.py:92:            chunk_size: int | None = None
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/PIL/FliImagePlugin.py:94:                if chunk_size is not None:
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/PIL/FliImagePlugin.py:95:                    self.fp.seek(chunk_size - 6, os.SEEK_CUR)
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/PIL/FliImagePlugin.py:101:                chunk_size = i32(s)
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/PIL/FliImagePlugin.py:102:                if not chunk_size:
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/utils/misc.py:73:FILE_CHUNK_SIZE = 1024 * 1024
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/utils/misc.py:311:    file: BinaryIO, size: int = FILE_CHUNK_SIZE
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/utils.py:28:DOWNLOAD_CHUNK_SIZE = 256 * 1024
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/utils.py:60:    response: Response, chunk_size: int = DOWNLOAD_CHUNK_SIZE
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/utils.py:66:            chunk_size,
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/utils.py:95:            chunk = response.raw.read(chunk_size)
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/lazy_wheel.py:12:from pip._vendor.requests.models import CONTENT_CHUNK_SIZE, Response
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/lazy_wheel.py:50:        self, url: str, session: PipSession, chunk_size: int = CONTENT_CHUNK_SIZE
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/lazy_wheel.py:55:        self._session, self._url, self._chunk_size = session, url, chunk_size
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/lazy_wheel.py:95:        download_size = max(size, self._chunk_size)
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/lazy_wheel.py:156:        for start in reversed(range(0, end, self._chunk_size)):
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_internal/network/lazy_wheel.py:209:                for chunk in response_chunks(response, self._chunk_size):
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_vendor/urllib3/contrib/securetransport.py:240:                chunk_size = base_socket.recv_into(buffer, remaining)
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_vendor/urllib3/contrib/securetransport.py:241:                read_count += chunk_size
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_vendor/urllib3/contrib/securetransport.py:242:                if not chunk_size:
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_vendor/requests/models.py:80:CONTENT_CHUNK_SIZE = 10 * 1024
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_vendor/requests/models.py:81:ITER_CHUNK_SIZE = 512
+/home/jokoalmi/joko-lab/tools/.venv-bolsa/lib/python3.14/site-packages/pip/_vendor/requests/models.py:799:    def iter_content(self, chunk_size=1, decode_unicode=False):
+---
+__pycache__
+activation_engine.py
+agentic_loop.py
+aider-lab.sh
+analiza_charts.py
+analizar_carrusel_rapido.py
+analizar_reel_completo.py
+analizar_reel_completo.sh
+analizar_youtube_completo.py
+auditar_cobertura_backups.py
+auditar_cobertura_backups.py.bak-20260929-cobertura
+auditor_deuda_tools.py
+auto_dispatcher.py
+aviso_modelos_novedades.py
+banco_validacion_juez.json
+bateria_json_tool_calling.json
+bateria_vision_compare.py
+bateria_vision_orquestador.sh
+blackboard_orchestrator.py
+bolsa_charts.py
+bolsa_scan.py
+bolsa_verif_fecha.py
+check-backup-huerfanos.sh
+check-router-sync.sh
+checklist_calidad_visual.py
+complejidad_crap.py
+confidence.py
+confidence_decayer.py
+consolidador_sesiones.py
+consulta-decision.sh
+context_builder.py
+context_builder_estructurado.py
+contrastar_externo.py
+convert_sessions.py
+crear_video_explicativo.sh
+crear_video_kenburns.sh
+create-mcp-lab.sh
+debt_detector.py
+decision_engine.py
+decision_router.py
+
+
+===== LIVE: tabla RAG (lancedb) e indice =====
+---
+
+
+===== FUENTE PRIMARIA arXiv 2608.27454 =====
+{'results': [{'url': 'https://arxiv.org/abs/2608.27454', 'title': '[2608.27454] WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution', 'content': '# [2608.27454] WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution\nURL: https://arxiv.org/abs/2608.27454\nPublished: 2026-08-27\n\n[2608.27454] WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution\nSkip to main content\n\narchive\n\nSearch arXiv\nPress Enter to search Â· Advanced search\n# Computer Science > Artificial Intelligence\n**arXiv:2608.27454** (cs)\n[Submitted on 27 Aug 2026]\n# Title:WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution\nAuthors:Liyan Tang, Cyrus Rashtchian, Chun-Sung Ferng, Andrew Tomkins, Da-Cheng Juan, Tu Vu\nView a PDF of the paper titled WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution, by Liyan Tang and 5 other authors\nView PDF\nHTML (experimental)\n>\n> Abstract:\n> Agent skills package specialized knowledge and workflows into reusable resources that extend AI agent capabilities. Recent work automatically discovers such skills from agent experience, which enables agents to progressively adapt through interaction. However, the insights that guide skill development typically remain scattered across optimization histories, limiting their systematic reuse across iterations. We introduce WikiSkill, a framework that co-evolves agent skills with a persistent knowledge base (wiki). At a high level, WikiSkill separates raw execution experience, accumulated knowledge, and executable skills, while continuously consolidating experience into the wiki, which subsequent skill updates can build on. Across diverse benchmarks and models, WikiSkill consistently outperforms state-of-the-art skill-evolution methods and improves over no-skill baselines in most model-benchmark settings. We find that skill evolution complements model scaling: larger models generally benefit more from evolved skills, while smaller models with skills can outperform substantially larger models without them. We also find that evolved skills transfer effectively across models and model families, and skills evolved by other models can outperform self-evolved skills. Finally, our ablation studies confirm that persistent knowledge accumulation in the wiki is critical for effective skill evolution. These results demonstrate the benefits of systematically accumulating and refining agent experience for developing reusable and transferable skills.\n|Subjects:|Artificial Intelligence (cs.AI); Computation and Language (cs.CL)|\n|Cite as:|arXiv:2608.27454 [cs.AI]|\n| |(or arXiv:2608.27454v1 [cs.AI] for this version)\n|\n| |https://doi.org/10.48550/arXiv.2608.27454\nFocus to learn more\narXiv-issued DOI via DataCite (pending registration)\n|\n## Submission history\nFrom: Liyan Tang [view email]\n**[v1]**\nThu, 27 Aug 2026 17:59:11 UTC (789 KB)\nFull-text links:\n## Access Paper:\nView a PDF of the paper titled WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution, by Liyan Tang and 5 other authors\n* View PDF\n* HTML (experimental)\n* TeX Source\n\nlicense icon\nview license\n\n### Current browse context:\ncs.AI\n< prev\n | \nnext >\nnew\n|\nrecent\n| 2026-08\nChange to browse by:\ncs\ncs.CL\n### References & Citations\n* NA', 'error': None}]}

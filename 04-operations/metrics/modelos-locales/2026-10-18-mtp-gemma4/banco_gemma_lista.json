@@ -1,0 +1,267 @@
+{
+ "fecha": "2026-10-18 14:39 CEST",
+ "modelo": "/mnt/ssd_ia_datos/LM STUDIO/lmstudio-community/gemma-4-12B-it-QAT-GGUF/gemma-4-12B-it-QAT-Q4_0.gguf",
+ "draft": "/mnt/ssd_ia_datos/LM STUDIO/google/gemma-4-12B-it-qat-MTP/gemma-4-12B-it-qat-assistant-MTP-Q8_0.gguf",
+ "clase": "lista",
+ "ngl": 99,
+ "n_predict": 96,
+ "rondas": 2,
+ "filas": [
+  {
+   "tag": "none",
+   "ronda": 1,
+   "clase": "lista",
+   "spec": "none",
+   "extra": [],
+   "tok_s": 28.126,
+   "n_gen": 96,
+   "draft_n": null,
+   "aceptados": null,
+   "unused": 0,
+   "vram_mib": 9267,
+   "texto": ""
+  },
+  {
+   "tag": "n1",
+   "ronda": 1,
+   "clase": "lista",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "1"
+   ],
+   "tok_s": 45.576,
+   "n_gen": 96,
+   "draft_n": 51,
+   "aceptados": 44,
+   "unused": 0,
+   "vram_mib": 9753,
+   "texto": ""
+  },
+  {
+   "tag": "n2",
+   "ronda": 1,
+   "clase": "lista",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "2"
+   ],
+   "tok_s": 49.657,
+   "n_gen": 96,
+   "draft_n": 75,
+   "aceptados": 57,
+   "unused": 0,
+   "vram_mib": 9759,
+   "texto": ""
+  },
+  {
+   "tag": "n3",
+   "ronda": 1,
+   "clase": "lista",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "3"
+   ],
+   "tok_s": 48.897,
+   "n_gen": 96,
+   "draft_n": 93,
+   "aceptados": 64,
+   "unused": 0,
+   "vram_mib": 9775,
+   "texto": ""
+  },
+  {
+   "tag": "n4",
+   "ronda": 1,
+   "clase": "lista",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "4"
+   ],
+   "tok_s": 51.237,
+   "n_gen": 96,
+   "draft_n": 104,
+   "aceptados": 68,
+   "unused": 0,
+   "vram_mib": 9798,
+   "texto": ""
+  },
+  {
+   "tag": "none",
+   "ronda": 2,
+   "clase": "lista",
+   "spec": "none",
+   "extra": [],
+   "tok_s": 27.764,
+   "n_gen": 96,
+   "draft_n": null,
+   "aceptados": null,
+   "unused": 0,
+   "vram_mib": 9423,
+   "texto": ""
+  },
+  {
+   "tag": "n1",
+   "ronda": 2,
+   "clase": "lista",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "1"
+   ],
+   "tok_s": 46.409,
+   "n_gen": 96,
+   "draft_n": 51,
+   "aceptados": 44,
+   "unused": 0,
+   "vram_mib": 9821,
+   "texto": ""
+  },
+  {
+   "tag": "n2",
+   "ronda": 2,
+   "clase": "lista",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "2"
+   ],
+   "tok_s": 48.885,
+   "n_gen": 96,
+   "draft_n": 75,
+   "aceptados": 57,
+   "unused": 0,
+   "vram_mib": 9787,
+   "texto": ""
+  },
+  {
+   "tag": "n3",
+   "ronda": 2,
+   "clase": "lista",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "3"
+   ],
+   "tok_s": 48.881,
+   "n_gen": 96,
+   "draft_n": 93,
+   "aceptados": 64,
+   "unused": 0,
+   "vram_mib": 9785,
+   "texto": ""
+  },
+  {
+   "tag": "n4",
+   "ronda": 2,
+   "clase": "lista",
+   "spec": "draft-mtp",
+   "extra": [
+    "--spec-draft-n-max",
+    "4"
+   ],
+   "tok_s": 50.973,
+   "n_gen": 96,
+   "draft_n": 104,
+   "aceptados": 68,
+   "unused": 0,
+   "vram_mib": 9789,
+   "texto": ""
+  }
+ ],
+ "resumen": {
+  "none": {
+   "tok_s_mediana": 27.95,
+   "valores": [
+    28.126,
+    27.764
+   ],
+   "aceptacion_pct": null,
+   "ganancia_pct": null,
+   "unused": [
+    0,
+    0
+   ],
+   "vram_mib": [
+    9267,
+    9423
+   ],
+   "coincidencia_texto": 1.0
+  },
+  "n1": {
+   "tok_s_mediana": 45.99,
+   "valores": [
+    45.576,
+    46.409
+   ],
+   "aceptacion_pct": 86.3,
+   "ganancia_pct": 64.6,
+   "unused": [
+    0,
+    0
+   ],
+   "vram_mib": [
+    9753,
+    9821
+   ],
+   "coincidencia_texto": 1.0
+  },
+  "n2": {
+   "tok_s_mediana": 49.27,
+   "valores": [
+    49.657,
+    48.885
+   ],
+   "aceptacion_pct": 76.0,
+   "ganancia_pct": 76.3,
+   "unused": [
+    0,
+    0
+   ],
+   "vram_mib": [
+    9759,
+    9787
+   ],
+   "coincidencia_texto": 1.0
+  },
+  "n3": {
+   "tok_s_mediana": 48.89,
+   "valores": [
+    48.897,
+    48.881
+   ],
+   "aceptacion_pct": 68.8,
+   "ganancia_pct": 74.9,
+   "unused": [
+    0,
+    0
+   ],
+   "vram_mib": [
+    9775,
+    9785
+   ],
+   "coincidencia_texto": 1.0
+  },
+  "n4": {
+   "tok_s_mediana": 51.11,
+   "valores": [
+    51.237,
+    50.973
+   ],
+   "aceptacion_pct": 65.4,
+   "ganancia_pct": 82.9,
+   "unused": [
+    0,
+    0
+   ],
+   "vram_mib": [
+    9798,
+    9789
+   ],
+   "coincidencia_texto": 1.0
+  }
+ }
+}

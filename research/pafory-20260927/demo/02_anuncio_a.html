@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<title>02_anuncio_a</title><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{width:1080px;font-family:"DejaVu Sans","Liberation Sans",Arial,sans-serif;
+     background:#0e0e11;color:#eee;-webkit-font-smoothing:antialiased}
+.canvas{width:1080px;height:1080px;position:relative;overflow:hidden;
+     background:radial-gradient(120% 80% at 20% 0%,#23202a 0%,#0e0e11 60%)}
+.wrap{padding:54px 64px 0}
+.tag{display:inline-block;font-size:17px;letter-spacing:2.5px;text-transform:uppercase;
+     color:#c8a24a;border:1px solid #c8a24a55;border-radius:999px;padding:8px 18px}
+.demo{position:absolute;top:26px;right:26px;font-size:15px;letter-spacing:2px;
+     color:#ff5c5c;border:1px dashed #ff5c5c88;border-radius:6px;padding:6px 12px}
+h1{font-size:56px;line-height:1.06;margin:26px 0 10px;letter-spacing:-1px}
+h1 em{color:#c8a24a;font-style:normal}
+.sub{font-size:22px;color:#a5a1ac;line-height:1.4}
+.card{background:#17171d;border:1px solid #ffffff12;border-radius:18px;padding:26px 30px;margin-top:26px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:20px;
+     padding:13px 0;border-bottom:1px solid #ffffff0d;font-size:21px}
+.row:last-child{border-bottom:0}
+.row .k{color:#c9c6d1}
+.row .v{color:#fff;font-weight:700}
+.code{background:linear-gradient(90deg,#c8a24a22,#c8a24a08);border:1px solid #c8a24a66;
+      border-radius:18px;padding:26px 30px;margin-top:24px;display:flex;
+      justify-content:space-between;align-items:center}
+.code .lbl{font-size:18px;letter-spacing:2px;color:#c8a24a;text-transform:uppercase}
+.code .val{font-size:46px;font-weight:700;letter-spacing:1px;color:#fff;margin-top:6px}
+.code .off{font-size:20px;color:#c9c6d1;margin-top:4px}
+.bullets{list-style:none;margin-top:8px}
+.bullets li{font-size:20px;color:#c9c6d1;line-height:1.5;padding-left:30px;position:relative;margin-top:10px}
+.bullets li:before{content:"";position:absolute;left:6px;top:11px;width:9px;height:9px;
+     border-radius:50%;background:#c8a24a}
+.pie{margin-top:30px;font-size:16px;color:#7d7a85;line-height:1.5;border-top:1px solid #ffffff10;padding-top:14px}
+.sec{font-size:16px;letter-spacing:2.5px;text-transform:uppercase;color:#8f8b98;margin-top:26px}
+/* anuncios */
+.ad{width:1080px;height:1080px;padding:78px 72px;display:flex;flex-direction:column;
+    justify-content:space-between;position:relative;overflow:hidden;
+    background:radial-gradient(110% 90% at 80% 0%,#2a2320 0%,#100f13 62%)}
+.ad .hook{font-size:92px;line-height:1.02;font-weight:700;letter-spacing:-2px}
+.ad .hook em{color:#c8a24a;font-style:normal}
+.ad .kicker{font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#c8a24a}
+.ad .body{font-size:30px;color:#cfccd6;line-height:1.35;margin-top:22px}
+.ad .cta{display:inline-block;background:#c8a24a;color:#14131a;font-size:28px;font-weight:700;
+    padding:20px 34px;border-radius:12px}
+.ad .cta small{display:block;font-size:19px;font-weight:400;margin-top:6px;color:#3a3423}
+.bars{display:flex;align-items:flex-end;gap:26px;height:250px;margin-top:14px}
+.bar{flex:1;text-align:center}
+.bar i{display:block;background:linear-gradient(180deg,#c8a24a,#8d6f2c);border-radius:8px 8px 0 0}
+.bar span{display:block;font-size:18px;color:#9b98a3;margin-top:10px}
+.bar b{display:block;font-size:20px;color:#fff;margin-bottom:8px}
+</style></head>
+<body><div class="canvas"><div class="demo">EJEMPLO</div><div class="ad">
+<div class="kicker">Anuncio · variante A · gancho regalo</div>
+<div><div class="hook">El regalo que<br><em>no falla</em>.</div>
+  <div class="body">24 fragancias de nicho detrás de 24 puertas. Edición limitada.</div></div>
+<div><span class="cta">Reservar el mío<small>código EJEMPLO55</small></span></div>
+</div></div></body></html>

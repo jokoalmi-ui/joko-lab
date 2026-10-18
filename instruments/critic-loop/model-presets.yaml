@@ -1,0 +1,86 @@
+# Joko Lab — LM Studio Model Presets
+#
+# Parámetros validados empíricamente para cada modelo y tipo de tarea.
+# Estos valores se descubrieron por ensayo-error durante la construcción
+# del Critic Loop (2026-07-20) y deben actualizarse cuando se descubran
+# mejores configuraciones.
+#
+# REGLA: si un modelo falla con estos parámetros, anota el error aquí.
+# No ajustes a ciegas.
+
+models:
+
+  glm-4.6v-flash:
+    arch: glm4
+    size: "7.95 GB"
+    context: 131072
+    strengths:
+      - "Evaluación meticulosa, buenas evidencias visuales"
+      - "Razonamiento estructurado (usa reasoning_content)"
+    weaknesses:
+      - "Lento (~120s para 10 principios con visión)"
+      - "Gasta ~5000 tokens en reasoning antes de responder"
+      - "Timeout frecuente en primer intento, reintento suele funcionar"
+    tasks:
+      evaluation:
+        temperature: 0.1
+        max_tokens: 8192
+        timeout: 120
+        retries: 3
+        notes: "max_tokens debe ser >=8192 porque reasoning se come la mitad."
+      vision_quick:
+        temperature: 0.1
+        max_tokens: 2048
+        timeout: 60
+        notes: "Para prompts de visión cortos (1-2 principios)."
+      creative:
+        temperature: 0.8
+        max_tokens: 4096
+        timeout: 90
+        notes: "No probado aún. Estimación basada en arquitectura."
+
+  google/gemma-4-12b-qat:
+    arch: gemma4
+    size: "7.56 GB"
+    context: 262144
+    strengths:
+      - "Contexto enorme (262K), ideal para evaluar muchas pantallas a la vez"
+      - "Más rápido que glm en inferencia"
+    weaknesses:
+      - "No usa reasoning_content → sus evaluaciones pueden ser menos detalladas"
+    tasks:
+      evaluation:
+        temperature: 0.1
+        max_tokens: 4096
+        timeout: 90
+        retries: 2
+        notes: "No debería necesitar 8192 (no gasta tokens en reasoning)."
+      multi_screen:
+        temperature: 0.1
+        max_tokens: 8192
+        timeout: 120
+        notes: "Con 262K contexto, puedes mandar 3-4 capturas en un solo prompt."
+      creative:
+        temperature: 0.7
+        max_tokens: 4096
+        timeout: 60
+
+# ─── RETIRADO 02-oct-2026: preset `qwen/qwen3.5-9b` ──────────────────────
+# Muerto: el modelo NO está en disco. Evidencia: `lms ls` (02-oct-2026)
+# devuelve 12 modelos / 75,83 GB y qwen3.5-9b no aparece en la salida.
+# Un preset que apunta a un modelo ausente rompe cualquier corrida del
+# critic-loop que lo seleccione.
+# PENDIENTE (decisión del usuario): sustituto para "primera evaluación
+# rápida" entre los que SÍ están en disco (tamaños de `lms ls`, no medidos
+# en velocidad): granite-4.0-h-tiny 4,00 GB · lfm2.5-2.6b 1,67 GB ·
+# granite-4.1-8b 5,09 GB. O retirar la estrategia de 3 presets.
+
+# ─── Estrategia de uso recomendada ─────────────────────────────
+#
+# Primera evaluación (rápida):   [RETIRADO 02-oct-2026 — qwen3.5-9b no está en
+#                                 disco; elegir sustituto, ver nota arriba]
+# Evaluación profunda:           glm-4.6v-flash → evidencias detalladas
+# Evaluación multi-pantalla:     gemma-4-12b-qat → 3-4 capturas en un prompt
+# Acuerdo entre modelos:         ejecutar los 3 y comparar scores → Agreement
+#
+# Si Agreement < 70% en un principio, ese principio necesita refinamiento.

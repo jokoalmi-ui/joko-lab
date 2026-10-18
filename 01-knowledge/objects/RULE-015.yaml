@@ -1,0 +1,31 @@
+id: RULE-015
+type: RULE
+decision_origin: experimento
+status: activo
+version: 1
+created: '2026-09-02'
+last_validated: '2026-09-02'
+next_review: '2026-12-02'
+expires: '2027-03-02'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-09-02T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-12-02T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-09-02T00:00:00Z
+title: "Instrumentos de medición: validar la métrica antes de confiar; umbrales NO a priori"
+desc: >
+  Cuando se use un instrumento de medición (métrica, detector, score), validar
+  primero que mide lo que dice medir. Los umbrales no se fijan a priori: se
+  calibran con datos reales y se ajustan tras observar la distribución.
+confidence: 0.8
+confidence_label: ALTA
+evidence:
+- 'Calibracion detector outliers YT (outlierScore >=10x tras falsos positivos) y cache hit 99,4%'
+dependencies: [RULE-013]
+contradicts: []
+superseded_by: null
+domain: proceso
+scope: todo_joko_lab

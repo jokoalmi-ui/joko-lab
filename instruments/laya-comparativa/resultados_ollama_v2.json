@@ -1,0 +1,1971 @@
+{
+ "meta": {
+  "backend": "ollama",
+  "checkpoint": null,
+  "casos": 177,
+  "casos_sha256": "765503df4e84a0a7854e23aa6cbd955f217ff9322815332cbfa1687a0947cddf",
+  "set": "v2",
+  "fichero_casos": "casos_v2_noul.json",
+  "golden_set_sha256": "2a2da99cc7001128f9c58bc2812f78a590f1a13aa34195191dafa01934fbe1d1",
+  "ejecutado": "2026-09-23T20:05:25+02:00",
+  "host": {
+   "python": "Python 3.11.16",
+   "laya": true,
+   "torch": false,
+   "gpu": "NVIDIA RTX A2000 12GB, 2390, 12282, 0",
+   "ollama": [
+    "ibm/granite4.2:8b-q4_K_M",
+    "qwen2.5:7b",
+    "deepseek-r1-distill-qwen-14b:latest"
+   ],
+   "disco_home": "/dev/nvme0n1p2   468G   287G  158G  65% /",
+   "fecha": "mié 23 sept 2026 20:05:25 CEST"
+  }
+ },
+ "metricas_globales": {
+  "n": 177,
+  "accuracy": 0.9944,
+  "brier": 0.0056,
+  "ece5": 0.0056,
+  "ece15_proveedor": 0.0056,
+  "conf_media": 0.435,
+  "sesgo_conf_menos_acierto": -0.5593,
+  "confiado_y_fallado": 1,
+  "seguro_y_acertado": 76,
+  "p50_ms": 2906.4,
+  "p95_ms": 4151.4
+ },
+ "metricas_por_bloque": {
+  "A": {
+   "n": 163,
+   "accuracy": 0.9939,
+   "brier": 0.0061,
+   "ece5": 0.0061,
+   "ece15_proveedor": 0.0061,
+   "conf_media": 0.4356,
+   "sesgo_conf_menos_acierto": -0.5583,
+   "confiado_y_fallado": 1,
+   "seguro_y_acertado": 70,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "B": {
+   "n": 8,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 0.0,
+   "sesgo_conf_menos_acierto": -1.0,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "D": {
+   "n": 6,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 1.0,
+   "sesgo_conf_menos_acierto": 0.0,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 6,
+   "p50_ms": null,
+   "p95_ms": null
+  }
+ },
+ "metricas_por_subtipo": {
+  "campo_ausente": {
+   "n": 30,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 0.0,
+   "sesgo_conf_menos_acierto": -1.0,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "grounding": {
+   "n": 13,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 0.7692,
+   "sesgo_conf_menos_acierto": -0.2308,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 10,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "literal": {
+   "n": 30,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 1.0,
+   "sesgo_conf_menos_acierto": 0.0,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 30,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "memoria": {
+   "n": 6,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 1.0,
+   "sesgo_conf_menos_acierto": 0.0,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 6,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "negacion": {
+   "n": 15,
+   "accuracy": 0.9333,
+   "brier": 0.0667,
+   "ece5": 0.0667,
+   "ece15_proveedor": 0.0667,
+   "conf_media": 0.0667,
+   "sesgo_conf_menos_acierto": -0.8667,
+   "confiado_y_fallado": 1,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "parafrasis": {
+   "n": 30,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 1.0,
+   "sesgo_conf_menos_acierto": 0.0,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 30,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "soporte_parcial": {
+   "n": 15,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 0.0,
+   "sesgo_conf_menos_acierto": -1.0,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "trampa": {
+   "n": 8,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 0.0,
+   "sesgo_conf_menos_acierto": -1.0,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "valor_vecino": {
+   "n": 30,
+   "accuracy": 1.0,
+   "brier": 0.0,
+   "ece5": 0.0,
+   "ece15_proveedor": 0.0,
+   "conf_media": 0.0,
+   "sesgo_conf_menos_acierto": -1.0,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  }
+ },
+ "errores": 0,
+ "registros": [
+  {
+   "id": "gen-001",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3422.9
+  },
+  {
+   "id": "gen-002",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2916.0
+  },
+  {
+   "id": "gen-003",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2864.0
+  },
+  {
+   "id": "gen-004",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2576.0
+  },
+  {
+   "id": "gen-005",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2832.7
+  },
+  {
+   "id": "gen-006",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2841.6
+  },
+  {
+   "id": "gen-007",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2835.0
+  },
+  {
+   "id": "gen-008",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2903.4
+  },
+  {
+   "id": "gen-009",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2562.8
+  },
+  {
+   "id": "gen-010",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3617.8
+  },
+  {
+   "id": "gen-011",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2864.0
+  },
+  {
+   "id": "gen-012",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2875.8
+  },
+  {
+   "id": "gen-013",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2447.7
+  },
+  {
+   "id": "gen-014",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2851.4
+  },
+  {
+   "id": "gen-015",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3035.6
+  },
+  {
+   "id": "gen-016",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4456.0
+  },
+  {
+   "id": "gen-017",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2871.3
+  },
+  {
+   "id": "gen-018",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2968.0
+  },
+  {
+   "id": "gen-019",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3387.6
+  },
+  {
+   "id": "gen-020",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3752.2
+  },
+  {
+   "id": "gen-021",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2808.6
+  },
+  {
+   "id": "gen-022",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2921.4
+  },
+  {
+   "id": "gen-023",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2870.4
+  },
+  {
+   "id": "gen-024",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2935.1
+  },
+  {
+   "id": "gen-025",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2881.2
+  },
+  {
+   "id": "gen-026",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2830.7
+  },
+  {
+   "id": "gen-027",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2789.5
+  },
+  {
+   "id": "gen-028",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2864.2
+  },
+  {
+   "id": "gen-029",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2871.9
+  },
+  {
+   "id": "gen-030",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3007.6
+  },
+  {
+   "id": "gen-031",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2838.9
+  },
+  {
+   "id": "gen-032",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4002.0
+  },
+  {
+   "id": "gen-033",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2827.4
+  },
+  {
+   "id": "gen-034",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2955.3
+  },
+  {
+   "id": "gen-035",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2900.4
+  },
+  {
+   "id": "gen-036",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2816.9
+  },
+  {
+   "id": "gen-037",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3126.0
+  },
+  {
+   "id": "gen-038",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3187.0
+  },
+  {
+   "id": "gen-039",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2878.0
+  },
+  {
+   "id": "gen-040",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3712.0
+  },
+  {
+   "id": "gen-041",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2955.7
+  },
+  {
+   "id": "gen-042",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2983.0
+  },
+  {
+   "id": "gen-043",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2864.3
+  },
+  {
+   "id": "gen-044",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2954.4
+  },
+  {
+   "id": "gen-045",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2906.4
+  },
+  {
+   "id": "gen-046",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2804.4
+  },
+  {
+   "id": "gen-047",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2836.4
+  },
+  {
+   "id": "gen-048",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3198.4
+  },
+  {
+   "id": "gen-049",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2900.1
+  },
+  {
+   "id": "gen-050",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2984.2
+  },
+  {
+   "id": "gen-051",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2852.3
+  },
+  {
+   "id": "gen-052",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2876.1
+  },
+  {
+   "id": "gen-053",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2813.3
+  },
+  {
+   "id": "gen-054",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2833.8
+  },
+  {
+   "id": "gen-055",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3070.0
+  },
+  {
+   "id": "gen-056",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2908.0
+  },
+  {
+   "id": "gen-057",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2902.7
+  },
+  {
+   "id": "gen-058",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2845.3
+  },
+  {
+   "id": "gen-059",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3366.5
+  },
+  {
+   "id": "gen-060",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4295.4
+  },
+  {
+   "id": "gen-061",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3129.6
+  },
+  {
+   "id": "gen-062",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3398.7
+  },
+  {
+   "id": "gen-063",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4042.2
+  },
+  {
+   "id": "gen-064",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3152.1
+  },
+  {
+   "id": "gen-065",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4128.9
+  },
+  {
+   "id": "gen-066",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3297.4
+  },
+  {
+   "id": "gen-067",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3767.0
+  },
+  {
+   "id": "gen-068",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3637.0
+  },
+  {
+   "id": "gen-069",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3711.1
+  },
+  {
+   "id": "gen-070",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3598.7
+  },
+  {
+   "id": "gen-071",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3455.3
+  },
+  {
+   "id": "gen-072",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3621.1
+  },
+  {
+   "id": "gen-073",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2917.8
+  },
+  {
+   "id": "gen-074",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2823.0
+  },
+  {
+   "id": "gen-075",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2848.5
+  },
+  {
+   "id": "gen-076",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3660.0
+  },
+  {
+   "id": "gen-077",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 5218.1
+  },
+  {
+   "id": "gen-078",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2819.5
+  },
+  {
+   "id": "gen-079",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3000.5
+  },
+  {
+   "id": "gen-080",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2826.8
+  },
+  {
+   "id": "gen-081",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2966.9
+  },
+  {
+   "id": "gen-082",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2829.4
+  },
+  {
+   "id": "gen-083",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2485.2
+  },
+  {
+   "id": "gen-084",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2834.6
+  },
+  {
+   "id": "gen-085",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2987.4
+  },
+  {
+   "id": "gen-086",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2925.4
+  },
+  {
+   "id": "gen-087",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2927.6
+  },
+  {
+   "id": "gen-088",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2976.0
+  },
+  {
+   "id": "gen-089",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3043.0
+  },
+  {
+   "id": "gen-090",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2825.9
+  },
+  {
+   "id": "gen-091",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3644.9
+  },
+  {
+   "id": "gen-092",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2814.6
+  },
+  {
+   "id": "gen-093",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2844.3
+  },
+  {
+   "id": "gen-094",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2790.2
+  },
+  {
+   "id": "gen-095",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2994.7
+  },
+  {
+   "id": "gen-096",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4837.3
+  },
+  {
+   "id": "gen-097",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3820.0
+  },
+  {
+   "id": "gen-098",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2778.0
+  },
+  {
+   "id": "gen-099",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3043.4
+  },
+  {
+   "id": "gen-100",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2785.8
+  },
+  {
+   "id": "gen-101",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2930.0
+  },
+  {
+   "id": "gen-102",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2826.3
+  },
+  {
+   "id": "gen-103",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2853.5
+  },
+  {
+   "id": "gen-104",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2765.0
+  },
+  {
+   "id": "gen-105",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2983.0
+  },
+  {
+   "id": "gen-106",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3733.6
+  },
+  {
+   "id": "gen-107",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2838.4
+  },
+  {
+   "id": "gen-108",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2793.3
+  },
+  {
+   "id": "gen-109",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2764.0
+  },
+  {
+   "id": "gen-110",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2763.2
+  },
+  {
+   "id": "gen-111",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3401.5
+  },
+  {
+   "id": "gen-112",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4541.6
+  },
+  {
+   "id": "gen-113",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2768.3
+  },
+  {
+   "id": "gen-114",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3422.0
+  },
+  {
+   "id": "gen-115",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3260.9
+  },
+  {
+   "id": "gen-116",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3788.0
+  },
+  {
+   "id": "gen-117",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2812.4
+  },
+  {
+   "id": "gen-118",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3067.7
+  },
+  {
+   "id": "gen-119",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2812.4
+  },
+  {
+   "id": "gen-120",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3622.4
+  },
+  {
+   "id": "gen-121",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2836.0
+  },
+  {
+   "id": "gen-122",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2816.0
+  },
+  {
+   "id": "gen-123",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3586.4
+  },
+  {
+   "id": "gen-124",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2873.5
+  },
+  {
+   "id": "gen-125",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2918.1
+  },
+  {
+   "id": "gen-126",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2808.0
+  },
+  {
+   "id": "gen-127",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2836.3
+  },
+  {
+   "id": "gen-128",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 9470.0
+  },
+  {
+   "id": "gen-129",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3501.8
+  },
+  {
+   "id": "gen-130",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2963.0
+  },
+  {
+   "id": "gen-131",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3428.0
+  },
+  {
+   "id": "gen-132",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3857.7
+  },
+  {
+   "id": "gen-133",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4317.8
+  },
+  {
+   "id": "gen-134",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2971.8
+  },
+  {
+   "id": "gen-135",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2924.9
+  },
+  {
+   "id": "gen-136",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2868.5
+  },
+  {
+   "id": "gen-137",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2913.1
+  },
+  {
+   "id": "gen-138",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2854.1
+  },
+  {
+   "id": "gen-139",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2895.9
+  },
+  {
+   "id": "gen-140",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2796.4
+  },
+  {
+   "id": "gen-141",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2909.4
+  },
+  {
+   "id": "gen-142",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2793.3
+  },
+  {
+   "id": "gen-143",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2870.7
+  },
+  {
+   "id": "gen-144",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2755.9
+  },
+  {
+   "id": "gen-145",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2793.4
+  },
+  {
+   "id": "gen-146",
+   "bloque": "A",
+   "subtipo": "literal",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2748.6
+  },
+  {
+   "id": "gen-147",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2800.0
+  },
+  {
+   "id": "gen-148",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2501.5
+  },
+  {
+   "id": "gen-149",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2795.4
+  },
+  {
+   "id": "gen-150",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2854.2
+  },
+  {
+   "id": "ctx-01",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2411.9
+  },
+  {
+   "id": "ctx-02",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2494.5
+  },
+  {
+   "id": "ctx-03",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2484.0
+  },
+  {
+   "id": "ctx-04",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3277.7
+  },
+  {
+   "id": "ctx-05",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2755.3
+  },
+  {
+   "id": "ctx-06",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2864.4
+  },
+  {
+   "id": "ctx-07",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2755.2
+  },
+  {
+   "id": "ctx-08",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2826.3
+  },
+  {
+   "id": "mem-01",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3678.1
+  },
+  {
+   "id": "mem-02",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3675.9
+  },
+  {
+   "id": "mem-03",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3529.0
+  },
+  {
+   "id": "mem-04",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3765.9
+  },
+  {
+   "id": "mem-05",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3516.7
+  },
+  {
+   "id": "mem-06",
+   "bloque": "D",
+   "subtipo": "memoria",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3805.1
+  },
+  {
+   "id": "trap-01",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2747.1
+  },
+  {
+   "id": "trap-02",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3739.2
+  },
+  {
+   "id": "trap-03",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4151.4
+  },
+  {
+   "id": "trap-04",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3553.3
+  },
+  {
+   "id": "trap-05",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3499.9
+  },
+  {
+   "id": "trap-06",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 3959.5
+  },
+  {
+   "id": "trap-07",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 7327.8
+  },
+  {
+   "id": "trap-08",
+   "bloque": "B",
+   "subtipo": "trampa",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 4589.0
+  },
+  {
+   "id": "ficha-01",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2838.0
+  },
+  {
+   "id": "ficha-02",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2847.0
+  },
+  {
+   "id": "ficha-03",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2881.4
+  },
+  {
+   "id": "ficha-04",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": true,
+   "p": 1.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2780.9
+  },
+  {
+   "id": "ficha-05",
+   "bloque": "A",
+   "subtipo": "grounding",
+   "gt": false,
+   "p": 0.0,
+   "motor": "ibm/granite4.2:8b-q4_K_M",
+   "error": null,
+   "ms": 2827.2
+  }
+ ]
+}

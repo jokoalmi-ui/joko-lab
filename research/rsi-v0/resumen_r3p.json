@@ -1,0 +1,68 @@
+{
+  "tag": "r3p",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "num_ctx": 8192,
+  "think": false,
+  "temperature": 0.0,
+  "seed": 42,
+  "sha_corrector": "849c12fe093420bae89971566e190653c5ca50d3322b7e404e144d9f012e6121",
+  "sha_examen": "30557a9df6ee2fca82f3a823ed8e5dea20baa56ebc21d00c7b6f51f011493080",
+  "casos": [
+    "json-anidado",
+    "json-numeros-es"
+  ],
+  "segundos_totales": 99.7,
+  "resumen": {
+    "p-low": {
+      "pasan": 2,
+      "total": 2,
+      "segundos": 38.3,
+      "instr_len": 0,
+      "origen": "ronda 3 PILOTO: modo de inferencia think='low' sin instruccion (punto intermedio bajo). Solo los 2 casos que fallan sin razonamiento.",
+      "think": "low",
+      "casos_fallados": []
+    },
+    "p-medium": {
+      "pasan": 2,
+      "total": 2,
+      "segundos": 30.4,
+      "instr_len": 0,
+      "origen": "ronda 3 PILOTO: think='medium' sin instruccion (punto intermedio medio).",
+      "think": "medium",
+      "casos_fallados": []
+    },
+    "p-high": {
+      "pasan": 2,
+      "total": 2,
+      "segundos": 30.9,
+      "instr_len": 0,
+      "origen": "ronda 3 PILOTO: think='high' sin instruccion (nivel alto explicito, comparable con think=None de la ronda 2).",
+      "think": "high",
+      "casos_fallados": []
+    }
+  },
+  "pareto": [
+    {
+      "variante": "p-medium",
+      "pasan": 2,
+      "segundos": 30.4,
+      "dominada": false,
+      "casos_fallados": []
+    },
+    {
+      "variante": "p-high",
+      "pasan": 2,
+      "segundos": 30.9,
+      "dominada": true,
+      "casos_fallados": []
+    },
+    {
+      "variante": "p-low",
+      "pasan": 2,
+      "segundos": 38.3,
+      "dominada": true,
+      "casos_fallados": []
+    }
+  ],
+  "jsonl": "/home/jokoalmi/joko-lab/research/rsi-v0/variantes_r3p.jsonl"
+}

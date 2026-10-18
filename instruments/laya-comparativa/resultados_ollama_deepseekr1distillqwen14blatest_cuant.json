@@ -1,0 +1,1259 @@
+{
+ "meta": {
+  "backend": "ollama",
+  "modelo_ollama": "deepseek-r1-distill-qwen-14b:latest",
+  "num_ctx": 8192,
+  "checkpoint": null,
+  "casos": 120,
+  "casos_sha256": "d7e423a81f72d54d1aad9bba42bf9a9837f12c0357350d913ea4dce2da25684e",
+  "set": "cuant",
+  "fichero_casos": "casos_cuant_n120.json",
+  "golden_set_sha256": "c901d0013d18e3493709a3ce9851f13a0387c8897124aab21c834c301624febe",
+  "ejecutado": "2026-09-24T07:55:52+02:00",
+  "host": {
+   "python": "Python 3.11.16",
+   "laya": true,
+   "torch": true,
+   "gpu": "NVIDIA RTX A2000 12GB, 10033, 12282, 99",
+   "ollama": [
+    "ibm/granite4.2:8b-q4_K_M",
+    "qwen2.5:7b",
+    "deepseek-r1-distill-qwen-14b:latest"
+   ],
+   "disco_home": "/dev/nvme0n1p2   468G   307G  137G  70% /",
+   "fecha": "jue 24 sept 2026 07:55:52 CEST"
+  }
+ },
+ "metricas_globales": {
+  "n": 120,
+  "accuracy": 0.5417,
+  "brier": 0.448,
+  "ece5": 0.4433,
+  "ece15_proveedor": 0.4433,
+  "conf_media": 0.11,
+  "sesgo_conf_menos_acierto": -0.4317,
+  "confiado_y_fallado": 5,
+  "seguro_y_acertado": 10,
+  "p50_ms": 981.0,
+  "p95_ms": 1079.8
+ },
+ "metricas_por_bloque": {},
+ "metricas_por_subtipo": {
+  "cuantificador": {
+   "n": 120,
+   "accuracy": 0.5417,
+   "brier": 0.448,
+   "ece5": 0.4433,
+   "ece15_proveedor": 0.4433,
+   "conf_media": 0.11,
+   "sesgo_conf_menos_acierto": -0.4317,
+   "confiado_y_fallado": 5,
+   "seguro_y_acertado": 10,
+   "p50_ms": null,
+   "p95_ms": null
+  }
+ },
+ "errores": 0,
+ "registros": [
+  {
+   "id": "cuant-001",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 24913.7
+  },
+  {
+   "id": "cuant-002",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1071.2
+  },
+  {
+   "id": "cuant-003",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 901.7
+  },
+  {
+   "id": "cuant-004",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 876.3
+  },
+  {
+   "id": "cuant-005",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 1.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 968.1
+  },
+  {
+   "id": "cuant-006",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 984.0
+  },
+  {
+   "id": "cuant-007",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1068.6
+  },
+  {
+   "id": "cuant-008",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 926.2
+  },
+  {
+   "id": "cuant-009",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1068.2
+  },
+  {
+   "id": "cuant-010",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 997.4
+  },
+  {
+   "id": "cuant-011",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1016.6
+  },
+  {
+   "id": "cuant-012",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1089.4
+  },
+  {
+   "id": "cuant-013",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1007.3
+  },
+  {
+   "id": "cuant-014",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1031.6
+  },
+  {
+   "id": "cuant-015",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 994.0
+  },
+  {
+   "id": "cuant-016",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 987.9
+  },
+  {
+   "id": "cuant-017",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1038.1
+  },
+  {
+   "id": "cuant-018",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1061.9
+  },
+  {
+   "id": "cuant-019",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 983.3
+  },
+  {
+   "id": "cuant-020",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 1.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1024.6
+  },
+  {
+   "id": "cuant-021",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 907.1
+  },
+  {
+   "id": "cuant-022",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 781.9
+  },
+  {
+   "id": "cuant-023",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 790.0
+  },
+  {
+   "id": "cuant-024",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 935.7
+  },
+  {
+   "id": "cuant-025",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1079.8
+  },
+  {
+   "id": "cuant-026",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 979.3
+  },
+  {
+   "id": "cuant-027",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 989.0
+  },
+  {
+   "id": "cuant-028",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1023.0
+  },
+  {
+   "id": "cuant-029",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 921.2
+  },
+  {
+   "id": "cuant-030",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 897.9
+  },
+  {
+   "id": "cuant-031",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1084.1
+  },
+  {
+   "id": "cuant-032",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 825.8
+  },
+  {
+   "id": "cuant-033",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1001.8
+  },
+  {
+   "id": "cuant-034",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 800.0
+  },
+  {
+   "id": "cuant-035",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 988.0
+  },
+  {
+   "id": "cuant-036",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1044.0
+  },
+  {
+   "id": "cuant-037",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1035.0
+  },
+  {
+   "id": "cuant-038",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1091.0
+  },
+  {
+   "id": "cuant-039",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 990.0
+  },
+  {
+   "id": "cuant-040",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 972.3
+  },
+  {
+   "id": "cuant-041",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 919.9
+  },
+  {
+   "id": "cuant-042",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 808.8
+  },
+  {
+   "id": "cuant-043",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 900.2
+  },
+  {
+   "id": "cuant-044",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 787.0
+  },
+  {
+   "id": "cuant-045",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 690.8
+  },
+  {
+   "id": "cuant-046",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1038.0
+  },
+  {
+   "id": "cuant-047",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1047.4
+  },
+  {
+   "id": "cuant-048",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 966.6
+  },
+  {
+   "id": "cuant-049",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1021.0
+  },
+  {
+   "id": "cuant-050",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1059.1
+  },
+  {
+   "id": "cuant-051",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 981.7
+  },
+  {
+   "id": "cuant-052",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1066.2
+  },
+  {
+   "id": "cuant-053",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 949.9
+  },
+  {
+   "id": "cuant-054",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 960.7
+  },
+  {
+   "id": "cuant-055",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1121.6
+  },
+  {
+   "id": "cuant-056",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 1.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 957.4
+  },
+  {
+   "id": "cuant-057",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 884.2
+  },
+  {
+   "id": "cuant-058",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1005.3
+  },
+  {
+   "id": "cuant-059",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1056.9
+  },
+  {
+   "id": "cuant-060",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1049.2
+  },
+  {
+   "id": "cuant-061",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1027.7
+  },
+  {
+   "id": "cuant-062",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 980.1
+  },
+  {
+   "id": "cuant-063",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1017.0
+  },
+  {
+   "id": "cuant-064",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 968.0
+  },
+  {
+   "id": "cuant-065",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 817.0
+  },
+  {
+   "id": "cuant-066",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 962.9
+  },
+  {
+   "id": "cuant-067",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 997.0
+  },
+  {
+   "id": "cuant-068",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 914.3
+  },
+  {
+   "id": "cuant-069",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1025.4
+  },
+  {
+   "id": "cuant-070",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 909.1
+  },
+  {
+   "id": "cuant-071",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1048.3
+  },
+  {
+   "id": "cuant-072",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 949.0
+  },
+  {
+   "id": "cuant-073",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 968.3
+  },
+  {
+   "id": "cuant-074",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 989.4
+  },
+  {
+   "id": "cuant-075",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 1.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 995.3
+  },
+  {
+   "id": "cuant-076",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 805.2
+  },
+  {
+   "id": "cuant-077",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 837.1
+  },
+  {
+   "id": "cuant-078",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 838.6
+  },
+  {
+   "id": "cuant-079",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 707.9
+  },
+  {
+   "id": "cuant-080",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 1.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 935.1
+  },
+  {
+   "id": "cuant-081",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 948.0
+  },
+  {
+   "id": "cuant-082",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1101.0
+  },
+  {
+   "id": "cuant-083",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1004.1
+  },
+  {
+   "id": "cuant-084",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 932.3
+  },
+  {
+   "id": "cuant-085",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 985.8
+  },
+  {
+   "id": "cuant-086",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 977.7
+  },
+  {
+   "id": "cuant-087",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1000.0
+  },
+  {
+   "id": "cuant-088",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 963.9
+  },
+  {
+   "id": "cuant-089",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1075.2
+  },
+  {
+   "id": "cuant-090",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 966.2
+  },
+  {
+   "id": "cuant-091",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1050.7
+  },
+  {
+   "id": "cuant-092",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 927.3
+  },
+  {
+   "id": "cuant-093",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1057.6
+  },
+  {
+   "id": "cuant-094",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 962.0
+  },
+  {
+   "id": "cuant-095",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 959.0
+  },
+  {
+   "id": "cuant-096",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1000.0
+  },
+  {
+   "id": "cuant-097",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 817.0
+  },
+  {
+   "id": "cuant-098",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 983.1
+  },
+  {
+   "id": "cuant-099",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 873.0
+  },
+  {
+   "id": "cuant-100",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 641.1
+  },
+  {
+   "id": "cuant-101",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 799.8
+  },
+  {
+   "id": "cuant-102",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 981.0
+  },
+  {
+   "id": "cuant-103",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 892.0
+  },
+  {
+   "id": "cuant-104",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 991.3
+  },
+  {
+   "id": "cuant-105",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1028.7
+  },
+  {
+   "id": "cuant-106",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1072.0
+  },
+  {
+   "id": "cuant-107",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1060.0
+  },
+  {
+   "id": "cuant-108",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 976.0
+  },
+  {
+   "id": "cuant-109",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1077.9
+  },
+  {
+   "id": "cuant-110",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1012.5
+  },
+  {
+   "id": "cuant-111",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 852.8
+  },
+  {
+   "id": "cuant-112",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 977.8
+  },
+  {
+   "id": "cuant-113",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 1.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 1072.3
+  },
+  {
+   "id": "cuant-114",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 892.2
+  },
+  {
+   "id": "cuant-115",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 597.6
+  },
+  {
+   "id": "cuant-116",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 831.5
+  },
+  {
+   "id": "cuant-117",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 625.5
+  },
+  {
+   "id": "cuant-118",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 616.3
+  },
+  {
+   "id": "cuant-119",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 632.1
+  },
+  {
+   "id": "cuant-120",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "deepseek-r1-distill-qwen-14b:latest",
+   "error": null,
+   "ms": 940.5
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 27 de 27
+casos sha256 : f5bb2a1f6b3d5cde
+golden set   : 2a2da99cc7001128
+backend      : ollama
+
+METRICAS GLOBALES
+  n=27  accuracy=1.0  Brier=0.0  ECE(5 bins)=0.0
+  confianza media=0.5926  sesgo=-0.4074  confiado_y_fallado=0  seguro_y_acertado=16
+  latencia P50=3551.1 ms  P95=5217.8 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=13 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=-0.2308
+  B: n=8 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=-1.0
+  D: n=6 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=0.0
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_ollama.json

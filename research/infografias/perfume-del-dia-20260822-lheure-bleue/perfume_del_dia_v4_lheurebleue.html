@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Montserrat:wght@400;600;700;800;900&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body {
+    font-family:'Montserrat',sans-serif;
+    background:url('file:///home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-lheure-bleue-2026/lhb_fondo.png') center/cover no-repeat;
+    color:#1c2340; display:flex; flex-direction:column; position:relative;
+  }
+  .overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(165deg, rgba(240,244,255,0.40) 0%, rgba(224,232,252,0.46) 50%, rgba(208,220,248,0.55) 100%);
+    z-index:0;
+  }
+  .content { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; padding:26px 34px 22px; }
+
+  .sello {
+    position:absolute; top:26px; right:34px; width:118px; height:118px; border-radius:50%;
+    background:rgba(28,50,110,0.92); color:#e8eeff;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; border:3px solid #c9d6ff; box-shadow:0 4px 14px rgba(0,0,0,0.35);
+    transform:rotate(8deg); z-index:3;
+  }
+  .sello .t1 { font-size:12px; font-weight:800; letter-spacing:1px; }
+  .sello .t2 { font-size:10px; font-weight:600; margin-top:2px; }
+  .sello .t3 { font-size:9px; font-weight:600; opacity:0.85; margin-top:1px; }
+
+  .hero { display:flex; align-items:center; gap:30px; margin-top:6px; }
+  .hero-foto {
+    width:300px; height:300px; flex:0 0 300px;
+    background:rgba(250,252,255,0.55);
+    border-radius:22px; padding:14px; border:3px solid rgba(60,80,160,0.55);
+    box-shadow:0 8px 24px rgba(0,0,0,0.25); display:flex; align-items:center; justify-content:center;
+  }
+  .hero-foto img { max-width:100%; max-height:100%; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.3)); }
+  .hero-text { flex:1; }
+  .hero-text .kicker { font-size:15px; font-weight:700; letter-spacing:3px; color:#2a3d8f; text-transform:uppercase; text-shadow:0 1px 2px rgba(255,255,255,0.8); }
+  .hero-text h1 {
+    font-size:78px; font-weight:900; line-height:0.95; letter-spacing:2px; margin:4px 0 2px;
+    background:linear-gradient(135deg,#16245e 0%,#3346a8 55%,#7a8fd8 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 2px 6px rgba(255,255,255,0.5);
+  }
+  .hero-text .casa { font-size:22px; font-weight:800; color:#1d2b63; text-shadow:0 1px 3px rgba(255,255,255,0.85); }
+  .hero-text .ocasion { font-size:15px; font-weight:600; color:#24326e; margin-top:6px; text-shadow:0 1px 2px rgba(255,255,255,0.85); }
+
+  .chips-clima { display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
+  .chip { background:rgba(250,252,255,0.88); border:1.5px solid rgba(60,80,160,0.5); border-radius:999px; padding:5px 14px; font-size:14px; font-weight:700; color:#24326e; box-shadow:0 2px 6px rgba(0,0,0,0.12); }
+
+  .tarjetas { display:flex; flex-direction:column; gap:12px; margin-top:16px; flex:1; }
+  .tarjeta {
+    background:rgba(250,252,255,0.88); border-radius:16px; padding:12px 18px;
+    border-top:4px solid #3346a8; box-shadow:0 4px 14px rgba(0,0,0,0.18);
+  }
+  .tarjeta h2 { font-size:16px; font-weight:800; color:#16245e; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+  .datos-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px 16px; font-size:14px; font-weight:600; color:#232c4e; }
+  .datos-grid b { color:#2a3d8f; }
+
+  .piramide-wrap { display:flex; align-items:center; gap:18px; }
+  .piramide { display:flex; flex-direction:column; align-items:center; width:390px; }
+  .nivel {
+    width:100%; text-align:center; padding:9px 6px; border-radius:8px; margin:2px 0;
+    font-size:13px; font-weight:700; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,0.5);
+  }
+  .nivel.salida { width:44%; background:#7a8fd8; }
+  .nivel.corazon { width:70%; background:#3346a8; }
+  .nivel.fondo { width:100%; background:#16245e; }
+  .nivel small { display:block; font-size:10px; font-weight:600; opacity:0.9; letter-spacing:1px; }
+  .leyenda { font-size:12px; font-weight:600; color:#232c4e; line-height:1.5; }
+  .leyenda b { color:#16245e; }
+
+  .alt-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .alt { background:rgba(255,255,255,0.6); border-radius:10px; padding:8px 10px; border-left:4px solid #3346a8; }
+  .alt .n { font-size:13px; font-weight:800; color:#16245e; }
+  .alt .c { font-size:11px; font-weight:700; color:#2a3d8f; }
+  .alt .d { font-size:10px; font-weight:600; color:#232c4e; margin-top:3px; line-height:1.35; }
+
+  .app-row { display:flex; align-items:center; gap:14px; font-size:14px; font-weight:700; color:#232c4e; }
+  .app-row .sprays { background:#16245e; color:#e8eeff; border-radius:999px; padding:5px 14px; font-weight:800; }
+
+  .row-final { display:flex; gap:14px; align-items:stretch; }
+  .cita { flex:1; font-size:13px; font-weight:600; color:#232c4e; font-style:italic; line-height:1.45; display:flex; align-items:center; }
+  .cita .fuente { display:block; font-size:11px; font-style:normal; font-weight:700; color:#2a3d8f; margin-top:4px; }
+  .qr-box { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; }
+  .qr-box img { width:86px; height:86px; border-radius:8px; }
+  .qr-box .qr-txt { font-size:9px; font-weight:700; color:#24326e; text-align:center; }
+
+  .aviso { font-size:11px; font-weight:700; color:#2a3d8f; line-height:1.4; }
+
+  .pie {
+    margin-top:auto; display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+    padding-top:10px; border-top:2px dashed rgba(60,80,160,0.45);
+  }
+  .pie .nota { font-family:'Caveat',cursive; font-size:22px; color:#1d2b63; text-shadow:0 1px 2px rgba(255,255,255,0.85); }
+  .pie .fondo-note { font-size:10px; font-weight:700; color:#2a3d8f; text-align:right; }
+</style>
+</head>
+<body>
+<div class="overlay"></div>
+<div class="content">
+
+  <div class="sello">
+    <span class="t1">NOVEDAD</span>
+    <span class="t2">2026</span>
+    <span class="t3">GUERLAIN</span>
+  </div>
+
+  <div class="hero">
+    <div class="hero-foto"><img src="file:///home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-lheure-bleue-2026/lhb_frasco.jpg" alt="Frasco L'Heure Bleue"></div>
+    <div class="hero-text">
+      <div class="kicker">Ficha informativa · prueba</div>
+      <h1>L'HEURE BLEUE</h1>
+      <div class="casa">Guerlain · Eau de Parfum · 2026</div>
+      <div class="ocasion">🌌 La hora azul: el instante entre el día y la noche · iris empolvado + vainilla cremosa</div>
+      <div class="chips-clima">
+        <span class="chip">💜 Iris empolvado</span>
+        <span class="chip">🌫️ Acorde ozónico</span>
+        <span class="chip">🍦 Vainilla · benzoína</span>
+        <span class="chip">⭐ Lanzamiento 28-ago</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <h2>Ficha técnica</h2>
+      <div class="datos-grid">
+        <div><b>Origen:</b> Guerlain (1912) · versión 2026</div>
+        <div><b>Concentración:</b> Eau de Parfum</div>
+        <div><b>Género:</b> Femenino (unisex en el secado)</div>
+        <div><b>Familia:</b> Floral ámbar</div>
+        <div><b>Perfumista:</b> Delphine Jelk (2026) · Jacques Guerlain (1912)</div>
+        <div><b>Rating:</b> sin datos aún (lanzamiento 28-ago)</div>
+        <div><b>Longevidad:</b> sin dato aún · "acabado cálido y duradero" (desc. oficial)</div>
+        <div><b>Estela:</b> media (a confirmar)</div>
+        <div><b>Precio:</b> 2026 sin publicar · 1912 (75 ml): 118,33 € · 88,75 € en Julia</div>
+        <div><b>Nota:</b> la versión anterior pasa a llamarse "L'Heure Bleue 1912"</div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Pirámide olfativa (2026)</h2>
+      <div class="piramide-wrap">
+        <div class="piramide">
+          <div class="nivel salida">Bergamota · Neroli · Acorde ozónico<small>SALIDA · lo primero que huele</small></div>
+          <div class="nivel corazon">Iris · Rosa · Jazmín · Ylang-Ylang<small>CORAZÓN · el alma</small></div>
+          <div class="nivel fondo">Vainilla · Benzoína · Haba Tonka · Ambroxan<small>FONDO · lo que queda</small></div>
+        </div>
+        <div class="leyenda">
+          <b>Salida</b>: frescor cítrico y aire "ozónico".<br>
+          <b>Corazón</b>: iris empolvado con flores luminosas.<br>
+          <b>Fondo</b>: vainilla cremosa y benzoína con Ambroxan.
+        </div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Si te gusta, prueba</h2>
+      <div class="alt-grid">
+        <div class="alt"><div class="n">Après L'Ondée</div><div class="c">Guerlain</div><div class="d">Asociación clásica de foros: violeta + anís, la misma familia empolvada</div></div>
+        <div class="alt"><div class="n">Insolence</div><div class="c">Guerlain</div><div class="d">Basenotes: descendiente directa de L'Heure Bleue, iris/violeta empolvado</div></div>
+        <div class="alt"><div class="n">Kenzo Flower</div><div class="c">Kenzo</div><div class="d">Foros: misma estela empolvada de violeta y almendra</div></div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Aplicación</h2>
+      <div class="app-row">
+        <span class="sprays">2-3 sprays</span>
+        <span>EDP versátil · de día a noche · la "hora azul"</span>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <div class="row-final">
+        <div class="cita">
+          <div>
+            "La apertura presenta un regaliz de anís que se rinde a los florales, con énfasis en el iris y la violeta. Sándalo, benzoína y vainilla destacan después, asegurando un secado largo y agradable, dejando la fragancia más unisex."
+            <span class="fuente">— Review de Fragrantica (EDP) [traducida]</span>
+          </div>
+        </div>
+        <div class="qr-box">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=https%3A%2F%2Fwww.fragrantica.com%2Fperfume%2FGuerlain%2FL-Heure-Bleue-Eau-de-Parfum-208.html" alt="QR Fragrantica" class="qr">
+          <span class="qr-txt">QR · Fragrantica</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tarjeta" style="padding:8px 18px;">
+      <div class="aviso">
+        ℹ️ Ficha de prueba (sin registro): datos verificados de ScentAdvice, I Fragrance, DavideParfums y Fragrantica. Rating y longevidad aún sin publicar (lanzamiento 28-ago-2026). Frasco: línea Les Légendaires (1912 en tienda).
+      </div>
+    </div>
+  </div>
+
+  <div class="pie">
+    <div class="nota">El instante en que el día abraza a la noche: iris, vainilla y un soplo de cielo.</div>
+    <div class="fondo-note">La hora azul · 2-3 sprays<br>fondo: arte generado con ComfyUI · SDXL local</div>
+  </div>
+
+</div>
+</body>
+</html>

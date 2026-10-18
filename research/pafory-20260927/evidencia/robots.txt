@@ -1,0 +1,54 @@
+User-agent: *
+Disallow: */home*
+Disallow: */account*
+Disallow: */calendar*
+Disallow: */checkout*
+Disallow: */checkout-confirmation*
+Disallow: */review*
+Disallow: */finder-results*
+Disallow: *amazon_payments_advanced=*
+Disallow: *orderby=*
+Disallow: *min_price=*
+Disallow: *max_price=*
+Disallow: *filter_brand=*
+Disallow: *gender=*
+Disallow: *brand=*
+Disallow: *intensity=*
+Disallow: *exclusive=*
+Disallow: *note=*
+Disallow: *season=*
+Disallow: *occasion=*
+Disallow: *personality=*
+Disallow: *variant=*
+Disallow: *pwb-brand=*
+Disallow: *utm_source*
+Disallow: *utm_campaign*
+Disallow: *utm_content*
+Disallow: *utm_medium*
+Disallow: *awc=*
+Disallow: */duftnote_neu/*
+Disallow: */duftfamilien/*
+Disallow: */anlass/*
+Disallow: *?p=*
+
+User-agent: AdsBot-Google
+Allow: /
+User-agent: AdsBot-Google-Mobile
+Allow: /
+User-agent: AdIdxBot
+Allow: /
+User-agent: Googlebot-image
+# Das Auren-Motiv ist das groesste Bild auf /advent-calendars und wurde von
+# Google als Vorschaubild des Suchergebnisses gewaehlt, statt der Verpackung
+# aus der Produkt-Auszeichnung. Google laesst sich das Vorschaubild nicht
+# vorschreiben; ein Bild, das es nicht laden darf, kann es aber nicht zeigen.
+# Gesperrt wird die Quelldatei und der Weg ueber den Bilddienst von Next.
+# Folge: Das Motiv faellt aus der Google-Bildersuche. Auf der Seite selbst
+# und fuer alle anderen Bots bleibt es unveraendert.
+Disallow: /wp-content/uploads/2026/05/Auren-AK26-1zu1-1*
+Disallow: /_next/image*Auren-AK26-1zu1-1*
+Allow: /
+
+
+# Sitemaps
+Sitemap: https://pafory.com/sitemap.xml

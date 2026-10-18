@@ -1,0 +1,103 @@
+{
+ "meta": {
+  "generado": "preparar_casos.py",
+  "n": 6
+ },
+ "casos": [
+  {
+   "id": "ctx-01",
+   "bloque": "A",
+   "state": {
+    "texto": "La colección de perfume-ia de Joko Lab incluye el perfume 'Turathi (Blue)', de la casa Afnan Perfumes, concentración EDP, género masculino. También tiene '195 a.C.' y 'Fauno', ambos de la casa Agatho, lanzados en 2019, género unisex."
+   },
+   "instrucciones": "¿Qué casa fabrica el perfume Turathi (Blue)?",
+   "criteria": {
+    "Afnan Perfumes": "la casa Afnan",
+    "Agatho": "la casa Agatho",
+    "Alexandria Fragrances": "la casa Alexandria Fragrances",
+    "otra": "cualquier otra casa"
+   },
+   "gt": "Afnan Perfumes",
+   "interno": false
+  },
+  {
+   "id": "ctx-02",
+   "bloque": "A",
+   "state": {
+    "texto": "La colección de perfume-ia de Joko Lab incluye el perfume 'Turathi (Blue)', de la casa Afnan Perfumes, concentración EDP, género masculino. También tiene '195 a.C.' y 'Fauno', ambos de la casa Agatho, lanzados en 2019, género unisex."
+   },
+   "instrucciones": "¿En qué año se lanzó el perfume 195 a.C.?",
+   "criteria": {
+    "2019": "lanzado en 2019",
+    "2017": "lanzado en 2017",
+    "2021": "lanzado en 2021",
+    "no aparece": "el texto no lo dice"
+   },
+   "gt": "2019",
+   "interno": false
+  },
+  {
+   "id": "ctx-04",
+   "bloque": "A",
+   "state": {
+    "texto": "El catálogo de café-ia incluye 'Etiopía Sidamo Shantawene' de soycafetera.es, origen Etiopía, proceso Lavado, tueste Medio, formato Grano. También incluye 'Costa Rica Honey', origen Costa Rica, proceso Honey, tueste Medio."
+   },
+   "instrucciones": "¿Qué proceso tiene el café Costa Rica Honey?",
+   "criteria": {
+    "Honey": "proceso Honey",
+    "Lavado": "proceso Lavado",
+    "Natural": "proceso Natural",
+    "no aparece": "el texto no lo dice"
+   },
+   "gt": "Honey",
+   "interno": false
+  },
+  {
+   "id": "ctx-05",
+   "bloque": "A",
+   "state": {
+    "texto": "En futuribles.db, la marca Soohyang (Corea del Sur) tiene envío a España confirmado (accesibilidad ✅). La marca Melt Season (China) NO envía a España (accesibilidad 🔴)."
+   },
+   "instrucciones": "¿La marca Soohyang envía a España?",
+   "criteria": {
+    "sí": "envía a España",
+    "no": "no envía a España",
+    "no aparece": "el texto no lo dice"
+   },
+   "gt": "sí",
+   "interno": false
+  },
+  {
+   "id": "ficha-03",
+   "bloque": "A",
+   "state": {
+    "texto": "Ficha del perfume: Nobility (Alexandria Fragrances). Concentración EDP, género unisex, perfumista no revelado. Notas de salida: bergamota, pimienta rosa. Familia olfativa: amaderada aromática."
+   },
+   "instrucciones": "¿Qué concentración tiene Nobility?",
+   "criteria": {
+    "EDP": "Eau de Parfum",
+    "EDT": "Eau de Toilette",
+    "Parfum": "Parfum",
+    "no aparece": "la ficha no lo dice"
+   },
+   "gt": "EDP",
+   "interno": false
+  },
+  {
+   "id": "ficha-04",
+   "bloque": "A",
+   "state": {
+    "texto": "Ficha del perfume: Alvarez (Alexandria Fragrances). EDP, unisex, familia olfativa fougère. Notas de corazón: lavanda, geranio. Precio 100 ml: 95 euros."
+   },
+   "instrucciones": "¿A qué familia olfativa pertenece Alvarez?",
+   "criteria": {
+    "fougère": "familia fougère",
+    "amaderada aromática": "familia amaderada aromática",
+    "floral": "familia floral",
+    "no aparece": "la ficha no lo dice"
+   },
+   "gt": "fougère",
+   "interno": false
+  }
+ ]
+}

@@ -1,0 +1,119 @@
+========================================================================
+REFERENTE LAYA — ficha fechada (fuente secundaria, NO componente)
+Joko Lab · ~/joko-lab/instruments/laya-comparativa
+2026-09-24 · coste 0 EUR · sin descargas nuevas
+========================================================================
+
+QUE ES ESTO
+  Ficha de LAYA como REFERENTE SECUNDARIO fechado del lab: sirve para
+  contraste, hipotesis y tecnica reutilizable. NO es un componente del
+  stack: la medicion propia (abajo) no lo acredita.
+  Todos los datos se releyeron en fuente primaria el 2026-09-24.
+
+VEREDICTO (24-sep-2026)
+  SI  como referente secundario fechado (contraste / hipotesis / tecnica).
+  NO  como componente: 0,5083 en n=120 (azar 0,5000), contexto 0/6.
+  Regla que deja: al citar LAYA, citar CON VERSION (ver REGLA DE VERSION).
+
+FUENTES PRIMARIAS (releidas 2026-09-24)
+  Modelo (organizacion convaiinnovations, licencia apache-2.0):
+    huggingface.co/convaiinnovations/laya                 421M ModernBERT-large  512 tok
+    huggingface.co/convaiinnovations/laya-multilingual    322M mmBERT-base  1024 tok (8192 con max_len)
+    huggingface.co/convaiinnovations/laya-typed-decisions 421M ModernBERT-large 1024 tok
+  Paquete:  https://pypi.org/project/laya/   (Apache-2.0)
+  Repo del modelo: github.com/NandhaKishorM/laya
+    (verificado: la model card carga sus imagenes desde
+     raw.githubusercontent.com/NandhaKishorM/laya/main/assets/...)
+  HF lastModified 2026-09-24T05:39:22Z (07:39 CEST) · downloads 0
+  tags: system-one, calibrated-decisions, rlcd, guardrails, routing,
+        scoring, commercial-use
+
+QUE APORTA (dato primario de la model card)
+  - Decision NO autorregresiva ("System 1"): recibe un estado (texto, email,
+    ticket, JSON) + preguntas tipadas y devuelve respuestas tipadas con
+    probabilidad. NO genera texto.
+  - Router() elige checkpoint por idioma; coste de enrutado <1 ms tras la
+    primera carga; carga perezosa (max_loaded=2).
+  - Latencia declarada (T4 GPU): 1 pregunta 39,5 ms (english) / 32,8 ms
+    (multilingual); 10 preguntas en lote 158,6 / 72,3 ms. Frente a TypeSafe
+    Jev (236-276 ms p50) el proveedor declara 7,8x; las cifras de Jev son de
+    terceros y el propio proveedor dice que NUNCA las ha medido.
+  - `laya-serve` expone el Router en POST /v1/systemone con la MISMA forma de
+    peticion/respuesta que TypeSafe Jev ("Jev-compatible"): escucha en 0.0.0.0
+    y SIN autenticacion. Si algun dia se levantara, es exposicion de red.
+  - LIMITES que declara la propia card:
+      * Cardinalidad alta (>20 opciones): Banking77 Jev 0,870 (72 etiquetas)
+        vs Laya 0,425 (77 etiquetas).
+      * El checkpoint ingles se hunde con alfabetos no latinos: Khmer 0,000 de
+        accuracy con 0,952 de confianza -> "seguro y equivocado", el fallo que
+        mide el ECE/Brier, no la accuracy.
+      * Documentos largos (max_len=8192): 16-18 de 20 aciertos hasta ~4.000
+        tokens; mas alla "los resultados varian" (8-17 de 20). El proveedor
+        dice explicitamente que hay que comprobarlo.
+      * Los checkpoints publicados son zero-shot; el salto de accuracy esta en
+        fine-tuning con decisiones del dominio propio (benchmark de 2.000
+        decisiones, 0,766 acc en typed-decisions).
+  - La card incluye tabla comparativa "Laya (with routing) vs TypeSafe Jev
+    1.13.0": MASSIVE intent EN 0,783 vs 0,657 · XNLI EN 0,860 vs 0,843 ·
+    XNLI otras 14 lenguas 0,521 vs 0,731. Es material comparativo del
+    proveedor, no una medicion independiente.
+
+MEDICION PROPIA (por que NO es componente)
+  n=120 (casos_cuant_n120.json, sha256 d7e423a81f72d54d...):
+     0,5083 accuracy (61/120) · P50 38,5 ms en RTX A2000 · contexto 0/6
+  n=299 (casos_v3_noul.json): typed-decisions 0,7860 · english 0,7458 ·
+     multilingual 0,6054 · router 0,6020 · multihop 9/22
+  Azar 0,5000; liston 95% n=120 = 0,5895. LAYA no lo pasa.
+  A/B: responde "SI" 107/120 incluso cuando el campo no existe (volumen 0,
+     precio 0) -> no lee el texto, contesta por defecto.
+  Donde SI gana: trampas 8/8 (no inventa) y latencia (decenas de ms).
+  Contraste mismo set: granite4.2:8b 0,5833 / qwen2.5:7b 0,5500 / r1-14b 0,5417.
+
+REGLA DE VERSION (la leccion que deja este referente)
+  Medido:  laya 0.3.10  (verificado en el venv del instrumento:
+                         .venv/lib/python3.11/site-packages/laya-0.3.10.dist-info)
+  Ultima:  laya 0.3.20  (publicada 2026-09-24T05:41:06Z = 07:41 CEST)
+  28 versiones en PyPI. El 24-sep publico 0.3.16, 0.3.17, 0.3.18, 0.3.19 y
+  0.3.20 entre 04:19 y 05:41 UTC: 5 versiones en 82 minutos.
+  => Citar "LAYA" sin version NO es reproducible. Version medida = prueba en
+     disco (dist-info), no recuerdo. Toda cifra de un paquete asi se fecha.
+
+FUENTE SECUNDARIA (contexto, nunca dato)
+  https://aiidelist.com/blog/what-is-laya-mlx
+  "What Is Laya-MLX? How the 7-14 ms Local Decision Model Works on Apple
+  Silicon". Sin datePublished en el HTML; dos fechas visibles (19 y 20-sep-2026);
+  la del 19 es la del primer release del paquete laya-mlx (0.1.0).
+  Es el PORT a Apple Silicon/MLX (github.com/mizorewww/laya-mlx), que la propia
+  pagina declara "not an official Convai Innovations release". NO es el modelo.
+  Util: explica limites (contexto 512/1024; memoria pico de 943,6 MiB en el
+  checkpoint de 421M y 687,6 MiB en el de 322M; artefacto MLX ~843 MB) y las
+  latencias que publica el port (13,42 ms P50 / 13,92 P95 en un M3 Max).
+  Avisos del articulo que coinciden con decisiones propias del lab: los umbrales
+  que ensena son EJEMPLOS, no valores por defecto (RULE-015); hay que validar la
+  calibracion con datos propios; y no hay que fiarse de la latencia publicada
+  como SLA.
+  NO adoptable aqui: MLX es Apple Silicon; en NVIDIA/CUDA no corre.
+
+CORRECCIONES DECLARADAS (RULE-013, 24-sep-2026)
+  1) Se dijo "0 enlaces externos" en el articulo. Exacto: 5 enlaces, TODOS
+     botones de compartir (X, Facebook, LinkedIn, Reddit, Hacker News) -> el
+     articulo no enlaza ninguna fuente. La conclusion no cambia; el recuento si.
+  2) "31.232 caracteres" era el texto extraido, no el articulo (el HTML servido
+     es mucho mayor). No usar esa cifra como tamano del articulo.
+  3) Se atribuyo al "upstream del port" el repo github.com/NandhaKishorM/laya.
+     Ese repo es el del MODELO upstream (assets de la card). El del port es
+     github.com/mizorewww/laya-mlx. Dos cosas distintas.
+  4) Antes se dijo que LAYA "no estaba" en aiidelist.com: SI esta, como
+     articulo de blog, no como ficha /ide/. Causa: se busco solo en el catalogo.
+     Fix: sitemap + indice del blog.
+
+QUE NO ES ESTA FICHA
+  - No es una ficha de adopcion ni recomienda instalar nada.
+  - No autoriza levantar `laya-serve` (escucha en 0.0.0.0 sin autenticacion).
+  - No contiene credenciales ni rutas de datos.
+  - No sustituye a JEV ni se mezcla con el: son dos procedencias distintas.
+
+VIGILANCIA DE LA FUENTE SECUNDARIA
+  Como vigilar (o no) aiidelist.com esta en
+  ~/joko-lab/01-knowledge/objects/FUENTES-VIGILADAS.md
+========================================================================

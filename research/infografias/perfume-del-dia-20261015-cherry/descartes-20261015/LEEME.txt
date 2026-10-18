@@ -1,0 +1,14 @@
+Descartes de la ficha 'Cherry on Top' (perfume-del-dia 2026-10-15).
+
+Motivo del archivo: no son errores, son variantes descartadas.
+- cherry_fondo_a..h.png: fondos SDXL medidos y descartados por vision/contraste.
+  El ELEGIDO es cherry_fondo_i.png (tapón 2,33:1, cuerpo 3,01:1): sigue en la carpeta padre.
+  Casos conocidos: a/b fallan el tapón (1,67/1,53), d/f el cuerpo (1,73/1,76),
+  c/e con texto inventado por meter negativos en el prompt POSITIVO, g/h descartados.
+- ficha_a..h.html/.png: renders de prueba del layout; el VALIDADO (puerta 17/17) es ficha_i.html/.png.
+- _r1_a..c.png: renders de respaldo de la primera tanda.
+
+Conservados en la carpeta padre: build_ficha.py, cherry_figura.png, cherry_fondo_i.png,
+ficha_i.html/.png, inv_c.json, pack_cherry.jpg, qr_fragrantica.png y
+perfume_del_dia_v5_cherry.png (entregable).
+Criterio: convencion del lab, la imagen descartada se CONSERVA, no se borra.

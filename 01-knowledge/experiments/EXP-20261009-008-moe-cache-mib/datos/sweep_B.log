@@ -1,0 +1,18 @@
+2026-10-09 18:26:11 === sweep B inicio ===
+2026-10-09 18:26:11 START E1_C1024_R2 (C=1024 ngl=99 npred=128)
+2026-10-09 18:27:31 END E1_C1024_R2 ok=True 79s {"label": "E1_C1024_R2", "ts": "2026-10-09 18:26:11 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 1024, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructur
+2026-10-09 18:27:36 START E1_C0000_R2 (C=0 ngl=99 npred=128)
+2026-10-09 18:28:55 END E1_C0000_R2 ok=True 79s {"label": "E1_C0000_R2", "ts": "2026-10-09 18:27:36 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 0, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructurada
+2026-10-09 18:29:00 START E1_C0512_R2 (C=512 ngl=99 npred=128)
+2026-10-09 18:30:05 END E1_C0512_R2 ok=True 64s {"label": "E1_C0512_R2", "ts": "2026-10-09 18:29:00 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 512, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructura
+2026-10-09 18:30:10 START E1_C1024_R2b (C=1024 ngl=99 npred=128)
+2026-10-09 18:31:25 END E1_C1024_R2b ok=True 75s {"label": "E1_C1024_R2b", "ts": "2026-10-09 18:30:10 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 1024, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructu
+2026-10-09 18:31:30 START E1_C0000_R2b (C=0 ngl=99 npred=128)
+2026-10-09 18:32:51 END E1_C0000_R2b ok=True 80s {"label": "E1_C0000_R2b", "ts": "2026-10-09 18:31:30 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 0, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E1-estructurad
+2026-10-09 18:32:56 START E2_C0000 (C=0 ngl=99 npred=128)
+2026-10-09 18:34:06 END E2_C0000 ok=True 69s {"label": "E2_C0000", "ts": "2026-10-09 18:32:56 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 0, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E2-prosa.txt", "pr
+2026-10-09 18:34:11 START E2_C1024 (C=1024 ngl=99 npred=128)
+2026-10-09 18:35:12 END E2_C1024 ok=True 61s {"label": "E2_C1024", "ts": "2026-10-09 18:34:11 CEST", "ngl": 99, "ncmoe": 28, "moe_cache_mib": 1024, "npredict": 128, "ctx": 2048, "seed": 1234, "ubatch": 128, "prompt_file": "prompt-E2-prosa.txt", 
+2026-10-09 18:35:17 START CTL_ngl0_CPU (C=0 ngl=0 npred=16)
+2026-10-09 18:36:26 END CTL_ngl0_CPU ok=True 68s {"label": "CTL_ngl0_CPU", "ts": "2026-10-09 18:35:18 CEST", "ngl": 0, "ncmoe": null, "moe_cache_mib": null, "npredict": 16, "ctx": 4096, "seed": 1234, "ubatch": 512, "prompt_file": "prompt-E1-estructu
+2026-10-09 18:36:31 === sweep B fin ===

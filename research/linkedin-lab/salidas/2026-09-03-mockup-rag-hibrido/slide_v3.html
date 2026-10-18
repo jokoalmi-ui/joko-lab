@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  /* MOCKUP v3 — nivel editorial (lecciones 02-sep: sin contenedores flotantes,
+     una columna, color semántico como acento, iconos SVG). Fondo ComfyUI SDXL. */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter','Helvetica Neue',Arial,sans-serif; background:#F5F3EE; }
+  .slide {
+    width:1080px; height:1350px; position:relative; overflow:hidden;
+    background:url('assets/fondo_rag2.png') center/cover;
+  }
+  .velo { position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(245,243,238,.82) 0%, rgba(245,243,238,.88) 55%, rgba(245,243,238,.93) 100%); }
+  .content { position:absolute; inset:0; padding:56px 88px 44px;
+    display:flex; flex-direction:column; }
+  /* Marca discreta */
+  .marca { display:flex; align-items:center; gap:10px; margin-bottom:22px; }
+  .marca .logo { width:36px; height:36px; border-radius:50%; background:#1a1a1a;
+    display:flex; align-items:center; justify-content:center; color:#F5F3EE;
+    font-weight:800; font-size:15px; letter-spacing:-.5px; box-shadow:0 2px 10px rgba(26,26,26,.18); }
+  .marca .nombre { font-weight:700; font-size:16px; color:#1a1a1a; letter-spacing:.4px; }
+  .marca .nombre span { color:#FF7A00; }
+  /* Titular editorial */
+  .titulo { font-size:46px; font-weight:800; color:#1a1a1a; letter-spacing:-1.4px;
+    line-height:1.08; margin-bottom:14px; max-width:92%; }
+  .titulo .accent { color:#FF7A00; }
+  .sub { font-size:20px; color:#5a5a55; font-weight:500; margin-bottom:38px;
+    line-height:1.5; max-width:86%; }
+  /* SECCIÓN editorial — sin tarjeta: número + línea separadora fina */
+  .sec { margin-bottom:0; position:relative; }
+  .sec-head { display:flex; align-items:center; gap:14px; margin-bottom:18px; }
+  .sec-head .num { width:38px; height:38px; border-radius:50%; flex:0 0 38px;
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+    font-weight:800; color:#fff; }
+  .sec-head .line { flex:1; height:1.5px; border-radius:2px; opacity:.9; }
+  .sec-head .ttl { font-size:22px; font-weight:800; color:#1a1a1a;
+    letter-spacing:-.3px; text-transform:uppercase; }
+  .num.azul { background:#4A7DFF; } .line.azul { background:linear-gradient(90deg,#4A7DFF55,#4A7DFF00); }
+  .num.naranja { background:#FF7A00; } .line.naranja { background:linear-gradient(90deg,#FF7A0055,#FF7A0000); }
+  /* Diagrama flujo — elementos con volumen sutil, integrados (no cajas flotantes) */
+  .flujo { display:flex; align-items:center; margin-bottom:14px; }
+  .fbox { flex:1; border-radius:16px; padding:20px 16px 18px; text-align:center; }
+  .fbox .ic { width:42px; height:42px; margin:0 auto 8px; border-radius:12px;
+    display:flex; align-items:center; justify-content:center; }
+  .fbox .ic svg { width:22px; height:22px; stroke:#fff; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+  .fbox .hl { font-size:20px; font-weight:800; color:#1a1a1a; }
+  .fbox .tag { font-size:13.5px; color:rgba(26,26,26,.68); font-weight:500; margin-top:3px; }
+  .b-azul { background:linear-gradient(160deg,#E4EDFF,#D2E0FF); box-shadow:0 6px 16px -6px rgba(74,125,255,.35); }
+  .b-naranja { background:linear-gradient(160deg,#FFE7CC,#FFD9B3); box-shadow:0 6px 16px -6px rgba(255,122,0,.32); }
+  .b-verde { background:linear-gradient(160deg,#DDF3E7,#C8EBD9); box-shadow:0 6px 16px -6px rgba(47,179,128,.32); }
+  .b-blanco { background:rgba(255,255,255,.92); box-shadow:0 6px 18px -8px rgba(26,26,26,.18); }
+  .b-blanco .hl, .b-blanco .tag { color:#1a1a1a; }
+  .b-oscuro { background:linear-gradient(160deg,#2a2a2a,#141414); }
+  .b-oscuro .hl, .b-oscuro .tag { color:#F5F3EE; }
+  .b-oscuro .ic { background:#FF7A00; }
+  .f-arr { flex:0 0 34px; display:flex; align-items:center; justify-content:center; }
+  .f-arr svg { width:22px; height:16px; }
+  /* texto explicativo bajo el diagrama */
+  .explica { font-size:16.5px; color:#555; line-height:1.5; max-width:96%; margin-bottom:30px; }
+  .explica b { color:#1a1a1a; }
+  .explica .dato { color:#FF7A00; font-weight:800; }
+  /* Cierre editorial */
+  .cierre { margin-top:auto; border-radius:16px; padding:20px 26px; display:flex;
+    align-items:center; gap:16px; background:#1a1a1a; }
+  .cierre .ic { width:36px; height:36px; flex:0 0 36px; border-radius:10px;
+    background:#FF7A00; display:flex; align-items:center; justify-content:center; }
+  .cierre .ic svg { width:19px; height:19px; stroke:#fff; fill:none; stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+  .cierre .txt { font-size:16.5px; color:#DDD9CF; line-height:1.5; }
+  .cierre .txt b { color:#fff; }
+  .nota { font-size:11.5px; color:#999; text-align:right; margin-top:12px;
+    letter-spacing:.3px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="velo"></div>
+  <div class="content">
+    <div class="marca">
+      <div class="logo">JL</div>
+      <div class="nombre">JOKO <span>LAB</span> · IA LOCAL</div>
+    </div>
+    <div class="titulo">El RAG híbrido que <span class="accent">de verdad</span> uso</div>
+    <div class="sub">No elegí entre buscar lo parecido o lo exacto — uso los dos a la vez.</div>
+
+    <!-- SECCIÓN 01 -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num azul">01</div>
+        <div class="ttl">Buscar en paralelo</div>
+        <div class="line azul"></div>
+      </div>
+      <div class="flujo">
+        <div class="fbox b-azul">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg></div>
+          <div class="hl">Vectorial</div><div class="tag">la idea · embeddings</div>
+        </div>
+        <div class="f-arr"><svg viewBox="0 0 24 16"><path d="M0 8h20m0 0l-6-6m6 6l-6 6" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="fbox b-azul">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+          <div class="hl">FTS exacto</div><div class="tag">la palabra · keyword</div>
+        </div>
+      </div>
+      <div class="explica">La misma pregunta sale <b>a la vez</b> hacia un buscador que entiende ideas y otro que encuentra términos. Cada uno vuelve con su propio ranking.</div>
+    </div>
+
+    <!-- SECCIÓN 02 -->
+    <div class="sec">
+      <div class="sec-head">
+        <div class="num naranja">02</div>
+        <div class="ttl">Fundir sin pelear</div>
+        <div class="line naranja"></div>
+      </div>
+      <div class="flujo">
+        <div class="fbox b-azul"><div class="hl">Ranking A</div><div class="tag">vectorial</div></div>
+        <div class="f-arr"><svg viewBox="0 0 24 16"><path d="M0 8h20m0 0l-6-6m6 6l-6 6" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="fbox b-azul"><div class="hl">Ranking B</div><div class="tag">exacto</div></div>
+        <div class="f-arr"><svg viewBox="0 0 24 16"><path d="M0 8h20m0 0l-6-6m6 6l-6 6" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="fbox b-naranja"><div class="hl">RRF</div><div class="tag">fusión</div></div>
+        <div class="f-arr"><svg viewBox="0 0 24 16"><path d="M0 8h20m0 0l-6-6m6 6l-6 6" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="fbox b-verde"><div class="hl">Top-5</div><div class="tag">lo mejor</div></div>
+      </div>
+      <div class="explica">El <b>RRF</b> mezcla las posiciones de los dos rankings sin que ninguno gane. Medido en el lab: <span class="dato">recall@5 = 100%</span> · ~180&nbsp;ms.</div>
+    </div>
+
+    <!-- CIERRE -->
+    <div class="cierre">
+      <div class="ic"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h7l-1 8 11-13h-8l1-7z"/></svg></div>
+      <div class="txt">Las normas piden la <b>palabra exacta</b>; las preguntas abiertas, la <b>idea</b>. Un solo buscador siempre falla en una de las dos — el mío no elige.</div>
+    </div>
+    <div class="nota">FONDO: ARTE GENERADO CON COMFYUI · SDXL LOCAL</div>
+  </div>
+</div>
+</body>
+</html>

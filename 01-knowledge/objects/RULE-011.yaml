@@ -1,0 +1,60 @@
+id: RULE-011
+type: RULE
+decision_origin: experimento
+status: activo                 # RECTIFICADO 04-oct-2026: ver history (episodic_ledger retirado del MEP; la regla sigue para los ledgers especializados)
+version: 1
+created: '2026-08-20'
+last_validated: '2026-08-20'
+next_review: '2026-11-20'
+expires: '2027-02-20'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-08-20T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-20T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-08-20T00:00:00Z
+sources:
+  - resource: 04-operations/diseno-memoria-episodica-20260820.md
+confidence: 0.8
+confidence_label: ALTA
+evidence:
+- 'Auditoria 20-ago: 9 piezas de memoria episodica existentes sin punto de consulta unico; shared-events se poda a 14 dias'
+- 'Diseño MEP-001 aprobado e implementado 20-ago (04-operations/diseno-memoria-episodica-20260820.md)'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: operaciones
+scope: todo_joko_lab
+monitoring:
+  metric: entradas en episodic_ledger y uso de memoria-episodica.sh · RECTIFICADO 04-oct-2026 — ledger retirado del MEP (ver history); metrica vigente — uso de memoria-episodica.sh y entradas de los ledgers especializados
+  baseline: null
+  current: null
+  last_checked: null
+history:
+- date: '2026-08-20'
+  event: created
+- date: '2026-08-20'
+  event: implemented
+  note: 'episodic_ledger.jsonl + memoria-episodica.sh creados y verificados'
+- date: '2026-10-04'
+  event: rectificacion
+  note: "RECTIFICACION 04-oct-2026 (OK del usuario) — MEDIDO 21:12 CEST: episodic_ledger.jsonl = 1 fila / 554 B, mtime 2026-08-20 13:26 (unico asiento EP-20260820-001; 45 dias sin escrituras). Actividad de los otros ledgers: lecciones_ledger 16 filas (ultima 02-oct), mel_ledger 11 (06-ago), operations_ledger 114 (15-sep). DECISION: retirar episodic_ledger del MEP-001 — nadie lo escribio en 45 dias y su rol (cajon general de lo cotidiano) queda cubierto por los ledgers especializados. El aserto del body sobre escribir en episodic_ledger cuando el evento no encaje en un ledger especializado queda SIN EFECTO; el resto de la regla sigue vigente (LEC/MEL/OP + consulta unificada con memoria-episodica.sh). El fichero NO se borra ni se mueve: queda como historico y el script lo sigue leyendo (AGENTS.md §2: no se borra, se archiva). Ref: 04-operations/diseno-memoria-episodica-20260820.md seccion 7. MARCA RECTIF-20261004-EPISODIC."
+body: "Escritura mínima de memoria episódica (integrada con RULE-009, sin duplicar): al cerrar una tarea/incidente/cambio relevante, si el evento encaja en un ledger especializado (LEC-* a lecciones_ledger, MEL-* a mel_ledger, OP-* a operations_ledger) escribir ALLÁ como hasta ahora; si NO encaja (cotidiano: cambios de config, tareas cerradas, eventos de sesión, decisiones menores), añadir UNA línea a episodic_ledger.jsonl con esquema ep_id/ts/dominio/tipo/evento/causa/accion/ref/estado. El shared-events se mantiene como aviso en vivo EFÍMERO (se poda a 14 días) — no es la memoria; el ledger es la memoria. Los crons/watchdogs NO escriben en episodic_ledger (solo sesiones). Consulta unificada: memoria-episodica.sh {hoy|dominio X|abiertos|buscar texto|ultimo N}."
+legacy_fields:
+  condicion:
+    tipo_evento:
+    - cierre_tarea
+    - incidente
+    - cambio_configuracion
+    - evento_sesion
+    - decision_menor
+  accion:
+    destino: episodic_ledger.jsonl
+    script: memoria-episodica.sh
+    formato: 'ep_id, ts, dominio, tipo, evento, causa, accion, ref, estado'
+  prioridad: 70
+  activa: true
+  nota: 'Anti-duplicado: los ledgers especializados (LEC/MEL/OP) tienen prioridad; episodic_ledger es el cajón general.'
+  validaciones: 1

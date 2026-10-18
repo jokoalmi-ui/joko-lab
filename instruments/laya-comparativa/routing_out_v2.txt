@@ -1,0 +1,21 @@
+================================================================================================
+TEST DE ROUTING — Laya 0.3.10 | torch importado: False | fichero: casos_v2_noul.json | casos: 177
+================================================================================================
+------------------------------------------------------------------------------------------------
+
+REPARTO DEL ROUTER (default='english', el de fabrica):
+   multilingual   169/177
+   english          8/177
+
+REPARTO CON Router(default='multilingual'):
+   multilingual   177/177
+
+casos con idioma INDECISO: 160/177  (lista con --detalle)
+casos 'no ingles' por deteccion: 169/177
+
+--- Mismo test con el PROMPT SIMULADO (state + afirmacion juntos) ---
+   default='english'        multilingual=170  english=7
+   default='multilingual'   multilingual=174  english=3
+
+--- CONTRASTE DE ECE: mio (motor.py) vs laya.ece_score ---
+   contraste no disponible: ModuleNotFoundError No module named 'numpy'

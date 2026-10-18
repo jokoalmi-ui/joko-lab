@@ -1,0 +1,44 @@
+# Prueba comparativa GLM vs DeepSeek — 2026-08-19 08:37 CEST
+# Motor actual: deepseek-v4-flash. Candidatos: glm-4.7-flashx, glm-4.7-flash (gratis)
+
+## Tarea A — Informe ejecutivo del lab
+
+### A-deepseek
+CONTENIDO:
+**Informe Ejecutivo Joko Lab – 2026-08-19 08:37 CEST**  
+- Servicios: todos activos, sin caídas.  
+- Tests: OK, 14 skipped sin fallos.  
+- GPU: 8883/12282 MiB (~72% memoria), uso 3%, 53°C.  
+- Problema real: memoria GPU alta con carga mínima; posible riesgo de saturación antes de aumentar uso.  
+- RAG: 21031 filas LanceDB, sin anomalías.  
+- Tendencia: estable; vigilar consumo de memoria GPU y evolución de skips en tests.
+
+USAGE: prompt=217 completion=637 total=854
+
+### A-flash
+CONTENIDO:
+(sin contenido)
+
+USAGE: prompt=? completion=? total=?
+
+## Tarea B — Razonamiento con restricciones (control)
+
+### B-deepseek
+9. Le quedan 9 ovejas.
+USAGE: prompt=134 completion=82
+
+### B-flashx
+8. De las 17 ovejas, 9 se quedaron.
+USAGE: prompt=54 completion=322
+
+### B-flash
+(sin contenido)
+USAGE: prompt=? completion=?
+
+## Tiempos (s) y códigos HTTP
+deepseek-v4-flash|A|200|5.8
+deepseek-v4-flash|B|200|1.5
+glm-4.7-flashx|A|000|120.0
+glm-4.7-flashx|B|200|5.3
+glm-4.7-flash|A|429|0.9
+glm-4.7-flash|B|429|1.7

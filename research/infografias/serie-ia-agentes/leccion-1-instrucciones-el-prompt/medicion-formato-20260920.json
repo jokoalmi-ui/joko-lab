@@ -1,0 +1,38 @@
+{
+  "fecha": "2026-09-20T21:11:58+02:00",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "backend": "ollama",
+  "host": "http://127.0.0.1:11434",
+  "num_resenas": 6,
+  "condiciones_ejecutadas": 3,
+  "parseables": 2,
+  "filas": [
+    {
+      "condicion": "A_sin_formato",
+      "temperature": 0.0,
+      "segundos": 52.8,
+      "json_valido_crudo": false,
+      "json_valido_sin_vallas": false,
+      "chars": 1600,
+      "respuesta_literal": "1. POSITIVA  \n2. NEGATIVA  \n3. POSITIVA  \n4. NEGATIVA  \n5. POSITIVA  \n6. NEGATIVA  \n\n**Explicación breve (por ítem):**  \n- **1.** \"Pedido llegado en dos días y bien embalado\" → Comentario positivo sobre el tiempo de entrega y el empaque; no hay queja. → *POSITIVA*.  \n- **2.** \"El producto vino rayado y nadie contesta al correo\" → Problema con el producto (rayado) + falta de respuesta; claramente negativo. → *NEGATIVA*.  \n- **3.** \"Funciona como se describe, repetire\" → Indica que el producto cumple con la descripción (positivo); \"repetire\" (probablemente \"repetiré\", es decir, el cliente prefiere o volverá a comprar), sin señal de problema. → *POSITIVA*.  \n- **4.** \"Me cobraron dos veces y sigo esperando el reembolso\" → Cobro doble + espera activa por reembolso; claramente negativo. → *NEGATIVA*.  \n- **5.** \"Buena relación calidad precio, aunque tardo una semana\" → Elogio claro (\"buena relación calidad precio\"); \"aunque tardo una semana\" es una observación secundaria (ligeramente negativa), pero el mensaje principal es positivo. En clasificación sencilla por sentimiento predominante, se considera *POSITIVA*. → *POSITIVA*.  \n- **6.** \"El manual está en un idioma que no entiendo\" → Obstáculo práctico y frustrante para el usuario; claramente negativo. → *NEGATIVA*.  \n\n*Nota:* La clasificación se basa en el sentimiento predominante del mensaje expresado por el cliente; se prioriza el comentario explícito (ej. \"buena\", \"funciona como se describe\") sobre matices menores (\"aunque tardo una semana\"). No se consideran suposiciones; solo se usan las palabras y contexto proporcionados."
+    },
+    {
+      "condicion": "B_formato",
+      "temperature": 0.0,
+      "segundos": 30.0,
+      "json_valido_crudo": true,
+      "json_valido_sin_vallas": true,
+      "chars": 228,
+      "respuesta_literal": "[{\"id\": 1, \"sentimiento\": \"positiva\"}, {\"id\": 2, \"sentimiento\": \"negativa\"}, {\"id\": 3, \"sentimiento\": \"positiva\"}, {\"id\": 4, \"sentimiento\": \"negativa\"}, {\"id\": 5, \"sentimiento\": \"positiva\"}, {\"id\": 6, \"sentimiento\": \"negativa\"}]"
+    },
+    {
+      "condicion": "C_formato_temp_alta",
+      "temperature": 0.8,
+      "segundos": 37.1,
+      "json_valido_crudo": true,
+      "json_valido_sin_vallas": true,
+      "chars": 205,
+      "respuesta_literal": "[{\"id\":1,\"sentimiento\":\"positiva\"},{\"id\":2,\"sentimiento\":\"negativa\"},{\"id\":3,\"sentimiento\":\"positiva\"},{\"id\":4,\"sentimiento\":\"negativa\"},{\"id\":5,\"sentimiento\":\"positiva\"},{\"id\":6,\"sentimiento\":\"negativa\"}]"
+    }
+  ]
+}

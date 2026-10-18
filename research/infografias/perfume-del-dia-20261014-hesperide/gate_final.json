@@ -1,0 +1,126 @@
+{
+ "res": [
+  [
+   "OK",
+   "01 Titulo",
+   "Hespéridé Colognisé"
+  ],
+  [
+   "OK",
+   "02 Casa",
+   "NISHANE"
+  ],
+  [
+   "OK",
+   "03 Fecha",
+   "dia/mes en la ficha"
+  ],
+  [
+   "OK",
+   "04 Anio",
+   "2026"
+  ],
+  [
+   "OK",
+   "05 Concentracion",
+   "etiqueta presente"
+  ],
+  [
+   "OK",
+   "06 Genero",
+   "etiqueta presente"
+  ],
+  [
+   "OK",
+   "07 Familia",
+   "Cítric"
+  ],
+  [
+   "OK",
+   "08 Perfumista",
+   "fila presente (permite \"no revelado\")"
+  ],
+  [
+   "OK",
+   "09 Rating comunidad",
+   "4,00 · votos"
+  ],
+  [
+   "OK",
+   "10 Piramide completa",
+   "svg=6 lab=3"
+  ],
+  [
+   "OK",
+   "11 Longevidad",
+   "horas presentes"
+  ],
+  [
+   "OK",
+   "12 Estela",
+   "6"
+  ],
+  [
+   "OK",
+   "13 Precio 100 ml",
+   "175,00 € / 100 ml"
+  ],
+  [
+   "OK",
+   "14 Si te gusta, prueba",
+   "3 alternativas"
+  ],
+  [
+   "OK",
+   "15 Cita comunidad",
+   "“Huele a sorbete de lima. Me lo pu..."
+  ],
+  [
+   "OK",
+   "16 QR Fragrantica",
+   "qr_fragrantica.png"
+  ],
+  [
+   "OK",
+   "17 Pie completo",
+   "24,6 – 30,0 °C · media · lluvia · nota fondo"
+  ],
+  [
+   "OK",
+   "A1 Assets existen",
+   "4 locales, 0 ausentes []"
+  ],
+  [
+   "OK",
+   "A2 Sin restos de prueba",
+   "ninguno referenciado"
+  ],
+  [
+   "AVISO",
+   "A3 Fondo ampliado x1.32",
+   "hesperide_fondo_a.png 1024x1024 -> sin ampliacion notable"
+  ],
+  [
+   "AVISO",
+   "A4 Precio con fecha de consulta",
+   "el precio no dice de cuando es"
+  ],
+  [
+   "OK",
+   "E1 Altura (scrollHeight)",
+   "1350 px  [limite 1350]"
+  ],
+  [
+   "OK",
+   "E2 Pie dentro de la tarjeta",
+   "pie bottom 1346 px"
+  ]
+ ],
+ "campos_ok": 17,
+ "campos_total": 17,
+ "fallos": [],
+ "avisos": [
+  "A3 Fondo ampliado x1.32",
+  "A4 Precio con fecha de consulta"
+ ]
+}

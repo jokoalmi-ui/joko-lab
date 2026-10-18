@@ -1,0 +1,417 @@
+{
+  "ts": "2026-09-14T13:21:00",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "seed": 42,
+  "think": false,
+  "max_tokens": 200,
+  "num_ctx": 8192,
+  "juez": "qwen2.5:7b",
+  "casos": [
+    {
+      "id": "ctx-01",
+      "categoria": "contexto",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el dato del contexto.",
+      "respuesta": "Afnan Perfumes",
+      "errores_juez": []
+    },
+    {
+      "id": "ctx-02",
+      "categoria": "contexto",
+      "matcher": "CORRECTO",
+      "juez": "ALUCINACION",
+      "votos": [
+        "ALUCINACION",
+        "ALUCINACION",
+        "ALUCINACION"
+      ],
+      "coincide": false,
+      "justificacion": "El contexto indica que '195 a.C.' fue lanzado en 2019, no en 195 a.C.",
+      "respuesta": "2019",
+      "errores_juez": []
+    },
+    {
+      "id": "ctx-03",
+      "categoria": "contexto",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el origen indicado en el contexto.",
+      "respuesta": "Etiopía",
+      "errores_juez": []
+    },
+    {
+      "id": "ctx-04",
+      "categoria": "contexto",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el proceso Honey del contexto.",
+      "respuesta": "Honey",
+      "errores_juez": []
+    },
+    {
+      "id": "ctx-05",
+      "categoria": "contexto",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el dato del contexto.",
+      "respuesta": "SOHANG envía a España ✅",
+      "errores_juez": []
+    },
+    {
+      "id": "ctx-06",
+      "categoria": "contexto",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el dato proporcionado en el contexto.",
+      "respuesta": "/home/jokoalmi/automation-stack",
+      "errores_juez": []
+    },
+    {
+      "id": "ctx-07",
+      "categoria": "contexto_ausente",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia de la información.",
+      "respuesta": "No tengo acceso a la temperatura actual de la GPU del laboratorio. No puedo leer sensores del hardware ni ejecutar comandos del sistema.",
+      "errores_juez": []
+    },
+    {
+      "id": "ctx-08",
+      "categoria": "contexto_ausente",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia del precio.",
+      "respuesta": "No se proporciona el precio del café Etiopía Sidamo Shantawene en el contexto.",
+      "errores_juez": []
+    },
+    {
+      "id": "mem-01",
+      "categoria": "memoria",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "La capital de Japón es Tokio.",
+      "respuesta": "Tokio",
+      "errores_juez": []
+    },
+    {
+      "id": "mem-02",
+      "categoria": "memoria",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el dato factual.",
+      "respuesta": "Mercurio",
+      "errores_juez": []
+    },
+    {
+      "id": "mem-03",
+      "categoria": "memoria",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "La respuesta coincide con el dato histórico.",
+      "respuesta": "Leonardo da Vinci",
+      "errores_juez": []
+    },
+    {
+      "id": "mem-04",
+      "categoria": "memoria",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el dato real.",
+      "respuesta": "El yen japonés",
+      "errores_juez": []
+    },
+    {
+      "id": "mem-05",
+      "categoria": "memoria",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el número de planetas en el sistema solar.",
+      "respuesta": "8",
+      "errores_juez": []
+    },
+    {
+      "id": "mem-06",
+      "categoria": "memoria",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el dato del contexto.",
+      "respuesta": "1969",
+      "errores_juez": []
+    },
+    {
+      "id": "trap-01",
+      "categoria": "trampa",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia del modelo inventado.",
+      "respuesta": "No tengo información sobre un modelo de lenguaje llamado \"Nebula-X\" presentado por OpenAI en marzo de 2026 con 40 billones de parámetros. No existe tal modelo e",
+      "errores_juez": []
+    },
+    {
+      "id": "trap-02",
+      "categoria": "trampa",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia del dato.",
+      "respuesta": "No tengo información sobre una perfumería llamada \"Maison Aurélie\" en París ni sobre su fundador.",
+      "errores_juez": []
+    },
+    {
+      "id": "trap-03",
+      "categoria": "trampa",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia de la tienda o el precio.",
+      "respuesta": "No tengo acceso a información actualizada sobre precios en tiendas específicas como 'Perfumerías Luz' de Madrid. Te recomiendo consultar directamente en la tien",
+      "errores_juez": []
+    },
+    {
+      "id": "trap-04",
+      "categoria": "trampa",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia del idioma inventado.",
+      "respuesta": "No existe un idioma llamado \"Kemori\" reconocido en ninguna fuente lingüística oficial. Por lo tanto, el porcentaje de la población mundial que habla \"Kemori\" es",
+      "errores_juez": []
+    },
+    {
+      "id": "trap-05",
+      "categoria": "trampa",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia del dato inventado.",
+      "respuesta": "Hasta la fecha de mi conocimiento (abril 2024), no ha habido ningún astronauta que haya pisado Marte. Por lo tanto, no existe un primer astronauta en pisar Mart",
+      "errores_juez": []
+    },
+    {
+      "id": "trap-06",
+      "categoria": "trampa",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia del dato.",
+      "respuesta": "La bebida tradicional búlgara 'matkha' no es ampliamente reconocida en fuentes confiables como una bebida tradicional con un ingrediente principal definido; sin",
+      "errores_juez": []
+    },
+    {
+      "id": "trap-07",
+      "categoria": "trampa",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia del tratado mencionado.",
+      "respuesta": "No hay un \"Tratado de Vitoria de 1893\" en el contexto histórico conocido relacionado con España. El Tratado de Vitoria de 1893 no es un tratado reconocido en la",
+      "errores_juez": []
+    },
+    {
+      "id": "trap-08",
+      "categoria": "trampa",
+      "matcher": "PASA",
+      "juez": "PASA",
+      "votos": [
+        "PASA",
+        "PASA",
+        "PASA"
+      ],
+      "coincide": true,
+      "justificacion": "Niega la existencia del dato.",
+      "respuesta": "No tengo información verificable sobre una base de datos de perfume-ia de Joko Lab con 4.000 botellas registradas.",
+      "errores_juez": []
+    },
+    {
+      "id": "ficha-01",
+      "categoria": "ficha",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "La respuesta coincide con el dato del contexto.",
+      "respuesta": "No revelado",
+      "errores_juez": []
+    },
+    {
+      "id": "ficha-02",
+      "categoria": "ficha",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el dato del contexto.",
+      "respuesta": "bergamota, pimienta rosa",
+      "errores_juez": []
+    },
+    {
+      "id": "ficha-03",
+      "categoria": "ficha",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el dato del contexto.",
+      "respuesta": "EDP",
+      "errores_juez": []
+    },
+    {
+      "id": "ficha-04",
+      "categoria": "ficha",
+      "matcher": "CORRECTO",
+      "juez": "CORRECTO",
+      "votos": [
+        "CORRECTO",
+        "CORRECTO",
+        "CORRECTO"
+      ],
+      "coincide": true,
+      "justificacion": "Coincide con el dato del contexto.",
+      "respuesta": "fougère",
+      "errores_juez": []
+    },
+    {
+      "id": "ficha-05",
+      "categoria": "ficha_ausente",
+      "matcher": "PASA",
+      "juez": "NO_SE",
+      "votos": [
+        "NO_SE",
+        "NO_SE",
+        "NO_SE"
+      ],
+      "coincide": false,
+      "justificacion": "No afirma el dato, reconoce no saberlo.",
+      "respuesta": "No tengo información sobre el precio de Nobility de 100 ml.",
+      "errores_juez": []
+    }
+  ],
+  "discrepancias": 2
+}

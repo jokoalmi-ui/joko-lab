@@ -1,0 +1,94 @@
+# Análisis — Podcast "Atareado con Linux" 819: RAG y memoria digital (Lorenzo)
+
+**Fecha:** 05-ago-2026
+**Fuente:** https://youtu.be/qopf7OawYW8 (Atareado con Linux, episodio 819)
+**Transcripción:** 2026-08-05-transcripcion-youtube2.txt (27 KB, ~25 min)
+
+---
+
+## Qué es
+
+Episodio de Lorenzo (Atareado con Linux) sobre montar un RAG propio para
+memoria digital: "crear tu propia base de conocimiento" sobre miles de archivos
+Markdown, de la forma más simple posible — sin Postgres, sin servidores, sin
+LangChain.
+
+**Filosofía:** "sin frameworks, 4-5 librerías y ya tienes el 80% de tu base
+de conocimiento."
+
+---
+
+## Arquitectura que describe (idéntica a la del lab)
+
+| Componente | Podcast (Lorenzo) | Joko Lab (real) |
+|---|---|---|
+| Embeddings | **Ollama + BGE-M3** (1024 dims, multilingüe, 1.1 GB) | **BGE-M3** (LM Studio API, 1024 dims) ✅ |
+| Base de datos | **SQLite + FTS5** (búsqueda textual, sin servidor) | **LanceDB** (vectorial) — sin FTS |
+| Chunking | Trocear con solapamiento | context_builder con frontmatter |
+| Orquestación | Python + uv, sin LC/LangChain | Python + scripts propios ✅ |
+| Procesamiento | GPU (Nvidia torre Slimbook) o CPU | GPU RTX A2000 + reranker CPU |
+| Indexado incremental | Hash por documento → reprocesar solo cambios | **RAG re-index diario** (cron 08:00) |
+| Búsqueda | Híbrida (FTS5 + embeddings) — episodio 821 | Embedding + reranker (BGE-M3 cross-encoder) |
+
+---
+
+## Los 4 conceptos clave del episodio
+
+### 1. Frontmatter como metadatos
+- Extraer el frontmatter YAML (título, fecha, tags) de cada .md
+- Permite búsquedas precisas ("archivos sobre SSH a partir de una fecha")
+- **El lab ya lo hace:** 95/95 docs con frontmatter (sanado 31-jul) ✅
+
+### 2. Hash incremental (lo más valioso del episodio)
+- Cada documento genera un **hash** → si cambia, se reprocesa SOLO ese
+- Primera ejecución: 2h CPU / 20 min GPU (5000 docs)
+- Ejecuciones siguientes: **segundos o minutos**
+- **El lab lo tiene parcialmente:** re-index diario (08:00) + catchup (1h).
+  Pero no está claro si usa hash por documento o re-indexa todo.
+
+### 3. Chunking con solapamiento
+- BGE-M3 tiene límite de 8000 tokens → hay que trocear
+- Trocear de la manera más precisa, con solapamiento
+
+### 4. Búsqueda semántica rápida
+- La consulta solo embebe la PREGUNTA (no todo)
+- Búsqueda inmediata
+
+---
+
+## Ideas aprovechables para el lab (priorizadas)
+
+### 🏆 Idea 1: Verificar si el re-index usa hash incremental
+El lab tiene rag-reindex-daily + rag-catchup (1h). Si re-indexa TODO cada vez,
+el episodio confirma que el hash por documento es el patrón correcto: procesar
+solo lo que cambió. **Verificar indexer.py** — si ya usa hash, perfecto; si no,
+es una mejora barata.
+
+### 🏆 Idea 2: SQLite FTS5 como complemento híbrido
+Lorenzo usa SQLite FTS5 para búsqueda textual + embeddings para semántica =
+**búsqueda híbrida**. El lab usa solo LanceDB (vectorial). El backlog P3 ya
+menciona "LanceDB con frontmatter para búsqueda híbrida" — el episodio valida
+esa dirección.
+
+### 🟡 Idea 3: MCP en el vault
+Lorenzo menciona que atareado.es se puede consultar vía MCP. El lab podría
+exponer el RAG vía MCP (Hermes lo soporta) — pero es una mejora de alcance
+mayor, no urgente.
+
+### 🟡 Idea 4: Chunking con solapamiento explícito
+Confirmar que el chunker del lab usa solapamiento (overlap) — estándar para
+no cortar conceptos a mitad.
+
+---
+
+## Nota crítica
+
+El episodio es divulgativo (podcast personal) pero técnicamente sólido y
+**confirma la arquitectura del lab**: BGE-M3 + embeddings + indexado
+incremental + búsqueda rápida es exactamente lo que Joko Lab ya tiene. La
+diferencia principal: el lab añade reranker (que Lorenzo no menciona en este
+episodio — probablemente lo cubre en el 821 con la búsqueda híbrida).
+
+**Conclusión:** el lab está alineado con las mejores prácticas del nicho.
+La única acción concreta derivada: verificar que el re-index use hash
+incremental (no re-procesar todo).

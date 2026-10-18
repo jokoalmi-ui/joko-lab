@@ -1,0 +1,74 @@
+{
+  "tag": "r3c3",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "num_ctx": 8192,
+  "think": false,
+  "temperature": 0.0,
+  "seed": 42,
+  "sha_corrector": "849c12fe093420bae89971566e190653c5ca50d3322b7e404e144d9f012e6121",
+  "sha_examen": "30557a9df6ee2fca82f3a823ed8e5dea20baa56ebc21d00c7b6f51f011493080",
+  "casos": [
+    "json-plano",
+    "json-anidado",
+    "json-enum",
+    "json-nulo-honesto",
+    "json-numeros-es",
+    "tool-eleccion",
+    "tool-args",
+    "tool-dos-pasos"
+  ],
+  "segundos_totales": 289.3,
+  "resumen": {
+    "r3-high": {
+      "pasan": 8,
+      "total": 8,
+      "segundos": 95.4,
+      "instr_len": 0,
+      "origen": "ronda 3c (orden rotado, posicion 1): think='high' primera de la pasada para medir el posible calentamiento.",
+      "think": "high",
+      "casos_fallados": []
+    },
+    "r3-low": {
+      "pasan": 8,
+      "total": 8,
+      "segundos": 98.4,
+      "instr_len": 0,
+      "origen": "ronda 3c (orden rotado, posicion 2): think='low' en segunda posicion.",
+      "think": "low",
+      "casos_fallados": []
+    },
+    "r3-medium": {
+      "pasan": 8,
+      "total": 8,
+      "segundos": 95.5,
+      "instr_len": 0,
+      "origen": "ronda 3c (orden rotado, posicion 3): think='medium' en tercera posicion.",
+      "think": "medium",
+      "casos_fallados": []
+    }
+  },
+  "pareto": [
+    {
+      "variante": "r3-high",
+      "pasan": 8,
+      "segundos": 95.4,
+      "dominada": false,
+      "casos_fallados": []
+    },
+    {
+      "variante": "r3-medium",
+      "pasan": 8,
+      "segundos": 95.5,
+      "dominada": true,
+      "casos_fallados": []
+    },
+    {
+      "variante": "r3-low",
+      "pasan": 8,
+      "segundos": 98.4,
+      "dominada": true,
+      "casos_fallados": []
+    }
+  ],
+  "jsonl": "/home/jokoalmi/joko-lab/research/rsi-v0/variantes_r3c3.jsonl"
+}

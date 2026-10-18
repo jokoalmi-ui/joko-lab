@@ -1,0 +1,410 @@
+{
+  "fecha": "2026-09-22T19:13:32+02:00",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "backend": "ollama",
+  "host": "http://127.0.0.1:11434",
+  "filas": [
+    {
+      "condicion": "A_sin_herramienta",
+      "pregunta": "Cuanto suman los gastos de luz en total?",
+      "esperado": 1302.25,
+      "obtenido": 1302.25,
+      "exacto": true,
+      "segundos": 28.4,
+      "respuesta_literal": "1302.25"
+    },
+    {
+      "condicion": "A_sin_herramienta",
+      "pregunta": "Cuanto se gasto en total en abril?",
+      "esperado": 3417.8,
+      "obtenido": 3417.8,
+      "exacto": true,
+      "segundos": 8.6,
+      "respuesta_literal": "3417.80"
+    },
+    {
+      "condicion": "A_sin_herramienta",
+      "pregunta": "Cuanto suman los gastos de material?",
+      "esperado": 7152.1,
+      "obtenido": 7152.1,
+      "exacto": true,
+      "segundos": 56.7,
+      "respuesta_literal": "7152.10"
+    },
+    {
+      "condicion": "A_sin_herramienta",
+      "pregunta": "Cuanto se gasto en total en marzo?",
+      "esperado": 2091.4,
+      "obtenido": 2091.4,
+      "exacto": true,
+      "segundos": 38.5,
+      "respuesta_literal": "2091.40"
+    },
+    {
+      "condicion": "A_sin_herramienta",
+      "pregunta": "Cuanto suman los gastos de transporte?",
+      "esperado": 415.8,
+      "obtenido": 415.8,
+      "exacto": true,
+      "segundos": 10.1,
+      "respuesta_literal": "415.80"
+    },
+    {
+      "condicion": "A_sin_herramienta",
+      "pregunta": "Cuanto se gasto en total en mayo?",
+      "esperado": 3360.95,
+      "obtenido": 3360.95,
+      "exacto": true,
+      "segundos": 5.0,
+      "respuesta_literal": "3360.95"
+    },
+    {
+      "condicion": "S_sin_datos",
+      "pregunta": "Cuanto suman los gastos de luz en total?",
+      "esperado": 1302.25,
+      "obtenido": 0.0,
+      "exacto": false,
+      "no_da_numero": false,
+      "segundos": 35.7,
+      "respuesta_literal": "0"
+    },
+    {
+      "condicion": "S_sin_datos",
+      "pregunta": "Cuanto se gasto en total en abril?",
+      "esperado": 3417.8,
+      "obtenido": 0.0,
+      "exacto": false,
+      "no_da_numero": false,
+      "segundos": 36.1,
+      "respuesta_literal": "0"
+    },
+    {
+      "condicion": "S_sin_datos",
+      "pregunta": "Cuanto suman los gastos de material?",
+      "esperado": 7152.1,
+      "obtenido": 0.0,
+      "exacto": false,
+      "no_da_numero": false,
+      "segundos": 54.5,
+      "respuesta_literal": "0"
+    },
+    {
+      "condicion": "S_sin_datos",
+      "pregunta": "Cuanto se gasto en total en marzo?",
+      "esperado": 2091.4,
+      "obtenido": 0.0,
+      "exacto": false,
+      "no_da_numero": false,
+      "segundos": 38.1,
+      "respuesta_literal": "0"
+    },
+    {
+      "condicion": "S_sin_datos",
+      "pregunta": "Cuanto suman los gastos de transporte?",
+      "esperado": 415.8,
+      "obtenido": 0.0,
+      "exacto": false,
+      "no_da_numero": false,
+      "segundos": 68.1,
+      "respuesta_literal": "0"
+    },
+    {
+      "condicion": "S_sin_datos",
+      "pregunta": "Cuanto se gasto en total en mayo?",
+      "esperado": 3360.95,
+      "obtenido": 0.0,
+      "exacto": false,
+      "no_da_numero": false,
+      "segundos": 54.5,
+      "respuesta_literal": "0"
+    },
+    {
+      "condicion": "B_con_herramienta",
+      "pregunta": "Cuanto suman los gastos de luz en total?",
+      "temperature": 0.0,
+      "esperado": 1302.25,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "concepto",
+          "valor": "luz"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "concepto",
+        "valor": "luz",
+        "n": 3,
+        "total": 1302.25
+      },
+      "correcta": true,
+      "segundos": 9.4,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"concepto\", \"valor\": \"luz\"}}"
+    },
+    {
+      "condicion": "B_con_herramienta",
+      "pregunta": "Cuanto se gasto en total en abril?",
+      "temperature": 0.0,
+      "esperado": 3417.8,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "mes",
+          "valor": "abril"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "mes",
+        "valor": "abril",
+        "n": 3,
+        "total": 3417.8
+      },
+      "correcta": true,
+      "segundos": 9.4,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"mes\", \"valor\": \"abril\"}}"
+    },
+    {
+      "condicion": "B_con_herramienta",
+      "pregunta": "Cuanto suman los gastos de material?",
+      "temperature": 0.0,
+      "esperado": 7152.1,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "concepto",
+          "valor": "material"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "concepto",
+        "valor": "material",
+        "n": 3,
+        "total": 7152.1
+      },
+      "correcta": true,
+      "segundos": 4.1,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"concepto\", \"valor\": \"material\"}}"
+    },
+    {
+      "condicion": "B_con_herramienta",
+      "pregunta": "Cuanto se gasto en total en marzo?",
+      "temperature": 0.0,
+      "esperado": 2091.4,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "mes",
+          "valor": "marzo"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "mes",
+        "valor": "marzo",
+        "n": 3,
+        "total": 2091.4
+      },
+      "correcta": true,
+      "segundos": 10.2,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"mes\", \"valor\": \"marzo\"}}"
+    },
+    {
+      "condicion": "B_con_herramienta",
+      "pregunta": "Cuanto suman los gastos de transporte?",
+      "temperature": 0.0,
+      "esperado": 415.8,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "concepto",
+          "valor": "transporte"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "concepto",
+        "valor": "transporte",
+        "n": 2,
+        "total": 415.8
+      },
+      "correcta": true,
+      "segundos": 4.1,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"concepto\", \"valor\": \"transporte\"}}"
+    },
+    {
+      "condicion": "B_con_herramienta",
+      "pregunta": "Cuanto se gasto en total en mayo?",
+      "temperature": 0.0,
+      "esperado": 3360.95,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "mes",
+          "valor": "mayo"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "mes",
+        "valor": "mayo",
+        "n": 2,
+        "total": 3360.95
+      },
+      "correcta": true,
+      "segundos": 10.7,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"mes\", \"valor\": \"mayo\"}}"
+    },
+    {
+      "condicion": "C_con_herramienta_temp_alta",
+      "pregunta": "Cuanto suman los gastos de luz en total?",
+      "temperature": 0.8,
+      "esperado": 1302.25,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "concepto",
+          "valor": "luz"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "concepto",
+        "valor": "luz",
+        "n": 3,
+        "total": 1302.25
+      },
+      "correcta": true,
+      "segundos": 10.7,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"concepto\", \"valor\": \"luz\"}}"
+    },
+    {
+      "condicion": "C_con_herramienta_temp_alta",
+      "pregunta": "Cuanto se gasto en total en abril?",
+      "temperature": 0.8,
+      "esperado": 3417.8,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "mes",
+          "valor": "abril"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "mes",
+        "valor": "abril",
+        "n": 3,
+        "total": 3417.8
+      },
+      "correcta": true,
+      "segundos": 9.6,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"mes\", \"valor\": \"abril\"}}"
+    },
+    {
+      "condicion": "C_con_herramienta_temp_alta",
+      "pregunta": "Cuanto suman los gastos de material?",
+      "temperature": 0.8,
+      "esperado": 7152.1,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "concepto",
+          "valor": "material"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "concepto",
+        "valor": "material",
+        "n": 3,
+        "total": 7152.1
+      },
+      "correcta": true,
+      "segundos": 6.9,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"concepto\", \"valor\": \"material\"}}"
+    },
+    {
+      "condicion": "C_con_herramienta_temp_alta",
+      "pregunta": "Cuanto se gasto en total en marzo?",
+      "temperature": 0.8,
+      "esperado": 2091.4,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "mes",
+          "valor": "marzo"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "mes",
+        "valor": "marzo",
+        "n": 3,
+        "total": 2091.4
+      },
+      "correcta": true,
+      "segundos": 12.9,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"mes\", \"valor\": \"marzo\"}}"
+    },
+    {
+      "condicion": "C_con_herramienta_temp_alta",
+      "pregunta": "Cuanto suman los gastos de transporte?",
+      "temperature": 0.8,
+      "esperado": 415.8,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "concepto",
+          "valor": "transporte"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "concepto",
+        "valor": "transporte",
+        "n": 2,
+        "total": 415.8
+      },
+      "correcta": true,
+      "segundos": 9.0,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"concepto\", \"valor\": \"transporte\"}}"
+    },
+    {
+      "condicion": "C_con_herramienta_temp_alta",
+      "pregunta": "Cuanto se gasto en total en mayo?",
+      "temperature": 0.8,
+      "esperado": 3360.95,
+      "llamada": {
+        "herramienta": "sumar_gastos",
+        "argumentos": {
+          "filtro": "mes",
+          "valor": "mayo"
+        }
+      },
+      "bien_formada": true,
+      "ejecutada_ok": true,
+      "resultado": {
+        "filtro": "mes",
+        "valor": "mayo",
+        "n": 2,
+        "total": 3360.95
+      },
+      "correcta": true,
+      "segundos": 10.2,
+      "respuesta_literal": "{\"herramienta\": \"sumar_gastos\", \"argumentos\": {\"filtro\": \"mes\", \"valor\": \"mayo\"}}"
+    }
+  ]
+}

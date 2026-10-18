@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loop Engineering (L2) — Joko Lab</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', -apple-system, sans-serif;
+    background: #f5f0e8;
+    color: #2d2a26;
+    padding: 40px 30px;
+    display: flex; justify-content: center;
+  }
+  .container { max-width: 1100px; width: 100%; }
+
+  /* HEADER */
+  .header { text-align: center; margin-bottom: 30px; }
+  .header h1 {
+    font-size: 30px; font-weight: 800; letter-spacing: 0.5px;
+    color: #2d2a26;
+  }
+  .header h1 span { color: #1a7f4f; }
+  .header .sub {
+    font-size: 15px; color: #6b6459; margin-top: 6px; font-weight: 400;
+  }
+
+  /* GRID DE 3 PANELES */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+
+  .panel {
+    border-radius: 16px; padding: 22px 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    display: flex; flex-direction: column;
+  }
+  .panel-green { background: #e8f4ec; border: 2px solid #2a9d5f; }
+  .panel-blue  { background: #e9f1fa; border: 2px solid #2b6cb0; }
+  .panel-red   { background: #faece9; border: 2px solid #c0563c; }
+
+  .panel-title {
+    font-size: 14px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.8px; margin-bottom: 4px;
+  }
+  .panel-green .panel-title { color: #1a7f4f; }
+  .panel-blue  .panel-title { color: #2b6cb0; }
+  .panel-red   .panel-title { color: #c0563c; }
+  .panel-note { font-size: 11.5px; color: #6b6459; margin-bottom: 16px; }
+
+  /* WORKFLOW VERTICAL */
+  .flow { display: flex; flex-direction: column; gap: 0; flex: 1; }
+  .step {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 8px; background: rgba(255,255,255,0.75);
+    border-radius: 10px; margin-bottom: 4px;
+  }
+  .step .icon {
+    width: 34px; height: 34px; min-width: 34px;
+    border-radius: 9px; display: flex; align-items: center; justify-content: center;
+    font-size: 17px; color: #fff;
+  }
+  .green .icon { background: #2a9d5f; }
+  .blue  .icon { background: #2b6cb0; }
+  .red   .icon { background: #c0563c; }
+  .step .txt { font-size: 12.5px; line-height: 1.35; }
+  .step .txt b { display: block; font-size: 13px; }
+  .step .txt small { color: #6b6459; font-size: 11px; }
+
+  .arrow-down {
+    text-align: center; color: #aaa; font-size: 16px; line-height: 1;
+    margin: 2px 0;
+  }
+
+  /* LOOP (flecha de retorno) */
+  .loop-note {
+    text-align: center; font-size: 12px; color: #4a7c5f; font-weight: 600;
+    margin-top: 12px; padding: 8px; background: rgba(42,157,95,0.08);
+    border-radius: 8px; border: 1px dashed #2a9d5f;
+  }
+
+  /* FOOTER */
+  .footer {
+    margin-top: 28px; text-align: center; font-size: 12.5px; color: #6b6459;
+  }
+  .footer .principle {
+    display: inline-block; background: #2d2a26; color: #fff;
+    padding: 10px 22px; border-radius: 30px; font-weight: 600; font-size: 13.5px;
+  }
+  .footer .source { margin-top: 12px; font-size: 11px; color: #999; }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <h1>LOOP ENGINEERING <span>(L2)</span></h1>
+    <div class="sub">Del ciclo de decisiones al bucle con memoria — Joko Lab · 04-ago-2026</div>
+  </div>
+
+  <!-- 3 PANELES -->
+  <div class="grid">
+
+    <!-- 1. OBSERVACIÓN -->
+    <div class="panel panel-green">
+      <div class="panel-title">1 · Observación</div>
+      <div class="panel-note">¿Qué está decidiendo el sistema realmente?</div>
+      <div class="flow">
+        <div class="step green"><div class="icon">📋</div><div class="txt"><b>Observer</b><small>lee decision-ledger.jsonl (326 entradas)</small></div></div>
+        <div class="arrow-down">↓</div>
+        <div class="step green"><div class="icon">📊</div><div class="txt"><b>Agrupa por regla</b><small>privacidad · gpu · horario · costes · niveles</small></div></div>
+        <div class="arrow-down">↓</div>
+        <div class="step green"><div class="icon">🔍</div><div class="txt"><b>Detecta patrones</b><small>¿una regla decide &gt;70% del tiempo?</small></div></div>
+      </div>
+      <div class="loop-note">↺ Ventana: 1 semana · 30 min cron</div>
+    </div>
+
+    <!-- 2. EVIDENCIA + PROPUESTA -->
+    <div class="panel panel-blue">
+      <div class="panel-title">2 · Evidencia → Propuesta</div>
+      <div class="panel-note">Del dato a la hipótesis de cambio</div>
+      <div class="flow">
+        <div class="step blue"><div class="icon">🧮</div><div class="txt"><b>Evidence Aggregator</b><small>métricas: % uso, tendencia, fallos por regla</small></div></div>
+        <div class="arrow-down">↓</div>
+        <div class="step blue"><div class="icon">✍️</div><div class="txt"><b>Proposer</b><small>formula propuesta YAML (ajustar / añadir / eliminar)</small></div></div>
+        <div class="arrow-down">↓</div>
+        <div class="step blue"><div class="icon">🧪</div><div class="txt"><b>Gate</b><small>evidence_contract.py — ¿la evidencia supera el mínimo?</small></div></div>
+      </div>
+      <div class="loop-note">↺ Propuesta: proposals/2026-08-04-*.yaml</div>
+    </div>
+
+    <!-- 3. GOBERNANZA -->
+    <div class="panel panel-red">
+      <div class="panel-title">3 · Gobernanza</div>
+      <div class="panel-note">El humano decide — siempre (JL-012)</div>
+      <div class="flow">
+        <div class="step red"><div class="icon">🔔</div><div class="txt"><b>Aviso a Joseba</b><small>"el sistema propone ajustar X — evidencia: Y"</small></div></div>
+        <div class="arrow-down">↓</div>
+        <div class="step red"><div class="icon">⚖️</div><div class="txt"><b>Revisión humana</b><small>aprueba · rechaza · modifica</small></div></div>
+        <div class="arrow-down">↓</div>
+        <div class="step red"><div class="icon">✅</div><div class="txt"><b>Aplicar</b><small>apply-decision.sh → policies/*.yaml (versionado git)</small></div></div>
+      </div>
+      <div class="loop-note">↺ Cada cambio = DEC explícito + rollback por git</div>
+    </div>
+
+  </div>
+
+  <!-- BUCLE GLOBAL -->
+  <div class="footer">
+    <div class="principle">🔄 Bucle completo: Observar → Evidenciar → Proponer → <span style="color:#ffd700;">Humano decide</span> → Aplicar → Observar</div>
+    <div class="source">Diseño: research/loop-engineering-diseno.md · Fuente base: research/runtime-feedback-loop.md · Infografía: HTML/CSS/SVG — Joko Lab</div>
+  </div>
+
+</div>
+</body>
+</html>

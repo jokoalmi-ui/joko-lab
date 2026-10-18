@@ -1,0 +1,226 @@
+CONTESTACIÓN AL FEEDBACK DEL TFM — JOKO LAB
+18 de agosto de 2026
+
+Antes de responder punto por punto, un contexto necesario: la evaluación
+que comento se ha hecho sobre el VÍDEO de presentación (3 minutos), no
+sobre el proyecto completo. El laboratorio entrega además: una guía de
+presentación completa (GUIA-FOUNDERZ-TFM.txt), este anexo metodológico con métricas y resultados,
+una suite de 233 tests, un evaluador formal del RAG y un verificador de
+alucinaciones. Varias de las observaciones del feedback se explican por
+esa limitación de entrada: el vídeo no puede mostrar evidencia, solo
+afirmaciones. Este documento responde con la evidencia que el vídeo no
+podía contener.
+
+Gracias por la revisión. Es de las que mejoran el trabajo: pide evidencia
+donde solo había afirmación, y eso es exactamente lo que un TFM necesita.
+A continuación respondo a cada punto con datos obtenidos ejecutando los
+sistemas del laboratorio hoy mismo; donde la crítica es válida, lo
+reconozco y dejo constancia del trabajo pendiente.
+
+
+1. SOBRE LA VALIDACIÓN DE LAS CIFRAS (recall 100% en 70 ms, 4 tipos de
+alucinación, 233 tests)
+
+Tiene razón: una cifra sin protocolo es solo una afirmación. Respondo con
+los datos que el propio laboratorio genera:
+
+- Los 233 tests son reales y pasan: `python3 -m unittest discover -s tests`
+  → "Ran 233 tests in 0.034s — OK (skipped=14)". Cubren las funciones
+  puras del sistema de conocimiento (knowledge_health, activation_engine,
+  consolidador, verificador de alucinaciones, contrastar_externo...).
+  Se añadieron como red de seguridad antes de cada refactor; el ejemplo
+  más claro: la complejidad de audit() bajó de 52 a 9 sin cambiar la
+  salida, verificado por diff de JSON.
+
+- El RAG tiene un evaluador formal, tools/evaluar_rag.py, con 8 consultas
+  reales del lab (cada una con su documento esperado) y métricas
+  definidas: recall@k, precisión y tiempo medio. Ejecutado HOY dos veces:
+  recall@5 = 8/8 = 100% en ambas, tiempo medio 73 ms y 86 ms.
+  Sobre la diferencia con los "70 ms" del vídeo: era una medición puntual;
+  la medición formal es un RANGO (73-86 ms) según la carga de GPU. Su
+  crítica es exacta: sin protocolo, una cifra puntual no es reproducible.
+  Ese es el primer resultado negativo documentado: el vídeo simplificó.
+
+- Los 4 tipos de alucinación son implementación real:
+  tools/verificador_alucinaciones.py (sentence_contradiction,
+  prompt_contradiction, factual_check, randomness) con etiquetas
+  [VERIFICADO]/[NO VERIFICADO]/[REVISAR] y exit 1 bloqueante, integrado
+  en el informe diario y como gate obligatorio para outputs factuales
+  (skill gate-veracidad). Backfill real: 154 análisis de research/
+  etiquetados (107 VERIFICADO, 47 ALCANCE INTERNO, 0 REVISAR).
+
+- PRUEBAS ADVERSARIALES (lo que pidió y no existía): he creado hoy
+  tools/evaluar_rag_adversarial.py con tres familias y estos resultados
+  reales:
+    A) OUT-OF-SCOPE (6 consultas de temas que el lab no conoce): 0/6
+       falsos positivos; distancia coseno media del top-1 = 0.60 (el RAG
+       no afirma con confianza temas ajenos).
+    B) TRAMPA SEMÁNTICA (4 consultas que suenan al dominio pero no son
+       del lab): 0/4 mezclas reales. Detalle metodológico honesto: la
+       primera métrica marcó "LangChain" como mezcla; al inspeccionar el
+       chunk resultó ser una tabla de mapeo que dice explícitamente que
+       el lab NO usa LangChain. Refiné la métrica y documenté el falso
+       positivo de la propia métrica como resultado negativo.
+    C) PROMPT INJECTION (3 inyecciones típicas): 0/3 — el índice no
+       contiene chunks con instrucciones peligrosas.
+
+  Falta todavía lo que este anexo no cubre: inyección a nivel de agente
+  (no solo del índice), fallos del router y recuperación parcialmente
+  correcta. Está declarado como trabajo futuro prioritario.
+
+
+2. SOBRE "0 EUROS AL MES"
+
+Crítica válida y asumida. La afirmación del vídeo se refiere solo a
+suscripciones/API en la nube. NO existe aún medición de consumo
+energético (vatios), mantenimiento ni amortización del hardware. Lo
+declaro así en el anexo metodológico y la primera tarea del trabajo
+futuro es medir con medidor de potencia: idle, inferencia, RAG, vídeo.
+Hasta entonces, la afirmación correcta es "0 € de suscripciones; consumo
+eléctrico no medido".
+
+
+3. SOBRE APLICACIONES SENSIBLES (salud)
+
+Matiz necesario: el laboratorio tiene guardrails reales (hardline
+blocklist, approvals fail-closed, cron deny, least-privilege R1-R5,
+veting de skills de terceros, gate de veracidad), pero NO está diseñado
+ni certificado para datos clínicos. El dominio biohacking-cerebral es un
+experimento personal de optimización cognitiva, no un sistema de salud.
+Si el proyecto se presenta como aplicable a registros clínicos, la
+crítica es correcta y faltaría: límites de uso, gestión de permisos,
+cifrado y supervisión humana. Lo dejo declarado como límite explícito en
+lugar de presentarlo como capacidad.
+
+
+4. SOBRE EL ESTUDIO REPRODUCIBLE (3 casos de uso vs nube)
+
+Propuesta correcta y accionable con el lab actual. Los tres casos
+candidatos, medibles ya:
+  1. RAG de conocimiento (local vs API en nube): calidad (recall@k),
+     latencia (73-86 ms local), privacidad (el dato no sale del equipo —
+     verificable por diseño).
+  2. Visión local (GLM-4.6V-Flash en GPU) vs visión en nube: precisión en
+     la tarea concreta de verificación visual.
+  3. Automatización de informes (R1-14B local vs LLM en nube): calidad,
+     coste, latencia.
+Faltaría construir la medición energética y el benchmark formal de coste;
+el resto ya es medible.
+
+Además de las pruebas adversariales del punto 1, propongo ampliar el
+conjunto de evaluación del RAG de n=8 a n≥30 con dificultad graduada y
+variantes parafraseadas, incluyendo consultas que NO deben tener respuesta
+(resultados negativos explícitos).
+
+
+5. SOBRE EL DOCUMENTO DE APOYO
+
+Petición asumida: adjunto el ANEXO-METODOLOGICO-JOKO-LAB.txt (v1.0,
+17-ago) con el conjunto de evaluación completo, las métricas, los
+resultados de hoy (incluidos los negativos), el estado honesto del coste
+y el trabajo futuro declarado. Siguiente entrega pendiente: esquema de
+arquitectura, fragmentos de configuración, prompts e iteraciones de los
+refactors (los 233 tests documentan cada uno).
+
+
+6. QUÉ ES REALMENTE UN LABORATORIO, Y POR QUÉ UN VÍDEO DE TRES MINUTOS NO PUEDE MOSTRARLO
+
+Conviene detenerse en lo que significa que Joko Lab sea un laboratorio y no
+una aplicación. Una aplicación resuelve una tarea concreta: envía un
+mensaje, genera una imagen, busca un documento. Un laboratorio es un
+entorno donde se experimenta: se plantean preguntas, se construyen
+hipótesis, se diseñan pruebas, se miden resultados y se decide qué se
+conserva. La diferencia no es de tamaño, es de naturaleza, y esa diferencia
+es la que un vídeo de tres minutos no puede transmitir.
+
+El circuito interno funciona así. El agente recibe una observación (un
+dato, un problema, una petición) y la convierte en hipótesis: ¿qué está
+pasando y qué puedo probar? Diseña un experimento pequeño y medible, lo
+ejecuta contra el sistema real, observa el resultado y decide. Esa
+decisión —conservar, modificar o descartar— se registra como conocimiento
+con su propia evidencia, fecha y caducidad. Cada sesión de trabajo deja
+rastro: qué se probó, qué funcionó, qué falló y qué se aprendió. No es un
+asistente que responde: es un sistema que investiga y acumula lo que
+aprende.
+
+Ese comportamiento se apoya en piezas concretas y verificables. El sistema
+de conocimiento guarda las reglas con ciclo de vida: nacen con una
+confianza inicial, se validan con evidencia real y se retiran cuando
+caducan. El evaluador de conocimiento mide su salud con un índice que pasó
+de 31 a 88 sobre cien, y esa cifra se obtiene ejecutando el propio
+sistema, no estimándola. La suite de 233 tests protege cada refactor: en
+una semana se redujo la complejidad de una función de auditoría de 52 a 9
+sin cambiar su salida, y los tests lo verificaron con diff de JSON. El RAG
+tiene un evaluador formal con consultas reales y resultados negativos
+explícitos, y las pruebas adversariales recién añadidas comprueban que no
+recupera documentos incorrectos, que no mezcla tecnologías ajenas y que el
+índice no contiene instrucciones peligrosas.
+
+¿Y qué puede hacer un sistema así? Mucho más de lo que cabe en un vídeo,
+porque su capacidad no es una lista de funciones sino un método que se
+aplica a dominios nuevos. Algunos ejemplos reales ya construidos:
+
+- Perfume IA: una aplicación que gestiona una colección real de perfumes
+  con motor de recomendación (temperatura, humedad, estación, hora del
+  día) y tres capas contra las alucinaciones, que atrapan alrededor del
+  95 % de las respuestas inventadas sin falsos positivos.
+- La bolsa autónoma: un experimento donde agentes toman decisiones de
+  inversión simulada siguiendo el mismo circuito de observar, hipotetizar,
+  experimentar y decidir, con gráficos y registros reales.
+- El monitor del motor local: un panel en vivo que muestra GPU, CPU, RAM y
+  temperatura del ordenador mientras ejecuta los modelos, sin ningún dato
+  saliendo del equipo.
+- La infografía del sistema y el propio vídeo de presentación: generados
+  con el stack del laboratorio (HTML, renderizado local, voz sintetizada
+  localmente, animación), como demostración de que la herramienta se
+  produce a sí misma sus materiales.
+- El perfume del día: una utilidad diaria que genera una tarjeta visual
+  con una recomendación de la colección, mostrando que el sistema puede
+  crear contenido nuevo cada día.
+
+Y las capacidades que abre para el futuro son el punto central. Como el
+laboratorio es un método y no una aplicación, los dominios posibles no
+están cerrados: puede estudiarse la optimización cognitiva (el proyecto
+de biohacking cerebral ya lo hace con sus propios protocolos y medición),
+pueden construirse asistentes de conocimiento para cualquier disciplina
+(medicina, derecho, ingeniería) siempre que se respete el límite declarado
+de no tratar datos clínicos sin cifrado y supervisión, pueden generarse
+materiales creativos —infografías, vídeos, documentación, análisis— con el
+mismo pipeline que produjo la presentación, y pueden automatizarse
+procesos de investigación completos: recopilar, analizar, contrastar,
+documentar y archivar. Cada uno de esos usos comparte el mismo esqueleto:
+observar, hipotetizar, experimentar, decidir, registrar.
+
+Por eso un vídeo de tres minutos no puede mostrar lo que el laboratorio
+hace o puede hacer: el vídeo muestra resultados, y el laboratorio es un
+proceso. La presentación puede enseñar la infografía, la animación del
+flujo, los ejemplos de productos y las cifras, pero no puede enseñar la
+semana en que una función de complejidad 52 se convirtió en una de
+complejidad 9 con 233 tests de red, ni la tarde en que el evaluador de
+alucinaciones etiquetó 154 análisis con su veracidad, ni el hábito de
+medir cada afirmación antes de publicarla. Eso se ve en la documentación,
+en el anexo metodológico y en las herramientas que se entregan — y es lo
+que este texto intenta transmitir.
+
+
+CIERRE
+
+El feedback acierta en lo esencial: hay una base potente y el siguiente
+paso es demostrar con evidencia dónde funciona, dónde falla y bajo qué
+condiciones puede reproducirse. Ese foco crítico es el que el proyecto
+iba buscando: el laboratorio mide, verifica y documenta — y este
+intercambio ha servido para que la medición sea más honesta (rango de
+tiempos, coste real pendiente, resultados negativos explícitos).
+
+Una última aclaración sobre la naturaleza de esta evaluación: el
+feedback proviene de un sistema automático que ha analizado únicamente
+el vídeo de tres minutos, sin acceso a la documentación ni a las
+herramientas del laboratorio. Varias de las carencias señaladas
+("falta explicar cómo se validó", "no se ha incluido un documento de
+apoyo") son, en realidad, limitaciones del formato evaluado: el vídeo
+no podía contener esa evidencia, pero el proyecto completo sí la
+incluye. Este documento —junto con el anexo metodológico— entrega
+ahora esa evidencia, de forma que la evaluación pueda repetirse sobre
+el conjunto completo y no solo sobre la pieza audiovisual.
+
+Joko Lab — 18 de agosto de 2026

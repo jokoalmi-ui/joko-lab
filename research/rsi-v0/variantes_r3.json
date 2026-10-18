@@ -1,0 +1,26 @@
+[
+  {
+    "id": "r3-low",
+    "instr": null,
+    "origen": "ronda 3: modo de inferencia think='low' sin instruccion. Punto intermedio bajo (el piloto de 2 casos paso 2/2 en 38.3 s).",
+    "think": "low"
+  },
+  {
+    "id": "r3-medium",
+    "instr": null,
+    "origen": "ronda 3: think='medium' sin instruccion. Punto intermedio medio (piloto 2/2 en 30.4 s).",
+    "think": "medium"
+  },
+  {
+    "id": "r3-high",
+    "instr": null,
+    "origen": "ronda 3: think='high' sin instruccion. Nivel alto explicito, comparable con think=None de la ronda 2 (8/8 en 162.7 s).",
+    "think": "high"
+  },
+  {
+    "id": "r3-medium-v2",
+    "instr": "Devuelve solo el objeto JSON. Cuando tengas que convertir una cantidad escrita en palabras a cifra, escribela como numero puro sin separador de millar (por ejemplo, \"doce mil trescientos cuarenta\" se escribe 12340). Cuando tengas que sumar, multiplica cada linea y suma despues, sin redondear ni aproximar.",
+    "origen": "ronda 3: la candidata v2-calculo de la ronda 2 (8/8 con think=None), ahora con nivel 'medium' declarado. Cruce instruccion x modo de inferencia.",
+    "think": "medium"
+  }
+]

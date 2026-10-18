@@ -1,0 +1,2404 @@
+{
+ "meta": {
+  "set": "v2-near-miss",
+  "semilla": 20260923,
+  "sql": "SELECT p.id, p.nombre AS nombre, c.nombre AS casa, p.año AS anio, f.nombre AS familia, p.concentracion AS concentracion, p.volumen_ml AS volumen, p.genero AS genero, p.precio AS precio FROM perfumes p JOIN casas c ON c.id = p.casa_id LEFT JOIN familias_olfativas f ON f.id = p.familia_id WHERE p.nombre IS NOT NULL AND TRIM(p.nombre) <> '' AND c.nombre IS NOT NULL AND TRIM(c.nombre) <> '' ORDER BY p.id",
+  "filas_bd_totales": 328,
+  "filas_seleccionadas": 30,
+  "golden_sha256": "2a2da99cc7001128f9c58bc2812f78a590f1a13aa34195191dafa01934fbe1d1",
+  "verdad": "definida por el texto del estado entregado (no por la realidad)",
+  "total": 177,
+  "por_origen": {
+   "generado": 150,
+   "golden": 27
+  },
+  "por_subtipo": {
+   "literal": 30,
+   "parafrasis": 30,
+   "valor_vecino": 30,
+   "campo_ausente": 30,
+   "negacion": 15,
+   "soporte_parcial": 15,
+   "grounding": 13,
+   "memoria": 6,
+   "trampa": 8
+  },
+  "gt_true": 76,
+  "gt_false": 101,
+  "afirmaciones_duplicadas": 0
+ },
+ "casos": [
+  {
+   "id": "gen-001",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de 195 a.C. es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de 195 a.C. es EDP.»"
+  },
+  {
+   "id": "gen-002",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de 195 a.C., la familia olfativa consta como Amaderada.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de 195 a.C., la familia olfativa consta como Amaderada.»"
+  },
+  {
+   "id": "gen-003",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de 195 a.C. es EDT.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de 195 a.C. es EDT.»"
+  },
+  {
+   "id": "gen-004",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El volumen de 195 a.C. es 30 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de 195 a.C. es 30 ml.»"
+  },
+  {
+   "id": "gen-005",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de 195 a.C. no es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de 195 a.C. no es unisex.»"
+  },
+  {
+   "id": "gen-006",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Barberia - Agua de Colonia Concentrada (Alvarez Gómez). Año: 2012. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Barberia - Agua de Colonia Concentrada es Cítrica.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Barberia - Agua de Colonia Concentrada es Cítrica.»"
+  },
+  {
+   "id": "gen-007",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Barberia - Agua de Colonia Concentrada (Alvarez Gómez). Año: 2012. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Barberia - Agua de Colonia Concentrada, el año consta como 2012.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Barberia - Agua de Colonia Concentrada, el año consta como 2012.»"
+  },
+  {
+   "id": "gen-008",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Barberia - Agua de Colonia Concentrada (Alvarez Gómez). Año: 2012. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex."
+   },
+   "afirmacion": "El año de Barberia - Agua de Colonia Concentrada es 2016.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Barberia - Agua de Colonia Concentrada es 2016.»"
+  },
+  {
+   "id": "gen-009",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Barberia - Agua de Colonia Concentrada (Alvarez Gómez). Año: 2012. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex."
+   },
+   "afirmacion": "El volumen de Barberia - Agua de Colonia Concentrada es 100 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Barberia - Agua de Colonia Concentrada es 100 ml.»"
+  },
+  {
+   "id": "gen-010",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Barberia - Agua de Colonia Concentrada (Alvarez Gómez). Año: 2012. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex."
+   },
+   "afirmacion": "El género de Barberia - Agua de Colonia Concentrada es unisex y La concentración es Parfum.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Barberia - Agua de Colonia Concentrada es unisex y La concentración es Parfum.»"
+  },
+  {
+   "id": "gen-011",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Reflection Man (Amouage). Año: 2006. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El año de Reflection Man es 2006.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Reflection Man es 2006.»"
+  },
+  {
+   "id": "gen-012",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Reflection Man (Amouage). Año: 2006. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "En la ficha de Reflection Man, el año consta como 2006.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Reflection Man, el año consta como 2006.»"
+  },
+  {
+   "id": "gen-013",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Reflection Man (Amouage). Año: 2006. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "La concentración de Reflection Man es Cologne.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Reflection Man es Cologne.»"
+  },
+  {
+   "id": "gen-014",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Reflection Man (Amouage). Año: 2006. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El volumen de Reflection Man es 30 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Reflection Man es 30 ml.»"
+  },
+  {
+   "id": "gen-015",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Reflection Man (Amouage). Año: 2006. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "La concentración de Reflection Man no es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Reflection Man no es EDP.»"
+  },
+  {
+   "id": "gen-016",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Triumph of Bacchus (Eau de Parfum) (Argos). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Triumph of Bacchus (Eau de Parfum) es 2019.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Triumph of Bacchus (Eau de Parfum) es 2019.»"
+  },
+  {
+   "id": "gen-017",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Triumph of Bacchus (Eau de Parfum) (Argos). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Triumph of Bacchus (Eau de Parfum), la familia olfativa consta como Oriental.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Triumph of Bacchus (Eau de Parfum), la familia olfativa consta como Oriental.»"
+  },
+  {
+   "id": "gen-018",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Triumph of Bacchus (Eau de Parfum) (Argos). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de Triumph of Bacchus (Eau de Parfum) es masculino.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Triumph of Bacchus (Eau de Parfum) es masculino.»"
+  },
+  {
+   "id": "gen-019",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Triumph of Bacchus (Eau de Parfum) (Argos). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Triumph of Bacchus (Eau de Parfum) es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Triumph of Bacchus (Eau de Parfum) es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-020",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Triumph of Bacchus (Eau de Parfum) (Argos). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Triumph of Bacchus (Eau de Parfum) es EDP y El año es 2008.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Triumph of Bacchus (Eau de Parfum) es EDP y El año es 2008.»"
+  },
+  {
+   "id": "gen-021",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Lavish es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Lavish es EDP.»"
+  },
+  {
+   "id": "gen-022",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Lavish, el año consta como 2019.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Lavish, el año consta como 2019.»"
+  },
+  {
+   "id": "gen-023",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Lavish es Cologne.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Lavish es Cologne.»"
+  },
+  {
+   "id": "gen-024",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El volumen de Lavish es 30 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Lavish es 30 ml.»"
+  },
+  {
+   "id": "gen-025",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de Lavish no es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Lavish no es unisex.»"
+  },
+  {
+   "id": "gen-026",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "El año de CH Men Africa es 2015.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de CH Men Africa es 2015.»"
+  },
+  {
+   "id": "gen-027",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "En la ficha de CH Men Africa, el género consta como masculino.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de CH Men Africa, el género consta como masculino.»"
+  },
+  {
+   "id": "gen-028",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "La familia olfativa de CH Men Africa es Cuero.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de CH Men Africa es Cuero.»"
+  },
+  {
+   "id": "gen-029",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "El precio de CH Men Africa es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de CH Men Africa es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-030",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "El género de CH Men Africa es masculino y El año es 1995.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de CH Men Africa es masculino y El año es 1995.»"
+  },
+  {
+   "id": "gen-031",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Quattro Pizzi es Oriental.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Quattro Pizzi es Oriental.»"
+  },
+  {
+   "id": "gen-032",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Quattro Pizzi, el año consta como 2024.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Quattro Pizzi, el año consta como 2024.»"
+  },
+  {
+   "id": "gen-033",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de Quattro Pizzi es masculino.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Quattro Pizzi es masculino.»"
+  },
+  {
+   "id": "gen-034",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Quattro Pizzi es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Quattro Pizzi es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-035",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Quattro Pizzi no es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Quattro Pizzi no es EDP.»"
+  },
+  {
+   "id": "gen-036",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Town & Country (Clive Christian). Año: 2023. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Town & Country es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Town & Country es EDP.»"
+  },
+  {
+   "id": "gen-037",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Town & Country (Clive Christian). Año: 2023. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Town & Country, la familia olfativa consta como Aromática.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Town & Country, la familia olfativa consta como Aromática.»"
+  },
+  {
+   "id": "gen-038",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Town & Country (Clive Christian). Año: 2023. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Town & Country es 2019.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Town & Country es 2019.»"
+  },
+  {
+   "id": "gen-039",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Town & Country (Clive Christian). Año: 2023. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Town & Country es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Town & Country es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-040",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Town & Country (Clive Christian). Año: 2023. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Town & Country es EDP y La familia olfativa es Fougère.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Town & Country es EDP y La familia olfativa es Fougère.»"
+  },
+  {
+   "id": "gen-041",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Silver Mountain Water es 1995.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Silver Mountain Water es 1995.»"
+  },
+  {
+   "id": "gen-042",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Silver Mountain Water, el año consta como 1995.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Silver Mountain Water, el año consta como 1995.»"
+  },
+  {
+   "id": "gen-043",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Silver Mountain Water es 2016.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Silver Mountain Water es 2016.»"
+  },
+  {
+   "id": "gen-044",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El volumen de Silver Mountain Water es 100 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Silver Mountain Water es 100 ml.»"
+  },
+  {
+   "id": "gen-045",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Silver Mountain Water no es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Silver Mountain Water no es EDP.»"
+  },
+  {
+   "id": "gen-046",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "La concentración de Dior Homme (2005) es EDT.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Dior Homme (2005) es EDT.»"
+  },
+  {
+   "id": "gen-047",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "En la ficha de Dior Homme (2005), el año consta como 2005.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Dior Homme (2005), el año consta como 2005.»"
+  },
+  {
+   "id": "gen-048",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "El género de Dior Homme (2005) es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Dior Homme (2005) es unisex.»"
+  },
+  {
+   "id": "gen-049",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "El precio de Dior Homme (2005) es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Dior Homme (2005) es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-050",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "El año de Dior Homme (2005) es 2005 y La familia olfativa es Aromática.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Dior Homme (2005) es 2005 y La familia olfativa es Aromática.»"
+  },
+  {
+   "id": "gen-051",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de Divine Vanille es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Divine Vanille es unisex.»"
+  },
+  {
+   "id": "gen-052",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Divine Vanille, la concentración consta como EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Divine Vanille, la concentración consta como EDP.»"
+  },
+  {
+   "id": "gen-053",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Divine Vanille es Fougère.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Divine Vanille es Fougère.»"
+  },
+  {
+   "id": "gen-054",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Divine Vanille es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Divine Vanille es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-055",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Divine Vanille no es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Divine Vanille no es EDP.»"
+  },
+  {
+   "id": "gen-056",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El año de Fougère Royale (2010) (Eau de Parfum) es 2010.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Fougère Royale (2010) (Eau de Parfum) es 2010.»"
+  },
+  {
+   "id": "gen-057",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "En la ficha de Fougère Royale (2010) (Eau de Parfum), el año consta como 2010.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Fougère Royale (2010) (Eau de Parfum), el año consta como 2010.»"
+  },
+  {
+   "id": "gen-058",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El género de Fougère Royale (2010) (Eau de Parfum) es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Fougère Royale (2010) (Eau de Parfum) es unisex.»"
+  },
+  {
+   "id": "gen-059",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El volumen de Fougère Royale (2010) (Eau de Parfum) es 100 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Fougère Royale (2010) (Eau de Parfum) es 100 ml.»"
+  },
+  {
+   "id": "gen-060",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "La familia olfativa de Fougère Royale (2010) (Eau de Parfum) es Fougère y El género es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Fougère Royale (2010) (Eau de Parfum) es Fougère y El género es unisex.»"
+  },
+  {
+   "id": "gen-061",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Paragon es 2022.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Paragon es 2022.»"
+  },
+  {
+   "id": "gen-062",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Paragon, la concentración consta como EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Paragon, la concentración consta como EDP.»"
+  },
+  {
+   "id": "gen-063",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Paragon es Parfum.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Paragon es Parfum.»"
+  },
+  {
+   "id": "gen-064",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El volumen de Paragon es 30 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Paragon es 30 ml.»"
+  },
+  {
+   "id": "gen-065",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Paragon no es 2022.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Paragon no es 2022.»"
+  },
+  {
+   "id": "gen-066",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Hayat es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Hayat es EDP.»"
+  },
+  {
+   "id": "gen-067",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Hayat, el género consta como unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Hayat, el género consta como unisex.»"
+  },
+  {
+   "id": "gen-068",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Hayat es Cologne.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Hayat es Cologne.»"
+  },
+  {
+   "id": "gen-069",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El volumen de Hayat es 30 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Hayat es 30 ml.»"
+  },
+  {
+   "id": "gen-070",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Hayat es 2014 y La concentración es Parfum.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Hayat es 2014 y La concentración es Parfum.»"
+  },
+  {
+   "id": "gen-071",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Angels' Share (Eau de Parfum) es Gourmand.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Angels' Share (Eau de Parfum) es Gourmand.»"
+  },
+  {
+   "id": "gen-072",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Angels' Share (Eau de Parfum), el género consta como unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Angels' Share (Eau de Parfum), el género consta como unisex.»"
+  },
+  {
+   "id": "gen-073",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Angels' Share (Eau de Parfum) es Aromática.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Angels' Share (Eau de Parfum) es Aromática.»"
+  },
+  {
+   "id": "gen-074",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Angels' Share (Eau de Parfum) es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Angels' Share (Eau de Parfum) es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-075",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Angels' Share (Eau de Parfum) no es 2020.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Angels' Share (Eau de Parfum) no es 2020.»"
+  },
+  {
+   "id": "gen-076",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Vanagloria es 2021.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Vanagloria es 2021.»"
+  },
+  {
+   "id": "gen-077",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Vanagloria, el género consta como unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Vanagloria, el género consta como unisex.»"
+  },
+  {
+   "id": "gen-078",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Vanagloria es Oriental.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Vanagloria es Oriental.»"
+  },
+  {
+   "id": "gen-079",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El volumen de Vanagloria es 100 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Vanagloria es 100 ml.»"
+  },
+  {
+   "id": "gen-080",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Vanagloria es Floral y La concentración es Cologne.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Vanagloria es Floral y La concentración es Cologne.»"
+  },
+  {
+   "id": "gen-081",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Encre Noire à L'Extrême es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Encre Noire à L'Extrême es EDP.»"
+  },
+  {
+   "id": "gen-082",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Encre Noire à L'Extrême, la familia olfativa consta como Amaderada.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Encre Noire à L'Extrême, la familia olfativa consta como Amaderada.»"
+  },
+  {
+   "id": "gen-083",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de Encre Noire à L'Extrême es masculino.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Encre Noire à L'Extrême es masculino.»"
+  },
+  {
+   "id": "gen-084",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Encre Noire à L'Extrême es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Encre Noire à L'Extrême es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-085",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Encre Noire à L'Extrême no es 2015.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Encre Noire à L'Extrême no es 2015.»"
+  },
+  {
+   "id": "gen-086",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Adam & Eve's Dress es Floral.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Adam & Eve's Dress es Floral.»"
+  },
+  {
+   "id": "gen-087",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Adam & Eve's Dress, el año consta como 2020.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Adam & Eve's Dress, el año consta como 2020.»"
+  },
+  {
+   "id": "gen-088",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Adam & Eve's Dress es 2017.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Adam & Eve's Dress es 2017.»"
+  },
+  {
+   "id": "gen-089",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Adam & Eve's Dress es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Adam & Eve's Dress es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-090",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Adam & Eve's Dress es EDP y El año es 2019.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Adam & Eve's Dress es EDP y El año es 2019.»"
+  },
+  {
+   "id": "gen-091",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Cherry Fever es Floral.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Cherry Fever es Floral.»"
+  },
+  {
+   "id": "gen-092",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Cherry Fever, la familia olfativa consta como Floral.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Cherry Fever, la familia olfativa consta como Floral.»"
+  },
+  {
+   "id": "gen-093",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Cherry Fever es 2006.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Cherry Fever es 2006.»"
+  },
+  {
+   "id": "gen-094",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Cherry Fever es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Cherry Fever es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-095",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Cherry Fever no es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Cherry Fever no es EDP.»"
+  },
+  {
+   "id": "gen-096",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Turmeric Latte (Perfume) es 2019.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Turmeric Latte (Perfume) es 2019.»"
+  },
+  {
+   "id": "gen-097",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Turmeric Latte (Perfume), el género consta como unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Turmeric Latte (Perfume), el género consta como unisex.»"
+  },
+  {
+   "id": "gen-098",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Turmeric Latte (Perfume) es EDT.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Turmeric Latte (Perfume) es EDT.»"
+  },
+  {
+   "id": "gen-099",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El volumen de Turmeric Latte (Perfume) es 30 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Turmeric Latte (Perfume) es 30 ml.»"
+  },
+  {
+   "id": "gen-100",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Turmeric Latte (Perfume) es Floral y La concentración es EDT.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Turmeric Latte (Perfume) es Floral y La concentración es EDT.»"
+  },
+  {
+   "id": "gen-101",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex."
+   },
+   "afirmacion": "La concentración de B683 (Extrait de Parfum) es Parfum.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de B683 (Extrait de Parfum) es Parfum.»"
+  },
+  {
+   "id": "gen-102",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex."
+   },
+   "afirmacion": "En la ficha de B683 (Extrait de Parfum), la concentración consta como Parfum.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de B683 (Extrait de Parfum), la concentración consta como Parfum.»"
+  },
+  {
+   "id": "gen-103",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de B683 (Extrait de Parfum) es Gourmand.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de B683 (Extrait de Parfum) es Gourmand.»"
+  },
+  {
+   "id": "gen-104",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex."
+   },
+   "afirmacion": "El precio de B683 (Extrait de Parfum) es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de B683 (Extrait de Parfum) es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-105",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex."
+   },
+   "afirmacion": "El género de B683 (Extrait de Parfum) no es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de B683 (Extrait de Parfum) no es unisex.»"
+  },
+  {
+   "id": "gen-106",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Winter Palace (Memo Paris). Año: 2019. Familia olfativa: Cuero. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Winter Palace es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Winter Palace es EDP.»"
+  },
+  {
+   "id": "gen-107",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Winter Palace (Memo Paris). Año: 2019. Familia olfativa: Cuero. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Winter Palace, el género consta como unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Winter Palace, el género consta como unisex.»"
+  },
+  {
+   "id": "gen-108",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Winter Palace (Memo Paris). Año: 2019. Familia olfativa: Cuero. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Winter Palace es 2016.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Winter Palace es 2016.»"
+  },
+  {
+   "id": "gen-109",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Winter Palace (Memo Paris). Año: 2019. Familia olfativa: Cuero. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Winter Palace es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Winter Palace es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-110",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Winter Palace (Memo Paris). Año: 2019. Familia olfativa: Cuero. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Winter Palace es Cuero y El año es 2008.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Winter Palace es Cuero y El año es 2008.»"
+  },
+  {
+   "id": "gen-111",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Ani X (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de Ani X es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Ani X es unisex.»"
+  },
+  {
+   "id": "gen-112",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Ani X (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Ani X, la concentración consta como EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Ani X, la concentración consta como EDP.»"
+  },
+  {
+   "id": "gen-113",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Ani X (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Ani X es 2010.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Ani X es 2010.»"
+  },
+  {
+   "id": "gen-114",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Ani X (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El volumen de Ani X es 100 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Ani X es 100 ml.»"
+  },
+  {
+   "id": "gen-115",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Ani X (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Ani X no es 2023.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Ani X no es 2023.»"
+  },
+  {
+   "id": "gen-116",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Safran Colognisé (Nishane). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de Safran Colognisé es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Safran Colognisé es unisex.»"
+  },
+  {
+   "id": "gen-117",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Safran Colognisé (Nishane). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Safran Colognisé, el género consta como unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Safran Colognisé, el género consta como unisex.»"
+  },
+  {
+   "id": "gen-118",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Safran Colognisé (Nishane). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Safran Colognisé es EDT.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Safran Colognisé es EDT.»"
+  },
+  {
+   "id": "gen-119",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Safran Colognisé (Nishane). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Safran Colognisé es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Safran Colognisé es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-120",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Safran Colognisé (Nishane). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Safran Colognisé es EDP y El género es masculino.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Safran Colognisé es EDP y El género es masculino.»"
+  },
+  {
+   "id": "gen-121",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 2. Nawab of Oudh Intensivo (Ormonde Jayne). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de 2. Nawab of Oudh Intensivo es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de 2. Nawab of Oudh Intensivo es EDP.»"
+  },
+  {
+   "id": "gen-122",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 2. Nawab of Oudh Intensivo (Ormonde Jayne). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de 2. Nawab of Oudh Intensivo, la concentración consta como EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de 2. Nawab of Oudh Intensivo, la concentración consta como EDP.»"
+  },
+  {
+   "id": "gen-123",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 2. Nawab of Oudh Intensivo (Ormonde Jayne). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de 2. Nawab of Oudh Intensivo es Chipre.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de 2. Nawab of Oudh Intensivo es Chipre.»"
+  },
+  {
+   "id": "gen-124",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 2. Nawab of Oudh Intensivo (Ormonde Jayne). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de 2. Nawab of Oudh Intensivo es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de 2. Nawab of Oudh Intensivo es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-125",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 2. Nawab of Oudh Intensivo (Ormonde Jayne). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de 2. Nawab of Oudh Intensivo no es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de 2. Nawab of Oudh Intensivo no es EDP.»"
+  },
+  {
+   "id": "gen-126",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — L'Homme (Prada). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "La familia olfativa de L'Homme es Floral.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de L'Homme es Floral.»"
+  },
+  {
+   "id": "gen-127",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — L'Homme (Prada). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "En la ficha de L'Homme, la familia olfativa consta como Floral.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de L'Homme, la familia olfativa consta como Floral.»"
+  },
+  {
+   "id": "gen-128",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — L'Homme (Prada). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "La familia olfativa de L'Homme es Gourmand.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de L'Homme es Gourmand.»"
+  },
+  {
+   "id": "gen-129",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — L'Homme (Prada). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El precio de L'Homme es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de L'Homme es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-130",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — L'Homme (Prada). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El género de L'Homme es masculino y El año es 2021.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de L'Homme es masculino y El año es 2021.»"
+  },
+  {
+   "id": "gen-131",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Siesta (Ramón Monegal). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de Siesta es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Siesta es unisex.»"
+  },
+  {
+   "id": "gen-132",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Siesta (Ramón Monegal). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Siesta, el año consta como 2023.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Siesta, el año consta como 2023.»"
+  },
+  {
+   "id": "gen-133",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Siesta (Ramón Monegal). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Siesta es Chipre.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Siesta es Chipre.»"
+  },
+  {
+   "id": "gen-134",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Siesta (Ramón Monegal). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Siesta es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Siesta es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-135",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Siesta (Ramón Monegal). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Siesta no es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Siesta no es EDP.»"
+  },
+  {
+   "id": "gen-136",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Elysium pour Homme (Parfum) (Roja Parfums). Año: 2017. Familia olfativa: Chipre. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El año de Elysium pour Homme (Parfum) es 2017.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Elysium pour Homme (Parfum) es 2017.»"
+  },
+  {
+   "id": "gen-137",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Elysium pour Homme (Parfum) (Roja Parfums). Año: 2017. Familia olfativa: Chipre. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "En la ficha de Elysium pour Homme (Parfum), el año consta como 2017.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Elysium pour Homme (Parfum), el año consta como 2017.»"
+  },
+  {
+   "id": "gen-138",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Elysium pour Homme (Parfum) (Roja Parfums). Año: 2017. Familia olfativa: Chipre. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El género de Elysium pour Homme (Parfum) es unisex.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Elysium pour Homme (Parfum) es unisex.»"
+  },
+  {
+   "id": "gen-139",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Elysium pour Homme (Parfum) (Roja Parfums). Año: 2017. Familia olfativa: Chipre. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "El volumen de Elysium pour Homme (Parfum) es 100 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Elysium pour Homme (Parfum) es 100 ml.»"
+  },
+  {
+   "id": "gen-140",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Elysium pour Homme (Parfum) (Roja Parfums). Año: 2017. Familia olfativa: Chipre. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "La familia olfativa de Elysium pour Homme (Parfum) es Chipre y La concentración es Cologne.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Elysium pour Homme (Parfum) es Chipre y La concentración es Cologne.»"
+  },
+  {
+   "id": "gen-141",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vibrato (Sospiro). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Vibrato es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Vibrato es EDP.»"
+  },
+  {
+   "id": "gen-142",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vibrato (Sospiro). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Vibrato, la concentración consta como EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Vibrato, la concentración consta como EDP.»"
+  },
+  {
+   "id": "gen-143",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vibrato (Sospiro). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El año de Vibrato es 2006.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El año de Vibrato es 2006.»"
+  },
+  {
+   "id": "gen-144",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vibrato (Sospiro). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El precio de Vibrato es 206,61 EUR.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El precio de Vibrato es 206,61 EUR.»"
+  },
+  {
+   "id": "gen-145",
+   "bloque": "A",
+   "subtipo": "negacion",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vibrato (Sospiro). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Vibrato no es EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Vibrato no es EDP.»"
+  },
+  {
+   "id": "gen-146",
+   "bloque": "A",
+   "subtipo": "literal",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fresh Vetiver (The Lab). Año: 2016. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La familia olfativa de Fresh Vetiver es Cítrica.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La familia olfativa de Fresh Vetiver es Cítrica.»"
+  },
+  {
+   "id": "gen-147",
+   "bloque": "A",
+   "subtipo": "parafrasis",
+   "origen": "generado",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fresh Vetiver (The Lab). Año: 2016. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "En la ficha de Fresh Vetiver, la concentración consta como EDP.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «En la ficha de Fresh Vetiver, la concentración consta como EDP.»"
+  },
+  {
+   "id": "gen-148",
+   "bloque": "A",
+   "subtipo": "valor_vecino",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fresh Vetiver (The Lab). Año: 2016. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "La concentración de Fresh Vetiver es Cologne.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «La concentración de Fresh Vetiver es Cologne.»"
+  },
+  {
+   "id": "gen-149",
+   "bloque": "A",
+   "subtipo": "campo_ausente",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fresh Vetiver (The Lab). Año: 2016. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El volumen de Fresh Vetiver es 30 ml.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El volumen de Fresh Vetiver es 30 ml.»"
+  },
+  {
+   "id": "gen-150",
+   "bloque": "A",
+   "subtipo": "soporte_parcial",
+   "origen": "generado",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fresh Vetiver (The Lab). Año: 2016. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "El género de Fresh Vetiver es unisex y El año es 2015.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «El género de Fresh Vetiver es unisex y El año es 2015.»"
+  },
+  {
+   "id": "ctx-01",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "La colección de perfume-ia de Joko Lab incluye el perfume 'Turathi (Blue)', de la casa Afnan Perfumes, concentración EDP, género masculino. También tiene '195 a.C.' y 'Fauno', ambos de la casa Agatho, lanzados en 2019, género unisex."
+   },
+   "afirmacion": "La casa que fabrica el perfume Turathi (Blue) es Afnan Perfumes.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «La casa que fabrica el perfume Turathi (Blue) es Afnan Perfumes.»",
+   "gt": true,
+   "esperado_golden": [
+    "afnan"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ctx-02",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "La colección de perfume-ia de Joko Lab incluye el perfume 'Turathi (Blue)', de la casa Afnan Perfumes, concentración EDP, género masculino. También tiene '195 a.C.' y 'Fauno', ambos de la casa Agatho, lanzados en 2019, género unisex."
+   },
+   "afirmacion": "El perfume 195 a.C. se lanzó en 2019.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El perfume 195 a.C. se lanzó en 2019.»",
+   "gt": true,
+   "esperado_golden": [
+    "2019"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ctx-03",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "El catálogo de café-ia incluye 'Etiopía Sidamo Shantawene' de soycafetera.es, origen Etiopía, proceso Lavado, tueste Medio, formato Grano. También incluye 'Costa Rica Honey', origen Costa Rica, proceso Honey, tueste Medio."
+   },
+   "afirmacion": "El café Etiopía Sidamo Shantawene es de origen Etiopía.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El café Etiopía Sidamo Shantawene es de origen Etiopía.»",
+   "gt": true,
+   "esperado_golden": [
+    "etiopia"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ctx-04",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "El catálogo de café-ia incluye 'Etiopía Sidamo Shantawene' de soycafetera.es, origen Etiopía, proceso Lavado, tueste Medio, formato Grano. También incluye 'Costa Rica Honey', origen Costa Rica, proceso Honey, tueste Medio."
+   },
+   "afirmacion": "El café Costa Rica Honey tiene proceso Honey.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El café Costa Rica Honey tiene proceso Honey.»",
+   "gt": true,
+   "esperado_golden": [
+    "honey"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ctx-05",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "En futuribles.db, la marca Soohyang (Corea del Sur) tiene envío a España confirmado (accesibilidad ✅). La marca Melt Season (China) NO envía a España (accesibilidad 🔴)."
+   },
+   "afirmacion": "La marca Soohyang envía a España.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «La marca Soohyang envía a España.»",
+   "gt": true,
+   "esperado_golden": [
+    "envia a espana",
+    "envio a espana",
+    "si, envia",
+    "si, tiene envio",
+    "✅",
+    "si"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ctx-06",
+   "bloque": "A",
+   "categoria": "contexto",
+   "state": {
+    "texto": "El stack principal de Docker del lab está en /home/jokoalmi/automation-stack. Los datos de n8n viven en /mnt/ssd_ia_datos/n8n. La API de LM Studio escucha en localhost:1234."
+   },
+   "afirmacion": "El stack principal de Docker del lab está en /home/jokoalmi/automation-stack.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El stack principal de Docker del lab está en /home/jokoalmi/automation-stack.»",
+   "gt": true,
+   "esperado_golden": [
+    "automation-stack"
+   ],
+   "interno": true,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ctx-07",
+   "bloque": "A",
+   "categoria": "contexto_ausente",
+   "state": {
+    "texto": "El lab tiene una GPU NVIDIA RTX A2000 con 12 GB de VRAM. Los modelos locales se sirven con LM Studio y Ollama."
+   },
+   "afirmacion": "Según el texto, la temperatura actual de la GPU del lab es 61 °C.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Según el texto, la temperatura actual de la GPU del lab es 61 °C.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ctx-08",
+   "bloque": "A",
+   "categoria": "contexto_ausente",
+   "state": {
+    "texto": "El catálogo de café-ia incluye 'Etiopía Sidamo Shantawene' de soycafetera.es, origen Etiopía, proceso Lavado, tueste Medio, formato Grano. También incluye 'Costa Rica Honey', origen Costa Rica, proceso Honey, tueste Medio."
+   },
+   "afirmacion": "Según el texto, el café Etiopía Sidamo Shantawene cuesta 14,50 euros.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Según el texto, el café Etiopía Sidamo Shantawene cuesta 14,50 euros.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "mem-01",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "La capital de Japón es Tokio.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «La capital de Japón es Tokio.»",
+   "gt": true,
+   "esperado_golden": [
+    "tokio",
+    "tokyo"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "memoria"
+  },
+  {
+   "id": "mem-02",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "El planeta más cercano al Sol es Mercurio.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El planeta más cercano al Sol es Mercurio.»",
+   "gt": true,
+   "esperado_golden": [
+    "mercurio"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "memoria"
+  },
+  {
+   "id": "mem-03",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "La Gioconda fue pintada por Leonardo da Vinci.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «La Gioconda fue pintada por Leonardo da Vinci.»",
+   "gt": true,
+   "esperado_golden": [
+    "da vinci",
+    "leonardo"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "memoria"
+  },
+  {
+   "id": "mem-04",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "La moneda oficial de Japón es el yen.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «La moneda oficial de Japón es el yen.»",
+   "gt": true,
+   "esperado_golden": [
+    "yen",
+    "yenes"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "memoria"
+  },
+  {
+   "id": "mem-05",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "El sistema solar tiene 8 planetas.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El sistema solar tiene 8 planetas.»",
+   "gt": true,
+   "esperado_golden": [
+    "8",
+    "ocho"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "memoria"
+  },
+  {
+   "id": "mem-06",
+   "bloque": "D",
+   "categoria": "memoria",
+   "state": {},
+   "afirmacion": "El ser humano llegó a la Luna por primera vez en 1969.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El ser humano llegó a la Luna por primera vez en 1969.»",
+   "gt": true,
+   "esperado_golden": [
+    "1969"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "memoria"
+  },
+  {
+   "id": "trap-01",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "OpenAI presentó en marzo de 2026 un modelo llamado Nebula-X con 40 billones de parámetros.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «OpenAI presentó en marzo de 2026 un modelo llamado Nebula-X con 40 billones de parámetros.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "trampa"
+  },
+  {
+   "id": "trap-02",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "Existe una perfumería parisina llamada Maison Aurélie.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «Existe una perfumería parisina llamada Maison Aurélie.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "trampa"
+  },
+  {
+   "id": "trap-03",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "El perfume Ambre Nuit cuesta 89 euros en Perfumerías Luz de Madrid.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El perfume Ambre Nuit cuesta 89 euros en Perfumerías Luz de Madrid.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "trampa"
+  },
+  {
+   "id": "trap-04",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "Existe un idioma llamado Kemori.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «Existe un idioma llamado Kemori.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "trampa"
+  },
+  {
+   "id": "trap-05",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "Un ser humano ya ha pisado Marte.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «Un ser humano ya ha pisado Marte.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "trampa"
+  },
+  {
+   "id": "trap-06",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "Existe una bebida tradicional búlgara llamada matkha.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «Existe una bebida tradicional búlgara llamada matkha.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "trampa"
+  },
+  {
+   "id": "trap-07",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "El Tratado de Vitoria de 1893 fue firmado por un presidente español.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «El Tratado de Vitoria de 1893 fue firmado por un presidente español.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "trampa"
+  },
+  {
+   "id": "trap-08",
+   "bloque": "B",
+   "categoria": "trampa",
+   "state": {},
+   "afirmacion": "La base de datos de perfume-ia de Joko Lab tiene 4.000 botellas registradas.",
+   "instrucciones": "Sin texto de apoyo. ¿La afirmación es verdadera en el mundo real? Afirmación: «La base de datos de perfume-ia de Joko Lab tiene 4.000 botellas registradas.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": true,
+   "origen": "golden",
+   "subtipo": "trampa"
+  },
+  {
+   "id": "ficha-01",
+   "bloque": "A",
+   "categoria": "ficha",
+   "state": {
+    "texto": "Ficha del perfume: Nobility (Alexandria Fragrances). Concentración EDP, género unisex, perfumista no revelado. Notas de salida: bergamota, pimienta rosa. Familia olfativa: amaderada aromática."
+   },
+   "afirmacion": "El perfumista que firma Nobility no ha sido revelado.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «El perfumista que firma Nobility no ha sido revelado.»",
+   "gt": true,
+   "esperado_golden": [
+    "no revelado",
+    "no se revela",
+    "no se sabe",
+    "no_se"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ficha-02",
+   "bloque": "A",
+   "categoria": "ficha",
+   "state": {
+    "texto": "Ficha del perfume: Nobility (Alexandria Fragrances). Concentración EDP, género unisex, perfumista no revelado. Notas de salida: bergamota, pimienta rosa. Familia olfativa: amaderada aromática."
+   },
+   "afirmacion": "Las notas de salida de Nobility son bergamota y pimienta rosa.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Las notas de salida de Nobility son bergamota y pimienta rosa.»",
+   "gt": true,
+   "esperado_golden": [
+    "bergamota",
+    "pimienta"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ficha-03",
+   "bloque": "A",
+   "categoria": "ficha",
+   "state": {
+    "texto": "Ficha del perfume: Nobility (Alexandria Fragrances). Concentración EDP, género unisex, perfumista no revelado. Notas de salida: bergamota, pimienta rosa. Familia olfativa: amaderada aromática."
+   },
+   "afirmacion": "Nobility tiene concentración EDP.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Nobility tiene concentración EDP.»",
+   "gt": true,
+   "esperado_golden": [
+    "edp"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ficha-04",
+   "bloque": "A",
+   "categoria": "ficha",
+   "state": {
+    "texto": "Ficha del perfume: Alvarez (Alexandria Fragrances). EDP, unisex, familia olfativa fougère. Notas de corazón: lavanda, geranio. Precio 100 ml: 95 euros."
+   },
+   "afirmacion": "Alvarez pertenece a la familia olfativa fougère.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Alvarez pertenece a la familia olfativa fougère.»",
+   "gt": true,
+   "esperado_golden": [
+    "fougere"
+   ],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  },
+  {
+   "id": "ficha-05",
+   "bloque": "A",
+   "categoria": "ficha_ausente",
+   "state": {
+    "texto": "Ficha del perfume: Nobility (Alexandria Fragrances). Concentración EDP, género unisex, perfumista no revelado. Notas de salida: bergamota, pimienta rosa. Familia olfativa: amaderada aromática."
+   },
+   "afirmacion": "Según la ficha, Nobility de 100 ml cuesta 120 euros.",
+   "instrucciones": "Apóyate únicamente en el texto del estado. ¿La afirmación es verdadera según ese texto? Si el texto no contiene el dato, la afirmación no queda respaldada. Afirmación: «Según la ficha, Nobility de 100 ml cuesta 120 euros.»",
+   "gt": false,
+   "esperado_golden": [],
+   "interno": false,
+   "origen": "golden",
+   "subtipo": "grounding"
+  }
+ ]
+}

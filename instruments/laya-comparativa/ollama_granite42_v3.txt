@@ -1,0 +1,38 @@
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : ?
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : ollama
+
+METRICAS GLOBALES
+  n=299  accuracy=0.9264  Brier=0.0736  ECE(5 bins)=0.0736
+  confianza media=0.4548  sesgo=-0.4716  confiado_y_fallado=10  seguro_y_acertado=126
+  latencia P50=2957.1 ms  P95=4022.6 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.9939 Brier=0.0061 ECE=0.0061 sesgo=-0.5583
+  B: n=8 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=-1.0
+  D: n=6 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=0.0
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  cuantificador    n= 20 accuracy=0.6000 Brier=0.4000 ECE=0.4000
+  distractor       n= 25 accuracy=0.8000 Brier=0.2000 ECE=0.2000
+  multihop         n= 22 accuracy=0.8182 Brier=0.1818 ECE=0.1818
+  aguja            n=  8 accuracy=0.8750 Brier=0.1250 ECE=0.1250
+  no_aparece       n= 25 accuracy=0.8800 Brier=0.1200 ECE=0.1200
+  negacion         n= 15 accuracy=0.9333 Brier=0.0667 ECE=0.0667
+  campo_ausente    n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  comparacion      n= 22 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  grounding        n= 13 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  literal          n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  memoria          n=  6 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  parafrasis       n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  soporte_parcial  n= 15 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  trampa           n=  8 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  valor_vecino     n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_ollama_v3.json

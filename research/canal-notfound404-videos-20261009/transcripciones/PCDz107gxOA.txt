@@ -1,0 +1,27 @@
+0:00 Cloth acaba de lanzar una función nueva
+0:01 llamada mods y la mayoría de la gente no
+0:04 tiene ni idea de cómo usarla, así que
+0:05 aquí van tres formas de usarla de las
+0:07 que nadie está hablando. Número uno,
+0:10 puedes hacer que tus sesiones hablen
+0:11 entre sí. Una sesión de cloud code le
+0:13 manda un mensaje a otra. Así una
+0:15 planifica mientras la otra construye y
+0:17 se van pasando el trabajo. Número dos,
+0:19 puedes pedirle a Cloud que cambie su
+0:20 propia interfaz, por ejemplo, un panel
+0:22 dentro de Cloud Code. Ahí ves lo que tú
+0:24 quieras que está haciendo cada agente o
+0:26 un resumen entero de tu segundo cerebro.
+0:28 Número tres, puedes mandarlo fácil a un
+0:30 modelo más barato. Un mod se mete en
+0:32 medio y desvía ciertas peticiones a otro
+0:34 modelo. Así, las tareas simples casi no
+0:36 gastan tu límite. Y lo más loco, solo
+0:39 tienes que describir el mod que quieres.
+0:40 Cloud lo escribe, lo instala y lo deja
+0:42 funcionando. No hace falta saber nada
+0:44 técnico. Un aviso, un mod puede leer
+0:46 todos tus archivos, así que no instales
+0:48 el de cualquiera. ¿Cuál de los tres te
+0:50 montarías tú?

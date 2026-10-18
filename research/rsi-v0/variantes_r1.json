@@ -1,0 +1,27 @@
+[
+  {
+    "id": "v0-sin-instruccion",
+    "instr": null,
+    "origen": "referencia: el instrumento tal y como está (sin instrucción). Debe reproducir 6/8 del 14-sep o el arnés no es comparable."
+  },
+  {
+    "id": "v1-formato",
+    "instr": "Devuelve EXCLUSIVAMENTE el objeto JSON solicitado: sin bloques de código, sin comentarios, sin explicaciones y sin una sola palabra antes o después del JSON.",
+    "origen": "candidata: ataca la fuga de formato (fences / texto extra), que es lo que el corrector comprueba en todos los casos JSON."
+  },
+  {
+    "id": "v2-calculo",
+    "instr": "Devuelve solo el objeto JSON. Cuando tengas que convertir una cantidad escrita en palabras a cifra, escríbela como número puro sin separador de millar (por ejemplo, \"doce mil trescientos cuarenta\" se escribe 12340). Cuando tengas que sumar, multiplica cada línea y suma después, sin redondear ni aproximar.",
+    "origen": "candidata: ataca los dos fallos documentados del 14-sep (json-anidado: total mal; json-numeros-es: conversión de cantidades en palabras)."
+  },
+  {
+    "id": "v3-campos",
+    "instr": "Responde únicamente con el JSON. Recorre uno a uno los campos exactos que se piden y comprueba que están todos, con el tipo correcto y con el valor que aparece en el texto; si un dato no aparece en el texto, su valor es null y no se inventa.",
+    "origen": "candidata: ataca campos ausentes/tipos/nulos (json-plano, json-anidado, json-nulo-honesto)."
+  },
+  {
+    "id": "v4-herramientas",
+    "instr": "Si el enunciado se resuelve con una herramienta disponible, responde llamando a esa herramienta con los argumentos exactos que aparecen en el enunciado, sin inventar datos y sin usar herramientas que no correspondan.",
+    "origen": "candidata: ataca la elección/argumentos de herramienta (tool-eleccion, tool-args, tool-dos-pasos)."
+  }
+]

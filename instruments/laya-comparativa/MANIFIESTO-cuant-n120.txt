@@ -1,0 +1,11 @@
+SET CONGELADO — CUANTIFICADOR n=120 (LAYA-COMPARATIVA)
+generado      : 2026-09-24 07:48:09 CEST
+fichero       : /home/jokoalmi/joko-lab/instruments/laya-comparativa/casos_cuant_n120.json
+sha256 casos  : d7e423a81f72d54d1aad9bba42bf9a9837f12c0357350d913ea4dce2da25684e
+golden sha256 : c901d0013d18e3493709a3ce9851f13a0387c8897124aab21c834c301624febe
+db sha256     : 8fef8af183a988ebed3f6a2dccbf56ca8c77df53149934f6d4e9c5ae6a1b0713
+total / true / false : 120 / 60 / 60
+por variante  : {"5de5_full": 40, "5de5_corta": 20, "4de5_falta1": 40, "1de5_escaso": 20}
+state chars   : min 307 / mediana 612 / max 740
+duplicados    : 0
+NO se ha medido nada con este set: solo se ha construido y congelado.

@@ -1,0 +1,41 @@
+id: POLICY-001
+type: POLICY
+decision_origin: revision
+status: activo
+version: 1
+created: '2026-07-31'
+last_validated: '2026-07-31'
+next_review: '2026-10-29'
+expires: '2027-01-27'
+confidence: null
+confidence_label: NO_EVALUADA
+evidence:
+- 'activation-ledger 04-ago: POLICY-001 aplicada en 13/13 decisiones (campo policies)'
+- 'Caso real 03-ago: check-router-sync detecto DE->dolphin vs Hermes->deepseek; politica fatal (RULE-004) aplicada por el DE'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: null
+  baseline: null
+  current: null
+  last_checked: null
+history:
+- date: '2026-07-31'
+  event: created
+- date: '2026-07-31'
+  event: migrated_to_ko
+  note: Migrado de formato YAML plano a Knowledge Object v1
+body: "Nunca usar un modelo si existe un FATAL activo que lo bloquea. Ejemplo: [[RULE-004]]."
+legacy_fields:
+  condicion:
+    FATAL: activo
+    tipo: cualquiera
+  accion: block
+  prioridad: 100
+  activa: true
+  nota: Esta política tiene precedencia sobre cualquier RULE. Si un modelo tiene FATAL
+    activo, ninguna RULE puede seleccionarlo.
+  alcance: global

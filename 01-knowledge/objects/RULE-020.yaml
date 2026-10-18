@@ -1,0 +1,71 @@
+id: RULE-020
+type: RULE
+decision_origin: directriz_usuario
+status: activo
+version: 1
+created: '2026-10-10'
+last_validated: '2026-10-10'
+next_review: '2026-11-10'
+expires: '2027-01-10'
+generated:
+  at: 2026-10-10T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-10T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-10-10T00:00:00Z
+  - by: machine:hermes
+    at: 2026-10-10T00:00:00Z
+sources:
+  - resource: ~/.hermes/skills/productivity/cv-adaptado-ats/SKILL.md
+  - resource: ~/.hermes/skills/productivity/cv-adaptado-ats/references/prototipo-cv-2col-1hoja.md
+  - resource: ~/.hermes/skills/productivity/cv-adaptado-ats/templates/cv-prototipo-2col-1hoja.html
+title: "CV para ofertas: prototipo de 2 columnas en 1 hoja A4 (Courier 7,6 pt) y el entregable de «1 hoja» es el PDF de Chrome, nunca el DOCX"
+desc: >-
+  Cuando el usuario pida un CV para una oferta, se parte del prototipo de 2
+  columnas (izquierda 34 % / derecha 66 %) que cabe en 1 hoja A4, tipografia
+  Courier New, con telefono y email en negrita, y se ajusta a la oferta
+  concreta si hace falta. Formato por defecto confirmado por el usuario el
+  10-oct-2026. Cifras medidas (pdfinfo / pdftotext -bbox / pdffonts, no
+  supuestas): con Calibri 8 pt ya cabia (A4 594,96 x 841,92 pts, yMax 763,80),
+  pero con Courier 8 pt se iba a 2 paginas, y apretando a 7,6 pt / interlineado
+  1,15 / margenes 8 9 7 9 mm vuelve a Pages: 1 con yMax 764,28 (limite util
+  799) = ~35 pt libres. Dos limites declarados, no ocultados: (1) Courier New
+  NO esta instalado en el PC y el sistema resuelve a Liberation Mono,
+  metricamente compatible (el PDF embebe LiberationMono y LiberationMono-Bold);
+  (2) el DOCX NO cabe en 1 hoja: LibreOffice no respeta ni el @page ni el
+  reparto de columnas y da 3 paginas -> la verificacion de «1 hoja» se hace
+  SIEMPRE sobre el PDF generado por Chrome headless con --no-pdf-header-footer,
+  y el DOCX es solo un borrador editable. Alcance: formatos de CV para ofertas
+  en ~/empleo-seguimiento; el CV maestro cv-maestro-2026.* es la fuente de datos
+  y se alinea a las mismas decisiones de contenido (Master sin «Online» y con
+  105 h) pero NO hereda el formato de 2 columnas. Ajuste permitido por oferta
+  (vocabulario literal de la oferta, recortes), siempre verificando despues con
+  pdfinfo que sigue en 1 pagina. No sustituye a RULE-014: antes de maquetar hay
+  que ejecutar la skill cv-adaptado-ats, que ya contiene el procedimiento.
+confidence: 0.9
+confidence_label: ALTA
+evidence:
+- 'Directriz explicita del usuario (10-oct-2026 13:32 CEST, hora medida con `date` por RULE-012): «vamos a dejar de momento este formato como el prototipo de CV para enviar a las ofertas de trabajo. Lo quiero asi o lo mas parecido cuando te pida un CV, claro esta que habra veces que tendremos que ajustarlo a la oferta en concreto. Documentalo»'
+- 'Medido con pdfinfo sobre el PDF de Chrome: Pages: 1, Page size: 594,96 x 841,92 pts (A4), yMax 764,281444 (pdftotext -bbox), ~35 pt libres sobre el limite util de 799'
+- 'Regresion evitada y medida: con Courier 8 pt el mismo documento daba Pages: 2 (a la 2ª pagina caian idiomas, carnet y S.M.D.); el apretado a 7,6 pt / 1,15 / 8-9-7-9 mm lo devolvio a 1 pagina'
+- 'Limite del DOCX: la conversion desde el HTML con LibreOffice da 3 paginas y no respeta @page ni las columnas -> solo el PDF de Chrome acredita el «1 hoja»'
+- 'Copia del formato en el lab: skill cv-adaptado-ats v1.4.2 (§3.b + references/prototipo-cv-2col-1hoja.md) y templates/cv-prototipo-2col-1hoja.html, copia byte a byte del documento real (md5 ee836b84858b736f5da898061f36ae37, verificado)'
+- 'Cierre documentado: GUIA-JOKO-LAB.md v1.6.22, commits dbbf6b9 y ccc207e del repo joko-lab, ambos con recibo RDD valido (tree del recibo = HEAD^{tree})'
+dependencies:
+- RULE-015
+contradicts: []
+superseded_by: null
+domain: contenido
+scope: cv_entregables_ofertas
+monitoring:
+  metric: paginas_del_pdf_de_chrome_del_cv
+  baseline: 1
+  current: 1
+  last_checked: '2026-10-10'
+  log_file: '~/empleo-seguimiento/cv-2col-1pag-2026.pdf'
+  indicador: 'paginas del PDF de Chrome del CV de 2 columnas; si da 2, revisar primero el apretado (tamano/interlineado/margenes) antes de recortar contenido, y volver a medir con pdfinfo. Una cifra «cabe en 1 hoja» sin pdfinfo que la respalde no vale (RULE-015).'
+history:
+- date: '2026-10-10'
+  event: created
+  note: 'Elevada a norma a peticion del usuario tras fijar el formato como prototipo por defecto. Confidence 0.9 (directriz explicita de usuario + cifras medidas el mismo dia); la revision 10-nov-2026 debe comprobar si el prototipo sigue siendo el formato que el usuario quiere por defecto o si ha derivado en ajustes por oferta.'

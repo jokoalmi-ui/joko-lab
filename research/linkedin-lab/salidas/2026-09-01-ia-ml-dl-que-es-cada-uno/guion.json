@@ -1,0 +1,103 @@
+{
+  "tema": "IA, ML y DL: qué es cada uno (y por qué no son lo mismo)",
+  "slides": [
+    {
+      "tipo": "gancho",
+      "titulo": "No todo lo que llaman <span class='accent'>IA</span> es IA",
+      "subtitulo": "IA, ML y DL se usan como sinónimos. No lo son: son <b>capas</b>, de la más general a la más específica.",
+      "dato": "3",
+      "unidad": "conceptos distintos en 1 palabra"
+    },
+    {
+      "tipo": "concepto",
+      "num": "1",
+      "titulo": "Qué es cada uno",
+      "items": [
+        [
+          "IA — la idea general",
+          "Máquinas que imitan capacidades humanas: razonar, ver, lenguaje. El paraguas."
+        ],
+        [
+          "ML — la rama que aprende",
+          "En vez de reglas escritas a mano, el sistema aprende de los datos."
+        ],
+        [
+          "DL — el subconjunto estrella",
+          "Redes neuronales profundas. Lo que hace funcionar a los LLM de hoy."
+        ]
+      ]
+    },
+    {
+      "tipo": "metricas",
+      "num": "2",
+      "titulo": "Cómo se relacionan (círculos concéntricos)",
+      "subtitulo": "IA ⊃ ML ⊃ DL — todo DL es ML, todo ML es IA. Pero no al revés.",
+      "metricas": [
+        [
+          "1956",
+          "IA: nace el término (Dartmouth)"
+        ],
+        [
+          "1997",
+          "ML: Deep Blue vence a Kasparov"
+        ],
+        [
+          "2012",
+          "DL: AlexNet gana ImageNet"
+        ]
+      ],
+      "pasos": [
+        "IA = el paraguas",
+        "ML = aprende de datos",
+        "DL = redes profundas"
+      ]
+    },
+    {
+      "tipo": "por_que",
+      "num": "3",
+      "titulo": "Por qué importa no confundirlos",
+      "items": [
+        [
+          "Saber qué compras",
+          "si te venden 'IA', pregunta: ¿ML? ¿DL? ¿reglas? — hay mucha diferencia"
+        ],
+        [
+          "Saber qué esperar",
+          "un modelo de DL puede alucinar; un sistema de reglas no, y viceversa"
+        ],
+        [
+          "Hablar con rigor",
+          "en entrevistas y con clientes, usar bien los términos marca la diferencia"
+        ]
+      ]
+    },
+    {
+      "tipo": "escala",
+      "num": "4",
+      "titulo": "Dato real del lab",
+      "items": [
+        [
+          "Uso DL a diario sin llamarlo IA",
+          "los embeddings y los LLM del lab son deep learning"
+        ],
+        [
+          "Mi RAG: DL + búsqueda",
+          "embeddings (DL) + recuperación (ML clásico) + reranker"
+        ],
+        [
+          "El router decide",
+          "reglas + modelos: cada capa hace lo suyo"
+        ]
+      ]
+    },
+    {
+      "tipo": "cta",
+      "titulo": "La próxima ficha: <span class='accent'>cómo se relacionan</span>",
+      "subtitulo": "Sigo publicando 1 ficha/semana sobre la IA que yo uso, con datos reales de mi lab",
+      "hashtags": "#IA #MachineLearning #DeepLearning"
+    }
+  ],
+  "caption": "IA, ML y DL no son lo mismo, aunque los titulares los usen como sinónimos.\n\nIA es el paraguas: máquinas que imitan capacidades humanas.\nML es la rama que aprende de datos en vez de reglas escritas a mano.\nDL es el subconjunto (redes neuronales profundas) que hace funcionar a los LLM de hoy.\n\nTodo DL es ML, todo ML es IA — pero no al revés.\n\n¿Por qué importa? Porque cuando alguien te vende 'IA', saber qué técnica esconde cambia lo que puedes esperar de ella.\n\nFicha 1 de mi serie 'La IA que yo uso': conceptos explicados con datos reales de mi laboratorio local de IA. 1 ficha/semana.",
+  "alt": "Carrusel: IA, ML y DL — qué es cada uno y cómo se relacionan (círculos concéntricos), con hitos reales de 1956 a 2012.",
+  "hashtags": "#IA #MachineLearning #DeepLearning #IAgenerativa #AprendizajeIA"
+}

@@ -1,0 +1,36 @@
+0:00 Lo que escribas con chat GPT en Europa
+0:01 va a llevar una marca de agua invisible
+0:03 y he creado una skill para intentar
+0:05 romperla. Open AI lo ha anunciado esta
+0:07 semana, se llama Texgrain y llega a chat
+0:10 GPT en toda la Unión Europea en las
+0:11 próximas semanas. No son caracteres
+0:13 ocultos, tampoco son metadatos. La marca
+0:16 está en las propias palabras. Funciona
+0:18 así. Cada vez que Chat GP te escribe una
+0:20 palabra, elige entre varias opciones. La
+0:22 marca inclina esa lección con una clave
+0:24 secreta. Tú no notas nada, pero en un
+0:26 texto largo queda un patrón y su
+0:28 detector lo encuentra. Ahora lo
+0:29 interesante, la propia Opene ya haya
+0:31 publicado su punto débil. Si cambias una
+0:33 de cada cuatro palabras por un sinónimo,
+0:35 el detector pasa de acertar el 92% a
+0:38 solo el 17. Así que montado un
+0:40 experimento, una skill para cloth. Le
+0:42 pegas un texto de chat GPT y lo
+0:44 reescribe entero. Mismo significado,
+0:46 otra estructura, otras palabras, otro
+0:48 ritmo. Te digo la verdad, no puedo
+0:50 demostrar que funcione. El detector no
+0:52 es público. Open AI solo se lo da a
+0:54 investigadores y hay un detalle que
+0:56 nadie cuenta. Clo también marca sus
+0:58 textos desde agosto y en todo el mundo.
+1:00 Puede que no borres la marca, puede que
+1:02 solo la cambies por otra. Mi opinión,
+1:04 esto no va a pillar a quien quiera
+1:05 esconderse, va a pillar a quien no sabía
+1:07 que existía. Comenta marca, te mando la
+1:10 skill.

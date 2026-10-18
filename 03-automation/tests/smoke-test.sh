@@ -1,0 +1,1 @@
+/home/jokoalmi/hermes-lab/scripts/smoke-test.sh

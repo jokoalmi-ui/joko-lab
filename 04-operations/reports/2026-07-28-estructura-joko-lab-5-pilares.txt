@@ -1,0 +1,511 @@
+ESTRUCTURA JOKO LAB — 5 PILARES (v3)
+======================================
+Fecha: 2026-07-28
+Origen: Sesion CLI — propuesta de Luis, analisis de Hermes
+Estado: DISENO — implementacion en curso (Fase 1)
+
+═══════════════════════════════════════════════════════════
+CONTEXTO
+═══════════════════════════════════════════════════════════
+
+El incidente del perfil Linux (desaparicion de ~/.local/share/uv)
+ha cambiado el enfoque del proyecto. Ya no se trata solo de tener
+un agente potente (Hermes), sino de construir un laboratorio
+reproducible para estudiar, comparar y mejorar agentes de IA.
+
+Joko Lab esta evolucionando de "un agente" a un sistema
+operativo para trabajar con IA. No se trata de Prompt Engineering
+sino de AI Engineering, donde el prompt es solo una pieza.
+
+El laboratorio debe aprender de si mismo y hacer reproducibles
+sus propias mejoras. Para eso se organiza en 5 pilares:
+  1. Knowledge     → lo que sabemos (modelos, experimentos, datos)
+  2. Infrastructure → lo que sostiene el lab (docker, recovery, inicio/fin)
+  3. Automation   → lo que se ejecuta solo (scripts, cron, tests)
+  4. Operations   → lo que registramos (informes, metricas, incidencias)
+  5. Inference    → lo que hacemos con lo que sabemos (router, compiler)
+
+El Prompt Compiler ya no es el nucleo del sistema. Es un
+componente de 05-inference/compiler/. El sistema completo es
+un Inference Engine que decide que modelo usar, que estrategia
+aplicar, como validar y como retroalimentar el conocimiento.
+
+Hermes deja de ser el centro del laboratorio. Pasa a ser uno
+de varios backends de ejecucion (junto con Ollama, LM Studio,
+Claude, Gemini, GPT, DeepSeek).
+
+═══════════════════════════════════════════════════════════
+CONCEPTOS CLAVE (incorporados en v3)
+═══════════════════════════════════════════════════════════
+
+AI Engineering > Prompt Engineering
+  El prompt es una pieza, no el producto. El producto es la
+  estrategia completa: que modelo, que parametros, que
+  herramientas, que verificacion. El compilador genera el
+  prompt como subproducto de esa decision.
+
+Prompt Project
+  No se guarda el prompt final. Se guarda la especificacion:
+  objetivo, restricciones, contexto, destino, modelo, proveedor,
+  temperatura, tool-use, formato esperado. Luego se "compila"
+  para cada arquitectura destino obteniendo prompts diferentes
+  para Gemini, Claude, DeepSeek o Gemma local a partir de la
+  misma especificacion.
+
+Ingenieria del Conocimiento
+  Flujo vertical: idea → experimento → resultado → validacion
+  → skill → automatizacion → monitorizacion → mantenimiento
+  → evolucion. Cada paso deja evidencia reproducible.
+
+Registro Continuo
+  No puede depender de la memoria. Cada cambio entre sesiones
+  debe quedar registrado. El protocolo inicio/fin con diff
+  es la garantia de que el laboratorio no pierde contexto.
+
+═══════════════════════════════════════════════════════════
+ESTRUCTURA COMPLETA
+═══════════════════════════════════════════════════════════
+
+~/joko-lab/                              # RAIZ DEL LABORATORIO
+│
+├── README.md                            # Mapa del laboratorio, proposito
+├── estado-final.json                     # Ultimo estado conocido (generado por fin)
+│
+├── 01-knowledge/                        # PILAR 1: LO QUE SABEMOS
+│   ├── models/                          # Fichas individuales por modelo
+│   │   ├── deepseek-r1-14b.md
+│   │   ├── gemma-4-12b.md
+│   │   ├── glm-4.6v-flash.md
+│   │   ├── qwen3-14b.md
+│   │   ├── qwen-3.5-9b.md
+│   │   ├── dolphin-cyber-lora-8b.md
+│   │   ├── llama-3.1-instruct-8b.md
+│   │   └── granite-4.1-8b.md
+│   │
+│   ├── experiments/                     # Experimentos con ID unico
+│   │   ├── EXP-20260726-001/            # Comparativa 7 modelos
+│   │   │   ├── README.md                #   Objetivo, condiciones, resultados
+│   │   │   ├── config.yaml              #   Parametros exactos (seed, quant, etc.)
+│   │   │   └── results.csv              #   Datos crudos
+│   │   ├── EXP-20260728-001/            # Prompt engineering skill
+│   │   ├── prompt-experiments.md        # Registro plano (compatible con lo actual)
+│   │   └── index.md                     # Indice de todos los experimentos
+│   │
+│   ├── benchmarks/                      # Resultados agregados
+│   │   ├── comparativa-2026-07-26.md
+│   │   └── metrics/                     # Datos crudos (CSV/JSON)
+│   │
+│   ├── anti-patterns.md                 # Catalogo con gravedad
+│   │                                     # Clasificacion: Fatal / Alta / Ocasional
+│   │
+│   └── data/                            # MATERIA PRIMA
+│       ├── raw/                         # Datos originales (CSV, JSON, logs)
+│       ├── processed/                   # Datos limpios y transformados
+│       └── exports/                     # Exportaciones listas para usar
+│
+├── 02-infrastructure/                   # PILAR 2: LO QUE SOSTIENE EL LAB
+│   ├── docker/
+│   │   └── automation-stack.yml         # Referencia al compose real
+│   │
+│   ├── services/                        # Estado y config de cada servicio
+│   │   ├── ollama.md
+│   │   ├── n8n.md
+│   │   ├── lm-studio.md
+│   │   ├── gateway.md
+│   │   └── hermes.md
+│   │
+│   ├── recovery/                        # System-recovery
+│   │   ├── procedures/
+│   │   │   ├── incidente-uv-20260728.md # El de hoy, documentado
+│   │   │   └── checklist-recuperacion.md
+│   │   ├── rescue.sh
+│   │   └── backups/
+│   │
+│   ├── inicio/                          # Protocolo de apertura de sesion
+│   │   ├── protocolo.md                 #   Contrato del protocolo
+│   │   ├── inicio.sh                    #   Implementacion
+│   │   └── checks/                      #   Modulos de verificacion
+│   │       ├── check-docker.sh
+│   │       ├── check-ollama.sh
+│   │       ├── check-gateway.sh
+│   │       ├── check-path.sh
+│   │       ├── check-uv.sh
+│   │       ├── check-cargo.sh
+│   │       ├── check-local-bin.sh
+│   │       └── estado-inicial.json      #   Generado en cada arranque
+│   │
+│   ├── fin/                             # Protocolo de cierre de sesion
+│   │   ├── protocolo.md                 #   Contrato del protocolo
+│   │   ├── fin.sh                       #   Implementacion
+│   │   └── estado-final.json            #   Generado en cada cierre
+│   │
+│   └── network/
+│
+├── 03-automation/                       # PILAR 3: LO QUE SE EJECUTA SOLO
+│   ├── scripts/                         # Scripts del laboratorio
+│   │   ├── checkpoint.sh
+│   │   ├── fin.sh
+│   │   ├── rescue.sh
+│   │   └── smoke-test.sh
+│   │
+│   ├── cron/                            # Tareas programadas
+│   │   ├── crontab                      # El crontab actual
+│   │   └── jobs/                        # Logs de ejecucion
+│   │
+│   ├── workflows/                       # Secuencias automatizadas
+│   │   └── n8n/                         # Workflows exportados de n8n
+│   │
+│   └── tests/                           # Tests del laboratorio
+│       ├── smoke-test.sh
+│       └── integration/
+│
+├── 04-operations/                       # PILAR 4: LO QUE REGISTRAMOS
+│   ├── reports/                         # Informes diarios
+│   │   ├── 2026-07-28-prompt-engineering-skill.txt
+│   │   └── 2026-07-28-cierre-joko-lab.txt
+│   │
+│   ├── metrics/                         # Metricas del laboratorio
+│   │   ├── sesiones/
+│   │   ├── gpu/
+│   │   └── estado/
+│   │
+│   ├── incidents/                       # Incidencias documentadas
+│   │   └── 2026-07-28-perfil-linux.md
+│   │
+│   └── changelog/
+│       └── CHANGELOG.md
+│
+├── 05-inference/                        # PILAR 5: LO QUE HACEMOS CON LO QUE SABEMOS
+│   ├── router/                          # Decide estrategia y modelo
+│   │   ├── task-analyzer.md             #   Analisis de la tarea
+│   │   ├── strategy-router.md           #   Seleccion de estrategia
+│   │   └── model-selector.md            #   Seleccion de modelo
+│   │
+│   ├── compiler/                        # Compilador de prompts
+│   │   ├── profiles/                    #   Perfiles de modelos para compilacion
+│   │   ├── templates/                   #   Plantillas por tipo de tarea
+│   │   ├── rules/                       #   Reglas de transformacion
+│   │   └── projects/                    #   PROMPT PROJECTS (especificaciones)
+│   │       ├── ejemplo-spa/             #     Prompt Project de ejemplo
+│   │       │   ├── spec.yaml            #       Objetivo, restricciones, destino
+│   │       │   ├── compiled/            #       Prompts compilados por destino
+│   │       │   │   ├── prompt-gemini.md
+│   │       │   │   ├── prompt-claude.md
+│   │       │   │   └── prompt-deepseek.md
+│   │       │   └── experiments/          #       Resultados de cada ejecucion
+│   │       └── index.md                 #     Indice de proyectos
+│   │
+│   ├── validators/                      # Validacion pre-ejecucion
+│   │   ├── contradictions.md            #   Deteccion de contradicciones
+│   │   ├── redundancy.md                #   Instrucciones repetidas
+│   │   └── format.md                    #   Checklist de formato
+│   │
+│   ├── executors/                       # Ejecucion contra el backend
+│   │   ├── local/                       #   LM Studio, Ollama, Hermes
+│   │   └── cloud/                       #   Claude, Gemini, GPT, DeepSeek
+│   │
+│   ├── evaluators/                      # Evaluacion post-ejecucion
+│   │   ├── metrics/                     #   Metricas de calidad
+│   │   └── comparison/                  #   Comparativa A/B entre estrategias
+│   │
+│   └── feedback/                        # Retroalimenta Knowledge
+│       ├── to-experiments/              #   Nuevos experimentos (E1)
+│       ├── to-models/                   #   Actualiza fichas de modelo (E2/E3)
+│       └── to-antipatterns/             #   Nuevos anti-patrones
+│
+└── docs/                                # DOCUMENTACION TRANSVERSAL
+    ├── architecture.md
+    ├── principios.md                    # LPA: JL-011, JL-012
+    ├── glossary.md
+    └── index.md
+
+═══════════════════════════════════════════════════════════
+PROMPT PROJECT (detalle)
+═══════════════════════════════════════════════════════════
+
+En lugar de guardar solo el prompt final, se guarda la
+especificacion completa (Prompt Project). Luego se compila
+para cada arquitectura destino.
+
+Estructura de un Prompt Project:
+
+  spec.yaml:
+    project:
+      id: PP-20260728-001
+      name: "ejemplo-spa"
+      version: 1.0.0
+
+    objective:
+      description: "Crear una SPA para gestion de aparcamientos"
+      target_format: "Un unico HTML con Tailwind"
+      constraints:
+        - "Sin dependencias externas"
+        - "Responsive"
+        - "Comentarios en espanol"
+
+    target:
+      models:
+        - gemini-2.5-pro
+        - claude-sonnet-4
+        - deepseek-v4
+        - gemma-4-12b-local
+
+    parameters:
+      temperature: 0.2
+      max_tokens: 4096
+      tool_use: false
+
+    experiment_tracking:
+      - EXP-20260728-002
+
+  compiled/                         # Generado al pulsar "Compile"
+    prompt-gemini.md                #   Optimizado para Gemini
+    prompt-claude.md                #   Optimizado para Claude
+    prompt-deepseek.md              #   Optimizado para DeepSeek
+    prompt-local-gemma.md           #   Optimizado para Gemma local
+
+  experiments/                      # Resultados de cada ejecucion
+    gemini-2.5-pro/                 #   Resultados con Gemini
+    claude-sonnet-4/                #   Resultados con Claude
+    deepseek-v4/                    #   Resultados con DeepSeek
+
+═══════════════════════════════════════════════════════════
+PROTOCOLO DE SESION (inicio / fin)
+═══════════════════════════════════════════════════════════
+
+No son scripts. Son un protocolo con dos implementaciones.
+
+inicio:
+  checks                → Verificar componentes (docker, ollama, uv, etc.)
+  snapshot              → Generar estado-inicial.json
+  diff                  → Comparar contra ultimo estado-final.json
+  report                → Mostrar anomalias detectadas
+  ready                 → Senal de laboratorio listo
+
+trabajo:
+  eventos               → Registrar eventos importantes durante la sesion
+  checkpoint            → Guardar estado intermedio (si aplica)
+
+fin:
+  checkpoint            → Estado actual de todo
+  snapshot              → Generar estado-final.json
+  diff                  → Comparar con estado-inicial.json
+  backup                → Git bundle + rescue (si hay cambios)
+  log                   → Escribir informe de cierre
+  close                 → Cerrar Hermes
+
+El protocolo garantiza que cualquier anomalia (como la
+desaparicion de ~/.local/share/uv) se detecta en el siguiente
+inicio antes de empezar a trabajar.
+
+═══════════════════════════════════════════════════════════
+IDENTIDAD DE EXPERIMENTOS
+═══════════════════════════════════════════════════════════
+
+Cada experimento tiene un ID unico:
+
+  EXP-YYYYMMDD-NNN
+
+Ejemplo:
+  EXP-20260726-001   Comparativa de 7 modelos (35 tests)
+  EXP-20260728-001   Validacion de prompt-engineering skill
+
+Cada experimento es un directorio con:
+  README.md          Objetivo, condiciones, conclusiones
+  config.yaml        Parametros exactos (modelo, seed, quant, temperatura)
+  results.csv        Datos crudos
+
+Esto permite consultas del tipo:
+  "todos los experimentos con Gemma sobre JSON con temperatura 0.2"
+
+═══════════════════════════════════════════════════════════
+CICLO DE INGENIERIA DEL CONOCIMIENTO
+═══════════════════════════════════════════════════════════
+
+Flujo vertical que transforma ideas en conocimiento operativo:
+
+  Idea
+    │
+    v
+  Experimento (EXP-YYYYMMDD-NNN)
+    │
+    v
+  Resultado (datos crudos, metricas)
+    │
+    v
+  Validacion (E1/E2/E3 segun LPA)
+    │
+    v
+  Skill / Conocimiento (ficha de modelo, anti-patron, patron)
+    │
+    v
+  Automatizacion (script, workflow, test)
+    │
+    v
+  Monitorizacion (metricas continuas)
+    │
+    v
+  Mantenimiento (actualizacion, correccion)
+    │
+    v
+  Evolucion (nueva idea, nuevo experimento)
+
+Cada paso deja evidencia reproducible. No depende de la
+memoria de nadie.
+
+═══════════════════════════════════════════════════════════
+CICLO DE MEJORA CONTINUA (AI Engineering)
+═══════════════════════════════════════════════════════════
+
+Joko Lab
+  │
+  v
+estudia modelos
+  │
+  v
+aprende (Knowledge)
+  │
+  v
+mejora Inference Engine (router, compiler, validators)
+  │
+  v
+Inference Engine ejecuta contra backends (Hermes, Claude, Gemini...)
+  │
+  v
+Evaluators miden resultado
+  │
+  v
+Feedback alimenta Knowledge (nuevos E1, E2, E3)
+  │
+  v
+el laboratorio sabe mas
+  │
+  v
+(vuelve a empezar)
+
+Hermes no es el centro del ciclo. Es uno de los backends de
+ejecucion. El centro es el conocimiento acumulado y el motor
+que decide como aplicarlo.
+
+═══════════════════════════════════════════════════════════
+RELACION CON LO QUE YA EXISTE
+═══════════════════════════════════════════════════════════
+
+Origen actual                  → Destino en nueva estructura
+───────────────────────────────────────────────────────────
+~/hermes-lab/benchmark/        → 01-knowledge/benchmarks/
+~/hermes-lab/recovery/         → 02-infrastructure/recovery/
+~/hermes-lab/state-manager/    → 02-infrastructure/fin/ (integrar)
+~/hermes-lab/decision-engine/  → 05-inference/router/ (integrar)
+~/hermes-lab/runtime/          → 02-infrastructure/services/
+~/hermes-lab/tests/            → 03-automation/tests/
+~/hermes-lab/scripts/          → 03-automation/scripts/ (enlaces)
+~/hermes-lab/docs/             → docs/ (consolidar)
+~/informes-joko-lab/           → 04-operations/reports/
+~/joko-lab/research/           → 01-knowledge/experiments/
+~/joko-lab/instruments/        → 05-inference/ (evaluar)
+~/joko-lab/data/               → 01-knowledge/data/ (crear)
+
+NO se tocan (siguen donde estan):
+  ~/.hermes/skills/             Skills de Hermes, no del lab
+  ~/automation-stack/           Docker compose real
+  /mnt/ssd_ia_datos/n8n/       Datos de n8n (protegidos)
+  ~/hermes-lab/                 Sigue siendo el repo de Hermes
+
+═══════════════════════════════════════════════════════════
+REGLAS DE LA ESTRUCTURA
+═══════════════════════════════════════════════════════════
+
+1. ~/joko-lab/ es la raiz unica. Todo el conocimiento del
+   laboratorio vive aqui.
+
+2. ~/hermes-lab/ sigue siendo el repo de Hermes. No se toca.
+   Solo se referencian o enlazan componentes que pertenecen
+   al laboratorio.
+
+3. Los numeros (01-, 02-) no son prioridad, son orden logico.
+   Knowledge va primero porque los otros pilares dependen de el.
+
+4. Cada ficha de modelo es un archivo .md autocontenido con
+   frontmatter YAML para que sea parseable por maquina.
+
+5. inicio/ y fin/ son protocolos, no scripts sueltos. El script
+   es solo una implementacion del protocolo.
+
+6. Los experimentos tienen ID unico (EXP-YYYYMMDD-NNN) y son
+   directorios autocontenidos con README + config + resultados.
+
+7. Los datos originales (raw) se separan del conocimiento
+   procesado. 01-knowledge/data/raw/ no se toca; los analisis
+   van en 01-knowledge/experiments/ o 01-knowledge/benchmarks/.
+
+8. Los informes van a 04-operations/reports/ fechados. No mas
+   ~/informes-joko-lab/ suelto.
+
+9. No se guarda el prompt final. Se guarda la especificacion
+   (Prompt Project). El prompt compilado es un derivado.
+
+10. No se confia en la memoria. Cada cambio entre sesiones
+    queda registrado. El protocolo inicio/fin es obligatorio.
+
+═══════════════════════════════════════════════════════════
+PRIORIZACION DE IMPLEMENTACION
+═══════════════════════════════════════════════════════════
+
+Fase 1 — Proteccion (implementando ahora)
+  1. inicio + estado-inicial.json + diff contra estado-final.json
+  2. fin + estado-final.json + backup incremental
+  3. Documentar incidente uv en 02-infrastructure/recovery/procedures/
+
+Fase 2 — Estructura (esta semana)
+  4. Crear directorios de los 5 pilares
+  5. Mover lo existente a su sitio
+  6. Fichas de modelo en 01-knowledge/models/
+  7. Primer experimento con ID (EXP-20260726-001)
+
+Fase 3 — Conocimiento (proxima semana)
+  8. Clasificar anti-patrones por gravedad
+  9. Catalogar datos raw en 01-knowledge/data/
+  10. Disenar el ciclo feedback de 05-inference/ a 01-knowledge/
+
+Fase 4 — Motor (proximas semanas)
+  11. Disenar task-analyzer y strategy-router
+  12. Implementar compiler como componente de 05-inference/
+  13. Implementar evaluators post-ejecucion
+  14. Conectar el ciclo completo: problema → inference → ejecucion → feedback
+
+Fase 5 — Maduracion
+  15. Repositorio de datos historico
+  16. Metricas de laboratorio (04-operations/metrics/)
+  17. Router de estrategias de inferencia completo
+
+═══════════════════════════════════════════════════════════
+NOTAS ARQUITECTONICAS
+═══════════════════════════════════════════════════════════
+
+- Hermes no es el centro de Joko Lab. Hermes es uno de varios
+  backends de ejecucion. El valor diferencial esta en el
+  conocimiento acumulado y en Inference Engine.
+
+- El Prompt Compiler ahora es 05-inference/compiler/. Ya no es
+  el nucleo del sistema. El nucleo es el Inference Engine
+  completo (router → compiler → validators → executors →
+  evaluators → feedback).
+
+- 05-inference/feedback/ es el mecanismo que cierra el ciclo.
+  Sin feedback, el laboratorio no aprende. Los evaluadores
+  producen observaciones (E1), que pasan a hipotesis (E2) y
+  se validan como conocimiento (E3) en Knowledge.
+
+- Los protocolos inicio/fin no son especificos de Hermes.
+  Cualquier agente que use Joko Lab debe implementarlos.
+  Eso permite que el laboratorio sea independiente del backend.
+
+- Las skills de Hermes dejan de ser simples colecciones de
+  prompts. Pasan a ser conocimiento operativo, versionado y
+  verificable, alimentado por el ciclo de ingenieria del
+  conocimiento.
+
+═══════════════════════════════════════════════════════════
+FIN DEL DOCUMENTO — v3
+═══════════════════════════════════════════════════════════

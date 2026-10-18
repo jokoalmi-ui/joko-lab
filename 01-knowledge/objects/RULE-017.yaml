@@ -1,0 +1,40 @@
+id: RULE-017
+type: RULE
+decision_origin: directriz_usuario
+status: activo
+version: 1
+created: '2026-09-06'
+last_validated: '2026-09-06'
+next_review: '2026-12-06'
+expires: '2027-03-06'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-09-06T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-12-06T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-09-06T00:00:00Z
+title: "Canales de contenido NO confiables: 2 datos falsos burdos verificados -> excluir del monitor"
+desc: >-
+  Un canal de contenido vigilado por el lab (YouTube, Instagram, Telegram u
+  otra fuente usada para técnicas del lab o para documentar contenido) pasa a
+  NO CONFiable y se ELIMINA del monitor cuando se verifican 2 publicaciones
+  con datos falsos BURDOS. Se entiende por burdo: una afirmación factual
+  GRANDE y contrastable que resulta falsa al verificarla contra fuente real
+  (no un error menor, no una opinión, no hipérbole de titular, no un matiz).
+  El dato falso solo cuenta cuando queda VERIFICADO contra fuente real
+  (gate de veracidad habitual, RULE-013/015), nunca por sospecha. Al expulsar
+  un canal: (1) anotarlo en CANALES-NO-CONFIABLES.md con fecha, motivo y las
+  2 publicaciones que lo causaron; (2) quitarlo del monitor activo y de la
+  lista de canales de referencia de la skill correspondiente; (3) no usarlo
+  como fuente para técnicas, documentación ni contenido del lab.
+confidence: 0.9
+confidence_label: ALTA
+evidence:
+- 'Directriz verbatim del usuario (06-sep-2026): "Si comprobamos que en 2 publicaciones, hay datos falsos de forma muy burda, no hablo de un fallito tonto, hablo de algo grande, ese canal lo eliminas, pasaría a no confiable"'
+dependencies: [RULE-013, RULE-014]
+contradicts: []
+superseded_by: null
+domain: contenido
+scope: canales_contenido_vigilados

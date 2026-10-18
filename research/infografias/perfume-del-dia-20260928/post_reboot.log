@@ -1,0 +1,85 @@
+=== 2026-09-28 08:01:37 inicio (DRY=1) ===
+[dry] fondo y html de prueba en /tmp/ficha_dry
+[dry] salto la espera de GPU y ComfyUI
+fondo (1024, 1024) RGB
+brillo medio 222.6
+bca88614a07ad2c18a73cf410a96ae8ff799103d45ececaa28ab717a4218dc18  /tmp/ficha_dry/r1.png
+bca88614a07ad2c18a73cf410a96ae8ff799103d45ececaa28ab717a4218dc18  /tmp/ficha_dry/r2.png
+-rw-rw-r-- 1 jokoalmi jokoalmi 387903 Sep 28 08:01 /tmp/ficha_dry/ficha_dry.png
+[OK   ] 15 Cita comunidad                “Coge el incienso amaderado y espe...
+[OK   ] 16 QR Fragrantica                qr_fragrantica.png
+[OK   ] 17 Pie completo                  21,7 – 29,0 °C · media · lluvia · nota fondo
+[OK   ] A1 Assets existen                4 locales, 0 ausentes []
+[OK   ] A2 Sin restos de prueba          ninguno referenciado
+[AVISO] A3 Fondo ampliado x1.32          fondo.png 1024x1024 -> sin ampliacion notable
+[AVISO] A4 Precio con fecha de consulta  el precio no dice de cuando es
+[OK   ] E1 Altura (scrollHeight)         1350 px  [limite 1350]
+[OK   ] E2 Pie dentro de la tarjeta      pie bottom 1340 px
+
+campos            : 17/17
+FALTA             : 0   []
+AVISO             : 2   ['A3 Fondo ampliado x1.32', 'A4 Precio con fecha de consulta']
+veredicto         : ENVIAR (con avisos)
+render final (1080, 1350)
+[categoría: inspiracional | fecha: 2026-09-28]
+saludo: Buenos días: cada día es una nota nueva.
+[dry] no se envía nada (el resto del flujo ha funcionado)
+=== 2026-09-28 08:02:03 inicio (DRY=1) ===
+[dry] fondo y html de prueba en /tmp/ficha_dry
+[dry] salto la espera de GPU y ComfyUI
+fondo (1024, 1024) RGB
+brillo medio 222.6
+bca88614a07ad2c18a73cf410a96ae8ff799103d45ececaa28ab717a4218dc18  /tmp/ficha_dry/r1.png
+bca88614a07ad2c18a73cf410a96ae8ff799103d45ececaa28ab717a4218dc18  /tmp/ficha_dry/r2.png
+-rw-rw-r-- 1 jokoalmi jokoalmi 387903 Sep 28 08:02 /tmp/ficha_dry/ficha_dry.png
+[OK   ] 15 Cita comunidad                “Coge el incienso amaderado y espe...
+[OK   ] 16 QR Fragrantica                qr_fragrantica.png
+[OK   ] 17 Pie completo                  21,7 – 29,0 °C · media · lluvia · nota fondo
+[OK   ] A1 Assets existen                4 locales, 0 ausentes []
+[OK   ] A2 Sin restos de prueba          ninguno referenciado
+[AVISO] A3 Fondo ampliado x1.32          fondo.png 1024x1024 -> sin ampliacion notable
+[AVISO] A4 Precio con fecha de consulta  el precio no dice de cuando es
+[OK   ] E1 Altura (scrollHeight)         1350 px  [limite 1350]
+[OK   ] E2 Pie dentro de la tarjeta      pie bottom 1340 px
+
+campos            : 17/17
+FALTA             : 0   []
+AVISO             : 2   ['A3 Fondo ampliado x1.32', 'A4 Precio con fecha de consulta']
+veredicto         : ENVIAR (con avisos)
+render final (1080, 1350)
+[categoría: inspiracional | fecha: 2026-09-28]
+saludo: Buenos días: cada día es una nota nueva.
+[dry] no se envía nada (el resto del flujo ha funcionado)
+=== 2026-09-28 08:09:04 inicio (DRY=0) ===
+GPU OK: 9 MiB, 12282 MiB
+ComfyUI listo
+Cola: 303cc37c-bd3a-476c-8144-049e3c26c8eb — esperando...
+OK: /home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20260928/7plata_fondo.png (1348084 bytes, 1024x1024)
+gen_comfy rc=0
+ComfyUI parado (VRAM liberada)
+fondo (1024, 1024) RGB
+brillo medio 169.0
+2959e7e3fee342135c13e19021e6c793162139e9596a6d2a39c50faaf8778889  /home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20260928/render_7plata_1.png
+2959e7e3fee342135c13e19021e6c793162139e9596a6d2a39c50faaf8778889  /home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20260928/render_7plata_2.png
+-rw-rw-r-- 1 jokoalmi jokoalmi 1576363 Sep 28 08:10 /home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20260928/ficha_perfume_del_dia_20260928_7plata.png
+[OK   ] 15 Cita comunidad                “Coge el incienso amaderado y espe...
+[OK   ] 16 QR Fragrantica                qr_fragrantica.png
+[OK   ] 17 Pie completo                  21,7 – 29,0 °C · media · lluvia · nota fondo
+[OK   ] A1 Assets existen                4 locales, 0 ausentes []
+[OK   ] A2 Sin restos de prueba          ninguno referenciado
+[AVISO] A3 Fondo ampliado x1.32          7plata_fondo.png 1024x1024 -> sin ampliacion notable
+[AVISO] A4 Precio con fecha de consulta  el precio no dice de cuando es
+[OK   ] E1 Altura (scrollHeight)         1350 px  [limite 1350]
+[OK   ] E2 Pie dentro de la tarjeta      pie bottom 1340 px
+
+campos            : 17/17
+FALTA             : 0   []
+AVISO             : 2   ['A3 Fondo ampliado x1.32', 'A4 Precio con fecha de consulta']
+veredicto         : ENVIAR (con avisos)
+render final (1080, 1350)
+[categoría: inspiracional | fecha: 2026-09-28]
+saludo: Buenos días: cada día es una nota nueva.
+sent
+/home/jokoalmi/.local/bin/hermes send rc=0
+ENVIADA
+=== 2026-09-28 08:11:08 fin ===

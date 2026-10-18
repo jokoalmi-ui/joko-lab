@@ -1,0 +1,146 @@
+{
+  "ventana": [
+    "2026-09-03",
+    "2026-09-09"
+  ],
+  "etiqueta": "NO VALIDADO",
+  "lineas_totales_ventana": 5102,
+  "excluidas": {
+    "path_no_inferencia": 182,
+    "status_400": 20,
+    "json_invalido": 1
+  },
+  "no_calculables": 53,
+  "escenarios": {
+    "A_csv_oficial_julago": {
+      "fuente": "USAGE/extraido/amount-2026-07-12_2026-08-10.csv (export oficial DeepSeek)",
+      "flash": {
+        "hit": 0.0028,
+        "miss": 0.14,
+        "out": 0.28
+      },
+      "pro": {
+        "hit": 0.003625,
+        "miss": 0.435,
+        "out": 0.87
+      }
+    },
+    "B_informe_precios_14sep": {
+      "fuente": "04-operations/metrics/precios-ia/2026-09-14.md",
+      "flash": {
+        "hit": 0.007,
+        "miss": 0.22,
+        "out": 0.66
+      },
+      "pro": {
+        "hit": 0.022,
+        "miss": 0.66,
+        "out": 1.98
+      }
+    }
+  },
+  "por_dia": {
+    "2026-09-03": {
+      "n": 885,
+      "hit": 143014528,
+      "miss": 3989699,
+      "out": 1238262,
+      "ratio_cache_pct": 97.29
+    },
+    "2026-09-04": {
+      "n": 1015,
+      "hit": 105154944,
+      "miss": 2785930,
+      "out": 948705,
+      "ratio_cache_pct": 97.42
+    },
+    "2026-09-05": {
+      "n": 291,
+      "hit": 18710528,
+      "miss": 1389665,
+      "out": 435472,
+      "ratio_cache_pct": 93.09
+    },
+    "2026-09-06": {
+      "n": 857,
+      "hit": 59916032,
+      "miss": 3172256,
+      "out": 921993,
+      "ratio_cache_pct": 94.97
+    },
+    "2026-09-07": {
+      "n": 861,
+      "hit": 65032448,
+      "miss": 2987848,
+      "out": 1033987,
+      "ratio_cache_pct": 95.61
+    },
+    "2026-09-08": {
+      "n": 607,
+      "hit": 38091008,
+      "miss": 2820642,
+      "out": 838863,
+      "ratio_cache_pct": 93.11
+    },
+    "2026-09-09": {
+      "n": 586,
+      "hit": 44445440,
+      "miss": 2165941,
+      "out": 692774,
+      "ratio_cache_pct": 95.35
+    }
+  },
+  "global": {
+    "A_csv_oficial_julago": {
+      "coste_usd_total": 5.7427,
+      "n_calculables": 5049,
+      "coste_usd_por_consulta_media": 0.001137,
+      "p50_usd": 0.000689,
+      "p90_usd": 0.002271,
+      "coste_usd_por_1000_consultas": 1.1374,
+      "coste_usd_por_dia": {
+        "2026-09-03": 1.3057,
+        "2026-09-04": 0.9501,
+        "2026-09-05": 0.3689,
+        "2026-09-06": 0.87,
+        "2026-09-07": 0.8899,
+        "2026-09-08": 0.7364,
+        "2026-09-09": 0.6217
+      }
+    },
+    "B_informe_precios_14sep": {
+      "coste_usd_total": 11.6018,
+      "n_calculables": 5049,
+      "coste_usd_por_consulta_media": 0.002298,
+      "p50_usd": 0.001558,
+      "p90_usd": 0.004635,
+      "coste_usd_por_1000_consultas": 2.2978,
+      "coste_usd_por_dia": {
+        "2026-09-03": 2.6961,
+        "2026-09-04": 1.9751,
+        "2026-09-05": 0.7241,
+        "2026-09-06": 1.7258,
+        "2026-09-07": 1.795,
+        "2026-09-08": 1.4408,
+        "2026-09-09": 1.2449
+      }
+    }
+  },
+  "mix_contexto": {
+    "5-30k": 71,
+    "<5k": 397,
+    "30-100k": 3356,
+    ">100k": 1278
+  },
+  "tokens": {
+    "cache_hit": 474364928,
+    "cache_miss": 19311981,
+    "output": 6110056,
+    "ratio_cache_hit_pct": 96.088
+  },
+  "reparto_coste_A": {
+    "cache_hit": 1.3282,
+    "cache_miss": 2.7037,
+    "output": 1.7108
+  }
+}

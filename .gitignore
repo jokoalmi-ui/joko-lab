@@ -1,0 +1,102 @@
+# Joko Lab — .gitignore
+# Repo LOCAL, SIN REMOTO (decidido 2026-09-24). Alcance: sólo texto y código.
+# Justificación medida: el árbol completo son ~20,7 GiB / 41.000 ficheros; con este
+# filtro el repo se queda en el texto y el código útil (decenas de MiB).
+
+# --- Copias y respaldos (RULE-008: los .bak NO se versionan) ---
+*.bak
+*.bak*
+*.BACKUP*
+*.BAK*
+.BACKUP*
+.BACKUP*/
+.archive*/
+*~
+
+# --- Entornos virtuales y cachés ---
+.venv/
+.venv*/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+node_modules/
+site-packages/
+
+# --- Índices y datos regenerables ---
+.lancedb/
+.codebase-memory/
+
+# --- Bitácoras grandes (se copian fuera de git; crecen sin fin) ---
+04-operations/metrics/sesiones/
+04-operations/metrics/*.jsonl
+04-operations/metrics/*.log
+# Informes diarios del cron (ruido, no codigo) — 2026-10-17
+04-operations/reports/*-informe-local.txt
+
+# --- Repos ajenos anidados (bibliotecas de skills clonadas de terceros) ---
+01-knowledge/references/planning-with-files/
+01-knowledge/references/anthropic-cybersecurity-skills/
+01-knowledge/references/mattpocock-skills/
+01-knowledge/references/ai-slop-detector/
+
+# --- Media y binarios: entregables regenerables desde su fuente (HTML/código) ---
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.webp
+*.bmp
+*.svg
+*.mp4
+*.mov
+*.mkv
+*.webm
+*.avi
+*.mp3
+*.wav
+*.ogg
+*.flac
+*.m4a
+*.pdf
+*.ttf
+*.otf
+*.woff
+*.woff2
+*.so
+*.dll
+*.dylib
+*.bin
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+*.xlsx
+*.xls
+*.docx
+*.ppt
+*.pptx
+*.db
+*.db-journal
+*.db-wal
+*.sqlite
+*.sqlite3
+.env
+.env.*
+*auth*.json
+*.key
+*.pem
+.venv/
+__pycache__/
+04-operations/metrics/sesiones/sesiones-acumulado.jsonl
+04-operations/metrics/sesiones/raw/
+*.gguf
+*.safetensors
+*.onnx
+05-inference/models/

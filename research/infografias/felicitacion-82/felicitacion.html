@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700;900&family=Caveat:wght@500&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { width:1080px; height:1350px; overflow:hidden; font-family:'Playfair Display', serif; }
+  .tarjeta {
+    width:1080px; height:1350px; position:relative;
+    background:url('fondo.png') center/cover no-repeat;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:80px 90px; text-align:center;
+  }
+  .velo {
+    position:absolute; inset:0;
+    background:rgba(60,35,15,0.38);
+  }
+  .contenido { position:relative; z-index:2; color:#fff9ef; }
+  .saludo {
+    font-family:'Caveat', cursive; font-size:64px; color:#f5d9a8;
+    letter-spacing:1px; margin-bottom:10px;
+  }
+  .nombre {
+    font-size:88px; font-weight:900; letter-spacing:4px;
+    color:#fff; text-shadow:0 4px 18px rgba(0,0,0,0.5);
+    margin-bottom:30px;
+  }
+  .linea {
+    width:340px; height:2px; margin:0 auto 40px;
+    background:linear-gradient(90deg, transparent, #f5d9a8, transparent);
+  }
+  .verso {
+    font-size:34px; font-weight:500; line-height:1.75; color:#fff3e0;
+    max-width:820px; text-shadow:0 2px 8px rgba(0,0,0,0.55);
+  }
+  .verso p { margin-bottom:16px; }
+  .firma {
+    margin-top:55px; font-family:'Caveat', cursive; font-size:52px;
+    color:#f5d9a8;
+  }
+  .fecha {
+    margin-top:14px; font-size:22px; letter-spacing:3px;
+    color:rgba(255,243,224,0.75); text-transform:uppercase;
+  }
+</style>
+</head>
+<body>
+<div class="tarjeta">
+  <div class="velo"></div>
+  <div class="contenido">
+    <div class="saludo">Feliz Cumpleaños</div>
+    <div class="nombre">FELIZ CUMPLEAÑOS</div>
+    <div class="linea"></div>
+    <div class="verso">
+      <p>Ochenta y dos primaveras,<br>ochenta y dos años de historias,<br>de manos que construyeron<br>y de memorias que nos abrazan.</p>
+      <p>Que hoy la terraza se llene de risas,<br>que el sol te acompañe como siempre lo ha hecho,<br>y que la familia — tu mayor obra —<br>te devuelva un poco de todo lo que has dado.</p>
+    </div>
+    <div class="firma">Con todo el cariño, de tu familia</div>
+    <div class="fecha">24 · Agosto · 2026</div>
+  </div>
+</div>
+</body>
+</html>

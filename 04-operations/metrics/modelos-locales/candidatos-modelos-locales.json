@@ -1,0 +1,648 @@
+{
+  "schema": 1,
+  "descripcion": "Registro persistente de candidatos a modelo local (12GB VRAM). Es la MEMORIA del cron investigacion-modelos-locales-semanal: si un candidato esta aqui, NO se re-investiga ni se re-lista cada semana. Cada entrada nueva lleva avisado=false; el watchdog aviso-modelos-locales-novedades avisa UNA vez y lo pone en true.",
+  "creado": "2026-09-14",
+  "actualizado": "2026-10-12",
+  "fuentes_de_verdad": [
+    "/home/jokoalmi/joko-lab/01-knowledge/modelos_por_tarea.yaml",
+    "/home/jokoalmi/joko-lab/04-operations/metrics/alucinaciones_ledger.jsonl",
+    "/home/jokoalmi/joko-lab/04-operations/metrics/retrabajo_ledger.jsonl"
+  ],
+  "candidatos": [
+    {
+      "nombre": "qwen3.6-35b-a3b_moe",
+      "estado": "EN_USO",
+      "rol": "veracidad_critica",
+      "primera_aparicion": "2026-08-24",
+      "evidencia": "alucinaciones_ledger 06-sep (seeds 42/43/44): 0/77 alucinaciones, honestidad 1.0; 7.7 tok/s",
+      "avisado": true
+    },
+    {
+      "nombre": "glm-4.6v-flash",
+      "estado": "EN_USO",
+      "rol": "vision",
+      "primera_aparicion": "2026-08-21",
+      "evidencia": "baterias vision 21-ago + uso real (fichas perfume: verificacion packshot/ficha)",
+      "avisado": true
+    },
+    {
+      "nombre": "gemma-4-12b-qat",
+      "estado": "EN_USO",
+      "rol": "redaccion_creatividad",
+      "primera_aparicion": "2026-08-25",
+      "evidencia": "ganador juicio ciego 25-ago (RULE-001, Director Creativo)",
+      "avisado": true
+    },
+    {
+      "nombre": "deepseek-r1-distill-qwen-14b",
+      "estado": "EN_USO",
+      "rol": "grounding",
+      "primera_aparicion": "2026-08-24",
+      "evidencia": "alucinaciones_ledger 24-ago: 0.045-0.36 segun seed",
+      "avisado": true
+    },
+    {
+      "nombre": "openai/gpt-oss-20b",
+      "estado": "EN_USO",
+      "rol": "razonamiento",
+      "primera_aparicion": "2026-08-19",
+      "evidencia": "19-ago 96% razonamiento duro; ledger 24-ago 0.0 aluc / 1.0 honestidad",
+      "avisado": true
+    },
+    {
+      "nombre": "lfm2.5-2.6b",
+      "estado": "EN_USO",
+      "rol": "tool_calling",
+      "primera_aparicion": "2026-08-19",
+      "evidencia": "asignado en el prompt del cron; sin medicion propia en ledger",
+      "avisado": true
+    },
+    {
+      "nombre": "granite-4.1-8b",
+      "estado": "EN_USO",
+      "rol": "json",
+      "primera_aparicion": "2026-08-19",
+      "evidencia": "en disco (unsloth/granite-4.1-8b-GGUF, 4.8G); SIN filas en los ledgers: no tiene medicion formal registrada",
+      "avisado": true
+    },
+    {
+      "nombre": "dolphin3.0-8b",
+      "estado": "EN_USO",
+      "rol": "chat_rapido",
+      "primera_aparicion": "2026-08-19",
+      "evidencia": "asignado en el prompt del cron; sin medicion propia en ledger",
+      "avisado": true
+    },
+    {
+      "nombre": "granite-4.2-8b",
+      "estado": "EN_USO",
+      "rol": "ligero_masivo",
+      "veredicto_actual": "EN_USO 14-sep (fijado por el usuario). Rol: ligero/masivo (JSON estricto, tool calling, clasificacion, extraccion) + veracidad simple, SIEMPRE en modo directo. Evidencia: 0/81 alucinacion y 100% honestidad en 3 seeds (81 llamadas reales, 0 vacias, 0 errores), 36,9 tok/s a 8K, 6,1 GB, 100% GPU; tool calling 3/3.",
+      "primera_aparicion": "2026-09-07",
+      "ultima_mencion": "2026-09-14",
+      "semanas_sin_ejecutar": 0,
+      "nota": "5,3GB Q4_K_M (Ollama, digest efbf7a204b67). PROBADO: veracidad al nivel de qwen3.6-35b-a3b (empate) y ~4,8x mas rapido (36,9 vs 7,7 tok/s). Caveat: a ctx 131072 (default Ollama) carga 18GB y cae a 45% CPU / 4,23 tok/s -> usar num_ctx<=8192.",
+      "avisado": true,
+      "fecha_prueba": "2026-09-14",
+      "evidencia": [
+        "04-operations/metrics/modelos-locales/2026-09-14-prueba-granite-4.2-8b.md",
+        "04-operations/metrics/alucinaciones_ledger.jsonl (3 filas modo directo, 13:21-13:22)",
+        "04-operations/metrics/modelos-locales/juez-2026-09-14T1321.json + juez-2026-09-14T1337.json (verificacion del matcher)",
+        "tools/juez_alucinaciones.py + tools/banco_validacion_juez.json (acuerdo juez/etiqueta humana 9/10)"
+      ],
+      "caveat": "Solo en modo directo (--no-think). Con razonamiento: bruto 8/81 = 9,9% pero 7/8 son falsos positivos del matcher (rechazos honestos no reconocidos) -> 1/81 real = 1,2% ('leche', trap-06); ~10x mas lento y trap-07 no emite respuesta final en 3/3 (agota los 2000 tokens). A ctx 131072 (default Ollama) carga 18GB y cae a 45% CPU / 4,23 tok/s -> usar num_ctx<=8192. El matcher del ledger mide forma, no significado: el juez (qwen2.5:7b) es solo segunda opinion."
+    },
+    {
+      "nombre": "Ministral-3-14B-Instruct",
+      "estado": "PENDIENTE",
+      "veredicto_actual": "PROBAR",
+      "primera_aparicion": "2026-08-24",
+      "ultima_mencion": "2026-09-21",
+      "semanas_sin_ejecutar": 4,
+      "nota": "Q4_K_M 8.24GB; ~10-11GB VRAM; comparable a Small 3.2; vision + tool calling.",
+      "avisado": true
+    },
+    {
+      "nombre": "Qwen3.8-27B-GSQ-RCO",
+      "estado": "PENDIENTE",
+      "veredicto_actual": "RE-PROBAR",
+      "primera_aparicion": "2026-09-07",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "El Q4 (17.77GB) NO cabe (descartado 07-sep por tamano); reabierto el 14-sep por la cuantizacion GSQ-RCO 2.75bpw = 9.3GB con mmproj (~10-11GB). Claims auto-reportados por los autores: verificar bpw real con llama-gguf. Cambio material verificado hoy (05-oct) en ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF (creado 28-ago; 1.965 likes, 1.614.312 descargas): la escalera de builds incluye ahora IQ2_S 9,26GB, IQ2_XS 8,42GB (8,77GB la variante -mtp), IQ3_XXS 10,09GB, IQ3_S 11,77GB (12,12GB con -mtp), mas imatrix 0,01GB y mmproj BF16 0,93GB -> la variante IQ2_XS 8,42GB deja mas margen que el 9,3GB anotado el 14-sep, pero sigue siendo ~2 bpw sobre un 27B denso y la calidad es justo lo que hay que medir. El veredicto no cambia (sigue PENDIENTE / RE-PROBAR) y sigue sin EXP asociado.",
+      "avisado": true,
+      "verificado_sin_prueba": "2026-09-14: 0 EXP, 0 RULE, 0 filas en alucinaciones_ledger/retrabajo_ledger; solo descarte por tamano el 07-sep (Q4 17.77GB, sin EXP) y reapertura por GSQ-RCO"
+    },
+    {
+      "nombre": "Mellum2-12B-A2.5B",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-08-24",
+      "ultima_mencion": "2026-08-24",
+      "nota": "JetBrains; Q4 ~7.5GB; LiveCodeBench 69.9. Solo candidato si el lab crea rol codigo/agente.",
+      "avisado": true
+    },
+    {
+      "nombre": "Ornith-1.5-9B",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-09-07",
+      "ultima_mencion": "2026-09-07",
+      "nota": "Q4_K_M 5.63GB; agente 6/10; vision+thinking.",
+      "avisado": true
+    },
+    {
+      "nombre": "LFM2.5-8B-A1B",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-09-07",
+      "ultima_mencion": "2026-09-07",
+      "nota": "Q4 ~5GB; sin benchmarks publicados.",
+      "avisado": true
+    },
+    {
+      "nombre": "qwen3.5-9b",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-08-24",
+      "evidencia": "EXP-20260726-001: 0/5, el peor de 7 modelos. NO volver a recomendar.",
+      "avisado": true
+    },
+    {
+      "nombre": "gemma4-26b-a4b",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-08-19",
+      "evidencia": "LM Studio no expone flags cmoe.",
+      "avisado": true
+    },
+    {
+      "nombre": "mistral-nemo",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-08-19",
+      "evidencia": "no cabe en 12GB.",
+      "avisado": true
+    },
+    {
+      "nombre": "kimi-cat3",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-08-19",
+      "evidencia": "disco lento.",
+      "avisado": true
+    },
+    {
+      "nombre": "llama4-scout",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-08-19",
+      "evidencia": "109B totales (el '17B' es enganoso).",
+      "avisado": true
+    },
+    {
+      "nombre": "Bonsai-27B",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-07",
+      "ultima_mencion": "2026-09-14",
+      "evidencia": "14-sep: Terminal-Bench 2.0 7.9% < qwen3.5-9b 9.2% < qwen3.6-35b-a3b 24.3%. Cabe, pero calidad insuficiente.",
+      "avisado": true
+    },
+    {
+      "nombre": "GLM-5.3-Flash",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-14",
+      "ultima_mencion": "2026-10-05",
+      "evidencia": "320B-A18B; ~102GB. No cabe. Cambio material verificado el 05-oct: ggml-org/GLM-5.3-Flash-GGUF existe desde el 03-oct-2026 (Q2_K 133,8GB / Q4_K 181,4GB; mmproj Q8_0 0,65GB; MTP Q4_0 4,95GB y Q8_0 9,28GB) -> el GGUF oficial ya esta publicado pero sigue fuera de 12GB por un factor de ~12.",
+      "avisado": true
+    },
+    {
+      "nombre": "LongCat-Flash-Lite-Sparse-69B-A3B",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-14",
+      "evidencia": "GGUF solo con fork; >35GB. No cabe.",
+      "avisado": true
+    },
+    {
+      "nombre": "Nemotron-3.5-Lightning-30B-A3B",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-07",
+      "evidencia": "Q4_K_M 18.3-25GB, no cabe; peor que qwen3.6-35b en 13/14.",
+      "avisado": true
+    },
+    {
+      "nombre": "Mistral-Small-4-119B",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-07",
+      "evidencia": "Q4 ~72GB. No cabe.",
+      "avisado": true
+    },
+    {
+      "nombre": "DeepSeek-V4",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-08-24",
+      "evidencia": "build minima UD-IQ1_S 82.5GB RAM.",
+      "avisado": true
+    },
+    {
+      "nombre": "MiniCPM5-2B",
+      "estado": "PENDIENTE",
+      "veredicto_actual": "PROBAR",
+      "rol": "tool_calling / json (tramo 2B)",
+      "primera_aparicion": "2026-09-21",
+      "ultima_mencion": "2026-09-21",
+      "semanas_sin_ejecutar": 0,
+      "nota": "OpenBMB 07-sep-2026, Apache 2.0, denso 2,5B, 131072 ctx, think/no-think. GGUF oficial Q4_K_M 1,6GB (default de Ollama: openbmb/minicpm5-2b); llama.cpp/LM Studio/Ollama con soporte oficial; incluye drafter DSpark. VRAM estimada a 8K ~2,5-3GB (estimacion propia, no medida en la A2000). tok/s en A2000: no publicado. Calidad: media 53,9 en 34 benchmarks (auto-reportado); Artificial Analysis Intelligence Index v4.2 = 15 (eWeek 09-sep) vs 23 (tuit de OpenBMB) -> discrepancia sin resolver; BFCL v4 66,6, SWE-bench Verified 46,4, tau2-Bench Telecom 97,1 (vendor). Motivo de cola: el rol tool_calling del lab (lfm2.5-2.6b) no tiene medicion propia y este es el tramo 2B con evidencia externa mas fuerte. Probar con tools/evaluar_json_tool_calling.py + banco de validacion del juez, no con benchmarks de razonamiento.",
+      "evidencia": "HF openbmb/MiniCPM5-2B + ollama.com/openbmb/minicpm5-2b (Q4_K_M 1,6GB verificado); AA v4.2 via eWeek 09-sep; benchmarks del model card (vendor); weekly localmodelwatch 2026-09-22",
+      "avisado": true
+    },
+    {
+      "nombre": "Ternary-Bonsai-2-27B",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-09-21",
+      "ultima_mencion": "2026-09-21",
+      "nota": "Prism ML 17-sep-2026 (base Qwen3.8-27B), ternario entrenado 1,72 bpw: 5,9GB (PQ2_0) + 0,63GB del encoder de vision -> cabe en 12GB. YA ANALIZADO por el lab el 19-sep (research/analisis-nichonauta-bonsai2-27b-2026-09-19.md): test real en RTX 3060 12GB, 42 tok/s, ~40 min por tarea de landing (26 tok/s con KV Q8). Requiere fork de llama.cpp; NO compatible con Ollama. El autor del test rechaza el '98,2%' del vendor. Sin accion: no sustituye a gpt-oss-20b ni a qwen3.6-35b-a3b.",
+      "evidencia": [
+        "research/analisis-nichonauta-bonsai2-27b-2026-09-19.md",
+        "https://huggingface.co/prism-ml/Ternary-Bonsai-2-27B-gguf"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "NeoHorse-1-9B",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-09-21",
+      "ultima_mencion": "2026-09-21",
+      "nota": "TokenRhythm 05-sep-2026, Apache 2.0, 8,9B post-entrenado desde Qwen3.5-9B (hibrido 3:1 linear attention), 262144 ctx. GGUF oficial (TokenRhythm/NeoHorse-1-9B-GGUF): Q4_K_M 5,63GB / Q5_K_M 6,47GB / Q8_0 9,53GB; carga en LM Studio (lms get tokenrhythm/neohorse-1-9b-gguf); slm.expert estima Q4 -> ~6,5GB (GPU 8GB). tok/s en A2000: no publicado. Calidad (vendor, informe tecnico 09-sep): macro 69,04 vs 65,60 de Qwen3.5-9B (+3,44); BFCL v4 67,43 (granite-4.2-8B 52,06 segun el mismo informe). NO entra en cola: el hermano NeoHorse-1-4B (misma receta) fue desmentido en prueba real y el lab lo analizo el 19-sep (research/analisis-nichonauta-neohorse-1-4b-2026-09-19.md); las cifras del vendor no tienen reproduccion de terceros.",
+      "evidencia": [
+        "research/analisis-nichonauta-neohorse-1-4b-2026-09-19.md",
+        "HF TokenRhythm/NeoHorse-1-9B + TokenRhythm/NeoHorse-1-9B-GGUF"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "Maple-Preview-20B-A1B",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-09-21",
+      "ultima_mencion": "2026-09-21",
+      "nota": "DeepGrove, MIT; publicado 05-ago-2026 (fuera de la ventana de 2 semanas) -> entra por cambio material: llama.cpp v0.4.1 (14-sep-2026) anade la arquitectura maple (implementacion CPU en mainline). MoE ternario 20,2B/1,49B activos, 256 expertos (8 activos); GGUF 4,64-5,91GiB (TQ1_0/TQ2_0). Medicion de terceros (Windows + CUDA, fork stamsam/llama.cpp rama prism): 7,3GB de VRAM a 8K con 4 slots y 361,8 tok/s tg128 en una GPU de 16GB. Bloqueo para el lab: el tipo ternario tq2_0 del fork no es interoperable con mainline (no hay capa de compatibilidad) y los kernels CUDA viven en el fork -> no carga en LM Studio/Ollama. tok/s en A2000: no publicado. El model card avisa de que puede rendir por debajo en benchmarks agenticos.",
+      "evidencia": [
+        "HF stamsam/maple-preview-gguf (estado y caveats)",
+        "localmodelwatch 2026-09-15: llama.cpp v0.4.1 (14-sep) anade Maple 20B-A1B (CPU), Tencent Hy 4 y Spark2.5",
+        "HF deepgrove/maple-preview"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "Xing4.0-29B-A4B",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-21",
+      "evidencia": "XingChen-AGI (China Telecom, sucesor de TeleChat); MoE 29B/4B activos; GGUF oficial IQ4_NL 20,1GB en 3 shards (7,88+7,99+4,23GB); la card dice 'aprox. 18GB'; repack de terceros Q4_K_M 17,6GB. No cabe en 12GB.",
+      "avisado": true
+    },
+    {
+      "nombre": "Qwen3.8-35B-A3B-Distill-GGUF",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-21",
+      "evidencia": "empero-ai (destilado de comunidad, no publicado por Alibaba); cuantizacion minima IQ2_M 12,558GB y Q6_K 29,2GB; la card apunta a tarjetas de 16GB. No cabe en 12GB. Trending en HF (52.476 descargas) sin evals publicadas.",
+      "avisado": true
+    },
+    {
+      "nombre": "Needle (Cactus-Compute: Needle 1/2/3)",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-21",
+      "evidencia": "Tool calling / extraccion para microcontroladores: Needle 2 = 45M, binario .cact de 14MB, ~28MB de RAM, formato propio CQ2; Needle 1 = 26M destilado de Gemini 3.1 (MIT). SIN GGUF -> no carga en LM Studio/Ollama/llama.cpp. Irrelevante para la A2000; ese rol lo cubre MiniCPM5-2B con evidencia externa.",
+      "avisado": true
+    },
+    {
+      "nombre": "Edge0-35B-A3B-preview",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-21",
+      "evidencia": "MoE 35B/3B activos 4-bit + Recover-LoRA + prerouter entrenado que sirve expertos desde SSD (~2,9GiB activos). Requiere framework propio (backend MLX = Apple Silicon); sin GGUF estandar. El lab ya descarto kimi-cat3 por disco lento. Tecnica aprovechable, sin entrada.",
+      "avisado": true
+    },
+    {
+      "nombre": "Muse-Glimmer-30B",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-21",
+      "evidencia": "Meta Superintelligence Labs, Apache 2.0, denso 29,6B + encoder de vision, agentico. GGUF: kquant-17GB ('cabe comodo en 24GB'), Unsloth UD-Q2_K_XL 12-14GB, UD-Q4_K_XL 17GB. No cabe en 12GB (ni el 2-bit). Rol cubierto por gpt-oss-20b (razonamiento) + glm-4.6v-flash (vision).",
+      "avisado": true
+    },
+    {
+      "nombre": "Qwen-Image-2.1",
+      "estado": "PENDIENTE",
+      "veredicto_actual": "PROBAR",
+      "rol": "imagen_infografias",
+      "primera_aparicion": "2026-09-28",
+      "ultima_mencion": "2026-09-28",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Qwen, publicado 20-21 sep-2026. Componente de generacion de imagen de 7B (32 capas Single-Stream DiT) + encoder de texto: unifica generacion y edicion (edicion por mascara/anotacion/circulos, transparencia nativa RGBA, hasta 10 imagenes de referencia, extraccion de sujeto) y mejora declarada en tipografia (texto legible), iluminacion de retratos y detalle fino; resoluciones hasta 2752x1536. GGUF oficiales (unsloth/Qwen-Image-2.1-GGUF, 21-sep, Dynamic 2.0 de solo el denoiser): Q2_K 2,3GB / Q3_K_XL 3,4GB / Q4_K_M 3,9GB / Q5_K_M 5,0GB / Q6_K_XL 6,3GB / Q8_0 7,1GB / F16 13,3GB; hay que sumar VAE qwen_image_2.1_vae_bf16 (0,63GB) y el encoder de texto Qwen3-VL-8B (UD-Q4_K_XL ~5,0GB; la fuente mide 5,15GB con Dynamic 2.0 vs 5,03GB en Q4_K_M uniforme). Estimacion de la fuente: tier 12GB = Q8_0 con 8,5GB SOLO del denoiser; encoder y VAE aparte (offload a RAM posible). Total realista en la A2000 a 1024x1024: ~9,5-10GB con encoder + VAE residentes. tok/s en A2000: no publicado (la fuente da 36,5 s por imagen a 20-40 pasos en su hardware, no especificado). ComfyUI-GGUF y stable-diffusion.cpp lo soportan; el encoder comunitario pottokao/Qwen-Image-2.1-Text-Encoder-Heretic-GGUF lleva 145.246 descargas. Motivo de cola: el texto legible es el punto debil del pipeline de infografias del lab (hoy SDXL) y ComfyUI ya esta montado.",
+      "evidencia": [
+        "https://huggingface.co/AlperKTS/Qwen-Image-2.1-GGUF (tabla Q8_0 ~7,2GB / Q6_K ~5,5GB)",
+        "https://localmodelwatch.tsuchitsuchi.com/en/2026/09/24/qwen-image-2-1-guide (builds unsloth: Q4_K_M 3,9GB ... Q8_0 7,1GB; tier 12GB)",
+        "https://localmodelwatch.tsuchitsuchi.com/en/2026/09/23/unsloth-qwen-image-2-1-gguf-2 (Dynamic 2.0 solo denoiser; VAE + encoder Qwen3-VL-8B aparte, 5,15GB)",
+        "https://www.kombitz.com/2026/09/20/how-to-use-qwen-image-2-1-gguf-in-comfyui/ (BF16 14GB, INT8 7,3GB, ComfyUI-GGUF)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "MiMo-V2.6-Distill-Qwen-9B",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-09-28",
+      "ultima_mencion": "2026-09-28",
+      "semanas_sin_ejecutar": 0,
+      "nota": "XiaomiMiMo, 22-sep-2026: 9B agentico por SFT de Qwen3.5-9B-Base sobre datos generados por MiMo (77,4B tokens, 27,2B con perdida); cubre codigo, tareas de agente, codigo visual y ciberseguridad; variantes thinking/instruct. GGUF verificado en llama.cpp b10964 (bartowski): Q4_K_M 5,84GB / Q4_K_L 6,20GB / Q5_K_M 6,88GB / Q6_K 7,79GB / Q8_0 9,55GB / bf16 17,92GB; entrada de imagen con mmproj. En Ollama (maternion/mimo-v2.6): 5,6 / 7,4 / 9,5GB. VRAM a 8K ~7GB (estimacion propia sobre Q4_K_M +20%, NO medida en la A2000). tok/s en A2000: no publicado. Evaluacion (informe tecnico de Xiaomi, sin reproducir por terceros): SWE Verified 61,1 vs 60,0 de Qwen3.5-9B, SWE Pro 44,6 vs 32,0, Terminal Bench 2.1 37,1 vs 27,0, AutomationBench 30,3 vs 5,0. NO entra en cola: el lab no tiene rol codigo/agente LOCAL (opencode va contra DeepSeek cloud); si se crea ese rol, es el primer candidato con GGUF ya publicado y compatible sin fork.",
+      "evidencia": [
+        "https://ollama.com/maternion/mimo-v2.6 (Q4_K_M 5,6GB / Q6_K 7,4GB / Q8_0 9,5GB)",
+        "https://huggingface.co/XiaomiMiMo/MiMo-V2.6-Distill-Qwen-9B + bartowski/MiMo-V2.6-Distill-Qwen-9B-GGUF",
+        "localmodelwatch weekly 2026-09-26 (trending, 522 likes / 8.839 descargas)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "Tev1-4B / Tev1-0.8B-experimental",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-09-28",
+      "ultima_mencion": "2026-09-28",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Together AI, 23-26 sep-2026: familia de clasificadores estructurados (estilo Jev) por SFT sobre Qwen3.5-4B y Qwen3.5-0.8B. Entrada = estado + pregunta + 2 a 24 opciones etiquetadas; salida = una sola letra, sin explicacion. 262144 ctx; arquitectura registrada en llama.cpp, vLLM y MLX. VRAM: '4GB+' segun la fuente (no medido en la A2000; tok/s en A2000: no publicado). Cifras del vendor (no independientes, y avisan de degradacion al cuantizar): 880/1000 en el set principal, 300/300 en transferencia de politica, 1300/1300 de salida valida de un solo caracter. NO entra en cola: el lab no tiene rol clasificador y su gate/routeo (tools/decision_router.py) es rule-based; solo tendria sentido si se decide sustituirlo por un clasificador local.",
+      "evidencia": [
+        "https://localmodelwatch.tsuchitsuchi.com/en/2026/09/24/tev1-4b-experimental-released (verificada; 4B, Qwen3.5-4B, 262144 ctx, decision-making)",
+        "localmodelwatch weekly 2026-09-26 (fichas de Tev1-4B y Tev1-0.8B: 'GGUF Builds', '4GB+ VRAM'); la ruta 2026/09/26/tev1-08b-experimental-2 NO se ha verificado hoy",
+        "Cifras del vendor (880/1000, 300/300, 1300/1300): no reproducidas por terceros; avisan de degradacion al cuantizar"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "LFM2.5-VL-3B-DSpark (drafter)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-09-28",
+      "ultima_mencion": "2026-09-28",
+      "semanas_sin_ejecutar": 0,
+      "nota": "LiquidAI. Pesos subidos a HuggingFace el 18-sep-2026 y sin anuncio hasta el blog del 24-sep. Drafter de speculative decoding (DSpark) para LFM2.5-VL-3B, que es un modelo YA instalado en el lab: 279,5M parametros BF16 (4 capas de atencion, hidden 2048, GQA, mas cabeza Markov rank 256 y cabeza de confianza), bloque 8-9; +8,9% de parametros sobre el target. GGUF: repositorio LFM2.5-VL-3B-DSpark-GGUF, un unico F16 de ~567MB. Soporte dia 1: llama.cpp (--spec-type draft-dspark), MLX-VLM y SGLang; NO hay ninguna mencion a LM Studio ni en la tarjeta ni en el blog. Velocidades: todas del vendedor y sin reproduccion independiente (H100/SGLang 2,04-2,66x decode; M3 Ultra/llama.cpp 1,57-2,14x; M5 Max/MLX 2,30-3,13x), medidas en FP16. Bloqueos concretos para el lab: (a) el propio blog avisa de que la aceleracion de modelos CUANTIZADOS queda fuera del alcance de esta version, y el lfm2.5-vl-3b del lab esta cuantizado; (b) speculative decoding solo acelera decode, no prefill ni el encoder de vision; (c) el repo tenia 37 descargas y 6 likes. NO entra en cola: reabrir solo si LM Studio expone draft-dspark y se confirma que acelera un target cuantizado.",
+      "evidencia": [
+        "https://huggingface.co/LiquidAI/LFM2.5-VL-3B-DSpark (279,5M, 4 capas, bloque 8-9, VRAM '+8,9%' sobre el target)",
+        "https://www.liquid.ai/blog/lfm2-5-vl-dspark (24-sep: llama.cpp/MLX-VLM/SGLang; 'acceleration of quantized models is out of scope'; prefill no acelerado)",
+        "https://www.orcarouter.ai/blog/lfm2-5-vl-3b-dspark-explained (analisis: pesos 18-sep, GGUF F16 ~567MB, 37 descargas, sin reproduccion independiente)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "K2-Horizon-7B (IFM/MBZUAI)",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-28",
+      "ultima_mencion": "2026-09-28",
+      "nota": "IFM (MBZUAI), Apache 2.0, publicado 03-sep-2026; denso de clase 7B con nucleo real de ~9B params (BF16 16,76GiB) y 524.288 tokens de ctx nativo. Cabe por tamano: Q4_K_M 5,21GiB / Q6_K 6,89GiB / Q8_0 8,92GiB (0xzknw, imatrix desde el BF16 del publicador). DESCARTADO hoy por soporte, NO por capacidad: la tarjeta oficial dice literalmente 'These models require a version of llama.cpp containing K2 Horizon architecture support. PR to llama.cpp is in progress', y 0xzknw confirma 'K2 Horizon support is not yet in a released upstream llama.cpp build' -> stock llama.cpp/Ollama/LM Studio fallan con 'unknown model architecture: k2-horizon'; hace falta el fork MBZUAI-IFM/llama.cpp rama model/K2Horizon. Los NVFP4 del 23-sep son Blackwell-only (la A2000 es Ampere). REABRIR en cuanto el soporte entre en upstream: el vendedor declara SWE-bench Verified 70,6 (vs Qwen3.5-9B 50,8), HLE 18,6, LCR 68,0, Terminal-Bench 2.1 39,1 y tau3-Banking 25,8 en un denso que cabria holgado en 12GB.",
+      "evidencia": [
+        "https://huggingface.co/0xzknw/K2-Horizon-7B-GGUF (Q8_0 8,92GiB / Q6_K 6,89GiB / Q4_K_M 5,21GiB; BF16 16,76GiB; 'not yet in a released upstream llama.cpp build')",
+        "https://huggingface.co/IFM/K2-Horizon-7B-GGUF (publicador: 'PR to llama.cpp is in progress'; fork MBZUAI-IFM/llama.cpp rama model/K2Horizon; benchmark table)",
+        "https://huggingface.co/PollardWeights/K2-Horizon-7B-Pollard (URL NO verificada hoy; la cifra de params se deriva mejor del BF16 16,76GiB de 0xzknw)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "LensVLM-9B (Apple)",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-28",
+      "ultima_mencion": "2026-09-28",
+      "nota": "Apple + Duke, 23-24 sep-2026 (arXiv:2605.07019), 9B BF16 sobre Qwen3.5-9B-Base: lee el documento como miniaturas comprimidas (5x/10x/15x nominal) y expande solo las paginas relevantes con la herramienta aprendida Expand(k); autorreportado 41,9 vs 31,1 de la linea base en MMLongBench-Doc a 15x, y comparable al techo de texto completo a 4,3x. Apple NO publica tamano en disco ni VRAM minima, y sus mediciones de eficiencia usaron 8x B200 (configuracion de medida, no requisito); la fuente externa que cita '4GB+ VRAM / GGUF builds' es un agregador, no Apple. DESCARTADO por dos motivos independientes: (1) licencia Apple Machine Learning Research Model License = solo investigacion no comercial, incompatible con productos del lab; (2) el mecanismo exige el bucle de herramientas de apple-aiml-research/ml-lensvlm: cargando solo los pesos en LM Studio/Ollama NO funciona como VLM de chat.",
+      "evidencia": [
+        "https://localmodelwatch.tsuchitsuchi.com/en/2026/09/28/apple-lensvlm-9b-2 (4GB+ VRAM, GGUF builds, licencia research-only)",
+        "https://groundtruth.day/news/apple-lensvlm-9b-selective-document-context-expansion.html (2026-09-24)",
+        "https://arxiv.org/pdf/2605.07019v1 (paper)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "DeepSeek-V4.1-Flash",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-09-28",
+      "ultima_mencion": "2026-09-28",
+      "nota": "MIT, 10-sep-2026: backbone de 552B (763B con las dos tablas Engram) y arquitectura con atencion dispersa, hyper-connections y MoE; 8B activos en prefill y 16B en decode. GGUF comunitario verificado (smalinin/DeepSeek-V4.1-Flash-GGUF, solo CUDA y solo con su rama propia my_build_deepseek41, compatibilidad con upstream NO declarada): la variante mas pequena ya pesa 335,4GB (Q2_K + Engram Q5_K, 3,58 bpw) y la mayor 508GB (MXFP4, 5,43 bpw). NO cabe en 12GB ni de lejos. Nota adicional: no es un candidato local del lab, es el modelo CLOUD que el lab ya usa facturado como Flash (el ledger registra 'deepseek-v4-flash' = V4.1-Flash, EXP-20260916-007 f2-A-T1, 14-sep).",
+      "evidencia": [
+        "https://huggingface.co/smalinin/DeepSeek-V4.1-Flash-GGUF (verificada: 335,4GB la variante Q2_K+Engram Q5_K; 508GB MXFP4; rama propia my_build_deepseek41, solo CUDA)",
+        "01-knowledge/experiments/EXP-20260916-007-supervision-vs-sesion-directa/f2-A-T1.md (el Flash del lab es este modelo, en cloud)",
+        "La ficha de localmodelwatch para el 10-sep NO se ha podido verificar hoy (ruta reconstruida)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "Cloudflare clef / clef-flash (modelos de decision tipo System One)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-05",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Cloudflare, pesos publicados el 30-sep-2026, Apache-2.0. NO generan texto libre: reciben un estado (texto, JSON, imagen o video) + un esquema de preguntas tipadas y devuelven la probabilidad de cada opcion en un solo forward pass, sin parseo de salida; la API es compatible con Jev y SystemOne (el card dice literalmente 'The Clef-Flash API is fully compatible with Jev and SystemOne'). clef-flash = 9B (base Qwen3.5-9B + su encoder de vision) y clef = 27B (base Qwen3.8-27B, 13 shards). clef NO cabe: ggml-org Q4_K_M 19,23GB y Q8_0 28,73GB; en bartowski solo entra desde IQ2_XS 8,85GB / Q2_K 10,58GB, es decir a ~2 bpw, absurdo para un modelo de decision. clef-flash si cabe holgado: ggml-org/Clef-Flash-GGUF (02-oct) Q4_K_M 6,49GB / Q8_0 9,66GB / BF16 18,16GB, y bartowski/Cloudflare_clef-flash-GGUF (01-oct; 12.661 descargas) desde IQ2_M 3,54GB / Q3_K_M 4,48GB, mas mmproj 0,92GB; 262.144 ctx, imatrix y plantilla con tool calls. SOPORTE verificado hoy por API de GitHub: el PR 29831 de llama.cpp, titulo literal 'model: add support for clef decision model (text-only)', esta MERGEADO desde el 03-oct-2026 -> la via de TEXTO entra en upstream (queda por ver cuando la recogen las versiones que usa el lab); las rutas de imagen/video del GGUF NO las cubre ese PR. tok/s en la A2000: no publicado. Calidad: tabla del propio model card (Decision Index 0.2.1, frente a Jev, DiffusionGemma Jev, Kev 9B y Laya) y la prueba propia de localmodelwatch; sin reproduccion independiente. Rol del lab: no existe rol clasificador en modelos_por_tarea.yaml (el gate/routeo es rule-based, tools/decision_router.py) -> NO entra en cola; es el candidato local mas directo para los futuribles F1/F2 del analisis Jev del 18-sep (System One casero + test de calibracion), que siguen esperando su senal de activacion.",
+      "evidencia": [
+        "https://huggingface.co/Cloudflare/clef-flash (verificado por API: created 2026-09-30, 464 likes, 8.075 descargas, Apache-2.0, image-text-to-text; card: 9B, 262.144 ctx, salida tipada sin texto libre)",
+        "https://huggingface.co/Cloudflare/clef (verificado por API: created 2026-09-30, 1.310 likes, 5.416 descargas, Apache-2.0)",
+        "https://api.github.com/repos/ggml-org/llama.cpp/pulls/29831 (verificado hoy: state closed, merged=true, merged_at 2026-10-03T00:50:49Z, text-only)",
+        "https://huggingface.co/ggml-org/Clef-Flash-GGUF y https://huggingface.co/ggml-org/Clef-GGUF (Q4_K_M 6,49GB y 19,23GB, verificados por API el 05-oct)",
+        "https://huggingface.co/bartowski/Cloudflare_clef-flash-GGUF (IQ2_M 3,54GB ... Q8_0 9,55GB + mmproj 0,92GB) y bartowski/Cloudflare_clef-GGUF (IQ2_XS 8,85GB ... Q2_K 10,58GB)",
+        "Analisis previo del lab sobre el patron: /home/jokoalmi/joko-lab/research/analisis-jev-typesafe-system-one.md (futuribles F1/F2)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "OpenJev / APUS-OpenJev-v1 (clones abiertos de Jev)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-05",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Familia abierta de modelos de decision de un solo paso (misma idea que Jev), publicada entre el 20 y el 30-sep-2026. NO caben: openjev/openjev (27B, cc-by-nc-4.0, card: Q4_K_M ~16,5GB 'para tarjetas de 24GB') ni ggml-org/OpenJev-GGUF (creado 01-oct; cc-by-nc-4.0; Q4_K_M 18,97GB / Q8_0 28,6GB / BF16 53,81GB, verificados por API). SI caben las variantes APUS-OpenJev-v1 (apache-2.0, es decir sin el lastre no comercial), con GGUF publicados el 23-sep y declarados para Ollama, llama.cpp y LM Studio: 4B -> Q4_K_M 2,71GB / Q8_0 4,48GB / BF16 8,42GB (2.234 descargas); 9B -> Q4_K_M 5,63GB / Q8_0 9,53GB / BF16 17,92GB (6.808 descargas). Cifras del publicador (llama-server b11118 en RTX PRO 6000; sin reproduccion independiente): 9B Q8_0 68/80 = 85,00% y Q4_K_M 68/80 = 85,00% sobre su set de 80 preguntas, con imatrix en el Q4; el 27B se declara a 1,4 puntos del Jev hospedado y 3,7 por encima de su propio modelo base, y los GGUF se miden sobre 1.789 preguntas held-out. Se ejecuta en herramientas stock: ollama run hf.co/apus-ailab/APUS-OpenJev-v1-9B-GGUF:Q8_0 --think=false. tok/s en la A2000: no publicado. Mismo encaje que clef: no hay rol clasificador en el lab -> NO entra en cola; queda como la alternativa Apache-2.0 (no NC) para F1/F2 si se activa ese futurible.",
+      "evidencia": [
+        "https://huggingface.co/apus-ailab/APUS-OpenJev-v1-9B-GGUF (verificado por API: Q4_K_M 5,63GB / Q8_0 9,53GB / BF16 17,92GB; tabla 68/80 = 85,00%; llama-server b11118)",
+        "https://huggingface.co/apus-ailab/APUS-OpenJev-v1-4B-GGUF (verificado por API: Q4_K_M 2,71GB / Q8_0 4,48GB / BF16 8,42GB)",
+        "https://huggingface.co/openjev/openjev-GGUF (card: cc-by-nc-4.0, OpenJev-Q4_K_M ~4,8bpw/16,5GB '24 GB cards', llama.cpp b11147) y https://huggingface.co/ggml-org/OpenJev-GGUF (27,4B, cc-by-nc-4.0, Q4_K_M 18,97GB)",
+        "https://huggingface.co/openjev/openjev (card: decision model, 10.000 preguntas held-out, 1,4 puntos tras el Jev hospedado)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "Altworld Hemmingway-1 (27B escritura)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-05",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Altworld, pesos el 20-sep-2026 (verificado por API: 834 likes, 10.205 descargas), licencia cc-by-nc-4.0 = uso no comercial. 27B denso sobre Qwen3.5-27B (config.json verificado hoy: Qwen3_5ForCausalLM, 64 capas, hidden 5120, 262.144 ctx, sin expertos), afinado para prosa que suene escrita por una persona (correo, mensajes, tramites; el card lo resume como 'You get the message, not a memo'). El card declara una comparativa con juez humano propio: 'It finished twenty-six points clear of the next model' y, en peticiones dificiles, 72% para Hemmingway-1 frente a 9% de GPT-6 Astra; cita tambien EQ-Bench 4 (benchmark publico, juez distinto de los juzgados). Son cifras del vendedor, sin reproduccion independiente. GGUF bartowski/Altworld_Hemmingway-1-GGUF (02-oct), verificados: IQ2_XS 9,09GB / IQ2_M 10,52GB / Q2_K 10,82GB / IQ3_XXS 12,32GB / Q3_K_S 12,74GB / Q3_K_M 13,40GB / IQ4_XS 15,48GB / Q4_K_M 17,44GB / Q5_K_M 20,92GB / Q6_K 23,86GB. Conclusion de tamano: en 12GB SOLO entra a 2-3 bits (IQ2_XS 9,09GB o Q3_K_S 12,74GB) y el 4-bit que se usaria de verdad (17,44GB) NO cabe -> se degradaria justo la prosa que lo hace interesante. tok/s en la A2000: no publicado. Rol del lab: redaccion_creatividad ya cubierto por gemma-4-12b-qat; NO entra en cola, y la licencia no comercial es un segundo motivo (el lab publica y monetiza contenido). Reabrir solo si se quiere un 27B de escritura y se acepta medir IQ2_XS/Q3_K_S contra el actual.",
+      "evidencia": [
+        "https://huggingface.co/Altworld/Hemmingway-1 (verificado por API: created 2026-09-20, 834 likes, 10.205 descargas, cc-by-nc-4.0; config.json Qwen3_5ForCausalLM 64 capas / hidden 5120 / 262.144 ctx)",
+        "https://huggingface.co/bartowski/Altworld_Hemmingway-1-GGUF (tamanos verificados por API el 05-oct, de IQ2_XS 9,09GB a Q6_K 23,86GB)",
+        "Card (citas literales): 'It finished twenty-six points clear of the next model'; 'On hard asks, GPT-6 Astra gets 9%. Hemmingway-1 gets 72%'; EQ-Bench 4 como benchmark publico con juez distinto"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "google/DiarizationLM-Gemma-4-E4B-v1",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-05",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Google, pesos el 04-oct-2026, Apache-2.0 (verificado por API: 18 likes, 880 descargas). Gemma 4 E4B afinado para diarizacion y transcripcion (quien habla y cuando), con variantes de nivel palabra/utterance y con/sin timestamps. GGUF OFICIALES dentro del propio repo (verificados por API): DiarizationLM-Gemma-4-E4B-v1-q4_0.gguf 5,15GB y -q4_k_m.gguf 5,30GB -> cabe holgado en 12GB (repo completo 26,5GB con los BF16/safetensors). tok/s en la A2000: no publicado. Encaje: es la primera pieza local que cubriria un rol que HOY NO EXISTE en modelos_por_tarea.yaml (la transcripcion del pipeline de video se hace con whisper en CPU, sin etiquetas de hablante). NO entra en cola: queda OBSERVAR hasta que haya una necesidad real de diarizacion (varios hablantes) en el pipeline de video/transcripcion; ahi seria el primer candidato con GGUF ya publicado por el propio autor.",
+      "evidencia": [
+        "https://huggingface.co/google/DiarizationLM-Gemma-4-E4B-v1 (verificado por API: created 2026-10-04, Apache-2.0, image-text-to-text, GGUF q4_0 5,15GB y q4_k_m 5,30GB dentro del repo)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "allenai/AstaBrief_8B (informe con citas)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-05",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Ai2 (Allen Institute), Apache-2.0, 8B, solo ingles. Convierte una pregunta de investigacion + extractos de literatura recuperados en un informe CON CITAS; entrenado con SFT + DPO offline (card: base_model allenai/AstaBrief_8B_SFT y dataset allenai/AstaBrief_DPO_Mix; la base original no se ha verificado hoy). El repositorio base es antiguo (creado en feb-2026), pero el SFT es del 10-sep y los GGUF de terceros del 02-oct (mradermacher/AstaBrief_8B-GGUF, verificado por API: Q2_K 3,28GB / Q3_K_M 4,12GB / IQ4_XS 4,59GB / Q4_K_M 5,03GB / Q5_K_M 5,85GB; 1.053 descargas) -> entra por cambio material, no por publicacion. Encaje: se parece al flujo RAG + informe del lab, pero en ingles y sobre literatura cientifica; el rol redaccion_datos ya esta cubierto por gemma-4-12b-qat (en espanol y con verificador de fidelidad). tok/s en la A2000: no publicado. NO entra en cola; reabrir solo si se necesita generar informes citados desde el RAG y se acepta trabajar en ingles.",
+      "evidencia": [
+        "https://huggingface.co/allenai/AstaBrief_8B (card verificado: 'turn a research question and retrieved scientific literature excerpts into a cited report', SFT + DPO, Apache-2.0, language en)",
+        "https://huggingface.co/mradermacher/AstaBrief_8B-GGUF (verificado por API: created 2026-10-02, Q4_K_M 5,03GB, 1.053 descargas)",
+        "https://allenai.org/blog/astabrief (referencia del card; NO abierta hoy)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "Aleph-Alpha Kolibri-1",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-10-05",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Aleph Alpha, pesos el 02-oct-2026, Apache-2.0 (verificado por API: 518 likes, 2.453 descargas; repo FP8 de 78,9GB en 32 shards). Card verificado: MoE de 78B totales con 3,46B activos por token, 384 expertos enrutados por capa (6 seleccionados) + 1 compartido, 262.144 tokens nativos (1.048.576 por extrapolacion), pesos float8_e4m3fn. Requisitos declarados en el propio card: 'Model memory footprint: ~78 GB (FP8 weights). Minimum: 2x A100 80GB, 2x H100 SXM5, 1x H200, 1x B200 or 1x B300'. GGUF de terceros (Hob-forge/Kolibri-1-GGUF, 03-oct, verificado por API): Q4_K_M 47,45GB y Q8_0 38,46+44,68GB. NO cabe en 12GB ni con offload util (los 3,46B activos no compensan 47GB de pesos moviendose por RAM). Motivo secundario: tokenizador especializado en estructura del aleman. Descartado sin mas analisis.",
+      "evidencia": [
+        "https://huggingface.co/Aleph-Alpha/Kolibri-1 (verificado por API: created 2026-10-02, Apache-2.0, 518 likes, repo 78,9GB, 32 shards FP8; card: 78B/3,46B activos, tabla de hardware minimo)",
+        "https://huggingface.co/Hob-forge/Kolibri-1-GGUF (verificado por API: Q4_K_M 47,45GB, Q8_0 83,14GB en 2 partes)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "NaiveAI Naive-N0.5-Flash",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-10-05",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "NaiveAI, pesos el 27-sep-2026, licencia MIT (verificado por API: 166 likes, 2.036 descargas). Repositorio de 617,8GB en 49 shards de safetensors (los mayores de 13,09GB cada uno, ~300B a BF16); no hay GGUF verificado hoy. NO cabe en 12GB ni de lejos. Descartado por tamano, sin mas analisis. (Ojo: el nombre se confunde con el modelo base de la familia, que tiene mas likes; aqui se registra solo el -Flash del 27-sep.)",
+      "evidencia": [
+        "https://huggingface.co/NaiveAI/Naive-N0.5-Flash (verificado por API: created 2026-09-27, MIT, 166 likes, 2.036 descargas, repo 617,8GB, 49 shards, sin .gguf)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "ELYZA-Thinking-1.0 (llm-jp-4 32B-A3B / 33B)",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-10-05",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "ELYZA, pesos el 02-oct-2026 (verificado por API: elyza/ELYZA-Thinking-1.0-llm-jp-4-33b y -32b-a3b, Apache-2.0, 8 likes y 466 descargas cada uno; repos base de 64,3GB sin GGUF). Reasoners construidos sobre llm-jp-4, con foco declarado en japones. GGUFs de terceros el 03-oct (mmnga-o, verificados por API): 32B-A3B -> Q3_K_S 15,39GB / Q4_K_M 21,4GB; 33B -> Q3_K_S 14,67GB / Q4_K_M 20,16GB. El build mas pequeno ya pesa 14,67GB, por encima de los 12GB de la A2000 -> NO cabe (ni con los margenes de contexto que se usan en el lab). Motivo secundario: foco japones, sin aportacion al espanol. Descartado por tamano. (La ficha que vi primero, ELYZA-Thinking-1.0-33B a secas, da 401; los repos reales son los de llm-jp-4.)",
+      "evidencia": [
+        "https://huggingface.co/elyza/ELYZA-Thinking-1.0-llm-jp-4-32b-a3b (verificado por API: created 2026-10-02, Apache-2.0, 64,3GB)",
+        "https://huggingface.co/mmnga-o/ELYZA-Thinking-1.0-llm-jp-4-32b-a3b-gguf y -33b-gguf (verificados por API: Q3_K_S 15,39GB y 14,67GB; Q4_K_M 21,4GB y 20,16GB)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "Otros detectados en la ventana 28-sep a 05-oct (sin rol nuevo, sin evidencia independiente)",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-10-05",
+      "ultima_mencion": "2026-10-05",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Bucket para no volver a investigarlos: fastino/GLiNER2.5-Decide (modelo pequeno de etiquetado/decision, 23-sep), SupersonicLabs/Julia-1 (clasificador de texto, 23-sep), PSRben/VisionHOPE (segmentacion de imagen), bartowski/FrogNano-4B-2609-GGUF, bartowski/Lythri_Lythri-4B-A2B-GGUF (MoE 4B) y bartowski/OmniJev_OneJev-9B-GGUF (02-oct). Motivos: los roles que podrian cubrir ya estan cubiertos (vision = glm-4.6v-flash; clasificacion/routeo = rule-based; tool calling/JSON = granite-4.x y MiniCPM5 en cola) y ninguno trae evaluacion de terceros que prometa mejora real. Los tamanos concretos de estos seis NO se han re-verificado hoy, solo su existencia en el indice de tendencias de GGUF; se descartan por rol, no por tamano. Reabrir solo si aparece una necesidad nueva de ese rol con evidencia independiente.",
+      "evidencia": [
+        "Indice semanal de tendencias (localmodelwatch week 1 de octubre 2026) + busqueda en el listado de GGUF de HuggingFace del 05-oct",
+        "No se ha verificado hoy ninguna ficha individual de los seis: solo la presencia en el listado"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "LiquidAI d1-3B / d1-omni-600M (modelos de decision de un solo pase)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-12",
+      "ultima_mencion": "2026-10-12",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Liquid AI. Pesos el 05-oct-2026 (verificado por API: d1-3B 324 likes / 11.866 descargas; d1-omni-600M 110 likes / 10.942 descargas; licencia 'other', NO apache). NO son LLM de texto libre: reciben un estado (texto, JSON, imagen; d1-omni ademas audio) mas un esquema de preguntas tipadas (type/instructions/criteria) y devuelven la probabilidad de cada opcion en un solo forward pass, con CERO tokens de salida. d1-3B = 3,12B segun card, post-entrenado sobre LFM2.5-VL-3B (el VLM que el lab ya tiene en modelos_por_tarea.yaml); d1-omni-600M sobre LFM2.5-Encoder-350M. Card (leida 12-oct): 48,57 en Decision Index 0.2.1, declarado 'best decision model under 10B' y por delante en su propia tabla de Decision 1.0 Lux 9.7B (43,49) y Jet v6.2 4.7B (42,60); 74,1 en 11 benchmarks publicos de imagen. Latencia declarada 8 ms por decision en RTX 4090 en bf16 (mediana de 20 corridas) y 475 decisiones/s; en A2000 no publicado. GGUFs oficiales (verificados con ?blobs=true): Q4_K_M 1,67GB / Q8_0 2,87GB / F16-BF16 5,40GB + mmproj Q8 0,58GB -> cabe holgado en 12GB a 8K. llama.cpp: PR #30110 merged 07-oct (d1-3B) y #30114 merged 08-oct (d1-omni-600M); el soporte de LFM2.5-Encoder-350M/230M llego en el PR #29862 (merged 03-oct). Encaje: el lab no tiene bucket de decision/routeo (hoy rule-based), asi que OBSERVAR y no entra en cola; es la alternativa de 3B al clef-flash de 9B que ya esta OBSERVAR desde el 05-oct, con el mismo tipo de API (Jev/SystemOne).",
+      "evidencia": [
+        "https://huggingface.co/LiquidAI/d1-3B (verificado por API 12-oct-2026: created 2026-10-05, 324 likes, 11.866 descargas, image-text-to-text, license:other, base LFM2.5-VL-3B)",
+        "https://huggingface.co/LiquidAI/d1-omni-600M (verificado por API: created 2026-10-05, 110 likes, 10.942 descargas, base LFM2.5-Encoder-350M)",
+        "https://huggingface.co/LiquidAI/d1-3B-GGUF (verificado con ?blobs=true: created 2026-10-06, 45 likes, 16.778 descargas; Q4_K_M 1,67GB / Q8_0 2,87GB / F16 5,40GB / mmproj-Q8 0,58GB)",
+        "https://huggingface.co/LiquidAI/d1-omni-600M-GGUF (verificado por API: created 2026-10-06, 40 likes, 4.955 descargas)",
+        "https://github.com/ggml-org/llama.cpp/pull/30110 (merged 2026-10-07, 'model : add LiquidAI/d1-3B decision model') y /pull/30114 (merged 2026-10-08, d1-omni-600M)",
+        "model card d1-3B leida 12-oct-2026 (3,12B; Decision Index 0.2.1 48,57; 8 ms/decision RTX 4090 bf16; 475 decisiones/s)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "h2oai/h2o-lightning-4b (v1.1, decision multimodal)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-12",
+      "ultima_mencion": "2026-10-12",
+      "semanas_sin_ejecutar": 0,
+      "nota": "H2O.ai. Pesos el 02-oct-2026, apache-2.0 (verificado por API: 57 likes, 1.578 descargas). Mismo patron que clef/d1: modelo de DECISION sobre un registro (documento, ticket, politica, conversacion) y opcionalmente imagenes; responde preguntas tipadas (choice / noul = si-no / score) con una probabilidad por opcion, un forward pass y UN token de salida. Base Qwen/Qwen3.5-4B, 4B -> cabe de sobra. Card (leida 12-oct): #1 en JevBench v1.6.1 el 07-oct-2026 en el tablon de pesos abiertos con 72,5, por delante del propio Jev (71,5) y de todos los abiertos de 12B, 26B y 31B; corre sobre vLLM 0.30.0 sin modificar mas un shim de 1 fichero. GGUF verificados por API: oficiales h2oai/h2o-lightning-4b-gguf (created 10-oct) con Q4_K_M 2,71GB / Q5_K_M 3,07GB / Q8_0 4,48GB / BF16 8,42GB + mmproj 0,67GB, y h2oai/h2o-lightning-4b-native-gguf (11-oct); de terceros mradermacher/h2o-lightning-4b-GGUF (05-oct, Q4_K_M 2,71GB) y tambien MLX y ONNX. tok/s en A2000: no publicado (la card mide 1 token, no generacion). Encaje: mismo rol de decision que d1-3B, sin bucket en el lab -> OBSERVAR. Ventaja frente a d1-3B: apache-2.0 limpio y mas traccion.",
+      "evidencia": [
+        "https://huggingface.co/h2oai/h2o-lightning-4b (verificado por API 12-oct-2026: created 2026-10-02, 57 likes, 1.578 descargas, apache-2.0, base Qwen/Qwen3.5-4B)",
+        "https://huggingface.co/h2oai/h2o-lightning-4b-gguf (verificado con ?blobs=true: created 2026-10-10; Q4_K_M 2,71GB / Q5_K_M 3,07GB / Q8_0 4,48GB / BF16 8,42GB / mmproj 0,67GB)",
+        "https://huggingface.co/mradermacher/h2o-lightning-4b-GGUF (verificado con ?blobs=true: created 2026-10-05, Q4_K_M 2,71GB), https://huggingface.co/h2oai/h2o-lightning-4b-native-gguf (11-oct)",
+        "https://huggingface.co/h2oai/h2o-lightning-4b/raw/main/README.md (leida 12-oct: #1 JevBench v1.6.1 el 2026-10-07 con 72,5 vs 71,5 de Jev; vLLM 0.30.0 + shim; tipos choice/noul/score)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "autotrust JEV-27B-VL / GEV-26B-Decide / JEV-35B (familia decision de mas traccion)",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-10-12",
+      "ultima_mencion": "2026-10-12",
+      "semanas_sin_ejecutar": 0,
+      "nota": "autotrust. Es la familia de modelos de decision con mas traccion de la semana (verificado por API): JEV-27B-VL created 30-sep, 3.787 likes y 1.550.455 descargas; GEV-26B-Decide created 02-oct, 2.338 likes y 1.025.186 descargas; JEV-35B created 11-oct, 126 likes (+ JEV-35B-NVFP4 el mismo dia). JEV-27B-VL y GEV-26B-Decide son ADAPTADORES (base_model:adapter) sobre bases grandes de otros: Qwen/Qwen3.8-27B (denso 27B) y google/gemma-4-26B-A4B-it respectivamente; JEV-35B si es finetune completo de Qwen/Qwen3.5-35B-A3B. GGUF de terceros ya existen (mradermacher/GEV-26B-Decide-GGUF 03-oct con Q4_K_M 16,80GB / Q3_K_M 13,29GB / IQ4_XS 14,06GB; GGUF de JEV-27B-VL desde el 02-oct; mradermacher/JEV-35B-GGUF creado hoy 12-oct). Motivos del descarte: (1) ninguno cabe nativo en 12GB a 4 bits -el mas pequeno de los tres, el 26B-A4B a Q3_K_M, ya pide 13,29GB y habria que tirar de offload de expertos, como se hace hoy con qwen3.6-35b-a3b (10.686 MiB medidos); (2) el rol -decision tipada- lo cubren d1-3B (Q4_K_M 1,67GB) y h2o-lightning-4b (Q4_K_M 2,71GB) enteros en VRAM y con mas sentido para un lab de una sola GPU. Se registra para NO volver a investigarlo cada semana.",
+      "evidencia": [
+        "https://huggingface.co/autotrust/JEV-27B-VL (verificado por API 12-oct-2026: created 2026-09-30, 3.787 likes, 1.550.455 descargas, apache-2.0, base_model:adapter Qwen/Qwen3.8-27B)",
+        "https://huggingface.co/autotrust/GEV-26B-Decide (verificado por API: created 2026-10-02, 2.338 likes, 1.025.186 descargas, base_model:adapter google/gemma-4-26B-A4B-it)",
+        "https://huggingface.co/autotrust/JEV-35B (verificado por API: created 2026-10-11, 126 likes, 6.262 descargas, finetune de Qwen/Qwen3.5-35B-A3B)",
+        "https://huggingface.co/mradermacher/GEV-26B-Decide-GGUF (verificado con ?blobs=true 12-oct: Q4_K_M 16,80GB / Q4_K_S 15,46GB / IQ4_XS 14,06GB / Q3_K_M 13,29GB)",
+        "https://huggingface.co/mradermacher/JEV-35B-GGUF (verificado por API: created 2026-10-12)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "JetBrains Mellum2.1-12B-A2.5B-Thinking (GGUF oficial nuevo)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-12",
+      "ultima_mencion": "2026-10-12",
+      "semanas_sin_ejecutar": 0,
+      "nota": "JetBrains. Repo base created 20-sep-2026 (107 likes, 1.068 descargas, apache-2.0, base Mellum2-12B-A2.5B-Base) -> el cambio material de la ventana es el GGUF OFICIAL publicado el 07-oct-2026 (verificado por API: 69 likes, 20.646 descargas): MXFP4_MOE 7,03GB / Q4_K_M 8,07GB / Q6_K 10,88GB / Q8_0 12,93GB / BF16 24,31GB. config.json verificado: model_type 'mellum', 28 capas, hidden_size 2304, 64 expertos y 8 por token -> MoE de 12B totales con ~2,5B activos, asi que Q4_K_M y MXFP4 caben en 12GB con contexto de 8K. La arquitectura 'mellum' esta en llama.cpp desde el PR #23966 (merged 02-jun-2026) -> carga con builds actuales, sin PR nuevo. Ojo: NO es un modelo nuevo, es la version 2.1 del Mellum2-12B-A2.5B que ya esta OBSERVAR en este registro desde el 24-ago-2026; lo nuevo es el modo thinking y el GGUF oficial. tok/s en A2000: no publicado. Calidad: no publicado. Encaje: rol codigo (hoy dolphin3.0-llama3.1-8b-cyber-lora-test-v0.2, que tiene 7/7 medido) -> sin medicion comparable no se cambia nada; OBSERVAR.",
+      "evidencia": [
+        "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking-GGUF (verificado con ?blobs=true 12-oct: created 2026-10-07, 69 likes, 20.646 descargas, apache-2.0; MXFP4_MOE 7,03GB / Q4_K_M 8,07GB / Q6_K 10,88GB / Q8_0 12,93GB / BF16 24,31GB)",
+        "https://huggingface.co/JetBrains/Mellum2.1-12B-A2.5B-Thinking (verificado por API: created 2026-09-20, 107 likes, 1.068 descargas)",
+        "config.json del repo base leido 12-oct-2026 (model_type mellum; 28 capas; hidden 2304; 64 expertos, 8 por token)",
+        "https://github.com/ggml-org/llama.cpp/pull/23966 (merged 2026-06-02, 'model: add Mellum architecture')"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "LightOnOCR-3 (4B / 1B / 0.8B) - primer OCR dedicado con GGUF (LightOn)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-12",
+      "ultima_mencion": "2026-10-12",
+      "semanas_sin_ejecutar": 0,
+      "nota": "LightOn (Francia). Generacion nueva de OCR end-to-end: LightOnOCR-3-4B created 06-oct-2026 (73 likes, 3.222 descargas), -1B y -0.8B created 07-oct (21 y 54 likes), apache-2.0, con layout, tablas, formularios y visual grounding (paper arXiv 2601.14251, blog propio, demo en Spaces). config.json verificado: model_type qwen3_5 / Qwen3_5ForConditionalGeneration -> arquitectura ya soportada por llama.cpp. GGUFs de terceros YA publicados el 08-oct (verificados con ?blobs=true): prithivMLmods/LightOnOCR-3-4B-GGUF (2.284 descargas) Q4_K_M 2,71GB + mmproj-q8 0,37GB, Q8_0 4,48GB; prithivMLmods/LightOnOCR-3-0.8B-GGUF Q4_K_M 0,53GB + mmproj 0,12GB; tambien -1B-GGUF y Prathat/...-0.8B-GGUF. Cabe holgado incluso el 4B a Q8_0. tok/s en A2000: no publicado. Calidad: el unico dato es el propio 'Best OCR model' del card, sin reproduccion independiente. Encaje: OCR / documentos, hoy cubierto por glm-4.6v-flash (26,4 tok/s y 9.984 MiB medidos, 7/7); un OCR dedicado de 0,8-4B liberaria VRAM del VLM. OBSERVAR: si el lab necesita OCR por lotes (PDF), este es el primero a medir; no se descarga ni se prueba nada sin OK del usuario.",
+      "evidencia": [
+        "https://huggingface.co/lightonai/LightOnOCR-3-4B (verificado por API 12-oct-2026: created 2026-10-06, 73 likes, 3.222 descargas, apache-2.0, image-text-to-text)",
+        "https://huggingface.co/lightonai/LightOnOCR-3-0.8B y /LightOnOCR-3-1B (verificado por API: created 2026-10-07; 54 y 21 likes)",
+        "https://huggingface.co/prithivMLmods/LightOnOCR-3-4B-GGUF (verificado con ?blobs=true: created 2026-10-08, 2.284 descargas; Q4_K_M 2,71GB / Q8_0 4,48GB / mmproj-q8 0,37GB) y /LightOnOCR-3-0.8B-GGUF (Q4_K_M 0,53GB + mmproj 0,12GB)",
+        "config.json de LightOnOCR-3-4B leido 12-oct-2026 (model_type qwen3_5, Qwen3_5ForConditionalGeneration; card: tags ocr, document-understanding, visual-grounding, tables, forms)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "microsoft/AesCode-8B (codigo HTML/diseno con vision)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-12",
+      "ultima_mencion": "2026-10-12",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Microsoft. Pesos el 29-sep-2026, apache-2.0 (verificado por API: 44 likes, 140 descargas; repo de 17,5GB en 4 shards de safetensors). config.json verificado: qwen3_vl / Qwen3VLForConditionalGeneration, base Qwen/Qwen3-VL-8B-Instruct, afinado con RL para generacion de codigo HTML y diseño (tags: code-generation, html, multimodal, design, reinforcement-learning). GGUF de terceros publicados el 11-oct (bartowski/AesCode-8B-GGUF, 2.072 descargas en un dia; verificados: Q4_K_M 5,21GB / Q8_0 8,71GB / mmproj bf16 1,16GB / bf16 16,39GB) y tambien hay AesCode-32B, su GGUF y una version MLX del 12-oct -> el 8B entra en 12GB a Q4-Q5 sin problema. tok/s en A2000: no publicado. Calidad: el card NO da numeros comparables, solo ejemplos. Encaje: rol codigo (hoy dolphin3.0-llama3.1-8b-cyber-lora-test-v0.2, 7/7 y 29,8 tok/s medidos). OBSERVAR y no PROBAR porque es un especialista de HTML/diseño, no de codigo general, y no hay medicion que prometa mejora sobre el inventario.",
+      "evidencia": [
+        "https://huggingface.co/microsoft/AesCode-8B (verificado por API 12-oct-2026: created 2026-09-29, 44 likes, 140 descargas, apache-2.0, base_model:finetune Qwen/Qwen3-VL-8B-Instruct; safetensors 17,5GB)",
+        "config.json leido 12-oct-2026 (qwen3_vl, Qwen3VLForConditionalGeneration)",
+        "https://huggingface.co/bartowski/AesCode-8B-GGUF (verificado con ?blobs=true: created 2026-10-11, 9 likes, 2.072 descargas; Q4_K_M 5,21GB / Q5_K_M 6,24GB / Q8_0 8,71GB / mmproj 1,16GB)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "google/embeddinggemma-2 (embeddings multimodales, GGUF + soporte llama.cpp)",
+      "estado": "OBSERVAR",
+      "primera_aparicion": "2026-10-12",
+      "ultima_mencion": "2026-10-12",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Google. Repo base created 14-sep-2026 (fuera de la ventana; verificado por API: 1.836 likes, 115.763 descargas, apache-2.0, feature-extraction, 1,49GB en safetensors ~300M) -> el cambio material de la ventana es doble: soporte en llama.cpp (PR #30054, merged 06-oct, 'model: support embeddinggemma2 (text+vision+audio)') y GGUFs el 06-oct: ggml-org/embeddinggemma-2-GGUF (48 likes, 25.441 descargas; BF16 0,56GB / Q8_0 0,31GB / mmproj BF16 0,98GB / mmproj Q8 0,55GB) y unsloth/embeddinggemma-2-GGUF (272 likes, 71.914 descargas). Es un EMBEDDING multimodal (texto + imagen + audio + video) y multilingue. Encaje: el lab indexa el RAG con bge-m3 y nomic-embed-text-v1.5 (modelos_por_tarea.yaml); un embedding multimodal abriria indexar imagenes/audio en el mismo espacio vectorial. OBSERVAR porque cambiar el embedding obliga a re-indexar (~21K filas en LanceDB) y eso es decision del usuario, no del cron. tok/s: no aplica (es embedding, no generacion); en A2000, no publicado.",
+      "evidencia": [
+        "https://huggingface.co/google/embeddinggemma-2 (verificado por API 12-oct-2026: created 2026-09-14, 1.836 likes, 115.763 descargas, apache-2.0, feature-extraction, 1,49GB en safetensors)",
+        "https://huggingface.co/ggml-org/embeddinggemma-2-GGUF (verificado con ?blobs=true: created 2026-10-06, 48 likes, 25.441 descargas; BF16 0,56GB / Q8_0 0,31GB / mmproj BF16 0,98GB)",
+        "https://huggingface.co/unsloth/embeddinggemma-2-GGUF (verificado por API: created 2026-10-06, 272 likes, 71.914 descargas)",
+        "https://github.com/ggml-org/llama.cpp/pull/30054 (merged 2026-10-06, 'model: support embeddinggemma2 (text+vision+audio)')"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "Bucket otros detectados (09-oct a 12-oct): resto de la familia decision, variantes y sin rol nuevo",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-10-12",
+      "ultima_mencion": "2026-10-12",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Bucket para no volver a investigarlos. Resto de la familia decision/typed-decisions de la ventana, sin bucket en el lab y peor encaje que d1-3B o h2o-lightning-4b: pplx-decider de perplexity-ai (soporte en llama.cpp PR #30044 merged 06-oct); vllm-sr/d3 (created 10-oct, 70 likes, 420 descargas, apache-2.0, finetune de Qwen/Qwen3.8-27B) y vllm-sr/Vela-2.0-9B (02-oct, sobre Decision-2.0-Lux-9B); neuphonic/neudecide (06-oct, 67 likes, audio-classification); PR #29844 merged 02-oct (nimble decision model); PR #29818 merged 02-oct (API /v1/systemone: laya, julia-1, lev, openjev, kev). Otros: ConwayResearch/Underdog-Saluki-27B-1.0 (created 08-oct, 345 likes, 242.329 descargas) es un port a IQ2 2-bit con imatrix sobre ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF -> variante de una entrada que YA esta PENDIENTE en este registro, no candidato nuevo; MiniCPM-V 4.7 (el soporte entro en llama.cpp, PR #29416 merged 10-oct, pero los pesos NO estan publicados de forma verificable -> no evaluable); tencent/Youtu-Parsing-Omni (09-oct, 82 likes, arquitectura propia youtu_vita sin soporte en llama.cpp y sin GGUF propio, solo un MLX de terceros del 11-oct); Cloudflare/clef-omni (09-oct, 105 likes, finetune de Qwen3-Omni-30B-A3B -> familia clef ya OBSERVAR). Tamanos concretos de este bucket NO re-verificados hoy: se descartan por rol o por familia ya registrada, no por tamano.",
+      "evidencia": [
+        "https://github.com/ggml-org/llama.cpp/pull/30044 (merged 2026-10-06, 'models: support pplx-decider'); /pull/29844 (merged 2026-10-02, nimble); /pull/29818 (merged 2026-10-02, /v1/systemone: laya, julia-1, lev, openjev, kev)",
+        "https://huggingface.co/vllm-sr/d3 (verificado por API 12-oct-2026: created 2026-10-10, 70 likes, 420 descargas, base Qwen/Qwen3.8-27B) y https://huggingface.co/vllm-sr/Vela-2.0-9B (02-oct)",
+        "https://huggingface.co/neuphonic/neudecide (verificado por API: created 2026-10-06, 67 likes, 460 descargas)",
+        "https://huggingface.co/ConwayResearch/Underdog-Saluki-27B-1.0 (verificado por API: created 2026-10-08, 345 likes, 242.329 descargas, base_model:quantized ISTA-DASLab/Qwen3.8-27B-GSQ-RCO-GGUF)",
+        "https://huggingface.co/tencent/Youtu-Parsing-Omni (verificado por API: created 2026-10-09, 82 likes, 741 descargas) y https://huggingface.co/Cloudflare/clef-omni (created 2026-10-09, 105 likes, finetune de Qwen/Qwen3-Omni-30B-A3B-Instruct)"
+      ],
+      "avisado": false
+    }
+  ]
+}

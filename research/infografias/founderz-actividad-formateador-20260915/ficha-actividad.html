@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Actividad — Formateador de catálogos de perfumes (n8n + IA local)</title>
+<style>
+  @page { size: A4; margin: 10mm 10mm 9mm 10mm; }
+  :root{
+    --crema:#F5F0E8; --tinta:#1f2430; --suave:#5a6472;
+    --verde:#2a9d5f; --azul:#2b6cb0; --rojo:#c0563c; --violeta:#6b46c1; --ambar:#b7791f;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--crema);color:var(--tinta);
+       font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:12.4px;line-height:1.4}
+  .pagina{width:188mm;margin:0 auto;padding:4mm 0 6mm}
+  @media screen{ .pagina{width:1120px;padding:26px 0 40px} body{font-size:15px} }
+
+  header{border-bottom:3px solid var(--tinta);padding-bottom:8px;margin-bottom:12px}
+  .marca{display:inline-block;background:var(--tinta);color:#fff;font-size:10.5px;font-weight:700;
+         letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:999px}
+  h1{font-size:22px;margin:8px 0 2px;line-height:1.15}
+  .sub{color:var(--suave);font-size:12.6px}
+  .meta{margin-top:5px;color:var(--suave);font-size:11.2px}
+
+  h2{font-size:13.5px;text-transform:uppercase;letter-spacing:.06em;margin:16px 0 7px;
+     padding-bottom:3px;border-bottom:1.4px solid #d8d2c6}
+  h2 .n{color:var(--ambar);margin-right:5px}
+  p{margin:0 0 7px}
+  ul{margin:0 0 7px 16px;padding:0}
+  li{margin-bottom:3px}
+
+  .rejilla{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .panel{background:#fffdf8;border:1.4px solid #ddd6c9;border-radius:9px;padding:9px 11px}
+  .panel.h{background:#e8f4ec;border-color:var(--verde)}
+  .panel.b{background:#e9f1fa;border-color:var(--azul)}
+  .panel.r{background:#faece9;border-color:var(--rojo)}
+  .panel.v{background:#f2ecff;border-color:var(--violeta)}
+  .panel h3{margin:0 0 5px;font-size:12.4px;text-transform:uppercase;letter-spacing:.05em}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 2px}
+  .chip{font-size:10.8px;font-weight:700;padding:2px 8px;border-radius:999px;background:#fff;
+        border:1.4px solid var(--azul);color:var(--azul)}
+  .chip.r{border-color:var(--rojo);color:var(--rojo)}
+  .chip.v{border-color:var(--violeta);color:var(--violeta)}
+
+  .flujo{display:flex;flex-direction:column;gap:5px;margin-top:4px}
+  .fila{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+  .nodo{border:1.5px solid var(--azul);background:#e9f1fa;border-radius:7px;padding:4px 8px;
+        font-size:11.2px;font-weight:600;white-space:nowrap}
+  .nodo s{display:block;font-weight:400;font-size:9.8px;color:var(--suave);text-decoration:none}
+  .nodo.ent{border-color:var(--ambar);background:#fdf3e7}
+  .nodo.ia{border-color:var(--violeta);background:#f2ecff}
+  .nodo.guard{border-color:var(--rojo);background:#faece9}
+  .nodo.sal{border-color:var(--verde);background:#e8f4ec}
+  .fl{color:#98a1b0;font-weight:700;font-size:13px}
+  .etq{font-size:10.2px;font-weight:700;color:var(--suave);text-transform:uppercase;letter-spacing:.05em;
+       min-width:96px}
+  .caja-bucle{border:1.6px dashed var(--violeta);border-radius:9px;padding:7px;background:#fbf8ff}
+  .nota-bucle{font-size:10.4px;color:var(--violeta);font-weight:700}
+
+  table{width:100%;border-collapse:collapse;margin-top:3px}
+  th,td{text-align:left;padding:4px 6px;border-bottom:1px solid #e3dccf;font-size:11.4px;vertical-align:top}
+  th{background:#efeade;font-size:10.8px;text-transform:uppercase;letter-spacing:.04em}
+  td:first-child{font-weight:700;white-space:nowrap}
+
+  pre{background:#20242e;color:#e8e6df;border-radius:8px;padding:8px 10px;font-size:10.6px;
+      line-height:1.35;white-space:pre-wrap;margin:4px 0 6px;font-family:"JetBrains Mono",Consolas,monospace}
+  code{font-family:"JetBrains Mono",Consolas,monospace;font-size:11px;background:#efeade;padding:1px 4px;border-radius:4px}
+
+  footer{margin-top:14px;border-top:1.4px solid #d8d2c6;padding-top:7px;color:var(--suave);font-size:10.6px}
+</style>
+</head>
+<body>
+<div class="pagina">
+
+<header>
+  <span class="marca">Joko Lab · n8n + IA local</span>
+  <h1>Automatizar un proceso real: formateador de catálogos de perfumes</h1>
+  <div class="sub">De un PDF de proveedor (con texto o escaneado) a un listado limpio en PDF, enviado por WhatsApp.</div>
+  <div class="meta"><strong>Autor:</strong> Joseba &nbsp;·&nbsp; <strong>Entrega:</strong> 15 de septiembre de 2026 &nbsp;·&nbsp;
+  <strong>Workflow:</strong> n8n «Formateador sterling LINUX v2 bifurcacion (prueba)» — 23 nodos &nbsp;·&nbsp; <strong>Estado:</strong> en pruebas (active = 0)</div>
+</header>
+
+<h2><span class="n">1</span> El proceso elegido</h2>
+<div class="rejilla">
+  <div class="panel">
+    <p>Cada proveedor manda su hoja de precios en PDF, unas veces con texto seleccionable y otras como escaneo o foto.
+    Hay que extraer producto a producto —<strong>marca, modelo, sexo, tipo, tamaño y precio</strong>— y montar un listado
+    limpio para el cliente.</p>
+    <p style="margin-bottom:0">A mano: transcribir línea por línea, con el OCR partiendo líneas, confundiendo letras
+    (Bvlgari → «Bvigari», Gucci → «ucci», 55 € → «B5E») y colando líneas que no son producto.</p>
+  </div>
+  <div class="panel h">
+    <h3>Por qué encaja en el enunciado</h3>
+    <div class="chips"><span class="chip">Repetitivo</span><span class="chip r">Frágil</span><span class="chip v">Varias herramientas</span></div>
+    <ul style="margin-bottom:0">
+      <li><strong>Repetitivo:</strong> mismo trabajo con cada catálogo nuevo.</li>
+      <li><strong>Frágil:</strong> un fallo de transcripción = un precio mal enviado al cliente.</li>
+      <li><strong>Multi-herramienta:</strong> PDF, OCR, limpieza, IA, validación, maquetación y mensajería.</li>
+    </ul>
+  </div>
+</div>
+
+<h2><span class="n">2</span> Herramientas y servicios implicados</h2>
+<table>
+  <tr><th>Herramienta / servicio</th><th>Para qué se usa en el flujo</th></tr>
+  <tr><td>n8n</td><td>Orquestador del proceso completo; es donde vive el workflow (23 nodos).</td></tr>
+  <tr><td>Stirling-PDF</td><td>Extraer el texto del PDF, hacer OCR cuando es un escaneo (force-ocr, español + inglés) y convertir el HTML final en PDF.</td></tr>
+  <tr><td>pdf-cleaner</td><td>Preprocesar el PDF <em>antes</em> del OCR para que el OCR acierte más.</td></tr>
+  <tr><td>Ollama + qwen2.5:7b</td><td>Modelo de IA local que lee cada línea y devuelve los campos en JSON. Corre en mi equipo, con GPU.</td></tr>
+  <tr><td>Docker Compose</td><td>Todo el stack (n8n, Stirling-PDF, pdf-cleaner, Ollama) en contenedores locales.</td></tr>
+  <tr><td>Ficheros</td><td>Entrada <code>/files/VENTAS/CONVERTIR/*</code> → salida <code>/files/VENTAS/SALIDA/catalogo_perfumes_&lt;fecha&gt;.pdf</code>.</td></tr>
+  <tr><td>WhatsApp Cloud API</td><td>Subida del PDF (Graph API v25.0) y envío del documento al cliente.</td></tr>
+</table>
+
+<h2><span class="n">3</span> Cómo funciona el flujo (orden real de los 23 nodos)</h2>
+<div class="flujo">
+  <div class="fila"><span class="etq">Entrada</span><span class="nodo ent">Carpeta VENTAS/CONVERTIR<s>lee el PDF depositado</s></span></div>
+  <div class="fila"><span class="fl">↓</span><span class="nodo">¿Trae texto?<s>Stirling-PDF · extrae texto nativo</s></span><span class="fl">→</span>
+      <span class="nodo guard">IF «¿PDF con texto nativo?»<s>texto_length &gt; 200</s></span></div>
+  <div class="fila"><span class="etq">Rama SÍ</span><span class="nodo">Code in JavaScript2<s>normaliza el texto</s></span></div>
+  <div class="fila"><span class="etq">Rama NO<br>(escaneo)</span>
+      <span class="nodo">pdf-cleaner<s>/preprocess-ocr</s></span><span class="fl">→</span>
+      <span class="nodo">Stirling-PDF OCR<s>/misc/ocr-pdf · spa,eng</s></span><span class="fl">→</span>
+      <span class="nodo">Reparar texto<s>Stirling-PDF · convert/pdf/text</s></span><span class="fl">→</span>
+      <span class="nodo">Code OCR → JavaScript2<s>une y limpia</s></span></div>
+  <div class="fila"><span class="fl">↓</span><span class="nodo">Prepara las lineas para IA<s>recompone líneas partidas por el OCR</s></span>
+      <span class="fl">→</span><span class="nodo guard">FILTRO PRODUCTOS VALIDOS<s>solo EDT/EDP/EDC/Parfum + tamaño ml</s></span></div>
+  <div class="fila"><span class="fl">↓</span><span class="nodo">Loop Over Items1<s>recorre las líneas válidas, una a una</s></span></div>
+  <div class="caja-bucle">
+    <div class="fila"><span class="nota-bucle">BUCLE · por cada línea</span>
+      <span class="nodo ia">HTTP Request2 → Ollama<s>qwen2.5:7b · extrae campos en JSON</s></span><span class="fl">→</span>
+      <span class="nodo">Calcula precios<s>lee el precio impreso + valida, y vuelve al bucle</s></span></div>
+    <div class="fila"><span class="nota-bucle">si la IA falla</span>
+      <span class="nodo guard">PREPARA ERRORES IA<s>recoge el fallo</s></span><span class="fl">→</span>
+      <span class="nodo guard">errores_ia_&lt;fecha&gt;.json<s>trazabilidad, no se descarta nada</s></span></div>
+  </div>
+  <div class="fila"><span class="fl">↓</span><span class="etq">Fin del bucle</span>
+      <span class="nodo sal">Junta los perfumes<s>agrupa todas las líneas</s></span><span class="fl">→</span>
+      <span class="nodo sal">crea listado en HTML<s>tabla marca/modelo/sexo/tipo/tamaño/precio</s></span></div>
+  <div class="fila"><span class="fl">↓</span><span class="nodo sal">HTML a PDF<s>Stirling-PDF</s></span><span class="fl">→</span>
+      <span class="nodo sal">guarda PDF<s>SALIDA/catalogo_perfumes_fecha.pdf</s></span><span class="fl">→</span>
+      <span class="nodo sal">upload media<s>Graph API v25.0</s></span><span class="fl">→</span>
+      <span class="nodo sal">Send document message<s>WhatsApp al cliente</s></span></div>
+</div>
+
+<h2><span class="n">4</span> Dónde entra la IA y cómo se controla</h2>
+<div class="rejilla">
+  <div class="panel v">
+    <h3>Nodo HTTP Request2 → Ollama</h3>
+    <p><code>POST http://ollama:11434/api/generate</code><br>
+    modelo <strong>qwen2.5:7b</strong> · <code>stream: false</code> · una petición por línea</p>
+    <p style="margin-bottom:0">Prompt literal (extracto íntegro de sus reglas):</p>
+    <pre>Extrae los campos de esta línea OCR de un catálogo de perfumes.
+
+Devuelve solo JSON válido. No markdown. No explicación.
+
+Formato:
+{"filas":[{"linea_original":"","marca":"","modelo":"",
+"sexo":"","tipo":"","tamano":""}]}
+
+Reglas:
+- Devuelve una sola fila.
+- linea_original debe copiar exactamente la línea recibida,
+  incluyendo precios y símbolos €.
+- No calcules precios.
+- No devuelvas pvr.
+- No devuelvas descuento.
+- No devuelvas precio.
+- Si contiene "teint de neige", devuelve {"filas":[]}.
+- sexo: man, woman o unisex.
+- tipo: EDC, EDT o EDP.
+- tamano: 50ml, 90ml, 100ml, 125ml, 150ml, 180ml, etc.
+- No inventes datos.
+
+Línea OCR:
+{{$json.texto}}</pre>
+  </div>
+  <div class="panel">
+    <h3>Los tres guardarraíles</h3>
+    <ul>
+      <li><strong>Antes de la IA — bifurcación por calidad:</strong> si el PDF ya trae texto se usa; si es escaneo, se limpia, se hace OCR y se repara el texto. No se le da a la IA un texto malo si se puede arreglar.</li>
+      <li><strong>Preparación y filtro:</strong> se recomponen las líneas que el OCR ha partido (el precio suele caer en la línea siguiente) y solo pasan las que parecen producto (EDT/EDP/EDC/Parfum + tamaño en ml).</li>
+      <li><strong>Después de la IA — validación, no invención:</strong> el precio se <em>lee</em> de la línea (no se calcula ni se estima), se corrigen precios deformados por el OCR («B5E» → «55 €») y se marcan para revisión los casos raros (precio ≥ 600 € o precio &gt; PVR).</li>
+    </ul>
+    <p style="margin-bottom:0"><em>La IA se usa donde aporta (leer texto sucio y clasificar campos) y se le quitan de encima las decisiones que no debe tomar: calcular, suponer o rellenar huecos.</em></p>
+  </div>
+</div>
+
+<h2><span class="n">5</span> Valor que aporta automatizar este proceso</h2>
+<div class="rejilla">
+  <div class="panel b">
+    <ul style="margin-bottom:0">
+      <li><strong>Quita un trabajo manual repetitivo:</strong> de transcribir productos a una sola acción (dejar el PDF).</li>
+      <li><strong>Menos errores:</strong> cuando el dato no está claro, la línea se marca para revisión en vez de inventarse.</li>
+      <li><strong>Trazable:</strong> los fallos de la IA quedan en <code>errores_ia_&lt;fecha&gt;.json</code>.</li>
+    </ul>
+  </div>
+  <div class="panel b">
+    <ul style="margin-bottom:0">
+      <li><strong>El dato no sale de casa:</strong> la IA es local (Ollama), los precios de proveedor no van a la nube y no hay coste por token.</li>
+      <li><strong>Reutilizable:</strong> cambiando el prompt sirve para otras listas con marca/modelo/tamaño.</li>
+      <li><strong>Medición pendiente:</strong> aún no he cronometrado «antes» vs «después»; no pongo una cifra que no he medido.</li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <strong>Verificación:</strong> datos leídos del propio workflow y de la base de datos de n8n el 15-09-2026 a las 18:54 CEST —
+  23 nodos · 1 IF de bifurcación · IA local qwen2.5:7b · ramas de error a fichero · 17 ejecuciones registradas (04-09-2026).
+  Construido por mí, con asistencia de mi agente de IA local para la parte de código y depuración.
+  En este documento no se incluyen credenciales ni tokens del workflow.
+</footer>
+
+</div>
+</body>
+</html>

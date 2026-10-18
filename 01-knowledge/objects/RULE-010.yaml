@@ -1,0 +1,70 @@
+id: RULE-010
+type: RULE
+status: activo
+version: 1
+created: 2026-08-07
+last_validated: 2026-08-07
+next_review: 2026-11-07
+expires: 2027-02-07
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-08-07T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-07T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-08-07T00:00:00Z
+sources:
+  - resource: research/mission-contract-diseno.md
+title: "Activar el Mission Runner solo cuando la misión lo REQUIERA"
+desc: >
+  Ante una solicitud de tipo orquestacion (pipeline, misión, caso
+  multi-fase), decidir el motor de ejecución por PROPIEDADES de la misión,
+  no por número de fases. El Mission Runner solo se activa si la misión
+  REQUIERE al menos una de: estado compartido entre fases, backtracking,
+  reintentos semánticos, ramas condicionales, paralelismo real o
+  checkpoints. Si ninguna se requiere, la misión es un pipeline lineal y se
+  ejecuta con el mecanismo actual, sin Runner. Motor por misión: n8n para
+  misiones que ya viven en workflows existentes; Python para lo que n8n no
+  cubre (LM Studio, RAG, delegación, archivos).
+confidence: 0.8
+confidence_label: ALTA
+evidence: [research/mission-contract-diseno.md]
+dependencies: [RULE-001]
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: misiones_que_requieren_runner_vs_activas
+  baseline: null
+  current: null
+  last_checked: null
+history:
+  - date: 2026-08-07
+    event: created
+    note: >
+      Borrador propuesto (paso 5 de mission-contract-diseno); validado
+      contra el caso Indra 2026 (6/6 propiedades requeridas). Motor
+      propuesto y aprobado: Python para el caso Indra.
+  - date: 2026-08-07
+    event: adoptada
+    note: >
+      Aprobada por Joseba (KVC, 07-ago). Pasos 4-5 del Mission Contract
+      cerrados: motor por misión (n8n para workflows existentes, Python
+      para lo que n8n no cubre) y RULE de activación por propiedades.
+legacy_fields:
+  condicion:
+    tipo_tarea: [orquestacion]
+    keywords: [misión, pipeline, fases, caso, orquestar]
+  accion:
+    accion: decidir_motor_por_propiedades
+    params:
+      runner_requerido: [estado_compartido, backtracking, retries_semanticos,
+        ramas_condicionales, paralelismo, checkpoints]
+      matiz: "la misión lo REQUIERE, no 'podría tenerlo'"
+  prioridad: 80
+  canal: no_engine
+  canal_nota: >
+    Regla de gobernanza de ejecución; su canal es la decisión del
+    Router/clasificador de misiones, no el Activation Engine de modelos.

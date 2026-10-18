@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "abstract minimalist backdrop for an editorial perfume card, warm medium-tone plaster wall in soft antique beige and muted terracotta, gentle autumn morning window light raking from the left, soft diagonal shadow bands, smooth matte surface with fine grain, calm quiet still-life background, uncluttered empty surface, muted warm mid-tone palette, no bright white areas",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 36.0,
+  "bytes": 1659385
+}

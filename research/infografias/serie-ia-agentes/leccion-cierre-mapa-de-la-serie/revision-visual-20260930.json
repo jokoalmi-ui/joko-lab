@@ -1,0 +1,62 @@
+{
+  "fecha": "2026-09-30T22:59:49+0200",
+  "modelo": "glm-4.6v-flash",
+  "slides": [
+    {
+      "slide": "slide-1-portada.png",
+      "huella": "82bb412aeca7",
+      "segundos": 14.5,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 35.1,
+      "control": "TITULAR: EL MAPA DE LA SERIE\nPIE: 6 NIVELES · 8 PIEZAS"
+    },
+    {
+      "slide": "slide-2-que-es.png",
+      "huella": "ae9fc0a25f65",
+      "segundos": 12.7,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 27.1,
+      "control": "TITULAR: SEIS NIVELES, UNA ESCALERA\nPIE: NO LEGIBLE"
+    },
+    {
+      "slide": "slide-3-como-funciona.png",
+      "huella": "ed4cce68d4e6",
+      "segundos": 8.8,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 38.6,
+      "control": "TITULAR: QUÉ TE LLEVAS DE CADA UNA  \nPIE: Ocho piezas, una idea cada una. Ninguna pide programar: piden leerlas en orden."
+    },
+    {
+      "slide": "slide-4-confusion.png",
+      "huella": "8d744e64cbbc",
+      "segundos": 13.0,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 13.5,
+      "control": "TITULAR: EMPEZAR POR EL FINAL\nPIE: El orden de la serie no es un temario: es el orden en el que aparecen los atascos."
+    },
+    {
+      "slide": "slide-5-ejemplo.png",
+      "huella": "f269d554f5d6",
+      "segundos": 12.6,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 12.0,
+      "control": "TITULAR: UNA TAREA, SEIS CAPAS\nPIE: La misma tarea existe en el nivel 0 y en el nivel 5. Lo que cambia es lo que se cae por el camino."
+    },
+    {
+      "slide": "slide-6-dato.png",
+      "huella": "6dfbd765edf8",
+      "segundos": 16.3,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 34.6,
+      "control": "TITULAR: LA SERIE EN NÚMEROS  \nPIE: MEDICIONES PROPIAS · IBM/GRANITE4.2:8B EN OLLAMA (LOCAL) · 14-SEP / 27-SEP / 30-SEP-2026 · CRUDO EN LA CARPETA DE CADA PIEZA"
+    },
+    {
+      "slide": "slide-7-cierre.png",
+      "huella": "1cdd86c54b3d",
+      "segundos": 11.7,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 15.2,
+      "control": "TITULAR: POR DÓNDE EMPEZAR\nPIE: FIN DE LA SERIE · 8 PIEZAS + ESTE MAPA"
+    }
+  ]
+}

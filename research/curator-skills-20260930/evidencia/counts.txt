@@ -1,0 +1,30 @@
+== A. recuentos reales ==
+RULE-*.yaml: 18
+OBS-*.md: 151
+== B. hermes curator ledger (cabecera = mas recientes) ==
+id             when         actor    action       skill
+cf20efc7a56a   8m ago       curator  patch        instagram-content-extraction
+3ca9cc439b60   9m ago       curator  write_file   instagram-content-extraction
+c3465395d5b0   55m ago      curator  patch        instagram-content-extraction
+6d0628846032   55m ago      curator  patch        instagram-content-extraction
+cd305b14d53c   20h ago      curator  patch        instagram-content-extraction
+== C. blob previo del SKILL.md en .curator_backups/blobs ==
+2709
+1
+a46ea2e62ab74404013da70da66fde6ef7cf714d373a91022300726b964d72e6
+== D. rechazos del curador HOY ==
+/home/jokoalmi/.hermes/logs/agent.log:11263:2026-09-30 07:59:28,572 WARNING [20260930_075730_2a2da5] agent.tool_executor: Tool skill_manage returned error (0.01s): {"success": false, "error": "Refusing background curator patch for skill 'diagnostico-stack-local': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous c
+/home/jokoalmi/.hermes/logs/agent.log:11846:2026-09-30 08:16:43,523 WARNING [20260930_081345_8bfd11] agent.tool_executor: Tool skill_manage returned error (0.01s): {"success": false, "error": "Refusing background curator patch for skill 'diagnostico-stack-local': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous c
+/home/jokoalmi/.hermes/logs/agent.log:12238:2026-09-30 08:32:36,664 WARNING [20260930_082853_1bc4c3] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'perfume-del-dia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation.
+/home/jokoalmi/.hermes/logs/agent.log:12257:2026-09-30 08:33:01,586 WARNING [20260930_082853_1bc4c3] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'perfume-ia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous curation. Run 
+/home/jokoalmi/.hermes/logs/agent.log:12506:2026-09-30 09:05:45,474 WARNING [20260930_090308_e79384] agent.tool_executor: Tool skill_manage returned error (0.02s): {"success": false, "error": "Refusing background curator patch for skill 'joko-lab/perfume-del-dia': the skill is not curator-managed (created_by=None). User-owned skills are off-limits to autonomous 
+== E. md5 PRE de los intocables ==
+e934c338644c298e07456e32cbf432f8  04-operations/backlogs/pendientes.md
+c651ce2e23902691c7717cc891750ab9  01-knowledge/objects/RULE-018.yaml
+f813f884c349b0ab93805b38d63e3c7a  /home/jokoalmi/.hermes/skills/media/instagram-content-extraction/SKILL.md
+e16fe984fb41d2f618c18388cfa87aef  /home/jokoalmi/.hermes/skills/media/instagram-content-extraction/references/veredicto-y-cruce-con-el-lab.md
+== F. git: HEAD y estado ==
+f116537 backlog: cierre 30-sep - triaje de los 4 posts IG elegidos (1 ya en el lab, 2 validaciones, 1 sin entrada) + futurible WikiSkill (PURPOSE.md y skill-impact.md = 0 ficheros)
+11
+== G. hora ==
+16:24:06 CEST

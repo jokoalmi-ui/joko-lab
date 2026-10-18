@@ -1,0 +1,9 @@
+id: PROP-20260903-004
+fecha: 2026-09-03T08:45:37
+tipo: activacion
+id: "RULE-015"
+problema: RULE nunca activada en activation-ledger
+accion_sugerida: revisar si sigue vigente o si falta su punto de activacion (no eliminar sin evidencia)
+fuente: activation-ledger
+estado: propuesta
+decision: pendiente

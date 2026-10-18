@@ -1,0 +1,10 @@
+id: PROP-20260805-015
+fecha: 2026-08-05T22:46:39
+tipo: activacion
+id: "RULE-009"
+problema: RULE nunca activada en activation-ledger
+accion_sugerida: revisar si sigue vigente o si falta su punto de activacion (no eliminar sin evidencia)
+fuente: activation-ledger
+estado: descartada
+decision: falso positivo: activation-ledger SI registra RULEs (model_selection/blocks); bug de lectura del proposer corregido. RULEs joko-lab se aplican en trabajo diario, no via DE. RULE-006 en draft (se valida via PROP-001)
+decision_fecha: 2026-08-05T23:09:01

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!--
+  ══════════════════════════════════════════════════════════════════════
+  PLANTILLA FICHA DEL DÍA v5 — validada 02-sep-2026 (Acqua di Sale, C4)
+  Diseño editorial: UNA columna, SIN cajas/contenedores, secciones numeradas
+  01-04 con color semántico, frasco como FIGURA recortada (transparencia real,
+  sin marco) + sombra de silueta + reflejo, pirámide olfativa como PRISMAS 3D
+  (SVG generado por JS, capas de ancho creciente hacia abajo), rating con
+  estrellas proporcionales, iconos SVG (NUNCA emojis en títulos).
+
+  CÓMO USARLA (flujo de la skill perfume-del-dia, formato v5):
+  1. Copiar a research/infografias/perfume-del-dia-YYYYMMDD/ como
+     perfume_del_dia_v5_<slug>.html
+  2. Assets en el MISMO directorio:
+     - <slug>_fondo.png        (ComfyUI, Paso 4B)
+     - <slug>_figura.png       (recorte: python3 ~/joko-lab/tools/recortar_frasco.py <packshot> <slug>_figura.png)
+     - qr_fragrantica.png      (Paso 3/5)
+  3. Sustituir: .fecha-sep, .sello, .casa, h1, .sub, .dh (datos hero),
+     estrellas (rating + votos), bloques de la pirámide (script: capas[] con
+     w/colores/notas — mantener 3 capas y etiquetas SALIDA/CORAZÓN/FONDO),
+     inspiración, alternativas (.alt-item ×3), cita, .pie (clima/sprays),
+     .nota-fondo. NUNCA meter datos personales (ficha pública).
+  4. Render + checklist 17/17 + GLM (ver skill). scrollHeight debe ser ≤1350
+     y el pie dentro (compactar paddings si excede: .content padding, .sec
+     margin-top, reflejo, sello, .sec). OJO: el frasco NO se encoge (fijo a
+     450 px de alto; ver «Encaje vertical» en la skill).
+  ══════════════════════════════════════════════════════════════════════
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Caveat:wght@600&family=Inter:wght@400;600;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body {
+    font-family:'Inter',sans-serif;
+    background:url('encre_noire_fondo_a.png') center/cover no-repeat;
+    color:#123; position:relative;
+  }
+  .velo { position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,252,248,0.36) 0%, rgba(255,252,248,0.46) 50%, rgba(255,252,248,0.64) 100%); }
+  .content { position:relative; z-index:2; height:1350px; display:flex; flex-direction:column; padding:8px 52px 8px; }
+
+  .topline { display:flex; justify-content:space-between; align-items:flex-start; }
+  .fecha-sep { font-size:12.5px; font-weight:600; letter-spacing:1.5px; color:#5a6a72; background:rgba(255,255,255,0.6); padding:5px 12px; border-radius:16px; }
+  .sello { width:74px; height:74px; border-radius:50%; background:rgba(255,255,255,0.88); border:2.5px solid #0d6b8c; color:#0d6b8c; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1px; line-height:1.3; box-shadow:0 4px 14px rgba(0,0,0,0.15); }
+  .sello b { font-size:12.5px; color:#b2452a; }
+
+  .hero { display:flex; align-items:center; gap:44px; margin:2px 0 6px; }
+  .frasco-col { position:relative; flex-shrink:0; width:300px; display:flex; flex-direction:column; align-items:center; }
+  .frasco-figura { height:450px; width:auto; filter:drop-shadow(0 8px 14px rgba(30,17,2,0.70)) drop-shadow(0 22px 44px rgba(58,35,6,0.55)) drop-shadow(0 0 60px rgba(70,44,10,0.35)); position:relative; z-index:2; }
+  .reflejo { margin-top:-6px; height:24px; overflow:hidden; position:relative; width:275px;
+    -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,0.34) 0%, transparent 88%);
+    mask-image:linear-gradient(180deg, rgba(0,0,0,0.34) 0%, transparent 88%); }
+  .reflejo img { height:450px; width:auto; transform:scaleY(-1); opacity:0.30; filter:blur(1px); }
+  .sombra-suelo { position:absolute; bottom:-20px; left:50%; transform:translateX(-50%); width:330px; height:48px; background:radial-gradient(ellipse, rgba(30,17,2,0.62) 0%, rgba(46,28,8,0.34) 45%, transparent 72%); z-index:1; }
+
+  .hero-txt { flex:1; }
+  .casa { font-size:14.5px; font-weight:800; letter-spacing:4.5px; text-transform:uppercase; color:#0d6b8c; }
+  h1 { font-family:'Playfair Display',serif; font-weight:800; font-size:72px; line-height:1.0; margin:4px 0 6px; color:#0b2f3f; }
+  .sub { font-family:'Caveat',cursive; font-size:28px; color:#b2452a; margin-bottom:10px; }
+  .datos-hero { display:flex; flex-direction:column; gap:5px; }
+  .dh { font-size:14.5px; font-weight:600; color:#1d3a48; text-shadow:0 1px 0 rgba(255,255,255,0.7); }
+  .dh b { font-weight:800; color:#0b2f3f; }
+  .dh .sep { color:#9fb3bc; margin:0 6px; }
+  .dh .f { font-size:10px; color:#8a9aa3; font-weight:500; display:block; margin-top:1px; }
+  .rating-line { display:flex; align-items:center; gap:10px; margin-top:6px; }
+  .r-num { font-family:'Playfair Display',serif; font-size:32px; font-weight:800; color:#c9971c; line-height:1; }
+  .r-meta { font-size:11.5px; color:#5a6a72; font-weight:600; }
+  .stars { display:inline-flex; gap:2px; }
+
+  .sec { margin-top:3px; }
+  .sec-head { display:flex; align-items:center; gap:12px; margin-bottom:5px; }
+  .sec-num { width:32px; height:32px; border-radius:50%; color:#fff; font-size:14px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  .sec-title { font-size:13.5px; font-weight:800; text-transform:uppercase; letter-spacing:2.5px; display:flex; align-items:center; gap:9px; }
+  .sec-rule { flex:1; height:1.5px; background:linear-gradient(90deg, rgba(120,140,150,0.5), rgba(120,140,150,0.05)); border-radius:2px; }
+
+  /* PIRÁMIDE 3D: contenedor de las losas */
+  .pir3d-wrap { display:flex; align-items:center; gap:26px; margin-top:6px; }
+  .pir3d-svg { width:470px; height:220px; flex-shrink:0; filter:drop-shadow(0 14px 22px rgba(10,40,60,0.25)); }
+  .pir-leyenda { flex:1; display:flex; flex-direction:column; gap:8px; }
+  .pl { display:flex; align-items:center; gap:10px; }
+  .pl .sw { width:34px; height:20px; border-radius:4px; flex-shrink:0; box-shadow:inset 0 -4px 0 rgba(0,0,0,0.18); }
+  .pl .lab { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; width:64px; flex-shrink:0; }
+  .pl .not { font-size:12px; color:#1d3a48; font-weight:600; line-height:1.3; }
+
+  .inspiracion { margin:2px 0 0 44px; }
+  .inspiracion p { font-family:'Playfair Display',serif; font-style:italic; font-size:18px; line-height:1.45; color:#12303d; text-shadow:0 1px 0 rgba(255,255,255,0.75); }
+  .fuente-line { font-style:normal; font-size:10px; color:#7d8e97; font-weight:600; margin-top:4px; display:block; }
+
+  .alts { margin-left:44px; display:flex; flex-direction:column; }
+  .alt-item { display:flex; align-items:baseline; gap:14px; padding:5px 2px; }
+  .alt-item + .alt-item { border-top:1.2px solid rgba(120,140,150,0.28); }
+  .alt-n { font-size:15px; font-weight:800; color:#0b2f3f; }
+  .alt-casa { font-size:11.5px; color:#5a6a72; font-weight:600; }
+  .alt-rt { margin-left:auto; font-size:12px; font-weight:800; color:#c96f1c; white-space:nowrap; }
+  .alt-motivo { font-size:11px; color:#5a6a72; font-weight:500; margin-left:auto; max-width:280px; text-align:right; }
+
+  .cita { margin-left:44px; }
+  .cita blockquote { font-family:'Playfair Display',serif; font-style:italic; font-size:19px; line-height:1.45; color:#232f7a; text-shadow:0 1px 0 rgba(255,255,255,0.7); }
+  .cita .fuente-line { color:#6b5bc0; }
+
+  .pie { margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:18px; border-top:2px solid rgba(120,140,150,0.35); padding-top:10px; }
+  .pie .clima { font-size:13px; font-weight:700; color:#23404d; line-height:1.5; }
+  .pie .sprays { font-size:13px; font-weight:700; color:#0b2f3f; line-height:1.5; }
+  .qr { width:70px; height:70px; border-radius:8px; border:2px solid #cfd8dc; background:#fff; }
+  .nota-fondo { position:absolute; bottom:5px; right:14px; font-size:9px; color:#93a1a8; font-style:italic; z-index:3; }
+  .caveat-pie { font-family:'Caveat',cursive; font-size:22px; color:#b2452a; font-weight:600; }
+</style>
+<style id="ajuste-encaje">.sec{margin-top:0 !important}.sec-head{margin-bottom:3px !important}.content{padding-top:4px !important;padding-bottom:4px !important}.inspiracion p{line-height:1.4 !important}.cita blockquote{line-height:1.4 !important}.pie .clima{line-height:1.4 !important}.pie .sprays{line-height:1.4 !important}.pie{padding-top:8px !important}</style></head>
+<body>
+<div class="velo"></div>
+<div class="content">
+
+  <div class="topline">
+    <div class="fecha-sep">SÁBADO · 17 OCTUBRE 2026</div>
+    <div class="sello"><div>Elección<br>del Lab</div><b>2026</b></div>
+  </div>
+
+  <!-- HERO: figura del frasco -->
+  <div class="hero">
+    <div class="frasco-col">
+      <img class="frasco-figura" src="encre_noire_figura.png" alt="Encre Noire Lalique">
+      <div class="sombra-suelo"></div>
+      <div class="reflejo"><img src="encre_noire_figura.png" alt=""></div>
+    </div>
+    <div class="hero-txt">
+      <div class="casa">Lalique</div>
+      <h1>Encre Noire</h1>
+      <div class="sub">tinta negra, ciprés y vetiver: el bosque después de la lluvia</div>
+      <div class="datos-hero">
+        <div class="dh"><b>2006</b><span class="sep">·</span>Eau de Toilette<span class="sep">·</span>Masculina<span class="sep">·</span>Amaderada aromática</div>
+        <div class="dh">Perfumista: <b>Nathalie Lorson</b><span class="f">Fragrantica (id 1834) · casa Lalique, 2006</span></div>
+        <div class="dh">Longevidad <b>~7 h</b><span class="sep">·</span>Estela <b>moderada</b><span class="sep">·</span><b>103 €</b> / 100 ml<span class="f">BD de la colección (id 954) · Precio: <b>103 €</b> (100 ml) y <b>77 €</b> (50 ml) en la web oficial Lalique (fr.lalique.com, en stock) — consultado 17-10-2026</span></div>
+        <div class="rating-line">
+          <span class="r-num">4,14</span>
+          <span class="stars">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#c9971c" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#c9971c" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#c9971c" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#c9971c" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24"><defs><linearGradient id="h14"><stop offset="14%" stop-color="#c9971c"/><stop offset="14%" stop-color="#d8d4c8"/></linearGradient></defs><path fill="url(#h14)" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+          </span>
+          <span class="r-meta">25.946 votos · Fragrantica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 · PIRÁMIDE 3D EN CAPAS -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num" style="background:#12789e;">01</div>
+      <div class="sec-title" style="color:#12789e;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 21h18z"/><path d="M12 2v19"/></svg>
+        Pirámide olfativa — en capas
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="pir3d-wrap">
+      <svg class="pir3d-svg" viewBox="0 0 560 250" id="pir3d"></svg>
+      <div class="pir-leyenda">
+        <div class="pl"><span class="sw" style="background:linear-gradient(135deg,#f6cf66,#d99c26);"></span><span class="lab" style="color:#a57112;">Salida</span><span class="not">la salida: ciprés y acetato de vetiverilo — verde, seco, casi tinta</span></div>
+        <div class="pl"><span class="sw" style="background:linear-gradient(135deg,#8db98a,#3f6b3a);"></span><span class="lab" style="color:#24421f;">Corazón</span><span class="not">el corazón: vetiver de Haití y de Bourbon — raíz húmeda y terrosa</span></div>
+        <div class="pl"><span class="sw" style="background:linear-gradient(135deg,#4d7f9e,#244c63);"></span><span class="lab" style="color:#244c63;">Fondo</span><span class="not">el fondo: madera de cachemira y almizcle — la piel que queda</span></div>
+        <span class="fuente-line" style="margin-top:4px;">Notas: pirámide oficial de la casa (fr.lalique.com) + Fragrantica id 1834 — consultado 17-oct-2026</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 · INSPIRACIÓN -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num" style="background:#0e7c7b;">02</div>
+      <div class="sec-title" style="color:#0e7c7b;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12c2.5-4 5-4 7 0s4.5 4 7 0 4-4 5 0"/><path d="M2 18c2.5-4 5-4 7 0s4.5 4 7 0 4-4 5 0"/></svg>
+        Inspiración
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="inspiracion">
+      <p>“Un frasco negro icónico. La más sofisticada de las notas masculinas —el vetiver oscuro y amaderado— sublimada en todas sus facetas. Encre Noire, un clásico moderno de Lalique.” El frasco recupera los códigos de la casa: vidrio negro cuadrado y tapón de wengé, herederos del tintero «Biches» que René Lalique diseñó en 1913.</p>
+      <span class="fuente-line">— Descripción oficial de la casa (fr.lalique.com) [traducida] · inspiración del frasco: sección «The inspiration»</span>
+    </div>
+  </div>
+
+  <!-- 03 · ALTERNATIVAS -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num" style="background:#c96f1c;">03</div>
+      <div class="sec-title" style="color:#c96f1c;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        Si te gusta, prueba
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="alts">
+      <div class="alt-item"><span class="alt-n">Sycomore</span><span class="alt-casa">Chanel · Les Exclusifs · 2008</span><span class="alt-rt">4,28/5 · 2.332 votos</span><span class="alt-motivo">el mismo vetiver ahumado con ciprés, más redondo y con un punto floral; el salto de precio es brutal</span></div>
+      <div class="alt-item"><span class="alt-n">Grey Vetiver</span><span class="alt-casa">Tom Ford · 2009</span><span class="alt-rt">4,26/5 · 8.757 votos</span><span class="alt-motivo">vetiver limpio, cítrico y de oficina: la versión «afeitada» del mismo tema (Druni, 95,95 €/100 ml, consultado 17-10-2026)</span></div>
+      <div class="alt-item"><span class="alt-n">Vetiver</span><span class="alt-casa">Guerlain · 1959 (reedición 2000)</span><span class="alt-rt">4,17/5 · 6.904 votos</span><span class="alt-motivo">el abuelo del género: vetiver con tabaco y nuez moscada, más verde y vintage (85,75 €/100 ml, beautycos.es, consultado 17-10-2026)</span></div>
+    </div>
+    <span class="fuente-line" style="margin-left:44px;">Selección: Fragrantica («smells similar» / reseñas) · ratings y votos de Fragrantica — consultado 17-oct-2026</span>
+  </div>
+
+  <!-- 04 · COMUNIDAD -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num" style="background:#5b42e6;">04</div>
+      <div class="sec-title" style="color:#5b42e6;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h5v5c0 3-1.5 5.5-5 6.5v-2.2c1.8-.7 3-1.9 3-3.8H6zm9 0h5v5c0 3-1.5 5.5-5 6.5v-2.2c1.8-.7 3-1.9 3-3.8h-3z"/></svg>
+        La comunidad dice
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="cita">
+      <blockquote>“Esto dibuja un bosque oscuro después de la lluvia: se huelen los árboles verdes, la tierra mojada y, por debajo, ese vetiver húmedo y terroso. Tengo un lote de 2018: la duración es una locura —casi un día en la piel—, la estela es íntima.”</blockquote>
+      <span class="fuente-line">— Reseña de comunidad · Fragrantica [traducida]</span>
+    </div>
+  </div>
+
+  <!-- PIE -->
+  <div class="pie">
+    <div class="clima">15,6 – 18,1 °C de sensación (ventana 08-18) · media 17,1 °C · lluvia 70 % · humedad 74 %<br>amplitud 5,2 °C: banda templada estable, perfil medio amaderado-terroso · 3 sprays</div>
+    <div class="sprays">Sprays: <b>3</b> por la mañana (tramo 08-12, ~17 °C)<br><span class="caveat-pie">un refuerzo a las 7-8 h si la piel se lo come</span></div>
+    <img class="qr" src="qr_fragrantica.png" alt="QR Fragrantica">
+  </div>
+  <div class="nota-fondo">fondo: arte generado con ComfyUI · SDXL local · hecha con el lab</div>
+</div>
+
+<script>
+// Pirámide 3D: tres losas-prisma isométricas apiladas (fondo abajo ancha -> salida arriba estrecha)
+(function () {
+  const svg = document.getElementById('pir3d');
+  const NS = 'http://www.w3.org/2000/svg';
+  const CX = 250;          // centro x de la pila
+  const EX = 44, EY = 22;  // extrusion (profundidad) hacia derecha-arriba
+  const H = 46;            // altura frontal de cada losa
+
+  // [ancho, colorFrente(hex), colorTecho, colorLateral, etiqueta, notas, detalle]
+  const capas = [
+    { w: 300, f:'#c9a227', t:'#f0d878', l:'#8e6f12', c1:'SALIDA', txt:'CIPRÉS · ACETATO DE VETIVERILO' },
+    { w: 420, f:'#3f6b3a', t:'#8db98a', l:'#24421f', c1:'CORAZÓN', txt:'VETIVER DE HAITÍ · BOURBON' },
+    { w: 540, f:'#5d4a3a', t:'#a08469', l:'#3a2c20', c1:'FONDO', txt:'MADERA DE CACHEMIRA · ALMIZCLE' }
+  ];
+
+  // apilar de abajo (fondo, y mayor) hacia arriba: y base de la capa inferior
+  let yBottom = 236;
+  const ys = [];
+  for (let i = capas.length - 1; i >= 0; i--) {
+    const c = capas[i];
+    const yTop = yBottom - H - EY;   // la cara frontal arranca mas arriba que la base (deja sitio al lateral)
+    ys[i] = yTop;
+    yBottom = yTop - 14;             // separacion entre losas (escalera)
+  }
+
+  function shade(hex, amt) {
+    const n = parseInt(hex.slice(1), 16);
+    let r = (n >> 16) + amt, g = ((n >> 8) & 255) + amt, b = (n & 255) + amt;
+    r = Math.max(0, Math.min(255, r)); g = Math.max(0, Math.min(255, g)); b = Math.max(0, Math.min(255, b));
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+
+  function poly(points, fill, opacity) {
+    const el = document.createElementNS(NS, 'polygon');
+    el.setAttribute('points', points);
+    el.setAttribute('fill', fill);
+    if (opacity) el.setAttribute('opacity', opacity);
+    svg.appendChild(el);
+  }
+
+  // dibujar de la capa de ABAJO (fondo) a la de ARRIBA (salida) => las superiores tapan
+  for (let i = capas.length - 1; i >= 0; i--) {
+    const c = capas[i];
+    const x1 = CX - c.w / 2, x2 = CX + c.w / 2;
+    const y1 = ys[i], y2 = y1 + H;
+    // lateral derecho (extrusion hacia derecha-arriba)
+    poly(`${x2},${y1} ${x2 + EX},${y1 - EY} ${x2 + EX},${y2 - EY} ${x2},${y2}`, c.l);
+    // techo
+    poly(`${x1},${y1} ${x2},${y1} ${x2 + EX},${y1 - EY} ${x1 + EX},${y1 - EY}`, c.t);
+    // frontal
+    poly(`${x1},${y1} ${x2},${y1} ${x2},${y2} ${x1},${y2}`, c.f);
+    // arista brillo frontal
+    poly(`${x1},${y1} ${x2},${y1} ${x2},${y2}`, shade(c.f, 34), 0.55);
+
+    // textos sobre el frontal
+    const t1 = document.createElementNS(NS, 'text');
+    t1.setAttribute('x', CX); t1.setAttribute('y', y1 + 17);
+    t1.setAttribute('text-anchor', 'middle'); t1.setAttribute('font-size', '8.5');
+    t1.setAttribute('font-weight', '800'); t1.setAttribute('letter-spacing', '2');
+    t1.setAttribute('fill', '#fff'); t1.textContent = c.c1;
+    svg.appendChild(t1);
+
+    const t2 = document.createElementNS(NS, 'text');
+    t2.setAttribute('x', CX); t2.setAttribute('y', y1 + 33);
+    t2.setAttribute('text-anchor', 'middle'); t2.setAttribute('font-size', '14.5');
+    t2.setAttribute('font-weight', '800'); t2.setAttribute('fill', '#fff');
+    t2.textContent = c.txt;
+    svg.appendChild(t2);
+  }
+})();
+</script>
+</body>
+</html>

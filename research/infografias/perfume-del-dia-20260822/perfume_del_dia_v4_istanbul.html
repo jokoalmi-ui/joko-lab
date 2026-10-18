@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Montserrat:wght@400;600;700;800;900&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body {
+    font-family:'Montserrat',sans-serif;
+    background:url('file:///home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20260822/istanbul_fondo.png') center/cover no-repeat;
+    color:#2b1a0e;
+    display:flex; flex-direction:column;
+    position:relative;
+  }
+  .overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(160deg, rgba(255,246,230,0.42) 0%, rgba(255,238,214,0.46) 50%, rgba(255,228,196,0.52) 100%);
+    z-index:0;
+  }
+  .content { position:relative; z-index:1; flex:1; display:flex; flex-direction:column; padding:26px 34px 22px; }
+
+  /* SELLO */
+  .sello {
+    position:absolute; top:26px; right:34px; width:118px; height:118px; border-radius:50%;
+    background:rgba(120,40,20,0.92); color:#ffe9d0;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; border:3px solid #ffd9a8; box-shadow:0 4px 14px rgba(0,0,0,0.35);
+    transform:rotate(8deg); z-index:3;
+  }
+  .sello .t1 { font-size:12px; font-weight:800; letter-spacing:1px; }
+  .sello .t2 { font-size:10px; font-weight:600; margin-top:2px; }
+  .sello .t3 { font-size:9px; font-weight:600; opacity:0.85; margin-top:1px; }
+
+  /* HERO */
+  .hero { display:flex; align-items:center; gap:30px; margin-top:6px; }
+  .hero-foto {
+    width:300px; height:300px; flex:0 0 300px;
+    background:rgba(255,248,238,0.55);
+    border-radius:22px; padding:14px; border:3px solid rgba(150,90,40,0.55);
+    box-shadow:0 8px 24px rgba(0,0,0,0.28); display:flex; align-items:center; justify-content:center;
+  }
+  .hero-foto img { max-width:100%; max-height:100%; object-fit:contain; filter:drop-shadow(0 6px 12px rgba(0,0,0,0.35)); }
+  .hero-text { flex:1; }
+  .hero-text .kicker { font-size:15px; font-weight:700; letter-spacing:3px; color:#8a4a1e; text-transform:uppercase; text-shadow:0 1px 2px rgba(255,255,255,0.7); }
+  .hero-text h1 {
+    font-size:84px; font-weight:900; line-height:0.95; letter-spacing:2px; margin:4px 0 2px;
+    background:linear-gradient(135deg,#7a2d0a 0%,#c26a1e 55%,#e8a13c 100%);
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    text-shadow:0 2px 6px rgba(255,255,255,0.5);
+  }
+  .hero-text .casa { font-size:22px; font-weight:800; color:#5c3310; text-shadow:0 1px 3px rgba(255,255,255,0.8); }
+  .hero-text .ocasion { font-size:15px; font-weight:600; color:#6b3d16; margin-top:6px; text-shadow:0 1px 2px rgba(255,255,255,0.8); }
+
+  /* CHIPS CLIMA */
+  .chips-clima { display:flex; gap:10px; margin-top:10px; flex-wrap:wrap; }
+  .chip { background:rgba(255,248,238,0.85); border:1.5px solid rgba(160,100,40,0.5); border-radius:999px; padding:5px 14px; font-size:14px; font-weight:700; color:#5c3310; box-shadow:0 2px 6px rgba(0,0,0,0.12); }
+  .chip.descartado { text-decoration:line-through; color:#a05a2a; opacity:0.72; }
+
+  /* TARJETAS */
+  .tarjetas { display:flex; flex-direction:column; gap:12px; margin-top:16px; flex:1; }
+  .tarjeta {
+    background:rgba(255,248,238,0.86); border-radius:16px; padding:12px 18px;
+    border-top:4px solid #d2842e; box-shadow:0 4px 14px rgba(0,0,0,0.18);
+  }
+  .tarjeta h2 { font-size:16px; font-weight:800; color:#7a2d0a; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px; }
+  .datos-grid { display:grid; grid-template-columns:1fr 1fr; gap:5px 16px; font-size:14px; font-weight:600; color:#3a2410; }
+  .datos-grid b { color:#8a4a1e; }
+
+  /* PIRÁMIDE */
+  .piramide-wrap { display:flex; align-items:center; gap:18px; }
+  .piramide { display:flex; flex-direction:column; align-items:center; width:390px; }
+  .nivel {
+    width:100%; text-align:center; padding:9px 6px; border-radius:8px; margin:2px 0;
+    font-size:13px; font-weight:700; color:#fff; text-shadow:0 1px 2px rgba(0,0,0,0.5);
+  }
+  .nivel.salida { width:44%; background:#e8a13c; }
+  .nivel.corazon { width:70%; background:#c26a1e; }
+  .nivel.fondo { width:100%; background:#8a3a12; }
+  .nivel small { display:block; font-size:10px; font-weight:600; opacity:0.9; letter-spacing:1px; }
+  .leyenda { font-size:12px; font-weight:600; color:#4a2c10; line-height:1.5; }
+  .leyenda b { color:#7a2d0a; }
+
+  /* ALTERNATIVAS */
+  .alt-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
+  .alt { background:rgba(255,255,255,0.55); border-radius:10px; padding:8px 10px; border-left:4px solid #d2842e; }
+  .alt .n { font-size:13px; font-weight:800; color:#7a2d0a; }
+  .alt .c { font-size:11px; font-weight:700; color:#a05a2a; }
+  .alt .d { font-size:10px; font-weight:600; color:#5c3310; margin-top:3px; line-height:1.35; }
+
+  /* APLICACIÓN */
+  .app-row { display:flex; align-items:center; gap:14px; font-size:14px; font-weight:700; color:#3a2410; }
+  .app-row .sprays { background:#8a3a12; color:#ffe9d0; border-radius:999px; padding:5px 14px; font-weight:800; }
+
+  /* CITA + QR + PIE */
+  .row-final { display:flex; gap:14px; align-items:stretch; }
+  .cita { flex:1; font-size:13px; font-weight:600; color:#3a2410; font-style:italic; line-height:1.45; display:flex; align-items:center; }
+  .cita .fuente { display:block; font-size:11px; font-style:normal; font-weight:700; color:#a05a2a; margin-top:4px; }
+  .qr-box { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; }
+  .qr-box img { width:86px; height:86px; border-radius:8px; }
+  .qr-box .qr-txt { font-size:9px; font-weight:700; color:#5c3310; text-align:center; }
+
+  .barra-wrap { margin-top:5px; }
+  .barra { height:10px; border-radius:999px; background:rgba(90,50,20,0.18); overflow:hidden; width:200px; }
+  .barra-fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#c26a1e,#e8a13c); }
+
+  .pie {
+    margin-top:auto; display:flex; align-items:flex-end; justify-content:space-between; gap:14px;
+    padding-top:10px; border-top:2px dashed rgba(140,80,30,0.45);
+  }
+  .pie .nota { font-family:'Caveat',cursive; font-size:22px; color:#6b3d16; text-shadow:0 1px 2px rgba(255,255,255,0.8); }
+  .pie .fondo-note { font-size:10px; font-weight:700; color:#8a5a2a; text-align:right; }
+</style>
+</head>
+<body>
+<div class="overlay"></div>
+<div class="content">
+
+  <div class="sello">
+    <span class="t1">ELECCIÓN</span>
+    <span class="t2">DEL LAB</span>
+    <span class="t3">22-08-2026</span>
+  </div>
+
+  <div class="hero">
+    <div class="hero-foto"><img src="file:///home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20260822/istanbul_frasco.png" alt="Frasco Istanbul"></div>
+    <div class="hero-text">
+      <div class="kicker">Perfume del día</div>
+      <h1>ISTANBUL</h1>
+      <div class="casa">Unique'e Luxury · Extrait de Parfum</div>
+      <div class="ocasion">🌞 Sábado de paseo · 26,7 °C máx · 0% lluvia · exterior</div>
+      <div class="chips-clima">
+        <span class="chip">☀️ 26,7 °C</span>
+        <span class="chip">💧 0% lluvia</span>
+        <span class="chip">🌿 verano · primavera</span>
+        <span class="chip">🕐 día y noche</span>
+        <span class="chip">outdoor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tarjetas">
+    <div class="tarjeta">
+      <h2>Ficha técnica</h2>
+      <div class="datos-grid">
+        <div><b>Año:</b> 2018</div>
+        <div><b>Concentración:</b> Extrait de Parfum</div>
+        <div><b>Género:</b> Unisex</div>
+        <div><b>Familia:</b> Gourmand dulce · cítrica</div>
+        <div><b>Perfumistas:</b> Sylvain Cara &amp; Jorge Lee</div>
+        <div><b>Rating comunidad:</b> 4,3/5 (3.630 votos)</div>
+        <div><b>Longevidad:</b> 7 h (BD) · hasta 15 h (reviews)</div>
+        <div><b>Estela:</b> moderada</div>
+        <div><b>Precio 100 ml:</b> 216,95 € (web oficial)</div>
+        <div><b>Uso:</b> primera vez hoy</div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Pirámide olfativa</h2>
+      <div class="piramide-wrap">
+        <div class="piramide">
+          <div class="nivel salida">Uva · Cítricos · Té · Perejil · Limón<small>SALIDA · lo primero que huele</small></div>
+          <div class="nivel corazon">Neroli · Jazmín · Pimienta rosa · Geranio<small>CORAZÓN · el alma</small></div>
+          <div class="nivel fondo">Toffee · Vainilla · Almizcle · Notas amaderadas<small>FONDO · lo que queda</small></div>
+        </div>
+        <div class="leyenda">
+          <b>Salida</b>: frescor cítrico con uva y té.<br>
+          <b>Corazón</b>: azahar y jazmín con pimienta rosa.<br>
+          <b>Fondo</b>: dulzor de toffee y vainilla sobre maderas.
+        </div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Si te gusta, prueba</h2>
+      <div class="alt-grid">
+        <div class="alt"><div class="n">Oriana</div><div class="c">Parfums de Marly</div><div class="d">Foros: en el secado es ~90% similar (Fragrantica)</div></div>
+        <div class="alt"><div class="n">Love Don't Be Shy</div><div class="c">Kilian</div><div class="d">Parfumo: "huele muy parecido, pero mejor"</div></div>
+        <div class="alt"><div class="n">Bubble Forever</div><div class="c">Montale</div><div class="d">13 acordes compartidos: toffee, neroli, vainilla (Fragranova)</div></div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Aplicación</h2>
+      <div class="app-row">
+        <span class="sprays">3-4 sprays</span>
+        <span>Paseo exterior · calor 26 °C · estela moderada</span>
+        <div class="barra-wrap">
+          <div class="barra"><div class="barra-fill" style="width:58%"></div></div>
+          <div style="font-size:10px;font-weight:700;color:#8a5a2a;">duración 7 h / 12</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <div class="row-final">
+        <div class="cita">
+          <div>
+            "Huele muy parecido a Love Don't Be Shy, pero mejor, en mi opinión. Es un azahar almibarado y espeso que recuerda a un malvavisco, con una hermosa nota de uva al fondo, sobre una manta de toffee."
+            <span class="fuente">— Review de Parfumo [traducida]</span>
+          </div>
+        </div>
+        <div class="qr-box">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=https%3A%2F%2Fwww.fragrantica.com%2Fperfume%2FUnique-e-Luxury%2FIstanbul-50403.html" alt="QR Fragrantica" class="qr">
+          <span class="qr-txt">QR · Fragrantica</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="tarjeta" style="padding:8px 18px;">
+      <div style="font-size:11px;font-weight:700;color:#a05a2a;">
+        ✗ últimos 7 días: Elysium · Pacific Rock Moss · A Grove by the Sea · Note di Colonia IV · Nautilus · Akdeniz · Adonis Awakens
+      </div>
+    </div>
+  </div>
+
+  <div class="pie">
+    <div class="nota">Un sábado de luz: cítricos al sol, azahar y un final de toffee.</div>
+    <div class="fondo-note">☀️ 26,7 °C · 0% lluvia · 3-4 sprays<br>fondo: arte generado con ComfyUI · SDXL local</div>
+  </div>
+
+</div>
+</body>
+</html>

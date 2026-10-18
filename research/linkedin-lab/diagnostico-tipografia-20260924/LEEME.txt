@@ -1,0 +1,53 @@
+DIAGNOSTICO DE TIPOGRAFIA DEL PIPELINE HTML/CSS -> PNG
+Fecha de la medicion: 2026-09-24 21:18:49 CEST
+Fichero generado por: Hermes Agent, a peticion de Joseba. Autorizado como opcion 1.
+
+QUE SE MIDE
+La plantilla del carrusel (research/linkedin-lab/plantilla-maurys.html) declara
+font-family:'Inter','Helvetica Neue',Arial,sans-serif y no carga ninguna fuente
+web (ni @font-face ni Google Fonts). Inter no estaba instalada en el sistema:
+fc-list no la encontraba y fc-match Inter apuntaba a Noto Sans. Resultado: la
+primera opcion de la cadena nunca se aplicaba.
+
+COMO SE COMPROBO (medicion, no suposicion)
+Ancho de la cadena "Joko Lab 2026 - avg 12,5% fi" a 48 px, medido en canvas
+dentro de Chrome headless (google-chrome --headless=new --dump-dom):
+  'Inter'              603,91 px
+  'NoSuchFontXYZ123'   603,91 px   <- familia inexistente
+  'Noto Sans'          655,97 px
+  'Arial'              653,77 px
+Que 'Inter' de el MISMO ancho que una familia inexistente demuestra que no
+estaba instalada: Chrome caia a la fuente de reserva.
+
+PRUEBA DURA (aisla la variable, sin depender de la version de Chrome)
+El PNG publicado el 01-sep-2026 es byte a byte identico al re-render de hoy con
+la familia renombrada a 'InterXAusente':
+  md5 6f3547407ebf1a953d3bf40757dfbc03  (publicado = fallback, AE = 0)
+Es decir: lo publicado salio con la fuente de reserva, y el render es
+determinista (mismo HTML + mismos flags -> mismo fichero).
+
+INSTALACION (sin sudo, solo usuario)
+  apt-get download fonts-inter            -> fonts-inter_4.1+ds-1_all.deb
+  dpkg-deb -x fonts-inter_*.deb /tmp/x    -> 36 ficheros .otf (son OTF, no TTF)
+  copia a ~/.local/share/fonts/Inter      -> 20,8 MiB
+  fc-cache -f ~/.local/share/fonts
+  fc-match Inter -> Inter-Regular.otf     (antes: NotoSans-Regular.ttf)
+Tras instalarla, el mismo test de ancho da 'Inter' = 689,98 px (distinto del
+default 603,91): ya se resuelve a Inter.
+
+EFECTO EN LA PIEZA REAL
+Re-render del slide 01 del carrusel 2026-09-01-ecosistema-ai-real, con los flags
+exactos del generador (--headless --virtual-time-budget=10000 --hide-scrollbars
+--window-size=1080,1350):
+  md5 242ce4d6004216820f3bf8e4d37ee68e  (con Inter)
+  AE vs publicado: 77.591 px de 1.458.000 = 5,32 %
+Cambia tambien el corte de linea: antes "...el ecosistema que YO / uso de
+verdad...", ahora "...el ecosistema que / YO uso de verdad...". Por tanto no es
+solo estetica: los bloques de texto se reflotan.
+
+FICHEROS
+  comparativa-fuente.png    comparativa ANTES/AHORA (slides completos + detalle 100%)
+  slide-01-con-inter.png    re-render de hoy con Inter instalada
+  slide-01-fallback-hoy.png re-render de hoy con la familia ausente (identico al publicado)
+  crop-antes-reserva.png    detalle 100% de la version publicada (y=200-620)
+  crop-ahora-inter.png      el mismo detalle con Inter

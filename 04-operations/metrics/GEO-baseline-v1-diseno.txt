@@ -1,0 +1,110 @@
+DISEÑO DEL EXPERIMENTO: GEO-baseline v1
+Joko Lab - 04-operations/metrics - redactado el 2026-09-22
+Autor: Hermes (agente del lab), a peticion de Joseba.
+Fichero del set congelado de consultas: GEO-baseline-v1-queries.txt
+  - consultas: 12 | bytes: 423 | sha256: 6c3ec4b558abad9e2e1622abc0a547a0eac61c829392c7d8c4cdfac5bf2c34b7
+Resultados de la fase F1: GEO-baseline-v1-informe-F1.txt
+Pieza registrada en el ledger de aplicabilidad: aplicabilidad_ledger.jsonl (2026-09-22, TheAgenticAIEngineer).
+
+
+1) POR QUE ESTE EXPERIMENTO
+GEO (Generative Engine Optimization) es la disciplina de adaptar contenido para
+aparecer citado en respuestas de motores generativos. Da nombre al tema el paper
+arXiv 2311.09735 "GEO: Generative Engine Optimization" (Aggarwal et al.).
+El lab no tenia ninguna metrica de visibilidad en motores generativos, y sin
+metrica previa no se puede afirmar que una tactica funciona (RULE-015).
+Este documento declara la metrica ANTES de medirla y congela el material.
+
+
+2) PREGUNTA E HIPOTESIS
+Pregunta: cuando alguien pregunta a un motor generativo por el lab o por los
+temas que el lab trabaja, aparece el lab como fuente citada? Y cuanto?
+Hipotesis de partida: 0 citas (el lab nunca ha hecho nada por ser citado).
+Hipotesis del cuello de botella: si el sustrato publico no esta indexado,
+ninguna optimizacion de texto puede producir citas.
+
+
+3) METRICA DECLARADA (la que manda)
+Tasa de citas = pares (motor x consulta) en los que la respuesta cita al lab por
+COINCIDENCIA LITERAL de "jokoalmi" o "joko-lab" en:
+  (a) el texto de la respuesta, o
+  (b) el titulo de una fuente citada, o
+  (c) la URL RESUELTA de una fuente citada.
+Cualquier via positiva cuenta como cita. La atribucion de la fuente se hace
+resolviendo el redirect (las URIs llegan ofuscadas por el proveedor).
+  AVISO MEDIDO EN F1 (correccion del diseno, 2026-09-22): la via (a) por si
+  sola produce FALSOS POSITIVOS: un motor que responde "jokoalmi-ui/joko-lab no
+  existe" escribe el termino 10 veces en su texto. Por tanto, a partir de F1 el
+  veredicto de cita exige coincidencia en FUENTE CITADA (b o c); la aparicion
+  en el texto de la respuesta se registra aparte como "mencion", nunca como cita.
+Acompanantes: mencion sin cita | numero de fuentes por respuesta | varianza entre
+pasadas (misma consulta, misma configuracion).
+n declarado: 12 consultas x 2 motores x 3 pasadas = 72 pares. Orientativo: NO es
+significativo y asi se declarara en cualquier informe que use este numero.
+
+
+4) SET CONGELADO DE CONSULTAS (12)
+Entidad (4): E1 Que es Joko Lab | E2 Joko Lab Hermes Agent | E3 laboratorio
+local de IA con Ollama y LM Studio | E4 jokoalmi en GitHub.
+Temas ya medidos en el lab (5): T1 RAG local con LanceDB y BGE-M3 sin nube |
+T2 como evaluar alucinaciones de modelos locales | T3 ComfyUI en RTX A2000 12 GB |
+T4 n8n self-hosted | T5 observabilidad de pipeline LLM local.
+Controles (3): C1 nombre exacto del repo | C2 URL exacta del repo | C3 termino
+inventado (control negativo).
+REGLA DE CONGELACION (RULE-015): el set vive en GEO-baseline-v1-queries.txt con
+el sha256 publicado arriba. Cambiar una sola consulta obliga a RE-BASELINE
+COMPLETO: las cifras anteriores dejan de ser comparables.
+
+
+5) PROTOCOLO POR CONSULTA
+1. Motor + modelo + variante de acceso anotados (el modelo servido, no el pedido:
+   en F1 se pidio "gemini-flash-latest" y sirvio "gemini-3.8-flash").
+2. temperature 0 y grounding activado cuando el motor lo permita.
+3. Se guarda la respuesta completa a fichero (ruta en "texto_path"), los chunks
+   citados, las URIs crudas y la URL RESUELTA de cada fuente.
+4. Se guardan las consultas que el motor genera por su cuenta (dato de proceso,
+   no de resultado).
+5. El veredicto se aplica por la regla escrita del apartado 3, no a ojo.
+
+
+6) REGISTRO (una linea JSON por par motor x consulta x pasada)
+Campos: fecha | pasada | motor | motor_via | modelo | consulta_id | consulta_hash |
+texto_path | n_chunks | n_fuentes_unicas | dominios_resueltos | cita_lab |
+mencion_entidad | via_match | cambio_vs_pasada | notas.
+
+
+7) CONDICIONES DE INVALIDEZ (declaradas ANTES de medir)
+1. Si el control positivo (C1/C2) falla en las 3 pasadas, el experimento NO mide
+   visibilidad: mide INDEXACION. Se reclasifica como diagnostico de indizacion y
+   no se interpretan cifras de cita. -> OCURRIDO en F1 (ver informe).
+2. Si el control negativo (C3) devuelve fuentes citadas, el recuento de fuentes
+   no sirve como senal y solo vale la coincidencia literal. -> OCURRIDO en F1.
+3. Si un motor cambia de modelo o de comportamiento a mitad del experimento, se
+   registra el cambio: la metrica no es comparable entre versiones del motor.
+
+
+8) FASES
+F1 (linea base, 2026-09-22): consultas de control e indizacion. 0 GPU, 0
+descargas, 0 cambios de servicio, 0 escrituras al lab. -> EJECUTADA (parcial: 1
+consulta de control positivo, 3 pasadas, mas indizacion en buscadores).
+F2 (linea base completa): las 12 consultas x 2 motores x 3 pasadas = 72 pares.
+Condicionada a que la indizacion exista; sin sustrato indexado mediria 0/72 por
+construccion. Requiere verificar cuota de la API antes de lanzar.
+F3 (habilitacion del sustrato): topics, descripcion util y sin errata, licencia,
+indice tematico, enlaces entrantes. Es decision de exposicion publica del lab,
+no tecnica; requiere OK explicito. No incluye reescribir el contenido existente.
+F4 (re-medicion): a las 3-4 semanas de cualquier intervencion, misma metrica y
+mismo set congelado. Unica forma de saber si una intervencion sirvio de algo.
+
+
+9) QUE NO MIDE ESTE EXPERIMENTO
+No mide trafico, ni leads, ni recomendaciones. No mide las respuestas reales de
+la interfaz de Google (usa la API con el mismo grounding: es un proxy declarado).
+No incluye Perplexity ni Copilot: inaccesibles desde aqui (Cloudflare y region),
+asi que la muestra es "motores alcanzables desde aqui", no "motores generativos".
+No mide calidad del contenido del lab: solo su presencia como fuente citada.
+
+
+10) COSTE
+0 GPU, 0 descargas, 0 servicios nuevos. Solo llamadas de API y navegador.
+La cuota del proveedor esta SIN VERIFICAR: hay que comprobarla antes de F2.

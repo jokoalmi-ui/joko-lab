@@ -1,0 +1,6 @@
+INSERT INTO uso_diario (perfume_id, fecha, clima_temp, clima_desc, animo, ocasion, nota_personal, created_at)
+VALUES (954, '2026-10-17', 17.1,
+        'ventana 08-18: 15,6-18,1 C sens, media 17,1; dia 15,6-19,3 C; lluvia 70%',
+        'otro', 'diario',
+        '[VAL: sin respuesta aun | ventana 08-18] ficha del dia (sabado) · eleccion: amaderada terrosa (vetiver) para banda templada 15,6-18,1 C sens (media 17,1; amplitud 5,2 estrecha) con 70% lluvia y 74% humedad · antidup 60d OK: primer uso registrado de Encre Noire (0 usos, sin ficha previa en research/infografias) · posee: botella · dosis 3 sprays manana + refuerzo opcional a 7-8 h (longevidad ~7 h vs ventana 10 h) · fondo SDXL variante a (bosque de cipreses con niebla) elegido por medicion · gate preenvio 17/17 (0 FALTA, ENVIAR con avisos A3/A4) · visibilidad medida: cuerpo 3,33:1 / tapon 3,72:1 (>=2,0:1), claros 0,2% (dato, frasco oscuro) · vision local GLM-4.6V: los 3 fondos sin texto ni formas inventadas, botella entera y etiqueta ENCRE NOIRE legible · envio al canal EXIT=0 (wrapper enviar-ficha-telegram.sh) · BD corregida: concentracion EDP->EDT y notas placeholder->piramide oficial (backup previo) · animo y ocasion NO declarados por el usuario',
+        datetime('now'));

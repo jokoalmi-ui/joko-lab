@@ -1,0 +1,2797 @@
+{
+ "meta": {
+  "set": "cuant-n120",
+  "descripcion": "subtipo cuantificador congelado, n para decidir si el 20/20 aguanta",
+  "semilla": 20260924,
+  "sql": "SELECT p.id, p.nombre AS nombre, c.nombre AS casa, p.año AS anio, f.nombre AS familia, p.concentracion AS concentracion, p.volumen_ml AS volumen, p.genero AS genero, p.precio AS precio FROM perfumes p JOIN casas c ON c.id = p.casa_id LEFT JOIN familias_olfativas f ON f.id = p.familia_id WHERE p.nombre IS NOT NULL AND TRIM(p.nombre) <> '' AND c.nombre IS NOT NULL AND TRIM(c.nombre) <> '' ORDER BY p.id",
+  "db": "/home/jokoalmi/perfume-ia/data/coleccion.db",
+  "db_sha256": "8fef8af183a988ebed3f6a2dccbf56ca8c77df53149934f6d4e9c5ae6a1b0713",
+  "diseno": {
+   "5de5_full": 40,
+   "5de5_corta": 20,
+   "1de5_escaso": 20,
+   "4de5_falta1": 40
+  },
+  "total": 120,
+  "gt_true": 60,
+  "gt_false": 60,
+  "por_subtipo": {
+   "cuantificador": 120
+  },
+  "por_variante": {
+   "5de5_full": 40,
+   "5de5_corta": 20,
+   "4de5_falta1": 40,
+   "1de5_escaso": 20
+  },
+  "duplicados_descartados": 0,
+  "caracteres_state_min": 307,
+  "caracteres_state_mediana": 612,
+  "caracteres_state_max": 740,
+  "verdad": "definida por el texto del estado entregado (no por la realidad)",
+  "golden_set_sha256": "c901d0013d18e3493709a3ce9851f13a0387c8897124aab21c834c301624febe",
+  "generado": "2026-09-24 07:48:09 CEST"
+ },
+ "casos": [
+  {
+   "id": "cuant-001",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Winter Palace (Memo Paris). Año: 2019. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — L'Homme (Prada). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Fresh Vetiver (The Lab). Año: 2016. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Hayat, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Hayat, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-002",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Promise / ??????? (Parfum) (Editions de Parfums Frédéric Malle). Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — Infusion d'Iris (Eau de Parfum) (2007) (Prada). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — C'est la vie (The Lab). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Firma 1 (FIRMA). Familia olfativa: Oriental. Volumen: 100 ml. Género: unisex. FICHA DE COLECCIÓN — Oud for Greatness (Eau de Parfum) (Initio). Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Promise / ??????? (Parfum), indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Promise / ??????? (Parfum), indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-003",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Giardino (Essential Parfums). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Luna Rossa Carbon (Eau de Toilette) (Prada). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Dubai - Bahar (Eau de Parfum) (The Spirit of Dubai). Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Tie (Celine). Año: 2019. Concentración: EDP. FICHA DE COLECCIÓN — Blamage (Nasomatto). Año: 2014. Concentración: EDP."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Giardino, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Giardino, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-004",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Boss Bottled Elixir (Hugo Boss). Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Torroella de Montgrí (Santi Burgas). Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Naxos (Xerjoff). Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Soleil Passion (M. Micallef). Año: 2022. Concentración: EDP. FICHA DE COLECCIÓN — Wood Whisper (Ojar). Año: 2021. Concentración: EDP."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Boss Bottled Elixir, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Boss Bottled Elixir, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    2,
+    2
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-005",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ani X (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Siesta (Ramón Monegal). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Divine Vanille, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Divine Vanille, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-006",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud Al'Andalus (Darkbeat)."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Dior Homme (2005), indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Dior Homme (2005), indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    0
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-007",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Tramonte (Botanicae Expressions). Año: 2022."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas CH Men Africa, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas CH Men Africa, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-008",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Promise / ??????? (Parfum) (Editions de Parfums Frédéric Malle). Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — Oud Or (Houbigant). Año: 2023. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Phantom - Memento Mori (Kilian). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Indigo Suede (Lunio). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Spice Leather (Darkbeat). Año: 2023."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Promise / ??????? (Parfum), indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Promise / ??????? (Parfum), indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-009",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Winter Palace (Memo Paris). Año: 2019. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — L'Homme (Prada). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Dior Homme (2005), indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Dior Homme (2005), indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-010",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Mefisto Gentiluomo (Casamorati). Año: 2018. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bois Impérial (Eau de Parfum) (Essential Parfums). Año: 2020. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Homme (Eau de Toilette Intense) (Kenzo). Año: 2021. Familia olfativa: Cítrica. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Bella Trinacria (Lunio). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Voyage (Eau de Toilette) (Nautica). Año: 2006. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Mefisto Gentiluomo, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Mefisto Gentiluomo, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-011",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Imperial (Boadicea the Victorious). Año: 2012. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — X for Men (Clive Christian). Año: 2001. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Acqua di Giò pour Homme (Eau de Toilette) (Giorgio Armani). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Onda (Botanicae Expressions). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Imperial, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Imperial, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    3,
+    4,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-012",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Agua de Colonia Concentrada - Eau Fraîche (Alvarez Gómez). Año: 2020. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex. FICHA DE COLECCIÓN — Le Gemme - Orom (Bvlgari). Año: 2022. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Green Leather (Daniel Josier). Año: 2016. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Joop! Homme (Eau de Toilette) (Joop!). Año: 1989. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — 7 Plata (Loewe). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Agua de Colonia Concentrada - Eau Fraîche, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Agua de Colonia Concentrada - Eau Fraîche, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-013",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Joop! Homme (Eau de Toilette) (Joop!). Año: 1989. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — 7 Plata (Loewe). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Irish Leather (Eau de Parfum) (Memo Paris). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Layton (Parfums de Marly). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Carved Oud (Extrait de Parfum) (Thameen). Año: 2013. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Joop! Homme (Eau de Toilette), indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Joop! Homme (Eau de Toilette), indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-014",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 1872 for Men (Clive Christian). Año: 2001. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bois Impérial (Eau de Parfum) (Essential Parfums). Año: 2020. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud for Greatness (Eau de Parfum) (Initio). Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Vanhera (Laboratorio Olfattivo). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Book (Commodity). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 1872 for Men, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 1872 for Men, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    3,
+    4,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-015",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Opus XIV - Royal Tobacco (Amouage). Año: 2022. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Mefisto Gentiluomo (Casamorati). Año: 2018. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bois Impérial (Eau de Parfum) (Essential Parfums). Año: 2020. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Homme (Eau de Toilette Intense) (Kenzo). Año: 2021. Familia olfativa: Cítrica. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Bella Trinacria (Lunio). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Opus XIV - Royal Tobacco, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Opus XIV - Royal Tobacco, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-016",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fall of Phaeton (Argos). Año: 2024. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair (Clive Christian). Año: 2019. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Nerotic (Laboratorio Olfattivo). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Bois Mystique (Eau de Parfum) (Houbigant). Familia olfativa: Amaderada. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Fall of Phaeton, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Fall of Phaeton, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-017",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Energizer (Boadicea the Victorious). Año: 2008. Familia olfativa: Cítrica. Concentración: EDT. Género: unisex. FICHA DE COLECCIÓN — V: Amber Fougere (Clive Christian). Año: 2017. Familia olfativa: Fougère. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud Or (Houbigant). Año: 2023. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Vanhera (Laboratorio Olfattivo). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Grand Soir (Eau de Parfum) (Maison Francis Kurkdjian). Año: 2016. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Energizer, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Energizer, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-018",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — V: Amber Fougere (Clive Christian). Año: 2017. Familia olfativa: Fougère. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Salaria (Giardino Benessere). Año: 2017. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Joop! Homme (Eau de Toilette) (Joop!). Año: 1989. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Encre Noire Sport (Lalique). Año: 2013. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Stereo (Botanicae Expressions). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas V: Amber Fougere, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas V: Amber Fougere, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-019",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Essential (El Ganso). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Boss Bottled Elixir (Hugo Boss). Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Highlands (Botanicae Expressions). Año: 2022."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Quattro Pizzi, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Quattro Pizzi, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    3,
+    3,
+    4,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-020",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Barberia - Agua de Colonia Concentrada (Alvarez Gómez). Año: 2012. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex. FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Barberia - Agua de Colonia Concentrada, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Barberia - Agua de Colonia Concentrada, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-021",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Etruscan Water (Francesca Bianchi). Año: 2019. Familia olfativa: Chipre. Género: unisex. FICHA DE COLECCIÓN — Beso Dorado (Beso Beach). Año: 2023. FICHA DE COLECCIÓN — Book (Commodity). Año: 2021. FICHA DE COLECCIÓN — Whisky Nobile (Farmacia SS. Annunziata). Año: 2021. FICHA DE COLECCIÓN — Symphony (Louis Vuitton). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Etruscan Water, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Etruscan Water, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    1,
+    1,
+    1,
+    1
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-022",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Turathi (Blue) (Afnan Perfumes). Familia olfativa: Acuática. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Patchouli (Ajmal). Año: 2019. FICHA DE COLECCIÓN — Onda (Botanicae Expressions). Año: 2021. FICHA DE COLECCIÓN — Ambra Gadir (Darkbeat). FICHA DE COLECCIÓN — The Original / Eight & Bob (Eight & Bob). Año: 2012."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Turathi (Blue), indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Turathi (Blue), indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    1,
+    1,
+    0,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-023",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Journey Man (Amouage). Año: 2014. FICHA DE COLECCIÓN — Stereo (Botanicae Expressions). Año: 2021. FICHA DE COLECCIÓN — The Original / Eight & Bob (Eight & Bob). Año: 2012. FICHA DE COLECCIÓN — Andaluiza (J.U.S - Joyau Unique & Sensoriel). Año: 2022. FICHA DE COLECCIÓN — Cannabis (My Geisha). Año: 2021. Concentración: EDP."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Journey Man, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Journey Man, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    1,
+    1,
+    1,
+    1,
+    2
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-024",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Energizer (Boadicea the Victorious). Año: 2008. Familia olfativa: Cítrica. Concentración: EDT. Género: unisex. FICHA DE COLECCIÓN — V: Amber Fougere (Clive Christian). Año: 2017. Familia olfativa: Fougère. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Salaria (Giardino Benessere). Año: 2017. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Etruscan Water (Francesca Bianchi). Año: 2019. Familia olfativa: Chipre. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 195 a.C., indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 195 a.C., indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-025",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Mefisto (Casamorati). Año: 2009. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bravo Monsieur (El Ganso). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Sea (Lorenzo Pazzaglia). Año: 2019. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Pardon (Extrait de Parfum) (Nasomatto). Año: 2011. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Mefisto, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Mefisto, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-026",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — X for Men (Clive Christian). Año: 2001. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Tabac Nomade (Houbigant). Año: 2023. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire (Eau de Toilette) (Lalique). Año: 2006. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — By the Fireplace (Maison Margiela). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Overdose (Omanluxury). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas X for Men, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas X for Men, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-027",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair (Clive Christian). Año: 2019. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Nerotic (Laboratorio Olfattivo). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Neroli Nostrum (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Hespéridé Colognisé (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-028",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fauno (Agatho). Año: 2019. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Imperial (Boadicea the Victorious). Año: 2012. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — X for Men (Clive Christian). Año: 2001. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Acqua di Giò pour Homme (Eau de Toilette) (Giorgio Armani). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Patchouli (Ajmal). Año: 2019."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Fauno, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Fauno, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    3,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-029",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Firma 1 (FIRMA). Familia olfativa: Oriental. Volumen: 100 ml. Género: unisex. FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Energizer (Boadicea the Victorious). Año: 2008. Familia olfativa: Cítrica. Concentración: EDT. Género: unisex. FICHA DE COLECCIÓN — V: Amber Fougere (Clive Christian). Año: 2017. Familia olfativa: Fougère. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Salaria (Giardino Benessere). Año: 2017. Familia olfativa: Acuática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Firma 1, indican el volumen de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Firma 1, indican el volumen de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "volumen"
+  },
+  {
+   "id": "cuant-030",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Coconut Lagoon (Ministry of Gourmand). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — ? 02 - L'Air du Désert Marocain (Eau de Toilette Intense) (Tauer Perfumes). Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Cities Collection - Seoul 532-8 Sinsa Dong Gangnam-Gu (Zara). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Foreplay (My Geisha). Concentración: EDP. FICHA DE COLECCIÓN — Delox (Tiziana Terenzi). Año: 2017. Concentración: EDP."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Coconut Lagoon, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Coconut Lagoon, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    1,
+    2
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-031",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Ambre Tabac (Eau de Parfum) (Daniel Josier). Año: 2025. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Vespero (Jeroboam). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire Sport (Lalique). Año: 2013. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ganymede (Eau de Parfum) (Marc-Antoine Barrois). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 4. Montabaco Intensivo (Ormonde Jayne). Año: 2013. Familia olfativa: Cuero. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Ambre Tabac (Eau de Parfum), indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Ambre Tabac (Eau de Parfum), indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-032",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fauno (Agatho). Año: 2019. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Jardin de Giverny (Arte Profumi). Año: 2015. FICHA DE COLECCIÓN — Tramonte (Botanicae Expressions). Año: 2022. FICHA DE COLECCIÓN — La Tacita de Café (Day Three Fragrances). FICHA DE COLECCIÓN — Lucius (Fragrance Du Bois)."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Fauno, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Fauno, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    1,
+    1,
+    0,
+    0
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-033",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Le Gemme - Kobraa (Bvlgari). Año: 2020. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ambre Tabac (Eau de Parfum) (Daniel Josier). Año: 2025. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Vespero (Jeroboam). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire Sport (Lalique). Año: 2013. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ganymede (Eau de Parfum) (Marc-Antoine Barrois). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Le Gemme - Kobraa, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Le Gemme - Kobraa, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-034",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Majnoon (Azman). FICHA DE COLECCIÓN — Octubre (Bravanariz). FICHA DE COLECCIÓN — Spice Leather (Darkbeat). Año: 2023. FICHA DE COLECCIÓN — Anniversary (Farmacia SS. Annunziata). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 195 a.C., indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 195 a.C., indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    0,
+    0,
+    1,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-035",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — V: Amber Fougere (Clive Christian). Año: 2017. Familia olfativa: Fougère. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud Or (Houbigant). Año: 2023. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Vanhera (Laboratorio Olfattivo). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Grand Soir (Eau de Parfum) (Maison Francis Kurkdjian). Año: 2016. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud Aquilaria (Omanluxury). Año: 2020. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas V: Amber Fougere, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas V: Amber Fougere, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-036",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Agua de Colonia Concentrada - Eau Fraîche (Alvarez Gómez). Año: 2020. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex. FICHA DE COLECCIÓN — Le Gemme - Orom (Bvlgari). Año: 2022. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Green Leather (Daniel Josier). Año: 2016. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Bois Mystique (Eau de Parfum) (Houbigant). Familia olfativa: Amaderada. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — A Grove by the Sea (Arquiste). Familia olfativa: Acuática. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Agua de Colonia Concentrada - Eau Fraîche, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Agua de Colonia Concentrada - Eau Fraîche, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    3,
+    2
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-037",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — 2. Nawab of Oudh Intensivo (Ormonde Jayne). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Silver Mountain Water, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Silver Mountain Water, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-038",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Lavish, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Lavish, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-039",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Acqua di Giò pour Homme (Eau de Toilette) (Giorgio Armani). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Shanthi (?asva). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Lisboa (Zara). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Papyrus Moléculaire (Maison Crivelli). Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Individuel (Eau de Toilette) (Montblanc). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Acqua di Giò pour Homme (Eau de Toilette), indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Acqua di Giò pour Homme (Eau de Toilette), indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    2,
+    3
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-040",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 1872 for Men (Clive Christian). Año: 2001. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Salaria (Giardino Benessere). Año: 2017. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Phantom - Memento Mori (Kilian). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Indigo Suede (Lunio). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — B-612 (Nishane). Año: 2018. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 1872 for Men, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 1872 for Men, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-041",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 195 a.C., indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 195 a.C., indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-042",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Nobility (Alexandria Fragrances). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Euria (Botanicae Expressions). Año: 2021. FICHA DE COLECCIÓN — Magnolia (Daniel Josier). FICHA DE COLECCIÓN — The Original / Eight & Bob (Eight & Bob). Año: 2012. FICHA DE COLECCIÓN — Sugardaddy (Fugazzi). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Nobility, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Nobility, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    1,
+    0,
+    1,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-043",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Mefisto (Casamorati). Año: 2009. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Promise / ??????? (Parfum) (Editions de Parfums Frédéric Malle). Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — Oud Or (Houbigant). Año: 2023. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Phantom - Memento Mori (Kilian). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Octubre (Bravanariz)."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Mefisto, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Mefisto, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    3,
+    4,
+    4,
+    0
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-044",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Nobility (Alexandria Fragrances). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Tramonte (Botanicae Expressions). Año: 2022. FICHA DE COLECCIÓN — Oud Al'Andalus (Darkbeat). FICHA DE COLECCIÓN — Exit the King (Etat Libre d'Orange). FICHA DE COLECCIÓN — Vanille Impériale (Houbigant). Año: 2024."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Nobility, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Nobility, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    1,
+    0,
+    0,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-045",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fall of Phaeton (Argos). Año: 2024. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair (Clive Christian). Año: 2019. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Nerotic (Laboratorio Olfattivo). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Neroli Nostrum (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Fall of Phaeton, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Fall of Phaeton, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-046",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Reflection Man (Amouage). Año: 2006. Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Reflection Man, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Reflection Man, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-047",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Patio (Botanicae Expressions). Año: 2019."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Lavish, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Lavish, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-048",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Nerotic (Laboratorio Olfattivo). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Neroli Nostrum (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Hespéridé Colognisé (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Alexandria II (Parfum) (Xerjoff). Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Pacific Rock Moss, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Pacific Rock Moss, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-049",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vespero (Jeroboam). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire Sport (Lalique). Año: 2013. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ganymede (Eau de Parfum) (Marc-Antoine Barrois). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 4. Montabaco Intensivo (Ormonde Jayne). Año: 2013. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Shaghaf Oud Royale (Swiss Arabian). Año: 2023. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Vespero, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Vespero, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-050",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Le Gemme - Orom (Bvlgari). Año: 2022. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Green Leather (Daniel Josier). Año: 2016. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Joop! Homme (Eau de Toilette) (Joop!). Año: 1989. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — 7 Plata (Loewe). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Irish Leather (Eau de Parfum) (Memo Paris). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Le Gemme - Orom, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Le Gemme - Orom, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-051",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Bravo Monsieur (El Ganso). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Sea (Lorenzo Pazzaglia). Año: 2019. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Pardon (Extrait de Parfum) (Nasomatto). Año: 2011. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Karma (The Lab). Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Bravo Monsieur, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Bravo Monsieur, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-052",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Irish Leather (Eau de Parfum) (Memo Paris). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Aquila Absolute (Electimuss). Año: 2023."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Pacific Rock Moss, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Pacific Rock Moss, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-053",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Salaria (Giardino Benessere). Año: 2017. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Joop! Homme (Eau de Toilette) (Joop!). Año: 1989. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Encre Noire Sport (Lalique). Año: 2013. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — Spice Leather (Darkbeat). Año: 2023."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Salaria, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Salaria, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-054",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fall of Phaeton (Argos). Año: 2024. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair (Clive Christian). Año: 2019. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Euria (Botanicae Expressions). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Fall of Phaeton, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Fall of Phaeton, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-055",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Acqua di Sale (Profumum Roma). Año: 1996. Familia olfativa: Acuática. Concentración: Parfum. Género: unisex. Precio: 206,61 EUR. FICHA DE COLECCIÓN — Agua de Colonia Concentrada - Eau Fraîche (Alvarez Gómez). Año: 2020. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex. FICHA DE COLECCIÓN — Le Gemme - Orom (Bvlgari). Año: 2022. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Green Leather (Daniel Josier). Año: 2016. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Bois Mystique (Eau de Parfum) (Houbigant). Familia olfativa: Amaderada. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Acqua di Sale, indican el precio de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Acqua di Sale, indican el precio de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    5,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "precio"
+  },
+  {
+   "id": "cuant-056",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Bois Impérial (Eau de Parfum) (Essential Parfums). Año: 2020. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud for Greatness (Eau de Parfum) (Initio). Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Vanhera (Laboratorio Olfattivo). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kismet Magic (Maison Alhambra). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ruby N Vanilla Oud (EBK)."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Bois Impérial (Eau de Parfum), indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Bois Impérial (Eau de Parfum), indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    3,
+    4,
+    3,
+    0
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-057",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Essential (El Ganso). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Boss Bottled Elixir (Hugo Boss). Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Barber Note (Darkbeat). Año: 2022."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Essential, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Essential, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-058",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — 2. Nawab of Oudh Intensivo (Ormonde Jayne). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Vibrato (Sospiro). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Paragon, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Paragon, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-059",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Adonis Awakens (Argos). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 1872 for Men (Clive Christian). Año: 2001. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bois Impérial (Eau de Parfum) (Essential Parfums). Año: 2020. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud for Greatness (Eau de Parfum) (Initio). Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Epoque (Botanicae Expressions). Año: 2022."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Adonis Awakens, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Adonis Awakens, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    3,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-060",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Shiyaaka for Men / Shiyaaka Silver (Khadlaj). Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Basso (Sospiro). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Just Rock! pour Lui (Zadig & Voltaire). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Afternoon Swim (Louis Vuitton). Año: 2019. Familia olfativa: Cítrica. Género: unisex. FICHA DE COLECCIÓN — Flamenco (Eau de Parfum) (Ramón Monegal). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Shiyaaka for Men / Shiyaaka Silver, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Shiyaaka for Men / Shiyaaka Silver, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-061",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Bois Impérial (Eau de Parfum) (Essential Parfums). Año: 2020. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Homme (Eau de Toilette Intense) (Kenzo). Año: 2021. Familia olfativa: Cítrica. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Bella Trinacria (Lunio). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Voyage (Eau de Toilette) (Nautica). Año: 2006. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Flamenco (Extrait de Parfum) (Ramón Monegal). Año: 2024. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Bois Impérial (Eau de Parfum), indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Bois Impérial (Eau de Parfum), indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-062",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Barberia - Agua de Colonia Concentrada (Alvarez Gómez). Año: 2012. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex. FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Jardin de Giverny (Arte Profumi). Año: 2015."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Barberia - Agua de Colonia Concentrada, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Barberia - Agua de Colonia Concentrada, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-063",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Oud Satin Mood (Eau de Parfum) (Maison Francis Kurkdjian). Familia olfativa: Oriental. Volumen: 30 ml. Género: unisex. FICHA DE COLECCIÓN — Barberia - Agua de Colonia Concentrada (Alvarez Gómez). Año: 2012. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex. FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Oud Satin Mood (Eau de Parfum), indican el volumen de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Oud Satin Mood (Eau de Parfum), indican el volumen de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "volumen"
+  },
+  {
+   "id": "cuant-064",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Acqua di Sale (Profumum Roma). Año: 1996. Familia olfativa: Acuática. Concentración: Parfum. Género: unisex. Precio: 206,61 EUR. FICHA DE COLECCIÓN — Adonis Awakens (Argos). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 1872 for Men (Clive Christian). Año: 2001. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bois Impérial (Eau de Parfum) (Essential Parfums). Año: 2020. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud for Greatness (Eau de Parfum) (Initio). Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Acqua di Sale, indican el precio de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Acqua di Sale, indican el precio de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    5,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "precio"
+  },
+  {
+   "id": "cuant-065",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Nobility (Alexandria Fragrances). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Stereo (Botanicae Expressions). Año: 2021. FICHA DE COLECCIÓN — L'Myrrhe (Darkbeat). FICHA DE COLECCIÓN — Molecule 01 + Iris (Escentric Molecules). FICHA DE COLECCIÓN — Tobacco Honey (Guerlain). Año: 2023."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Nobility, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Nobility, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    1,
+    0,
+    0,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-066",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino. FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Winter Palace (Memo Paris). Año: 2019. Familia olfativa: Cuero. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas CH Men Africa, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas CH Men Africa, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-067",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Beso Dorado (Beso Beach). Año: 2023. FICHA DE COLECCIÓN — Book (Commodity). Año: 2021. FICHA DE COLECCIÓN — Whisky Nobile (Farmacia SS. Annunziata). Año: 2021. FICHA DE COLECCIÓN — Symphony (Louis Vuitton). Año: 2021. FICHA DE COLECCIÓN — Encens Cuivre (Ojar). Año: 2023. Concentración: EDP."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Beso Dorado, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Beso Dorado, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    1,
+    1,
+    1,
+    1,
+    2
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-068",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Oud for Greatness (Eau de Parfum) (Initio). Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Amber Chocolat (The Lab). Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Interlude Man (Amouage). Año: 2012. Familia olfativa: Oriental. Género: masculino. FICHA DE COLECCIÓN — Alvarez (Alexandria Fragrances). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Flamenco (Eau de Parfum) (Ramón Monegal). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Oud for Greatness (Eau de Parfum), indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Oud for Greatness (Eau de Parfum), indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-069",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Town & Country (Clive Christian). Año: 2023. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Safran Colognisé (Nishane). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Town & Country, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Town & Country, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-070",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Jubilation XXV Man (Amouage). Año: 2007. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Mefisto (Casamorati). Año: 2009. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Promise / ??????? (Parfum) (Editions de Parfums Frédéric Malle). Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — Oud Or (Houbigant). Año: 2023. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Majnoon (Azman)."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Jubilation XXV Man, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Jubilation XXV Man, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    3,
+    4,
+    0
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-071",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Barber Note (Darkbeat). Año: 2022."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Silver Mountain Water, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Silver Mountain Water, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-072",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fauno (Agatho). Año: 2019. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Highlands (Botanicae Expressions). Año: 2022. FICHA DE COLECCIÓN — Magnolia (Daniel Josier). FICHA DE COLECCIÓN — Synthetic Nature / Synthetic Jungle (Editions de Parfums Frédéric Malle). Año: 2021. FICHA DE COLECCIÓN — Goudh (Fugazzi). Año: 2020."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Fauno, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Fauno, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    1,
+    0,
+    1,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-073",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Infusion d'Iris (Eau de Parfum) (2007) (Prada). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — C'est la vie (The Lab). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Firma 1 (FIRMA). Familia olfativa: Oriental. Volumen: 100 ml. Género: unisex. FICHA DE COLECCIÓN — Promise / ??????? (Parfum) (Editions de Parfums Frédéric Malle). Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — Shanthi (?asva). Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Infusion d'Iris (Eau de Parfum) (2007), indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Infusion d'Iris (Eau de Parfum) (2007), indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-074",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Luna Rossa Carbon (Eau de Toilette) (Prada). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Dubai - Bahar (Eau de Parfum) (The Spirit of Dubai). Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Tie (Celine). Año: 2019. Concentración: EDP. FICHA DE COLECCIÓN — Blamage (Nasomatto). Año: 2014. Concentración: EDP. FICHA DE COLECCIÓN — Oud for Greatness NEO (Initio). Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Luna Rossa Carbon (Eau de Toilette), indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Luna Rossa Carbon (Eau de Toilette), indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    2,
+    2,
+    2
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-075",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Flamenco (Eau de Parfum) (Ramón Monegal). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Body Kouros (Eau de Toilette) (Yves Saint Laurent). Familia olfativa: Fougère. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Loewe 7 Plata (Loewe). Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Oud for Greatness (Eau de Parfum) (Initio). Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Amber Chocolat (The Lab). Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Flamenco (Eau de Parfum), indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Flamenco (Eau de Parfum), indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    2,
+    3,
+    3
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-076",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Turathi (Blue) (Afnan Perfumes). Familia olfativa: Acuática. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Journey Man (Amouage). Año: 2014. FICHA DE COLECCIÓN — Patio (Botanicae Expressions). Año: 2019. FICHA DE COLECCIÓN — Barber Note (Darkbeat). Año: 2022. FICHA DE COLECCIÓN — Aquila Absolute (Electimuss). Año: 2023."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Turathi (Blue), indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Turathi (Blue), indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    1,
+    1,
+    1,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-077",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Firma 1 (FIRMA). Familia olfativa: Oriental. Volumen: 100 ml. Género: unisex. FICHA DE COLECCIÓN — Le Gemme - Kobraa (Bvlgari). Año: 2020. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ambre Tabac (Eau de Parfum) (Daniel Josier). Año: 2025. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Ambre des Abysses (Houbigant). Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Homme (Eau de Toilette Intense) (Kenzo). Año: 2021. Familia olfativa: Cítrica. Concentración: EDT. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Firma 1, indican el volumen de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Firma 1, indican el volumen de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    4,
+    4,
+    3,
+    4
+   ],
+   "campo_clave": "volumen"
+  },
+  {
+   "id": "cuant-078",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Turathi (Blue) (Afnan Perfumes). Familia olfativa: Acuática. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Gntonic (M. Micallef). Familia olfativa: Cítrica. Género: unisex. FICHA DE COLECCIÓN — Beso Dorado (Beso Beach). Año: 2023. FICHA DE COLECCIÓN — Book (Commodity). Año: 2021. FICHA DE COLECCIÓN — Ruby N Vanilla Oud (EBK)."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Turathi (Blue), indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Turathi (Blue), indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    2,
+    1,
+    1,
+    0
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-079",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Bravo Monsieur (El Ganso). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Sea (Lorenzo Pazzaglia). Año: 2019. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Pardon (Extrait de Parfum) (Nasomatto). Año: 2011. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Alhambra Oud (Ramón Monegal). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Bravo Monsieur, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Bravo Monsieur, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-080",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Apex (Eau de Parfum) (Roja Parfums). Familia olfativa: Chipre. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Istanbul (Unique'e Luxury). Familia olfativa: Gourmand. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — Gntonic (M. Micallef). Familia olfativa: Cítrica. Género: unisex. FICHA DE COLECCIÓN — Ambre des Abysses (Houbigant). Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Amber Chocolat (The Lab). Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Apex (Eau de Parfum), indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Apex (Eau de Parfum), indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    2,
+    3,
+    3
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-081",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Nerotic (Laboratorio Olfattivo). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Neroli Nostrum (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Hespéridé Colognisé (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Insurrection II Wild (Reyane Tradition). Año: 2013. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Pacific Rock Moss, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Pacific Rock Moss, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-082",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Triumph of Bacchus (Eau de Parfum) (Argos). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Town & Country (Clive Christian). Año: 2023. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Triumph of Bacchus (Eau de Parfum), indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Triumph of Bacchus (Eau de Parfum), indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-083",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Nobility (Alexandria Fragrances). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Coconut Lagoon (Ministry of Gourmand). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — ? 02 - L'Air du Désert Marocain (Eau de Toilette Intense) (Tauer Perfumes). Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Cities Collection - Seoul 532-8 Sinsa Dong Gangnam-Gu (Zara). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Foreplay (My Geisha). Concentración: EDP."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Nobility, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Nobility, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    3,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-084",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Acqua di Sale (Profumum Roma). Año: 1996. Familia olfativa: Acuática. Concentración: Parfum. Género: unisex. Precio: 206,61 EUR. FICHA DE COLECCIÓN — Turathi (Blue) (Afnan Perfumes). Familia olfativa: Acuática. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Triumph of Bacchus (Eau de Parfum) (Argos). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Town & Country (Clive Christian). Año: 2023. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Giardino (Essential Parfums). Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Acqua di Sale, indican el precio de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Acqua di Sale, indican el precio de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    5,
+    3,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "precio"
+  },
+  {
+   "id": "cuant-085",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair (Clive Christian). Año: 2019. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire (Eau de Toilette) (Lalique). Año: 2006. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paper (Commodity). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-086",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Acqua di Sale (Profumum Roma). Año: 1996. Familia olfativa: Acuática. Concentración: Parfum. Género: unisex. Precio: 206,61 EUR. FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Acqua di Sale, indican el precio de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Acqua di Sale, indican el precio de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    5,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "precio"
+  },
+  {
+   "id": "cuant-087",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Imperial (Boadicea the Victorious). Año: 2012. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — X for Men (Clive Christian). Año: 2001. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Tabac Nomade (Houbigant). Año: 2023. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire (Eau de Toilette) (Lalique). Año: 2006. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — By the Fireplace (Maison Margiela). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Imperial, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Imperial, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-088",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Jubilation XXV Man (Amouage). Año: 2007. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Mefisto (Casamorati). Año: 2009. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bravo Monsieur (El Ganso). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Sea (Lorenzo Pazzaglia). Año: 2019. Familia olfativa: Acuática. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Jubilation XXV Man, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Jubilation XXV Man, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-089",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Oud Or (Houbigant). Año: 2023. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Vanhera (Laboratorio Olfattivo). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Grand Soir (Eau de Parfum) (Maison Francis Kurkdjian). Año: 2016. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud Aquilaria (Omanluxury). Año: 2020. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — ÔIKB (Santi Burgas). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Oud Or, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Oud Or, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-090",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Green Leather (Daniel Josier). Año: 2016. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Joop! Homme (Eau de Toilette) (Joop!). Año: 1989. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — 7 Plata (Loewe). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Irish Leather (Eau de Parfum) (Memo Paris). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Layton (Parfums de Marly). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Green Leather, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Green Leather, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-091",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Safran Colognisé (Nishane). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Elysium pour Homme (Parfum) (Roja Parfums). Año: 2017. Familia olfativa: Chipre. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Fougère Royale (2010) (Eau de Parfum), indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Fougère Royale (2010) (Eau de Parfum), indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-092",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — X for Men (Clive Christian). Año: 2001. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Acqua di Giò pour Homme (Eau de Toilette) (Giorgio Armani). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 7 Plata (Loewe). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ambra Gadir (Darkbeat)."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas X for Men, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas X for Men, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    3,
+    4,
+    4,
+    0
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-093",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kismet Magic (Maison Alhambra). Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Lavish, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Lavish, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-094",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Salaria (Giardino Benessere). Año: 2017. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Phantom - Memento Mori (Kilian). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Indigo Suede (Lunio). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — B-612 (Nishane). Año: 2018. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Fattan pour Homme (Rasasi). Año: 2018. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Salaria, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Salaria, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-095",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire (Eau de Toilette) (Lalique). Año: 2006. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Grand Soir (Eau de Parfum) (Maison Francis Kurkdjian). Año: 2016. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — French Lover / Bois d'Orage (Editions de Parfums Frédéric Malle)."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Divine Vanille, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Divine Vanille, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    0
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-096",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Green Leather (Daniel Josier). Año: 2016. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Bois Mystique (Eau de Parfum) (Houbigant). Familia olfativa: Amaderada. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Shiyaaka for Men / Shiyaaka Silver (Khadlaj). Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bella Trinacria (Lunio). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paper (Commodity). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Green Leather, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Green Leather, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    3,
+    3,
+    4,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-097",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Afternoon Swim (Louis Vuitton). Año: 2019. Familia olfativa: Cítrica. Género: unisex. FICHA DE COLECCIÓN — Flower Cafe (Botanicae Expressions). Año: 2019. FICHA DE COLECCIÓN — Dark Note (Darkbeat). Año: 2023. FICHA DE COLECCIÓN — Silky Woods Elixir (Goldfield & Banks). Año: 2023. FICHA DE COLECCIÓN — Instant Crush (Mancera). Año: 2019."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Afternoon Swim, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Afternoon Swim, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    1,
+    1,
+    1,
+    1
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-098",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Alvarez (Alexandria Fragrances). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Flamenco (Eau de Parfum) (Ramón Monegal). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Body Kouros (Eau de Toilette) (Yves Saint Laurent). Familia olfativa: Fougère. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Loewe 7 Plata (Loewe). Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Oud for Greatness (Eau de Parfum) (Initio). Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Alvarez, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Alvarez, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    2,
+    3
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-099",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Beso Dorado (Beso Beach). Año: 2023. FICHA DE COLECCIÓN — Lira (Casamorati). Año: 2011. Concentración: EDP. FICHA DE COLECCIÓN — La Tacita de Café (Day Three Fragrances). FICHA DE COLECCIÓN — Whisky Nobile (Farmacia SS. Annunziata). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 195 a.C., indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 195 a.C., indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    1,
+    2,
+    0,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-100",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Mefisto (Casamorati). Año: 2009. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bravo Monsieur (El Ganso). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Sea (Lorenzo Pazzaglia). Año: 2019. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — L'Homme Intense (Prada). Familia olfativa: Oriental. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Mefisto, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Mefisto, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-101",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Flower Cafe (Botanicae Expressions). Año: 2019. FICHA DE COLECCIÓN — Dark Note (Darkbeat). Año: 2023. FICHA DE COLECCIÓN — Silky Woods Elixir (Goldfield & Banks). Año: 2023. FICHA DE COLECCIÓN — Instant Crush (Mancera). Año: 2019. FICHA DE COLECCIÓN — Megamare (Orto Parisi). Año: 2019."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Flower Cafe, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Flower Cafe, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-102",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Nobility (Alexandria Fragrances). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Journey Man (Amouage). Año: 2014."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Nobility, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Nobility, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-103",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Le Gemme - Orom (Bvlgari). Año: 2022. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Green Leather (Daniel Josier). Año: 2016. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Bois Mystique (Eau de Parfum) (Houbigant). Familia olfativa: Amaderada. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Shiyaaka for Men / Shiyaaka Silver (Khadlaj). Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Chan Chan (Botanicae Expressions). Año: 2021."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Le Gemme - Orom, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Le Gemme - Orom, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    3,
+    3,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-104",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Ambre des Abysses (Houbigant). Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Apex (Eau de Parfum) (Roja Parfums). Familia olfativa: Chipre. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Istanbul (Unique'e Luxury). Familia olfativa: Gourmand. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — Gntonic (M. Micallef). Familia olfativa: Cítrica. Género: unisex. FICHA DE COLECCIÓN — Individuel (Eau de Toilette) (Montblanc). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Ambre des Abysses, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Ambre des Abysses, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    2,
+    3
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-105",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Tabac Nomade (Houbigant). Año: 2023. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire (Eau de Toilette) (Lalique). Año: 2006. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — By the Fireplace (Maison Margiela). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Overdose (Omanluxury). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Malibù - Party in the Bay (Simone Andreoli). Año: 2018. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Tabac Nomade, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Tabac Nomade, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-106",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_corta",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Individuel (Eau de Toilette) (Montblanc). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud Wood (Eau de Parfum) (Tom Ford). Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Oud Satin Mood (Eau de Parfum) (Maison Francis Kurkdjian). Familia olfativa: Oriental. Volumen: 30 ml. Género: unisex. FICHA DE COLECCIÓN — Acqua di Giò pour Homme (Eau de Toilette) (Giorgio Armani). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Shanthi (?asva). Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Individuel (Eau de Toilette), indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Individuel (Eau de Toilette), indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    3,
+    3,
+    3,
+    3
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-107",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Adonis Awakens (Argos). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 1872 for Men (Clive Christian). Año: 2001. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Salaria (Giardino Benessere). Año: 2017. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Black Phantom - Memento Mori (Kilian). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Indigo Suede (Lunio). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Adonis Awakens, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Adonis Awakens, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-108",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Acqua di Giò pour Homme (Eau de Toilette) (Giorgio Armani). Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 7 Plata (Loewe). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ganymede (Eau de Parfum) (Marc-Antoine Barrois). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — The Original / Eight & Bob (Eight & Bob). Año: 2012."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Acqua di Giò pour Homme (Eau de Toilette), indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Acqua di Giò pour Homme (Eau de Toilette), indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    3,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-109",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Energizer (Boadicea the Victorious). Año: 2008. Familia olfativa: Cítrica. Concentración: EDT. Género: unisex. FICHA DE COLECCIÓN — V: Amber Fougere (Clive Christian). Año: 2017. Familia olfativa: Fougère. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Salaria (Giardino Benessere). Año: 2017. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Joop! Homme (Eau de Toilette) (Joop!). Año: 1989. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Vis (Angela Ciampagna). Año: 2023."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Energizer, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Energizer, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-110",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair (Clive Christian). Año: 2019. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Pacific Rock Moss (Goldfield & Banks). Año: 2016. Familia olfativa: Acuática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Nerotic (Laboratorio Olfattivo). Año: 2016. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Neroli Nostrum (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Rosendo Mateu Nº 1 - Bergamot, Tea Leaf, Sandalwood (Rosendo Mateu - Olfactive Expressions). Familia olfativa: Cítrica. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-111",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fauno (Agatho). Año: 2019. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Flower Cafe (Botanicae Expressions). Año: 2019. FICHA DE COLECCIÓN — Continental (CRA-YON). Año: 2021. FICHA DE COLECCIÓN — Musc Ravageur (Editions de Parfums Frédéric Malle). Concentración: EDP. FICHA DE COLECCIÓN — Cocoa Morado (French Avenue)."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Fauno, indican la familia olfativa de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Fauno, indican la familia olfativa de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    1,
+    1,
+    1,
+    0
+   ],
+   "campo_clave": "familia"
+  },
+  {
+   "id": "cuant-112",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Tropical Mirage (Joterc). Año: 2023. Familia olfativa: Cítrica. Concentración: EDP. Volumen: 100 ml. Género: unisex. FICHA DE COLECCIÓN — Fall of Phaeton (Argos). Año: 2024. Familia olfativa: Cuero. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — 20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair (Clive Christian). Año: 2019. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Tropical Mirage, indican el volumen de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Tropical Mirage, indican el volumen de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    5,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "volumen"
+  },
+  {
+   "id": "cuant-113",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ani X (Nishane). Año: 2023. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Quattro Pizzi, indican el género de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Quattro Pizzi, indican el género de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "genero"
+  },
+  {
+   "id": "cuant-114",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Reflection Man (Amouage). Año: 2006. Familia olfativa: Floral. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Essential (El Ganso). Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Boss Bottled Elixir (Hugo Boss). Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Note di Colonia IV (Acqua di Parma). Año: 2017."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Reflection Man, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Reflection Man, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    3,
+    3,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-115",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Turathi (Blue) (Afnan Perfumes). Familia olfativa: Acuática. Concentración: EDP. Género: masculino."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 195 a.C., indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 195 a.C., indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-116",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "1de5_escaso",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Note di Colonia IV (Acqua di Parma). Año: 2017. FICHA DE COLECCIÓN — Highlands (Botanicae Expressions). Año: 2022. FICHA DE COLECCIÓN — Barber Note (Darkbeat). Año: 2022. FICHA DE COLECCIÓN — Hangover Meditation (Emil Élise). Año: 2022."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas 195 a.C., indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas 195 a.C., indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    1,
+    1,
+    1,
+    1
+   ],
+   "campo_clave": "concentracion"
+  },
+  {
+   "id": "cuant-117",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — 2. Nawab of Oudh Intensivo (Ormonde Jayne). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Bogoss Vibrant Leather (Zara). Familia olfativa: Cuero. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Paragon, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Paragon, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-118",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Jubilation XXV Man (Amouage). Año: 2007. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Mefisto (Casamorati). Año: 2009. Familia olfativa: Cítrica. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Bravo Monsieur (El Ganso). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Kenzo Air (Eau de Toilette) (Kenzo). Año: 2003. Familia olfativa: Cítrica. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Essential (El Ganso). Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Jubilation XXV Man, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Jubilation XXV Man, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-119",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "4de5_falta1",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": false,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — B683 (Extrait de Parfum) (Marc-Antoine Barrois). Año: 2020. Familia olfativa: Oriental. Concentración: Parfum. Género: unisex. FICHA DE COLECCIÓN — Il Padrino (Sospiro). Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Silver Mountain Water, indican el año de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Silver Mountain Water, indican el año de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    3
+   ],
+   "campo_clave": "anio"
+  },
+  {
+   "id": "cuant-120",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "variante": "5de5_full",
+   "origen": "generado-cuantificador",
+   "interno": false,
+   "gt": true,
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fauno (Agatho). Año: 2019. Familia olfativa: Aromática. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Le Gemme - Kobraa (Bvlgari). Año: 2020. Familia olfativa: Oriental. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Ambre Tabac (Eau de Parfum) (Daniel Josier). Año: 2025. Familia olfativa: Oriental. Concentración: EDP. Género: masculino. FICHA DE COLECCIÓN — Vespero (Jeroboam). Año: 2017. Familia olfativa: Floral. Concentración: EDP. Género: unisex. FICHA DE COLECCIÓN — Encre Noire Sport (Lalique). Año: 2013. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "afirmacion": "Las 5 fichas incluidas, entre ellas Fauno, indican la concentración de cada perfume.",
+   "instrucciones": "Usa UNICAMENTE el texto del estado que se te da. Decide si la afirmacion es verdadera segun ese texto. Si el texto no contiene el dato, la afirmacion es falsa. Afirmacion: «Las 5 fichas incluidas, entre ellas Fauno, indican la concentración de cada perfume.»",
+   "n_fichas": 5,
+   "campos_por_ficha": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "campo_clave": "concentracion"
+  }
+ ]
+}

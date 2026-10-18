@@ -1,0 +1,105 @@
+{
+ "nodos_nuevos": [
+  {
+   "id": "5e119bd6-0cb1-42e4-9eeb-42bdc92d013a",
+   "name": "PRUEBA texto nativo",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.4,
+   "position": [
+    0,
+    0
+   ],
+   "parameters": {
+    "method": "POST",
+    "url": "http://stirling-pdf:8080/api/v1/convert/pdf/text",
+    "sendQuery": true,
+    "specifyQuery": "json",
+    "jsonQuery": "{\n  \"archivo_id\": \"catalogo_actual\",\n  \"nombre_fichero\": \"Hoja primera prueba_1.pdf\",\n  \"pagina\": 1,\n  \"numero_orden\": 1,\n  \"productos\": [\n    {\n      \"marca\": null,\n      \"modelo\": null,\n      \"nombre\": null,\n      \"sexo\": null,\n      \"genero\": null,\n      \"tipo\": null,\n      \"tamano\": null,\n      \"volumen_ml\": null,\n      \"pvr\": null,\n      \"descuento\": null,\n      \"precio\": null,\n      \"precio_final_calculado\": null,\n      \"condicion\": null,\n      \"notas\": null,\n      \"ean\": null,\n      \"qty\": null,\n      \"texto_origen\": null\n    }\n  ]\n}",
+    "sendHeaders": true,
+    "headerParameters": {
+     "parameters": [
+      {
+       "name": "accept",
+       "value": "*/*"
+      }
+     ]
+    },
+    "sendBody": true,
+    "contentType": "multipart-form-data",
+    "bodyParameters": {
+     "parameters": [
+      {
+       "name": "fileId",
+       "value": "string"
+      },
+      {
+       "name": "outputFormat",
+       "value": "txt"
+      },
+      {
+       "parameterType": "formBinaryData",
+       "name": "fileInput",
+       "inputDataFieldName": "data"
+      }
+     ]
+    },
+    "options": {
+     "response": {
+      "response": {
+       "fullResponse": true,
+       "responseFormat": "text"
+      }
+     }
+    }
+   }
+  },
+  {
+   "id": "6b182ea2-1827-4b21-810b-9c3d902b8243",
+   "name": "¿PDF con texto nativo?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2,
+   "position": [
+    0,
+    0
+   ],
+   "parameters": {
+    "conditions": [
+     {
+      "leftValue": "={{ $json.texto_length }}",
+      "rightValue": 200,
+      "operator": {
+       "type": "number",
+       "operation": "gt"
+      }
+     }
+    ],
+    "options": {}
+   }
+  },
+  {
+   "id": "d8fb35ed-39b7-4bf6-b688-75772fca8f51",
+   "name": "Code in JavaScript9 OCR",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    0,
+    0
+   ],
+   "parameters": {
+    "jsCode": "const j=$input.first().json??{};\n\nconst pagina=j.pagina??null;\nconst numeroOrden=j.numero_orden??null;\nconst nombreFichero=j.nombre_fichero??null;\nconst archivoId=j.archivo_id??\"catalogo_actual\";\n\nlet texto=\"\";\n\nif(typeof j.data===\"string\"){\n  texto=j.data;\n}else if(typeof j.body===\"string\"){\n  texto=j.body;\n}else if(typeof j.text===\"string\"){\n  texto=j.text;\n}else if(typeof j.texto===\"string\"){\n  texto=j.texto;\n}else{\n  texto=\"\";\n}\n\ntexto=String(texto)\n  .replace(/\\r/g,\"\\n\")\n  .replace(/\\n{3,}/g,\"\\n\\n\")\n  .replace(/[ \\t]{2,}/g,\" \")\n  .trim();\n\nreturn [{\n  json:{\n    pagina,\n    numero_orden:numeroOrden,\n    nombre_fichero:nombreFichero,\n    archivo_id:archivoId,\n    texto,\n    texto_length:texto.length\n  }\n}];"
+   }
+  }
+ ],
+ "cambios_conexiones": [
+  "ELIMINAR Read/Write Files from Disk -> HTTP Request5",
+  "AÑADIR  Read/Write Files from Disk -> PRUEBA texto nativo",
+  "AÑADIR  PRUEBA texto nativo -> Code in JavaScript9",
+  "ELIMINAR Code in JavaScript9 -> Code in JavaScript2",
+  "AÑADIR  Code in JavaScript9 -> ¿PDF con texto nativo? (salida 0)",
+  "AÑADIR  ¿PDF con texto nativo? salida 0 (true) -> Code in JavaScript2",
+  "AÑADIR  ¿PDF con texto nativo? salida 1 (false) -> HTTP Request5",
+  "ELIMINAR HTTP Request REPAIR4 -> Code in JavaScript9",
+  "AÑADIR  HTTP Request REPAIR4 -> Code in JavaScript9 OCR",
+  "AÑADIR  Code in JavaScript9 OCR -> Code in JavaScript2"
+ ]
+}

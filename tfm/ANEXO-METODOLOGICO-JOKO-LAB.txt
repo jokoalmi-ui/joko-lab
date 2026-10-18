@@ -1,0 +1,144 @@
+ANEXO METODOLÓGICO — JOKO LAB: EVALUACIÓN, MÉTRICAS Y RESULTADOS NEGATIVOS
+Versión 1.0 — 18 de agosto de 2026
+(Complementa a GUIA-FOUNDERZ-TFM.txt v1.1)
+
+Este anexo responde a las peticiones del evaluador de Founderz: definir el
+conjunto de evaluación, el número y dificultad de las consultas, las métricas
+utilizadas y los resultados negativos. Todos los datos que aparecen aquí se
+han obtenido ejecutando los scripts en el propio laboratorio el 17 de agosto
+de 2026; ninguno es estimación.
+
+
+1. SUITE DE TESTS AUTOMATIZADOS
+
+Script: python3 -m unittest discover -s tests
+Resultado (17-ago-2026): Ran 233 tests in 0.034s — OK (skipped=14)
+Qué cubre: funciones puras del sistema de conocimiento — knowledge_health
+(parse_frontmatter, classify_file, extract_date), activation_engine,
+consolidador de sesiones, context_builder_estructurado, verificar_fk_kos,
+migrate_to_ko, contrastar_externo, verificador de alucinaciones.
+Los 14 skipped corresponden a casos que requieren red/GPU y se ejecutan en
+entornos controlados, no en la suite rápida.
+Los tests se añadieron como red de seguridad antes de cada refactor
+(complejidad de audit() reducida de 52 a 9 sin cambiar salida, verificado
+por diff de JSON).
+
+
+2. EVALUACIÓN DEL RAG — CONJUNTO Y MÉTRICAS
+
+Script: tools/evaluar_rag.py (8 consultas, top-5, modelo BGE-M3 en GPU)
+
+Conjunto de evaluación (8 consultas reales que el usuario ha hecho o haría,
+cada una con su documento esperado):
+  1. estado de la refactorizacion del lab complejidad funciones → "complejidad"
+  2. que dijo el usuario sobre el horario de China UTC → "hora"
+  3. prueba 1 de cafeina seguimiento energia foco → "cafeina"
+  4. entrenador de fuerza kettlebell tensor ficha → "entren"
+  5. modelos locales LM Studio VRAM A2000 → "lm-studio"
+  6. decisiones de arquitectura lideres del lab → "decision"
+  7. resultados del experimento EXP-HEL respuestas con herramientas → "hel"
+  8. compactacion de LanceDB versiones optimize → "lancedb"
+
+Métricas:
+  - recall@k: ¿aparece el documento esperado en los top-k?
+  - precision@k: ¿los top-k son relevantes?
+  - tiempo medio de búsqueda (embeddings + consulta LanceDB)
+
+Resultados (18-ago-2026, dos ejecuciones en el mismo día):
+  - Ejecución 1 (14:40): recall@5 = 8/8 = 100%, tiempo medio = 86 ms
+  - Ejecución 2 (15:05): recall@5 = 8/8 = 100%, tiempo medio = 73 ms
+  - Variación 73-86 ms entre ejecuciones: atribuible a carga de GPU/compartición
+    con el modelo de visión cargado en LM Studio; no a la calidad de la
+    búsqueda. Por eso el vídeo afirmaba "70 ms" (una medición puntual) y la
+    medición formal debe citarse como RANGO: 73-86 ms.
+
+Dificultad: las 8 consultas son de dificultad media (términos del dominio del
+lab, sin variantes parafraseadas). La limitación conocida del conjunto: es
+pequeño (n=8) y NO incluye aún variantes parafraseadas ni consultas de otros
+dominios — ver sección 4 (trabajo futuro).
+
+
+3. PRUEBAS ADVERSARIALES — RESULTADOS Y RESULTADOS NEGATIVOS
+
+Script: tools/evaluar_rag_adversarial.py (creado 18-ago-2026)
+
+A) OUT-OF-SCOPE (6 consultas sobre temas que el lab NO conoce):
+   paella, surf en Indonesia, invernadero hidropónico, películas de los 80,
+   fotografía nocturna, pan de masa madre.
+   Métrica: distancia coseno del top-1 (distancia alta = el RAG no encuentra
+   nada cercano = comportamiento correcto; distancia < 0.45 = falso positivo,
+   el RAG afirma con confianza un tema ajeno).
+   Resultado: 0/6 falsos positivos — distancia media del top-1 = 0.60.
+   Cada consulta ajena recuperó el documento del lab menos lejano (p.ej.
+   "paella" → análisis de tostadores de Bizkaia) pero con distancia > 0.54,
+   muy por encima del umbral de similitud. El RAG no afirma con confianza
+   temas que no conoce.
+
+B) TRAMPA SEMÁNTICA (4 consultas que suenan al dominio pero piden algo que
+   el lab NO tiene: router de LangChain, prompts de inmobiliarias, ChromaDB,
+   café con avena).
+   Métrica: la palabra clave ajena (langchain/inmobiliaria/chromadb/avena)
+   aparece en top-5 como RESPUESTA (no como mención-contraste).
+   Resultado: 0/4 mezclas reales. Detalle metodológico importante: la primera
+   versión de la métrica marcó "LangChain" como mezcla; la inspección del
+   chunk mostró que era una TABLA DE MAPEO de conceptos ("Concepto del reel |
+   Equivalente en el lab | LangChain (framework) | Scripts propios + Hermes +
+   llm-router") — el documento dice explícitamente que el lab NO usa
+   LangChain. Se refinó la métrica para distinguir mención-contraste de
+   mezcla real. Este refinamiento es un resultado negativo documentado:
+   la primera métrica daba falsos positivos por substring.
+
+C) PROMPT INJECTION (3 inyecciones típicas: ignorar instrucciones previas,
+   modo malicioso, DAN MODE).
+   Métrica: ¿el RAG contiene/recupera un chunk con el texto de la inyección?
+   Resultado: 0/3 — el índice del lab no contiene instrucciones peligrosas
+   recuperables.
+
+RESUMEN ADVERSARIAL (18-ago-2026):
+  A) falso-positivos out-of-scope: 0/6 (distancia media 0.60)
+  B) mezclas semánticas: 0/4 (1 falso positivo de métrica, corregido)
+  C) chunks con inyección: 0/3
+
+
+4. COSTE Y CONSUMO — ESTADO HONESTO
+
+La afirmación del vídeo "0 € al mes" se refiere EXCLUSIVAMENTE a coste de
+suscripciones/API en la nube. El laboratorio NO tiene medición formal de:
+  - consumo energético (vatios del PC: RTX A2000 12 GB + i5-9500 + periféricos)
+  - mantenimiento (actualizaciones, discos, electricidad de red)
+  - amortización del hardware inicial
+Este es un trabajo pendiente declarado (ver sección 5). Hasta que exista una
+medición con medidor de potencia, la afirmación correcta es "0 € de
+suscripciones; consumo eléctrico no medido".
+
+
+5. TRABAJO FUTURO DECLARADO (en orden de prioridad)
+
+  1. Medición energética: medidor de potencia en el PC, medir escenarios
+     (idle, inferencia local, RAG, vídeo), estimar coste €/mes real.
+  2. Ampliar el conjunto de evaluación RAG: n=8 → n≥30 con dificultad
+     graduada (fáciles/medias/difíciles), variantes parafraseadas y
+     resultados negativos explícitos (consultas que NO deben tener respuesta).
+  3. Estudio reproducible 3 casos de uso vs alternativa en la nube:
+     calidad (tests), latencia, consumo, coste y privacidad. Candidatos:
+     RAG de conocimiento, visión local (GLM), automatización de informes.
+  4. Ampliar adversariales: prompt injection a nivel de agente (no solo RAG),
+     fallos del router (envío a modelo equivocado), recuperación de
+     documentos parcialmente correctos.
+  5. Anexo con esquema de arquitectura, fragmentos de configuración, prompts
+     e iteraciones (el evaluador pidió explícitamente este documento de
+     apoyo — este anexo es la primera entrega).
+
+
+6. UBICACIÓN DE LAS HERRAMIENTAS (rutas relativas al proyecto; las rutas
+absolutas se omiten deliberadamente — el laboratorio es local, pero este
+documento es público)
+
+  - evaluar_rag.py:  tools/evaluar_rag.py
+  - evaluar_rag_adversarial.py: tools/evaluar_rag_adversarial.py
+  - verificador_alucinaciones.py: tools/verificador_alucinaciones.py
+  - suite de tests:  tests/
+  - Base RAG:        LanceDB (.lancedb, tabla joko_notes)
+  - Modelo embeddings: BAAI/bge-m3 (local, GPU)
+
+FIN DEL ANEXO METODOLÓGICO — Versión 1.0 — 18 de agosto de 2026

@@ -1,0 +1,65 @@
+===== antes =====
+size=159701 md5=5625994130b66e542160f5824e242542 lines=522
+===== shortcodes en el lab (0 = ausente) =====
+{'Dd5sce1DF4W': 0, 'Dd5X-6WGH1n': 0, 'Dd5a_mmuZwY': 0, 'Dd3stOat159': 0}
+===== analisis previos (bytes, lineas, md5-12) =====
+wikiskill=(16039, 100, '19c916fe1e93') dsb=(3413, 46, 'e34e71cf5965') cwb=(2932, 51, '55f4552b5cdc')
+===== analisis con 'chunking' en research/ (SOLO vivo) =====
+8
+===== nombres vivos =====
+analisis-atareao-graphrag-20260921.md analisis-chunkless-rag-docling.md analisis-datasciencebrain-rag.md analisis-rag-completo-ketan.md analisis-rag-explicado-carli-code.md analisis-rag-indexing-strategies.md analisis-techwithram-chunking-rag.md analisis-thinklab-chunking-rag.md
+===== indexer.py (grep -n) =====
+16:from langchain_text_splitters import RecursiveCharacterTextSplitter
+25:DB_PATH = VAULT_PATH / ".lancedb"
+144:    splitter = RecursiveCharacterTextSplitter(
+145:        chunk_size=1000, chunk_overlap=150,
+146:        separators=["\n## ", "\n### ", "\n\n", "\n", " "]
+===== rutas declaradas presentes =====
+{'tools/llm_as_judge.py': True, 'tools/evaluar_rag.py': True, 'tools/rag_telemetry.py': True, 'tools/banco_validacion_juez.json': True, 'tools/indexer.py': True, 'tools/juez_alucinaciones.py': True, 'tools/tests/test_llm_as_judge.py': True, 'research/analisis-dailydoseofds-finetuning-5-tecnicas.md': True, 'research/analisis-dailydoseofds-qm-yc-20260909.md': True}
+===== evaluar_rag.py: recall/precision =====
+recall=True precision=True
+===== wikiskill: cifras Table 3 presentes =====
+['48,7', '48.7', '63,7', '63.7']
+===== PURPOSE.md / skill-impact.md =====
+0 / 0
+===== ledgers (ruta, filas) =====
+{'lecciones_ledger.jsonl': ('/home/jokoalmi/joko-lab/04-operations/metrics/lecciones_ledger.jsonl', 12), 'retrabajo_ledger.jsonl': ('/home/jokoalmi/joko-lab/04-operations/metrics/retrabajo_ledger.jsonl', 1)}
+===== revision-fallos-*.md =====
+4
+===== skill instagram (leida, sin cambios) =====
+99346 B md5=825ab7c738a05ce6230d755ddf49c299
+===== iteracion 0 =====
+bl=5794 sa=165495 la=538
+===== iteracion 1 =====
+bl=5797 sa=165498 la=538
+===== iteracion 2 =====
+bl=5797 sa=165498 la=538
+===== bloque final =====
+bytes=5797 lineas=16
+===== prediccion destino =====
+size=165498 lines=538 md5=e934c338644c298e07456e32cbf432f8
+===== despues (disco) =====
+size=165498 md5=e934c338644c298e07456e32cbf432f8 lines=538
+===== GATES =====
+{'size_ok': True, 'md5_ok': True, 'lines_ok': True, 'aditivo': True, 'marca_1_vez': False}
+===== git status =====
+M 04-operations/backlogs/pendientes.md
+ M lpa/experiments/bolsa/estado-juego.json
+ M lpa/experiments/bolsa/ledger-operaciones.jsonl
+?? 01-knowledge/observations/OBS-151-decisiones-por-politica-(2026-09-29).md
+?? 01-knowledge/observations/OBS-152-fallback-rate-2026-09-29.md
+?? 01-knowledge/observations/OBS-153-uso-rag-2026-09-29.md
+?? 04-operations/metrics/telemetria/2026-09-29.json
+?? 04-operations/metrics/telemetria/2026-09-29.md
+?? 04-operations/reports/20260930-informe-local.txt
+?? lpa/experiments/bolsa/snapshots/2026-09-29.json
+?? research/infografias/perfume-del-dia-20260930/
+?? research/infografias/serie-ia-agentes/leccion-4-de-uno-a-muchos-agentes-que-colaboran/medicion-multiagente-20260927.json.parcial
+ 04-operations/backlogs/pendientes.md           | 16 ++++++++++++++++
+ lpa/experiments/bolsa/estado-juego.json        | 12 +++++++++++-
+ lpa/experiments/bolsa/ledger-operaciones.jsonl |  1 +
+ 3 files changed, 28 insertions(+), 1 deletion(-)
+===== cola (ultimas 3 lineas) =====
+- **FUTURIBLE anotado (unico hueco real) — WikiSkill**: la idea aprovechable (una wiki persistente por skill con el **por que** de cada intento fallido) el lab ya la tiene **a mano pero dispersa**. Medido: `PURPOSE.md` por skill = **0 ficheros**; `skill-impact.md` = **0 ficheros**; el «por que» vive hoy en `lpa/incidentes/revision-fallos-*.md` (**4**) y en los ledgers `lecciones_ledger.jsonl` (**12 filas**) y `retrabajo_ledger.jsonl` (**1 filas**). **Senal real, no urgente**: no se instala nada y no se toca ninguna skill; solo se evaluaria si el usuario lo pide.
+- **No tocado**: n8n, Docker, stack, servicios, BD de perfumes, `/mnt/ssd_ia_datos`, ledgers y `~/.hermes` (de las skills solo se ha LEIDO `instagram-content-extraction`). Scripts y volcados de trabajo en `/tmp/ig-4posts/`.
+- **Registro de escritura**: `04-operations/backlogs/pendientes.md`, **159701 B y 522 lineas** antes (md5 `5625994130b66e542160f5824e242542`, backup `pendientes.md.bak-20260930-triaje-4posts`) -> **165498 B y 538 lineas** tras la entrada (bloque de **5797 B**). Solo se anade: **0 lineas eliminadas** (membresia de TODAS las lineas del backup = True). MARCA unica: `triaje-4posts-ig-20260930`. Gates del anexo: destino byte a byte el medido (tamano + md5 predichos), backup inexistente antes, entrada ausente antes (idempotencia), puramente aditivo y relectura **del disco**.

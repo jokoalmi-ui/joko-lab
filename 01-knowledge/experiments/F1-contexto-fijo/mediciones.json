@@ -1,0 +1,68 @@
+{
+ "base": "http://127.0.0.1:1234/v1",
+ "modelo": "openai/gpt-oss-20b",
+ "offset_tokens": 71,
+ "bloques": {
+  "B1_soul": {
+   "estado": "medido",
+   "chars": 20235,
+   "tokens_con_offset": 5202,
+   "tokens_neto": 5131,
+   "ratio_chars_por_token": 3.94
+  },
+  "B2_memorias": {
+   "estado": "medido",
+   "chars": 4342,
+   "tokens_con_offset": 1530,
+   "tokens_neto": 1459,
+   "ratio_chars_por_token": 2.98
+  },
+  "B3_skills": {
+   "estado": "medido",
+   "chars": 47437,
+   "tokens_con_offset": 11864,
+   "tokens_neto": 11793,
+   "ratio_chars_por_token": 4.02
+  },
+  "B5_mcp": {
+   "estado": "no_calculable",
+   "nota": "pieza ausente en piezas.json (cero imputacion)"
+  }
+ },
+ "mcp": {
+  "medido": false,
+  "motivo": "fase F1.4 no solicitada (--con-mcp)"
+ },
+ "no_medido_por_contexto": [],
+ "acumulado": [
+  {
+   "hasta": "B1_soul",
+   "chars_acum": 20235,
+   "tokens_acum": 5202,
+   "tokens_neto_acum": 5131
+  },
+  {
+   "hasta": "B2_memorias",
+   "chars_acum": 24579,
+   "tokens_acum": 6663,
+   "tokens_neto_acum": 6592
+  },
+  {
+   "hasta": "B3_skills",
+   "chars_acum": 72018,
+   "tokens_acum": 18457,
+   "tokens_neto_acum": 18386
+  }
+ ],
+ "total_fijo_tokens_netos": 18383,
+ "fraccion_por_bloque": {
+  "B1_soul": 0.2791,
+  "B2_memorias": 0.0794,
+  "B3_skills": 0.6415
+ },
+ "_meta": {
+  "piezas_fecha": "2026-09-16T23:00:47+02:00",
+  "instrumento": "usage.prompt_tokens de LM Studio (tokenizador del modelo local)",
+  "etiqueta": "orden de magnitud para el pipeline cloud; fraccion por bloque valida"
+ }
+}

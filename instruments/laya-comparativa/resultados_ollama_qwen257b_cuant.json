@@ -1,0 +1,1259 @@
+{
+ "meta": {
+  "backend": "ollama",
+  "modelo_ollama": "qwen2.5:7b",
+  "num_ctx": 8192,
+  "checkpoint": null,
+  "casos": 120,
+  "casos_sha256": "d7e423a81f72d54d1aad9bba42bf9a9837f12c0357350d913ea4dce2da25684e",
+  "set": "cuant",
+  "fichero_casos": "casos_cuant_n120.json",
+  "golden_set_sha256": "c901d0013d18e3493709a3ce9851f13a0387c8897124aab21c834c301624febe",
+  "ejecutado": "2026-09-24T07:53:34+02:00",
+  "host": {
+   "python": "Python 3.11.16",
+   "laya": true,
+   "torch": true,
+   "gpu": "NVIDIA RTX A2000 12GB, 5635, 12282, 94",
+   "ollama": [
+    "ibm/granite4.2:8b-q4_K_M",
+    "qwen2.5:7b",
+    "deepseek-r1-distill-qwen-14b:latest"
+   ],
+   "disco_home": "/dev/nvme0n1p2   468G   307G  137G  70% /",
+   "fecha": "jue 24 sept 2026 07:53:34 CEST"
+  }
+ },
+ "metricas_globales": {
+  "n": 120,
+  "accuracy": 0.55,
+  "brier": 0.3773,
+  "ece5": 0.34,
+  "ece15_proveedor": 0.34,
+  "conf_media": 0.3233,
+  "sesgo_conf_menos_acierto": -0.2267,
+  "confiado_y_fallado": 18,
+  "seguro_y_acertado": 23,
+  "p50_ms": 408.9,
+  "p95_ms": 456.2
+ },
+ "metricas_por_bloque": {},
+ "metricas_por_subtipo": {
+  "cuantificador": {
+   "n": 120,
+   "accuracy": 0.55,
+   "brier": 0.3773,
+   "ece5": 0.34,
+   "ece15_proveedor": 0.34,
+   "conf_media": 0.3233,
+   "sesgo_conf_menos_acierto": -0.2267,
+   "confiado_y_fallado": 18,
+   "seguro_y_acertado": 23,
+   "p50_ms": null,
+   "p95_ms": null
+  }
+ },
+ "errores": 0,
+ "registros": [
+  {
+   "id": "cuant-001",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 14676.7
+  },
+  {
+   "id": "cuant-002",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 425.3
+  },
+  {
+   "id": "cuant-003",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 392.7
+  },
+  {
+   "id": "cuant-004",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 341.2
+  },
+  {
+   "id": "cuant-005",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 421.7
+  },
+  {
+   "id": "cuant-006",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 427.3
+  },
+  {
+   "id": "cuant-007",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 422.8
+  },
+  {
+   "id": "cuant-008",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 359.7
+  },
+  {
+   "id": "cuant-009",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 427.6
+  },
+  {
+   "id": "cuant-010",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 407.0
+  },
+  {
+   "id": "cuant-011",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 422.0
+  },
+  {
+   "id": "cuant-012",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 403.0
+  },
+  {
+   "id": "cuant-013",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 449.1
+  },
+  {
+   "id": "cuant-014",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 425.4
+  },
+  {
+   "id": "cuant-015",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 397.9
+  },
+  {
+   "id": "cuant-016",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 456.2
+  },
+  {
+   "id": "cuant-017",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 447.1
+  },
+  {
+   "id": "cuant-018",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 428.9
+  },
+  {
+   "id": "cuant-019",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 341.6
+  },
+  {
+   "id": "cuant-020",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 401.6
+  },
+  {
+   "id": "cuant-021",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 357.9
+  },
+  {
+   "id": "cuant-022",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 356.0
+  },
+  {
+   "id": "cuant-023",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 357.9
+  },
+  {
+   "id": "cuant-024",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 451.5
+  },
+  {
+   "id": "cuant-025",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 443.4
+  },
+  {
+   "id": "cuant-026",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 465.3
+  },
+  {
+   "id": "cuant-027",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 463.9
+  },
+  {
+   "id": "cuant-028",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 427.8
+  },
+  {
+   "id": "cuant-029",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 427.3
+  },
+  {
+   "id": "cuant-030",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 397.0
+  },
+  {
+   "id": "cuant-031",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 450.4
+  },
+  {
+   "id": "cuant-032",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 358.5
+  },
+  {
+   "id": "cuant-033",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 401.7
+  },
+  {
+   "id": "cuant-034",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 358.4
+  },
+  {
+   "id": "cuant-035",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 398.9
+  },
+  {
+   "id": "cuant-036",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 429.0
+  },
+  {
+   "id": "cuant-037",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 451.8
+  },
+  {
+   "id": "cuant-038",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 450.1
+  },
+  {
+   "id": "cuant-039",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 399.3
+  },
+  {
+   "id": "cuant-040",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 454.7
+  },
+  {
+   "id": "cuant-041",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 450.6
+  },
+  {
+   "id": "cuant-042",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 361.3
+  },
+  {
+   "id": "cuant-043",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 394.1
+  },
+  {
+   "id": "cuant-044",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 363.8
+  },
+  {
+   "id": "cuant-045",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 264.0
+  },
+  {
+   "id": "cuant-046",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 433.0
+  },
+  {
+   "id": "cuant-047",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 429.0
+  },
+  {
+   "id": "cuant-048",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 426.6
+  },
+  {
+   "id": "cuant-049",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 406.3
+  },
+  {
+   "id": "cuant-050",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 435.1
+  },
+  {
+   "id": "cuant-051",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 439.6
+  },
+  {
+   "id": "cuant-052",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 430.7
+  },
+  {
+   "id": "cuant-053",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 427.0
+  },
+  {
+   "id": "cuant-054",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 431.7
+  },
+  {
+   "id": "cuant-055",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 454.4
+  },
+  {
+   "id": "cuant-056",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 430.4
+  },
+  {
+   "id": "cuant-057",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 389.7
+  },
+  {
+   "id": "cuant-058",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 455.4
+  },
+  {
+   "id": "cuant-059",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 434.0
+  },
+  {
+   "id": "cuant-060",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 427.2
+  },
+  {
+   "id": "cuant-061",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 412.7
+  },
+  {
+   "id": "cuant-062",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 435.1
+  },
+  {
+   "id": "cuant-063",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 457.5
+  },
+  {
+   "id": "cuant-064",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 335.8
+  },
+  {
+   "id": "cuant-065",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 363.7
+  },
+  {
+   "id": "cuant-066",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 428.5
+  },
+  {
+   "id": "cuant-067",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 356.4
+  },
+  {
+   "id": "cuant-068",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.6,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 428.4
+  },
+  {
+   "id": "cuant-069",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 408.9
+  },
+  {
+   "id": "cuant-070",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 396.2
+  },
+  {
+   "id": "cuant-071",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 381.1
+  },
+  {
+   "id": "cuant-072",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 364.8
+  },
+  {
+   "id": "cuant-073",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 430.0
+  },
+  {
+   "id": "cuant-074",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 348.7
+  },
+  {
+   "id": "cuant-075",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 430.3
+  },
+  {
+   "id": "cuant-076",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 363.1
+  },
+  {
+   "id": "cuant-077",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 379.3
+  },
+  {
+   "id": "cuant-078",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 364.7
+  },
+  {
+   "id": "cuant-079",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 277.7
+  },
+  {
+   "id": "cuant-080",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 398.9
+  },
+  {
+   "id": "cuant-081",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 430.1
+  },
+  {
+   "id": "cuant-082",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 408.3
+  },
+  {
+   "id": "cuant-083",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 402.4
+  },
+  {
+   "id": "cuant-084",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 316.0
+  },
+  {
+   "id": "cuant-085",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 433.3
+  },
+  {
+   "id": "cuant-086",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 331.8
+  },
+  {
+   "id": "cuant-087",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 433.5
+  },
+  {
+   "id": "cuant-088",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 435.5
+  },
+  {
+   "id": "cuant-089",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 434.3
+  },
+  {
+   "id": "cuant-090",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 433.4
+  },
+  {
+   "id": "cuant-091",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 460.7
+  },
+  {
+   "id": "cuant-092",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 402.1
+  },
+  {
+   "id": "cuant-093",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 431.9
+  },
+  {
+   "id": "cuant-094",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 382.6
+  },
+  {
+   "id": "cuant-095",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 434.3
+  },
+  {
+   "id": "cuant-096",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 397.4
+  },
+  {
+   "id": "cuant-097",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 358.7
+  },
+  {
+   "id": "cuant-098",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 398.5
+  },
+  {
+   "id": "cuant-099",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 377.0
+  },
+  {
+   "id": "cuant-100",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 279.1
+  },
+  {
+   "id": "cuant-101",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 363.5
+  },
+  {
+   "id": "cuant-102",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 396.1
+  },
+  {
+   "id": "cuant-103",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 430.9
+  },
+  {
+   "id": "cuant-104",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 400.5
+  },
+  {
+   "id": "cuant-105",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 406.0
+  },
+  {
+   "id": "cuant-106",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 436.1
+  },
+  {
+   "id": "cuant-107",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 434.4
+  },
+  {
+   "id": "cuant-108",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 435.2
+  },
+  {
+   "id": "cuant-109",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 388.4
+  },
+  {
+   "id": "cuant-110",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 456.6
+  },
+  {
+   "id": "cuant-111",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 371.4
+  },
+  {
+   "id": "cuant-112",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 405.7
+  },
+  {
+   "id": "cuant-113",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 384.9
+  },
+  {
+   "id": "cuant-114",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 398.3
+  },
+  {
+   "id": "cuant-115",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 265.2
+  },
+  {
+   "id": "cuant-116",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 364.5
+  },
+  {
+   "id": "cuant-117",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.2,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 267.3
+  },
+  {
+   "id": "cuant-118",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.8,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 263.8
+  },
+  {
+   "id": "cuant-119",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": false,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 263.4
+  },
+  {
+   "id": "cuant-120",
+   "bloque": "H",
+   "subtipo": "cuantificador",
+   "gt": true,
+   "p": 0.0,
+   "motor": "qwen2.5:7b",
+   "error": null,
+   "ms": 433.9
+  }
+ ]
+}

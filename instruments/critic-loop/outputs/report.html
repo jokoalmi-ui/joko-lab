@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang='es'>
+<head>
+<meta charset='utf-8'>
+<title>Critic Loop · Perfume IA · Joko Lab</title>
+<style>
+body { background:#11111b; color:#cdd6f4; font-family:system-ui,sans-serif; max-width:780px; margin:40px auto; padding:20px }
+h1 { color:#cba6f7; font-size:22px; margin-bottom:4px }
+.subtitle { color:#6c7086; font-size:13px; margin-bottom:24px }
+h3 { color:#cba6f7; font-size:15px; margin:24px 0 12px }
+table { width:100%;border-collapse:collapse;font-size:13px }
+th,td { padding:8px 12px;text-align:left;border-bottom:1px solid #313244 }
+th { color:#a6adc8;font-weight:600 }
+.delta-plus { color:#4ade80;font-weight:600 }
+.delta-minus { color:#f87171;font-weight:600 }
+.delta-zero { color:#6c7086 }
+.note { background:#1e1e2e;border-left:3px solid #cba6f7;padding:12px 16px;border-radius:4px;font-size:13px;margin:20px 0;color:#a6adc8 }
+.note strong { color:#cdd6f4 }
+.footer { color:#6c7086;font-size:11px;margin-top:40px;text-align:center }
+</style>
+</head>
+<body>
+<h1>Critic Loop v0.1</h1>
+<div class='subtitle'>Perfume IA · Evaluación de principios de diseño · 2 ejecuciones</div>
+
+<div class='note'>
+<strong>Restricción constitucional:</strong> este instrumento no modifica nada. Solo observa, mide y registra.<br>
+<strong>Propósito:</strong> validar si los principios del YAML producen evaluaciones consistentes y detectar cuáles necesitan refinamiento.
+</div>
+
+
+        <div style='background:#181825;border:1px solid #313244;border-radius:8px;padding:20px;margin-bottom:20px'>
+            <div style='display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px'>
+                <div>
+                    <span style='background:#cba6f7;color:#11111b;padding:2px 10px;border-radius:4px;font-size:12px;font-weight:600'>v4</span>
+                    <div style='color:#6c7086;font-size:11px;margin-top:6px'>?</div>
+                </div>
+                <div style='text-align:right'>
+                    <div style='font-size:32px;font-weight:bold;color:#cdd6f4'>7.6</div>
+                    <div style='color:#6c7086;font-size:10px'>mean · glm-4.6v-flash · conf 83%</div>
+                </div>
+            </div>
+            <table style='width:100%'>
+            <tr>
+                <td style='font-weight:600'>object_first</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>9/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 90% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:90%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>hierarchy</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>9/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 90% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:90%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>accessibility</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>9/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 90% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:90%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>relationship</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>8/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 80% · medium</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:80%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>museum</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>8/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 85% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:80%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>efficiency</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>8/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 85% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:80%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>silence</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>7/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 85% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#facc15;height:5px;border-radius:3px;width:70%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>typography</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>7/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 80% · medium</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#facc15;height:5px;border-radius:3px;width:70%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>emotion</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>6/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 75% · medium</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#facc15;height:5px;border-radius:3px;width:60%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>luxury</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>5/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 70% · medium</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#f87171;height:5px;border-radius:3px;width:50%'></div>
+        </div>
+    </div></td>
+            </tr></table>
+        </div>
+        <div style='background:#181825;border:1px solid #313244;border-radius:8px;padding:20px;margin-bottom:20px'>
+            <div style='display:flex;justify-content:space-between;align-items:baseline;margin-bottom:16px'>
+                <div>
+                    <span style='background:#cba6f7;color:#11111b;padding:2px 10px;border-radius:4px;font-size:12px;font-weight:600'>flask-real-v1</span>
+                    <div style='color:#6c7086;font-size:11px;margin-top:6px'>http://localhost:5050/perfume/1055</div>
+                </div>
+                <div style='text-align:right'>
+                    <div style='font-size:32px;font-weight:bold;color:#cdd6f4'>8.1</div>
+                    <div style='color:#6c7086;font-size:10px'>mean · glm-4.6v-flash · conf 87%</div>
+                </div>
+            </div>
+            <table style='width:100%'>
+            <tr>
+                <td style='font-weight:600'>silence</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>9/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 90% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:90%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>object_first</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>9/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 95% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:90%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>hierarchy</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>9/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 90% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:90%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>museum</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>9/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 95% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:90%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>efficiency</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>9/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 95% · low</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:90%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>relationship</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>8/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 85% · medium</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:80%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>typography</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>8/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 85% · medium</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#4ade80;height:5px;border-radius:3px;width:80%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>emotion</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>7/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 80% · medium</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#facc15;height:5px;border-radius:3px;width:70%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>luxury</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>7/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 85% · medium</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#facc15;height:5px;border-radius:3px;width:70%'></div>
+        </div>
+    </div></td>
+            </tr>
+            <tr>
+                <td style='font-weight:600'>accessibility</td>
+                <td>
+    <div style='margin:6px 0'>
+        <div style='display:flex;justify-content:space-between;font-size:13px'>
+            <span>6/10</span>
+            <span style='color:#6c7086;font-size:11px'>conf 70% · medium</span>
+        </div>
+        <div style='background:#1e1e2e;border-radius:3px;height:5px;margin-top:3px'>
+            <div style='background:#facc15;height:5px;border-radius:3px;width:60%'></div>
+        </div>
+    </div></td>
+            </tr></table>
+        </div>
+
+    <h3>Comparación: v4 → flask-real-v1</h3>
+    <table>
+        <tr><th>Principio</th><th>v4</th><th>flask-real-v1</th><th>Δ</th></tr>
+        <tr><td>silence</td><td>7</td><td>9</td><td class='delta-plus'>+2</td></tr><tr><td>object_first</td><td>9</td><td>9</td><td class='delta-zero'>0</td></tr><tr><td>relationship</td><td>8</td><td>8</td><td class='delta-zero'>0</td></tr><tr><td>hierarchy</td><td>9</td><td>9</td><td class='delta-zero'>0</td></tr><tr><td>typography</td><td>7</td><td>8</td><td class='delta-plus'>+1</td></tr><tr><td>emotion</td><td>6</td><td>7</td><td class='delta-plus'>+1</td></tr><tr><td>museum</td><td>8</td><td>9</td><td class='delta-plus'>+1</td></tr><tr><td>luxury</td><td>5</td><td>7</td><td class='delta-plus'>+2</td></tr><tr><td>efficiency</td><td>8</td><td>9</td><td class='delta-plus'>+1</td></tr><tr><td>accessibility</td><td>9</td><td>6</td><td class='delta-minus'>-3</td></tr>
+    </table>
+    <div style='margin-top:8px;color:#6c7086;font-size:11px'>
+        Media: 7.6 → 8.1 
+        (Δ +0.5)
+    </div>
+    
+<div class='footer'>Joko Lab · 2026-07-20 23:21 · instrumento científico</div>
+</body>
+</html>

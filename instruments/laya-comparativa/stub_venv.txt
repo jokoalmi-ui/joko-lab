@@ -1,0 +1,19 @@
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 27 de 27
+casos sha256 : f5bb2a1f6b3d5cde
+golden set   : 2a2da99cc7001128
+backend      : stub
+
+METRICAS GLOBALES
+  n=27  accuracy=0.8889  Brier=0.1026  ECE(5 bins)=0.0852
+  confianza media=0.6778  sesgo=-0.2111  confiado_y_fallado=3  seguro_y_acertado=16
+  latencia P50=0.0 ms  P95=0.0 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=13 accuracy=0.7692 Brier=0.1946 ECE=0.1308 sesgo=0.1308
+  B: n=8 accuracy=1.0 Brier=0.0225 ECE=0.15 sesgo=-0.85
+  D: n=6 accuracy=1.0 Brier=0.01 ECE=0.1 sesgo=-0.1
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_stub.json

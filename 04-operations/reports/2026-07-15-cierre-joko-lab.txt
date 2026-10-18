@@ -1,0 +1,25 @@
+INFORME DE CIERRE — JOKO LAB
+Fecha: 2026-07-15
+Hora: 11:22
+
+RESUMEN DEL DIA
+
+Commits hoy en hermes-lab: 0
+
+HARDWARE
+  GPU: NVIDIA RTX A2000 12GB, 1030, 12282, 14, 43
+  RAM: 9,6Gi / 30Gi
+
+STACK DOCKER
+NAME           STATUS
+n8n            Up 2 hours
+ollama         Up 2 hours
+pdf-cleaner    Up 2 hours
+stirling-pdf   Up 2 hours (healthy)
+
+PENDIENTES ABIERTOS
+- Loop Engineering: pendiente de evaluar
+- LM Studio + monitor Flask: probados, parados a proposito
+- Eliminar acoplamiento apply-decision.sh a config.yaml
+- docs/joko-lab-principles.md: vacio
+- Skills betterbird, perfumes: sin poblar

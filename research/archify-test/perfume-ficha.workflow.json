@@ -1,0 +1,217 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Ficha diaria de perfume — proceso real del lab",
+    "animation": "trace",
+    "visual_preset": "signal-flow",
+    "quality_profile": "showcase",
+    "output": "/home/jokoalmi/joko-lab/research/archify-test/perfume-ficha.html"
+  },
+  "lanes": [
+    {
+      "id": "datos",
+      "label": "Datos"
+    },
+    {
+      "id": "arte",
+      "label": "Arte y render"
+    },
+    {
+      "id": "control",
+      "label": "Control de calidad",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "fuente",
+      "label": "Fuente",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "verif",
+      "label": "Verificación y arte",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "cierre",
+      "label": "Cierre",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "mainPath": [
+    "pick",
+    "piramide",
+    "packshot",
+    "glm",
+    "fondo",
+    "maqueta",
+    "checklist",
+    "canal"
+  ],
+  "nodes": [
+    {
+      "id": "pick",
+      "lane": "datos",
+      "col": 0,
+      "type": "external",
+      "label": "Elección del perfume",
+      "sublabel": "anti-repetición 30 días",
+      "width": 140
+    },
+    {
+      "id": "piramide",
+      "lane": "datos",
+      "col": 1,
+      "type": "database",
+      "label": "Pirámide oficial",
+      "sublabel": "notas + familia",
+      "width": 140
+    },
+    {
+      "id": "packshot",
+      "lane": "arte",
+      "col": 2,
+      "type": "cloud",
+      "label": "Packshot aislado",
+      "sublabel": "imagen real del frasco",
+      "width": 140
+    },
+    {
+      "id": "glm",
+      "lane": "control",
+      "col": 2,
+      "type": "security",
+      "label": "Visión GLM",
+      "sublabel": "¿está aislado?",
+      "tag": "gate",
+      "width": 140
+    },
+    {
+      "id": "descartar",
+      "lane": "control",
+      "col": 3,
+      "type": "security",
+      "label": "Descartado",
+      "sublabel": "frasco con fondo",
+      "width": 140
+    },
+    {
+      "id": "fondo",
+      "lane": "arte",
+      "col": 3,
+      "type": "backend",
+      "label": "Fondo ComfyUI",
+      "sublabel": "SDXL local",
+      "width": 140
+    },
+    {
+      "id": "maqueta",
+      "lane": "arte",
+      "col": 4,
+      "type": "backend",
+      "label": "Maquetación + render",
+      "sublabel": "HTML v5 · PNG 1080x1350",
+      "width": 140
+    },
+    {
+      "id": "checklist",
+      "lane": "control",
+      "col": 5,
+      "type": "security",
+      "label": "Checklist 17/17",
+      "sublabel": "campos obligatorios",
+      "tag": "gate",
+      "width": 140
+    },
+    {
+      "id": "canal",
+      "lane": "datos",
+      "col": 5,
+      "type": "frontend",
+      "label": "Publicación",
+      "sublabel": "canal de Telegram",
+      "width": 140
+    }
+  ],
+  "edges": [
+    {
+      "id": "pick-piramide",
+      "from": "pick",
+      "to": "piramide",
+      "variant": "default"
+    },
+    {
+      "id": "piramide-packshot",
+      "from": "piramide",
+      "to": "packshot",
+      "label": "notas reales",
+      "variant": "emphasis"
+    },
+    {
+      "id": "packshot-glm",
+      "from": "packshot",
+      "to": "glm",
+      "variant": "default"
+    },
+    {
+      "id": "glm-fondo",
+      "from": "glm",
+      "to": "fondo",
+      "label": "aislado",
+      "variant": "emphasis"
+    },
+    {
+      "id": "glm-descartar",
+      "from": "glm",
+      "to": "descartar",
+      "label": "con fondo",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "fondo-maqueta",
+      "from": "fondo",
+      "to": "maqueta",
+      "variant": "default"
+    },
+    {
+      "id": "maqueta-checklist",
+      "from": "maqueta",
+      "to": "checklist",
+      "label": "verificar",
+      "variant": "emphasis"
+    },
+    {
+      "id": "checklist-canal",
+      "from": "checklist",
+      "to": "canal",
+      "label": "17/17",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Reglas duras",
+      "items": [
+        "Packshot aislado SIEMPRE, verificado por visión",
+        "Ninguna cifra sin fuente y fecha"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Salida",
+      "items": [
+        "PNG 1080x1350 (1,36 MB el 15-sep)",
+        "Checklist 17/17 antes de publicar"
+      ]
+    }
+  ]
+}

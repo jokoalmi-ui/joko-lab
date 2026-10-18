@@ -1,0 +1,114 @@
+
+===== RAG del lab: tipo de splitter =====
+def _excluir_directorio(root: str, d: str) -> bool:
+    return (d.startswith(".") or d == "node_modules" or
+            (root.endswith("04-operations") and d == "decisions") or
+            d == "verification" or
+            d.endswith(".BACKUP") or
+            ".bak" in d)
+
+
+def _parsear_archivo(file: str, fpath: Path, raw: str) -> tuple:
+    if file.endswith(".yaml") or file.endswith(".yml"):
+        meta, body = {}, yaml_to_text(fpath)
+        try:
+            ko = yaml.safe_load(raw) or {}
+            tipo = str(ko.get("type", ""))
+            estado = str(ko.get("status", ""))
+        except Exception:
+            tipo, estado = "", ""
+    else:
+        meta, body = parse_frontmatter(raw)
+        tipo = str(meta.get("type", ""))
+        estado = str(meta.get("status", ""))
+    return meta, body, tipo, estado
+
+
+def _construir_documentos(splitter, rpath, fpath, meta, body, tipo, estado) -> list:
+    chunks = splitter.split_text(body)
+    docs = []
+    for idx, chunk in enumerate(chunks):
+        docs.append({
+            "id": f"{rpath}#{idx}",
+            "path": rpath,
+            "title": meta.get("title", fpath.stem),
+            "tags": ",".join(str(t) for t in meta.get("tags", [])) if isinstance(meta.get("tags"), list) else str(meta.get("tags", "")),
+            "type": tipo,
+            "status": estado,
+            "text": chunk
+        })
+    return docs
+
+
+def load_notes_con_hash() -> tuple[List[Dict[str, Any]], Dict[str, str]]:
+    """Devuelve (documents, {rpath: hash}) para TODOS los archivos indexables."""
+    documents: List[Dict[str, Any]] = []
+    hashes: Dict[str, str] = {}
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=1000, chunk_overlap=150,
+        separators=["\n## ", "\n### ", "\n\n", "\n", " "]
+    )
+    for root, dirs, files in os.walk(VAULT_PATH):
+        dirs[:] = [d for d in dirs if not _excluir_directorio(root, d)]
+        for file in files:
+
+
+===== research/ vivo: judge / observabilidad / chunking =====
+analisis-7-videos-rag.md
+analisis-8-skills-agentes-davidondrej.md
+analisis-agent-skills-best-practices.md
+analisis-ai-evaluation-observability.md
+analisis-ailabs-hermes-agent-skills-video.md
+analisis-alamin8020ai-12-ai-skills.md
+analisis-askpstudy-50-skills-liderazgo.md
+analisis-atareao-graphrag-20260921.md
+analisis-chunkless-rag-docling.md
+analisis-codedsoul-rag-notes.md
+analisis-codewithbrij-top5-rag.md
+analisis-darpan-rag-compression-hyde.md
+analisis-datasciencebrain-rag.md
+analisis-datastreak-mcp-vs-skills.md
+analisis-faztcode-mcp-vs-skills.md
+analisis-gauravgoyal-crag-diagrama.md
+analisis-gauravgoyal-rag-levels.md
+analisis-gauravgoyalai-rag-stack.md
+analisis-hermes-build-skills-theromanknox.md
+analisis-krishna-rag-animacion-presentacion.md
+analisis-leadgenman-awesome-claude-skills.md
+analisis-monitoring-observabilidad.md
+analisis-multi-modal-rag.md
+analisis-observabilidad-pipelines-vs-lab.md
+analisis-observabilidad-rag.md
+analisis-pabloinpublic-3skills.md
+analisis-pixelrag-visual-search.md
+analisis-rag-completo-ketan.md
+analisis-rag-explicado-carli-code.md
+analisis-rag-indexing-strategies.md
+---
+
+
+===== LIVE: context precision/recall =====
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-hueco
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BAK-20260920-rescate-animada
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-opencode-modelo
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grilling
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260908-franja-cara
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-aihero
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grill-kanban
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260914-potenzia-va360
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260822-lheurebleue
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-cifras
+---
+
+
+===== LIVE: donde vive el indice RAG (lancedb) =====
+12:import os, re, sys, json, hashlib, argparse, yaml, lancedb, torch, pyarrow as pa
+25:DB_PATH = VAULT_PATH / ".lancedb"
+26:COLLECTION_NAME = "joko_notes"
+296:    db = lancedb.connect(str(DB_PATH))
+---
+---fin
+
+
+===== arXiv HTML: ablacion wiki =====
+ Finally, our ablation studies confirm that persistent knowledge accumulation in the wiki is critical for effective skill evolution.

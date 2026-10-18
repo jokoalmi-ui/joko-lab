@@ -1,0 +1,82 @@
+{
+  "tema": "Leccion 0-B: cuanto importa el tamano del modelo en 3 usos tipicos",
+  "fecha": "2026-09-18",
+  "api": "LM Studio (localhost:1234), temperature 0",
+  "diseno": {
+    "modelos": {
+      "2,6B": "lfm2.5-2.6b",
+      "8B": "granite-4.1-8b",
+      "35B": "qwen3.6-35b-a3b-mtp"
+    },
+    "tareas": [
+      "clasificar 5 resenas (POSITIVA/NEGATIVA)",
+      "extraer el importe del transporte de una factura (12,00)",
+      "calcular el total: 4 x 89,50 - 10,00 + 12,00 = 360,00"
+    ],
+    "control": "mismo prompt y temperatura 0 para los tres"
+  },
+  "tabla": {
+    "2,6B": {
+      "clasificar": "5/5",
+      "extraer": "FALLO",
+      "calcular": "OK",
+      "nota_extraer": "no llega a responder: agota el presupuesto razonando (2 pasadas)",
+      "s_clas": 18.2,
+      "s_extrae": 31.6,
+      "s_calc": 6.5,
+      "modelo": "lfm2.5-2.6b"
+    },
+    "8B": {
+      "clasificar": "5/5",
+      "extraer": "OK",
+      "calcular": "FALLO",
+      "nota_extraer": "responde el importe en 0,3 s",
+      "s_clas": 13.8,
+      "s_extrae": 0.3,
+      "s_calc": 0.2,
+      "modelo": "granite-4.1-8b"
+    },
+    "35B": {
+      "clasificar": "5/5",
+      "extraer": "OK",
+      "calcular": "OK",
+      "nota_extraer": "responde el importe en 48,8 s",
+      "s_clas": 119.6,
+      "s_extrae": 48.8,
+      "s_calc": 49.1,
+      "modelo": "qwen3.6-35b-a3b-mtp"
+    }
+  },
+  "recalculo_desde_salidas_crudas": {
+    "2,6B": {
+      "clasificar": "5/5",
+      "extraer": "FALLO",
+      "calcular": "OK",
+      "calcular_salida": "360"
+    },
+    "8B": {
+      "clasificar": "5/5",
+      "extraer": "OK",
+      "calcular": "FALLO",
+      "calcular_salida": "342.00"
+    },
+    "35B": {
+      "clasificar": "5/5",
+      "extraer": "OK",
+      "calcular": "OK",
+      "calcular_salida": "360"
+    }
+  },
+  "coincide_con_tabla": true,
+  "correccion_metodologica": [
+    "El esperado de la cuenta estaba mal en la 1a pasada (370); el valor correcto es 360,00. Verificado a mano: 4x89,50=358; 358-10=348; 348+12=360.",
+    "Por eso el JSON crudo marca 'calcular: no' en los tres: los veredictos de aqui salen de recalcular sobre la salida literal.",
+    "El 2,6B necesito una 2a pasada con 1600 tokens (la 1a acabo en finish_reason=length); con ese presupuesto sigue sin entregar el importe."
+  ],
+  "hallazgo_operativo": "Con el VLM glm-4.6v-flash residente en LM Studio, los modelos 8B y 35B no cargaban (llama-server exited before becoming healthy, exitCode=1). Tras 'lms unload' cargaron los dos.",
+  "ficheros_crudos": [
+    "medicion-tamano-20260918.json",
+    "medicion-tamano-2,6b-repeticion.json",
+    "medicion-tamano-parcial.json"
+  ]
+}

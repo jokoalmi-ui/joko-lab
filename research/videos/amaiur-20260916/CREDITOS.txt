@@ -1,0 +1,39 @@
+AMAIUR - album en video (1080x1920)
+===================================
+
+PROCEDENCIA DE LAS FOTOS
+  Carpeta original : /mnt/ssd_ia_datos/exports/AMAIUR
+  Ficheros         : 1.jpeg ... 29.jpeg  (29 fotos, 5,0 MB)
+  Orden            : el de la numeracion 1 -> 29
+  Los originales NO se han modificado ni copiado (solo lectura).
+  No hay EXIF de fecha en las fotos.
+
+MONTAJE
+  Lienzo        : 1080x1920 (vertical 9:16)
+  Ritmo         : 2,5 s por foto
+  Fundido       : cruzado (xfade) de 0,5 s entre fotos
+  Duracion      : 29 x 2,5 - 28 x 0,5 = 58,5 s
+  Movimiento    : NINGUNO (fotos quietas, sin zoom ni paneo)
+  Composicion   : fondo = la misma foto ampliada, desenfocada (GaussianBlur 45)
+                  y oscurecida al 45%; frente = la foto INTEGRA, encajada sin
+                  recortar, centrada, con sombra suave. Margen 40 px.
+                  Las 6 fotos apaisadas no pierden nada: van centradas sobre su
+                  propio fondo desenfocado.
+  Video         : H.264, yuv420p, 30 fps, faststart (listo para movil)
+
+MUSICA
+  Pieza     : Erik Satie - Gymnopedie No. 1
+  Fuente    : Wikimedia Commons  File:Gymnopedie No. 1..ogg
+  URL       : https://upload.wikimedia.org/wikipedia/commons/b/b7/Gymnopedie_No._1..ogg
+  Licencia  : CC0 1.0 (uso libre, sin atribucion obligatoria)
+  Duracion  : 204,8 s (se usan ~58,5 s con fundido de entrada y salida)
+  Formato   : ogg/FLAC, 22050 Hz estereo, 6.502.597 bytes
+  sha256    : 13e4e03797169392166b9f11d9bf9c421c022b48ad87d9b10bd441ce068502da
+
+FICHEROS DE ESTE DIRECTORIO
+  componer_frames.py ......... compone los 29 fotogramas 1080x1920
+  montar_video.py ............ monta el video con los 28 fundidos cruzados
+  anadir_musica.py ........... mezcla el video mudo con la musica (AAC)
+  frames/frame_01..29.png .... fotogramas compuestos
+  audio/ ..................... pista musical CC0
+  AMAIUR-1080x1920.mp4 ....... ENTREGABLE FINAL (video + musica)

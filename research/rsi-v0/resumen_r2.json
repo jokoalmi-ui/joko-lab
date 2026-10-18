@@ -1,0 +1,56 @@
+{
+  "tag": "r2",
+  "modelo": "ibm/granite4.2:8b-q4_K_M",
+  "num_ctx": 8192,
+  "think": null,
+  "temperature": 0.0,
+  "seed": 42,
+  "sha_corrector": "849c12fe093420bae89971566e190653c5ca50d3322b7e404e144d9f012e6121",
+  "sha_examen": "30557a9df6ee2fca82f3a823ed8e5dea20baa56ebc21d00c7b6f51f011493080",
+  "casos": [
+    "json-plano",
+    "json-anidado",
+    "json-enum",
+    "json-nulo-honesto",
+    "json-numeros-es",
+    "tool-eleccion",
+    "tool-args",
+    "tool-dos-pasos"
+  ],
+  "segundos_totales": 294.8,
+  "resumen": {
+    "v0-sin-instruccion": {
+      "pasan": 8,
+      "total": 8,
+      "segundos": 162.7,
+      "instr_len": 0,
+      "origen": "referencia en modo razonamiento (think on): el instrumento tal cual.",
+      "casos_fallados": []
+    },
+    "v2-calculo": {
+      "pasan": 8,
+      "total": 8,
+      "segundos": 132.1,
+      "instr_len": 306,
+      "origen": "misma candidata de la ronda 1, ahora con razonamiento activo: aísla el efecto de la instrucción del efecto del razonamiento.",
+      "casos_fallados": []
+    }
+  },
+  "pareto": [
+    {
+      "variante": "v2-calculo",
+      "pasan": 8,
+      "segundos": 132.1,
+      "dominada": false,
+      "casos_fallados": []
+    },
+    {
+      "variante": "v0-sin-instruccion",
+      "pasan": 8,
+      "segundos": 162.7,
+      "dominada": true,
+      "casos_fallados": []
+    }
+  ],
+  "jsonl": "/home/jokoalmi/joko-lab/research/rsi-v0/variantes_r2.jsonl"
+}

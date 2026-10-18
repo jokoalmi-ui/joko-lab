@@ -1,0 +1,105 @@
+==============================================================================
+COMPARACION DE MODELOS — mismo set, mismo codigo de puntuacion
+==============================================================================
+modelo                                n     acc   Brier    ECE5   P50ms conf.err
+resultados_ollama_v3.json [v3]      299  0.9264  0.0736  0.0736  2957.1       10
+qwen2.5:7b [v3]                     299  0.8094  0.1612  0.1610   250.8       32
+deepseek-r1-distill-qwen-14b:lates  299  0.7960  0.2015  0.2027  1997.4       36
+
+POR SUBTIPO (accuracy). Columnas en el orden de arriba:
+  subtipo            n  resultados_ollam        qwen2.5:7b  deepseek-r1-dist
+  aguja              8            0.8750            0.8750            0.7500
+  campo_ausente     30            1.0000            1.0000            1.0000
+  comparacion       22            1.0000            0.7273            0.4091
+  cuantificador     20            0.6000            0.6000            0.5500
+  distractor        25            0.8000            0.8000            0.8000
+  grounding         13            1.0000            1.0000            1.0000
+  literal           30            1.0000            0.9667            1.0000
+  memoria            6            1.0000            1.0000            1.0000
+  multihop          22            0.8182            0.5909            0.8182
+  negacion          15            0.9333            0.8000            1.0000
+  no_aparece        25            0.8800            0.9200            0.3600
+  parafrasis        30            1.0000            1.0000            1.0000
+  soporte_parcial   15            1.0000            0.0667            0.6667
+  trampa             8            1.0000            0.2500            0.2500
+  valor_vecino      30            1.0000            0.9333            0.9667
+
+DISCREPANCIAS (casos donde los modelos NO coinciden en acertar):
+  gen-010   soporte_parcial gt=False OK  FALLA  FALLA
+  gen-018   valor_vecino    gt=False OK  FALLA  OK
+  gen-020   soporte_parcial gt=False OK  FALLA  FALLA
+  gen-030   soporte_parcial gt=False OK  FALLA  OK
+  gen-040   soporte_parcial gt=False OK  OK  FALLA
+  gen-050   soporte_parcial gt=False OK  FALLA  OK
+  gen-060   soporte_parcial gt=False OK  FALLA  OK
+  gen-070   soporte_parcial gt=False OK  FALLA  OK
+  gen-075   negacion        gt=False OK  FALLA  OK
+  gen-080   soporte_parcial gt=False OK  FALLA  OK
+  gen-083   valor_vecino    gt=False OK  FALLA  OK
+  gen-085   negacion        gt=False FALLA  FALLA  OK
+  gen-090   soporte_parcial gt=False OK  FALLA  OK
+  gen-098   valor_vecino    gt=False OK  OK  FALLA
+  gen-100   soporte_parcial gt=False OK  FALLA  OK
+  gen-110   soporte_parcial gt=False OK  FALLA  FALLA
+  gen-115   negacion        gt=False OK  FALLA  OK
+  gen-120   soporte_parcial gt=False OK  FALLA  FALLA
+  gen-130   soporte_parcial gt=False OK  FALLA  OK
+  gen-140   soporte_parcial gt=False OK  FALLA  OK
+  gen-146   literal         gt=True  OK  FALLA  OK
+  gen-150   soporte_parcial gt=False OK  FALLA  OK
+  trap-02   trampa          gt=False OK  FALLA  FALLA
+  trap-03   trampa          gt=False OK  FALLA  FALLA
+  trap-04   trampa          gt=False OK  FALLA  FALLA
+  trap-05   trampa          gt=False OK  FALLA  OK
+  trap-06   trampa          gt=False OK  FALLA  FALLA
+  trap-07   trampa          gt=False OK  OK  FALLA
+  trap-08   trampa          gt=False OK  FALLA  FALLA
+  hard-001  multihop        gt=False OK  FALLA  OK
+  hard-005  multihop        gt=False FALLA  FALLA  OK
+  hard-007  multihop        gt=False OK  FALLA  OK
+  hard-008  multihop        gt=True  OK  OK  FALLA
+  hard-010  multihop        gt=True  OK  FALLA  OK
+  hard-012  multihop        gt=True  FALLA  OK  FALLA
+  hard-014  multihop        gt=False OK  FALLA  OK
+  hard-016  multihop        gt=False FALLA  FALLA  OK
+  hard-017  multihop        gt=True  OK  FALLA  OK
+  hard-018  multihop        gt=True  OK  FALLA  FALLA
+  hard-019  multihop        gt=False OK  FALLA  OK
+  hard-020  multihop        gt=True  FALLA  OK  FALLA
+  hard-023  comparacion     gt=False OK  OK  FALLA
+  hard-024  comparacion     gt=False OK  FALLA  FALLA
+  hard-025  comparacion     gt=False OK  OK  FALLA
+  hard-026  comparacion     gt=False OK  FALLA  FALLA
+  hard-029  comparacion     gt=False OK  OK  FALLA
+  hard-030  comparacion     gt=False OK  FALLA  FALLA
+  hard-032  comparacion     gt=False OK  FALLA  FALLA
+  hard-036  comparacion     gt=False OK  OK  FALLA
+  hard-037  comparacion     gt=False OK  FALLA  FALLA
+  hard-038  comparacion     gt=False OK  OK  FALLA
+  hard-039  comparacion     gt=False OK  OK  FALLA
+  hard-041  comparacion     gt=False OK  OK  FALLA
+  hard-044  comparacion     gt=False OK  FALLA  FALLA
+  hard-070  no_aparece      gt=True  OK  OK  FALLA
+  hard-071  no_aparece      gt=False FALLA  OK  FALLA
+  hard-072  no_aparece      gt=True  OK  OK  FALLA
+  hard-073  no_aparece      gt=False OK  FALLA  FALLA
+  hard-074  no_aparece      gt=True  OK  OK  FALLA
+  hard-075  no_aparece      gt=False FALLA  OK  OK
+  hard-077  no_aparece      gt=False OK  OK  FALLA
+  hard-078  no_aparece      gt=True  OK  OK  FALLA
+  hard-079  no_aparece      gt=False FALLA  OK  OK
+  hard-081  no_aparece      gt=False OK  OK  FALLA
+  hard-082  no_aparece      gt=True  OK  OK  FALLA
+  hard-085  no_aparece      gt=False OK  OK  FALLA
+  hard-086  no_aparece      gt=True  OK  OK  FALLA
+  hard-088  no_aparece      gt=True  OK  OK  FALLA
+  hard-089  no_aparece      gt=False OK  FALLA  FALLA
+  hard-090  no_aparece      gt=True  OK  OK  FALLA
+  hard-093  no_aparece      gt=False OK  OK  FALLA
+  hard-094  no_aparece      gt=True  OK  OK  FALLA
+  hard-097  cuantificador   gt=True  OK  FALLA  OK
+  hard-099  cuantificador   gt=True  FALLA  OK  FALLA
+  hard-103  cuantificador   gt=True  OK  FALLA  FALLA
+  hard-111  cuantificador   gt=True  FALLA  OK  FALLA
+  hard-119  aguja           gt=True  OK  OK  FALLA
+  total casos con discrepancia: 77

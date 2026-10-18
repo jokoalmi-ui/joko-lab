@@ -1,0 +1,3 @@
+inspiration/blog
+inspiration/influencer
+inspiration/playlist

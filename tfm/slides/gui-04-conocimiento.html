@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>04 — Conocimiento como sistema</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1824px; height: 2310px; }
+  body { position: relative; font-family: 'Open Sans', sans-serif; background: #141414; }
+  .base { position: absolute; inset: 0; width: 1824px; height: 2310px; display: block; object-fit: fill; z-index: 1; }
+  .content { position: absolute; z-index: 2; left: 200px; top: 80px; right: 100px; bottom: 70px; display: flex; flex-direction: column; }
+  .badge { display: inline-block; background: #2D5D62; color: #FDF8E9; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px 34px; border-radius: 999px; margin-bottom: 46px; align-self: flex-start; }
+  h1 { font-family: 'Special Elite', serif; font-size: 118px; font-weight: 700; letter-spacing: -3px; color: #1e1e1e; line-height: 1.02; margin-bottom: 18px; }
+  h1 .accent { color: #2D5D62; }
+  .subtitle { font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: #2D5D62; margin-bottom: 48px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-bottom: 40px; }
+  .col { background: rgba(232, 241, 242, 0.55); border: 4px dashed #333333; border-radius: 22px; padding: 32px 36px; }
+  .col h3 { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #2D5D62; margin-bottom: 22px; border-bottom: 4px dashed #D4A017; padding-bottom: 12px; }
+  .col ul { list-style: none; }
+  .col li { font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: 600; color: #1A1A1A; line-height: 1.35; margin-bottom: 14px; padding-left: 44px; position: relative; }
+  .col li::before { content: ""; position: absolute; left: 0; top: 10px; width: 15px; height: 15px; background: #2D5D62; border-radius: 3px; }
+  .dashed-box { border: 4px dashed #333333; border-radius: 26px; padding: 30px 44px; font-family: 'Caveat', cursive; font-size: 46px; font-weight: 600; color: #333333; text-align: center; background: rgba(255,255,255,0.35); margin-bottom: 40px; }
+  .spacer { flex: 1; }
+  .footer { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #1A1A1A; }
+  .stars { color: #D4A017; font-size: 36px; letter-spacing: 0.35em; }
+</style>
+</head>
+<body>
+  <img class="base" src="hoja-cuaderno-base.png" alt="hoja cuaderno base">
+
+  <div class="content">
+    <!-- ============ CONTENIDO SLIDE 4 ============ -->
+    <span class="badge">03 · El sistema de conocimiento</span>
+    <h1>EL CONOCIMIENTO COMO <span class="accent">SISTEMA</span></h1>
+    <p class="subtitle">LPA · Living Product Architecture</p>
+
+    <div class="cols">
+      <div class="col">
+        <h3>Evidencia E0 → E4</h3>
+        <ul>
+          <li>E0 observación · E1 patrón</li>
+          <li>E2 hipótesis · E3 validación</li>
+          <li>E4 principio fundacional</li>
+          <li>Revocado: marcado, no borrado</li>
+          <li>La evidencia va por delante</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>KO con ciclo de vida</h3>
+        <ul>
+          <li>Decisiones, reglas, políticas</li>
+          <li>Caducidad y revisión</li>
+          <li>Dependencias y sustitución</li>
+          <li>Retirar = marcar como sustituido</li>
+          <li>4 motores: asimilar, validar, evolucionar, podar</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dashed-box">Salud del conocimiento: 31 → 88 / 100 · un sistema que solo acumula se degrada</div>
+
+    <div class="spacer"></div>
+    <div class="footer">
+      <div class="stars">★ ★</div>
+      slide 04 · conocimiento como sistema
+    </div>
+    <!-- ============ /CONTENIDO SLIDE 4 ============ -->
+  </div>
+</body>
+</html>

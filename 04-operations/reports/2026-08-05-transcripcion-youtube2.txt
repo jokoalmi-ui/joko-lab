@@ -1,0 +1,637 @@
+0:07 Hola, soy Lorenzo y esto es Atareado con
+0:10 Linux, episodio número 819.
+0:14 Este es el primero de los dos capítulos
+0:16 que quedé en los comentarios de un vídeo
+0:19 anterior, de un episodio anterior, de un
+0:21 podcast anterior, sobre rag, sobre crear
+0:24 tu propia base de conocimiento, crear tu
+0:27 memoria digital. Y al final, después de
+0:30 darle muchas vueltas, lo que he hecho ha
+0:32 sido simplificarlo al máximo posible
+0:34 para que lo puedas montar cuanto antes,
+0:36 sin tener que hacer nada del otro mundo.
+0:40 Quiero decir, sin tener que eh recurrir
+0:43 a eh montar un Postgre SQL, servidores,
+0:47 no sé qué. Nada, lo más sencillo posible
+0:49 para que veas que con algo tan realmente
+0:51 sencillo y sin calentarnos mucho la
+0:53 cabeza podemos conseguir algo
+0:55 verdaderamente potente. Y para que veas
+0:57 lo potente que es, eh, yo lo que lo que
+1:00 he hecho ha sido simplemente eh, vamos a
+1:04 hacer una consulta, por ejemplo, una
+1:06 consulta que sea eh trabajar con RAG,
+1:10 trabajar con RAG o mejor cómo trabajar
+1:14 con RAG.
+1:16 Con esta consulta lo que me ha devuelto
+1:18 son, por ejemplo, eh me ha devuelto
+1:20 cinco resultados concretos. Uno que es
+1:23 Rajoy Llama, otro que es Rajoyama 08.
+1:27 Son dos chankss distintos del mismo. Uno
+1:30 este también el Streamlit Interfaz y
+1:34 este también. y otro sobre Open Code 15
+1:37 RAG para que veas sobre todo lo
+1:40 impresionamenteente
+1:42 rápido que es esto y las posibilidades
+1:44 que tiene. La verdad es que eh montar el
+1:47 rag ha sido relativamente sencillo, va a
+1:49 ser relativamente sencillo. Y en este
+1:51 episodio, en este primer episodio
+1:53 concretamente, simplemente lo que vamos
+1:55 a hacer es montar el rag, ¿no? Bueno, sí
+1:58 vamos a hacer alguna prueba para que
+1:59 veas cómo funciona, pero montar el rag y
+2:01 hacer todos los embeding necesarios para
+2:03 tenerlo disponible. Así que vamos
+2:05 directos al turrón. En este episodio
+2:07 vamos a montar la base de conocimiento.
+2:12 Y como de nuevo y como de costumbre
+2:13 empezamos por el problema. ¿Qué pasa
+2:16 cuando llevas 15 años escribiendo notas,
+2:19 artículos, tutoriales, como es mi caso,
+2:22 y esto se ha convertido en 5000 o 10,000
+2:25 archivos mdown que están en tu bolt.
+2:28 Aquí te hablo de tu bolsas de las
+2:30 personas utilizáis Obsidian, pero para
+2:32 mí mi Bolt no es ni más ni menos que un
+2:34 directorio. Incluso te diría que mi Bolt
+2:37 es directamente la página
+2:38 atareado.es,eses,eses, porque de hecho
+2:41 en atareado.eses actualmente ya puedes
+2:43 eh consultarlo vía MCP, pero bueno, de
+2:47 esto ya te hablaré más adelante. La
+2:49 cuestión es que, ostras, eh con toda esa
+2:52 información que tienes ahí, en un
+2:53 momento determinado, por lo menos en mi
+2:55 caso, me quiero preguntar, ostras, ¿y
+2:57 cómo puedo o cuándo hablé de
+3:00 certificados Excelent Traffic? Entonces,
+3:02 yo me podría ir directamente a eh
+3:05 certificados
+3:07 ficados en traffic,
+3:10 escribirlo y hacer una consulta. y
+3:13 rápidamente, en menos de lo que te
+3:15 puedes imaginar, me devuelve los
+3:18 resultados de exactamente eso,
+3:20 certificados en traffic, pues eh tengo
+3:23 un tutorial,
+3:25 eh otro en self hosted, otro en no sé
+3:28 qué, en fin, que tengo distintos eh
+3:30 puntos, distintos sitios donde eh he
+3:33 hablado sobre esto y eh de una manera
+3:37 increíblemente rápida lo ha encontrado.
+3:39 O sea, que es realmente muy interesante.
+3:42 Y la cuestión es que esto te puede
+3:45 llevar a crear un mapa conceptual de
+3:48 exactamente todo lo que has escrpto,
+3:50 todo lo que has redactado durante todos
+3:51 estos años.
+3:53 Ciertamente, y esto ya te lo he contado
+3:55 en más de una ocasión, podrías hacer un
+3:57 GREP- R traffic SSL y con eso a lo mejor
+4:00 encuentras los resultados que quieres.
+4:03 Básicamente yo últimamente lo que hago
+4:05 es tirar directamente de em
+4:09 RIPGB RG de RIP grab. con ir eh rip grab
+4:13 muchas veces encuentro lo que busco.
+4:16 Para conceptos tan claros como traffic
+4:17 es muy probable que sea eso, pero cuando
+4:19 estás buscando certificados o cuando
+4:22 estás buscando conceptos más eh vagos,
+4:25 como puede ser factura, pago, eh
+4:29 cualquier cosa de estas, es mucho más
+4:31 complejo. De esto ya te hablé hace dos o
+4:33 tres episodios sobre todo lo que puedes
+4:35 hacer con los embedings y una de las
+4:37 cuestiones es precisamente esta, que con
+4:40 los embedings tú puedes buscar gato,
+4:42 puedes buscar perro y o puedes buscar
+4:45 gato y vas a encontrar cosas similares
+4:47 también que te van a valer con perro,
+4:49 pero no vas a encontrar documentos que
+4:51 te hablen sobre neveras, por decirte
+4:53 algún caso.
+4:55 Bueno, la cuestión, la solución ya la
+4:58 sabes. La solución es que puedes montar
+5:00 tu base de conocimiento 100% local, sin
+5:04 utilizar CH GPT, sin nubes, sin enviar
+5:07 tus datos, sin absolutamente nada. Y
+5:09 además lo puedes montar de una manera
+5:11 sers sencilla, porque de lo que estamos
+5:13 hablando es de Sulite más FTS5, que te
+5:17 va a permitir hacer búsquedas textuales
+5:20 y todo esto ya lo puedes hacer con
+5:22 Python directamente. Y bueno, ahora
+5:25 vuelvo a lo del Python. Tienes que
+5:27 utilizar además Oyama Oyama con un
+5:29 modelo. En mi en mi caso concreto estoy
+5:31 utilizando BGE M3 que permite que
+5:35 permite embedings semánticos
+5:37 multilenguaje eh y en concreto tienes el
+5:40 español y luego un pipeline que dejaré
+5:42 compartido en las notas del episodio que
+5:44 lo que va a hacer es procesarlo todo.
+5:47 Pero además tiene un pipeline
+5:50 incremental que de manera que conforme
+5:52 tú vayas creando nuevos archivos, él no
+5:54 va a procesarlos todos de nuevo, sino
+5:57 que simplemente va a procesar los que no
+5:59 tenía. Al final del episodio lo que vas
+6:01 a tener es un pipeline funcionando
+6:04 completamente. Y vuelvo un poco para
+6:06 atrás con el tema del Python. Esto ya lo
+6:08 he comentado en los últimos episodios,
+6:10 que muchos de o bueno, muchos no, pero a
+6:12 lo mejor eh a ti esto de Python o esto
+6:15 de programar no te interesa para
+6:16 absolutamente nada, no te interesa, no
+6:18 quieres saber nada de esto y dices,
+6:20 ostras, pero a mí sí que me gustaría
+6:21 tener mi base, mi propio buscador de
+6:24 conocimiento, poder navegar sobre todo
+6:26 lo que he escrito en estos tiempo. ¿Cómo
+6:27 puedo hacerlo? Bueno, pues como te conté
+6:30 en otros episodios, al final simplemente
+6:32 se trata de que utilices Jamie Knight,
+6:33 CH GPT, open code o lo que tú quieras
+6:36 para decirle que te haga el script o en
+6:39 su caso también puedes en las notas del
+6:41 episodio voy a dejar el pipeline
+6:42 completo, simplemente lo fusilas, se lo
+6:45 pasas a HG GPT y le dices que te lo
+6:47 adecúe a tus propias necesidades. Con lo
+6:50 cual, esto de tener tu propia base de
+6:52 conocimiento está muy cerca, tienes que
+6:54 hacerlo. Es impepinable que lo hagas.
+6:59 el está completo. ¿Cómo funciona este
+7:01 pipeline? Bueno, pues lo primero es
+7:03 escanear absolutamente todos los
+7:04 archivos marnow. Una vez escaleados
+7:08 todos los archivos Mardown, lo que
+7:09 tienes que extraer es el front. Y te
+7:12 estarás preguntando, "Pero, ¿qué es esto
+7:14 del front matter?" que me lo has dicho
+7:15 en algún que otro episodio. Bueno, pues
+7:18 el front, voy a ver si lo puedo
+7:21 recuperar de algún sitio. El front
+7:23 matter no es ni más ni menos que la
+7:24 parte que viene en en la parte superior
+7:28 de los archivos Mardown, no en todos eh,
+7:31 no en todos precisamente, pero en
+7:33 muchos, por lo menos en los que yo hago,
+7:35 siempre viene ese front. Y ese front no
+7:39 es ni más ni menos que
+7:42 eh un texto donde que aparece en la
+7:44 parte superior entre tres entre tres
+7:47 guiones medios y tres guiones medios
+7:49 arriba y abajo donde tienes por ejemplo
+7:52 yo pongo como
+7:54 directamente esto es un yamel que al
+7:56 final no es ni más ni menos que una
+7:59 información estructurada donde pongo el
+8:01 título, la temporada, el episodio,
+8:04 cuándo fue creado, cuándo fue
+8:05 actualizado y una serie de tags.
+8:07 Bueno, pues todo esto lo que te ayuda es
+8:10 para luego eh clasificar la información
+8:14 o mejor dicho para obtener para tener
+8:16 mucha más información de simplemente en
+8:18 bedings. Es decir, tú en un momento
+8:21 determinado le le puedes preguntar o le
+8:23 puedes decir que te dé todos los
+8:25 archivos o mejor dicho que te busque la
+8:28 información relativa a eh conexiones SSH
+8:32 a partir de una fecha determinada. Y con
+8:35 esto va a ser mucho más preciso a la
+8:37 hora de conseguir exactamente lo que tú
+8:39 quieras. Bueno, como te estaba contando,
+8:42 al final el primer proceso es escanear,
+8:45 extraer el front y luego trocearlo todo.
+8:48 Con esto lo que haces es generar los
+8:51 embedings y los guardas en una base de
+8:53 datos Sculite. Luego montas un índice y
+8:56 a partir de ahí hacemos una búsqueda
+8:58 híbrida que esta la veremos en el
+9:00 próximo episodio, en el episodio 821.
+9:03 En el episodio 821 completaremos esta
+9:06 base de conocimiento añadiéndole cosas
+9:08 interesantes. Entonces tenemos el SQLite
+9:11 FTS5,
+9:13 cuyo rol principal es la búsqueda
+9:15 textual y viene con Python y sin
+9:18 servidor. Por otro lado, tienes el
+9:20 componente oyama + BGM3, que es el que
+9:23 se va a encargar de hacer los embedings,
+9:25 que los embedings, como te he contado
+9:27 anteriormente, no es ni más ni menos que
+9:29 e puntos en un mapa de 1024
+9:34 dimensiones. Bueno, exactamente, que
+9:37 además es multilenguaje y que ocupa más
+9:39 o menos 1,1 GB. Luego tienes Python para
+9:42 hacer la orquestación más unas librerías
+9:45 y eh Mardown como fuente de datos. En mi
+9:48 caso, yo creo que son 5,000 o 10,000
+9:50 documentos, pero que los procesa a una
+9:52 velocidad de vértigo. Bueno, en mi caso
+9:54 particular, yo estoy utilizando una
+9:56 tarjeta Nvidia, eh, una
+10:00 que es la que va a procesar, pero tú lo
+10:02 podrías hacer perfectamente en una CPU.
+10:04 Esta es una Nvidia en una torre de
+10:08 Slimbook refrigerada y la verdad es que
+10:10 funciona brutal. Yo no sé si han sido 5
+10:13 minutillos en procesar los 5000
+10:14 documentos, pero la verdad es que ha ido
+10:16 superrápido.
+10:18 Bueno,
+10:19 el siguiente paso es la preparación.
+10:21 ¿Qué preparación tenemos que hacer?
+10:23 Bueno, pues simplemente tenemos que
+10:24 instalarnos Oyama, tenemos que
+10:27 descargarnos el modelo que queramos y
+10:29 luego a partir de ahí comprobar que
+10:31 Oyama está vivito y coleando. En mi caso
+10:33 particular, yo en lugar de instalarlo
+10:35 directamente eh así, lo que he hecho ha
+10:37 sido instalarlo en un contenedor, bueno,
+10:39 mejor dicho, más que en un bueno, sí, es
+10:41 un contenedor Potman, pero ya está. Y
+10:44 luego a partir de ahí instalar las
+10:45 dependencias. Yo lo que he hecho ha sido
+10:47 utilizar OV, OV, no, UV para instalarlo
+10:51 todo porque se trata de una herramienta
+10:54 superpotente y brutal para trabajar con
+10:57 Python. De esto ya dediqué algún
+10:59 episodio del podcast, quiero recordar.
+11:02 Y todo esto lo haces sin nada, sin LC
+11:04 Chain, sin frameworks, simplemente
+11:06 cuatro o cinco librerías y ST de Lif,
+11:09 nada más. O sea, que con esto ya
+11:11 tendrías eh funcionando tu base de
+11:13 conocimiento. Por supuesto que las bases
+11:15 de conocimiento las podemos retorcer,
+11:18 podemos conseguir hacer más cosas,
+11:19 podemos darles 1000 vueltas, pero es que
+11:22 con esto, simplemente con esto, ya
+11:24 tienes un puñado de información. O sea,
+11:26 ya tendría ya tendrías, yo te diría que
+11:28 tendrías el 80% de tu base de
+11:30 conocimiento sin apenas haberle dedicado
+11:33 más que unos minutos en copiar el script
+11:35 que voy a dejar en en el episodio.
+11:39 Eh, luego simplemente necesitas eh la
+11:42 versión 3.9 de Python
+11:46 y la versión, no, perdón, la 390 de
+11:51 SQrías.
+11:54 Eh, yo ahora actualmente en Arch Linux
+11:56 la que tengo es la 3533.
+12:00 El siguiente paso importante es el
+12:01 chanking. ¿Qué es esto? De esto ya te he
+12:03 hablado también en episodios anteriores,
+12:05 que no es ni más ni menos que trocear. Y
+12:07 para trocear hay distintas heram, o sea,
+12:09 distintas procesos, distintas opciones,
+12:11 distintas posibilidades y dependiendo de
+12:14 cómo lo quieras trocear, eh, lo puedes
+12:17 los, o sea, lo primero es, ¿por qué
+12:19 tengo que trocearlo? Bueno, pues lo
+12:21 tienes que trocear porque básicamente
+12:23 tus envedies tienen una un límite de
+12:26 contexto que básicamente son en el caso
+12:28 de BGE M3 8000 tokens, con lo cual
+12:32 necesitas que tu texto quepa ahí
+12:34 directamente. Así que hay que
+12:36 fragmentarlo y además tienes que
+12:38 fragmentarlo de la manera más precisa
+12:41 posible. no puedes hacer cualquier cosa.
+12:45 Aquí hay distintas opciones y distintas
+12:48 operaciones para hacerlo. Eh, haciendo
+12:51 solapamientos, eh utilizar solamente eh
+12:55 las secciones, es decir, por capítulos,
+12:57 por subcapítulos. Luego también puedes
+12:59 extraer el from matter para poder
+13:02 utilizarlo. Eh, todo esto es cuestión de
+13:05 estudiarlo y ver exactamente cómo lo
+13:07 quieres hacer, pero vamos, eh, no te
+13:10 tienes que calentar mucho la cabeza, lo
+13:12 que tienes que hacer al final es
+13:13 simplemente hacerlo. Es así de sencillo.
+13:17 Eh, por ejemplo, en el script verás que
+13:20 lo que hace es que captura la los
+13:24 títulos, subtítulos y sub y los
+13:27 subtítulos o secciones y lo que hace es
+13:30 dividir todo esto en chans. Si luego uno
+13:33 es muy grande, pues lo vuelve a dividir.
+13:36 Em,
+13:38 no, no tiene mucho más, eh, simplemente
+13:40 es una operación así de sencilla. Luego
+13:43 tienes, o sea, tienes la parte del check
+13:45 marnow dividir el texto y también tienes
+13:49 para dividir por tamaño. Eh, lo podrías
+13:52 dividir por de otras maneras, pero
+13:57 al final con esta solución para el 80%
+14:01 de los casos funciona. Con lo cual en
+14:03 muchas ocasiones nos complicamos
+14:05 buscando eh la manera más precisa de de
+14:08 crear nuestro base de conocimiento para
+14:11 exprimirla al máximo posible. Y lo que
+14:13 hace, lo que hacemos es meternos en
+14:15 camisa 12 varas y al final no
+14:17 materializar lo que queremos conseguir.
+14:20 Y esto es un error, un error de bulto.
+14:22 Lo que hay que ir, lo que hay lo que
+14:23 tenemos que hacer es conseguir que
+14:24 nuestra base de conocimiento esté
+14:26 funcionando cuanto antes mejor. Y con
+14:29 esto, con estas piezas que te estoy
+14:30 comentando, la vas a tener en muy poco
+14:32 tiempo y luego ya simplemente se trata
+14:35 de ir afinándola. Y cuando ya la tengas
+14:37 completamente afinada en Python, dices,
+14:39 "Ostras, pues ahora quiero más
+14:40 velocidad, más de la que ya estás
+14:42 consiguiendo. Ojo, pues la voy a pasar a
+14:44 Rust o quiero más eh seguridad, en fin,
+14:47 eh dependiendo de lo que quieras o o
+14:49 quiero compartirla con otros usuarios,
+14:52 pues voy a montar un Postgre SQL,
+14:54 ¿sabes?
+14:56 Y luego eh tienes la herramienta para
+14:59 contar los tokens. Tienes una solución
+15:02 muy rápida que es eh dividir el texto
+15:04 por cuatro y esto más o menos es los
+15:07 tokens o puedes utilizar Tiktoken, que
+15:10 es una librería especializada para hacer
+15:12 esto. Luego está el tema del front que
+15:15 te he comentado anteriormente. El front
+15:16 mater mío pues tiene bastante
+15:18 información, pero lo que es muy
+15:20 importante es extraerlo, porque al final
+15:23 el front
+15:25 debe no debe bajo ningún concepto
+15:28 meterse en los chanks, sino que tiene
+15:29 que ir aparte y tiene que ir aparte en
+15:32 una en una tabla distinta de tu base de
+15:35 datos, de tu base de datos seculite.
+15:39 Tienes dos opciones, o bien utilizas una
+15:41 librería o bien utilizas un método, un
+15:44 un
+15:46 rejex y luego consigues. En mi caso, yo
+15:49 he utilizado un rejex para extraer lo
+15:52 que es el front y una librería como es
+15:55 Jamel para extraer toda la información.
+15:59 Muy sencillo, muy práctico, no hay
+16:02 magia, no hay y lo tienes todo muy
+16:05 clarito. Con esto, a partir de ahí,
+16:07 limpias el resto del texto, eh, es
+16:10 decir, quitas la parte del from matter y
+16:12 lo dejas todo perfectamente preparado y
+16:15 preparas el contenido. Con esto ya
+16:18 tenemos la parte de que al final lo que
+16:21 tenemos es una base de datos, una base
+16:22 de datos esculite, una base de datos
+16:25 esculite donde tienes por un lado eh la
+16:28 una tabla donde está la información de
+16:30 los documentos, donde está la
+16:31 información del front, eh tienes el un
+16:36 integer que se va a corresponder con el
+16:37 documento en cuestión, la ruta donde se
+16:39 encuentra, título, etiquetas, un has, un
+16:43 hash que es realmente importante, como
+16:44 veremos un poco más adelante y la fecha
+16:46 de la última revisión.
+16:48 El fast, el digo, perdón, el hash es
+16:50 para básicamente detectar cambios.
+16:54 Con esto ya tendríamos lo que es la
+16:56 información eh contractual de cada uno
+16:59 de los documentos y luego vienen los
+17:01 embedins. Aquí es a partir de la
+17:04 información es ir creando embeddings
+17:07 para cada parte del contenido. Y todo
+17:10 esto lo vas a meter también en tu base
+17:12 de datos en la parte de chanks,
+17:15 en la parte de trocitos. Y aparte de
+17:17 esto ya tienes los el chan fts, eh,
+17:21 donde guardas todo lo que es la tabla
+17:24 del contenido externo y toda tu
+17:27 información.
+17:31 Em, un error clásico es insertar datos,
+17:35 eh, consultas y y luego al final que no
+17:37 encuentres nada. Lo más importante es
+17:40 ejecutar un rebuild después de insertar.
+17:44 Eso para el FTS5 y con eso funciona.
+17:49 Bueno, el pipeline incremental, que es
+17:51 al final lo que vamos buscando, no se
+17:53 trata de que cada vez que eh añadas o
+17:56 modifiques un documento vuelvas a
+17:59 procesar todos los 5,000 documentos.
+18:01 Como hemos visto anteriormente, tú por
+18:03 cada eh documento vas a generar un hash.
+18:06 Eh, si el hash se ve modificado, lo que
+18:10 haces es volver a procesar ese ese chank
+18:15 o es eh proceso.
+18:18 La primera ejecución que la hagas, si lo
+18:20 haces en CPU, vas a tardar 2s horas, que
+18:22 si lo haces con GPU tardas 20 minutos,
+18:24 pero son 2 horas que vas a utilizar,
+18:27 como te digo, en CPU para 5000
+18:29 documentos, pero documentos cumpliditos,
+18:31 no para cuatro cositas. Pero es que
+18:34 luego las siguientes ejecuciones van a
+18:35 ser cuestión de segundos o minutos
+18:37 dependiendo de cómo lo hagas, con lo
+18:38 cual esto es rapidísimo. Y luego para
+18:41 las consultas es que es también
+18:42 inmediata inmediato porque piensa que
+18:44 cuando vayas a hacer una consulta
+18:46 realmente no estás haciendo una consulta
+18:48 muy grande, o sea, no está no vas a
+18:50 convertir, no vas a hacer un embeding de
+18:52 algo enorme, sino lo que vas a hacer es
+18:54 un embeding única y exclusivamente de tu
+18:56 pregunta, con lo cual esa búsqueda
+18:58 semántica va a ser increíblemente
+19:00 rápida.
+19:02 Para el tema de los hash, simplemente
+19:04 utilizas una librería que es hashlip y
+19:07 luego eh una herramienta o una función
+19:10 que se llame escanear cambios, que lo
+19:12 que va a buscar son todos los cambios
+19:14 que se hayan producido recientemente y
+19:16 ya está.
+19:19 ¿Vale? Y aquí ya viene el ejemplo, un
+19:21 poco el ejemplo que te he mostrado al
+19:23 principio del episodio para captar tu
+19:26 atención, básicamente, y es hacer una
+19:29 búsqueda, una búsqueda concreta de lo
+19:31 que tú quieras.
+19:33 Bueno, podemos hacer primero un pipeline
+19:35 para que veas lo rápido que es. Ahora
+19:38 simplemente va a hacer es resescanear
+19:40 todo lo que hay. Claro, aquí ha
+19:42 reconstruido el índice FTS5, eh, ha
+19:45 visto lo que había, ha visto que no ha
+19:47 cambiado o ha cambiado unos pocos y ya
+19:50 está. Si le vuelvo a dar, pues hará algo
+19:53 parecido. No, no hace no hace gran cosa
+19:56 y ya está.
+19:58 Y luego también podríamos hacerle
+20:01 directamente una consulta, una consulta
+20:03 de lo que queramos. Por ejemplo, em,
+20:09 ¿qué diferencia
+20:12 hay o qué métodos?
+20:15 A ver, ¿qué podemos hacer? Que ahora me
+20:17 estoy liando yo para buscarte e ah,
+20:22 ¿qué es mejor? Por ejemplo, ¿qué es
+20:25 mejor? Fish o bash
+20:28 y aquí nos da nos ha devuelto ya cinco
+20:30 resultados. Eh, ¿qué cinco resultados
+20:33 nos ha buscado? Eh, tabla de
+20:35 equivalencias. Mira, el primer resultado
+20:37 es brutal. Tabla de equivalencias bas
+20:38 fish.
+20:41 El segund el segundo resultado.
+20:46 El segundo resultado
+20:50 es variables.
+20:52 A ver, madre mía, que qué que no me
+20:54 aclaro, ¿eh? Variables, la base de todo.
+20:56 Bueno, esto es de fis, luego una tabla
+20:58 de equivalencias de fish y bas. Eh,
+21:00 luego otro que es una comparativa de bas
+21:03 fish, ZSH y nu, o sea, que al final
+21:08 piensa que piensa en lo que hay. Estamos
+21:10 hablando de 5000 documentos, estamos
+21:13 hablando de que ha conseguido esto en un
+21:16 instante a pesar de que claro, tú dirás,
+21:18 "Buena, es que tú con la GPU no, déjate
+21:20 de GPU ni nada, aquí no hay
+21:23 absolutamente nada en el sentido de que
+21:26 esto mismo con CPU habría salido
+21:28 exactamente igual de rápido, ¿eh? O sea,
+21:30 que estamos ante una herramienta
+21:32 realmente potente para exprimirla, para
+21:35 exprimirla
+21:36 donde la quieras utilizar.
+21:40 A ver, ahora que me he liado.
+21:43 Vale.
+21:48 ¿Cómo utilizar esto? Bueno, igualmente
+21:50 con ese culite lo podrías hacer.
+21:53 Eh, system de timers,
+21:58 no solamente puedes hacer, esto se me ha
+22:00 olvidado, no solamente puedes hacer este
+22:03 frases exactas, sino que también puedes
+22:05 hacer búsquedas con an.
+22:09 O sea, podríamos hacer, a ver si este
+22:11 es, podríamos hacer fish,
+22:16 sería fish and
+22:20 bash y nos va a buscar documentos que
+22:23 tengan fish y bash. O sea, que es una
+22:27 base de datos que piensa que está no no
+22:30 es no es conservidor.
+22:34 la tenemos directamente en nuestro
+22:35 equipo, podemos hacer consultas
+22:36 directamente en nuestro equipo y y es
+22:39 realmente muy potente, muy potente para
+22:41 tener toda nuestra base de conocimiento.
+22:43 Ahora ya solamente nos queda es
+22:45 exprimirlo. Dicho esto, ¿qué errores
+22:48 vamos a cometer? Bueno, los errores
+22:50 típicos son primero que o llama no
+22:51 corre, o llama lo tienes parado, luego
+22:54 que no tienes que ese culite no hace
+22:58 autocomit, que no se reconstruye el
+23:00 FTS5, que los front están mal
+23:03 formateados, que eh los archivos, o sea,
+23:07 que no hay archivos con extensión mar.
+23:12 tienes una serie de eh errores típicos,
+23:14 pero que son relativamente fáciles de
+23:18 solucionar. Por ejemplo, si tu llama no
+23:20 corre, simplemente es averiguar si corre
+23:21 o no. Eh, si no has hecho un comit, pues
+23:24 hacerlo. Eh, en fin, que tienes una
+23:26 serie de opciones para resolverlo todo
+23:28 esto. Con esto, ¿qué hemos conseguido?
+23:31 Pues hemos conseguido un peline completo
+23:33 de troceado sin complicaciones. Eso sí,
+23:37 eh, te estoy hablando un pipeline
+23:38 completo en el que hemos ido al grano,
+23:40 hemos ido al pie, hemos ido a resolver
+23:42 nuestro problema, que es crear una base
+23:44 de conocimiento, ya la mejoraremos. Y
+23:46 además es una base de conocimiento
+23:48 híbrida donde estás extrayendo las
+23:49 cabeceras y luego estás utilizando em
+23:54 además de las cabeceras el contenido
+23:56 para hacer los embedings. Eh, estás
+23:58 utilizando simplemente tres tablas en
+24:00 una base de datos esculit
+24:05 búsquedas FTS5.
+24:08 ¿Qué nos queda? Bueno, pues nos queda es
+24:10 la búsqueda híbrida y exprimirlo todo
+24:13 esto. En principio, inicialmente, yo lo
+24:15 voy a hacer desde NBAM, desde Neobim en
+24:18 el episodio 821. Si puedo, porque
+24:21 todavía el 821 lo tengo en ciernes, pero
+24:24 si puedo voy a intentar hacerlo también
+24:25 con Obsidian
+24:27 para que eh sea realmente potente o
+24:30 realmente más eh internacional o más
+24:34 extendido. Yo actualmente utilizo Neobim
+24:37 y con Neobim sí que voy sí que tengo ya
+24:39 una extensión para poder aprovecharlo,
+24:41 pero realmente lo más importante aquí es
+24:44 monta tu base de conocimiento para
+24:46 empezar a trabajar con ella y tenerlo
+24:49 todo a a la mano, tenerlo todo al
+24:53 alcance. Con esto, simplemente en el
+24:56 próximo episodio lo que vamos a ver va a
+24:57 ser una búsqueda semántica, búsqueda
+25:00 híbrida donde hacemos no solamente la
+25:02 parte de la semántica y un plugin para
+25:04 Neobin para hacer la consulta de base de
+25:06 datos sin salir del editor. Es decir,
+25:09 hoy tenemos los cimientos y en el 821
+25:11 vamos a tener la artillería pesada. Y
+25:14 nada más, esto es un poco lo que quería
+25:15 contarte en este episodio. Espero que te
+25:16 haya gustado y que lo hayas disfrutado
+25:19 tanto como lo he disfrutado yo
+25:20 preparándolo.
+25:22 Si puedes, ya sabes, una valoración en
+25:23 ibox, en Apple Podcast, en Spotify. Si
+25:26 quieres cualquier cosa o quieres
+25:27 personalizar esto o quieres cualquier
+25:29 comentario, por favor, en la caja de
+25:31 comentarios me dejas lo que quieras para
+25:34 darle una vuelta a esto. Si quieres que
+25:36 posteriormente hagamos un episodio
+25:37 dedicado a Rust o como tú quieras,
+25:40 déjalo en la caja de comentarios que ya
+25:42 has visto que tarda un poquito, pero el
+25:44 episodio va. Y en el episodio 8201,
+25:47 pues ya le daremos la vuelta a esto para
+25:50 completarlo eh, definitivamente. Y poco
+25:53 más que decirte, recordarte que este es
+25:54 un podcast de la red de podcast de
+25:56 sospechosos habituales donde puedes
+25:57 encontrar fantásticos y maravillosos
+25:59 podcast. Puedes participar en esa red
+26:00 entrando en Telegram, en Wintablet Info.
+26:02 Y de la misma manera, si quieres
+26:03 participar en el grupo atareado con
+26:05 Linux y empezar a montar tu rag, empezar
+26:08 a montar tu base de conocimiento
+26:10 digital, pues simplemente entra en
+26:11 Telegram en atareado con Linux y allí
+26:14 nos vas a encontrar hablando de esto y
+26:16 de muchas otras cosas relacionadas con
+26:17 el mundo del open source. Y poco más que
+26:19 decirte, recordarte que la vida dos son
+26:21 dos días y uno ya ha pasado, así que
+26:23 disfruta como si no hubiera mañana y si
+26:24 puede ser con Linux y en este caso con
+26:28 esta base de conocimiento tan
+26:30 espectacular, mejor que mejor. Un saludo
+26:32 y nos escuchamos el próximo jueves.
+26:36 [música]
+26:43 [música]

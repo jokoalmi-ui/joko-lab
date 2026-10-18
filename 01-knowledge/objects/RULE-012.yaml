@@ -1,0 +1,35 @@
+id: RULE-012
+type: RULE
+decision_origin: incidente
+status: activo
+version: 1
+created: '2026-09-02'
+last_validated: '2026-09-02'
+next_review: '2026-12-02'
+expires: '2027-03-02'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-09-02T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-12-02T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-09-02T00:00:00Z
+title: "No afirmar hora/fecha sin ejecutar date primero"
+desc: >
+  Ante cualquier afirmación de hora, fecha o tiempo transcurrido ("son las X",
+  "quedan Y minutos", "hace Z horas"), ejecutar SIEMPRE `date` antes de
+  responder. Nunca inferir la hora del contexto de conversación, de un resumen
+  comprimido ni de la memoria. Fallo recurrente con 3 ocurrencias confirmadas:
+  15-ago-2026 y 02-sep-2026 (x2: 09:33 y 15:09). El contexto comprimido ancla a
+  horas antiguas y el modelo tiende a confiar en él.
+confidence: 0.9
+confidence_label: ALTA
+evidence:
+- 'Leccion registrada en lecciones_ledger.jsonl 02-sep-2026 (dominio proceso)'
+- '3 ocurrencias: 15-ago, 02-sep 09:33, 02-sep 15:09 — patron consolidado para revision LPA del 04-sep'
+dependencies: []
+contradicts: []
+superseded_by: null
+domain: proceso
+scope: asistente_hermes

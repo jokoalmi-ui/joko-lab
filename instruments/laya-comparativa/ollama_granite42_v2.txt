@@ -1,0 +1,32 @@
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 177 de 177
+casos sha256 : 765503df4e84a0a7
+golden set   : 2a2da99cc7001128
+fichero      : casos_v2_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8}
+backend      : ollama
+
+METRICAS GLOBALES
+  n=177  accuracy=0.9944  Brier=0.0056  ECE(5 bins)=0.0056
+  confianza media=0.435  sesgo=-0.5593  confiado_y_fallado=1  seguro_y_acertado=76
+  latencia P50=2906.4 ms  P95=4151.4 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.9939 Brier=0.0061 ECE=0.0061 sesgo=-0.5583
+  B: n=8 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=-1.0
+  D: n=6 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=0.0
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  negacion         n= 15 accuracy=0.9333 Brier=0.0667 ECE=0.0667
+  campo_ausente    n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  grounding        n= 13 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  literal          n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  memoria          n=  6 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  parafrasis       n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  soporte_parcial  n= 15 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  trampa           n=  8 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  valor_vecino     n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_ollama_v2.json

@@ -1,0 +1,411 @@
+0:00 Abres clot o la que uses, haces cuatro
+0:02 preguntas y te dice que vuelvas dentro
+0:05 de 5 horas. ¿Te ha pasado? Lo primero
+0:08 que piensas es que el límite se ha
+0:10 quedado corto o que te están recortando
+0:12 el plan o directamente que la
+0:14 herramienta ya no rinde como el primer
+0:17 día. Pero no es eso. Lo que pasa es que
+0:21 tú escribes 200 palabras y se envían y
+0:24 te cobran 200,000.
+0:27 Y esa diferencia no la vas a ver por
+0:29 ningún lado porque la interfaz de la IA
+0:32 no te la enseña. En este vídeo te voy a
+0:34 enseñar exactamente qué hacer para que
+0:37 esa diferencia se reduzca y lo vamos a
+0:40 ver todo en vivo con comandos y con
+0:42 configuraciones concretas que puedes
+0:45 aplicar hoy mismo.
+0:55 Antes de empezar, te cuento cómo está
+0:57 estructurado el vídeo, porque está
+0:59 dividido en tres bloques. Va en
+1:02 dificultad de menos a más. El primer
+1:05 bloque es para todo el público, no hace
+1:07 falta que seas técnico ni que instales
+1:09 absolutamente nada. El segundo bloque es
+1:13 algo más técnico para gente que trabaja
+1:15 con la terminal, con MCPs conectados o
+1:18 tirando de API. Y el tercero es café
+1:22 para cafeteros, que ampli ampliaremos
+1:25 además en otro vídeo porque requiere
+1:28 montar una capa delante de la IA para
+1:30 resolver peticiones. Los tienes marcados
+1:33 en la línea de tiempo del vídeo por si
+1:35 quieres saltar directo al bloque que más
+1:38 te interesa. Antes de las acciones,
+1:40 necesitamos entender una sola cosa,
+1:42 porque todo lo demás sale de aquí. Los
+1:45 modelos por sí mismos no tienen memoria.
+1:48 Cuando tú escribes el mensaje número 20
+1:50 de una conversación, lo que se envía no
+1:53 es solo tu mensaje número 20, sino que
+1:56 se envía el sistema, las instrucciones,
+1:59 las definiciones de todas las
+2:01 herramientas que tengas conectadas, los
+2:03 19 mensajes anteriores con sus 19
+2:08 respuestas y al final del todo tu
+2:11 mensaje número 20, lo que acabas de
+2:13 escribir,
+2:14 eso que ya se había enviado antes y se
+2:17 vuelve enviar tiene nombre, se llama
+2:19 input reutilizado. Y en un día de
+2:22 trabajo normal es la inmensa mayoría de
+2:25 lo que consumes en tokens. Mira esto.
+2:28 Aquí tienes el reparto real de mi
+2:30 ventana ahora mismo. Esto es el system
+2:33 prom. Estos son las herramientas MCP que
+2:36 tengo conectadas. Esto las skills. Y
+2:39 fíjate en el historial, tengo 769,000
+2:43 tokens. La consecuencia práctica es que
+2:46 cada mensaje que añades encarece a todos
+2:49 los mensajes que vienen después. Y aquí
+2:52 hago un paréntesis rápido porque sé que
+2:55 mucha gente está diciendo esto de que el
+2:57 modelo no tiene memoria y por eso se
+2:59 reenvía todo, bla, bla, bla. Le suena
+3:01 raro la primera vez que lo oye. Es
+3:03 normal y no es culpa tuya. La IA se
+3:06 explica siempre por encima. Pero si
+3:08 quieres entender de verdad qué está
+3:10 pasando por ahí dentro, por qué un
+3:12 modelo funciona así y no de otra manera,
+3:15 tengo un libro que se llama El motor de
+3:18 la inteligencia artificial y que empieza
+3:21 literalmente desde la aritmética básica
+3:24 y la va subiendo poco a poco hasta que
+3:26 entiendes el mecanismo completo de las
+3:29 redes neuronales y la IA generativa
+3:32 actual.
+3:34 No hace falta que sepas programar ni que
+3:36 tengas base matemática. Te lo dejo aquí
+3:40 en la descripción. Empecemos por los
+3:42 básicos. Cuando el modelo te entiende
+3:44 mal o te has olvidado de algún detalle,
+3:47 el instinto es escribir otro mensaje
+3:50 dando más detalles o decir, "No, así no.
+3:53 Hazlo de esta otra manera." O añades
+3:56 detalles que te has dejado como esta
+3:59 persona es informática. Y ahí acabas de
+4:02 meter en la conversación tres cosas que
+4:05 vas a arrastrar el resto de la sesión.
+4:08 Primero, tu pront malo, la respuesta
+4:10 equivocada y luego tu corrección. La
+4:13 alternativa, ¿cuál es? Editar el mensaje
+4:15 original, arreglar la ambigüedad que
+4:17 causó el problema y reenviarlo. En Cloud
+4:21 Code pulsas escape dos veces, te sitúas
+4:23 en el mensaje, lo corriges y sigues
+4:25 desde ahí. Y en el chat directamente es
+4:28 este lapicerito de editar que lleva ahí
+4:30 toda la vida y casi nadie usa. La rama
+4:33 mala desaparece y no la vas a pagar
+4:36 nunca más. El segundo va en una línea
+4:38 similar, escribir mejores pronts. Y esto
+4:42 es lo que más intereraciones te ahorra y
+4:45 es donde más gente pierde tokens sin
+4:47 darse cuenta. En lugar de ir soltando
+4:49 preguntas sueltas sobre el mismo
+4:51 material, agrupa todo lo que necesitas
+4:54 de ese contexto en un solo prompt y
+4:56 cierra el formato de salida antes de
+4:58 enviarlo. Puedes seguir la técnica
+5:01 crifo, que es mi favorita. Primero
+5:03 escribir contexto, luego el rol, después
+5:06 la instrucción. el formato y por último
+5:09 el objetivo y las restricciones.
+5:11 Cada cosa que no cierras en es una
+5:14 iteración que vas a pagar entera con
+5:17 todo el historial detrás. Aquí es donde
+5:20 el tema de las especificaciones deja de
+5:22 ser una metodología de proyectos grandes
+5:25 y se convierte en un hábito de teclado.
+5:28 Cuanto más se parezca tu prompto,
+5:32 menos veces vas a tener que volver. De
+5:35 hecho, todo esto es lo que acabé
+5:38 desarrollando en el libro del B coding
+5:41 al SPEC Driven Development, que tienes
+5:44 enlazado en la descripción por si
+5:45 quieres la versión larga con spec kit y
+5:49 agentes en proyectos reales.
+5:52 Pero para lo de hoy no te hace falta el
+5:54 libro, te vale con cerrar el formato de
+5:57 salida antes de darle a enviar. El
+5:59 tercero es bastante básico, pero a veces
+6:02 se nos olvida. Las conversaciones largas
+6:04 son buenas mientras sigas con el mismo
+6:07 problema porque el contexto acumulado te
+6:09 ayuda. Pero en el momento en el que
+6:11 cambias de tarea, ese contexto deja de
+6:14 ayudarte y solo te cobra. La regla es
+6:17 sencilla. Si cambias el trabajo, cambia
+6:20 la ventana. Y ojo que el comando clear
+6:24 no te devuelve acero porque el sistema y
+6:26 las herramientas se siguen enviando,
+6:29 pero corta en seco el arrastre del
+6:31 historial anterior. El cuarto va de
+6:33 limpiar, pero seguir con el contexto.
+6:36 Cuando tienes un flujo de varias fases,
+6:38 primero investigar, luego redactar o
+6:40 analizar y luego por último implementar,
+6:42 la tentación es seguir en el mismo hilo
+6:44 para que se acuerde de todo. Pero lo que
+6:47 lleva al siguiente paso tiene que ser el
+6:49 artefacto el informe final, el fichero
+6:53 de spec, el resumen ya validado. Y esto
+6:56 en la práctica son tres pasos que yo,
+6:58 por ejemplo, hago siempre igual, así que
+7:00 te los enseño tal cual. Primero le
+7:03 escribes que te escriba el traspaso a un
+7:06 fichero. Y aquí está el truco porque el
+7:08 error típico es pedirle a de un resumen
+7:10 de lo que hemos hablado. Y lo que te
+7:12 devuelve es una narración de la
+7:14 conversación que no le sirve de nada a
+7:17 la ventana siguiente. Lo que quieres es
+7:20 un documento que se entienda solo sin
+7:23 haber estado en esta conversación. Así
+7:26 que le pedimos, por ejemplo, escribe en
+7:28 docxttraspaso.
+7:31 El resultado de este trabajo pensado
+7:34 para alguien que no ha visto esta
+7:36 conversación.
+7:37 Incluye solo decisiones tomadas y por
+7:40 qué. Restricciones que hay que respetar,
+7:43 estado actual y siguiente paso concreto.
+7:47 No incluyas alternativas descartadas, ni
+7:50 el proceso ni los intentos fallidos.
+7:53 Máximo 40 líneas. Una vez tenemos este
+7:56 fichero, limpiamos la ventana y luego le
+8:00 decimos que use ese fichero como única
+8:03 entrada. La quinta va sobre los tokens
+8:05 de output que gastan y mucho. Imagina
+8:09 que le pido un cambio de nada, cambiar
+8:11 cómo se maneja un error en una función y
+8:14 se lo pido como se lo pide todo el
+8:16 mundo. Arréglame el manejo de errores de
+8:19 esta función. Y lo que me devuelve es el
+8:22 fichero entero reescrito, 300 líneas, de
+8:26 las cuales me interesan cuatro que han
+8:28 cambiado. Ahora viene la parte que no se
+8:31 ve. Le hago la siguiente pregunta. Una
+8:34 tontería, renombrar una variable y abro
+8:37 el context. Mira, 10.000 tokens
+8:40 gastados, la mayoría en el output. Ahí
+8:43 siguen las 300 líneas. No las he vuelto
+8:46 a pedir, no las estoy usando y las estoy
+8:49 pagando otra vez, cada vez que siga en
+8:51 esta conversación y las voy a pagar en
+8:54 el turno siguiente y en el siguiente.
+8:56 Ahora vamos a pedir la misma tarea, pero
+8:58 pidiéndolo bien. Misma tarea, mismo
+9:02 resultado en el código, pero el
+9:04 historial que arrastro a partir de aquí
+9:06 no tiene nada que ver. Le voy a poner el
+9:09 límite. Le digo, "Dame solo el div. Dame
+9:12 la función modificada y no el fichero.
+9:15 Resúmemelo en cinco líneas. Dame el
+9:18 Jason sin explicación.
+9:20 Esperamos. Obtenemos la misma solución.
+9:24 Y mira la diferencia. 6700 tokens contra
+9:28 10,000 tokens. Notamos la diferencia,
+9:31 ¿verdad? La sexta va de las cosas que tú
+9:33 puedas hacer fácilmente, hazlas. No seas
+9:36 vago. El modelo puede leerse tu fichero
+9:39 de 3,000 líneas. Claro que puede y es
+9:41 comodísimo.
+9:43 Si tú sabes lo que buscas, búscalo tú
+9:46 primero, un grab, un RG, el buscador del
+9:49 editor, y le pasamos las 40 líneas que
+9:52 importan o le decimos exactamente dónde
+9:55 está el problema. Simplemente en este
+9:57 caso le diré que en esa línea hay un
+10:00 timeout y que lo revise. Y además le
+10:03 digo que me dé el output solo del dif,
+10:06 no de todo el fichero como hemos
+10:08 aprendido antes. Hasta aquí hemos visto
+10:11 seis sencillas cosas que puedes aplicar
+10:13 hoy mismo sin necesidad de cambiar tu
+10:16 forma de trabajar ni instalar
+10:18 absolutamente nada. Y con esto solo, la
+10:21 mayoría dejaréis de tocar el límite. Si
+10:24 te está sirviendo este vídeo, dale a un
+10:26 fuerte like, que es lo que hace que
+10:28 YouTube se lo enseñe a otro que también
+10:31 está harto de que a la media hora le
+10:33 digan que vuelva en 5 horas. Y bueno,
+10:36 suscríbete para ver más vídeos como
+10:38 este. Y a partir de aquí vamos a entrar
+10:41 en la parte un poquito más técnica.
+10:44 Vamos allá. Empezamos con los MCP. El
+10:47 consejo que vas a leer en todas partes
+10:49 es que desconectes los servidores MCP
+10:51 que no uses, lógicamente, porque cada
+10:53 uno mete la descripción de todas sus
+10:56 herramientas en el prom del sistema y
+10:58 eso viaja en cada turno. Ese consejo era
+11:02 cierto, pero por ejemplo Cloud ya carga
+11:05 los MCP on demand. Fíjate, 93 tools,
+11:09 cero tokens, pero sin embargo en los
+11:11 skills pone 18 skills, 2000 tokens.
+11:15 Estas sí que están dentro y están dentro
+11:18 siempre, en cada turno. Use yo alguna o
+11:21 no, porque las skills no tienen carga
+11:23 diferida, el nombre y la descripción de
+11:25 cada una se inyectan al arrancar la
+11:27 sesión y solo el cuerpo de la skill se
+11:30 lee cuando hace falta. Así que la acción
+11:33 concreta de este punto son dos
+11:34 comprobaciones y las dos se hacen en 15
+11:37 segundos antes de empezar a trabajar. Lo
+11:39 primero, ábrete el context si estás en
+11:42 Cloud Code y mira tu línea de MCP.
+11:45 Si pone eso de loaded on demand y cero
+11:47 tokens, olvídate de desconectar
+11:49 servidores, no te va a ahorrar nada. Si
+11:52 te pone una cifra gorda, entonces sí
+11:54 quita los que no vayas a usar hoy y que
+11:57 no te sorprenda encontrártela, porque
+11:59 hay tres casos donde esto no se activa,
+12:02 que es, por ejemplo, cuando tus
+12:04 servidores van por httpo.
+12:08 Y segunda cosa, revisa tus skills y
+12:11 borra las que no uses. Esta es la que de
+12:14 verdad puedes accionar hoy, porque aquí
+12:16 no hay carga bajo demanda que te salve.
+12:19 El ocho es importante, ya que el usar un
+12:22 modelo u otro tiene diferencia de
+12:24 precio. No hace falta artillería pesada
+12:27 para formatear un JSON o renombrar
+12:30 variables. Si el trabajo está bien
+12:32 especificado, un modelo barato lo hace
+12:35 igual de bien o mejor. El problema es
+12:39 que decidir eso a ojo es incómodo porque
+12:42 en la duda todo el mundo tira del modelo
+12:45 más caro. Y aquí es donde aparece esta
+12:48 herramienta Spectjudes. Es una
+12:50 herramienta open source que yo he
+12:52 desarrollado y lo que hace es leer los
+12:55 artefactos de tu proyecto y decirte qué
+12:58 modelo encaja con ese trabajo en
+13:01 relación calidad precio. todo de forma
+13:04 local, así que tus specs no salen de tu
+13:07 máquina y cada nivel de exigencia que te
+13:11 reporta tiene que citar un fragmento
+13:13 literal de tu propio spec que exista de
+13:16 verdad en el texto. Fíjate, en este caso
+13:21 me dice que no use Opus ni fable para
+13:23 hacer esta herramienta, sino que con
+13:26 Sonet es más que suficiente. Así que,
+13:29 como podéis comprender, el ahorro va a
+13:31 ser más que considerable. Esta
+13:33 herramienta está en PIPI, se instala con
+13:35 Pip Install Specjuge y la verdad es que
+13:37 está siendo usada por muchísima gente.
+13:40 Además está aprobada y publicado en el
+13:42 catálogo de de extensiones de Spec Kit,
+13:46 el de GitHub, como extensión aprobada
+13:48 por la comunidad. Si trabajas con spec
+13:51 kit y lo añades directamente con specify
+13:54 extension adcuche, te aparecerá el
+13:57 comando de recomendación dentro de tu
+13:59 flujo. Si quieres más información de
+14:02 cómo usarlo, tengo un vídeo entero
+14:05 contando cómo funciona por dentro y cómo
+14:07 lo desarrollé. Te lo dejo en esta
+14:10 tarjeta y en la descripción por si te
+14:12 interesa. Ahora vamos a hablar de prompt
+14:15 catching. Y una aclaración, el prom
+14:17 catching no es un botón que actives en
+14:19 el chat ni en Cloud Code. Es una función
+14:23 de la API. ¿Dónde se implementa de
+14:25 verdad? Es en tu propio código cuando
+14:28 eres tú quien monta la petición. Y si
+14:31 estás en ese caso, hoy es mucho más
+14:34 fácil que hace un año, porque ya no hace
+14:36 falta ir marcando bloque a bloque. Con
+14:39 la cachea automática añades un solo
+14:42 campo a nivel superior de la petición y
+14:44 el sistema coloca el punto de corte en
+14:48 el último bloque cacheable y lo va
+14:51 moviendo hacia delante conforme crece la
+14:53 conversación.
+14:55 Esta línea que ves aquí es todo y la
+14:58 cuenta sale sola. Leer de cache cuesta
+15:01 el 10% de precio de entrada normal y
+15:04 escribir en ella un 25% más. O sea, que
+15:08 si vas a reutilizar ese precio, aunque
+15:11 sea un par de veces, ya te sale a
+15:13 cuenta. Y cerramos el bloque dos con la
+15:16 compactación. Hay veces que no puedes
+15:19 abrir ventana limpia porque estás en
+15:21 mitad de una tarea larga y el agente
+15:24 necesita una decisión tuya. Para eso
+15:27 está la compactación. que resume la
+15:30 conversación y le verá sitio para
+15:32 seguir. Cloud code compacta solo cuando
+15:35 te acercas al límite y esa pasada
+15:38 automática funciona igual que si lo
+15:40 lanzaras tú manualmente.
+15:42 El problema de dejar que salte sola es
+15:45 que salta cuando le toca, no cuando a ti
+15:48 te viene bien y normalmente te va a
+15:51 pillar en mitad de algo. Así que hazlo
+15:54 tú en un punto de corte natural. cuando
+15:57 acabas de cerrar una parte del trabajo y
+16:00 sobre todo dile qué te interesa
+16:03 conservar porque el este comando acepta
+16:06 instrucciones. Puedes poner barra
+16:08 compact conserva las decisiones de
+16:11 arquitectura y los nombres de los
+16:13 ficheros que hemos tocado y olvida los
+16:16 intentos fallidos y lo que no tenga nada
+16:19 que ver.
+16:21 Si trabajas por API, existe la
+16:23 compactación en servidor, que te la
+16:25 gestiona la propia API sin que escribas
+16:28 tú el código del resumen. Y pasamos al
+16:31 tercer bloque, ya que todo lo anterior
+16:33 tiene un techo y el techo es que actúas
+16:36 dentro de la llamada. Cuando tú
+16:38 intervienes, la petición ya está
+16:40 formada. La única forma de bajar de ahí
+16:43 es ponerte antes con una capa local
+16:46 entre tu retorno y la API. Con eso
+16:50 puedes hacer tres cosas muy concretas.
+16:52 La primera es resolver sin llamada. Si
+16:55 esa pregunta ya se respondió y la
+16:57 respuesta está en tu caché local, se
+17:00 devuelve y no gastas. La segunda es
+17:03 recortar lo que sale quedándote solo con
+17:06 los fragmentos útiles del contexto. Y la
+17:09 tercera son lo que llamamos los límites
+17:11 duros, que es poner una regla que
+17:13 bloquee o corte cualquier petición que
+17:16 pase de X tokens para que no te comas
+17:19 media cuota en una llamada que se te fue
+17:21 de las manos.
+17:23 Esto es claramente lo más avanzado del
+17:25 vídeo. Si veo que este vídeo tiene mucho
+17:28 apoyo y likes, montaré un vídeo entero
+17:31 con un proxy de estos funcionando.
+17:34 Decídmelo en comentarios. Si te tienes
+17:36 que dar solo con cinco cosas de todo
+17:38 esto, que sean esta. Edita en vez de
+17:42 discutir. Haz una ventana nueva en
+17:44 cuanto cambies de tarea. Compacta de vez
+17:47 en cuando. Desconecta los MCPs y skills
+17:50 que no vayas a usar y comprueba si el
+17:53 modelo que estás eligiendo es el más
+17:55 adecuado para esa tarea. Con eso solo ya
+17:58 vas a notar que llegas mucho más lejos
+18:01 antes de ver el aviso del límite. Y si
+18:04 este vídeo te ha servido, déjame un
+18:06 fuerte like y suscríbete con la campana
+18:08 activada, porque aquí subo cada semana
+18:11 cosas medidas en local como esta, sin
+18:13 humo y con la pantalla real y el código
+18:16 a la vista. Si conoces a alguien que se
+18:18 esté peleándose con los límites de su
+18:21 suscripción, pásale este vídeo que le
+18:24 vas a ahorrar bastante más que un rato.
+18:27 que la te acompañe.

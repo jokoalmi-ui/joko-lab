@@ -1,0 +1,1582 @@
+{
+  "platform": "telegram",
+  "model": "deepseek-v4-flash",
+  "system_prompt": {
+    "chars": 52541,
+    "bytes": 53492
+  },
+  "skills_index": {
+    "chars": 16401,
+    "bytes": 16495
+  },
+  "memory": {
+    "chars": 3092,
+    "bytes": 3404
+  },
+  "user_profile": {
+    "chars": 1509,
+    "bytes": 1745
+  },
+  "tools": {
+    "count": 26,
+    "json_bytes": 43398
+  },
+  "sections": [
+    [
+      "stable (identity/guidance/skills)",
+      30089,
+      30392
+    ],
+    [
+      "context (AGENTS.md/cwd files)",
+      0,
+      0
+    ],
+    [
+      "volatile (memory/profile/timestamp)",
+      22450,
+      23098
+    ]
+  ],
+  "skills_breakdown": [
+    {
+      "name": "hermes-expert",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 101358,
+      "path": "/home/jokoalmi/.hermes/skills/autonomous-ai-agents/hermes-expert/SKILL.md"
+    },
+    {
+      "name": "instagram-carruseles-analisis",
+      "index_line_bytes": 97,
+      "index_line_total_bytes": 97,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 101355,
+      "path": "/home/jokoalmi/.hermes/skills/media/instagram-carruseles-analisis/SKILL.md"
+    },
+    {
+      "name": "instagram-content-extraction",
+      "index_line_bytes": 96,
+      "index_line_total_bytes": 96,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 97984,
+      "path": "/home/jokoalmi/.hermes/skills/media/instagram-content-extraction/SKILL.md"
+    },
+    {
+      "name": "video-slides-tts",
+      "index_line_bytes": 85,
+      "index_line_total_bytes": 85,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 88456,
+      "path": "/home/jokoalmi/.hermes/skills/media/video-slides-tts/SKILL.md"
+    },
+    {
+      "name": "documentacion-joko-lab",
+      "index_line_bytes": 90,
+      "index_line_total_bytes": 90,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 82662,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/documentacion-joko-lab/SKILL.md"
+    },
+    {
+      "name": "youtube-content",
+      "index_line_bytes": 72,
+      "index_line_total_bytes": 72,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 80785,
+      "path": "/home/jokoalmi/.hermes/skills/media/youtube-content/SKILL.md"
+    },
+    {
+      "name": "hermes-upgrade-analysis",
+      "index_line_bytes": 92,
+      "index_line_total_bytes": 92,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 72465,
+      "path": "/home/jokoalmi/.hermes/skills/hermes-lab/hermes-upgrade-analysis/SKILL.md"
+    },
+    {
+      "name": "hermes-cron-jobs",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 65332,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/hermes-cron-jobs/SKILL.md"
+    },
+    {
+      "name": "refactor-seguro",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 65033,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/refactor-seguro/SKILL.md"
+    },
+    {
+      "name": "edicion-aditiva-registros",
+      "index_line_bytes": 91,
+      "index_line_total_bytes": 91,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 60817,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/edicion-aditiva-registros/SKILL.md"
+    },
+    {
+      "name": "gobernanza-conocimiento",
+      "index_line_bytes": 92,
+      "index_line_total_bytes": 92,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 51935,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/gobernanza-conocimiento/SKILL.md"
+    },
+    {
+      "name": "validacion-instrumentos-medicion",
+      "index_line_bytes": 99,
+      "index_line_total_bytes": 99,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 51544,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/validacion-instrumentos-medicion/SKILL.md"
+    },
+    {
+      "name": "delegacion-subagentes",
+      "index_line_bytes": 89,
+      "index_line_total_bytes": 89,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 44376,
+      "path": "/home/jokoalmi/.hermes/skills/autonomous-ai-agents/delegacion-subagentes/SKILL.md"
+    },
+    {
+      "name": "backups-joko-lab",
+      "index_line_bytes": 71,
+      "index_line_total_bytes": 71,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 43687,
+      "path": "/home/jokoalmi/.hermes/skills/diagnostico-stack-local/backups-joko-lab/SKILL.md"
+    },
+    {
+      "name": "investigacion-web",
+      "index_line_bytes": 86,
+      "index_line_total_bytes": 86,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 43205,
+      "path": "/home/jokoalmi/.hermes/skills/research/investigacion-web/SKILL.md"
+    },
+    {
+      "name": "perfume-del-dia",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 42268,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/perfume-del-dia/SKILL.md"
+    },
+    {
+      "name": "biohacking-cerebral",
+      "index_line_bytes": 87,
+      "index_line_total_bytes": 87,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 42046,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/biohacking-cerebral/SKILL.md"
+    },
+    {
+      "name": "video-transcription",
+      "index_line_bytes": 88,
+      "index_line_total_bytes": 88,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 40687,
+      "path": "/home/jokoalmi/.hermes/skills/media/video-transcription/SKILL.md"
+    },
+    {
+      "name": "triaje-contenido-externo",
+      "index_line_bytes": 76,
+      "index_line_total_bytes": 76,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 39187,
+      "path": "/home/jokoalmi/.hermes/skills/research/triaje-contenido-externo/SKILL.md"
+    },
+    {
+      "name": "prompt-engineering",
+      "index_line_bytes": 86,
+      "index_line_total_bytes": 86,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 38090,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/prompt-engineering/SKILL.md"
+    },
+    {
+      "name": "humanizer",
+      "index_line_bytes": 65,
+      "index_line_total_bytes": 65,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 34463,
+      "path": "/home/jokoalmi/.hermes/skills/creative/humanizer/SKILL.md"
+    },
+    {
+      "name": "gate-veracidad",
+      "index_line_bytes": 82,
+      "index_line_total_bytes": 82,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 34273,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/gate-veracidad/SKILL.md"
+    },
+    {
+      "name": "observabilidad-pipeline-llm",
+      "index_line_bytes": 95,
+      "index_line_total_bytes": 95,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 33288,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/observabilidad-pipeline-llm/SKILL.md"
+    },
+    {
+      "name": "infografia-html",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 31476,
+      "path": "/home/jokoalmi/.hermes/skills/creative/infografia-html/SKILL.md"
+    },
+    {
+      "name": "vigilancia-canales-youtube",
+      "index_line_bytes": 94,
+      "index_line_total_bytes": 94,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 31411,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/vigilancia-canales-youtube/SKILL.md"
+    },
+    {
+      "name": "instagram-monitor",
+      "index_line_bytes": 86,
+      "index_line_total_bytes": 86,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 30980,
+      "path": "/home/jokoalmi/.hermes/skills/instagram-monitor/SKILL.md"
+    },
+    {
+      "name": "render-html-a-imagen",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 30431,
+      "path": "/home/jokoalmi/.hermes/skills/render-html-a-imagen/SKILL.md"
+    },
+    {
+      "name": "detectar-sin-uso",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 29243,
+      "path": "/home/jokoalmi/.hermes/skills/diagnostico-stack-local/detectar-sin-uso/SKILL.md"
+    },
+    {
+      "name": "local-rag",
+      "index_line_bytes": 77,
+      "index_line_total_bytes": 77,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 28662,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/local-rag/SKILL.md"
+    },
+    {
+      "name": "state-verification-pattern",
+      "index_line_bytes": 97,
+      "index_line_total_bytes": 97,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 27963,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/state-verification-pattern/SKILL.md"
+    },
+    {
+      "name": "n8n-admin",
+      "index_line_bytes": 79,
+      "index_line_total_bytes": 79,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 27654,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/n8n-admin/SKILL.md"
+    },
+    {
+      "name": "founderz-seguimiento",
+      "index_line_bytes": 90,
+      "index_line_total_bytes": 90,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 26729,
+      "path": "/home/jokoalmi/.hermes/skills/education/founderz-seguimiento/SKILL.md"
+    },
+    {
+      "name": "lm-studio",
+      "index_line_bytes": 77,
+      "index_line_total_bytes": 77,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 25659,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/lm-studio/SKILL.md"
+    },
+    {
+      "name": "ai-router",
+      "index_line_bytes": 80,
+      "index_line_total_bytes": 80,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 25506,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/ai-router/SKILL.md"
+    },
+    {
+      "name": "generacion-imagen-local",
+      "index_line_bytes": 93,
+      "index_line_total_bytes": 93,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 25421,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/generacion-imagen-local/SKILL.md"
+    },
+    {
+      "name": "instagram-content",
+      "index_line_bytes": 85,
+      "index_line_total_bytes": 85,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 24675,
+      "path": "/home/jokoalmi/.hermes/skills/social-media/instagram-content/SKILL.md"
+    },
+    {
+      "name": "comfyui",
+      "index_line_bytes": 77,
+      "index_line_total_bytes": 77,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 24287,
+      "path": "/home/jokoalmi/.hermes/skills/creative/comfyui/SKILL.md"
+    },
+    {
+      "name": "bolsa-autonoma",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 22930,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/bolsa-autonoma/SKILL.md"
+    },
+    {
+      "name": "seguimiento-empleo",
+      "index_line_bytes": 86,
+      "index_line_total_bytes": 86,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 22913,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/seguimiento-empleo/SKILL.md"
+    },
+    {
+      "name": "skill-compaction",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 21885,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/skill-compaction/SKILL.md"
+    },
+    {
+      "name": "linkedin-carrusel-lab",
+      "index_line_bytes": 89,
+      "index_line_total_bytes": 89,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 20887,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/linkedin-carrusel-lab/SKILL.md"
+    },
+    {
+      "name": "busqueda-documental-nube",
+      "index_line_bytes": 92,
+      "index_line_total_bytes": 92,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 20523,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/busqueda-documental-nube/SKILL.md"
+    },
+    {
+      "name": "watchdog-salud-sistema",
+      "index_line_bytes": 90,
+      "index_line_total_bytes": 90,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 20489,
+      "path": "/home/jokoalmi/.hermes/skills/diagnostico-stack-local/watchdog-salud-sistema/SKILL.md"
+    },
+    {
+      "name": "mcp-lab",
+      "index_line_bytes": 75,
+      "index_line_total_bytes": 75,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 20487,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/mcp-lab/SKILL.md"
+    },
+    {
+      "name": "evaluar-alucinaciones",
+      "index_line_bytes": 90,
+      "index_line_total_bytes": 90,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 20013,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/evaluar-alucinaciones/SKILL.md"
+    },
+    {
+      "name": "auditoria-integral-lab",
+      "index_line_bytes": 85,
+      "index_line_total_bytes": 85,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 19849,
+      "path": "/home/jokoalmi/.hermes/skills/auditoria-integral-lab/SKILL.md"
+    },
+    {
+      "name": "hermes-agent-skill-authoring",
+      "index_line_bytes": 96,
+      "index_line_total_bytes": 96,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 19232,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/hermes-agent-skill-authoring/SKILL.md"
+    },
+    {
+      "name": "joko-git-recibos",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 18220,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/joko-git-recibos/SKILL.md"
+    },
+    {
+      "name": "graph-lab",
+      "index_line_bytes": 78,
+      "index_line_total_bytes": 78,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 17787,
+      "path": "/home/jokoalmi/.hermes/skills/autonomous-ai-agents/graph-lab/SKILL.md"
+    },
+    {
+      "name": "diagnostico-stack-local",
+      "index_line_bytes": 91,
+      "index_line_total_bytes": 91,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 17762,
+      "path": "/home/jokoalmi/.hermes/skills/diagnostico-stack-local/SKILL.md"
+    },
+    {
+      "name": "auto-mejora-lab",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 16906,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/auto-mejora-lab/SKILL.md"
+    },
+    {
+      "name": "pas-autoconocimiento",
+      "index_line_bytes": 88,
+      "index_line_total_bytes": 88,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 16764,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/pas-autoconocimiento/SKILL.md"
+    },
+    {
+      "name": "perfume-ia",
+      "index_line_bytes": 78,
+      "index_line_total_bytes": 78,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 16402,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/perfume-ia/SKILL.md"
+    },
+    {
+      "name": "audiocraft-audio-generation",
+      "index_line_bytes": 94,
+      "index_line_total_bytes": 94,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 16189,
+      "path": "/home/jokoalmi/.hermes/skills/mlops/models/audiocraft/SKILL.md"
+    },
+    {
+      "name": "systematic-debugging",
+      "index_line_bytes": 88,
+      "index_line_total_bytes": 88,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 15575,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/systematic-debugging/SKILL.md"
+    },
+    {
+      "name": "touchdesigner-mcp",
+      "index_line_bytes": 85,
+      "index_line_total_bytes": 85,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 15429,
+      "path": "/home/jokoalmi/.hermes/skills/creative/touchdesigner-mcp/SKILL.md"
+    },
+    {
+      "name": "serie-editorial-linkedin",
+      "index_line_bytes": 92,
+      "index_line_total_bytes": 92,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 15250,
+      "path": "/home/jokoalmi/.hermes/skills/social-media/serie-editorial-linkedin/SKILL.md"
+    },
+    {
+      "name": "orquestador-local-cloud",
+      "index_line_bytes": 92,
+      "index_line_total_bytes": 92,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 15175,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/orquestador-local-cloud/SKILL.md"
+    },
+    {
+      "name": "cafe-ia",
+      "index_line_bytes": 77,
+      "index_line_total_bytes": 77,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 15070,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/cafe-ia/SKILL.md"
+    },
+    {
+      "name": "hermes-salud",
+      "index_line_bytes": 81,
+      "index_line_total_bytes": 81,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 15044,
+      "path": "/home/jokoalmi/.hermes/skills/hermes-lab/hermes-salud/SKILL.md"
+    },
+    {
+      "name": "telegram-inbox",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 14556,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/telegram-inbox/SKILL.md"
+    },
+    {
+      "name": "multiagente-hermes",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 14414,
+      "path": "/home/jokoalmi/.hermes/skills/autonomous-ai-agents/multiagente-hermes/SKILL.md"
+    },
+    {
+      "name": "recuperacion-state-db",
+      "index_line_bytes": 89,
+      "index_line_total_bytes": 89,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 14192,
+      "path": "/home/jokoalmi/.hermes/skills/hermes-lab/recuperacion-state-db/SKILL.md"
+    },
+    {
+      "name": "pretext",
+      "index_line_bytes": 75,
+      "index_line_total_bytes": 75,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 14168,
+      "path": "/home/jokoalmi/.hermes/skills/creative/pretext/SKILL.md"
+    },
+    {
+      "name": "google-workspace",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 13926,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/google-workspace/SKILL.md"
+    },
+    {
+      "name": "github-repo-management",
+      "index_line_bytes": 80,
+      "index_line_total_bytes": 80,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 13733,
+      "path": "/home/jokoalmi/.hermes/skills/github/github-repo-management/SKILL.md"
+    },
+    {
+      "name": "perfumes-inaccesibles",
+      "index_line_bytes": 90,
+      "index_line_total_bytes": 90,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 13706,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/perfumes-inaccesibles/SKILL.md"
+    },
+    {
+      "name": "cross-session-awareness",
+      "index_line_bytes": 91,
+      "index_line_total_bytes": 91,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 13642,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/cross-session-awareness/SKILL.md"
+    },
+    {
+      "name": "github-code-review",
+      "index_line_bytes": 76,
+      "index_line_total_bytes": 76,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 13615,
+      "path": "/home/jokoalmi/.hermes/skills/github/github-code-review/SKILL.md"
+    },
+    {
+      "name": "combined-mode",
+      "index_line_bytes": 81,
+      "index_line_total_bytes": 81,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 13437,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/combined-mode/SKILL.md"
+    },
+    {
+      "name": "segment-anything-model",
+      "index_line_bytes": 89,
+      "index_line_total_bytes": 89,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 13372,
+      "path": "/home/jokoalmi/.hermes/skills/mlops/models/segment-anything/SKILL.md"
+    },
+    {
+      "name": "hermes-agent",
+      "index_line_bytes": 80,
+      "index_line_total_bytes": 80,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 13183,
+      "path": "/home/jokoalmi/.hermes/skills/autonomous-ai-agents/hermes-agent/SKILL.md"
+    },
+    {
+      "name": "contexto-multimodal",
+      "index_line_bytes": 87,
+      "index_line_total_bytes": 87,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12982,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/contexto-multimodal/SKILL.md"
+    },
+    {
+      "name": "medicion-aceleracion-inferencia-local",
+      "index_line_bytes": 93,
+      "index_line_total_bytes": 93,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12878,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/medicion-aceleracion-inferencia-local/SKILL.md"
+    },
+    {
+      "name": "computer-use",
+      "index_line_bytes": 82,
+      "index_line_total_bytes": 82,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12782,
+      "path": "/home/jokoalmi/.hermes/skills/computer-use/SKILL.md"
+    },
+    {
+      "name": "google-ai-pro",
+      "index_line_bytes": 81,
+      "index_line_total_bytes": 81,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12780,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/google-ai-pro/SKILL.md"
+    },
+    {
+      "name": "grounded-citations",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12652,
+      "path": "/home/jokoalmi/.hermes/skills/research/grounded-citations/SKILL.md"
+    },
+    {
+      "name": "observabilidad-pipeline",
+      "index_line_bytes": 91,
+      "index_line_total_bytes": 91,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12631,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/observabilidad-pipeline/SKILL.md"
+    },
+    {
+      "name": "pdf",
+      "index_line_bytes": 64,
+      "index_line_total_bytes": 64,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12489,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/pdf/SKILL.md"
+    },
+    {
+      "name": "weights-and-biases",
+      "index_line_bytes": 86,
+      "index_line_total_bytes": 86,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12395,
+      "path": "/home/jokoalmi/.hermes/skills/mlops/evaluation/weights-and-biases/SKILL.md"
+    },
+    {
+      "name": "linkedin-content-extraction",
+      "index_line_bytes": 95,
+      "index_line_total_bytes": 95,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12335,
+      "path": "/home/jokoalmi/.hermes/skills/media/linkedin-content-extraction/SKILL.md"
+    },
+    {
+      "name": "evaluating-llms-harness",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 12020,
+      "path": "/home/jokoalmi/.hermes/skills/mlops/evaluation/lm-evaluation-harness/SKILL.md"
+    },
+    {
+      "name": "opencode",
+      "index_line_bytes": 70,
+      "index_line_total_bytes": 70,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 11932,
+      "path": "/home/jokoalmi/.hermes/skills/autonomous-ai-agents/opencode/SKILL.md"
+    },
+    {
+      "name": "evaluacion-alucinaciones",
+      "index_line_bytes": 93,
+      "index_line_total_bytes": 93,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 11777,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/evaluacion-alucinaciones/SKILL.md"
+    },
+    {
+      "name": "telegram-cross-session-setup",
+      "index_line_bytes": 96,
+      "index_line_total_bytes": 96,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 11649,
+      "path": "/home/jokoalmi/.hermes/skills/telegran-cross-session-setup/SKILL.md"
+    },
+    {
+      "name": "plan",
+      "index_line_bytes": 72,
+      "index_line_total_bytes": 72,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 11550,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/plan/SKILL.md"
+    },
+    {
+      "name": "forensic-evidence-analysis",
+      "index_line_bytes": 96,
+      "index_line_total_bytes": 96,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 11401,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/forensic-evidence-analysis/SKILL.md"
+    },
+    {
+      "name": "ai-architecture",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 11353,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/ai-architecture/SKILL.md"
+    },
+    {
+      "name": "empleo-emprendimiento-bizkaia",
+      "index_line_bytes": 99,
+      "index_line_total_bytes": 99,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 11301,
+      "path": "/home/jokoalmi/.hermes/skills/bizkaia/empleo-emprendimiento-bizkaia/SKILL.md"
+    },
+    {
+      "name": "agentic-rag",
+      "index_line_bytes": 80,
+      "index_line_total_bytes": 80,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 11048,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/agentic-rag/SKILL.md"
+    },
+    {
+      "name": "investigacion-comercios-online",
+      "index_line_bytes": 98,
+      "index_line_total_bytes": 98,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 10897,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/investigacion-comercios-online/SKILL.md"
+    },
+    {
+      "name": "ascii-art",
+      "index_line_bytes": 68,
+      "index_line_total_bytes": 68,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 10556,
+      "path": "/home/jokoalmi/.hermes/skills/creative/ascii-art/SKILL.md"
+    },
+    {
+      "name": "baoyu-infographic",
+      "index_line_bytes": 85,
+      "index_line_total_bytes": 85,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 10434,
+      "path": "/home/jokoalmi/.hermes/skills/creative/baoyu-infographic/SKILL.md"
+    },
+    {
+      "name": "hermes-agentes-locales",
+      "index_line_bytes": 81,
+      "index_line_total_bytes": 81,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 10420,
+      "path": "/home/jokoalmi/.hermes/skills/autonomous-ai-agents/hermes-agentes-locales/SKILL.md"
+    },
+    {
+      "name": "docx",
+      "index_line_bytes": 70,
+      "index_line_total_bytes": 70,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 10395,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/docx/SKILL.md"
+    },
+    {
+      "name": "test-driven-development",
+      "index_line_bytes": 82,
+      "index_line_total_bytes": 82,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 10300,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/test-driven-development/SKILL.md"
+    },
+    {
+      "name": "datos-climaticos",
+      "index_line_bytes": 85,
+      "index_line_total_bytes": 85,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 10231,
+      "path": "/home/jokoalmi/.hermes/skills/research/datos-climaticos/SKILL.md"
+    },
+    {
+      "name": "github-pr-workflow",
+      "index_line_bytes": 79,
+      "index_line_total_bytes": 79,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 10035,
+      "path": "/home/jokoalmi/.hermes/skills/github/github-pr-workflow/SKILL.md"
+    },
+    {
+      "name": "adaptadores-wifi-linux",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 10027,
+      "path": "/home/jokoalmi/.hermes/skills/mantenimiento-host/adaptadores-wifi-linux/SKILL.md"
+    },
+    {
+      "name": "recursos-gratuitos-desempleados",
+      "index_line_bytes": 99,
+      "index_line_total_bytes": 99,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9909,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/recursos-gratuitos-desempleados/SKILL.md"
+    },
+    {
+      "name": "alojamiento-urbano-tranquilo",
+      "index_line_bytes": 93,
+      "index_line_total_bytes": 93,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9862,
+      "path": "/home/jokoalmi/.hermes/skills/viajes/alojamiento-urbano-tranquilo/SKILL.md"
+    },
+    {
+      "name": "finanzas-personales",
+      "index_line_bytes": 88,
+      "index_line_total_bytes": 88,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9846,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/finanzas-personales/SKILL.md"
+    },
+    {
+      "name": "serie-curso-ia-agentes",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9749,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/serie-curso-ia-agentes/SKILL.md"
+    },
+    {
+      "name": "ciberseguridad-fp",
+      "index_line_bytes": 85,
+      "index_line_total_bytes": 85,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9724,
+      "path": "/home/jokoalmi/.hermes/skills/education/ciberseguridad-fp/SKILL.md"
+    },
+    {
+      "name": "xlsx",
+      "index_line_bytes": 62,
+      "index_line_total_bytes": 62,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9655,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/xlsx/SKILL.md"
+    },
+    {
+      "name": "github-issues",
+      "index_line_bytes": 80,
+      "index_line_total_bytes": 80,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9315,
+      "path": "/home/jokoalmi/.hermes/skills/github/github-issues/SKILL.md"
+    },
+    {
+      "name": "sketch",
+      "index_line_bytes": 69,
+      "index_line_total_bytes": 69,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9304,
+      "path": "/home/jokoalmi/.hermes/skills/creative/sketch/SKILL.md"
+    },
+    {
+      "name": "entrenador-inteligencia-emocional",
+      "index_line_bytes": 93,
+      "index_line_total_bytes": 93,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9252,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/entrenador-inteligencia-emocional/SKILL.md"
+    },
+    {
+      "name": "requesting-code-review",
+      "index_line_bytes": 88,
+      "index_line_total_bytes": 88,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9161,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/requesting-code-review/SKILL.md"
+    },
+    {
+      "name": "serving-llms-vllm",
+      "index_line_bytes": 85,
+      "index_line_total_bytes": 85,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 9071,
+      "path": "/home/jokoalmi/.hermes/skills/mlops/inference/vllm/SKILL.md"
+    },
+    {
+      "name": "llama-cpp",
+      "index_line_bytes": 73,
+      "index_line_total_bytes": 73,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 8880,
+      "path": "/home/jokoalmi/.hermes/skills/mlops/inference/llama-cpp/SKILL.md"
+    },
+    {
+      "name": "verificacion-fuentes-externas",
+      "index_line_bytes": 91,
+      "index_line_total_bytes": 91,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 8404,
+      "path": "/home/jokoalmi/.hermes/skills/research/verificacion-fuentes-externas/SKILL.md"
+    },
+    {
+      "name": "notebooklm",
+      "index_line_bytes": 78,
+      "index_line_total_bytes": 78,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 8219,
+      "path": "/home/jokoalmi/.hermes/skills/note-taking/notebooklm/SKILL.md"
+    },
+    {
+      "name": "polymarket",
+      "index_line_bytes": 73,
+      "index_line_total_bytes": 73,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 8119,
+      "path": "/home/jokoalmi/.hermes/skills/research/polymarket/SKILL.md"
+    },
+    {
+      "name": "ocr-and-documents",
+      "index_line_bytes": 76,
+      "index_line_total_bytes": 76,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 8051,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/ocr-and-documents/SKILL.md"
+    },
+    {
+      "name": "lpa-profesor",
+      "index_line_bytes": 80,
+      "index_line_total_bytes": 80,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 7891,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/lpa-profesor/SKILL.md"
+    },
+    {
+      "name": "baskepensiones-monitor",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 7724,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/baskepensiones-monitor/SKILL.md"
+    },
+    {
+      "name": "github-auth",
+      "index_line_bytes": 75,
+      "index_line_total_bytes": 75,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 7596,
+      "path": "/home/jokoalmi/.hermes/skills/github/github-auth/SKILL.md"
+    },
+    {
+      "name": "least-privilege-lab",
+      "index_line_bytes": 89,
+      "index_line_total_bytes": 89,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 7575,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/least-privilege-lab/SKILL.md"
+    },
+    {
+      "name": "post-linkedin-kanban",
+      "index_line_bytes": 79,
+      "index_line_total_bytes": 79,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 7538,
+      "path": "/home/jokoalmi/.hermes/skills/social-media/post-linkedin-kanban/SKILL.md"
+    },
+    {
+      "name": "autorizacion-escritura-lab",
+      "index_line_bytes": 93,
+      "index_line_total_bytes": 93,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 7445,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/autorizacion-escritura-lab/SKILL.md"
+    },
+    {
+      "name": "excalidraw",
+      "index_line_bytes": 72,
+      "index_line_total_bytes": 72,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 7300,
+      "path": "/home/jokoalmi/.hermes/skills/creative/excalidraw/SKILL.md"
+    },
+    {
+      "name": "grill-idea",
+      "index_line_bytes": 73,
+      "index_line_total_bytes": 73,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 7208,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/grill-idea/SKILL.md"
+    },
+    {
+      "name": "portar-bibliotecas-skills",
+      "index_line_bytes": 91,
+      "index_line_total_bytes": 91,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6658,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/portar-bibliotecas-skills/SKILL.md"
+    },
+    {
+      "name": "recursos-externos-skills-mcp",
+      "index_line_bytes": 90,
+      "index_line_total_bytes": 90,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6640,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/recursos-externos-skills-mcp/SKILL.md"
+    },
+    {
+      "name": "alojamiento-rural-euskadi",
+      "index_line_bytes": 93,
+      "index_line_total_bytes": 93,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6603,
+      "path": "/home/jokoalmi/.hermes/skills/viajes/alojamiento-rural-euskadi/SKILL.md"
+    },
+    {
+      "name": "precios-carburantes",
+      "index_line_bytes": 87,
+      "index_line_total_bytes": 87,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6601,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/precios-carburantes/SKILL.md"
+    },
+    {
+      "name": "mantenimiento-host-ubuntu",
+      "index_line_bytes": 91,
+      "index_line_total_bytes": 91,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6455,
+      "path": "/home/jokoalmi/.hermes/skills/mantenimiento-host/mantenimiento-host-ubuntu/SKILL.md"
+    },
+    {
+      "name": "infographic-production",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6431,
+      "path": "/home/jokoalmi/.hermes/skills/creative/infographic-production/SKILL.md"
+    },
+    {
+      "name": "heartmula",
+      "index_line_bytes": 73,
+      "index_line_total_bytes": 73,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6412,
+      "path": "/home/jokoalmi/.hermes/skills/media/heartmula/SKILL.md"
+    },
+    {
+      "name": "motores-documento-lab",
+      "index_line_bytes": 86,
+      "index_line_total_bytes": 86,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6321,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/motores-documento-lab/SKILL.md"
+    },
+    {
+      "name": "reddit-reading",
+      "index_line_bytes": 82,
+      "index_line_total_bytes": 82,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6279,
+      "path": "/home/jokoalmi/.hermes/skills/social-media/reddit-reading/SKILL.md"
+    },
+    {
+      "name": "auditoria-estructura-skills",
+      "index_line_bytes": 94,
+      "index_line_total_bytes": 94,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6211,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/auditoria-estructura-skills/SKILL.md"
+    },
+    {
+      "name": "inspecting-hermes-desktop-dom",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 6204,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/inspecting-hermes-desktop-dom/SKILL.md"
+    },
+    {
+      "name": "analisis-candidato-vs-coleccion",
+      "index_line_bytes": 100,
+      "index_line_total_bytes": 100,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 5872,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/analisis-candidato-vs-coleccion/SKILL.md"
+    },
+    {
+      "name": "architecture-diagram",
+      "index_line_bytes": 86,
+      "index_line_total_bytes": 86,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 5830,
+      "path": "/home/jokoalmi/.hermes/skills/creative/architecture-diagram/SKILL.md"
+    },
+    {
+      "name": "revisar-decisiones",
+      "index_line_bytes": 88,
+      "index_line_total_bytes": 88,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 5709,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/revisar-decisiones/SKILL.md"
+    },
+    {
+      "name": "grafo-conocimiento-codigo",
+      "index_line_bytes": 92,
+      "index_line_total_bytes": 92,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 5595,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/grafo-conocimiento-codigo/SKILL.md"
+    },
+    {
+      "name": "lanzadores-doble-clic-linux",
+      "index_line_bytes": 89,
+      "index_line_total_bytes": 89,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 5286,
+      "path": "/home/jokoalmi/.hermes/skills/mantenimiento-host/lanzadores-doble-clic-linux/SKILL.md"
+    },
+    {
+      "name": "jupyter-live-kernel",
+      "index_line_bytes": 78,
+      "index_line_total_bytes": 78,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 5285,
+      "path": "/home/jokoalmi/.hermes/skills/data-science/jupyter-live-kernel/SKILL.md"
+    },
+    {
+      "name": "blocked-page-recovery",
+      "index_line_bytes": 85,
+      "index_line_total_bytes": 85,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 5156,
+      "path": "/home/jokoalmi/.hermes/skills/web/blocked-page-recovery/SKILL.md"
+    },
+    {
+      "name": "agregacion-corpus-grande",
+      "index_line_bytes": 90,
+      "index_line_total_bytes": 90,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 5117,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/agregacion-corpus-grande/SKILL.md"
+    },
+    {
+      "name": "blogwatcher",
+      "index_line_bytes": 77,
+      "index_line_total_bytes": 77,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 5111,
+      "path": "/home/jokoalmi/.hermes/skills/research/blogwatcher/SKILL.md"
+    },
+    {
+      "name": "despliegue-ia-local-clientes",
+      "index_line_bytes": 96,
+      "index_line_total_bytes": 96,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 4867,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/despliegue-ia-local-clientes/SKILL.md"
+    },
+    {
+      "name": "guiones-video-cortos",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 4664,
+      "path": "/home/jokoalmi/.hermes/skills/creative/guiones-video-cortos/SKILL.md"
+    },
+    {
+      "name": "competitor-news-monitor",
+      "index_line_bytes": 86,
+      "index_line_total_bytes": 86,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 4619,
+      "path": "/home/jokoalmi/.hermes/skills/research/competitor-news-monitor/SKILL.md"
+    },
+    {
+      "name": "rss-feeds",
+      "index_line_bytes": 74,
+      "index_line_total_bytes": 74,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 4557,
+      "path": "/home/jokoalmi/.hermes/skills/research/rss-feeds/SKILL.md"
+    },
+    {
+      "name": "lpa",
+      "index_line_bytes": 71,
+      "index_line_total_bytes": 71,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 4452,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/lpa/SKILL.md"
+    },
+    {
+      "name": "product-price-monitor",
+      "index_line_bytes": 87,
+      "index_line_total_bytes": 87,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 4400,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/product-price-monitor/SKILL.md"
+    },
+    {
+      "name": "email-inbox-triage",
+      "index_line_bytes": 84,
+      "index_line_total_bytes": 84,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 4057,
+      "path": "/home/jokoalmi/.hermes/skills/email/email-inbox-triage/SKILL.md"
+    },
+    {
+      "name": "document-to-action-items",
+      "index_line_bytes": 91,
+      "index_line_total_bytes": 91,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 3910,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/document-to-action-items/SKILL.md"
+    },
+    {
+      "name": "deep-research-lab",
+      "index_line_bytes": 86,
+      "index_line_total_bytes": 86,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 3860,
+      "path": "/home/jokoalmi/.hermes/skills/research/deep-research-lab/SKILL.md"
+    },
+    {
+      "name": "album-fotos-video",
+      "index_line_bytes": 76,
+      "index_line_total_bytes": 76,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 3832,
+      "path": "/home/jokoalmi/.hermes/skills/media/album-fotos-video/SKILL.md"
+    },
+    {
+      "name": "yuanbao",
+      "index_line_bytes": 75,
+      "index_line_total_bytes": 75,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 3795,
+      "path": "/home/jokoalmi/.hermes/skills/yuanbao/SKILL.md"
+    },
+    {
+      "name": "huggingface-hub",
+      "index_line_bytes": 83,
+      "index_line_total_bytes": 83,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 3674,
+      "path": "/home/jokoalmi/.hermes/skills/mlops/huggingface-hub/SKILL.md"
+    },
+    {
+      "name": "codebase-inspection",
+      "index_line_bytes": 80,
+      "index_line_total_bytes": 80,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 3612,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/codebase-inspection/SKILL.md"
+    },
+    {
+      "name": "petdex",
+      "index_line_bytes": 68,
+      "index_line_total_bytes": 68,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 3534,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/petdex/SKILL.md"
+    },
+    {
+      "name": "intervencion-hel-fase2",
+      "index_line_bytes": 92,
+      "index_line_total_bytes": 92,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 3316,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/intervencion-hel-fase2/SKILL.md"
+    },
+    {
+      "name": "carta-astral",
+      "index_line_bytes": 74,
+      "index_line_total_bytes": 74,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 3094,
+      "path": "/home/jokoalmi/.hermes/skills/joko-lab/carta-astral/SKILL.md"
+    },
+    {
+      "name": "openhue",
+      "index_line_bytes": 73,
+      "index_line_total_bytes": 73,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 2713,
+      "path": "/home/jokoalmi/.hermes/skills/smart-home/openhue/SKILL.md"
+    },
+    {
+      "name": "github",
+      "index_line_bytes": 67,
+      "index_line_total_bytes": 67,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 2446,
+      "path": "/home/jokoalmi/.hermes/skills/software-development/github/SKILL.md"
+    },
+    {
+      "name": "nano-pdf",
+      "index_line_bytes": 73,
+      "index_line_total_bytes": 73,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 1414,
+      "path": "/home/jokoalmi/.hermes/skills/productivity/nano-pdf/SKILL.md"
+    },
+    {
+      "name": "research-paper-writing",
+      "index_line_bytes": 92,
+      "index_line_total_bytes": 92,
+      "index_line_shared_bytes": 0,
+      "index_line_skill_count": 1,
+      "skill_md_bytes": 347,
+      "path": "/home/jokoalmi/.hermes/skills/research/research-paper-writing/SKILL.md"
+    }
+  ],
+  "toolsets_breakdown": [
+    {
+      "toolset": "file",
+      "tool_count": 4,
+      "json_bytes": 5404
+    },
+    {
+      "toolset": "delegation",
+      "tool_count": 1,
+      "json_bytes": 4432
+    },
+    {
+      "toolset": "browser",
+      "tool_count": 5,
+      "json_bytes": 4359
+    },
+    {
+      "toolset": "skills",
+      "tool_count": 3,
+      "json_bytes": 3606
+    },
+    {
+      "toolset": "browser-use",
+      "tool_count": 1,
+      "json_bytes": 3498
+    },
+    {
+      "toolset": "(unknown)",
+      "tool_count": 3,
+      "json_bytes": 3439
+    },
+    {
+      "toolset": "terminal",
+      "tool_count": 1,
+      "json_bytes": 3371
+    },
+    {
+      "toolset": "memory",
+      "tool_count": 1,
+      "json_bytes": 3296
+    },
+    {
+      "toolset": "code_execution",
+      "tool_count": 1,
+      "json_bytes": 3009
+    },
+    {
+      "toolset": "connections",
+      "tool_count": 1,
+      "json_bytes": 2673
+    },
+    {
+      "toolset": "web",
+      "tool_count": 2,
+      "json_bytes": 1910
+    },
+    {
+      "toolset": "tts",
+      "tool_count": 1,
+      "json_bytes": 1868
+    },
+    {
+      "toolset": "clarify",
+      "tool_count": 1,
+      "json_bytes": 1636
+    },
+    {
+      "toolset": "vision",
+      "tool_count": 1,
+      "json_bytes": 845
+    }
+  ]
+}

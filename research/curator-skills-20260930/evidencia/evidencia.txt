@@ -1,0 +1,117 @@
+
+===== SHORTCODES YA EN LAB =====
+--- fin shortcodes
+
+
+===== CHUNKING EN LAB (ficheros) =====
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/04-operations/itinerario-revision-implementacion-20260820.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-gauravgoyal-rag-levels.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-pixelrag-visual-search.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-tablas-periodicas-ai-ds-ibm.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-codewithbrij-top5-rag.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-gauravgoyal-crag-diagrama.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-rag-completo-ketan.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/.archive-20260902/analisis-dailydoseofds-finetuning-lora-rag.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-rag-explicado-carli-code.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-rag-pipeline.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-darpan-rag-compression-hyde.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/canales-referencia-lab.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-techwithram-chunking-rag.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-chunkless-rag-docling.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-thinklab-chunking-rag.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-rag-vs-finetuning.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-rag-indexing-strategies.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-datasciencebrain-rag.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-askgpts-web-scraping-dead.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/experimento-hyde-20260831.md
+/home/jokoalmi/joko-lab/GUIA-APRENDIZAJE-JOKO-LAB.md
+/home/jokoalmi/joko-lab/04-operations/itinerario-revision-implementacion-20260820.md
+/home/jokoalmi/joko-lab/04-operations/kap/2026-07-31-pkm-matematicas.md
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md
+/home/jokoalmi/joko-lab/04-operations/metrics/sesiones/raw/20260807_cron_97b85cb6d48e_20.md
+/home/jokoalmi/joko-lab/04-operations/metrics/sesiones/raw/20260804_cron_97b85cb6d48e_20.md
+/home/jokoalmi/joko-lab/verification/.venv/lib/python3.14/site-packages/yaml/emitter.py
+/home/jokoalmi/joko-lab/verification/.venv/lib/python3.14/site-packages/yaml/scanner.py
+/home/jokoalmi/joko-lab/verification/.venv/lib/python3.14/site-packages/urllib3/connection.py
+/home/jokoalmi/joko-lab/verification/.venv/lib/python3.14/site-packages/urllib3/http2/connection.py
+--- fin chunk
+
+
+===== JUDGE/PRECISION EN LAB =====
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/04-operations/reports/2026-08-06-bateria-modelos-locales.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/04-operations/itinerario-revision-implementacion-20260820.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/04-operations/backlogs/bak-20260902-aivatika-roadmap.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/04-operations/backlogs/bak-20260902-shivabytes-vectorless.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/04-operations/backlogs/pendientes.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-gauravgoyal-rag-levels.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-pixelrag-visual-search.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-fazt-spec-driven-development.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-tablas-periodicas-ai-ds-ibm.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-codewithbrij-top5-rag.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-3-posts-vigilante-ig.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-llm-engineering-inference-ketan.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-gauravgoyal-crag-diagrama.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-atareao-gpu-3000-local-lab.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-barrido-canales-20260831.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-memoria-agentes-3-tipos.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-prime-agent-vs-hermes-rodolfocarrasco.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-hermes-build-skills-theromanknox.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-cron-ig-20260825.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-gentleman-programming-alucinaciones-review.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/auditoria-llm-as-judge-20260822.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-ai-coach-john-llm-eval.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-observabilidad-pipelines-vs-lab.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-gentlemanprogramming-routing-fusion.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-reel-llm-hallucinations.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/linkedin-lab/serie-la-ia-que-yo-uso-guion-maestro.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-rag-completo-ketan.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-codewithbrij-ai-systems-engineering.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-mentalhotfix-benchmarks.md
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-rag-explicado-carli-code.md
+--- fin judge
+
+
+===== WIKI DE CONOCIMIENTO / MOTIVO DE FALLO =====
+/home/jokoalmi/joko-lab/.BACKUP-frontmatter-20260817/research/analisis-oxalpha-codex-opensource.md
+/home/jokoalmi/joko-lab/lpa/patterns-observed.md
+/home/jokoalmi/joko-lab/lpa/experiments/bolsa/estado-juego.json.bak-20260929
+/home/jokoalmi/joko-lab/lpa/experiments/bolsa/ledger-operaciones.jsonl
+/home/jokoalmi/joko-lab/lpa/experiments/bolsa/estado-juego.json
+/home/jokoalmi/joko-lab/04-operations/reports/2026-08-08-transcripcion-claude-cowork.txt
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-hueco
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BAK-20260920-rescate-animada
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-graph-eng
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-opencode-modelo
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260930-colognise-familia
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260929-fix-fecha
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grilling
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-limpieza-directiva
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260908-franja-cara
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-borrado-modelos
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-reels-fix
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260929-titulo-981
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-aihero
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260926-f2-contexto
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260903-grill-kanban
+/home/jokoalmi/joko-lab/04-operations/backlogs/.BACKUP.20260914-potenzia-va360
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260822-lheurebleue
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.bak-20260927-cierre-dia-cifras
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260819-revision-backups
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260925-kaggle-f6
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817b
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BAK-20260915-huecos-obs-hyp
+/home/jokoalmi/joko-lab/04-operations/backlogs/pendientes.md.bak-20260927-codesimple-opencode2
+/home/jokoalmi/joko-lab/04-operations/backlogs/2026-07-31-backlog.md.BACKUP.20260817e
+--- fin wiki
+
+
+===== WEB: WikiSkill =====
+[
+ {
+  "url": "https://arxiv.org/pdf/2608.27454v1",
+  "title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+  "description": "WikiSkill: Compiling Agent Experience into\nPersistent Knowledge for Skill Evolution\nLiyan Tang1, Cyrus Rashtchian1, Chun-Sung Ferng1, Andrew Tomkins1, Da-Cheng Juan1 and Tu Vu1,2\n1Google Research, 2Virginia Tech\nAgent skills package specialized knowledge and workflows into reusable resources that extend AI agent\ncapabilities. Recent work automatically discovers such skills from agent experience, which enables\nagents to progressively adapt through interaction. However, the insights that guide skill development\ntypically remain scattered across optimization histories, limiting their systematic reuse across iterations.\nWe introduce WikiSkill, a framework that co-evolves agent skills with a persistent knowledge base (wiki).\nAt a high level, WikiSkill separates raw execution experience, accumulated knowledge, and executable\nskills, while continuously consolidating experience into the wiki, which subsequent skill updates can\nbuild on. Across diverse benchmarks and models, WikiSkill consistently outperforms state-of-the-art\nskill-evolution methods and improves over no-skill baselines in most model-benchmark settings. We\nfind that skill evolution complements model scaling: larger models generally benefit more from evolved\nskills, while smaller models with skills can outperform substantially larger models without them. We\nalso find that evolved skills transfer effectively across models and model families, and skills evolved by\nother models can outperform self-evolved skills. Finally, our ablation studies confirm that persistent\nknowledge accumulation in the wiki is critical for effective skill evolution. These results demonstrate\nthe benefits of systematically accumulating and refining agent experience for developing reusable and\ntransferable skills.\n\na cumulative history of prior proposals and their evaluation outcomes; Trace2Skill (Ni et al., 2026)\nextracts and consolidates lessons across execution trajectories into skill updates; and SkillOpt (Yang\net al., 2026) uses rejected-edit feedback and epoch-wise meta guidance. However, these methods\ndo not maintain what has been learned as a separate, evolving knowledge representation. Inspired\nby Karpathy (2026)’s perspective on LLM Wiki, which advocates compiling experience into persistent,\ncompounding knowledge, we ask: Can agent experience be similarly compiled into persistent\nknowledge to support long-term skill evolution? We introduce WikiSkill, which adds a structured\nknowledge layer between raw experience and executable procedures (i.e., skills). This layer allows\nskill development to build on increasingly well-supported and integrated knowledge across iterations,\nrather than on knowledge scattered across skill-evolution artifacts.\nWikiSkill organizes the agent workspace into three layers: a Raw Layer that 
+
+
+===== WEB: agent skills self-evolution =====
+[]

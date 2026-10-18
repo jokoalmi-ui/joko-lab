@@ -1,0 +1,20 @@
+[
+  {
+    "id": "r3-low",
+    "instr": null,
+    "origen": "ronda 3b (n=3): think='low' sin instruccion. Mismos 8 casos que la ronda 3; se repite la pasada 3 veces para separar niveles del ruido.",
+    "think": "low"
+  },
+  {
+    "id": "r3-medium",
+    "instr": null,
+    "origen": "ronda 3b (n=3): think='medium' sin instruccion. Mismos 8 casos que la ronda 3; se repite la pasada 3 veces para separar niveles del ruido.",
+    "think": "medium"
+  },
+  {
+    "id": "r3-high",
+    "instr": null,
+    "origen": "ronda 3b (n=3): think='high' sin instruccion. Mismos 8 casos que la ronda 3; se repite la pasada 3 veces para separar niveles del ruido.",
+    "think": "high"
+  }
+]

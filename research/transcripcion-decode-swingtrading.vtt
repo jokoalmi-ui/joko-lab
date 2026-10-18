@@ -1,0 +1,2401 @@
+WEBVTT
+
+1
+00:00:00.640 --> 00:00:04.280
+Hola, ¿qué tal? Bien, lo prometido es deuda y en este
+
+2
+00:00:04.320 --> 00:00:08.280
+vídeo os voy a enseñar a analizar patrones en bolsa.
+
+3
+00:00:08.320 --> 00:00:11.940
+Hablaré de swing trading, pero también voy a hablar de otros patrones que creo que
+
+4
+00:00:11.980 --> 00:00:15.380
+son interesantes. Y de paso aprenderéis un poco cómo me muevo yo en
+
+5
+00:00:15.400 --> 00:00:18.320
+bolsa. Que quede claro, yo no soy infalible.
+
+6
+00:00:18.340 --> 00:00:22.280
+Es decir, si tú eres inversor en bolsa y cuando veas este vídeo piensas: «Eh,
+
+7
+00:00:22.340 --> 00:00:26.100
+yo lo hago de otra forma», es probable que esa forma sea igual de buena o incluso
+
+8
+00:00:26.160 --> 00:00:29.460
+mejor que la mía. Pero yo os voy a explicar cómo lo hago yo.
+
+9
+00:00:29.500 --> 00:00:33.360
+Y es un método que llevo usando desde hace, pues no sé, veintipico años, ¿vale?
+
+10
+00:00:33.380 --> 00:00:36.300
+Con resultados bastante, digamos, satisfactorios, ¿vale?
+
+11
+00:00:36.310 --> 00:00:39.320
+Entonces, lo que voy a hacer es primero os voy a enseñar el método en
+
+12
+00:00:39.400 --> 00:00:43.020
+general, luego vamos a ver los patrones de gráfica que yo
+
+13
+00:00:43.060 --> 00:00:46.960
+busco y luego vamos a entrar en la tralla, que es que voy a analizar unas cuantas
+
+14
+00:00:47.000 --> 00:00:50.800
+acciones con vosotros, ¿vale? Bien, primera idea: yo
+
+15
+00:00:50.980 --> 00:00:54.400
+no hago el análisis típico basado en números, del, del
+
+16
+00:00:54.520 --> 00:00:58.460
+PE, de que si las bandas, que si la resistencia, que todos esos
+
+17
+00:00:58.540 --> 00:01:01.170
+parámetros. Honestamente, no funciono así.
+
+18
+00:01:01.180 --> 00:01:04.660
+Yo lo que hago es que me conozco muy bien las compañías porque las voy siguiendo
+
+19
+00:01:04.700 --> 00:01:08.690
+día a día y lo que busco son ciertas formas de gráfica, formas
+
+20
+00:01:08.760 --> 00:01:11.400
+que dan una cierta, digamos, confianza, ¿vale?
+
+21
+00:01:11.500 --> 00:01:15.340
+Entonces, normalmente escaneo la bolsa
+
+22
+00:01:15.440 --> 00:01:18.940
+cada día, lo hago o bien a mano o bien con herramientas que me he construido yo a
+
+23
+00:01:18.980 --> 00:01:22.880
+lo largo de los años para sistemáticamente buscar formas de gráfica.
+
+24
+00:01:22.920 --> 00:01:26.680
+Básicamente, tengo una pequeña red neuronal que busca gráficas por mí, hablando en
+
+25
+00:01:26.720 --> 00:01:30.660
+plata, ¿vale? Y entonces, una vez veo un patrón que me gusta, lo
+
+26
+00:01:30.740 --> 00:01:33.180
+que hago es intento justificar el patrón.
+
+27
+00:01:33.200 --> 00:01:36.960
+Es decir, miro las noticias de la compañía para ver por qué
+
+28
+00:01:37.080 --> 00:01:40.980
+estoy viendo ese patrón, si veo algo que me dé miedo o si me meto, ¿vale?
+
+29
+00:01:41.020 --> 00:01:44.700
+Entonces, eh... Por tanto, lo mío es una mezcla de análisis de
+
+30
+00:01:44.720 --> 00:01:48.460
+gráficas y seguimiento de noticias de las compañías,
+
+31
+00:01:48.470 --> 00:01:51.120
+¿vale? Bien, ¿cuáles son los cuatro patrones?
+
+32
+00:01:51.160 --> 00:01:54.910
+Evidentemente, los cuatro patrones son los que os podéis ver venir, ¿vale?
+
+33
+00:01:54.960 --> 00:01:58.870
+El primer patrón es la acción ascendente, ¿vale?
+
+34
+00:01:58.880 --> 00:02:02.700
+Acción que está subiendo y, en general, tiene pullbacks
+
+35
+00:02:02.720 --> 00:02:06.400
+pequeños, pero es un diente de sierra ascendente, ¿sí?
+
+36
+00:02:06.460 --> 00:02:10.241
+Evidentemente, mucha accionista te dirá: «Oye, oye, eh, estas son para entrar,
+
+37
+00:02:10.259 --> 00:02:12.040
+porque básicamente siempre suben».
+
+38
+00:02:12.080 --> 00:02:15.880
+Bien, yo en general no entro en acciones ascendentes y os
+
+39
+00:02:15.900 --> 00:02:19.680
+explico por qué. Porque básicamente cuando una acción está en
+
+40
+00:02:19.720 --> 00:02:23.609
+ascendente, lo más habitual es que en algún momento pase a estar en lo que se llama
+
+41
+00:02:23.780 --> 00:02:27.640
+banda lateral, que lo explicaré después, que es cuando la acción sube pero
+
+42
+00:02:27.720 --> 00:02:31.280
+se pone a hacer así. Y por tanto, lo que se siente es perder
+
+43
+00:02:31.420 --> 00:02:34.820
+tiempo. Tiempo porque tengo dinero bloqueado en esa acción que no me está
+
+44
+00:02:34.860 --> 00:02:38.420
+reportando un beneficio. O incluso hay veces que puedo hacer un pullback, que de
+
+45
+00:02:38.440 --> 00:02:40.950
+repente sube y se pega el castaño, ¿vale?
+
+46
+00:02:40.980 --> 00:02:43.940
+Con lo cual, acciones ascendentes, sí, pueden ser muy fiables.
+
+47
+00:02:43.960 --> 00:02:46.240
+Luego veremos unas cuantas, ¿eh? Os las enseñaré, ¿vale?
+
+48
+00:02:46.280 --> 00:02:50.160
+Pero, eh, es un patrón que a mí en general me da poca confianza,
+
+49
+00:02:50.240 --> 00:02:53.260
+ah, por lo que decíamos, por la posibilidad de una banda lateral, que es de lo
+
+50
+00:02:53.320 --> 00:02:56.420
+peor, porque básicamente pierdes tiempo o de un pullback,
+
+51
+00:02:56.430 --> 00:02:59.800
+¿vale? Bien, segundo patrón. Las acciones
+
+52
+00:02:59.820 --> 00:03:03.540
+descendientes. Es la típica acción que dices: esta acción ha perdido
+
+53
+00:03:03.760 --> 00:03:07.660
+su mojo, por algún motivo está bajando, hay que investigar por qué
+
+54
+00:03:07.720 --> 00:03:11.300
+está bajando y el problema es que está buscando
+
+55
+00:03:11.440 --> 00:03:14.280
+suelo, pero todavía no ha llegado al suelo, ¿no?
+
+56
+00:03:14.549 --> 00:03:17.960
+Y claro, entrar en estas acciones, siempre el típico que te dirá: «No, si está
+
+57
+00:03:17.980 --> 00:03:21.520
+bajando, entra, porque así, ehm, pillarás la
+
+58
+00:03:21.560 --> 00:03:25.300
+remontada». Ya, pero es que aún no ha tocado suelo y vete a saber lo que le puede
+
+59
+00:03:25.320 --> 00:03:29.060
+quedar para tocar suelo, ¿sí? Es decir, es un poco esa frase típica de
+
+60
+00:03:29.100 --> 00:03:32.980
+decir: nunca intentes coger un fuchi-cuchillo al vuelo que está cayendo,
+
+61
+00:03:33.000 --> 00:03:34.880
+porque no sabes cómo de abajo va a caer, ¿vale?
+
+62
+00:03:34.890 --> 00:03:37.510
+Entonces, acciones descendientes también a evitar.
+
+63
+00:03:37.540 --> 00:03:41.170
+Luego os enseñaré un par que os he preparado para que entendáis ese patrón.
+
+64
+00:03:41.240 --> 00:03:44.109
+El tercer patrón, el patrón de banda lateral.
+
+65
+00:03:44.120 --> 00:03:47.580
+Para que nos entendamos, el patrón típico de sube un poco, baja un poco, sube un
+
+66
+00:03:47.600 --> 00:03:49.650
+poco, baja un poco, sube un poco, baja un poco...
+
+67
+00:03:49.680 --> 00:03:53.359
+Pero no es un swing limpio. Para mí es un swing, que hablaré luego de los
+
+68
+00:03:53.400 --> 00:03:56.720
+swings, en el momento que me está generando una variación de, no sé, un diez, un
+
+69
+00:03:56.800 --> 00:04:00.620
+quince por ciento. No, la banda lateral es cuando la acción está ni chicha ni
+
+70
+00:04:00.680 --> 00:04:03.090
+limona. Sube un poquito, baja un poquito y sube un poquito, baja un poquito.
+
+71
+00:04:03.100 --> 00:04:06.500
+Y el problema es que estas acciones de banda lateral pierdes tiempo.
+
+72
+00:04:06.520 --> 00:04:10.120
+Es decir, al final tenéis que ver que si tú metes mil euros o diez mil o cien mil,
+
+73
+00:04:10.160 --> 00:04:14.020
+da igual, ¿eh? En una acción hay un coste de oportunidad, que es que no lo puedes
+
+74
+00:04:14.060 --> 00:04:17.740
+meter en otra acción. Entonces, una acción en banda lateral nos va a dar
+
+75
+00:04:17.760 --> 00:04:21.560
+problemas porque básicamente nos bloquea el dinero y no sabemos qué hacer, eh, con
+
+76
+00:04:21.601 --> 00:04:25.350
+esa acción, ¿vale? Y el cuarto patrón, que es el que llevo usando yo toda mi vida
+
+77
+00:04:25.800 --> 00:04:28.800
+y es el que me ha dado muy buenos resultados, es el swing trading.
+
+78
+00:04:28.810 --> 00:04:32.170
+¿Qué es el swing trading? Básicamente, intentar encontrar, para que nos
+
+79
+00:04:32.220 --> 00:04:35.720
+entendamos, patrones más o menos de seno.
+
+80
+00:04:35.740 --> 00:04:39.480
+Acción que sube, baja, sube, baja, sube,
+
+81
+00:04:39.520 --> 00:04:43.240
+baja. Es un poco como el surf. Me voy a subir a la ola cuando está
+
+82
+00:04:43.260 --> 00:04:46.920
+bajo y voy a esperar a que suba y en ese momento saldré,
+
+83
+00:04:46.930 --> 00:04:50.840
+¿sí? No es para ir a largo, ¿vale? Para ir a largo no,
+
+84
+00:04:50.860 --> 00:04:54.160
+porque el swing trading sube, luego baja, lu-- sube, luego baja.
+
+85
+00:04:54.180 --> 00:04:57.680
+No, yo lo que busco en cada swing es sacarme, pues no sé, entre un diez y un veinte
+
+86
+00:04:57.760 --> 00:05:01.360
+por ciento. Un diez está bien, un veinte es... está muy bien, ¿vale?
+
+87
+00:05:01.380 --> 00:05:03.680
+Pero cuando llego a mi tope, ya salgo.
+
+88
+00:05:04.080 --> 00:05:07.320
+No confío en esa acción en el largo plazo. ¿Por qué?
+
+89
+00:05:07.340 --> 00:05:09.560
+Porque la gracia es lo que se llama el compounding.
+
+90
+00:05:09.620 --> 00:05:13.460
+Es decir, yo lo que quiero es hacer muchos swing trades seguidos y como que voy a
+
+91
+00:05:13.520 --> 00:05:16.830
+meter en el segundo swing todo lo que salió del primero.
+
+92
+00:05:16.840 --> 00:05:18.700
+De hecho, es un interés compuesto.
+
+93
+00:05:18.740 --> 00:05:22.320
+Es decir, si yo meto mil, ¿no? Vamos a verlo con un ejemplo muy sencillo con la
+
+94
+00:05:22.340 --> 00:05:26.260
+calculadora del Windows, ¿vale? Bien, si
+
+95
+00:05:26.320 --> 00:05:30.260
+yo meto mil euros, ¿sí? Y me saco un veinte por ciento, por tanto,
+
+96
+00:05:30.300 --> 00:05:33.620
+multiplico por uno coma dos, tengo mil doscientos,
+
+97
+00:05:33.630 --> 00:05:37.400
+¿sí? Pero claro, yo ahora voy a meter los mil doscientos, no los mil.
+
+98
+00:05:37.420 --> 00:05:40.740
+Por tanto, si lo vuelvo a multiplicar por uno coma dos, tengo mil cuatrocientos
+
+99
+00:05:40.860 --> 00:05:43.640
+cuarenta. Ya se empieza a ver un poquito de compounding.
+
+100
+00:05:43.680 --> 00:05:45.380
+Y si ahora lo multiplico por uno coma dos,
+
+101
+00:05:46.480 --> 00:05:50.380
+mil setecientos veintiocho. Fijaos, si hubieran metido mil euros cada vez, ahora
+
+102
+00:05:50.400 --> 00:05:54.220
+estaríamos en mil seiscientos, pero ahora estamos ya en mil setecientos veintiocho.
+
+103
+00:05:54.520 --> 00:05:55.790
+Y hago compounding otra vez
+
+104
+00:05:56.860 --> 00:06:00.020
+y deberíamos estar... estar en mil ochocientos, porque hemos hecho cuatro
+
+105
+00:06:00.040 --> 00:06:02.460
+operaciones, pero ya estamos en dos mil. ¿Veis la idea?
+
+106
+00:06:02.480 --> 00:06:05.660
+Es la idea del interés compuesto. El swing trading interesa en la medida que tú
+
+107
+00:06:05.700 --> 00:06:09.550
+puedas decir: vale, va, a un mes vista voy a entrar y voy a salir, me voy a
+
+108
+00:06:09.600 --> 00:06:12.050
+sacar un diez o un veinte por ciento, eh...
+
+109
+00:06:12.080 --> 00:06:15.248
+y cuando salga volveré a entrar otra vez.¿Entendido?
+
+110
+00:06:15.288 --> 00:06:17.888
+Con lo cual vamos a pasar ahora a la segunda parte del vídeo en la que os voy a
+
+111
+00:06:17.908 --> 00:06:20.488
+enseñar patrones en acciones concretas.
+
+112
+00:06:20.548 --> 00:06:22.688
+Eh, señores, para eso os habéis apuntado a DeCode, ¿vale?
+
+113
+00:06:22.708 --> 00:06:25.788
+Ahora viene la parte en la que vais a decir: «Joder, qué barata es esta comunidad».
+
+114
+00:06:25.828 --> 00:06:28.548
+Vamos allá. Venga, os enseño unas cuantas.
+
+115
+00:06:28.568 --> 00:06:32.328
+Primero, patrón ascendente. Que quede claro que este vídeo es válido a día de
+
+116
+00:06:32.448 --> 00:06:36.428
+hoy, que es 11 de marzo, ¿vale? Bien.
+
+117
+00:06:36.468 --> 00:06:40.398
+Patrón ascendente de libro. Tenemos a Nvidia en
+
+118
+00:06:40.428 --> 00:06:41.188
+estos momentos
+
+119
+00:06:44.168 --> 00:06:48.028
+. ¿Vale? Vamos a verla. Cogemos el Yahoo Finance,
+
+120
+00:06:48.048 --> 00:06:51.737
+¿vale? Siempre buscad el swing largo, con lo cual yo las pongo en cinco años
+
+121
+00:06:51.768 --> 00:06:55.448
+vista. Bien, ahí tenéis el patrón de una Nvidia,
+
+122
+00:06:55.458 --> 00:06:59.308
+¿sí? Entonces, Nvidia es el motivo paradigmático por el cual
+
+123
+00:06:59.768 --> 00:07:02.128
+yo no entro en patrones ascendentes.
+
+124
+00:07:02.168 --> 00:07:05.688
+Veis que, en general, es acción que sube.
+
+125
+00:07:05.768 --> 00:07:09.668
+Eso es el patrón ascendente. Pero en el patrón ascendente podemos tener
+
+126
+00:07:09.688 --> 00:07:13.228
+un pullback, que sería esta región...
+
+127
+00:07:13.538 --> 00:07:17.208
+que es cuando Nvidia estuvo desnortada del año del 2024 al año
+
+128
+00:07:17.328 --> 00:07:21.278
+2025. Otra vez patrón ascendente y ahora esto de
+
+129
+00:07:21.308 --> 00:07:23.168
+aquí sería una banda lateral
+
+130
+00:07:24.768 --> 00:07:26.468
+. Vamos a hacer zoom de esta región.
+
+131
+00:07:26.528 --> 00:07:29.488
+Si hacemos zoom de esta región, ¿veis?
+
+132
+00:07:29.588 --> 00:07:32.968
+Ahí tenéis un patrón de banda lateral que no nos interesa nada, porque
+
+133
+00:07:33.048 --> 00:07:36.988
+Nvidia, sí, está moviéndose, pero no se mueve lo suficiente
+
+134
+00:07:37.028 --> 00:07:39.068
+como para poder generar plusvalía.
+
+135
+00:07:39.108 --> 00:07:41.268
+Que me diréis: «Oye, Dani, ya está bien».
+
+136
+00:07:41.288 --> 00:07:44.428
+Tch, de aquí a un momento os enseñaré un swing trading de libro y veréis que no,
+
+137
+00:07:44.448 --> 00:07:47.208
+que la banda de fluctuación es muchísimo más ancha.
+
+138
+00:07:47.268 --> 00:07:50.638
+Nvidia se está moviendo muy poquito, eh, y es demasiado arriesgado entrar en estos
+
+139
+00:07:50.708 --> 00:07:54.628
+momentos. Pero esto sería un patrón claramente ascendente,
+
+140
+00:07:54.638 --> 00:07:57.808
+¿vale? Nvidia. ¿Lo veis? Bien.
+
+141
+00:07:59.268 --> 00:08:00.848
+Segundo ejemplo. Coca-Cola
+
+142
+00:08:02.128 --> 00:08:02.468
+.
+
+143
+00:08:04.208 --> 00:08:04.708
+Vamos a verla
+
+144
+00:08:06.848 --> 00:08:06.858
+.
+
+145
+00:08:10.528 --> 00:08:14.108
+La cargamos. Venga, nena. Vamos allá.
+
+146
+00:08:14.148 --> 00:08:17.168
+Patrón de Coca-Cola. ¿Veis el ascendente?
+
+147
+00:08:17.188 --> 00:08:20.528
+Empezando desde aquí aaa arriba.
+
+148
+00:08:21.628 --> 00:08:22.488
+¿Veis?
+
+149
+00:08:23.408 --> 00:08:27.188
+¿Sí? Coca-Cola es para mí, eh, desde mi punto de vista,
+
+150
+00:08:27.248 --> 00:08:31.068
+muy poco interesante. ¿Por qué? Porque Coca-Cola, fijaos, en el valle
+
+151
+00:08:31.088 --> 00:08:34.377
+estaba en cincuenta y tres, arriba está en setenta y ocho,
+
+152
+00:08:35.009 --> 00:08:38.768
+con lo cual tampoco es que la banda de fluctuación sea la bomba, porque sí, ha
+
+153
+00:08:38.808 --> 00:08:40.989
+fluctuado como un cincuenta por ciento arriba.
+
+154
+00:08:41.028 --> 00:08:44.608
+Está cerca de máximos, con lo cual es posible que nos haga un
+
+155
+00:08:44.628 --> 00:08:47.288
+pullback o que ahora empiece una banda lateral.
+
+156
+00:08:47.308 --> 00:08:51.228
+Con lo cual, Coca-Cola, otro ejemplo clásico de, eh,
+
+157
+00:08:51.268 --> 00:08:55.188
+acción ascendente. ¿Sí? Bien. Ahora os voy a enseñar la
+
+158
+00:08:55.208 --> 00:08:57.848
+contraria. Acción descendiente.
+
+159
+00:08:57.888 --> 00:09:00.548
+Aquí tengo unas cuantas joyas de las que hay que evitar.
+
+160
+00:09:00.608 --> 00:09:02.008
+La primera sería Adobe
+
+161
+00:09:03.908 --> 00:09:05.128
+. Los señores del Photoshop
+
+162
+00:09:06.028 --> 00:09:08.928
+, ¿vale? Bien. Adobe está
+
+163
+00:09:08.968 --> 00:09:12.468
+desnortada. Ahí tenéis una banda
+
+164
+00:09:12.528 --> 00:09:16.188
+descendiente del libro. Fijaos, desde
+
+165
+00:09:16.208 --> 00:09:17.948
+seiscientos a
+
+166
+00:09:18.808 --> 00:09:21.728
+doscientos y pico. Esta compañía ha perdido la mitad de su
+
+167
+00:09:21.768 --> 00:09:25.648
+valor. ¿Sí? Entonces, claro, evidentemente, aquí habría
+
+168
+00:09:25.688 --> 00:09:29.228
+quien diría: «No, no, pero Dani, entra, porque ya remontará».
+
+169
+00:09:29.268 --> 00:09:32.368
+Bien, mi pregunta es: ¿y si no remonta?
+
+170
+00:09:32.377 --> 00:09:36.208
+¿Y si es que Adobe está yendo hacia abajo porque tiene que ir hacia abajo? ¿Sí?
+
+171
+00:09:36.228 --> 00:09:39.908
+Entonces, aquí viene cuando hay que preguntarse en qué momento realmente hay un
+
+172
+00:09:39.948 --> 00:09:43.708
+cambio de tendencia claro como para que yo me meta en esta compañía.
+
+173
+00:09:43.728 --> 00:09:46.268
+Pero en estos momentos no me metería ni loco, ¿vale?
+
+174
+00:09:46.288 --> 00:09:50.148
+Porque puede seguir bajando y honestamente, podéis palmar muchísimo dinero en
+
+175
+00:09:50.188 --> 00:09:53.968
+compañías de este estilo. Veis Adobe, ejemplo del libro de
+
+176
+00:09:54.068 --> 00:09:57.408
+patrón descendiente, lo que diríamos una caída libre.
+
+177
+00:09:57.448 --> 00:10:01.088
+Que me diréis: «No, Dani, pero haz zoom. ¿Ves?
+
+178
+00:10:01.148 --> 00:10:03.398
+El último mes ha subido». Ya, lo que tú quieras.
+
+179
+00:10:04.388 --> 00:10:08.068
+A la que la miras con un plazo de tiempo un poquito más razonable, no, es una
+
+180
+00:10:08.088 --> 00:10:11.688
+compañía que está bajando. Sí que tiene una pequeña alegría, pero fijaos que la
+
+181
+00:10:11.708 --> 00:10:15.628
+pequeña alegría va de dos cuarenta y seis a dos setenta y cinco, lo cual no hay
+
+182
+00:10:15.648 --> 00:10:17.278
+ni para empezar, hablando en plata.
+
+183
+00:10:17.308 --> 00:10:21.118
+Puede ser que vuelva a caer otra vez y, por tanto, compañía a evitar por
+
+184
+00:10:21.268 --> 00:10:24.568
+ser un patrón descendiente. La otra de este
+
+185
+00:10:24.588 --> 00:10:28.048
+ti-tipo sería Oracle, los señores de
+
+186
+00:10:28.088 --> 00:10:31.228
+las, ah, bases de datos y tal y cual, ¿vale?
+
+187
+00:10:31.268 --> 00:10:34.328
+Bien. Vamos allá.
+
+188
+00:10:34.348 --> 00:10:38.148
+Cargando... Ahí lo tenéis. Fijaos.
+
+189
+00:10:38.248 --> 00:10:42.008
+Oracle. De trescientos va a
+
+190
+00:10:42.128 --> 00:10:45.048
+ciento cuarenta y nueve. Que me diréis: «Ya, pero hacía un ascendente».
+
+191
+00:10:45.088 --> 00:10:48.788
+Lo que tú quieras. En estos momentos está en un patrón descendiente brutal.
+
+192
+00:10:48.848 --> 00:10:52.808
+Esta da la sensación de que podría empezar a remontar, pero no
+
+193
+00:10:52.928 --> 00:10:56.268
+me fío, no me fío. O sea, un swing trading, lo veréis después, es
+
+194
+00:10:56.428 --> 00:11:00.368
+muchísimo más seguro que meterse en esto, que vete a saber cómo puede
+
+195
+00:11:00.428 --> 00:11:04.368
+salir. Fijaos, está en descenso y si me preguntáis a mí, en estos
+
+196
+00:11:04.408 --> 00:11:08.128
+momentos está empezando una banda lateral aquí sobre los ciento cincuenta, que
+
+197
+00:11:08.168 --> 00:11:11.648
+es, en fin, absolutamente poco prometedora,
+
+198
+00:11:11.658 --> 00:11:15.608
+¿vale? Con lo cual, fijaos, hemos aprendido a distinguir las dos acciones, eh,
+
+199
+00:11:15.628 --> 00:11:19.368
+primeras, que es la ascendente, la descendiente.
+
+200
+00:11:19.388 --> 00:11:22.728
+Vale. Ahora vamos a mirar bandas laterales, ¿vale?
+
+201
+00:11:22.748 --> 00:11:26.068
+Bandas laterales es cuando vemos esto durante muchísimo
+
+202
+00:11:26.108 --> 00:11:29.908
+tiempo. Vamos a por la primera. La primera sería
+
+203
+00:11:29.948 --> 00:11:32.768
+Krispy Kreme, esa compañía americana que hace donuts
+
+204
+00:11:35.048 --> 00:11:37.048
+. Venga.
+
+205
+00:11:37.068 --> 00:11:39.948
+Cargando... Bien.
+
+206
+00:11:41.088 --> 00:11:44.768
+Ahí tenéis una banda lateral absolutamente del libro que
+
+207
+00:11:44.788 --> 00:11:48.638
+empezó en julio de 2025 y que la estamos sufriendo hasta
+
+208
+00:11:48.688 --> 00:11:52.338
+ahora. Es decir, esta es una compañía que lleva más o menos un año, casi, casi,
+
+209
+00:11:52.968 --> 00:11:56.748
+eh, que no sabe qué hacer, ¿vale? ¿Qué le ha pasado a Krispy, Krispy Kreme?
+
+210
+00:11:56.758 --> 00:11:59.828
+Es lo que os decía, que tenéis que investigar las noticias, ¿vale?
+
+211
+00:11:59.888 --> 00:12:02.988
+Leed sobre Krispy Kreme y veréis que ha tenido problemas de management, ha tenido,
+
+212
+00:12:03.008 --> 00:12:06.068
+en fin, serios problemas, que eso justificó esta
+
+213
+00:12:06.148 --> 00:12:09.628
+caída y desde entonces, bueno, pues ñi, ñi, ñi,
+
+214
+00:12:09.888 --> 00:12:13.448
+ñi, ñi, ñi. ¿Sí? Bien. Banda lateral.
+
+215
+00:12:13.588 --> 00:12:17.358
+No nos interesa. ¿Vale? Bien. Ahora os voy a
+
+216
+00:12:17.388 --> 00:12:21.368
+enseñar un ejemplo de banda lateral que empieza a parecerse a un swing.
+
+217
+00:12:21.388 --> 00:12:24.500
+Es ModernaLos señores de la vacuna del
+
+218
+00:12:24.600 --> 00:12:27.080
+coronavirus.
+
+219
+00:12:28.740 --> 00:12:32.220
+Por cierto, por si no está quedando claro, ninguna de estas compañías yo os la
+
+220
+00:12:32.280 --> 00:12:34.900
+recomiendo para invertir. Lo digo para que quede claro.
+
+221
+00:12:34.920 --> 00:12:38.600
+Bien, ahí tenéis Moderna. Moderna viene de una
+
+222
+00:12:38.660 --> 00:12:41.880
+época gloriosa, que fue cuando el coronavirus, recordemos, año dos mil
+
+223
+00:12:42.680 --> 00:12:45.700
+veinte a dos mil veintidós, donde se forraron hablando en plata.
+
+224
+00:12:45.760 --> 00:12:49.040
+Luego ha estado de esnortada en caída libre, caída libre, caída
+
+225
+00:12:49.080 --> 00:12:51.720
+libre, hasta aquí,
+
+226
+00:12:51.740 --> 00:12:55.699
+¿vale? Y aquí podríamos ver una banda lateral o habría quien
+
+227
+00:12:55.760 --> 00:12:59.640
+te podría decir que aquí esto está preparando un swing y cuidado porque
+
+228
+00:12:59.660 --> 00:13:02.330
+puede ser un swing interesante, ¿vale? Pero es un swing lento.
+
+229
+00:13:02.340 --> 00:13:06.100
+Fijaos que está bailando poquito, ¿vale?
+
+230
+00:13:06.140 --> 00:13:09.440
+Pero ahí tenéis la remontada de Moderna. Fijaos, ¿eh?
+
+231
+00:13:09.460 --> 00:13:13.340
+De veintitrés está subiendo a cincuenta y cinco.
+
+232
+00:13:13.360 --> 00:13:16.680
+Con lo cual, cuidado, porque Moderna, pareciendo banda
+
+233
+00:13:16.720 --> 00:13:20.020
+lateral, eh, seguramente eso sea un swing.
+
+234
+00:13:20.040 --> 00:13:21.830
+Y cuidado porque un swing de Moderna...
+
+235
+00:13:21.840 --> 00:13:25.420
+Estamos en una acción que está cotizando ocho veces por debajo de su tope,
+
+236
+00:13:25.430 --> 00:13:29.420
+¿vale? Entonces, esta sería la clásica acción que os diría: os
+
+237
+00:13:29.440 --> 00:13:33.400
+ponéis a leer sobre Moderna y estiráis no sé cuántos días leyendo
+
+238
+00:13:33.420 --> 00:13:35.920
+para entender si esto es un swing o es una banda lateral.
+
+239
+00:13:35.940 --> 00:13:39.820
+Y descubriréis, porque lo vi el otro día, que resulta que Moderna,
+
+240
+00:13:39.860 --> 00:13:43.350
+básicamente, resulta que está empezando a hacer unos productos nuevos,
+
+241
+00:13:43.800 --> 00:13:46.480
+eh, que tie-- que son bastante prometedores, ¿vale?
+
+242
+00:13:46.540 --> 00:13:50.520
+Y en ese sentido, eh, eh, eh, la cosa empieza a pintar
+
+243
+00:13:50.580 --> 00:13:53.080
+un poquito mejor. Fijaos. Resulta que había aquí un settlement
+
+244
+00:13:54.460 --> 00:13:56.460
+de un caso que tuvo Moderna, ¿vale?
+
+245
+00:13:56.480 --> 00:14:00.230
+Si lo miráis, ¿vale?, eh, leeréis y diréis: «Ah, cuidado,
+
+246
+00:14:00.240 --> 00:14:04.160
+cuidado, esto parece que puede que Moderna, eh, esté yendo hacia
+
+247
+00:14:04.220 --> 00:14:07.660
+épocas más verdes, ¿no?». Pues, por ejemplo, Moderna sería una compañía a vigilar.
+
+248
+00:14:07.680 --> 00:14:10.340
+Pero cuidado porque esto aún no es un swing.
+
+249
+00:14:10.380 --> 00:14:14.160
+Swing se os voy a enseñar ahora y son mucho más, eh, digamos, extremos,
+
+250
+00:14:14.180 --> 00:14:17.780
+¿vale? Pero ya hemos visto los tres patrones que no nos interesan, ¿vale?
+
+251
+00:14:17.800 --> 00:14:21.720
+Venga. Swing trading. Em, lo voy a hacer
+
+252
+00:14:21.760 --> 00:14:24.420
+con ejemplos prácticos porque es la única forma que sé de hacer esto, ¿vale?
+
+253
+00:14:24.440 --> 00:14:27.900
+Entonces, os voy a enseñar unas cuantas compañías que son compañías que en estos
+
+254
+00:14:27.980 --> 00:14:29.400
+momentos están haciendo un swing.
+
+255
+00:14:29.460 --> 00:14:32.440
+Una de ellas la recomendé el otro día y me alegro por unos cuantos de vosotros que
+
+256
+00:14:32.460 --> 00:14:33.760
+os habéis forrado con esta compañía.
+
+257
+00:14:33.800 --> 00:14:37.330
+Yo soy uno de ellos, porque compré acciones de esta compañía, y...
+
+258
+00:14:37.340 --> 00:14:39.960
+Pero recordaréis que yo os hablé el otro día de Marvell Technology.
+
+259
+00:14:41.080 --> 00:14:44.240
+Marvell Technology, compañía de chips, una comp-- una de las pocas compañías de
+
+260
+00:14:44.260 --> 00:14:46.800
+chips que no está todavía ya muy gorda.
+
+261
+00:14:46.820 --> 00:14:50.700
+La mayoría están muy arriba, en, están en bandas laterales o están en máximos,
+
+262
+00:14:50.750 --> 00:14:54.520
+¿vale? Marvell, oh, mirad qué cosa más hermosa,
+
+263
+00:14:54.530 --> 00:14:58.300
+¿vale? Fijaos. Ya lo dije una vez que os hablé de que los patrones de swing
+
+264
+00:14:58.340 --> 00:15:02.300
+trading tienen forma de L. La L es una caída
+
+265
+00:15:03.060 --> 00:15:06.300
+y una remontada. Lo repito. Caída,
+
+266
+00:15:06.360 --> 00:15:10.260
+remontada. El storytelling es: esta compañía se
+
+267
+00:15:10.360 --> 00:15:13.860
+pegó una hostia, pero han tomado
+
+268
+00:15:13.920 --> 00:15:17.780
+medidas y está remontando. ¿Sí? Entonces, el
+
+269
+00:15:17.880 --> 00:15:18.360
+que pilló
+
+270
+00:15:19.200 --> 00:15:23.060
+Marvell aquí abajo a cincuenta y ahora la tiene a noventa y cuatro, está
+
+271
+00:15:23.120 --> 00:15:26.700
+encantadísimo de la vida. Yo la recomendé el otro día porque la vi
+
+272
+00:15:27.020 --> 00:15:30.860
+aquí. La vi a setenta y ahora estamos a noventa y cuatro.
+
+273
+00:15:30.880 --> 00:15:34.220
+Y es el día en que yo puse el mensaje en el canal diciendo: «Eh, señores, ¿cómo
+
+274
+00:15:34.280 --> 00:15:37.620
+detecté yo Marvell?». Honestamente, con un escáner que tengo que escanea acciones
+
+275
+00:15:37.640 --> 00:15:39.760
+para buscar patrones de swing trading, ¿vale?
+
+276
+00:15:39.800 --> 00:15:43.740
+Pero si lo miramos, ahí tenéis el swing ascendente, lo que decíamos,
+
+277
+00:15:43.760 --> 00:15:46.090
+desde cincuenta, ahora ya vamos a por el noventa y
+
+278
+00:15:46.160 --> 00:15:50.140
+tres. Aquí es muy importante usar las escalas, ¿eh?
+
+279
+00:15:50.160 --> 00:15:53.960
+Cuando vas cambiando la escala es cuando el swing se vuelve absolutamente,
+
+280
+00:15:54.900 --> 00:15:57.660
+digamos, eh, reconocible,
+
+281
+00:15:57.670 --> 00:15:59.480
+¿vale? Fijaos.
+
+282
+00:16:01.180 --> 00:16:01.840
+Os lo pongo
+
+283
+00:16:02.740 --> 00:16:04.880
+para que lo veamos más claro.
+
+284
+00:16:05.880 --> 00:16:08.860
+Bajada de la L, remontada.
+
+285
+00:16:10.380 --> 00:16:12.760
+Este es el patrón que estamos buscando en el swing trading.
+
+286
+00:16:12.800 --> 00:16:15.400
+Fijaos que la bajada es muy violenta. ¿Sí?
+
+287
+00:16:15.500 --> 00:16:17.770
+Estas son las que nos interesan, ¿vale?
+
+288
+00:16:17.820 --> 00:16:21.540
+Eh, fijaos como la acción ya está tirando para arriba
+
+289
+00:16:21.580 --> 00:16:25.100
+fuertemente. ¿Cuándo hay que salir de un swing trading de este
+
+290
+00:16:25.110 --> 00:16:28.060
+estilo? Bueno, yo creo que el punto de salida está muy cerca.
+
+291
+00:16:28.080 --> 00:16:31.400
+Para mí, el punto de salida está alrededor de los cien, seguramente, de una
+
+292
+00:16:31.420 --> 00:16:35.120
+compañía de este estilo, ¿vale? Pero, eh, y lo, lo dicho, ¿eh?
+
+293
+00:16:35.140 --> 00:16:38.780
+Tú cuando veas un swing trading que te interese, te has de calcular si tu
+
+294
+00:16:38.880 --> 00:16:42.760
+upside, es decir, si tu tray-- si tu trayectoria aún te deja
+
+295
+00:16:42.800 --> 00:16:46.540
+ese margen del veinte por ciento hasta el punto de salida que tú crees
+
+296
+00:16:46.600 --> 00:16:49.260
+que es, eh, digamos, razonable esperar, ¿vale?
+
+297
+00:16:49.280 --> 00:16:51.810
+Con lo cual, primera compañía recomendable, Marvell.
+
+298
+00:16:51.840 --> 00:16:53.980
+No entréis en Marvell, para mí ya es tarde.
+
+299
+00:16:54.000 --> 00:16:56.600
+Marvell había que haber entrado hace unos días, pero no os preocupéis, que os voy a
+
+300
+00:16:56.620 --> 00:17:00.420
+decir alguna otra exactamente igual de seductora o
+
+301
+00:17:00.500 --> 00:17:03.120
+incluso mejor. Venga.
+
+302
+00:17:03.940 --> 00:17:07.280
+Bien, el segundo ejemplo es otra compañía que yo tengo en mi portafolios, que es
+
+303
+00:17:07.340 --> 00:17:11.100
+Under Armour. Under Armour es una compañía que hace, eh, eh,
+
+304
+00:17:11.141 --> 00:17:14.401
+ropa, ¿vale? Yo he invertido mucho a lo largo de los años en compañías de
+
+305
+00:17:14.440 --> 00:17:18.020
+ropa, eh, porque, bueno, pues, eh, no sé, me han funcionado bien.
+
+306
+00:17:18.040 --> 00:17:21.850
+Desde Victoria's Secret a, yo qué sé, Lululemon, me las sé todas de
+
+307
+00:17:21.860 --> 00:17:25.040
+memoria, ¿vale? Under Armour, símbolo UA.
+
+308
+00:17:25.060 --> 00:17:26.540
+Vamos allá.
+
+309
+00:17:28.740 --> 00:17:32.580
+Bien. Ahí veis el swing. Fijaos. Este es un patrón
+
+310
+00:17:32.640 --> 00:17:36.260
+distinto, este es más un Moderna, pero fijaos, de sesenta y
+
+311
+00:17:36.360 --> 00:17:40.040
+cinco ha bajado muchísimo. Ahí está la base del
+
+312
+00:17:40.100 --> 00:17:44.080
+swing. Pero fijaos, como que es una compañía que respecto a su base
+
+313
+00:17:44.600 --> 00:17:48.520
+ya está un cincuenta por ciento por encima, con lo cual es evidente que está
+
+314
+00:17:48.540 --> 00:17:51.180
+haciendo un patrón de recuperación, ¿sí?
+
+315
+00:17:51.200 --> 00:17:54.980
+Bien, Under Armour yo la tengo un poco a la larga, porque como podéis ver, sus
+
+316
+00:17:55.100 --> 00:17:58.580
+ciclos son más lentos que los de Marvell.
+
+317
+00:17:58.600 --> 00:18:00.700
+Volvamos a Marvell.
+
+318
+00:18:01.760 --> 00:18:05.400
+Fijaos como la violencia de Marvell es muy superior.
+
+319
+00:18:05.420 --> 00:18:08.840
+Por tanto, podemos esperar entradas y salidas mucho más rápidas, ¿vale?
+
+320
+00:18:08.880 --> 00:18:11.520
+Veis que la turbulencia es más alta, ¿sí?
+
+321
+00:18:11.560 --> 00:18:13.530
+Misma gráfica de cinco años, ¿vale?
+
+322
+00:18:13.560 --> 00:18:17.540
+Pero cuando miráis a Under Armour, la gráfica es más lenta, pero estamos viendo el
+
+323
+00:18:17.580 --> 00:18:20.580
+mismo patrón en el que tenemos que respecto a valle
+
+324
+00:18:21.160 --> 00:18:25.036
+estamos claramente ya saliendo del agujeroPero claro, es que si aguanto
+
+325
+00:18:25.136 --> 00:18:29.086
+Under Armour y la aguanto, pues yo qué sé, hasta diez, resulta que el
+
+326
+00:18:29.136 --> 00:18:32.716
+upside que tengo por encima es un por dos, literalmente, ¿vale?
+
+327
+00:18:32.736 --> 00:18:35.516
+Con lo cual Under Armour, por ejemplo, compañía interesante.
+
+328
+00:18:35.536 --> 00:18:38.936
+Por cierto, recordad, yo no doy consejos de inversión.
+
+329
+00:18:38.956 --> 00:18:40.426
+Quien pulsa el botón sois vosotros.
+
+330
+00:18:40.426 --> 00:18:44.176
+Si alguna vez compráis acciones y luego me, me venís diciendo: «Dani, te hice caso
+
+331
+00:18:44.356 --> 00:18:47.996
+y...» Es que no habéis entendido nada. ¿Vale? Somos todos mayorcitos, ¿vale?
+
+332
+00:18:48.016 --> 00:18:51.796
+Bien, venga, sigamos con más compañías con patrones de swing trading.
+
+333
+00:18:51.836 --> 00:18:52.476
+Regeneron.
+
+334
+00:18:53.336 --> 00:18:56.116
+Esta es un clásico. Esta yo la tuve, ahora no la
+
+335
+00:18:56.176 --> 00:18:59.996
+tengo, pero... esta tiene una forma muy
+
+336
+00:19:00.156 --> 00:19:02.216
+bonita. Vais a ver qué preciosidad.
+
+337
+00:19:02.226 --> 00:19:05.696
+¿A que reconocéis el patrón? Aquí, mil
+
+338
+00:19:05.756 --> 00:19:08.406
+doscientos. Aquí, cuatrocientos.
+
+339
+00:19:08.476 --> 00:19:12.256
+Se ha dividido por tres. Ya está cincuenta por ciento por arriba.
+
+340
+00:19:12.376 --> 00:19:15.836
+Oh. Bien, pues, por ejemplo, esta es una compañía para
+
+341
+00:19:15.856 --> 00:19:18.996
+entrar, ¿vale? Es una compañía que está, bueno, poniéndose
+
+342
+00:19:19.096 --> 00:19:22.996
+seductora. Lo que hay que hacer es mirarse las noticias de que no veáis nada
+
+343
+00:19:23.036 --> 00:19:26.756
+raro, ¿vale? Y si la veis clara, pues a la saca,
+
+344
+00:19:26.766 --> 00:19:30.176
+¿vale? Eh, cuando digo nada raro, cosas que tenéis que mirar.
+
+345
+00:19:30.216 --> 00:19:33.316
+Cambios en el management. Tenéis que mirar, eh, sobre todo lo que se llaman las
+
+346
+00:19:33.396 --> 00:19:37.056
+class action suites, que es que hay veces que estas compañías reciben denuncias,
+
+347
+00:19:37.066 --> 00:19:39.486
+¿vale? Eh, por, por, eh, hechos de mercado.
+
+348
+00:19:39.556 --> 00:19:42.556
+Eh, tenéis que mirar cuándo postean resultados.
+
+349
+00:19:42.566 --> 00:19:45.876
+Las compañías americanas postean resultados una vez por trimestre, ¿vale?
+
+350
+00:19:45.896 --> 00:19:47.496
+Pues tenéis que mirar cuándo postean resultados.
+
+351
+00:19:47.536 --> 00:19:51.256
+En fin, tenéis que haceros la composición de lugar para ver dónde estará vuestro
+
+352
+00:19:51.296 --> 00:19:54.556
+punto de salida. Por ejemplo, para mí, por Regeneron, si yo entrara ahora, yo la
+
+353
+00:19:54.616 --> 00:19:56.296
+tuve cuando estaba por aquí y salí por aquí, ¿vale?
+
+354
+00:19:56.316 --> 00:19:59.616
+Ya la, ya la tuve en su día, ¿vale? Si yo entrara ahora a setecientos y pico,
+
+355
+00:19:59.656 --> 00:20:02.336
+saldría a novecientos, por poner un ejemplo, ¿vale?
+
+356
+00:20:02.356 --> 00:20:05.776
+Pues fijaos, novecientos partido por setecientos sesen-- setecientos
+
+357
+00:20:05.786 --> 00:20:09.326
+setenta, que estamos ahora, ahí tenéis vuestro upside de un diecisiete por ciento.
+
+358
+00:20:09.336 --> 00:20:12.796
+Una cosa sanísima. ¿Veis la idea? ¿Vale? Regeneron.
+
+359
+00:20:12.836 --> 00:20:16.456
+Venga, sigamos nuestro paseo. Voy tachando porque os estoy enseñando compañías y no
+
+360
+00:20:16.536 --> 00:20:19.186
+quiero hablar de la misma dos veces. Venga.
+
+361
+00:20:19.256 --> 00:20:22.396
+Eh, otra que es un clásico, Palantir.
+
+362
+00:20:22.456 --> 00:20:24.576
+Aquí estáis invirtiendo en defensa.
+
+363
+00:20:25.476 --> 00:20:29.456
+Si sois maniáticos con la defensa, no os metáis, pero mirad
+
+364
+00:20:29.466 --> 00:20:33.456
+Palantir, ¿vale? Palantir es una monótona creciente
+
+365
+00:20:34.335 --> 00:20:35.556
+que ha bajado
+
+366
+00:20:36.776 --> 00:20:40.696
+hasta aquí. Está en patrón de remontada.
+
+367
+00:20:40.776 --> 00:20:43.416
+Ahí veis el, el swing mucho más claro.
+
+368
+00:20:43.456 --> 00:20:47.316
+De doscientos ocho, bajó a ciento veintiséis, con lo cual casi se dividió
+
+369
+00:20:47.376 --> 00:20:50.176
+por dos. Ya está un cincuenta por ciento por arriba.
+
+370
+00:20:50.196 --> 00:20:53.896
+Vale, el punto de salida en Palantir seguramente está por aquí, más o
+
+371
+00:20:53.956 --> 00:20:57.676
+menos, ciento setenta y siete sobre ciento cincuenta y uno, por tanto, ciento
+
+372
+00:20:57.776 --> 00:21:00.376
+setenta y siete partido por ciento cincuenta y uno.
+
+373
+00:21:00.776 --> 00:21:03.536
+Ahí tenéis otra vez vuestro diecisiete por ciento de upside.
+
+374
+00:21:03.546 --> 00:21:06.676
+¿Veis la jugada? ¿Veis lo que es un swing? ¿Sí?
+
+375
+00:21:06.736 --> 00:21:10.296
+La L que decíamos. Palo de la L, palo ascendente de la L,
+
+376
+00:21:10.586 --> 00:21:14.496
+¿vale? Venga, un par más.
+
+377
+00:21:15.816 --> 00:21:18.656
+Em, mmm, Fastly. Estos hacen data
+
+378
+00:21:18.716 --> 00:21:22.176
+centers.
+
+379
+00:21:27.476 --> 00:21:30.596
+Espero que os esté pareciendo interesante y en parte a eso veníais a esta
+
+380
+00:21:30.616 --> 00:21:32.916
+comunidad. Lo que pasa es que, bueno, por el tema de la guerra no podía hablar
+
+381
+00:21:32.976 --> 00:21:35.096
+demasiado de esto, ¿vale? Fastly, ¿vale?
+
+382
+00:21:35.136 --> 00:21:39.096
+Fastly es una, es un Under Armour. Bajada, valle de
+
+383
+00:21:39.136 --> 00:21:43.096
+la muerte, remontada. Fijaos, respecto a valle, ocho y pico,
+
+384
+00:21:43.116 --> 00:21:45.996
+ya está en veintitrés. Y allá, pues que venimos de setenta y cinco,
+
+385
+00:21:47.096 --> 00:21:50.416
+¿vale? Con lo cual el a-- el upside que tenéis aquí es descomunal.
+
+386
+00:21:50.456 --> 00:21:54.336
+Entráis en Fastly, salís a treinta, treinta y cinco y os acabáis de sacar una
+
+387
+00:21:54.356 --> 00:21:57.976
+pasta francamente simpática. ¿Vale?
+
+388
+00:21:57.996 --> 00:22:01.356
+Bien. Y, eh, os voy a hacer una más,
+
+389
+00:22:01.456 --> 00:22:04.176
+MCHP. Esta es la compañía de
+
+390
+00:22:04.216 --> 00:22:08.146
+microchips, ¿vale? Vamos a
+
+391
+00:22:08.176 --> 00:22:11.306
+ver la forma. Ahí tenéis otra vez el patrón de swing
+
+392
+00:22:11.356 --> 00:22:15.296
+trading. Caída. Esta es un swing supertípico, ¿vale?
+
+393
+00:22:15.376 --> 00:22:17.316
+Nvidia antiguamente se comportaba así.
+
+394
+00:22:17.376 --> 00:22:19.826
+Subida, bajada, subida, bajada, subida, bajada, subida, bajada.
+
+395
+00:22:19.836 --> 00:22:22.056
+Y había que esperar una caída y entonces entrabas, ¿vale?
+
+396
+00:22:22.076 --> 00:22:25.716
+Fijaos, esta venía de noventa y siete, bajó hasta treinta y cuatro, es decir, se
+
+397
+00:22:25.736 --> 00:22:28.236
+dividió por tres y ahora está en sesenta y cinco.
+
+398
+00:22:28.276 --> 00:22:31.396
+Seguramente es un print tarde para este swing, no tiene muchísimo upside, pero
+
+399
+00:22:31.416 --> 00:22:34.376
+bueno, es un buen swing y de aquí os podéis sacar una vez más vuestro quince por
+
+400
+00:22:34.436 --> 00:22:37.176
+ciento. ¿Veis lo que es el swing trading? ¿Sí?
+
+401
+00:22:37.196 --> 00:22:40.456
+Entonces, cuidado, porque el swing trading no es, lo digo para que quede
+
+402
+00:22:40.596 --> 00:22:43.656
+superclaro, lo que a veces se le llama el buy the dip.
+
+403
+00:22:43.695 --> 00:22:47.596
+El buy the dip es el típico tío que dice: «Oh, ha caído y al día siguiente entro».
+
+404
+00:22:47.656 --> 00:22:50.876
+No, en swing trading entramos ya en la mitad de la
+
+405
+00:22:50.976 --> 00:22:54.896
+subida para estar seguros de que estamos entrando en un caballo ganador,
+
+406
+00:22:54.936 --> 00:22:58.296
+no en un caballo que acaba de caer y que igual tiene que caer todavía más.
+
+407
+00:22:58.306 --> 00:23:01.436
+¿Queda claro? Eh, es una estrategia distinta, ¿vale?
+
+408
+00:23:01.456 --> 00:23:04.696
+Entonces, ahora os voy a enseñar compañías que están un poco híbridas, pero que
+
+409
+00:23:04.716 --> 00:23:06.776
+pueden ser también interesantes, ¿vale?
+
+410
+00:23:06.816 --> 00:23:10.776
+Venga, fijaos, Qualcomm. Qualcomm hace la mayoría de los chips
+
+411
+00:23:10.786 --> 00:23:14.156
+de muchos teléfonos móviles, básicamente, sobre todo Androids,
+
+412
+00:23:14.176 --> 00:23:17.156
+¿vale? Venga, aquí os enseño cosas que son como un poco
+
+413
+00:23:17.196 --> 00:23:19.786
+mixtas. Vale.
+
+414
+00:23:21.056 --> 00:23:24.276
+Un segundo, que cargamos. Vale, bien.
+
+415
+00:23:24.296 --> 00:23:28.016
+¿Cómo veis Qualcomm? Qualcomm se puede interpretar de dos formas.
+
+416
+00:23:28.036 --> 00:23:30.476
+¿Vale? Se puede interpretar como un patrón descendiente
+
+417
+00:23:32.516 --> 00:23:36.456
+y seguirá bajando, o se puede interpretar como es-- como que está en la
+
+418
+00:23:36.476 --> 00:23:40.296
+base de un swing y va a tirar para arriba, porque mirad este mínimo que tuvo aquí,
+
+419
+00:23:40.316 --> 00:23:40.556
+¿vale?
+
+420
+00:23:41.896 --> 00:23:45.536
+¿Sí? Entonces, aquí lo que estamos es en el, el caso clásico de
+
+421
+00:23:45.716 --> 00:23:49.246
+moneda al aire y la bolsa tiene un punto de, digamos, azar y de
+
+422
+00:23:49.276 --> 00:23:51.636
+incertidumbre y este sería un caso paradigmático.
+
+423
+00:23:51.646 --> 00:23:54.796
+¿Entraríais en Qualcomm sí o no? Depende.
+
+424
+00:23:54.816 --> 00:23:56.216
+Depende de vuestro perfil de riesgo.
+
+425
+00:23:56.236 --> 00:24:00.116
+Para mí, la forma que yo veo a Qualcomm es, la forma en la que veo yo es que desde
+
+426
+00:24:00.296 --> 00:24:01.196
+2024
+
+427
+00:24:02.096 --> 00:24:05.916
+prácticamente ha estado siempre por encima de su valor actual, con lo cual lo
+
+428
+00:24:05.976 --> 00:24:09.616
+más probable es que esto sea un swing y, por tanto, que de aquí tire para
+
+429
+00:24:09.636 --> 00:24:12.716
+arriba. Fijaos mi análisis, ¿eh? Lleva dos
+
+430
+00:24:12.816 --> 00:24:16.496
+años cotizando por encima de lo que está cotizando
+
+431
+00:24:16.776 --> 00:24:19.256
+ahora. ¿Veis que siempre ha estado por encima?
+
+432
+00:24:19.276 --> 00:24:21.416
+Por tanto, es muy probable que esto sea un swing.
+
+433
+00:24:21.426 --> 00:24:24.876
+Pero ya digo, esta es una compañía un poco más difícil de analizar, ¿vale?
+
+434
+00:24:24.916 --> 00:24:28.476
+Venga, os enseño otra con la que en su día yo estuve metido.
+
+435
+00:24:28.516 --> 00:24:32.390
+Victoria's Secret, ropa interior femeninaVenga,
+
+436
+00:24:32.400 --> 00:24:36.060
+aquí está hecho unos swings superbonitos, pero seguramente ya no los haga, ¿vale?
+
+437
+00:24:36.100 --> 00:24:39.300
+Bien. Swing, swing,
+
+438
+00:24:39.340 --> 00:24:42.610
+swing. Aquí, ¿qué va a
+
+439
+00:24:42.610 --> 00:24:45.460
+hacer? Claro, podría retroceder más para seguir
+
+440
+00:24:45.520 --> 00:24:49.360
+subiendo. ¿Veis? O sea, os estoy enseñando casos en los cuales no
+
+441
+00:24:49.400 --> 00:24:52.600
+está claro. Yo, en general, huiría de ese tipo de compañías, ¿vale?
+
+442
+00:24:52.620 --> 00:24:55.080
+Ha sido creciente, ha retrocedido.
+
+443
+00:24:55.090 --> 00:24:58.140
+¿Va a construir un swing o va a seguir tirando para abajo o se va a meter en una
+
+444
+00:24:58.160 --> 00:25:00.900
+ram-- banda lateral? Pues francamente, ni idea.
+
+445
+00:25:00.920 --> 00:25:03.900
+Y, por tanto, no es, eh, digamos, deseable.
+
+446
+00:25:03.920 --> 00:25:06.540
+¿Sí? Bien. Eh,
+
+447
+00:25:06.580 --> 00:25:08.300
+Microsoft.
+
+448
+00:25:10.360 --> 00:25:12.820
+Venga. Por cierto, haré un vídeo de este estilo una vez de vez en cuando, ¿vale?
+
+449
+00:25:12.860 --> 00:25:16.080
+No os preocupéis. Eh, para eso pagáis, joder.
+
+450
+00:25:16.120 --> 00:25:19.120
+Venga. Microsoft. Venga,
+
+451
+00:25:19.160 --> 00:25:23.000
+señores. Microsoft. ¿Vale? Fijaos.
+
+452
+00:25:23.070 --> 00:25:24.680
+Microsoft, bajada.
+
+453
+00:25:26.000 --> 00:25:29.420
+¿Qué va a hacer? ¿Va a hacer un swing hacia arriba o, o
+
+454
+00:25:29.480 --> 00:25:32.900
+qué? Vale, pues aquí sería cuando habría que mirarse las noticias recientes de
+
+455
+00:25:32.940 --> 00:25:36.320
+Microsoft. Y si miráis las noticias recientes de Microsoft, sabréis que ha habido
+
+456
+00:25:36.340 --> 00:25:40.239
+mucho jaleo con la división de Xbox, porque se han ido los dos, eh, tíos que
+
+457
+00:25:40.360 --> 00:25:44.000
+más importaban, eh, que eran Booth y, eh, Booth y
+
+458
+00:25:44.520 --> 00:25:48.440
+Phil Spencer, ¿vale? Y, eh, han metido una tía en su lugar, que es Asha
+
+459
+00:25:48.460 --> 00:25:51.140
+Sharma, que no ha generado buenas sensaciones.
+
+460
+00:25:51.160 --> 00:25:54.920
+Entonces, mmm, va a tirar para arriba o vamos a estar en una
+
+461
+00:25:54.980 --> 00:25:57.880
+tierra de nadie. Bien, yo, por ejemplo, en estos momentos, igual que os he dicho de
+
+462
+00:25:57.920 --> 00:26:01.890
+la anterior, os he dicho de, eh, de, eh, Qualcomm, que yo creo que va a
+
+463
+00:26:01.900 --> 00:26:05.290
+construir un swing, aquí os digo, yo no me metería ni de broma en Microsoft en
+
+464
+00:26:05.300 --> 00:26:08.540
+estos momentos. No tengo ni idea de lo que va a hacer esta compañía,
+
+465
+00:26:08.550 --> 00:26:11.940
+¿vale? Venga, va, un par más. Akamai.
+
+466
+00:26:12.460 --> 00:26:16.180
+Estos tíos hacen, eh, mmm, eh, data centers para
+
+467
+00:26:16.460 --> 00:26:19.900
+cacheado de páginas web en Internet.
+
+468
+00:26:19.940 --> 00:26:23.680
+Básicamente. Bien, ahí lo veis. Akamai.
+
+469
+00:26:23.740 --> 00:26:27.540
+La sensación que me da a mí es que va a hacer un swing y que va a seguir tirando
+
+470
+00:26:27.580 --> 00:26:30.950
+para arriba. ¿Sí? ¿Qué pasa? Que me preocupa
+
+471
+00:26:31.340 --> 00:26:35.200
+que, si os fijáis, en todo el tiempo, ha estado
+
+472
+00:26:35.240 --> 00:26:39.170
+mucho tiempo por debajo de su valor actual, con lo cual podría ser que
+
+473
+00:26:39.200 --> 00:26:42.920
+el mercado interprete que ya ha tocado techo de swing y empiece
+
+474
+00:26:43.000 --> 00:26:46.500
+pullback y vuelva a la zona esta inferior en la que no nos interesa
+
+475
+00:26:46.520 --> 00:26:50.500
+estar. ¿Veis la idea? Con lo cual esto es un swing, pero es posible que sea
+
+476
+00:26:50.520 --> 00:26:54.000
+demasiado tarde. Comparad esto. Fijaos que solamente le queda un upside de un
+
+477
+00:26:54.040 --> 00:26:56.940
+veinte por ciento hasta el máximo histórico, ¿vale?
+
+478
+00:26:56.960 --> 00:26:59.800
+Comparad esto, eh, con Marvel, la que decíamos hace un
+
+479
+00:26:59.820 --> 00:27:03.800
+rato. La voy a volver a poner. Fijaos, eh, veinte
+
+480
+00:27:03.860 --> 00:27:05.900
+por ciento respecto a máximo histórico.
+
+481
+00:27:05.960 --> 00:27:08.990
+En el caso de, de Akamai, ¿vale? En el caso de Marvel
+
+482
+00:27:10.580 --> 00:27:14.520
+podéis ver cómo cuando yo entré, que entré por aquí, que estábamos a
+
+483
+00:27:14.540 --> 00:27:15.300
+setenta y nueve,
+
+484
+00:27:19.240 --> 00:27:22.740
+estábamos, eh, a un cincuenta y ocho por ciento por debajo.
+
+485
+00:27:22.750 --> 00:27:26.360
+¿Veis la idea? Había muchísimo más margen de upside desde aquí hasta aquí
+
+486
+00:27:26.800 --> 00:27:29.540
+que el que hay en estos momentos en Akamai, ¿vale?
+
+487
+00:27:29.560 --> 00:27:33.220
+Bien, va, un par más, va. Lululemon.
+
+488
+00:27:33.260 --> 00:27:36.980
+Esta en su época a mí me funcionó muy bien y en estos momentos está en una tierra
+
+489
+00:27:37.580 --> 00:27:40.500
+peligrosita. Fijaos. Lululemon.
+
+490
+00:27:40.520 --> 00:27:43.100
+Ha hecho unos swings preciosos. Preciosos.
+
+491
+00:27:43.140 --> 00:27:46.960
+Este swing de Lululemon lo pillé yo, que era un swing de libro y ahí, como podéis
+
+492
+00:27:46.980 --> 00:27:50.940
+ver, doscientos, cuatrocientos. Maravilloso.
+
+493
+00:27:50.960 --> 00:27:53.620
+Desde entonces, viaje a ninguna parte.
+
+494
+00:27:53.630 --> 00:27:57.600
+Está intentando construir una recuperación, pero no le
+
+495
+00:27:57.620 --> 00:28:01.600
+está saliendo. Como podéis ver, banda lateral de libro.
+
+496
+00:28:01.660 --> 00:28:04.580
+Sí que es una banda lateral que sube y baja y tal, igual, pero
+
+497
+00:28:05.780 --> 00:28:09.640
+en estos momentos Lululemon está en esa zona en la que si fuera la
+
+498
+00:28:09.660 --> 00:28:12.120
+única opción, os diría: «Mira, va, pues yo qué sé, métete», ¿no?
+
+499
+00:28:12.430 --> 00:28:15.740
+Pero como que no es la única opción, porque os he enseñado antes opciones mejores,
+
+500
+00:28:15.800 --> 00:28:18.300
+es mejor ir con una de las opciones mejores. ¿Qué os quiero decir?
+
+501
+00:28:18.320 --> 00:28:21.560
+Que al final el análisis en bolsa se trata de meter
+
+502
+00:28:21.720 --> 00:28:25.100
+muchas aga-- acciones para elegir las dos o tres
+
+503
+00:28:25.160 --> 00:28:29.080
+mejores. ¿Sí? Y por eso es importante pasarse tiempo, eh, mirando
+
+504
+00:28:29.180 --> 00:28:33.120
+el, el, los tickers para ver por dónde van los, los tíos,
+
+505
+00:28:33.130 --> 00:28:36.980
+¿vale? Venga, uno más. Sirius. Estos tíos hacen radio,
+
+506
+00:28:38.240 --> 00:28:41.400
+mmm, en Estados Unidos y parte relativamente popular. Es un servicio de radio.
+
+507
+00:28:41.810 --> 00:28:45.660
+¿Vale? Bien, fijaos, lo mismo. Viaje a ninguna
+
+508
+00:28:45.740 --> 00:28:48.239
+parte. ¿Está remontando?
+
+509
+00:28:49.680 --> 00:28:53.260
+Es una pena, porque es una compañía que viene de, ya digo, un por tres en respecto
+
+510
+00:28:53.299 --> 00:28:57.200
+sobre lo actual, pero da la sensación de que ha vivido tiempos mejores
+
+511
+00:28:57.240 --> 00:29:01.060
+y que le está costando construir una narrativa que entusiasme otra
+
+512
+00:29:01.100 --> 00:29:03.520
+vez. Bien, ¿se ha entendido la idea?
+
+513
+00:29:03.540 --> 00:29:06.600
+Vale, la idea, por resumir el vídeo, ¿eh? La idea es hay cuatro patrones.
+
+514
+00:29:06.660 --> 00:29:09.780
+Ascendente, que evidentemente parece el más fiable, pero tiene el problema de
+
+515
+00:29:09.820 --> 00:29:12.660
+generar una banda lateral y tiene el problema de generar un pullback.
+
+516
+00:29:12.720 --> 00:29:16.680
+Descendiente, que tiene el problema de decir: «Vale, no sabes en qué momento, eh,
+
+517
+00:29:16.880 --> 00:29:20.830
+va a parar de caer», ¿vale? Banda lateral, que es, mmm,
+
+518
+00:29:20.860 --> 00:29:24.420
+voy a perder tiempo, porque no sé cuánto tiempo se puede tirar esta acción sin
+
+519
+00:29:24.440 --> 00:29:28.180
+hacer absolutamente nada. Y swing trading, que es un patrón que si lo pillas en el
+
+520
+00:29:28.220 --> 00:29:31.980
+momento es el más previsible, porque el swing trading la narrativa es:
+
+521
+00:29:32.020 --> 00:29:35.820
+esta compañía era buena, por el motivo que sea, ha
+
+522
+00:29:35.880 --> 00:29:39.650
+bajado, pero ha tomado med-medidas correctivas y está volviendo a
+
+523
+00:29:39.660 --> 00:29:43.420
+crecer a sus glorias pasadas. Ese es el patrón que utilizo yo.
+
+524
+00:29:43.500 --> 00:29:46.430
+Y en este vídeo os he enseñado unas cuantas compañías que para mí, en estos
+
+525
+00:29:46.480 --> 00:29:50.460
+momentos, a día de hoy, 11 de marzo, son patrones claros de swing trading y,
+
+526
+00:29:50.480 --> 00:29:53.680
+por tanto, son con-- candidatas a entrada. ¿Qué pasa?
+
+527
+00:29:53.720 --> 00:29:56.520
+Tenéis que olvidar-- no tenéis que olvidaros nunca de lo siguiente.
+
+528
+00:29:56.560 --> 00:29:58.380
+La bolsa es eminentemente
+
+529
+00:29:59.280 --> 00:30:02.520
+sensible, ¿vale? Y es sensible a las noticias del mundo exterior.
+
+530
+00:30:02.580 --> 00:30:06.420
+Estos días estamos teniendo una guerra en Irán, eh, que, bueno, hay que ver cómo
+
+531
+00:30:06.520 --> 00:30:10.300
+acaba la cosa. Si la guerra resulta que mañana se acaba porque los
+
+532
+00:30:10.340 --> 00:30:14.220
+iraníes se rinden o porque Trump se va a su casa, toda la bolsa subirá.
+
+533
+00:30:14.240 --> 00:30:17.740
+Pero si de repente resulta que Irán lanza la bomba atómica, todo bajará.
+
+534
+00:30:17.940 --> 00:30:21.920
+¿Qué quiero decir? Que nunca toméis el consejo de otra persona cuando invirtáis en
+
+535
+00:30:21.960 --> 00:30:25.380
+bolsa. Al final, el dinero que vais a ganar y el dinero que vais a perder, ¿a que
+
+536
+00:30:25.420 --> 00:30:28.770
+no sabéis de quién es? Vuestro.Por tanto, la decisión es vuestra.
+
+537
+00:30:28.780 --> 00:30:32.660
+Yo como máximo os puedo dar orientaciones técnicas generales para que
+
+538
+00:30:32.700 --> 00:30:36.620
+vosotros os lo planteéis. Que quede claro que estos días no son días para
+
+539
+00:30:36.660 --> 00:30:38.780
+meterte en bolsa en una primera inversión.
+
+540
+00:30:38.820 --> 00:30:42.010
+Si no, si no os habéis metido en bolsa nunca, honestamente, no podríais haber
+
+541
+00:30:42.020 --> 00:30:45.620
+elegido una semana peor, porque estamos en una guerra tremendamente
+
+542
+00:30:45.660 --> 00:30:47.810
+complicada. Ya vendrán tiempos mejores.
+
+543
+00:30:47.840 --> 00:30:51.540
+Los patrones de swing trading se ven siempre y evidentemente yo aquí en la
+
+544
+00:30:51.580 --> 00:30:55.020
+comunidad voy a estar haciendo vídeos con una cierta frecuencia y diciendo: mira
+
+545
+00:30:55.060 --> 00:30:58.240
+las que he detectado yo estos días son esta, esta y esta. ¿Sí?
+
+546
+00:30:58.320 --> 00:31:02.180
+Eh, ya digo, toda la gente que lo que hacemos es swing trading, al final, como
+
+547
+00:31:02.200 --> 00:31:05.340
+habéis visto, fijaos que en este vídeo os he enseñado unas veinte compañías, ¿no?
+
+548
+00:31:05.360 --> 00:31:07.920
+Y seguramente estáis pensando: joder, cómo es que Dani sabe tanto de estas
+
+549
+00:31:07.980 --> 00:31:11.480
+acciones. Pues porque me paso el día, hijos míos, me paso el
+
+550
+00:31:11.520 --> 00:31:14.180
+día desde hace veinte años. ¿Qué quiero decir?
+
+551
+00:31:14.220 --> 00:31:17.280
+Nada sustituye el análisis, análisis, análisis, análisis.
+
+552
+00:31:17.290 --> 00:31:21.029
+Yo cada día cojo, me meto media hora cuando abro el mercado, me meto media hora
+
+553
+00:31:21.100 --> 00:31:24.200
+cuando cierro el mercado y me voy haciendo mis portafolios.
+
+554
+00:31:24.220 --> 00:31:28.120
+Mis portafolios, que no son las compañías que tengo invertidas, sino que son las
+
+555
+00:31:28.160 --> 00:31:32.090
+compañías que tengo vigiladas, vigiladas, se compone de, no sé,
+
+556
+00:31:32.120 --> 00:31:35.750
+unas cincuenta compañías y luego tengo herramientas, ya digo, automáticas para,
+
+557
+00:31:35.760 --> 00:31:38.130
+para analizar y darme compañías nuevas, ¿vale?
+
+558
+00:31:38.140 --> 00:31:41.640
+Pero la idea es que a lo largo de los años os vayáis especial-- especializando en
+
+559
+00:31:41.660 --> 00:31:45.580
+ciertas compañías y digáis mira, yo sabes qué, yo me conozco Nvidia, yo me conozco
+
+560
+00:31:45.640 --> 00:31:48.200
+a Akamai, yo me conozco yo qué sé, cualquiera, ¿no?
+
+561
+00:31:48.220 --> 00:31:52.180
+Por ejemplo, una de la que no he hablado, que me haría mucha gracia que remontara,
+
+562
+00:31:52.300 --> 00:31:55.680
+ah, pero no hay manera, que son nuestros amigos de Nike.
+
+563
+00:31:55.700 --> 00:31:57.940
+Vamos a verles, que hace tiempo que no miro Nike.
+
+564
+00:31:57.960 --> 00:31:59.770
+Es una pena porque Nike está más perdida.
+
+565
+00:32:00.840 --> 00:32:04.120
+Ahí lo tenéis. ¿Vale? Bien. Nike lleva fatal
+
+566
+00:32:04.960 --> 00:32:07.520
+el paso al mundo digital, ¿vale? Fijaos desde el
+
+567
+00:32:07.680 --> 00:32:11.020
+2022, eh, de hecho, bueno, es una compañía que tiene todavía más años de
+
+568
+00:32:11.040 --> 00:32:14.980
+historia. Ahí lo tenéis. ¿Vale? Fijaos.
+
+569
+00:32:15.000 --> 00:32:18.960
+Es una compañía que en 2021, fijaos lo bien que estaba y fijaos lo que le ha pasado
+
+570
+00:32:18.980 --> 00:32:22.540
+desde entonces. Todo esto es que todo lo que es las ventas retail, sobre todo en
+
+571
+00:32:22.580 --> 00:32:25.720
+Estados Unidos, funcionan fatal, las ventas en tienda, ¿vale?
+
+572
+00:32:25.760 --> 00:32:29.630
+Todo se ha movido al mundo digital y Nike no ha sabido adaptarse,
+
+573
+00:32:29.640 --> 00:32:33.560
+¿vale? Y es una pena porque ahí se podría construir una, una, una narrativa
+
+574
+00:32:33.580 --> 00:32:36.389
+de recuperación, pero no está habiendo esa narrativa.
+
+575
+00:32:36.400 --> 00:32:37.680
+Con lo cual es lo que os decía, ¿vale?
+
+576
+00:32:37.699 --> 00:32:40.960
+Los que nos dedicamos a bolsa, sobre todo los que somos, somos grandes lectores y
+
+577
+00:32:41.000 --> 00:32:44.090
+grandes analizadores. Por cierto, a todos los que os vengan con herramientas
+
+578
+00:32:44.160 --> 00:32:46.620
+superchiripitifláuticas de pago y tal.
+
+579
+00:32:46.640 --> 00:32:49.860
+Como habéis visto, yo lo hago todo con Yahoo Finance y lo hago dedicándole un
+
+580
+00:32:49.900 --> 00:32:53.700
+ratito cada día. Nada sofisticado, nada caro.
+
+581
+00:32:53.720 --> 00:32:57.300
+Luego, evidentemente, aquí en Yahoo Finance puedes poner quinientos indicadores,
+
+582
+00:32:57.400 --> 00:33:00.000
+eh, yo qué sé. Un segundo.
+
+583
+00:33:01.400 --> 00:33:04.500
+Si usáis Yahoo Finance como lo uso yo, ya os digo, se suele ver
+
+584
+00:33:04.560 --> 00:33:07.950
+mejor, eh, conect-- dándole aquí al advanced chart que te lo pone en pantalla
+
+585
+00:33:08.000 --> 00:33:11.220
+completa. Y Yahoo Finance tiene cincuenta mil herramientas.
+
+586
+00:33:11.240 --> 00:33:15.230
+Honestamente, lo más fácil es usar aquí zooms y cosas para ver la forma de la
+
+587
+00:33:15.300 --> 00:33:18.320
+gráfica y las regiones que queréis controlar, ¿vale?
+
+588
+00:33:18.420 --> 00:33:22.250
+Eh, pero luego, eh, tiene muchísimas herramientas que si queréis en otro vídeo os
+
+589
+00:33:22.260 --> 00:33:24.980
+las cuento, que son las herramientas de análisis técnico, ¿vale?
+
+590
+00:33:25.100 --> 00:33:27.500
+Os vais aquí y tenéis lo típico, ¿vale?
+
+591
+00:33:27.600 --> 00:33:31.190
+Las Bollinger Bands... Otro día os explico esto,
+
+592
+00:33:31.190 --> 00:33:34.060
+¿vale? Los RSI, el MCD,
+
+593
+00:33:35.480 --> 00:33:39.470
+¿vale? Estos son indicadores que nos permiten, digamos,
+
+594
+00:33:39.520 --> 00:33:43.370
+anticiparnos al mercado y ver un poco por dónde pueden ir los
+
+595
+00:33:43.440 --> 00:33:46.840
+tiros en función del volumen de compras, el volumen de ventas, las resistencias, en
+
+596
+00:33:46.880 --> 00:33:49.560
+fin, cincuenta mil cosas, ¿vale? Eso es más bien para otro vídeo.
+
+597
+00:33:49.580 --> 00:33:52.840
+Hoy quería hacer una... un vídeo más sobre el análisis de gráficas.
+
+598
+00:33:52.880 --> 00:33:56.720
+En otro vídeo, si queréis hablamos de el análisis basado en, en números,
+
+599
+00:33:56.730 --> 00:34:00.540
+¿vale? Bien, eso fue todo por hoy. Nos vemos en la comunidad.
+
+600
+00:34:00.560 --> 00:34:01.580
+Adiós.

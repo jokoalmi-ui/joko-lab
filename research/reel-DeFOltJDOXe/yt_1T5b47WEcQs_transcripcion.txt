@@ -1,0 +1,155 @@
+0:00 Buenas, yo soy Not Found y supongo que
+0:02 estás aquí por el vídeo que has visto en
+0:04 TikTok, el del cerebro, ese en el que
+0:07 Claudy, Chat GPT comparten la misma
+0:09 memoria dentro de mi ordenador. Muchos
+0:11 me pedisteis el tutorial, así que aquí
+0:13 lo tienes. En este vídeo te voy a
+0:15 enseñar a montar tu propio cerebro desde
+0:16 cero, paso a paso y sin saltarme nada.
+0:19 No hace falta saber programar y todos
+0:22 los prompts que uso te los dejo en la
+0:24 descripción para que solo tengas que
+0:25 copiar y pegar. Así que al lío.
+0:29 Primero mira lo que vas a tener al
+0:30 acabar. Abro cloth code y le pregunto
+0:32 cómo va un proyecto. No le doy ninguna
+0:34 pista. Y fíjate, no se pone a buscar por
+0:37 todo el disco. Abre mi cerebro, lee una
+0:39 ficha y me contesta. Eso es lo que vamos
+0:41 a montar hoy. ¿Y qué es el cerebro? Es
+0:44 más sencillo de lo que parece. Es una
+0:46 carpeta. Dentro hay una ficha por cada
+0:48 proyecto que tienes y cada ficha dice
+0:50 tres cosas. ¿Qué es? ¿Cómo va? ¿Y dónde
+0:53 están sus archivos? No copia nada, solo
+0:55 apunta.
+0:56 Arriba del todo hay un índice con una
+0:58 línea por ficha. Cloud lee ese índice
+1:01 que es cortísimo y abre solo la ficha
+1:03 que necesita. Por eso gasta muy pocos
+1:05 tokens. Y como todos son archivos de
+1:07 texto, lo puede leer cualquier IA. Para
+1:10 seguir el vídeo, solo necesitas dos
+1:12 cosas. La primera, tener Cloudh Code
+1:14 instalado. La segunda, saber en qué
+1:16 carpeta guardas tus proyectos. Si ya
+1:18 tienes Cloud Code, salta al siguiente
+1:20 capítulo. Si no es un minuto, abre Power
+1:23 Cell si estás en Windows o la terminal
+1:25 si estás en Mac. Pega el comando de
+1:26 instalación que lo tienes en la
+1:28 descripción y pulsa intro. Cuando
+1:30 termine, escribe cloth y vuelve a pulsar
+1:32 intro. La primera vez se te abre el
+1:34 navegador para iniciar sesión. Y ojo con
+1:37 esto, cloth code necesita un plan de
+1:39 pago. Con el plan gratis no entra. Si la
+1:41 terminal te da respeto, también existe
+1:43 la aplicación de escritorio y funciona
+1:45 igual. Vamos con el paso uno, crear el
+1:48 cerebro. Abre Cloud Code en tu carpeta
+1:51 de usuario y pega el primer prom de la
+1:53 descripción. Te lo leo por encima para
+1:55 que sepas qué hace. Le pide que cree una
+1:57 carpeta llamada cerebro, que te pregunte
+1:59 dónde guardas tus proyectos y en qué
+2:01 áreas se divide tu trabajo y que cree
+2:03 una ficha por cada proyecto. Pulsas
+2:05 intro y Cloud te hace las preguntas. Yo
+2:08 le digo que mis proyectos están en
+2:09 documentos y que mis áreas son cuatro
+2:12 web, vídeos, clientes y proyectos. Ahora
+2:14 te pide permiso para crear archivos.
+2:16 Dile que sí. Y en un minuto tienes esto,
+2:19 una carpeta por cada área, que yo llamo
+2:21 ramas. Dentro de cada rama, una ficha
+2:23 por proyecto y arriba el índice.
+2:26 Paso dos. Vamos a abrir una ficha para
+2:28 que veas cómo es por dentro. Esta es la
+2:30 de un cliente. Arriba tienes la
+2:32 cabecera, su nombre dentro del cerebro,
+2:34 su estado y los alias, que son las otras
+2:36 formas en que tú lo llamas. Después una
+2:39 línea que dice qué es. Hola. Y luego
+2:41 viene la parte más importante, se llama
+2:43 cuándo entrar aquí. Ahí pones en qué
+2:45 caso es esta ficha. Es la respuesta. Sin
+2:47 eso, la IA no sabe que tiene que
+2:49 abrirla. Hola. Debajo está el estado,
+2:51 que es cómo va hoy y al final, ¿dónde
+2:53 está? Las rutas de sus archivos. Fíjate
+2:55 en una cosa, la ficha entera cabe en una
+2:58 pantalla. Si una ficha crece demasiado,
+3:00 deja de servir. Así que repásalas una
+3:02 vez y lo que esté mal se lo dices a
+3:04 Cloth y lo corrige.
+3:06 Paso tres. Ahora mismo el cerebro
+3:08 existe, pero Cloth no sabe que tiene que
+3:10 mirarlo. Para eso está el archivo cloth.
+3:13 Son unas instrucciones que cloth code
+3:15 lee al empezar cada sesión. El tuyo vive
+3:18 en tu carpeta de usuario dentro de la
+3:19 carpeta punto clotth. Pega el segundo
+3:22 prom de la descripción. Le pide que
+3:24 añada tres normas. Una, antes de buscar
+3:26 en el disco, mira el cerebro. Dos, si te
+3:28 cuento algo nuevo, apúntalo en su ficha
+3:31 sin que te lo pida. Y tres, el estado se
+3:33 sobreescribe, las fichas no crecen.
+3:35 Además, lleva una norma de seguridad.
+3:37 Nunca contraseñas ni datos del banco.
+3:39 Cuando acabe, abre el archivo y
+3:41 comprueba que está.
+3:43 Paso cuatro, la prueba. Cierra cloth
+3:45 code y ábrelo de nuevo. Para empezar con
+3:47 una sesión limpia, pregúntale por un
+3:49 proyecto sin darle ninguna pista y mira
+3:52 lo que hace. Lee el índice, abre una
+3:54 sola ficha y contesta. Ahora vamos a
+3:56 hacerlo al revés. Cuéntale algo nuevo.
+3:59 Yo le digo que el taller ha aceptado el
+4:00 presupuesto. No le pido que lo apunte,
+4:03 lo apunta. Solo abro la ficha y el
+4:05 estado ha cambiado. Si algún día se le
+4:07 olvida mirarlo, se lo recuerdas. Mira el
+4:09 cerebro y listo. Paso cinco. Y esto es
+4:13 lo que más me gusta. El cerebro no es de
+4:15 Cloud, es tuyo. Si usas Codex, que es el
+4:17 de Chat GPT, tiene su propio archivo de
+4:20 instrucciones. Se llama.md
+4:22 y vive en la carpeta. Codex. Pega ahí
+4:24 las mismas normas. Ahora las dos leen lo
+4:27 mismo. Si a una se le acaba la cuota, la
+4:29 otra sigue justo donde lo dejó. Y si
+4:31 mañana cambias de IA, tu cerebro se muda
+4:33 contigo.
+4:35 Ya lo tienes montado. Ahora, para que no
+4:37 se te pudra, tres reglas. Una, cada dato
+4:39 en un solo sitio. Dos, lo que se acaba
+4:41 se archiva. Crea una rama llamada
+4:43 archivo y mándalo ahí. Y tres, una vez
+4:46 al mes pídele a Cloud que lo revise, que
+4:48 busque fichas viejas, rutas rotas y
+4:50 fichas demasiado largas. Ese prompt
+4:52 también lo tienes en la descripción.
+4:55 Una última cosa, con esto te sobra hasta
+4:57 unas 100 fichas. El mío ya tiene casi
+4:59 200 y por eso le añadí un buscador. Es
+5:02 un programa pequeño que encuentra la
+5:04 ficha por palabras sin leer ni el
+5:06 índice. No lo necesitas hoy, pero si lo
+5:08 quieres, el prom para que cloud te lo
+5:10 construya está en la descripción.
+5:13 Y hasta aquí el tutorial. Ya tienes tu
+5:15 cerebro. A partir de hoy no le explicas
+5:17 nada dos veces. Si te ha servido,
+5:19 suscríbete porque este canal acaba de
+5:21 empezar y aquí voy a subir los
+5:23 tutoriales largos que no caben en
+5:24 TikTok. Cuéntame en los comentarios cómo
+5:26 te ha quedado o en qué paso te has
+5:28 atascado y te hecho una mano. Y si
+5:30 quieres que enseñe el buscador en otro
+5:32 vídeo, dímelo ahí. Yo soy Not Found. Nos
+5:35 vemos en el siguiente.

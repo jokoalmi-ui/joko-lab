@@ -1,0 +1,65 @@
+== A. blobs del curador ==
+2716
+total 49296
+-rw-rw-r-- 1 jokoalmi jokoalmi   6973 09-30_16:46 879b16e9e69439f74b10b7a295e08c0b2ecb4bdbb40bfcd7eef1b58bf92d0adf
+drwxrwxr-x 2 jokoalmi jokoalmi 286720 09-30_16:46 .
+-rw-rw-r-- 1 jokoalmi jokoalmi   6402 09-30_16:46 d26702c12af25e0d47e60ed94273fa28034784887f5e6eec698c0a342bd64b3c
+== B. .curator_suppressed ==
+-rw------- 1 jokoalmi jokoalmi 337 2026-09-23 19:08:50.844444989 +0200 /home/jokoalmi/.hermes/skills/.curator_suppressed
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/home/jokoalmi/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/home/jokoalmi/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jokoalmi/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jokoalmi/.local/share/uv/python/cpython-3.11.16-linux-x86_64-gnu/lib/python3.11/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+== C. curator status ==
+curator: PAUSED
+  runs:           13
+  last run:       6d ago
+  last summary:   auto: 16 marked stale, 6 archived, 6 reactivated; llm: skipped (consolidation off)
+  last report:    /home/jokoalmi/.hermes/logs/curator/20260923-170843
+  interval:       every 7d
+  stale after:    14d unused
+  archive after:  30d unused
+  consolidate:    off (prune-only; LLM merge pass opt-in)
+curator-managed skills: 96 total  (agent-created=71  bundled=25)
+  active     67
+  stale      29
+  archived   0
+unmanaged (no provenance marker): 68 total
+  pre-dates marker    0
+  foreground-created  68
+  never auto-staled or archived — `hermes curator adopt <name>` hands one over
+least recently active (top 5):
+  adaptadores-wifi-linux                    activity= 26  use=  6  view=  6  patches= 14  last_activity=15d ago
+  portar-bibliotecas-skills                 activity=  4  use=  1  view=  1  patches=  2  last_activity=15d ago
+  google-workspace                          activity=  6  use=  3  view=  3  patches=  0  last_activity=15d ago
+  cross-session-awareness                   activity=303  use=103  view=103  patches= 97  last_activity=15d ago
+  computer-use                              activity= 29  use= 12  view= 12  patches=  5  last_activity=14d ago
+most active (top 5):
+  lm-studio                                 activity=1217  use=388  view=388  patches=441  last_activity=2d ago
+  hermes-expert                             activity=680  use=236  view=236  patches=208  last_activity=11d ago
+  ai-router                                 activity=658  use=200  view=200  patches=258  last_activity=9h ago
+  edicion-aditiva-registros                 activity=585  use=216  view=214  patches=155  last_activity=54s ago
+  local-rag                                 activity=519  use=162  view=162  patches=195  last_activity=10d ago
+least active (top 5):
+== D. rechazos hoy por skill ==
+      4 diagnostico-stack-local
+      2 instagram-monitor
+      2 joko-lab/perfume-del-dia
+      2 perfume-del-dia
+      2 perfume-ia
+== D2. total lineas de rechazo hoy ==
+59
+== D3. literal completo (1) ==
+2026-09-30 15:15:00,489 WARNING [20260930_151342_c051d8] agent.tool_executor: Tool skill_manage returned error (0.03s): {"success": false, "error": "Refusing background curator patch for skill 'instagram-monitor': the skill is not curator-managed (created_by=N
+== E. hora ==
+17:01:41 CEST

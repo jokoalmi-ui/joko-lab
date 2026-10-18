@@ -1,0 +1,170 @@
+===============================================================================
+  INFORME DE ESTADO — JOKO LAB
+  Fecha: 2026-07-29 13:30 CEST
+  Elaborado por: Hermes Agent
+===============================================================================
+
+
+  1. SISTEMAS OPERATIVOS
+  2. PROYECTOS
+  3. PLAN ESTRATÉGICO DE IMPLEMENTACIONES
+  4. CRON JOBS ACTIVOS
+  5. SESIONES RECIENTES
+  6. SALUD DEL LABORATORIO
+  7. PENDIENTES DEL USUARIO
+
+
+================================================================================
+1. SISTEMAS OPERATIVOS
+================================================================================
+
+  CONECTIVIDAD:
+    ✅ Telegram Gateway — Operativo (watchdog cada 15 min)
+    ✅ PC (CLI) — Conexión activa
+    ✅ Estado compartido entre sesiones — heartbeat cada 10 min
+
+  INFRAESTRUCTURA LOCAL:
+    ✅ LM Studio (API :1234) — Operativo, Dolphin cargado
+    ✅ Ollama (:11434) — Operativo
+    ✅ n8n (:5678) — Operativo
+    ✅ Monitor web (:5000) — Operativo (reactivado hoy)
+    ❌ Flask Monitor (:5000) — Verificado OK, GPU data real
+
+  MODELOS DISPONIBLES (LM Studio):
+    Cargado:   Dolphin Cyber LoRA 8B
+    No cargados: Llama 3.1, Qwen3 14B, DeepSeek R1 14B, GLM 4.6V, 
+                 Gemma 4 12B, Granite 4.1 8B, Granite 4.0 h-tiny,
+                 BGE-M3 (embeddings), Nomic Embed
+
+  AI ROUTER:
+    ✅ Políticas activas: 8 (privacidad, disponibilidad, costes, gpu,
+       horario, niveles, preferencias + modelos)
+    ✅ Cron cada 30 min
+    ✅ decision-ledger.jsonl operativo
+
+
+================================================================================
+2. PROYECTOS
+================================================================================
+
+  PERFUME IA:
+    ✅ BD con 170 perfumes, sensaciones y situaciones
+    ✅ Motor de recomendación con sensación térmica
+    ✅ Investigación Falcon Leather vs Firma 1 registrada
+    ❌ Limpiar sensaciones genéricas (muchos perfumes tienen datos
+       repetidos como "embriagador", "suave", "fresco")
+
+  COMPAN-IA:
+    ✅ Diseño conceptual guardado en /proyectos/compan-ia/
+    ⏳ Sin avances desde su creación. Pendiente de decisión.
+
+  LM STUDIO REAL MONITOR:
+    ✅ Dashboard web operativo (:5000)
+    ✅ AI Console con selector de 10 modelos
+    ✅ GPU data real (RTX A2000, 42°C, 72% VRAM)
+    ❌ nvidia_smi_available: false en /api/health (bug cosmético)
+
+
+================================================================================
+3. PLAN ESTRATÉGICO DE IMPLEMENTACIONES
+================================================================================
+
+  ORDEN RECOMENDADO (del plan guardado):
+
+  FASE 1 — CIMENTACIÓN (completada)
+    ✅ F1 — Memoria vectorial (BGE-M3 + LanceDB) — CONECTADA
+    ✅ F4 — Observabilidad (monitor web) — REACTIVADO
+    ✅ F5 — AI Router (3 pendientes cerrados) — COMPLETADO
+
+  FASE 2 — PRIMER GRAFO (pendiente)
+    ⏳ F3 — Graph Engineering
+         Estado: 8% (teoría hecha, prototipo pendiente)
+         Esfuerzo: medio (4-6 sesiones)
+         Próximo paso: construir grafo de 3 nodos
+         (Buscador → Redactor → Validador)
+
+  FASE 3 — OPTIMIZACIÓN (pendiente)
+    ⏳ F2 — DSPy (optimización automática de prompts)
+         Estado: 15% (dataset de 35 experimentos listo)
+         Esfuerzo: alto (8-12 sesiones)
+
+  OPCIONAL:
+    ⏳ F6 — Actualización hardware (RTX 3090 24GB)
+         Estado: 20% (evaluación pendiente)
+         Coste: ~600-800 EUR usado
+
+
+================================================================================
+4. CRON JOBS ACTIVOS
+================================================================================
+
+  NOMBRE                    FRECUENCIA    ESTADO    PROPÓSITO
+  ─────────────────────────────────────────────────────────────────
+  rag-reindex-daily         Diario 08:00   ✅       Re-indexación RAG
+  rag-reindex-catchup       Cada hora      ✅       Captura si PC apagado
+  session-heartbeat-cli     Cada 10 min    ✅     Estado compartido
+  telegram-watchdog         Cada 15 min    ✅     Salud gateway
+  docker-admin healthcheck  Cada hora      ✅     Salud contenedores
+  n8n-admin healthcheck     Cada 30 min    ✅     Salud n8n
+  apply-decision.sh (AI R.) Cada 30 min    ✅     Enrutamiento automático
+
+
+================================================================================
+5. SESIONES RECIENTES
+================================================================================
+
+  FECHA     DURACIÓN    TEMA PRINCIPAL
+  ─────────────────────────────────────────────────────────────────
+  29-jul    3h+         Memoria vectorial, monitor, AI Router,
+                        3 pendientes cerrados, investigación perfumes,
+                        prompt-engineering skill
+  26-jul    5h+         Comparativa de 7 modelos, catálogo operativo,
+                        Granite, DeepSeek R1, Qwen3 14B, 
+                        JL-011/JL-012, sensación térmica
+  25-jul    6h+         Graph Engineering (informe), Compan-IA,
+                        backups, gateway Telegram, prompt-engineering
+  24-jul    —           Probador virtual, KAP, LPA, arquitectura
+
+
+================================================================================
+6. SALUD DEL LABORATORIO
+================================================================================
+
+  RECURSOS:
+    CPU:   i9-9900K — Sin problemas
+    RAM:   32 GB — Sin problemas
+    GPU:   RTX A2000 12GB — VRAM al 72% (8.9/12.3 GB usados)
+           Dolphin cargado. Quedan ~3.4 GB libres.
+    NVMe:  291 GB libres (35% usado) — OK
+    SSD:   132 GB libres (69% usado) — OK (64 GB liberados ayer)
+    Google Drive: 5 TB, 37 GB usados — OK
+
+  POSIBLES ATASCOS:
+    - VRAM al 72% obliga al AI Router a evitar modelos pesados
+    - Si se necesita Gemma o DeepSeek R1, hay que descargar Dolphin primero
+    - Sensaciones de perfumes genéricas (muchos tienen datos repetidos)
+
+
+================================================================================
+7. PENDIENTES DEL USUARIO
+================================================================================
+
+  PRIORIDAD  TAREA                                  DÓNDE ESTÁ
+  ─────────────────────────────────────────────────────────────────
+  1          Recordatorio: limpiar backups n8n      Memoria de Hermes
+             y exports (visto en el watchdog, 
+             pendiente de revisión)
+  2          F3 — Graph Engineering: prototipo       Plan implementaciones
+             de 3 nodos (Buscador→Redactor→Validador)
+  3          F2 — DSPy: optimización automática      Plan implementaciones
+             de prompts con 35 experimentos
+  4          Limpiar datos genéricos de sensaciones   BD Perfume IA
+             en la BD de perfumes
+  5          Evaluar RTX 3090 usada (24GB)           Plan implementaciones
+             para desbloquear modelos 30B+
+  5          Compan-IA: decidir si se desarrolla     /proyectos/compan-ia/
+  ─           o queda como concepto
+
+===============================================================================
+  FIN DEL INFORME
+===============================================================================

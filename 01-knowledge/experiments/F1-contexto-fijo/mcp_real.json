@@ -1,0 +1,60 @@
+{
+  "modelo_tokenizador": "openai/gpt-oss-20b",
+  "por_server": {
+    "animation-server": 6,
+    "lab-db": 13,
+    "lancedb": 6
+  },
+  "mcp_tools_total": 25,
+  "filas": [
+    {
+      "pieza": "catalogo_real (con 25 MCP)",
+      "chars": 2697,
+      "bytes": 2729,
+      "tokens": 793
+    },
+    {
+      "pieza": "catalogo_base (sin MCP)",
+      "chars": 454,
+      "bytes": 460,
+      "tokens": 174
+    },
+    {
+      "pieza": "solo lineas MCP (25+3 cabeceras)",
+      "chars": 2242,
+      "bytes": 2268,
+      "tokens": 686
+    },
+    {
+      "pieza": "25 esquemas MCP completos",
+      "chars": 6900,
+      "bytes": 6951,
+      "tokens": 1973
+    },
+    {
+      "pieza": "system prompt real 14-sep",
+      "chars": 55157,
+      "bytes": 56123,
+      "tokens": 13805
+    },
+    {
+      "pieza": "20 tools reales 14-sep",
+      "chars": 37389,
+      "bytes": 37507,
+      "tokens": 9062
+    },
+    {
+      "pieza": "FIJO real 14-sep (system+tools)",
+      "chars": 92546,
+      "bytes": 93630,
+      "tokens": 22800
+    }
+  ],
+  "catalogo_real_tokens": 793,
+  "catalogo_base_tokens": 174,
+  "coste_mcp_como_catalogo_tokens": 619,
+  "coste_mcp_completos_tokens": 1973,
+  "fijo_real_14sep_tokens": 22800,
+  "fuente": "/home/jokoalmi/.hermes/sessions/request_dump_20260914_172635_d00cc0_20260914_223309_841438.json",
+  "nota": "medido con tokenizador local; framing ~67 tok por pieza"
+}

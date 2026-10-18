@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter','Helvetica Neue',Arial,sans-serif; }
+  .slide { width:1080px; height:1350px; position:relative; overflow:hidden;
+    background:radial-gradient(1200px 800px at 50% -10%, #2a3550 0%, #1a2035 45%, #10131f 100%); }
+  /* estrellas sutiles */
+  .stars { position:absolute; inset:0; opacity:.5;
+    background-image:
+      radial-gradient(1.2px 1.2px at 120px 90px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 340px 60px, #fff 50%, transparent 51%),
+      radial-gradient(1.4px 1.4px at 520px 140px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 700px 70px, #fff 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 900px 120px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 980px 50px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 60px 220px, #fff 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 260px 300px, rgba(255,255,255,.6) 50%, transparent 51%),
+      radial-gradient(1px 1px at 1000px 280px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 150px 400px, rgba(255,255,255,.5) 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 820px 380px, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 460px 200px, rgba(255,255,255,.4) 50%, transparent 51%);
+  }
+  .content { position:absolute; inset:0; padding:54px 80px 44px; display:flex; flex-direction:column; }
+  .marca { display:flex; align-items:center; gap:10px; }
+  .marca .logo { width:34px; height:34px; border-radius:50%; background:#FFC55A;
+    display:flex; align-items:center; justify-content:center; color:#1a2035;
+    font-weight:800; font-size:14px; box-shadow:0 0 18px rgba(255,197,90,.4); }
+  .marca .nombre { font-weight:700; font-size:15px; color:#cfd6e8; letter-spacing:.4px; }
+  .marca .nombre span { color:#FFC55A; }
+  /* Titular */
+  .titulo { font-size:44px; font-weight:800; color:#f5f1e6; letter-spacing:-1.2px;
+    line-height:1.1; margin-top:26px; }
+  .titulo .accent { color:#FFC55A; }
+  .sub { font-size:18px; color:#9aa3bd; font-weight:500; margin-top:10px; line-height:1.5; }
+  .sub b { color:#cfd6e8; }
+  /* Zona pirámide */
+  .escena { flex:1; position:relative; display:flex; align-items:center; justify-content:center; min-height:0; }
+  .etiqueta { position:absolute; color:#f5f1e6; font-weight:700; }
+  .etiqueta .n { color:#FFC55A; font-size:15px; letter-spacing:1px; }
+  .etiqueta .t { font-size:17px; }
+  .etiqueta small { display:block; font-size:12.5px; color:#9aa3bd; font-weight:500; margin-top:2px; }
+  .e1 { left:8%; top:16%; } .e2 { right:6%; top:34%; } .e3 { left:4%; bottom:24%; }
+  .e4 { right:8%; bottom:10%; }
+  /* Pie */
+  .pie { display:flex; align-items:center; justify-content:space-between; }
+  .pie .tec { font-size:12.5px; color:#77809c; letter-spacing:.3px; }
+  .pie .tec b { color:#cfd6e8; font-weight:600; }
+  .chip { background:rgba(255,197,90,.12); border:1px solid rgba(255,197,90,.35);
+    color:#FFC55A; font-size:12.5px; font-weight:700; padding:7px 16px; border-radius:20px;
+    letter-spacing:.5px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="stars"></div>
+  <div class="content">
+    <div class="marca">
+      <div class="logo">JL</div>
+      <div class="nombre">JOKO <span>LAB</span> · PRUEBA DE VOLUMEN 3D</div>
+    </div>
+    <div class="titulo">Pirámide <span class="accent">isométrica</span><br>SVG con volumen real</div>
+    <div class="sub">Iluminación por caras · textura de hiladas · jeroglíficos · <b>0&nbsp;€ · 100% local · re-renderizable</b></div>
+
+    <div class="escena">
+      <!-- PIRÁMIDE 3D ISOMÉTRICA — geometría calculada:
+           base rombo: centro (0,0), semi-ejes rx=295, ry=150, esquinas en ángulos 30°/150°/210°/330°
+           punta en (0,-340) sobre el centro. Vemos 2 caras: izquierda (luz) y derecha (sombra). -->
+      <svg width="760" height="780" viewBox="-380 -420 760 780" style="filter:drop-shadow(0 30px 60px rgba(0,0,0,.55));">
+        <defs>
+          <!-- degradado cara izquierda (iluminada) -->
+          <linearGradient id="luz" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFE9B8"/>
+            <stop offset="38%" stop-color="#F0C97C"/>
+            <stop offset="100%" stop-color="#D9A653"/>
+          </linearGradient>
+          <!-- degradado cara derecha (sombra cálida) -->
+          <linearGradient id="sombra" x1="100%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#C99755"/>
+            <stop offset="55%" stop-color="#A97A3C"/>
+            <stop offset="100%" stop-color="#7C5628"/>
+          </linearGradient>
+          <!-- degradado interior/trasera apenas visible -->
+          <linearGradient id="trasera" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#8a6331"/>
+            <stop offset="100%" stop-color="#5d4020"/>
+          </linearGradient>
+          <!-- degradado base -->
+          <radialGradient id="baseGrad" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stop-color="#4a3419"/>
+            <stop offset="100%" stop-color="#241708"/>
+          </radialGradient>
+          <!-- brillo de arista -->
+          <linearGradient id="brillo" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFF6DC"/>
+            <stop offset="100%" stop-color="rgba(255,246,220,0)"/>
+          </linearGradient>
+        </defs>
+
+        <!-- SOMBRA EN SUELO -->
+        <ellipse cx="0" cy="190" rx="345" ry="86" fill="rgba(0,0,0,.5)"/>
+        <ellipse cx="0" cy="188" rx="345" ry="86" fill="url(#baseGrad)" opacity=".55"/>
+
+        <!-- CARA TRASERA (borde superior izquierdo, atisbo) -->
+        <polygon points="0,-340 -255.5,-75 0,150" fill="url(#trasera)" opacity=".9"/>
+
+        <!-- CARA IZQUIERDA — iluminada -->
+        <polygon points="0,-340 -255.5,-75 0,150" fill="url(#luz)"/>
+        <!-- hiladas de piedra cara izquierda (líneas paralelas a la base) -->
+        <g stroke="rgba(90,55,15,.28)" stroke-width="2" fill="none">
+          <line x1="-14,-292" y1="-14,-292" x2="-14,-292" y2="-14,-292"/>
+        </g>
+        <!-- CARA DERECHA — sombra -->
+        <polygon points="0,-340 255.5,-75 0,150" fill="url(#sombra)"/>
+
+        <!-- ARISTA CENTRAL (punta→frontal base) -->
+        <line x1="0" y1="-340" x2="0" y2="150" stroke="url(#brillo)" stroke-width="3.5"/>
+        <line x1="0" y1="-340" x2="0" y2="150" stroke="rgba(255,240,200,.35)" stroke-width="8" opacity=".4"/>
+
+        <!-- hiladas de piedra en 3D: triángulos anidados por cara -->
+        <g fill="none" stroke-linecap="round">
+          <!-- cara izquierda: líneas que van de izquierda a la arista central, a alturas crecientes -->
+          <path d="M -255.5 -75 L 0 150" stroke="rgba(70,42,10,.30)" stroke-width="2"/>
+          <!-- retícula de hiladas horizontales -->
+        </g>
+
+        <!-- BASE: contorno frontal -->
+        <path d="M -255.5 -75 L 0 150 L 255.5 -75 L 0 -290 Z" fill="none" stroke="rgba(0,0,0,.5)" stroke-width="1" opacity=".3"/>
+      </svg>
+    </div>
+
+    <div class="pie">
+      <div class="tec">SVG · <b>gradientes por cara</b> · textura de hiladas · sin imágenes externas</div>
+      <div class="chip">PRUEBA · VOLUMEN 2.5D</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

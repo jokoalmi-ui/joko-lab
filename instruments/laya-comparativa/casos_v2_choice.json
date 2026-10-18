@@ -1,0 +1,349 @@
+{
+ "meta": {
+  "set": "v2-choice",
+  "semilla": 20260923,
+  "total": 20
+ },
+ "casos": [
+  {
+   "id": "cho-01",
+   "origen": "generado",
+   "interno": false,
+   "campo": "año",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — 195 a.C. (Agatho). Año: 2019. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es el año de 195 a.C.?",
+   "opciones": [
+    "2009",
+    "2019",
+    "2003",
+    "1996"
+   ],
+   "gt": "2019"
+  },
+  {
+   "id": "cho-02",
+   "origen": "generado",
+   "interno": false,
+   "campo": "familia olfativa",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Barberia - Agua de Colonia Concentrada (Alvarez Gómez). Año: 2012. Familia olfativa: Cítrica. Concentración: Cologne. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la familia olfativa de Barberia - Agua de Colonia Concentrada?",
+   "opciones": [
+    "Acuática",
+    "Cítrica",
+    "Amaderada",
+    "Oriental"
+   ],
+   "gt": "Cítrica"
+  },
+  {
+   "id": "cho-03",
+   "origen": "generado",
+   "interno": false,
+   "campo": "año",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Reflection Man (Amouage). Año: 2006. Familia olfativa: Floral. Concentración: EDP. Género: masculino."
+   },
+   "pregunta": "¿Cuál es el año de Reflection Man?",
+   "opciones": [
+    "2007",
+    "2009",
+    "2006",
+    "2005"
+   ],
+   "gt": "2006"
+  },
+  {
+   "id": "cho-04",
+   "origen": "generado",
+   "interno": false,
+   "campo": "año",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Triumph of Bacchus (Eau de Parfum) (Argos). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es el año de Triumph of Bacchus (Eau de Parfum)?",
+   "opciones": [
+    "2016",
+    "2019",
+    "2007",
+    "2014"
+   ],
+   "gt": "2019"
+  },
+  {
+   "id": "cho-05",
+   "origen": "generado",
+   "interno": false,
+   "campo": "concentración",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Lavish (Boadicea the Victorious). Año: 2019. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la concentración de Lavish?",
+   "opciones": [
+    "Parfum",
+    "EDT",
+    "EDP",
+    "Cologne"
+   ],
+   "gt": "EDP"
+  },
+  {
+   "id": "cho-06",
+   "origen": "generado",
+   "interno": false,
+   "campo": "concentración",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — CH Men Africa (Carolina Herrera). Año: 2015. Familia olfativa: Amaderada. Concentración: EDT. Género: masculino."
+   },
+   "pregunta": "¿Cuál es la concentración de CH Men Africa?",
+   "opciones": [
+    "Parfum",
+    "EDT",
+    "EDP",
+    "Cologne"
+   ],
+   "gt": "EDT"
+  },
+  {
+   "id": "cho-07",
+   "origen": "generado",
+   "interno": false,
+   "campo": "concentración",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Quattro Pizzi (Casamorati). Año: 2024. Familia olfativa: Oriental. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la concentración de Quattro Pizzi?",
+   "opciones": [
+    "EDT",
+    "EDP",
+    "Parfum",
+    "Cologne"
+   ],
+   "gt": "EDP"
+  },
+  {
+   "id": "cho-08",
+   "origen": "generado",
+   "interno": false,
+   "campo": "año",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Town & Country (Clive Christian). Año: 2023. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es el año de Town & Country?",
+   "opciones": [
+    "1995",
+    "2019",
+    "2023",
+    "2001"
+   ],
+   "gt": "2023"
+  },
+  {
+   "id": "cho-09",
+   "origen": "generado",
+   "interno": false,
+   "campo": "familia olfativa",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Silver Mountain Water (Creed). Año: 1995. Familia olfativa: Aromática. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la familia olfativa de Silver Mountain Water?",
+   "opciones": [
+    "Aromática",
+    "Amaderada",
+    "Fougère",
+    "Acuática"
+   ],
+   "gt": "Aromática"
+  },
+  {
+   "id": "cho-10",
+   "origen": "generado",
+   "interno": false,
+   "campo": "familia olfativa",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Dior Homme (2005) (Dior). Año: 2005. Familia olfativa: Floral. Concentración: EDT. Género: masculino."
+   },
+   "pregunta": "¿Cuál es la familia olfativa de Dior Homme (2005)?",
+   "opciones": [
+    "Floral",
+    "Cítrica",
+    "Chipre",
+    "Amaderada"
+   ],
+   "gt": "Floral"
+  },
+  {
+   "id": "cho-11",
+   "origen": "generado",
+   "interno": false,
+   "campo": "concentración",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Divine Vanille (Essential Parfums). Año: 2019. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la concentración de Divine Vanille?",
+   "opciones": [
+    "Parfum",
+    "Cologne",
+    "EDP",
+    "EDT"
+   ],
+   "gt": "EDP"
+  },
+  {
+   "id": "cho-12",
+   "origen": "generado",
+   "interno": false,
+   "campo": "concentración",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Fougère Royale (2010) (Eau de Parfum) (Houbigant). Año: 2010. Familia olfativa: Fougère. Concentración: EDP. Género: masculino."
+   },
+   "pregunta": "¿Cuál es la concentración de Fougère Royale (2010) (Eau de Parfum)?",
+   "opciones": [
+    "EDP",
+    "Parfum",
+    "EDT",
+    "Cologne"
+   ],
+   "gt": "EDP"
+  },
+  {
+   "id": "cho-13",
+   "origen": "generado",
+   "interno": false,
+   "campo": "familia olfativa",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Paragon (Initio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la familia olfativa de Paragon?",
+   "opciones": [
+    "Fougère",
+    "Aromática",
+    "Oriental",
+    "Floral"
+   ],
+   "gt": "Floral"
+  },
+  {
+   "id": "cho-14",
+   "origen": "generado",
+   "interno": false,
+   "campo": "familia olfativa",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Hayat (Kemi). Año: 2014. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la familia olfativa de Hayat?",
+   "opciones": [
+    "Floral",
+    "Cuero",
+    "Amaderada",
+    "Oriental"
+   ],
+   "gt": "Floral"
+  },
+  {
+   "id": "cho-15",
+   "origen": "generado",
+   "interno": false,
+   "campo": "familia olfativa",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Angels' Share (Eau de Parfum) (Kilian). Año: 2020. Familia olfativa: Gourmand. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la familia olfativa de Angels' Share (Eau de Parfum)?",
+   "opciones": [
+    "Floral",
+    "Chipre",
+    "Acuática",
+    "Gourmand"
+   ],
+   "gt": "Gourmand"
+  },
+  {
+   "id": "cho-16",
+   "origen": "generado",
+   "interno": false,
+   "campo": "concentración",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Vanagloria (Laboratorio Olfattivo). Año: 2021. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la concentración de Vanagloria?",
+   "opciones": [
+    "EDT",
+    "Cologne",
+    "EDP",
+    "Parfum"
+   ],
+   "gt": "EDP"
+  },
+  {
+   "id": "cho-17",
+   "origen": "generado",
+   "interno": false,
+   "campo": "familia olfativa",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Encre Noire à L'Extrême (Lalique). Año: 2015. Familia olfativa: Amaderada. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la familia olfativa de Encre Noire à L'Extrême?",
+   "opciones": [
+    "Aromática",
+    "Chipre",
+    "Fougère",
+    "Amaderada"
+   ],
+   "gt": "Amaderada"
+  },
+  {
+   "id": "cho-18",
+   "origen": "generado",
+   "interno": false,
+   "campo": "año",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Adam & Eve's Dress (Lorenzo Pazzaglia). Año: 2020. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es el año de Adam & Eve's Dress?",
+   "opciones": [
+    "2008",
+    "2020",
+    "2025",
+    "1988"
+   ],
+   "gt": "2020"
+  },
+  {
+   "id": "cho-19",
+   "origen": "generado",
+   "interno": false,
+   "campo": "concentración",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Cherry Fever (Lunio). Año: 2022. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es la concentración de Cherry Fever?",
+   "opciones": [
+    "EDP",
+    "Parfum",
+    "EDT",
+    "Cologne"
+   ],
+   "gt": "EDP"
+  },
+  {
+   "id": "cho-20",
+   "origen": "generado",
+   "interno": false,
+   "campo": "año",
+   "state": {
+    "texto": "FICHA DE COLECCIÓN — Turmeric Latte (Perfume) (Lush). Año: 2019. Familia olfativa: Floral. Concentración: EDP. Género: unisex."
+   },
+   "pregunta": "¿Cuál es el año de Turmeric Latte (Perfume)?",
+   "opciones": [
+    "2015",
+    "2006",
+    "2019",
+    "2022"
+   ],
+   "gt": "2019"
+  }
+ ]
+}

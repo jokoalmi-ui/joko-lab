@@ -1,0 +1,55 @@
+id: RULE-004
+type: RULE
+decision_origin: herencia
+status: activo
+version: 1
+created: '2026-07-29'
+last_validated: '2026-07-29'
+next_review: '2026-10-27'
+expires: '2027-01-25'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-07-29T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-10-27T00:00:00Z
+verified:
+  - by: machine:hermes
+    at: 2026-07-29T00:00:00Z
+sources:
+  - resource: 01-knowledge/objects/DEC-001.yaml
+confidence: 0.99
+confidence_label: ALTA
+evidence: []
+dependencies:
+- DEC-001
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: null
+  baseline: null
+  current: null
+  last_checked: null
+history:
+- date: '2026-07-29'
+  event: created
+- date: '2026-07-31'
+  event: migrated_to_ko
+  note: Migrado de formato YAML plano a Knowledge Object v1
+body: "Bloquear Qwen 3.5 — descartado (0/5 tests). Ver [[DEC-001]] (decisión original)."
+legacy_fields:
+  condicion:
+    tipo_tarea:
+    - cualquiera
+    keywords:
+    - qwen 3.5
+    - qwen3.5
+    - qwen-3.5
+  accion:
+    accion: block
+    razon: 'DEC-001: Qwen 3.5 descartado (0/5 tests). No usar bajo ninguna circunstancia.'
+  prioridad: 95
+  activa: true
+  nota: FATAL. Esta regla tiene prioridad máxima. Ninguna otra regla puede sobreescribirla.
+  validaciones: 5

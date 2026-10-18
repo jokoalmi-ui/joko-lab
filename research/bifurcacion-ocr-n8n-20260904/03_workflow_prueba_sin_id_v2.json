@@ -1,0 +1,855 @@
+{
+ "updatedAt": "2026-07-20T11:36:55.310Z",
+ "createdAt": "2026-06-02T10:23:59.997Z",
+ "name": "Formateador sterling LINUX v2 bifurcacion (prueba)",
+ "description": null,
+ "active": false,
+ "isArchived": false,
+ "nodes": [
+  {
+   "parameters": {
+    "jsCode": "const j=$input.first().json??{};\n\nconst pagina=j.pagina??null;\nconst numeroOrden=j.numero_orden??null;\nconst nombreFichero=j.nombre_fichero??null;\nconst archivoId=j.archivo_id??\"catalogo_actual\";\n\nlet texto=\"\";\n\nif(typeof j.data===\"string\"){\n  texto=j.data;\n}else if(typeof j.body===\"string\"){\n  texto=j.body;\n}else if(typeof j.text===\"string\"){\n  texto=j.text;\n}else if(typeof j.texto===\"string\"){\n  texto=j.texto;\n}else{\n  texto=\"\";\n}\n\ntexto=String(texto)\n  .replace(/\\r/g,\"\\n\")\n  .replace(/\\n{3,}/g,\"\\n\\n\")\n  .replace(/[ \\t]{2,}/g,\" \")\n  .trim();\n\nreturn [{\n  json:{\n    pagina,\n    numero_orden:numeroOrden,\n    nombre_fichero:nombreFichero,\n    archivo_id:archivoId,\n    texto,\n    texto_length:texto.length\n  }\n}];"
+   },
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    -144,
+    80
+   ],
+   "id": "0002c9bf-11c1-4716-80b7-894a5acfc23e",
+   "name": "Code in JavaScript9"
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "http://stirling-pdf:8080/api/v1/convert/pdf/text",
+    "sendQuery": true,
+    "specifyQuery": "json",
+    "jsonQuery": "{\n  \"archivo_id\": \"catalogo_actual\",\n  \"nombre_fichero\": \"Hoja primera prueba_1.pdf\",\n  \"pagina\": 1,\n  \"numero_orden\": 1,\n  \"productos\": [\n    {\n      \"marca\": null,\n      \"modelo\": null,\n      \"nombre\": null,\n      \"sexo\": null,\n      \"genero\": null,\n      \"tipo\": null,\n      \"tamano\": null,\n      \"volumen_ml\": null,\n      \"pvr\": null,\n      \"descuento\": null,\n      \"precio\": null,\n      \"precio_final_calculado\": null,\n      \"condicion\": null,\n      \"notas\": null,\n      \"ean\": null,\n      \"qty\": null,\n      \"texto_origen\": null\n    }\n  ]\n}",
+    "sendHeaders": true,
+    "headerParameters": {
+     "parameters": [
+      {
+       "name": "accept",
+       "value": "*/*"
+      }
+     ]
+    },
+    "sendBody": true,
+    "contentType": "multipart-form-data",
+    "bodyParameters": {
+     "parameters": [
+      {
+       "name": "fileId",
+       "value": "string"
+      },
+      {
+       "name": "outputFormat",
+       "value": "txt"
+      },
+      {
+       "parameterType": "formBinaryData",
+       "name": "fileInput",
+       "inputDataFieldName": "data"
+      }
+     ]
+    },
+    "options": {
+     "response": {
+      "response": {
+       "fullResponse": true,
+       "responseFormat": "text"
+      }
+     }
+    }
+   },
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.4,
+   "position": [
+    640,
+    -256
+   ],
+   "id": "dd3dd290-c73d-4006-8444-86b7397437e2",
+   "name": "HTTP Request REPAIR4"
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "http://stirling-pdf:8080/api/v1/misc/ocr-pdf",
+    "sendBody": true,
+    "contentType": "multipart-form-data",
+    "bodyParameters": {
+     "parameters": [
+      {
+       "parameterType": "formBinaryData",
+       "name": "fileInput",
+       "inputDataFieldName": "data"
+      },
+      {
+       "name": "languages",
+       "value": "spa,eng"
+      },
+      {
+       "name": "ocrType",
+       "value": "force-ocr"
+      },
+      {
+       "name": "ocrRenderType",
+       "value": "hocr"
+      }
+     ]
+    },
+    "options": {}
+   },
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.4,
+   "position": [
+    480,
+    -256
+   ],
+   "id": "e9396206-2b72-429c-a8ea-f0460fc2c400",
+   "name": "HTTP Request"
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "http://ollama:11434/api/generate",
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={\n  \"model\": \"llama31-8b-64k:latest\",\n  \"stream\": false,\n  \"prompt\": \"Extrae los campos de esta línea OCR de un catálogo de perfumes.\\n\\nDevuelve solo JSON válido. No markdown. No explicación.\\n\\nFormato:\\n{\\\"filas\\\":[{\\\"linea_original\\\":\\\"\\\",\\\"marca\\\":\\\"\\\",\\\"modelo\\\":\\\"\\\",\\\"sexo\\\":\\\"\\\",\\\"tipo\\\":\\\"\\\",\\\"tamano\\\":\\\"\\\"}]}\\n\\nReglas:\\n- Devuelve una sola fila.\\n- linea_original debe copiar exactamente la línea recibida, incluyendo precios y símbolos €.\\n- No calcules precios.\\n- No devuelvas pvr.\\n- No devuelvas descuento.\\n- No devuelvas precio.\\n- Si contiene \\\"teint de neige\\\", devuelve {\\\"filas\\\":[]}.\\n- sexo: man, woman o unisex.\\n- tipo: EDC, EDT o EDP.\\n- tamano: 50ml, 90ml, 100ml, 125ml, 150ml, 180ml, etc.\\n- No inventes datos.\\n\\nLínea OCR:\\n{{$json.texto}}\",\n  \"options\": {\n    \"temperature\": 0.1\n  },\n  \"keep_alive\": \"4h\"\n}",
+    "options": {
+     "timeout": 60000
+    }
+   },
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.4,
+   "position": [
+    928,
+    256
+   ],
+   "id": "88931803-6e23-41b6-9fe3-20d1b72b91e9",
+   "name": "HTTP Request2",
+   "retryOnFail": true,
+   "maxTries": 2,
+   "onError": "continueErrorOutput"
+  },
+  {
+   "parameters": {
+    "jsCode": "const items=$input.all();\n\nconst sorted=items.sort((a,b)=>{\n  const ai=a.json.chunk_index??0;\n  const bi=b.json.chunk_index??0;\n  return ai-bi;\n});\n\nlet lineas=[];\n\nfor(const item of sorted){\n  const texto=String(item.json.texto??\"\");\n  const partes=texto.split(/\\r?\\n/);\n\n  for(const parte of partes){\n    const linea=parte.trim();\n    if(!linea) continue;\n\n    const anterior=lineas[lineas.length-1]??\"\";\n\n    // Une líneas partidas tipo:\n    // \"... 100ml 16\" + \"9 €\" => \"... 100ml 169 €\"\n    const anteriorPareceCortado=/\\b\\d+\\s*(?:ml|mI|l|I)\\s+\\d{1,2}$/.test(anterior);\n    const lineaPareceRestoPrecio=/^\\d{1,2}\\s*€$/.test(linea);\n\n    if(anteriorPareceCortado&&lineaPareceRestoPrecio){\n      lineas[lineas.length-1]=anterior+linea.replace(/\\s+/g,\"\");\n    }else{\n      lineas.push(linea);\n    }\n  }\n}\n\nreturn [{\n  json:{\n    archivo_id:sorted[0]?.json.archivo_id??\"catalogo_actual\",\n    total_chunks:sorted.length,\n    texto:lineas.join(\"\\n\")\n  }\n}];"
+   },
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    48,
+    80
+   ],
+   "id": "dab563de-7e15-420b-9f51-be11fd315031",
+   "name": "Code in JavaScript2"
+  },
+  {
+   "parameters": {},
+   "type": "n8n-nodes-base.manualTrigger",
+   "typeVersion": 1,
+   "position": [
+    -192,
+    -256
+   ],
+   "id": "5ebb41ae-4253-4121-95df-7cf95130fa96",
+   "name": "When clicking ‘Execute workflow’"
+  },
+  {
+   "parameters": {
+    "fileSelector": "/files/VENTAS/CONVERTIR/*",
+    "options": {}
+   },
+   "type": "n8n-nodes-base.readWriteFile",
+   "typeVersion": 1.1,
+   "position": [
+    -16,
+    -256
+   ],
+   "id": "d92688d7-12f6-4560-b941-4e7c224c9ad1",
+   "name": "Read/Write Files from Disk"
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "http://pdf-cleaner:8000/preprocess-ocr",
+    "sendBody": true,
+    "contentType": "multipart-form-data",
+    "bodyParameters": {
+     "parameters": [
+      {
+       "parameterType": "formBinaryData",
+       "name": "fileInput",
+       "inputDataFieldName": "data"
+      }
+     ]
+    },
+    "options": {
+     "response": {
+      "response": {
+       "responseFormat": "file"
+      }
+     }
+    }
+   },
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.4,
+   "position": [
+    304,
+    -256
+   ],
+   "id": "f9cb89fa-84ef-4924-9ba0-eb08d3dd9c8e",
+   "name": "HTTP Request5"
+  },
+  {
+   "parameters": {
+    "jsCode": "const items=$input.all();const lineas=[];for(const item of items){const texto=String(item.json.texto??\"\");for(const lineaRaw of texto.split(/\\r?\\n/)){const linea=lineaRaw.trim();if(!linea)continue;const anterior=lineas[lineas.length-1]??\"\";const anteriorCortado=/\\b\\d+\\s*(?:ml|mI|l|I)\\s+\\d{1,2}$/.test(anterior);const restoPrecio=/^\\d{1,2}\\s*€$/.test(linea);if(anteriorCortado&&restoPrecio){lineas[lineas.length-1]=anterior+linea.replace(/\\s+/g,\"\");}else{lineas.push(linea);}}}const lineasProducto=lineas.filter(linea=>/\\b(?:EDT|EDP|EDC|edt|edp|edc|Parfum|P)\\b/.test(linea)&&/\\b\\d+\\s*(?:ml|mI|l|I)\\b/i.test(linea));return lineasProducto.map((linea,index)=>({json:{archivo_id:items[0]?.json.archivo_id??\"catalogo_actual\",linea_id:index+1,total_lineas:lineasProducto.length,linea_original:linea,texto:linea}}));"
+   },
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    224,
+    80
+   ],
+   "id": "20874185-1439-4a92-bf96-f427e7a60054",
+   "name": "Prepara las lineas para IA"
+  },
+  {
+   "parameters": {
+    "jsCode": "const items=$input.all();function parseJson(raw){if(typeof raw===\"object\"&&raw!==null)return raw;if(typeof raw!==\"string\")return null;let txt=raw.trim().replace(/^```json\\s*/i,\"\").replace(/^```\\s*/i,\"\").replace(/```$/i,\"\").trim();try{return JSON.parse(txt)}catch(e){return null}}function getLLMText(json){return json.output??json.text??json.response??json.result??json.answer??json.completion??json.data??json.ollama?.response??null}function clean(v){return String(v??\"\").trim()}function normalizarMarca(v){let m=clean(v);m=m.replace(/^Acqua di Par\\s*a$/i,\"Acqua di Parma\");m=m.replace(/^Acqua di Par\\b/i,\"Acqua di Parma\");m=m.replace(/^Bvigari$/i,\"Bvlgari\");m=m.replace(/^Bvigari\\b/i,\"Bvlgari\");m=m.replace(/^Christian ior$/i,\"Christian Dior\");m=m.replace(/^Christian ior\\b/i,\"Christian Dior\");m=m.replace(/^ior$/i,\"Dior\");m=m.replace(/^iesel$/i,\"Diesel\");m=m.replace(/^iesel\\b/i,\"Diesel\");m=m.replace(/^ucci$/i,\"Gucci\");m=m.replace(/^ucci\\b/i,\"Gucci\");m=m.replace(/^Giorgio Ar\\s*ani$/i,\"Giorgio Armani\");m=m.replace(/^Giorgio Ar\\s*ani\\b/i,\"Giorgio Armani\");m=m.replace(/^laia$/i,\"Alaia\");m=m.replace(/^ikos$/i,\"Nikos\");m=m.replace(/^ike$/i,\"Nike\");return m}function normalizarModelo(modelo,linea){let m=clean(modelo);m=m.replace(/\\bPanare\\b/gi,\"Panarea\");m=m.replace(/\\bversidn\\b/gi,\"versión\");m=m.replace(/\\bversién\\b/gi,\"versión\");m=m.replace(/\\bDafiada\\b/gi,\"Dañada\");m=m.replace(/\\bDafada\\b/gi,\"Dañada\");m=m.replace(/\\bDanada\\b/gi,\"Dañada\");if(/Leather/i.test(linea)&&/^Acqua di Parma/i.test(linea))m=\"Leather (T)\";if(/Edicion Especial 2017|Edición Especial 2017/i.test(linea))m=\"Peonia Nobile Edición Especial 2017\";return m}function normalizarTamano(v){const txt=clean(v).replace(/\\s+/g,\"\").replace(/mI$/i,\"ml\");const match=txt.match(/^(\\d+)(ml|mI|l|I)$/i);if(!match)return txt;return`${match[1]}ml`}function normalizarLineaPrecio(linea){return String(linea??\"\").replace(/\\bB5E\\b/gi,\"55 €\").replace(/\\bB5€\\b/gi,\"55 €\").replace(/\\bS5E\\b/gi,\"55 €\").replace(/\\bS5€\\b/gi,\"55 €\").replace(/\\bB5\\b/gi,\"55\").replace(/\\bS5\\b/gi,\"55\").replace(/€E\\b/gi,\"€\")}function extraerPreciosDesdeLinea(linea){const texto=normalizarLineaPrecio(linea);const matches=[...texto.matchAll(/\\b\\d+\\s*(?:ml|mI|l|I)\\b/gi)];if(matches.length===0)return{pvr:null,precio_original:null,revision:true,motivo_revision:\"No se encontró tamaño\",linea_normalizada:texto};const matchTamano=matches[matches.length-1];const despuesTamano=texto.slice(matchTamano.index+matchTamano[0].length);const numeros=(despuesTamano.match(/\\d+(?:[.,]\\d+)?/g)||[]).map(n=>Number(n.replace(\",\",\".\"))).filter(n=>!Number.isNaN(n));if(numeros.length===0)return{pvr:null,precio_original:null,revision:true,motivo_revision:\"No se encontraron importes después del tamaño\",linea_normalizada:texto};const precio_original=numeros[numeros.length-1];const pvr=numeros.length>1?numeros[0]:null;let revision=false;let motivo_revision=\"\";if(precio_original>=600){revision=true;motivo_revision=\"Precio muy alto; revisar OCR\"}if(pvr!==null&&precio_original>pvr){revision=true;motivo_revision=\"Precio mayor que PVR; revisar\"}return{pvr,precio_original,revision,motivo_revision,linea_normalizada:texto}}function fallbackDesdeLinea(linea){const t=clean(linea);const sexoMatch=t.match(/\\b(man|woman|unisex)\\b/i);const tipoMatch=t.match(/\\b(EDC|EDT|EDP)\\b/i);const tamanoMatch=t.match(/\\b\\d+\\s*(?:ml|mI|l|I)\\b/i);const sexo=sexoMatch?sexoMatch[1].toLowerCase():\"REVISAR\";const tipo=tipoMatch?tipoMatch[1].toUpperCase():\"REVISAR\";const tamano=tamanoMatch?normalizarTamano(tamanoMatch[0]):\"REVISAR\";let antes=sexoMatch?t.slice(0,sexoMatch.index).trim():t;const marcasMulti=[\"Abercrombie & Fitch\",\"Acqua di Parma\",\"Adolfo Dominguez\",\"Agent Provocateur\",\"Al Haramain\",\"Alvarez Gomez\",\"Angel Schlesser\",\"Antonio Banderas\",\"Armand Basi\",\"BDK Parfums\",\"Boadicea the Victorious\",\"Bottega Veneta\",\"Britney Spears\",\"Calvin Klein\",\"Carner Barcelona\",\"Carolina Herrera\",\"Christian Dior\",\"Dolce & Gabbana\",\"Donna Karan\",\"Elizabeth Arden\",\"Etat Libre D'Orange\",\"Floris London\",\"Francesca Bianchi\",\"French Avenue\",\"Gianfranco Ferré\",\"Giorgio Armani\",\"Giorgio Beverly Hills\",\"Gloria Vanderbilt\",\"Guy Laroche\",\"Helena Rubinstein\",\"Jean Paul Gaultier\",\"Louis Vuitton\",\"Maison Margiela\",\"Narciso Rodriguez\",\"Paco Rabanne\",\"Tom Ford\",\"Yves Saint Laurent\"];let marca=\"\";for(const candidata of marcasMulti){if(antes.toLowerCase().startsWith(candidata.toLowerCase()+\" \")){marca=candidata;break}}if(!marca){const partes=antes.split(/\\s+/).filter(Boolean);marca=partes[0]??\"REVISAR\"}let modelo=antes.replace(new RegExp(\"^\"+marca.replace(/[.*+?^${}()|[\\]\\\\]/g,\"\\\\$&\")+\"\\\\s*\",\"i\"),\"\").trim();if(!modelo)modelo=\"REVISAR\";return{marca:normalizarMarca(marca),modelo:normalizarModelo(modelo,t),sexo,tipo,tamano}}const salida=[];for(const item of items){const raw=getLLMText(item.json);const data=parseJson(raw);let filaIA=null;if(data&&Array.isArray(data.filas)&&data.filas.length>0)filaIA=data.filas[0];const lineaBase=clean(item.json.texto??item.json.linea_original??filaIA?.linea_original??\"\");if(lineaBase.toLowerCase().includes(\"teint de neige\"))continue;const fb=fallbackDesdeLinea(lineaBase);const linea_original=clean(filaIA?.linea_original??lineaBase);let marca=normalizarMarca(filaIA?.marca??fb.marca);let modelo=normalizarModelo(filaIA?.modelo??fb.modelo,linea_original);let sexo=clean(filaIA?.sexo??fb.sexo).toLowerCase();let tipo=clean(filaIA?.tipo??fb.tipo).toUpperCase();let tamano=normalizarTamano(filaIA?.tamano??fb.tamano);let revision_extraccion=false;let motivo_extraccion=\"\";if(item.json.error){revision_extraccion=true;motivo_extraccion=\"HTTP/Ollama no respondió a tiempo; extraído por código desde la línea original\"}else if(!filaIA){revision_extraccion=true;motivo_extraccion=\"La IA no devolvió JSON útil; extraído por código desde la línea original\"}if(!linea_original){revision_extraccion=true;motivo_extraccion=motivo_extraccion||\"No se conservó línea original\"}if(!marca||!modelo||!sexo||!tipo||!tamano||marca===\"REVISAR\"||modelo===\"REVISAR\"||sexo===\"REVISAR\"||tipo===\"REVISAR\"||tamano===\"REVISAR\"){revision_extraccion=true;motivo_extraccion=motivo_extraccion||\"Campos incompletos; revisar extracción\"}const precios=extraerPreciosDesdeLinea(linea_original);salida.push({json:{ia_item:item.json.ia_item??null,marca,modelo,sexo,tipo,tamano,pvr:precios.pvr,precio_original:precios.precio_original,precio:precios.precio_original===null?null:precios.precio_original+5,revision_precio:precios.revision||precios.precio_original===null,revision_extraccion,motivo_revision:precios.motivo_revision||\"\",motivo_extraccion,linea_original,linea_normalizada:precios.linea_normalizada||linea_original}})}return salida;"
+   },
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1328,
+    240
+   ],
+   "id": "0c9e1631-cee4-4043-ba2a-c724afafbb0d",
+   "name": "Calcula precios"
+  },
+  {
+   "parameters": {
+    "aggregate": "aggregateAllItemData",
+    "destinationFieldName": "perfumes",
+    "options": {}
+   },
+   "type": "n8n-nodes-base.aggregate",
+   "typeVersion": 1,
+   "position": [
+    960,
+    64
+   ],
+   "id": "e2479fe1-b1ea-4b3d-9420-6074a7acb533",
+   "name": "Junta los perfumes"
+  },
+  {
+   "parameters": {
+    "jsCode": "const perfumes=$json.perfumes||[];\n\nfunction escapeHtml(value){\n  return String(value??\"\")\n    .replace(/&/g,\"&amp;\")\n    .replace(/</g,\"&lt;\")\n    .replace(/>/g,\"&gt;\")\n    .replace(/\"/g,\"&quot;\")\n    .replace(/'/g,\"&#039;\");\n}\n\nif(!Array.isArray(perfumes)||perfumes.length===0){\n  const html='<!doctype html><html><head><meta charset=\"utf-8\"></head><body><h1>Sin perfumes válidos</h1></body></html>';\n  const binaryData=await this.helpers.prepareBinaryData(Buffer.from(html,\"utf8\"),\"catalogo_perfumes.html\",\"text/html\");\n  return[{json:{error:true,motivo:\"No hay perfumes en $json.perfumes\",total_perfumes:0,fileName:\"catalogo_perfumes.html\",html},binary:{data:binaryData}}];\n}\n\nconst filas=perfumes.map(p=>`<tr><td>${escapeHtml(p.marca)}</td><td>${escapeHtml(p.modelo)}</td><td>${escapeHtml(p.sexo)}</td><td>${escapeHtml(p.tipo)}</td><td>${escapeHtml(p.tamano)}</td><td class=\"precio\">${escapeHtml(p.precio)} €</td></tr>`).join(\"\");\n\nconst notas=`<div class=\"notas\"><p><strong>Los perfumes tardan aprox. 1 mes en llegar. Se pagan por anticipado. Portes gratis a partir de 300€ con GLS asegurado.</strong></p><p><strong>Nota 1:</strong> La \"T\" significa \"téster\" o \"probador\". Perfume original, nuevo, en caja blanca, marrón o sin caja y, a veces, sin tapón ornamental.</p><p><strong>Nota 2:</strong> Las referencias sombreadas en gris son regulares precintados, tal y como los compras en las perfumerías.</p><p><strong>Nota 3:</strong> La \"R Caja Dañada\" significa \"Regular con la caja dañada\". Perfume y caja original, nuevo, con la caja dañada y/o sin celofán.</p><p><strong>Nota 4:</strong> Las marcas sombreadas en color cian son marcas de perfumes nicho y árabes.</p></div>`;\n\nconst html=`<!doctype html><html><head><meta charset=\"utf-8\"><style>@page{size:A4;margin:10mm}body{font-family:Arial,sans-serif;font-size:8.5px;color:#111;background:#fff;margin:0}h1{font-size:16px;margin:0 0 6px 0;text-align:center}.total{margin:0 0 6px 0;text-align:center;font-weight:bold}.notas{font-size:8.3px;margin:0 0 8px 0;border:1px solid #bbb;padding:5px;background:#f7f7f7}.notas p{margin:0 0 3px 0;line-height:1.25}.notas p:last-child{margin-bottom:0}table{width:100%;border-collapse:collapse;table-layout:fixed}th,td{border:1px solid #999;padding:3px;text-align:left;vertical-align:top;word-wrap:break-word}th{background:#eee;font-weight:bold}.marca{width:20%}.modelo{width:44%}.sexo{width:8%}.tipo{width:8%}.tamano{width:10%}.precio{width:10%;text-align:right;font-weight:bold}</style></head><body><h1>Catálogo perfumes</h1><p class=\"total\">Total perfumes: ${perfumes.length}</p>${notas}<table><thead><tr><th class=\"marca\">Marca</th><th class=\"modelo\">Modelo</th><th class=\"sexo\">Sexo</th><th class=\"tipo\">Tipo</th><th class=\"tamano\">Tamaño</th><th class=\"precio\">Precio</th></tr></thead><tbody>${filas}</tbody></table></body></html>`;\n\nconst binaryData=await this.helpers.prepareBinaryData(Buffer.from(html,\"utf8\"),\"catalogo_perfumes.html\",\"text/html\");\n\nreturn[{json:{fileName:\"catalogo_perfumes.html\",total_perfumes:perfumes.length,html},binary:{data:binaryData}}];"
+   },
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1152,
+    64
+   ],
+   "id": "4ecfd414-3689-4083-b291-c4a45af402cd",
+   "name": "crea listado en HTML"
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "http://stirling-pdf:8080/api/v1/convert/html/pdf",
+    "sendBody": true,
+    "contentType": "multipart-form-data",
+    "bodyParameters": {
+     "parameters": [
+      {
+       "parameterType": "formBinaryData",
+       "name": "fileInput",
+       "inputDataFieldName": "data"
+      }
+     ]
+    },
+    "options": {
+     "response": {
+      "response": {
+       "responseFormat": "file"
+      }
+     }
+    }
+   },
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.4,
+   "position": [
+    1360,
+    64
+   ],
+   "id": "7229aef0-c872-4124-b739-834e00f4a1ec",
+   "name": "HTML a PDF"
+  },
+  {
+   "parameters": {
+    "operation": "write",
+    "fileName": "=/files/VENTAS/SALIDA/catalogo_perfumes_{{$now.format('yyyy-MM-dd_HH-mm-ss')}}.pdf",
+    "options": {}
+   },
+   "type": "n8n-nodes-base.readWriteFile",
+   "typeVersion": 1.1,
+   "position": [
+    1552,
+    64
+   ],
+   "id": "9af2b315-10ec-482d-9f7d-20af51906ba2",
+   "name": "guarda PDF"
+  },
+  {
+   "parameters": {
+    "jsCode": "const items=$input.all();const candidatos=[];function limpiarTexto(value){return String(value??\"\").replace(/\\r/g,\"\\n\").replace(/[ \\t]{2,}/g,\" \").trim();}function pareceProducto(texto){const t=String(texto??\"\").trim();if(!t)return false;if(t.length<15)return false;const lower=t.toLowerCase();if(lower.includes(\"contacto\"))return false;if(lower.includes(\"email\"))return false;if(lower.includes(\"fecha\"))return false;if(lower.includes(\"oferta especial\"))return false;if(lower.includes(\"cube perfumes\"))return false;if(lower.includes(\"marca modelo\"))return false;if(lower.includes(\"descuento\"))return false;if(lower.includes(\"p.v.r\"))return false;const tieneSexo=/\\b(man|woman|unisex)\\b/i.test(t);const matchTamano=t.match(/\\b\\d+\\s*(?:ml|mI|l|I)\\b/i);if(!tieneSexo)return false;if(!matchTamano)return false;const despuesTamano=t.slice(matchTamano.index+matchTamano[0].length);const tienePrecio=/\\d+(?:[.,]\\d+)?\\s*(?:€|E)?/i.test(despuesTamano);if(!tienePrecio)return false;return true;}for(const item of items){const texto=limpiarTexto(item.json.texto??item.json.linea_original??\"\");if(!pareceProducto(texto))continue;candidatos.push({json:{...item.json,texto,linea_original:item.json.linea_original??texto}});}return candidatos.map((item,index)=>({json:{...item.json,ia_item:index+1,texto:String(item.json.texto??item.json.linea_original??\"\").trim(),linea_original:String(item.json.linea_original??item.json.texto??\"\").trim(),total_productos_detectados:candidatos.length}}));"
+   },
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    416,
+    80
+   ],
+   "id": "091f9065-a8bf-466e-abac-0f547cd77466",
+   "name": "FILTRO PRODUCTOS VALIDOS"
+  },
+  {
+   "parameters": {
+    "batchSize": 20,
+    "options": {}
+   },
+   "type": "n8n-nodes-base.splitInBatches",
+   "typeVersion": 3,
+   "position": [
+    624,
+    80
+   ],
+   "id": "87e43e46-121d-4ac6-94bd-d78f1bf65419",
+   "name": "Loop Over Items1"
+  },
+  {
+   "parameters": {
+    "jsCode": "const items=$input.all();const errores=items.map((item,index)=>({index:index+1,ia_item:item.json.ia_item??null,texto:item.json.texto??item.json.linea_original??null,error:item.json.error??item.json,momento:new Date().toISOString()}));const contenido=JSON.stringify({total_errores:errores.length,errores},null,2);const nombre=`errores_ia_${new Date().toISOString().replace(/[:.]/g,\"-\")}.json`;const binaryData=await this.helpers.prepareBinaryData(Buffer.from(contenido,\"utf8\"),nombre,\"application/json\");return[{json:{fileName:nombre,total_errores:errores.length},binary:{data:binaryData}}];"
+   },
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    1328,
+    544
+   ],
+   "id": "8d120d0f-6aa9-4b0f-ad05-89939f7af8a2",
+   "name": "PREPARA ERRORES IA"
+  },
+  {
+   "parameters": {
+    "operation": "write",
+    "fileName": "=={{'/files/VENTAS/SALIDA/ERRORES/'+$json.fileName}}",
+    "options": {}
+   },
+   "type": "n8n-nodes-base.readWriteFile",
+   "typeVersion": 1.1,
+   "position": [
+    1632,
+    544
+   ],
+   "id": "9d462274-de2f-42c1-adc3-6e2e045f5afa",
+   "name": "RECOGE ERRORES"
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "https://graph.facebook.com/v25.0/1136739769520021/media",
+    "sendHeaders": true,
+    "headerParameters": {
+     "parameters": [
+      {
+       "name": "Authorization",
+       "value": "Bearer EAAUZBQFTxq3MBRZBW6oqMNQEhvnSMLk6kt1SKSz15IH3AVBELXxxbCWWmhaQO9fhlCLE3g1GTrL3vZB2OC1TFnZB9b11338iXrgGtezysiN7JvuNoB6ZBc64j0r7WXNTRpEOKwfSoRIpjKzISGkJDNNijjDxlnP7tVZCKT2rxATLx829wN2xip50qdiCgAFBdPxWO2RjqpVfUc5yBFaNHkmyqRCjifCkHwgEenKWmJE1OKZCu49jJRGiETAXQv6CQBqcEbr7sqHkhHDBBnkP0cZD"
+      }
+     ]
+    },
+    "sendBody": true,
+    "contentType": "multipart-form-data",
+    "bodyParameters": {
+     "parameters": [
+      {
+       "name": "messaging_product",
+       "value": "whatsapp"
+      },
+      {
+       "parameterType": "formBinaryData",
+       "name": "file",
+       "inputDataFieldName": "data"
+      }
+     ]
+    },
+    "options": {}
+   },
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.4,
+   "position": [
+    1744,
+    64
+   ],
+   "id": "9b2e51a5-fd44-4a7b-aabd-6be470dfc306",
+   "name": "upload media"
+  },
+  {
+   "parameters": {
+    "method": "POST",
+    "url": "https://graph.facebook.com/v25.0/1136739769520021/messages",
+    "sendHeaders": true,
+    "headerParameters": {
+     "parameters": [
+      {
+       "name": "Authorization",
+       "value": "Bearer EAAUZBQFTxq3MBRx7tVDISpEkRSS2gZB3FFne62IbUrgQ0emBodVhsYWRYptkRqP2ZAQpcKS9P7WrKZClIuWZBPouRNExvp3FEVnnhwSryirUzZAL7vrdEFc5YPHHjlHlUhjv3a5BgvjJZATGuA2WujYghRDW5xwlmMr8uOEfZAH9xCIy1N0dIbI6L8MhZCDnuuZBiOCyAQExvbZAmVhA6yDUnye0y4XTqkVCPQH4pqyGIctwQe6V1pqVMnrFgOASjarCDxmGXwS6qJGpOaX92ljwgZDZD"
+      }
+     ]
+    },
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={\n  \"messaging_product\": \"whatsapp\",\n  \"to\": \"34677016459\",\n  \"type\": \"document\",\n  \"document\": {\n    \"id\": \"{{$json.id}}\",\n    \"filename\": \"Listado de perfumes.pdf\",\n    \"caption\": \"Aquí tienes el PDF\"\n  }\n}",
+    "options": {}
+   },
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.4,
+   "position": [
+    1968,
+    64
+   ],
+   "id": "c743f260-d23a-49c5-925c-8b3ff2db5f79",
+   "name": "Send document message"
+  },
+  {
+   "parameters": {
+    "fileSelector": "/files/VENTAS/SALIDA/*",
+    "options": {}
+   },
+   "type": "n8n-nodes-base.readWriteFile",
+   "typeVersion": 1.1,
+   "position": [
+    1280,
+    -256
+   ],
+   "id": "b6fc292d-3632-40a6-b057-a4ff5056d045",
+   "name": "lee PDF"
+  },
+  {
+   "id": "5e119bd6-0cb1-42e4-9eeb-42bdc92d013a",
+   "name": "PRUEBA texto nativo",
+   "type": "n8n-nodes-base.httpRequest",
+   "typeVersion": 4.4,
+   "position": [
+    0,
+    0
+   ],
+   "parameters": {
+    "method": "POST",
+    "url": "http://stirling-pdf:8080/api/v1/convert/pdf/text",
+    "sendQuery": true,
+    "specifyQuery": "json",
+    "jsonQuery": "{\n  \"archivo_id\": \"catalogo_actual\",\n  \"nombre_fichero\": \"Hoja primera prueba_1.pdf\",\n  \"pagina\": 1,\n  \"numero_orden\": 1,\n  \"productos\": [\n    {\n      \"marca\": null,\n      \"modelo\": null,\n      \"nombre\": null,\n      \"sexo\": null,\n      \"genero\": null,\n      \"tipo\": null,\n      \"tamano\": null,\n      \"volumen_ml\": null,\n      \"pvr\": null,\n      \"descuento\": null,\n      \"precio\": null,\n      \"precio_final_calculado\": null,\n      \"condicion\": null,\n      \"notas\": null,\n      \"ean\": null,\n      \"qty\": null,\n      \"texto_origen\": null\n    }\n  ]\n}",
+    "sendHeaders": true,
+    "headerParameters": {
+     "parameters": [
+      {
+       "name": "accept",
+       "value": "*/*"
+      }
+     ]
+    },
+    "sendBody": true,
+    "contentType": "multipart-form-data",
+    "bodyParameters": {
+     "parameters": [
+      {
+       "name": "fileId",
+       "value": "string"
+      },
+      {
+       "name": "outputFormat",
+       "value": "txt"
+      },
+      {
+       "parameterType": "formBinaryData",
+       "name": "fileInput",
+       "inputDataFieldName": "data"
+      }
+     ]
+    },
+    "options": {
+     "response": {
+      "response": {
+       "fullResponse": true,
+       "responseFormat": "text"
+      }
+     }
+    }
+   }
+  },
+  {
+   "id": "6b182ea2-1827-4b21-810b-9c3d902b8243",
+   "name": "¿PDF con texto nativo?",
+   "type": "n8n-nodes-base.if",
+   "typeVersion": 2.3,
+   "position": [
+    0,
+    0
+   ],
+   "parameters": {
+    "conditions": {
+     "options": {
+      "caseSensitive": true,
+      "leftValue": "",
+      "typeValidation": "strict",
+      "version": 3
+     },
+     "conditions": [
+      {
+       "id": "bedf1628-06ee-41a7-b5c8-01879391c1ad",
+       "leftValue": "={{ $json.texto_length }}",
+       "rightValue": 200,
+       "operator": {
+        "type": "number",
+        "operation": "gt"
+       }
+      }
+     ],
+     "combinator": "and"
+    },
+    "options": {}
+   }
+  },
+  {
+   "id": "d8fb35ed-39b7-4bf6-b688-75772fca8f51",
+   "name": "Code in JavaScript9 OCR",
+   "type": "n8n-nodes-base.code",
+   "typeVersion": 2,
+   "position": [
+    0,
+    0
+   ],
+   "parameters": {
+    "jsCode": "const j=$input.first().json??{};\n\nconst pagina=j.pagina??null;\nconst numeroOrden=j.numero_orden??null;\nconst nombreFichero=j.nombre_fichero??null;\nconst archivoId=j.archivo_id??\"catalogo_actual\";\n\nlet texto=\"\";\n\nif(typeof j.data===\"string\"){\n  texto=j.data;\n}else if(typeof j.body===\"string\"){\n  texto=j.body;\n}else if(typeof j.text===\"string\"){\n  texto=j.text;\n}else if(typeof j.texto===\"string\"){\n  texto=j.texto;\n}else{\n  texto=\"\";\n}\n\ntexto=String(texto)\n  .replace(/\\r/g,\"\\n\")\n  .replace(/\\n{3,}/g,\"\\n\\n\")\n  .replace(/[ \\t]{2,}/g,\" \")\n  .trim();\n\nreturn [{\n  json:{\n    pagina,\n    numero_orden:numeroOrden,\n    nombre_fichero:nombreFichero,\n    archivo_id:archivoId,\n    texto,\n    texto_length:texto.length\n  }\n}];"
+   }
+  }
+ ],
+ "connections": {
+  "HTTP Request": {
+   "main": [
+    [
+     {
+      "node": "HTTP Request REPAIR4",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Code in JavaScript2": {
+   "main": [
+    [
+     {
+      "node": "Prepara las lineas para IA",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "HTTP Request2": {
+   "main": [
+    [
+     {
+      "node": "Calcula precios",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "PREPARA ERRORES IA",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "When clicking ‘Execute workflow’": {
+   "main": [
+    [
+     {
+      "node": "Read/Write Files from Disk",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "HTTP Request5": {
+   "main": [
+    [
+     {
+      "node": "HTTP Request",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Prepara las lineas para IA": {
+   "main": [
+    [
+     {
+      "node": "FILTRO PRODUCTOS VALIDOS",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Calcula precios": {
+   "main": [
+    [
+     {
+      "node": "Loop Over Items1",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Junta los perfumes": {
+   "main": [
+    [
+     {
+      "node": "crea listado en HTML",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "crea listado en HTML": {
+   "main": [
+    [
+     {
+      "node": "HTML a PDF",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "HTML a PDF": {
+   "main": [
+    [
+     {
+      "node": "guarda PDF",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "FILTRO PRODUCTOS VALIDOS": {
+   "main": [
+    [
+     {
+      "node": "Loop Over Items1",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Loop Over Items1": {
+   "main": [
+    [
+     {
+      "node": "Junta los perfumes",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "HTTP Request2",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "PREPARA ERRORES IA": {
+   "main": [
+    [
+     {
+      "node": "RECOGE ERRORES",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "upload media": {
+   "main": [
+    [
+     {
+      "node": "Send document message",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "lee PDF": {
+   "main": [
+    []
+   ]
+  },
+  "guarda PDF": {
+   "main": [
+    [
+     {
+      "node": "upload media",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Read/Write Files from Disk": {
+   "main": [
+    [
+     {
+      "node": "PRUEBA texto nativo",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "PRUEBA texto nativo": {
+   "main": [
+    [
+     {
+      "node": "Code in JavaScript9",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Code in JavaScript9": {
+   "main": [
+    [
+     {
+      "node": "¿PDF con texto nativo?",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "¿PDF con texto nativo?": {
+   "main": [
+    [
+     {
+      "node": "Code in JavaScript2",
+      "type": "main",
+      "index": 0
+     }
+    ],
+    [
+     {
+      "node": "HTTP Request5",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "HTTP Request REPAIR4": {
+   "main": [
+    [
+     {
+      "node": "Code in JavaScript9 OCR",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  },
+  "Code in JavaScript9 OCR": {
+   "main": [
+    [
+     {
+      "node": "Code in JavaScript2",
+      "type": "main",
+      "index": 0
+     }
+    ]
+   ]
+  }
+ },
+ "settings": {
+  "executionOrder": "v1",
+  "binaryMode": "separate",
+  "timeSavedMode": "fixed",
+  "timezone": "Europe/Madrid",
+  "callerPolicy": "workflowsFromSameOwner",
+  "executionTimeout": 3600,
+  "availableInMCP": false
+ },
+ "staticData": null,
+ "meta": {
+  "templateCredsSetupCompleted": true
+ },
+ "nodeGroups": [],
+ "pinData": {
+  "When clicking ‘Execute workflow’": [
+   {
+    "json": {},
+    "pairedItem": {
+     "item": 0
+    }
+   }
+  ]
+ },
+ "versionId": "2c5b0cbb-765f-4297-8748-faa10f65ee4e",
+ "activeVersionId": null,
+ "versionCounter": 168,
+ "triggerCount": 0,
+ "sourceWorkflowId": null,
+ "tags": [],
+ "shared": [
+  {
+   "updatedAt": "2026-06-02T10:24:00.003Z",
+   "createdAt": "2026-06-02T10:24:00.003Z",
+   "role": "workflow:owner",
+   "workflowId": "viOMJPiqszOrDhGO",
+   "projectId": "NOaCdbV1ZtnFiiNb",
+   "project": {
+    "updatedAt": "2026-04-20T10:47:30.835Z",
+    "createdAt": "2026-03-25T18:59:50.517Z",
+    "id": "NOaCdbV1ZtnFiiNb",
+    "name": "Joseba jokoalmi@gmail.com <jokoalmi@gmail.com>",
+    "type": "personal",
+    "icon": null,
+    "description": null,
+    "customTelemetryTags": [],
+    "creatorId": "f7d5f91b-130e-4240-a036-1fbce36a0d45"
+   }
+  }
+ ],
+ "versionMetadata": {
+  "name": null,
+  "description": null
+ }
+}

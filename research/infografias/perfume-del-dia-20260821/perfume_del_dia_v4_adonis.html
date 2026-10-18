@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Playfair+Display:wght@700;900&family=Inter:wght@400;600;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { width: 1080px; height: 1350px; overflow: hidden; font-family: 'Inter', sans-serif; }
+  .ficha {
+    width: 1080px; height: 1350px; position: relative;
+    background: url('adonis_fondo.png') center/cover no-repeat;
+    display: flex; flex-direction: column; padding: 34px 44px;
+  }
+  .overlay {
+    position: absolute; inset: 0; background: rgba(255, 245, 235, 0.38);
+  }
+  .contenido { position: relative; z-index: 2; display: flex; flex-direction: column; height: 100%; }
+  .sello {
+    position: absolute; top: 30px; right: 40px; width: 130px; height: 130px;
+    border: 3px dashed #c2185b; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    transform: rotate(12deg); background: rgba(255,255,255,0.75);
+  }
+  .sello span { font-family: 'Caveat', cursive; font-size: 21px; color: #c2185b; text-align: center; line-height: 1.15; font-weight: 600; }
+  .fecha { font-size: 22px; color: #5d4037; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+  h1 {
+    font-family: 'Playfair Display', serif; font-weight: 900; font-size: 62px;
+    background: linear-gradient(135deg, #c2185b, #8e0e3a);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    line-height: 1.05; margin: 4px 0 0px; text-shadow: 0 2px 12px rgba(255,255,255,0.6);
+  }
+  .casa { font-size: 26px; color: #5d4037; font-weight: 800; letter-spacing: 1px; }
+  .hero { display: flex; align-items: center; gap: 28px; margin: 16px 0 14px; }
+  .frasco { width: 240px; height: 240px; object-fit: contain; filter: drop-shadow(0 10px 24px rgba(0,0,0,0.35)); background: rgba(255,255,255,0.7); border-radius: 24px; padding: 12px; }
+  .datos-rapidos { display: flex; flex-direction: column; gap: 7px; flex: 1; }
+  .chip {
+    background: rgba(255,255,255,0.82); border-radius: 14px; padding: 7px 14px;
+    display: flex; justify-content: space-between; align-items: center; font-size: 16px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+  }
+  .chip b { color: #8e0e3a; font-size: 18px; }
+  .rating { background: #ffecb3; }
+  .piramide {
+    background: rgba(255,255,255,0.82); border-radius: 18px; padding: 14px 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12); margin-bottom: 12px;
+  }
+  .piramide h3 { font-size: 20px; color: #8e0e3a; margin-bottom: 8px; font-weight: 800; }
+  .nivel { display: flex; align-items: center; gap: 14px; margin: 6px auto; border-radius: 10px; padding: 5px 12px; font-size: 15px; color: #fff; font-weight: 600; }
+  .n1 { width: 78%; background: #ef9a9a; margin-left: 11%; }
+  .n2 { width: 100%; background: #c2185b; }
+  .n3 { width: 78%; background: #6d4c41; margin-left: 11%; }
+  .nivel span { background: rgba(255,255,255,0.25); border-radius: 8px; padding: 2px 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; width: 76px; text-align: center; flex-shrink: 0; }
+  .tarjetas { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .tarjeta {
+    background: rgba(255,255,255,0.86); border-radius: 16px; padding: 10px 16px;
+    border-top: 5px solid #c2185b; box-shadow: 0 3px 12px rgba(0,0,0,0.10);
+    font-size: 16px; line-height: 1.4;
+  }
+  .tarjeta b { color: #8e0e3a; }
+  .tarjeta h4 { font-size: 17px; color: #c2185b; margin-bottom: 3px; }
+  .pie {
+    margin-top: auto; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(255,255,255,0.8); border-radius: 14px; padding: 9px 16px;
+    font-family: 'Caveat', cursive; font-size: 20px; color: #5d4037;
+  }
+  .qr { width: 60px; height: 60px; border-radius: 8px; }
+  .sprays { font-family: 'Inter'; font-size: 15px; font-weight: 600; color: #c2185b; }
+  .nota { font-size: 13px; color: #795548; font-family: 'Inter'; font-style: italic; }
+</style>
+</head>
+<body>
+<div class="ficha">
+  <div class="overlay"></div>
+  <div class="contenido">
+    <div class="sello"><span>ELECCIÓN<br>DEL LAB<br>21·08</span></div>
+    <div class="fecha">Perfume del día · Viernes 21 de agosto</div>
+    <h1>ADONIS<br>AWAKENS</h1>
+    <div class="casa">Argos Fragrances · Artist Series II</div>
+
+    <div class="hero">
+      <img class="frasco" src="adonis_frasco_real.png" alt="Frasco Adonis Awakens">
+      <div class="datos-rapidos">
+        <div class="chip"><span>👤 Género</span><b>Unisex</b></div>
+        <div class="chip"><span>📅 Año</span><b>2022</b></div>
+        <div class="chip"><span>⚗️ Concentración</span><b>Eau de Parfum</b></div>
+        <div class="chip"><span>🌸 Familia</span><b>Floral dulce</b></div>
+        <div class="chip"><span>⏱️ Longevidad</span><b>8-12 h</b></div>
+        <div class="chip"><span>🌊 Estela</span><b>Fuerte</b></div>
+        <div class="chip rating"><span>⭐ Comunidad</span><b>4.2 / 5 (6.544)</b></div>
+      </div>
+    </div>
+
+    <div class="piramide">
+      <h3>🌺 Pirámide olfativa</h3>
+      <div class="nivel n1"><span>Salida</span>Bergamota · Pomelo · Pimienta rosa</div>
+      <div class="nivel n2"><span>Corazón</span>Rosa de Bulgaria · Jazmín Sambac · Vainilla · Castaña · Frambuesa</div>
+      <div class="nivel n3"><span>Fondo</span>Rosa · Cashmere Wood · Sándalo de Mysore</div>
+    </div>
+
+    <div class="tarjetas">
+      <div class="tarjeta">
+        <h4>🎨 La historia</h4>
+        Inspirado en <b>«El despertar de Adonis»</b> de John William Waterhouse (pintor prerrafaelita).
+        Un homenaje romántico y opulento: cítricos brillantes que despiertan, un corazón de rosa
+        búlgara y frambuesa, y un fondo cremoso de sándalo que permanece.
+      </div>
+      <div class="tarjeta">
+        <h4>💶 Precio oficial</h4>
+        <b>238,95 €</b> / 100 ml (web oficial Argos) · También en 30 ml.
+        Perfumista: no revelado públicamente por la casa.
+      </div>
+      <div class="tarjeta">
+        <h4>🗣️ Lo que dice la comunidad</h4>
+        «Muy cremoso, rosa blanca y melocotón; percibo un toque de chocolate y lavanda.
+        Es una fragancia femenina para mí, pero un hombre puede lucirla en una noche de verano
+        con un lino. 10/10.» <i>(reseña de Fragrantica, traducida)</i>
+      </div>
+      <div class="tarjeta">
+        <h4>💡 Si te gusta, prueba</h4>
+        <b>Swiss Arabian Rose 01 Oil</b> (5 notas compartidas · 5.0/5) ·
+        <b>Van Cleef &amp; Arpels Rose Rouge</b> (13 acordes · 4.1/5) ·
+        <b>Issey Miyake L'Eau d'Issey Rose &amp; Rose</b> (12 acordes · 3.9/5)
+      </div>
+    </div>
+
+    <div class="pie">
+      <div>
+        <span class="sprays">☀️ 18 °C · despejado · 3-4 sprays</span><br>
+        <span class="nota">fondo: arte generado con ComfyUI · SDXL local</span>
+      </div>
+      <img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.fragrantica.com/perfume/Argos/Adonis-Awakens-80245.html" alt="QR Fragrantica">
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+[
+  {
+    "id": "r3-medium",
+    "instr": null,
+    "origen": "ronda 3c (orden rotado, posicion 1): think='medium' primera de la pasada para medir el posible calentamiento.",
+    "think": "medium"
+  },
+  {
+    "id": "r3-high",
+    "instr": null,
+    "origen": "ronda 3c (orden rotado, posicion 2): think='high' en segunda posicion.",
+    "think": "high"
+  },
+  {
+    "id": "r3-low",
+    "instr": null,
+    "origen": "ronda 3c (orden rotado, posicion 3): think='low' en tercera posicion.",
+    "think": "low"
+  }
+]

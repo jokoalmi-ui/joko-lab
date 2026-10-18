@@ -1,0 +1,2 @@
+# Sitemaps
+Sitemap: https://pafory.com/sitemap.xml

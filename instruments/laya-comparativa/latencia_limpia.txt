@@ -1,0 +1,147 @@
+=== LATENCIA LIMPIA v3 — INICIO 2026-09-23 22:13:24 CEST ===
+uptime: up 3 hours, 14 minutes
+GPU inicial (used,total,util,temp): 809 MiB, 12282 MiB, 0 %, 38
+
+--- granite  (ibm/granite4.2:8b-q4_K_M) ---
+warmup 22:13:24
+ollama /api/ps tras warmup (nombre, size_vram, size) :
+    ibm/granite4.2:8b-q4_K_M vram= 10.38 GB total= 18.05 GB
+GPU en este tramo: 10835 MiB, 0 %, 42
+medicion 22:13:43
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : 765503df4e84a0a7
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : ollama
+
+METRICAS GLOBALES
+  n=299  accuracy=0.9197  Brier=0.0803  ECE(5 bins)=0.0803
+  confianza media=0.4482  sesgo=-0.4716  confiado_y_fallado=10  seguro_y_acertado=124
+  latencia P50=1550.0 ms  P95=2421.0 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.9939 Brier=0.0061 ECE=0.0061 sesgo=-0.5583
+  B: n=8 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=-1.0
+  D: n=6 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=0.0
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  cuantificador    n= 20 accuracy=0.6500 Brier=0.3500 ECE=0.3500
+  multihop         n= 22 accuracy=0.6818 Brier=0.3182 ECE=0.3182
+  distractor       n= 25 accuracy=0.8000 Brier=0.2000 ECE=0.2000
+  aguja            n=  8 accuracy=0.8750 Brier=0.1250 ECE=0.1250
+  no_aparece       n= 25 accuracy=0.8800 Brier=0.1200 ECE=0.1200
+  soporte_parcial  n= 15 accuracy=0.9333 Brier=0.0667 ECE=0.0667
+  campo_ausente    n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  comparacion      n= 22 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  grounding        n= 13 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  literal          n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  memoria          n=  6 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  negacion         n= 15 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  parafrasis       n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  trampa           n=  8 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  valor_vecino     n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_ollama_v3.json
+exit=0 fin 22:23:15
+AVISO: no se detecto fichero de resultados nuevo para granite
+
+--- qwen  (qwen2.5:7b) ---
+warmup 22:23:15
+ollama /api/ps tras warmup (nombre, size_vram, size) :
+    qwen2.5:7b vram= 5.71 GB total= 5.71 GB
+GPU en este tramo: 6386 MiB, 0 %, 73
+medicion 22:23:30
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : 765503df4e84a0a7
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : ollama
+
+METRICAS GLOBALES
+  n=299  accuracy=0.7993  Brier=0.1674  ECE(5 bins)=0.1701
+  confianza media=0.5353  sesgo=-0.264  confiado_y_fallado=34  seguro_y_acertado=119
+  latencia P50=266.8 ms  P95=443.7 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.8712 Brier=0.0822 ECE=0.0942 sesgo=-0.3598
+  B: n=8 accuracy=0.125 Brier=0.6416 ECE=0.7437 sesgo=0.6187
+  D: n=6 accuracy=1.0 Brier=0.0004 ECE=0.0083 sesgo=-0.0083
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  soporte_parcial  n= 15 accuracy=0.0667 Brier=0.4467 ECE=0.6133
+  trampa           n=  8 accuracy=0.1250 Brier=0.6416 ECE=0.7437
+  cuantificador    n= 20 accuracy=0.5500 Brier=0.3980 ECE=0.4300
+  multihop         n= 22 accuracy=0.5909 Brier=0.4318 ECE=0.4545
+  comparacion      n= 22 accuracy=0.7273 Brier=0.2727 ECE=0.2727
+  negacion         n= 15 accuracy=0.7333 Brier=0.2602 ECE=0.2633
+  distractor       n= 25 accuracy=0.8000 Brier=0.2100 ECE=0.2200
+  aguja            n=  8 accuracy=0.8750 Brier=0.1250 ECE=0.1250
+  no_aparece       n= 25 accuracy=0.9200 Brier=0.0722 ECE=0.0760
+  valor_vecino     n= 30 accuracy=0.9333 Brier=0.0514 ECE=0.0583
+  literal          n= 30 accuracy=0.9667 Brier=0.0334 ECE=0.0350
+  campo_ausente    n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  grounding        n= 13 accuracy=1.0000 Brier=0.0192 ECE=0.0385
+  memoria          n=  6 accuracy=1.0000 Brier=0.0004 ECE=0.0083
+  parafrasis       n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_ollama_qwen257b_v3.json
+exit=0 fin 22:24:56
+AVISO: no se detecto fichero de resultados nuevo para qwen
+
+--- r1  (deepseek-r1-distill-qwen-14b:latest) ---
+warmup 22:24:56
+ollama /api/ps tras warmup (nombre, size_vram, size) :
+    deepseek-r1-distill-qwen-14b:latest vram= 10.26 GB total= 16.27 GB
+GPU en este tramo: 10720 MiB, 0 %, 72
+medicion 22:25:27
+====================================================================
+LAYA-COMPARATIVA
+====================================================================
+casos        : 299 de 299
+casos sha256 : d86aed0600a3f1b7
+golden set   : 765503df4e84a0a7
+fichero      : casos_v3_noul.json
+subtipo      : {'literal': 30, 'parafrasis': 30, 'valor_vecino': 30, 'campo_ausente': 30, 'negacion': 15, 'soporte_parcial': 15, 'grounding': 13, 'memoria': 6, 'trampa': 8, 'multihop': 22, 'comparacion': 22, 'distractor': 25, 'no_aparece': 25, 'cuantificador': 20, 'aguja': 8}
+backend      : ollama
+
+METRICAS GLOBALES
+  n=299  accuracy=0.7893  Brier=0.2081  ECE(5 bins)=0.2094
+  confianza media=0.497  sesgo=-0.2923  confiado_y_fallado=37  seguro_y_acertado=112
+  latencia P50=2005.0 ms  P95=2821.6 ms
+
+POR BLOQUE (A=grounding, B=trampas, D=memoria)
+  A: n=163 accuracy=0.9571 Brier=0.0429 ECE=0.0429 sesgo=-0.4847
+  B: n=8 accuracy=0.25 Brier=0.6544 ECE=0.7 sesgo=0.45
+  D: n=6 accuracy=1.0 Brier=0.0 ECE=0.0 sesgo=0.0
+
+POR SUBTIPO (ordenado de peor a mejor: aqui se rompe un modelo)
+  trampa           n=  8 accuracy=0.2500 Brier=0.6544 ECE=0.7000
+  no_aparece       n= 25 accuracy=0.3200 Brier=0.6800 ECE=0.6800
+  comparacion      n= 22 accuracy=0.4091 Brier=0.5909 ECE=0.5909
+  cuantificador    n= 20 accuracy=0.5500 Brier=0.4500 ECE=0.4500
+  soporte_parcial  n= 15 accuracy=0.6000 Brier=0.4000 ECE=0.4000
+  aguja            n=  8 accuracy=0.7500 Brier=0.2500 ECE=0.2500
+  distractor       n= 25 accuracy=0.8000 Brier=0.2000 ECE=0.2000
+  multihop         n= 22 accuracy=0.8182 Brier=0.1818 ECE=0.1818
+  valor_vecino     n= 30 accuracy=0.9667 Brier=0.0333 ECE=0.0333
+  campo_ausente    n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  grounding        n= 13 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  literal          n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  memoria          n=  6 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  negacion         n= 15 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+  parafrasis       n= 30 accuracy=1.0000 Brier=0.0000 ECE=0.0000
+
+resultados escritos: /home/jokoalmi/joko-lab/instruments/laya-comparativa/resultados_ollama_deepseekr1distillqwen14blatest_v3.json
+exit=0 fin 22:35:57
+AVISO: no se detecto fichero de resultados nuevo para r1
+
+=== FIN 2026-09-23 22:35:57 CEST ===
+GPU final: 10761 MiB, 24 %, 78

@@ -1,0 +1,12 @@
+geometria del DOM  : .frasco-figura -> x 54 y 84 w 296 h 450 (CSS)  x1.00 = 54,84,296,450 px del PNG
+=== VISIBILIDAD DEL FRASCO (medido) ===
+ficha              : r_b2.png  (1080x1350)
+figura             : hesperide_figura.png  (1586x2412)  [796719 px tapon / 1033036 px cuerpo]
+rect del frasco    : x 54-350  y 84-534  (296x450)
+fondo contiguo     : L mediana 173.1
+tapon              : L 70.1  -> contraste 4.20:1
+cuerpo             : L 224.5  -> contraste 1.71:1
+pixeles claros     : 17974 de 133200  -> 13.5 %  (L>225 dentro del rect)
+
+(sin umbrales: esto es medicion, no veredicto; usa --min-claros / --min-contraste)
+json -> vis_b.json

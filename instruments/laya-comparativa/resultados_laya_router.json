@@ -1,0 +1,355 @@
+{
+ "meta": {
+  "backend": "laya",
+  "modelo_ollama": null,
+  "num_ctx": null,
+  "checkpoint": "router",
+  "casos": 27,
+  "casos_sha256": "f5bb2a1f6b3d5cde5d182eecb71dd9cac26e45f90b97289e758a62289d84af48",
+  "set": "v1",
+  "fichero_casos": "casos_noul.json",
+  "golden_set_sha256": "2a2da99cc7001128f9c58bc2812f78a590f1a13aa34195191dafa01934fbe1d1",
+  "ejecutado": "2026-09-23T23:20:30+02:00",
+  "host": {
+   "python": "Python 3.11.16",
+   "laya": true,
+   "torch": true,
+   "gpu": "NVIDIA RTX A2000 12GB, 6421, 12282, 52",
+   "ollama": [
+    "ibm/granite4.2:8b-q4_K_M",
+    "qwen2.5:7b",
+    "deepseek-r1-distill-qwen-14b:latest"
+   ],
+   "disco_home": "/dev/nvme0n1p2   468G   307G  137G  70% /",
+   "fecha": "mié 23 sept 2026 23:20:30 CEST"
+  }
+ },
+ "metricas_globales": {
+  "n": 27,
+  "accuracy": 0.6667,
+  "brier": 0.2674,
+  "ece5": 0.2773,
+  "ece15_proveedor": 0.2959,
+  "conf_media": 0.3462,
+  "sesgo_conf_menos_acierto": -0.3204,
+  "confiado_y_fallado": 1,
+  "seguro_y_acertado": 5,
+  "p50_ms": 34.3,
+  "p95_ms": 137.7
+ },
+ "metricas_por_bloque": {
+  "A": {
+   "n": 13,
+   "accuracy": 0.7692,
+   "brier": 0.1652,
+   "ece5": 0.1962,
+   "ece15_proveedor": 0.2679,
+   "conf_media": 0.6374,
+   "sesgo_conf_menos_acierto": -0.1319,
+   "confiado_y_fallado": 1,
+   "seguro_y_acertado": 5,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "B": {
+   "n": 8,
+   "accuracy": 1.0,
+   "brier": 0.0059,
+   "ece5": 0.0675,
+   "ece15_proveedor": 0.0675,
+   "conf_media": 0.0675,
+   "sesgo_conf_menos_acierto": -0.9325,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  },
+  "D": {
+   "n": 6,
+   "accuracy": 0.0,
+   "brier": 0.8374,
+   "ece5": 0.9128,
+   "ece15_proveedor": 0.9128,
+   "conf_media": 0.0872,
+   "sesgo_conf_menos_acierto": 0.0872,
+   "confiado_y_fallado": 0,
+   "seguro_y_acertado": 0,
+   "p50_ms": null,
+   "p95_ms": null
+  }
+ },
+ "metricas_por_subtipo": {},
+ "errores": 0,
+ "registros": [
+  {
+   "id": "ctx-01",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.996,
+   "motor": "router(auto)->multilingual",
+   "error": null,
+   "ms": 15044.5
+  },
+  {
+   "id": "ctx-02",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.6944,
+   "motor": "router(auto)->multilingual",
+   "error": null,
+   "ms": 29.1
+  },
+  {
+   "id": "ctx-03",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.6723,
+   "motor": "router(auto)->multilingual",
+   "error": null,
+   "ms": 28.9
+  },
+  {
+   "id": "ctx-04",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.1556,
+   "motor": "router(auto)->multilingual",
+   "error": null,
+   "ms": 137.7
+  },
+  {
+   "id": "ctx-05",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.9476,
+   "motor": "router(auto)->multilingual",
+   "error": null,
+   "ms": 28.8
+  },
+  {
+   "id": "ctx-06",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.3711,
+   "motor": "router(auto)->multilingual",
+   "error": null,
+   "ms": 28.6
+  },
+  {
+   "id": "ctx-07",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.8281,
+   "motor": "router(auto)->multilingual",
+   "error": null,
+   "ms": 35.5
+  },
+  {
+   "id": "ctx-08",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0,
+   "motor": "router(auto)->multilingual",
+   "error": null,
+   "ms": 28.7
+  },
+  {
+   "id": "mem-01",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.0625,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 129.4
+  },
+  {
+   "id": "mem-02",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.0975,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.7
+  },
+  {
+   "id": "mem-03",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.2154,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.0
+  },
+  {
+   "id": "mem-04",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.0632,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 33.9
+  },
+  {
+   "id": "mem-05",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.0019,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 137.7
+  },
+  {
+   "id": "mem-06",
+   "bloque": "D",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.0825,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.2
+  },
+  {
+   "id": "trap-01",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0876,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.2
+  },
+  {
+   "id": "trap-02",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0719,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.2
+  },
+  {
+   "id": "trap-03",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.1333,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.2
+  },
+  {
+   "id": "trap-04",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0866,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.3
+  },
+  {
+   "id": "trap-05",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0326,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.4
+  },
+  {
+   "id": "trap-06",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0646,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.4
+  },
+  {
+   "id": "trap-07",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0633,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.5
+  },
+  {
+   "id": "trap-08",
+   "bloque": "B",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.0,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.4
+  },
+  {
+   "id": "ficha-01",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.7588,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 36.0
+  },
+  {
+   "id": "ficha-02",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.8838,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 36.4
+  },
+  {
+   "id": "ficha-03",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.922,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.3
+  },
+  {
+   "id": "ficha-04",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": true,
+   "p": 0.8405,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.3
+  },
+  {
+   "id": "ficha-05",
+   "bloque": "A",
+   "subtipo": null,
+   "gt": false,
+   "p": 0.2155,
+   "motor": "router(auto)->english",
+   "error": null,
+   "ms": 34.8
+  }
+ ]
+}

@@ -1,0 +1,75 @@
+id: RULE-019
+type: RULE
+decision_origin: herencia
+status: activo
+version: 1
+created: '2026-10-09'
+last_validated: '2026-10-09'
+next_review: '2026-11-09'
+expires: '2027-01-09'
+# --- OKF v0.2 · emision aditiva 2026-10-09 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-10-09T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-09T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-10-09T00:00:00Z
+  - by: machine:hermes
+    at: 2026-10-09T00:00:00Z
+sources:
+  - resource: 01-knowledge/objects/DEC-006.yaml
+title: "MoE que no cabe en VRAM: se lanza con la cache de expertos (--moe-cache-mib 512), nunca con 0"
+desc: >-
+  Cuando un modelo MoE no cabe en la GPU y hay que repartir expertos a CPU
+  (-ncmoe), el lanzamiento lleva la cache de expertos de llama.cpp con
+  --moe-cache-mib 512, NO el default 0. La cache guarda en VRAM los expertos que
+  el reparto deja en CPU: si el routing vuelve a pedir el mismo, no se re-copia
+  por PCIe. Medido en el lab (EXP-20261009-008, 09-oct-2026, temp=0, reparto
+  fijo -ngl 99 -ncmoe 28 -c 2048 -ub 128, Qwen3.6-35B-A3B MXFP4 18,9 GiB en RTX
+  A2000 12 GB): entrada estructurada 5,55 -> 8,54 tok/s y prosa 7,54 -> 11,88
+  tok/s, con 3 replicas de C=0 y 3 de C=1024 sin solape y ruido medido 9-11 %.
+  Valor recomendado 512: 256 da 7,47 y 512 da 8,95 en la misma entrada, asi que
+  la saturacion llega ya a 512; 1024 aporta +0-0,5 tok/s a cambio de ~1 GiB de
+  VRAM. -moe-cache-mib 2048 NO arranca (fallo de reserva de los buffers de la
+  cache). Alcance: SOLO para el patron "MoE que no cabe"; con un modelo denso o
+  que cabe entero, la cache sobra y el reparto a CPU no se usa. Limites de la
+  medida (declarados en la DEC-006 y en f1-resultados): se midio con swap al
+  100 % y ComfyUI de fondo, n=3 en 0/1024 y n=1 en 256/512, una sola maquina ->
+  el contraste relativo es valido, la cifra absoluta NO se extrapola. La salida
+  a temp=0 NO es identica entre C=0 y C>0 en prosa (595 vs 597 chars) -> no
+  comparar la calidad del texto entre configuraciones como si fuera la misma
+  corrida. Bloqueo operativo del lanzador: lms load NO expone flags de llama.cpp
+  -> esta ruta exige lanzar llama-server 2.55.0 a mano (LD_LIBRARY_PATH al
+  vendor CUDA) en un puerto propio; el flag solo existe en el runtime
+  llama.cpp 2.55.0 (libllama-common.so.0.6.0) y no toca :1234, Ollama, n8n ni
+  ComfyUI. Si mas adelante un runtime de LM Studio lo expone en lms load, esta
+  regla se simplifica (entonces la DEC-006 se revisa). No sustituye al modelo de
+  trabajo del lab: deja el MoE en el orden de los ~8-12 tok/s, no en los ~40
+  de un modelo que cabe entero.
+confidence: 0.6
+confidence_label: MEDIA
+evidence:
+- 'EXP-20261009-008 (01-knowledge/experiments/EXP-20261009-008-moe-cache-mib/, commit 6bbe675): 11 celdas, mismo fichero y mismos parametros, temp=0; E1 5,55 -> 8,54 tok/s (512: 8,95; 256: 7,47; 1024: 8,54/9,01) y E2 7,54 -> 11,88 tok/s'
+- 'Predicciones del diseno: P1 CONFIRMADA (3/3 C=0 por debajo de 3/3 C=1024, sin solape); P2 FALSADA (la ganancia NO depende de la clase de entrada: prosa +58 %, estructurada +54 %); P3 PARCIAL (monotonia hasta saturar en 512-1024); P4 CONFIRMADA literal (pico de VRAM ~ lo pedido; C=2048 "failed to allocate CUDA0 buffer of size 2147450880"); P5 PARCIAL (determinismo cruzado NO garantizado)'
+- 'Antecedente NO comparable: OBS-111 midio 1,44 tok/s con el quant Q4_K_M de 21,1 GiB, borrado del disco el 02-10-2026 -> la regla vieja ("el offload arranca el modelo, no sirve para trabajar") estaba apoyada en un fichero que ya no existe'
+- 'Verificacion en solo lectura previa (commit 4b1e425): el flag --moe-cache-mib aparece solo en el runtime llama.cpp 2.55.0 y lms load no lo expone'
+- 'OK explicito del usuario (09-oct-2026, Telegram): "1" a "¿creo la RULE derivada de DEC-006?"'
+dependencies:
+- DEC-006
+- RULE-015
+contradicts: []
+superseded_by: null
+domain: ai-architecture
+scope: todo_joko_lab
+monitoring:
+  metric: tok_s_moe_35b_a3b_con_cache
+  baseline: 5.55
+  current: 11.88
+  last_checked: '2026-10-09'
+  log_file: '01-knowledge/experiments/EXP-20261009-008-moe-cache-mib/f1-resultados.md'
+  indicador: 'tok/s del MoE con el reparto de referencia; <8 tok/s con cache = revisar (regresion del runtime o reparto distinto). Si el modelo cabe entero, la regla no aplica.'
+history:
+- date: '2026-10-09'
+  event: created
+  note: 'Derivada de DEC-006 a peticion del usuario ("1"). Misma base de evidencia que la DEC (un solo experimento, n pequeno, swap al 100 %): por eso confidence 0.6 MEDIA y no ALTA.'

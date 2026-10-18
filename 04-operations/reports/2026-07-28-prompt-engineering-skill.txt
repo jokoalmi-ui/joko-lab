@@ -1,0 +1,142 @@
+INFORME DE SKILL — PROMPT ENGINEERING
+=====================================
+Fecha: 2026-07-28
+Skill: prompt-engineering v1.0.0
+Autor: jokoalmi
+Ubicación: ~/.hermes/skills/software-development/prompt-engineering/
+Origen: Ideada en sesión Telegram, formalizada en sesión CLI
+
+═══════════════════════════════════════════════════════════
+1. PROPÓSITO
+═══════════════════════════════════════════════════════════
+
+Convertir la creación de prompts en un proceso sistemático basado en
+evidencia, no en intuición. Cada interacción con un modelo se trata como
+un experimento: hipótesis → prueba → resultado → catálogo.
+
+Cubre tanto modelos locales (LM Studio) como cloud (DeepSeek, Gemini,
+Claude, GPT).
+
+═══════════════════════════════════════════════════════════
+2. CATÁLOGO DE MODELOS LOCALES (8 modelos)
+═══════════════════════════════════════════════════════════
+
+Modelo                  Estilo                  Lo que lo rompe
+──────────────────────────────────────────────────────────────────────
+Dolphin Cyber LoRA      Directo, conversacional JSON como instrucción
+Llama 3.1 Instruct      Function calling nativo Preguntas abiertas
+Gemma 4 12B             Complejo, multi-paso    max_tokens < 400
+DeepSeek R1 14B         Razonamiento paso a paso max_tokens < 2048
+GLM 4.6V Flash          Atómico, 1 instrucción  > 3-4 líneas
+Qwen3 14B               Similar a Gemma         max_tokens < 1024
+Qwen 3.5 9B             EVITAR                  Cualquier tarea no trivial
+Granite 4.1 8B          Tool-use nativo         Por determinar
+
+═══════════════════════════════════════════════════════════
+3. CATÁLOGO CLOUD (5 modelos)
+═══════════════════════════════════════════════════════════
+
+Modelo              Estilo                          Nota
+──────────────────────────────────────────────────────────────────────
+Claude (Anthropic)  Contexto extenso, colaborativo   No testeado en Joko Lab
+Gemini (Google)     Directo, técnico, tablas         No testeado en Joko Lab
+GPT-4o/5 (OpenAI)   Versátil, tolerante              No testeado en Joko Lab
+DeepSeek Cloud      Razonamiento estructurado        Similar a R1 local
+Command R+ (Cohere) RAG y tool-use                   No testeado en Joko Lab
+
+Los modelos cloud están documentados con conocimiento comunitario.
+Pendiente: testearlos en Joko Lab para convertir a E3.
+
+═══════════════════════════════════════════════════════════
+4. PATRONES DE PROMPT
+═══════════════════════════════════════════════════════════
+
+Tipo            Estructura
+──────────────────────────────────────────────────────────────────────
+Razonamiento    "Eres [rol]. Razona paso a paso: 1.Datos 2.Pregunta
+                3.Respuesta. No inventes datos."
+JSON            "Devuelve ÚNICAMENTE un JSON válido. No incluyas
+                explicaciones ni markdown."
+Código          "Escribe código Python. Type hints + docstring +
+                ejemplo de uso. No expliques en texto."
+Creatividad     "Eres [personaje]. Escribe [formato] sobre [tema].
+                Restricciones: [N frases, tono X]. Sin clichés."
+
+═══════════════════════════════════════════════════════════
+5. ANTI-PATRONES CONFIRMADOS
+═══════════════════════════════════════════════════════════
+
+Anti-patrón                                    Modelos afectados
+──────────────────────────────────────────────────────────────────────
+max_tokens < 2048 con reasoning models         Qwen, Gemma, DeepSeek, GLM
+Prompt multi-instrucción a GLM                 GLM 4.6V Flash
+Esperar texto de Llama 3.1 Instruct            Llama 3.1 Instruct
+Usar Qwen 3.5 9B para cualquier tarea          Qwen 3.5 9B (descartado)
+temperature > 0.3 en tareas técnicas           Todos
+Prompt español en modelo solo-inglés           Modelos monolingües
+
+═══════════════════════════════════════════════════════════
+6. EVIDENCIA (35 experimentos)
+═══════════════════════════════════════════════════════════
+
+Archivo: /home/jokoalmi/joko-lab/research/prompt-experiments.md
+Fecha de la comparativa: 26 julio 2026
+Condiciones: temperature=0.7, top_p=0.9, GPU RTX A2000 12GB
+Método: 5 prompts idénticos aplicados a 7 modelos
+
+Modelo                  T1    T2    T3    T4    T5    Resultado
+──────────────────────────────────────────────────────────────────────
+Dolphin Cyber LoRA      ✅    ✅    ✅    ✅    ✅    5/5 — Charlatán
+Llama 3.1 Instruct      ✅    ✅    ✅    ✅    ✅    5/5 — Agente tool-use
+DeepSeek R1 14B         ✅    ✅    ✅    ✅    ✅    5/5 — Pensador
+Gemma 4 12B             ✅    ✅    ✅    ✅    ✅    5/5 — Director Creativo
+GLM 4.6V Flash          ✅    ✅    ✅    ⚠️    ✅    4/5 — Atómico
+Qwen3 14B               ✅    ❌    ✅    ⚠️    ✅    3/5 — Mixto
+Qwen 3.5 9B             ⚠️    ❌    ❌    ⚠️    ❌    0/5 — DESCARTADO
+
+Clasificación LPA de los experimentos:
+  E1 (observado):     27 experimentos
+  E2 (hipótesis):      5 experimentos
+  E3 (validado):       3 experimentos
+    - DeepSeek R1 = Pensador del laboratorio
+    - Gemma 4 = Director Creativo
+    - Qwen 3.5 9B = Descartado
+
+═══════════════════════════════════════════════════════════
+7. CICLO DE OPTIMIZACIÓN (LPA)
+═══════════════════════════════════════════════════════════
+
+PROBAR → REGISTRAR → CLASIFICAR → CATALOGAR
+  │          │           │            │
+  │     prompt-        E1/E2/E3    Si E3 →
+  │   experiments.md               tabla de
+  │                                "Modelos y
+  │                                sus idiomas"
+  └── Prompt v1 → modelo → resultado
+
+═══════════════════════════════════════════════════════════
+8. CONEXIÓN CON JOKO LAB
+═══════════════════════════════════════════════════════════
+
+JL-011 (flujo de conocimiento):
+  Lo aprendido sobre prompts en Perfume IA se aplica al AI Router.
+  El conocimiento no se queda en una sesión.
+
+JL-012 (interiorización):
+  Un patrón no está interiorizado hasta que aparece espontáneamente
+  en un proyecto distinto. Ej: el anti-patrón "max_tokens bajo en
+  reasoning models" se descubrió en Critic Loop y se confirmó en
+  la comparativa de modelos.
+
+═══════════════════════════════════════════════════════════
+9. PENDIENTES
+═══════════════════════════════════════════════════════════
+
+- Testear modelos cloud en Joko Lab (Claude, Gemini, GPT-4o)
+  para convertir conocimiento comunitario en E3
+- Subir la barra de E2: "probado en al menos 2 modelos distintos"
+  (actualmente basta con 1 modelo)
+- Cuando haya 200+ experimentos, integrar búsqueda semántica
+  con embeddings (BGE-M3) para consultas tipo:
+  "¿qué modelo responde mejor JSON con prompts en español?"
+- Añadir modelos nuevos que lleguen a LM Studio

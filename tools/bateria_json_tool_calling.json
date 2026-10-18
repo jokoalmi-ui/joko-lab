@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "nombre": "Batería JSON estricto + tool calling (modelos locales)",
+    "version": "1.0.1",
+    "creado": "2026-09-14",
+    "autor": "jokoalmi",
+    "objetivo": "Medir si un modelo local devuelve JSON válido sin fugas de markdown y si elige/argumenta bien herramientas. Instrumento NUEVO, creado 14-sep-2026 al probar granite-4.2-8b; no existía batería previa de este tipo en el lab.",
+    "reglas_puntuacion": "Cada caso vale 1 si pasa TODAS sus comprobaciones. Se reporta 'pasa/falla' y el motivo concreto de cada fallo."
+  },
+  "casos": [
+    {
+      "id": "json-plano",
+      "tipo": "json",
+      "prompt": "Extrae los datos del siguiente texto y responde ÚNICAMENTE con un objeto JSON, sin texto adicional y sin bloques de código markdown.\n\nTexto: \"Marta vive en Bilbao, tiene 34 años y trabaja como enfermera.\"\n\nCampos exactos: nombre (string), edad (entero), ciudad (string), profesion (string).",
+      "comprueba": {
+        "claves": ["nombre", "edad", "ciudad", "profesion"],
+        "iguales": {"nombre": "Marta", "edad": 34, "ciudad": "Bilbao", "profesion": "enfermera"},
+        "sin_fences": true,
+        "sin_texto_extra": true
+      }
+    },
+    {
+      "id": "json-anidado",
+      "tipo": "json",
+      "prompt": "Responde ÚNICAMENTE con un objeto JSON, sin markdown ni texto adicional, con este contenido: un pedido de cliente \"Talde 3\" con dos elementos: (1) producto \"cafe\", cantidad 2, precio_unitario 8.5; (2) producto \"taza\", cantidad 1, precio_unitario 6.0.\n\nCampos exactos: cliente (string), lineas (array con un objeto por elemento, con las claves producto, cantidad y precio_unitario), total (número, la suma correcta de cantidad*precio_unitario).",
+      "comprueba": {
+        "claves": ["cliente", "lineas", "total"],
+        "tipos": {"lineas": "array", "total": "number"},
+        "longitud": {"lineas": 2},
+        "iguales": {"total": 23.0},
+        "sin_fences": true,
+        "sin_texto_extra": true
+      }
+    },
+    {
+      "id": "json-enum",
+      "tipo": "json",
+      "prompt": "Clasifica el sentimiento del comentario y responde ÚNICAMENTE con un objeto JSON, sin markdown ni texto adicional.\n\nComentario: \"El envío tardó 9 días y la caja llegó aplastada.\"\n\nEl campo sentimiento debe ser EXACTAMENTE uno de estos valores: \"positivo\", \"negativo\", \"neutro\". El campo motivo debe ser un string breve.",
+      "comprueba": {
+        "claves": ["sentimiento", "motivo"],
+        "valor_en": {"sentimiento": {"valores": ["positivo", "negativo", "neutro"], "esperado": "negativo"}},
+        "tipo_claves": {"motivo": "string"},
+        "sin_fences": true,
+        "sin_texto_extra": true
+      }
+    },
+    {
+      "id": "json-nulo-honesto",
+      "tipo": "json",
+      "prompt": "Extrae los datos del texto y responde ÚNICAMENTE con un objeto JSON, sin markdown ni texto adicional. Si un dato NO aparece en el texto, su valor debe ser null. No inventes ningún dato.\n\nTexto: \"El contrato se firmó en Vitoria. Importe total: 1.200 euros.\"\n\nCampos exactos: ciudad (string), importe (entero), fecha_firma (string o null), nombre_firmante (string o null).",
+      "comprueba": {
+        "claves": ["ciudad", "importe", "fecha_firma", "nombre_firmante"],
+        "iguales": {"ciudad": "Vitoria", "importe": 1200, "fecha_firma": null, "nombre_firmante": null},
+        "sin_fences": true,
+        "sin_texto_extra": true
+      }
+    },
+    {
+      "id": "json-numeros-es",
+      "tipo": "json",
+      "prompt": "Responde ÚNICAMENTE con un objeto JSON, sin markdown ni texto adicional. Convierte estas cantidades escritas en texto a número: \"dos mil quinientos veinte\" y \"treinta coma cinco\". Campos exactos: a (entero), b (número decimal).",
+      "comprueba": {
+        "claves": ["a", "b"],
+        "iguales": {"a": 2520, "b": 30.5},
+        "sin_fences": true,
+        "sin_texto_extra": true
+      }
+    },
+    {
+      "id": "tool-eleccion",
+      "tipo": "tool_calling",
+      "prompt": "¿Qué tiempo hace ahora en Getxo?",
+      "herramientas": [
+        {
+          "type": "function",
+          "function": {
+            "name": "consultar_clima",
+            "description": "Devuelve el clima actual de una ciudad. Úsala cuando pregunten por el tiempo.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "ciudad": {"type": "string", "description": "Nombre de la ciudad"},
+                "unidad": {"type": "string", "enum": ["celsius", "fahrenheit"]}
+              },
+              "required": ["ciudad"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "buscar_receta",
+            "description": "Busca recetas de cocina por ingrediente.",
+            "parameters": {
+              "type": "object",
+              "properties": {"ingrediente": {"type": "string"}},
+              "required": ["ingrediente"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "enviar_email",
+            "description": "Envía un email a un destinatario.",
+            "parameters": {
+              "type": "object",
+              "properties": {"destinatario": {"type": "string"}, "asunto": {"type": "string"}},
+              "required": ["destinatario", "asunto"]
+            }
+          }
+        }
+      ],
+      "comprueba": {
+        "herramienta": "consultar_clima",
+        "args_contiene": {"ciudad": "Getxo"}
+      }
+    },
+    {
+      "id": "tool-args",
+      "tipo": "tool_calling",
+      "prompt": "Envía un email a maite@ejemplo.com con el asunto \"Cena del sábado\". No escribas el cuerpo.",
+      "herramientas": [
+        {
+          "type": "function",
+          "function": {
+            "name": "enviar_email",
+            "description": "Envía un email.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "destinatario": {"type": "string"},
+                "asunto": {"type": "string"},
+                "cuerpo": {"type": "string"}
+              },
+              "required": ["destinatario", "asunto"]
+            }
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "listar_bandeja",
+            "description": "Lista los emails recibidos.",
+            "parameters": {"type": "object", "properties": {"limite": {"type": "integer"}}}
+          }
+        }
+      ],
+      "comprueba": {
+        "herramienta": "enviar_email",
+        "args_iguales": {"destinatario": "maite@ejemplo.com", "asunto": "Cena del sábado"}
+      }
+    },
+    {
+      "id": "tool-dos-pasos",
+      "tipo": "tool_calling",
+      "prompt": "Primero mira cuántos cafés de especialidad tengo en la base de datos y luego dime el precio del último que compré. Usa las herramientas que necesites.",
+      "herramientas": [
+        {
+          "type": "function",
+          "function": {
+            "name": "contar_cafes",
+            "description": "Cuenta los cafés guardados en la base de datos.",
+            "parameters": {"type": "object", "properties": {}}
+          }
+        },
+        {
+          "type": "function",
+          "function": {
+            "name": "ultimo_cafe",
+            "description": "Devuelve el último café comprado con su precio.",
+            "parameters": {"type": "object", "properties": {}}
+          }
+        }
+      ],
+      "comprueba": {
+        "herramienta": "contar_cafes",
+        "nota": "En un solo turno basta con que empiece por contar_cafes; la segunda llamada se comprobaría en un turno siguiente (no exigido aquí)."
+      }
+    }
+  ]
+}

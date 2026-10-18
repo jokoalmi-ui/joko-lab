@@ -1,0 +1,50 @@
+MODELO: gemini-3-flash-preview
+
+**ESPECIFICACIÓN TÉCNICA PARA REPLICACIÓN HTML/CSS**
+
+**1) PALETA DE COLORES**
+*   **Fondo de papel:** `#FDF8E9` (Crema suave/Hueso).
+*   **Títulos principales (DBMS):** `#333333` (Gris carbón con textura visual).
+*   **Subtítulos y acentos teal:** `#2D5D62` (Verde azulado oscuro).
+*   **Acentos amarillos/oro:** `#D4A017` (Mostaza para estrellas y líneas de énfasis).
+*   **Texto de cuerpo:** `#1A1A1A` (Negro casi puro).
+*   **Checks y bullets:** `#2D5D62`.
+
+**2) PAPEL**
+*   **Tipo:** Liso (sin cuadrícula ni rayas).
+*   **Color:** `#FDF8E9`.
+*   **Textura:** Sutil ruido de grano de papel (aplicar vía `background-image` con un patrón de ruido al 5% de opacidad).
+*   **Márgenes:** Izquierdo: 80px (espacio para espiral); Derecho: 40px; Superior: 50px; Inferior: 50px.
+
+**3) ESPIRAL**
+*   **Posición:** Izquierda, vertical.
+*   **Color:** Gradiente de `#1A1A1A` a `#4A4A4A` (efecto metálico oscuro).
+*   **Grosor:** 4px por alambre; cada anilla es un doble lazo (estilo "twin loop").
+*   **Número de anillas:** 22-24 pares distribuidos uniformemente.
+*   **Distancia al borde:** 15px desde el borde izquierdo del contenedor.
+
+**4) TIPOGRAFIAS**
+*   **Título principal ("DBMS"):** Tipo *Display Serif* con textura de tiza o dibujo (ej. *Special Elite* o *Rock Salt*); 110px, Bold, `#333333`.
+*   **Subtítulos ("BEGINNER"):** Sans-serif geométrica (ej. *Montserrat* o *Poppins*); 38px, ExtraBold, `#2D5D62`.
+*   **Texto Manuscrito (Cajas y citas):** Script fluida (ej. *Caveat* o *Dancing Script*); 24px, Regular, `#333333`.
+*   **Cuerpo de listas:** Sans-serif limpia (ej. *Open Sans*); 16px, SemiBold, `#1A1A1A`.
+
+**5) ESTRUCTURA (Orden Vertical)**
+1.  **Header:** Título "DBMS" > Subtítulo con flecha central > Texto "Complete Premium Notes" entre 3 líneas radiales amarillas a cada lado.
+2.  **Caja Punteada:** Contenedor con `border: 2px dashed #333333`, `border-radius: 15px`, texto manuscrito centrado.
+3.  **Flujo de Proceso:** 4 bloques horizontales (Icono + Etiqueta) conectados por flechas teal (`display: flex; justify-content: space-around`).
+4.  **Cita:** Texto manuscrito entre comillas teal de gran tamaño.
+5.  **Banner de Temas:** Rectángulo con puntas de flecha (estilo listón) en `#E8F1F2` con borde teal, texto en una sola línea.
+6.  **Bloque de 3 Columnas:** `display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px`.
+    *   *Col 1 (What's Inside):* Fondo teal claro, lista con bullets cuadrados teal.
+    *   *Col 2 (By the Numbers):* Iconos a color + texto.
+    *   *Col 3 (Topics Covered):* Lista con checkboxes (`input type="checkbox"` estilizado) color teal.
+7.  **Footer:** Slogan centrado flanqueado por dos estrellas amarillas de 5 puntas.
+
+**6) DETALLES**
+*   **Bordes:** Cajas principales con `2px dashed #333333`. Banner central con `2px solid #2D5D62`.
+*   **Esquinas:** `border-radius: 12px` para todas las cajas de contenido.
+*   **Sombras:** `box-shadow: 10px 10px 25px rgba(0,0,0,0.05)` para el efecto de hoja sobre la superficie.
+*   **Iconos:** Estilo "Line Art" con trazo de 2px, color negro o teal según sección.
+*   **Checks:** Cuadrados de 18px con borde teal y marca de verificación interna.
+*   **CTA Final:** El slogan del footer actúa como cierre visual, sin botón, pero con mayor espaciado superior (`margin-top: 40px`).

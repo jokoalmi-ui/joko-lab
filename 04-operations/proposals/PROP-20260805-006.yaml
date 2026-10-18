@@ -1,0 +1,10 @@
+id: PROP-20260805-006
+fecha: 2026-08-05T22:46:39
+tipo: conocimiento
+id: "RULE-002"
+problema: sin evidencia que la respalde
+accion_sugerida: recopilar evidencia (EXP/review/falsacion) o marcar como candidata a retirar
+fuente: knowledge_health
+estado: aprobada
+decision: recopilar evidencia para RULE-002 o marcar candidata a retirar
+decision_fecha: 2026-08-05T23:08:32

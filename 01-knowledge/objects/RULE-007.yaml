@@ -1,0 +1,43 @@
+id: RULE-007
+type: RULE
+decision_origin: norma
+status: activo
+version: 1
+created: '2026-08-03'
+last_validated: '2026-08-03'
+next_review: '2026-11-03'
+expires: '2027-02-03'
+# --- OKF v0.2 · emisión aditiva 2026-09-25 (conserva todos los campos previos; ver gobernanza-conocimiento/references/okf-conformidad.md) ---
+generated:
+  at: 2026-08-03T00:00:00Z
+  by: machine:hermes
+stale_after: 2026-11-03T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-08-03T00:00:00Z
+sources:
+  - resource: lpa/constitucion/normas-jl.md
+confidence: 1.0
+confidence_label: ALTA
+evidence:
+- 'JL-014: norma constitucional creada 2026-08-03'
+dependencies:
+- JL-014
+contradicts: []
+superseded_by: null
+domain: joko-lab
+scope: todo_joko_lab
+monitoring:
+  metric: backups_antes_de_cambios
+  baseline: 0
+  current: 1
+  last_checked: '2026-08-03'
+history:
+- date: '2026-08-03'
+  event: created
+  note: 'Regla de obligado cumplimiento derivada de la norma JL-014. Origen: fallo real de sobrescritura del backlog.'
+body: "Antes de modificar un archivo existente sin versionar en git, crear copia de seguridad (cp archivo archivo.bak-YYYYMMDD). Prohibido write_file (reemplazo completo) sobre archivo existente sin backup previo. Para anadir contenido usar patch/append. Excepcion: archivos trackeados en git con commit previo. Origen: norma JL-014 (lpa/constitucion/normas-jl.md)."
+legacy_fields:
+  condicion: null
+  canal: no_engine
+  canal_nota: 'Regla de procedimiento (backup antes de modificar). No activable por task_type por diseno (condicion null); supervisada via JL-014/PIL. Declarado 07-ago (sync telemetria).'

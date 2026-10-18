@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>09 — Resultados</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1824px; height: 2310px; }
+  body { position: relative; font-family: 'Open Sans', sans-serif; background: #141414; }
+  .base { position: absolute; inset: 0; width: 1824px; height: 2310px; display: block; object-fit: fill; z-index: 1; }
+  .content { position: absolute; z-index: 2; left: 200px; top: 80px; right: 100px; bottom: 70px; display: flex; flex-direction: column; }
+  .badge { display: inline-block; background: #2D5D62; color: #FDF8E9; font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 12px 34px; border-radius: 999px; margin-bottom: 40px; align-self: flex-start; }
+  h1 { font-family: 'Special Elite', serif; font-size: 128px; font-weight: 700; letter-spacing: -3px; color: #1e1e1e; line-height: 1.02; margin-bottom: 16px; }
+  h1 .accent { color: #2D5D62; }
+  .subtitle { font-family: 'Montserrat', sans-serif; font-size: 42px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; color: #2D5D62; margin-bottom: 44px; }
+  .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; margin-bottom: 40px; }
+  .metric { background: #FDF8E9; border: 4px solid #2D5D62; border-radius: 18px; padding: 26px 20px; text-align: center; }
+  .metric .v { font-family: 'Special Elite', serif; font-size: 64px; font-weight: 700; color: #2D5D62; line-height: 1; }
+  .metric .l { font-family: 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #1A1A1A; margin-top: 10px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; margin-bottom: 36px; }
+  .col { background: rgba(232, 241, 242, 0.55); border: 4px dashed #333333; border-radius: 22px; padding: 30px 36px; }
+  .col h3 { font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: #2D5D62; margin-bottom: 20px; border-bottom: 4px dashed #D4A017; padding-bottom: 12px; }
+  .col ul { list-style: none; }
+  .col li { font-family: 'Open Sans', sans-serif; font-size: 26px; font-weight: 600; color: #1A1A1A; line-height: 1.35; margin-bottom: 13px; padding-left: 44px; position: relative; }
+  .col li::before { content: ""; position: absolute; left: 0; top: 10px; width: 15px; height: 15px; background: #2D5D62; border-radius: 3px; }
+  .col li b { color: #2D5D62; }
+  .dashed-box { border: 4px dashed #333333; border-radius: 26px; padding: 30px 44px; font-family: 'Caveat', cursive; font-size: 46px; font-weight: 600; color: #333333; text-align: center; background: rgba(255,255,255,0.35); }
+  .spacer { flex: 1; }
+  .footer { text-align: center; font-family: 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #1A1A1A; }
+  .stars { color: #D4A017; font-size: 36px; letter-spacing: 0.35em; }
+</style>
+</head>
+<body>
+  <img class="base" src="hoja-cuaderno-base.png" alt="hoja cuaderno base">
+
+  <div class="content">
+    <!-- ============ CONTENIDO SLIDE 9 ============ -->
+    <span class="badge">Cierre</span>
+    <h1>QUÉ HA <span class="accent">DEMOSTRADO</span></h1>
+    <p class="subtitle">Sistema real, resultados verificables</p>
+
+    <div class="metrics">
+      <div class="metric"><div class="v">88/100</div><div class="l">salud del conocimiento</div></div>
+      <div class="metric"><div class="v">95%</div><div class="l">alucinaciones atrapadas</div></div>
+      <div class="metric"><div class="v">3 s</div><div class="l">consulta RAG (antes 15)</div></div>
+      <div class="metric"><div class="v">100%</div><div class="l">local · datos no salen</div></div>
+    </div>
+
+    <div class="cols">
+      <div class="col">
+        <h3>Las 4 ideas</h3>
+        <ul>
+          <li>4 cerebros, roles separados</li>
+          <li>Conocimiento con ciclo de vida</li>
+          <li>RAG = memoria real y local</li>
+          <li>Productos antes que teoría</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Lo demostrado</h3>
+        <ul>
+          <li>Gobierna su propio conocimiento</li>
+          <li>Capitalización verificable</li>
+          <li>RAG rápido y fiable</li>
+          <li>Productos alimentan el sistema</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dashed-box">¿Cómo construir una IA que responda y acumule conocimiento verificable?</div>
+
+    <div class="spacer"></div>
+    <div class="footer">
+      <div class="stars">★ ★ ★</div>
+      slide 09 · resultados · Joko Lab
+    </div>
+    <!-- ============ /CONTENIDO SLIDE 9 ============ -->
+  </div>
+</body>
+</html>

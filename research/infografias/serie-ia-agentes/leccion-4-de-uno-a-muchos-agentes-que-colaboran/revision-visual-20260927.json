@@ -1,0 +1,55 @@
+{
+  "fecha": "2026-09-27T23:21:20+0200",
+  "modelo": "glm-4.6v-flash",
+  "slides": [
+    {
+      "slide": "slide-1-portada.png",
+      "segundos": 15.9,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 15.3,
+      "control": "TITULAR: DE UNO A MUCHOS\nPIE: 6 LECCIONES · DE LO BÁSICO A LO AVANZADO  LECCIÓN 4 · PIEZA 7"
+    },
+    {
+      "slide": "slide-2-que-es.png",
+      "segundos": 10.6,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 34.7,
+      "control": "TITULAR: VARIOS ROLES, UN TRABAJO  \nPIE: NO LEGIBLE"
+    },
+    {
+      "slide": "slide-3-como-funciona.png",
+      "segundos": 11.5,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 22.7,
+      "control": "TITULAR: CUATRO FORMAS, UNA REGLA\nPIE: Tres preguntas antes de montar un equipo: ¿hay trozos de verdad? ¿el trozo cabe en un encargo claro? ¿qué pasa si dos se contradicen? Si la tercera no tiene respuesta, el problema no es el modelo: es el diseño."
+    },
+    {
+      "slide": "slide-4-confusion.png",
+      "segundos": 12.2,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 24.8,
+      "control": "TITULAR: EQUIPO SÍ, EQUIPO NO  \nPIE: La prueba rápida: si puedes dibujar los pasos y se sostienen, no necesitas agentes — necesitas un workflow. Los agentes se justifican cuando el camino no se sabe de antemano."
+    },
+    {
+      "slide": "slide-5-ejemplo.png",
+      "segundos": 14.6,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 49.0,
+      "control": "TITULAR: EL QUE ESCRIBE Y EL QUE REVISA  \nPIE: El crítico acertó en 5 de 6 tareas. La única vez que dijo «incorrecto», la respuesta era buena. No hace falta que mienta para salir caro: basta con equivocarse una vez."
+    },
+    {
+      "slide": "slide-6-dato.png",
+      "segundos": 13.0,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 29.0,
+      "control": "TITULAR: MISMO RESULTADO, ×3,9 EL COSTE 0/6\nPIE: MEDICIÓN PROPIA · IBM/GRANITE4.2:8B EN OLLAMA (LOCAL), NUM_CTX 8192, TEMPERATURA 0 · 6 TAREAS × 2 CONDICIONES — A: UN AGENTE CON HERRAMIENTAS · B: EL MISMO AGENTE + CRÍTICO INDEPENDIENTE · 27-SEP-2026"
+    },
+    {
+      "slide": "slide-7-cierre.png",
+      "segundos": 11.7,
+      "respuesta": "SIN DEFECTOS",
+      "segundos_control": 11.8,
+      "control": "TITULAR: EN 1 MINUTO\nPIE: SIGUIENTE · LECCIÓN 5"
+    }
+  ]
+}

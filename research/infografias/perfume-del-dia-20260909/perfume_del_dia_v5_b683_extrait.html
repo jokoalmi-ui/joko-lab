@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<!--
+  FICHA DEL DÍA v5 — 09-sep-2026 · B683 Extrait (Marc-Antoine Barrois)
+  Datos verificados: Fragrantica (4,06/5 · 777 votos · Quentin Bisch · 2020 · Extrait de Parfum 40%,
+  Oriental Woody, unisex) + web oficial MAB (275,00 € 50 ml; oud Laos + manzana verde ácida +
+  "patchouli leather") + Fragrantica News (Matos, 07-03-2021: notas pepper berries, cumin, green
+  apple, Safraleine, violet leaf, oud, Patchouli Heart Indonesia Orpur, Sandalwood Album, vanilla).
+  Cita comunidad: reseña editorial Miguel Matos (Fragrantica News) [traducida]. Alternativas =
+  Fragrantica (B683 EDP 3,96/5 · 1.974 votos; Ganymede 4,04/5 · 12.094 votos — "la estructura
+  mayor de Ganymede es muy similar a la de B683"; Bois Impérial 4,16/5 · 15.815 votos, también de
+  Bisch, comparado por Parfumo con el Extrait). Packshot Isolée verificado con GLM local; figura
+  recortada (243×657 RGBA). Fondo ComfyUI local verificado (interior cuero-madera, sin texto).
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Caveat:wght@600&family=Inter:wght@400;600;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1350px; overflow:hidden; }
+  body {
+    font-family:'Inter',sans-serif;
+    background:url('b683_fondo.png') center/cover no-repeat;
+    color:#3a2a0e; position:relative;
+  }
+  .velo { position:absolute; inset:0; background:linear-gradient(180deg, rgba(255,250,240,0.88) 0%, rgba(255,247,235,0.90) 50%, rgba(253,241,222,0.94) 100%); }
+  .content { position:relative; z-index:2; height:1350px; display:flex; flex-direction:column; padding:16px 52px 14px; }
+
+  .topline { display:flex; justify-content:space-between; align-items:flex-start; }
+  .fecha-sep { font-size:12.5px; font-weight:600; letter-spacing:1.5px; color:#8a5c00; background:rgba(255,255,255,0.7); padding:5px 12px; border-radius:16px; }
+  .sello { width:92px; height:92px; border-radius:50%; background:rgba(255,255,255,0.92); border:2.5px solid #a86400; color:#a86400; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1px; line-height:1.3; box-shadow:0 4px 14px rgba(0,0,0,0.15); }
+  .sello b { font-size:12.5px; color:#a86400; }
+
+  .hero { display:flex; align-items:center; gap:40px; margin:2px 0 6px; }
+  .frasco-col { position:relative; flex-shrink:0; width:250px; display:flex; flex-direction:column; align-items:center; }
+  .halo-frasco { position:absolute; top:-4px; left:50%; transform:translateX(-50%); width:290px; height:430px; z-index:1;
+    background:radial-gradient(ellipse at center, rgba(214,150,40,0.62) 0%, rgba(224,165,60,0.36) 45%, rgba(235,195,110,0.16) 70%, transparent 84%);
+    border-radius:50%; }
+  .frasco-figura { height:360px; width:auto; filter:drop-shadow(0 0 2px rgba(90,50,10,0.5)) drop-shadow(0 18px 26px rgba(110,70,15,0.42)); position:relative; z-index:2; }
+  .sombra-suelo { position:absolute; bottom:-14px; left:50%; transform:translateX(-50%); width:220px; height:24px; background:radial-gradient(ellipse, rgba(120,70,10,0.32) 0%, transparent 70%); z-index:1; }
+
+  .hero-txt { flex:1; }
+  .casa { font-size:14px; font-weight:800; letter-spacing:4.5px; text-transform:uppercase; color:#a86400; }
+  h1 { font-family:'Playfair Display',serif; font-weight:800; font-size:64px; line-height:1.0; margin:3px 0 4px; color:#3a2a0e; }
+  .sub { font-family:'Caveat',cursive; font-size:28px; color:#b06a00; margin-bottom:8px; }
+  .datos-hero { display:flex; flex-direction:column; gap:4px; }
+  .dh { font-size:14px; font-weight:600; color:#4a3a1a; text-shadow:0 1px 0 rgba(255,255,255,0.75); }
+  .dh b { font-weight:800; color:#3a2a0e; }
+  .dh .sep { color:#c9a879; margin:0 5px; }
+  .dh .f { font-size:10px; color:#a08a6a; font-weight:500; display:block; margin-top:1px; }
+  .rating-line { display:flex; align-items:center; gap:10px; margin-top:5px; }
+  .r-num { font-family:'Playfair Display',serif; font-size:34px; font-weight:800; color:#c9971c; line-height:1; }
+  .r-meta { font-size:11.5px; color:#8a5c00; font-weight:600; }
+  .stars { display:inline-flex; gap:2px; }
+
+  .sec { margin-top:7px; }
+  .sec-head { display:flex; align-items:center; gap:12px; margin-bottom:4px; }
+  .sec-num { width:32px; height:32px; border-radius:50%; color:#fff; font-size:14px; font-weight:800; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 2px 8px rgba(0,0,0,0.18); }
+  .sec-title { font-size:13.5px; font-weight:800; text-transform:uppercase; letter-spacing:2.5px; display:flex; align-items:center; gap:9px; }
+  .sec-rule { flex:1; height:1.5px; background:linear-gradient(90deg, rgba(150,110,50,0.5), rgba(150,110,50,0.05)); border-radius:2px; }
+
+  .pir3d-wrap { display:flex; align-items:center; gap:26px; margin-top:4px; }
+  .pir3d-svg { width:470px; height:210px; flex-shrink:0; filter:drop-shadow(0 14px 22px rgba(80,50,15,0.25)); }
+  .pir-leyenda { flex:1; display:flex; flex-direction:column; gap:7px; }
+  .pl { display:flex; align-items:center; gap:10px; }
+  .pl .sw { width:34px; height:19px; border-radius:4px; flex-shrink:0; box-shadow:inset 0 -4px 0 rgba(0,0,0,0.18); }
+  .pl .lab { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:1.5px; width:64px; flex-shrink:0; }
+  .pl .not { font-size:11.5px; color:#4a3a1a; font-weight:600; line-height:1.3; }
+
+  .inspiracion { margin:0 0 0 44px; }
+  .inspiracion p { font-family:'Playfair Display',serif; font-style:italic; font-size:17px; line-height:1.42; color:#4a3312; text-shadow:0 1px 0 rgba(255,255,255,0.8); }
+  .fuente-line { font-style:normal; font-size:10px; color:#a08a6a; font-weight:600; margin-top:3px; display:block; }
+
+  .alts { margin-left:44px; display:flex; flex-direction:column; }
+  .alt-item { display:flex; align-items:baseline; gap:14px; padding:4px 2px; }
+  .alt-item + .alt-item { border-top:1.2px solid rgba(150,110,50,0.28); }
+  .alt-n { font-size:14.5px; font-weight:800; color:#3a2a0e; }
+  .alt-casa { font-size:11px; color:#8a5c00; font-weight:600; }
+  .alt-rt { margin-left:auto; font-size:11px; font-weight:800; color:#b06a00; white-space:nowrap; }
+  .alt-motivo { font-size:10.5px; color:#8a5c00; font-weight:500; margin-left:auto; max-width:280px; text-align:right; }
+
+  .cita { margin-left:44px; }
+  .cita blockquote { font-family:'Playfair Display',serif; font-style:italic; font-size:17px; line-height:1.4; color:#7a4a00; text-shadow:0 1px 0 rgba(255,255,255,0.75); }
+  .cita .fuente-line { color:#a06a10; }
+
+  .pie { margin-top:auto; display:flex; align-items:center; justify-content:space-between; gap:18px; border-top:2px solid rgba(150,110,50,0.35); padding-top:9px; }
+  .pie .clima { font-size:12.5px; font-weight:700; color:#6a4a12; line-height:1.5; }
+  .pie .sprays { font-size:12.5px; font-weight:700; color:#3a2a0e; line-height:1.5; }
+  .qr { width:68px; height:68px; border-radius:8px; border:2px solid #d8c8a8; background:#fff; }
+  .nota-fondo { position:absolute; bottom:5px; right:14px; font-size:9px; color:#b39a7a; font-style:italic; z-index:3; }
+  .caveat-pie { font-family:'Caveat',cursive; font-size:21px; color:#b06a00; font-weight:600; }
+</style>
+</head>
+<body>
+<div class="velo"></div>
+<div class="content">
+
+  <div class="topline">
+    <div class="fecha-sep">MIÉRCOLES · 09 SEPTIEMBRE 2026</div>
+    <div class="sello"><div>Elección<br>del Lab</div><b>2026</b></div>
+  </div>
+
+  <!-- HERO: figura del frasco -->
+  <div class="hero">
+    <div class="frasco-col">
+      <div class="halo-frasco"></div>
+      <img class="frasco-figura" src="b683_extrait_figura.png" alt="B683 Extrait Marc-Antoine Barrois">
+      <div class="sombra-suelo"></div>
+    </div>
+    <div class="hero-txt">
+      <div class="casa">Marc-Antoine Barrois</div>
+      <h1>B683 Extrait</h1>
+      <div class="sub">el planeta imaginado: cuero carnal al 40%</div>
+      <div class="datos-hero">
+        <div class="dh"><b>2020</b><span class="sep">·</span>Extrait de Parfum<span class="sep">·</span>Unisex<span class="sep">·</span>Oriental Woody</div>
+        <div class="dh">Perfumista: <b>Quentin Bisch</b> <span class="f">Givaudan · toda la colección de la maison desde 2016</span></div>
+        <div class="dh">Longevidad <b>alta</b> (8 h+)<span class="sep">·</span>Estela <b>intensa</b><span class="sep">·</span><b>275 €</b> / 50 ml<span class="f">"longevity is big, as well as sillage" — M. Matos (Fragrantica News) · Precio: web oficial Marc-Antoine Barrois (275,00 €) · 50 ml única medida · packshot Isolée verificado</span></div>
+        <div class="rating-line">
+          <span class="r-num">4,06</span>
+          <span class="stars">
+            <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#c9971c" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#c9971c" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#c9971c" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24"><path fill="#c9971c" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+            <svg width="17" height="17" viewBox="0 0 24 24"><defs><linearGradient id="g5"><stop offset="6%" stop-color="#c9971c"/><stop offset="6%" stop-color="#d8d4c8"/></linearGradient></defs><path fill="url(#g5)" d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7L2 9.2l7.1-.6z"/></svg>
+          </span>
+          <span class="r-meta">777 votos · 84 reseñas · Fragrantica</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 01 · PIRÁMIDE 3D EN CAPAS -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num" style="background:#b8860b;">01</div>
+      <div class="sec-title" style="color:#b8860b;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 3 21h18z"/><path d="M12 2v19"/></svg>
+        Pirámide olfativa — en capas
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="pir3d-wrap">
+      <svg class="pir3d-svg" viewBox="0 0 560 250" id="pir3d"></svg>
+      <div class="pir-leyenda">
+        <div class="pl"><span class="sw" style="background:linear-gradient(135deg,#f2c98a,#e09a3e);"></span><span class="lab" style="color:#b06a00;">Salida</span><span class="not">la chispa: pimienta y comino con la manzana verde ácida — vibrante y especiada</span></div>
+        <div class="pl"><span class="sw" style="background:linear-gradient(135deg,#c9b294,#8a6a4a);"></span><span class="lab" style="color:#7a5c3e;">Corazón</span><span class="not">el alma: safraleine, hoja de violeta y oud de Laos — densidad y frescura verde</span></div>
+        <div class="pl"><span class="sw" style="background:linear-gradient(135deg,#a8762e,#6b4a14);"></span><span class="lab" style="color:#8a5a10;">Fondo</span><span class="not">la estela: "patchouli leather", sándalo australiano y vainilla — cuero carnal que perdura</span></div>
+        <span class="fuente-line" style="margin-top:4px;">Notas: Fragrantica (ficha oficial) · Fragrantica News "Magnified and Improved" (M. Matos) · web oficial MAB</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02 · INSPIRACIÓN -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num" style="background:#5c7d2e;">02</div>
+      <div class="sec-title" style="color:#5c7d2e;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12c2.5-4 5-4 7 0s4.5 4 7 0 4-4 5 0"/><path d="M2 18c2.5-4 5-4 7 0s4.5 4 7 0 4-4 5 0"/></svg>
+        Inspiración
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="inspiracion">
+      <p>“B683 es el nombre de mi planeta imaginario, como el B-612 del Principito. En esta reinterpretación, el cuero se convierte en una segunda piel: un ‘patchouli leather’ auténtico, donde el oud de Laos y la manzana verde ácida firman un carácter único. Lejos de un simple juego de concentración, el extrait explora un nuevo mundo de este planeta: la calidez y la profundidad de un cuero amaderado, deliciosamente carnal.”</p>
+      <span class="fuente-line">— Web oficial Marc-Antoine Barrois · “B683 is the name of my imaginary planet like the Little Prince's one B612” (nota de la marca, Fragrantica) · 40% concentración [traducida]</span>
+    </div>
+  </div>
+
+  <!-- 03 · ALTERNATIVAS -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num" style="background:#5c7d2e;">03</div>
+      <div class="sec-title" style="color:#5c7d2e;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        Si te gusta, prueba
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="alts">
+      <div class="alt-item"><span class="alt-n">B683</span><span class="alt-casa">Marc-Antoine Barrois · 2016</span><span class="alt-rt">3,96/5 · 1.974 votos</span><span class="alt-motivo">el original que el Extrait reinterpreta: el mismo planeta en EDP, más seco y ligero — Fragrantica</span></div>
+      <div class="alt-item"><span class="alt-n">Ganymede</span><span class="alt-casa">Marc-Antoine Barrois · 2019</span><span class="alt-rt">4,04/5 · 12.094 votos</span><span class="alt-motivo">“la estructura mayor de Ganymede es muy similar a la de B683” — M. Matos (Fragrantica News); misma casa y perfumista</span></div>
+      <div class="alt-item"><span class="alt-n">Bois Impérial</span><span class="alt-casa">Essential Parfums · 2020</span><span class="alt-rt">4,16/5 · 15.815 votos</span><span class="alt-motivo">también de Quentin Bisch (akigalawood); Parfumo: el Extrait es “a ratos muy reminiscente del Bois Impérial Extrait”</span></div>
+    </div>
+    <span class="fuente-line" style="margin-left:44px;">Asociaciones verificadas: Fragrantica (páginas oficiales B683 EDP · Ganymede · Bois Impérial) + reseña editorial M. Matos + reseñador de Parfumo</span>
+  </div>
+
+  <!-- 04 · COMUNIDAD -->
+  <div class="sec">
+    <div class="sec-head">
+      <div class="sec-num" style="background:#8a4a00;">04</div>
+      <div class="sec-title" style="color:#8a4a00;">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h5v5c0 3-1.5 5.5-5 6.5v-2.2c1.8-.7 3-1.9 3-3.8H6zm9 0h5v5c0 3-1.5 5.5-5 6.5v-2.2c1.8-.7 3-1.9 3-3.8h-3z"/></svg>
+        La comunidad dice
+      </div>
+      <div class="sec-rule"></div>
+    </div>
+    <div class="cita">
+      <blockquote>“Si buscas un aroma animal pero educado y elegante, sin las notas sucias que el oud puede tener, y sin perder personalidad, es una gran elección. Es sexy y maduro, serio pero también misterioso. Como buen Extrait, la longevidad es enorme y la estela también: es una fragancia rotunda para quien quiere lanzar un mensaje — no uno cualquiera, uno de seducción con elegancia y refinamiento.”</blockquote>
+      <span class="fuente-line">— Miguel Matos, editor de Fragrantica · Fragrantica News, 07-03-2021 (“B683 Extrait — Magnified and Improved”) [traducida] · “el pilar B683, al lado del Extrait, parece ligero — nunca lo fue”</span>
+    </div>
+  </div>
+
+  <!-- PIE -->
+  <div class="pie">
+    <div class="clima">18 °C · nublado · humedad ~80 % · día templado y húmedo<br>el cuero amaderado para la jornada de trabajo</div>
+    <div class="sprays">Sprays: <b>2-3</b> (estela intensa)<br><span class="caveat-pie">presencia sobria que se percibe</span></div>
+    <img class="qr" src="qr_b683_extrait.png" alt="QR Fragrantica">
+  </div>
+  <div class="nota-fondo">fondo: arte generado con ComfyUI · SDXL local · hecha con el lab</div>
+</div>
+
+<script>
+// Pirámide 3D: tres losas-prisma isométricas apiladas (fondo abajo ancha -> salida arriba estrecha)
+(function () {
+  const svg = document.getElementById('pir3d');
+  const NS = 'http://www.w3.org/2000/svg';
+  const CX = 250;
+  const EX = 44, EY = 22;
+  const H = 46;
+
+  const capas = [
+    { w: 300, f:'#e09a3e', t:'#f2c98a', l:'#a86a1c', c1:'SALIDA', txt:'PIMIENTA · COMINO · MANZANA VERDE' },
+    { w: 420, f:'#8a6a4a', t:'#c9b294', l:'#5a3f24', c1:'CORAZÓN', txt:'SAFRALEINE · HOJA DE VIOLETA · OUD' },
+    { w: 540, f:'#6b4a14', t:'#a8762e', l:'#3f2a0a', c1:'FONDO', txt:'CUERO-PACHULÍ · SÁNDALO · VAINILLA' }
+  ];
+
+  let yBottom = 236;
+  const ys = [];
+  for (let i = capas.length - 1; i >= 0; i--) {
+    const c = capas[i];
+    const yTop = yBottom - H - EY;
+    ys[i] = yTop;
+    yBottom = yTop - 14;
+  }
+
+  function shade(hex, amt) {
+    const n = parseInt(hex.slice(1), 16);
+    let r = (n >> 16) + amt, g = ((n >> 8) & 255) + amt, b = (n & 255) + amt;
+    r = Math.max(0, Math.min(255, r)); g = Math.max(0, Math.min(255, g)); b = Math.max(0, Math.min(255, b));
+    return 'rgb(' + r + ',' + g + ',' + b + ')';
+  }
+
+  function poly(points, fill, opacity) {
+    const el = document.createElementNS(NS, 'polygon');
+    el.setAttribute('points', points);
+    el.setAttribute('fill', fill);
+    if (opacity) el.setAttribute('opacity', opacity);
+    svg.appendChild(el);
+  }
+
+  for (let i = capas.length - 1; i >= 0; i--) {
+    const c = capas[i];
+    const x1 = CX - c.w / 2, x2 = CX + c.w / 2;
+    const y1 = ys[i], y2 = y1 + H;
+    poly(`${x2},${y1} ${x2 + EX},${y1 - EY} ${x2 + EX},${y2 - EY} ${x2},${y2}`, c.l);
+    poly(`${x1},${y1} ${x2},${y1} ${x2 + EX},${y1 - EY} ${x1 + EX},${y1 - EY}`, c.t);
+    poly(`${x1},${y1} ${x2},${y1} ${x2},${y2} ${x1},${y2}`, c.f);
+    poly(`${x1},${y1} ${x2},${y1} ${x2},${y2}`, shade(c.f, 34), 0.55);
+
+    const t1 = document.createElementNS(NS, 'text');
+    t1.setAttribute('x', CX); t1.setAttribute('y', y1 + 17);
+    t1.setAttribute('text-anchor', 'middle'); t1.setAttribute('font-size', '8.5');
+    t1.setAttribute('font-weight', '800'); t1.setAttribute('letter-spacing', '2');
+    t1.setAttribute('fill', '#fff'); t1.textContent = c.c1;
+    svg.appendChild(t1);
+
+    const t2 = document.createElementNS(NS, 'text');
+    t2.setAttribute('x', CX); t2.setAttribute('y', y1 + 33);
+    t2.setAttribute('text-anchor', 'middle'); t2.setAttribute('font-size', '14.5');
+    t2.setAttribute('font-weight', '800'); t2.setAttribute('fill', '#fff');
+    t2.textContent = c.txt;
+    svg.appendChild(t2);
+  }
+})();
+</script>
+</body>
+</html>

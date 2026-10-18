@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Inter:wght@400;600;800&display=swap');
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1080px; height:1350px;
+    font-family:'Inter',sans-serif;
+    background:url('akdeniz_fondo.png') center/cover no-repeat;
+    display:flex; flex-direction:column;
+    padding:30px 44px 24px;
+    position:relative;
+    color:#1c2b33;
+  }
+  /* Overlay claro (NO velo oscuro — feedback 19-ago) */
+  body::before {
+    content:''; position:absolute; inset:0;
+    background:rgba(240,246,248,0.42);
+    z-index:0;
+  }
+  body > * { position:relative; z-index:1; }
+  /* Sello */
+  .sello {
+    position:absolute; top:38px; right:48px; z-index:2;
+    width:118px; height:118px; border-radius:50%;
+    background:rgba(28,43,51,0.88); color:#fff;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; font-size:13px; font-weight:800; letter-spacing:1px;
+    border:3px solid #d9b26a;
+    box-shadow:0 4px 14px rgba(0,0,0,0.35);
+    text-shadow:0 1px 3px rgba(0,0,0,0.6);
+  }
+  .sello small { font-size:9px; font-weight:400; opacity:0.85; }
+  .sello .fecha { font-size:15px; color:#e8c987; margin-top:2px; }
+  .cabecera { display:flex; gap:32px; align-items:center; margin-top:14px; }
+  .hero-foto {
+    width:290px; height:290px; border-radius:22px; flex-shrink:0;
+    background:#fff; padding:12px; box-shadow:0 8px 28px rgba(0,0,0,0.25);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-foto img { max-width:100%; max-height:100%; object-fit:contain; }
+  .hero-texto { flex:1; }
+  .casa { font-size:15px; font-weight:600; letter-spacing:3px; color:#5a6b74; text-transform:uppercase; }
+  h1 {
+    font-size:46px; font-weight:800; line-height:1.05; margin:4px 0 8px;
+    background:linear-gradient(120deg,#123a4d,#2e7d8f);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    text-shadow:0 2px 6px rgba(255,255,255,0.5);
+  }
+  .sub { font-size:17px; font-weight:600; color:#37474f; }
+  .sub span { color:#1d6f80; }
+  .chips { display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+  .chip {
+    background:rgba(255,255,255,0.82); border:1px solid rgba(28,43,51,0.25);
+    border-radius:999px; padding:4px 12px; font-size:13px; font-weight:600; color:#1c2b33;
+  }
+  .clima { display:flex; gap:8px; margin-top:8px; }
+  .clima .chip { font-size:12px; }
+  /* Cuerpo */
+  .cuerpo { display:flex; flex-direction:column; gap:10px; margin-top:14px; flex:1; }
+  .tarjeta {
+    background:rgba(255,255,255,0.88); border-radius:16px;
+    padding:10px 18px; border-top:4px solid #2e7d8f;
+    box-shadow:0 4px 16px rgba(0,0,0,0.12);
+  }
+  .tarjeta h2 { font-size:13px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#2e7d8f; margin-bottom:7px; }
+  .datos-grid { display:grid; grid-template-columns:repeat(8,1fr); gap:7px; }
+  .dato { background:rgba(240,246,248,0.9); border-radius:10px; padding:7px 8px; text-align:center; }
+  .dato .k { font-size:9px; font-weight:600; color:#5a6b74; text-transform:uppercase; letter-spacing:1px; }
+  .dato .v { font-size:14px; font-weight:800; color:#1c2b33; margin-top:2px; }
+  .dato .v small { font-size:10px; font-weight:600; color:#5a6b74; }
+  /* Pirámide SVG */
+  .piramide-wrap { display:flex; gap:16px; align-items:center; }
+  .piramide { flex:0 0 260px; }
+  .leyenda { flex:1; font-size:13px; color:#37474f; line-height:1.45; }
+  .leyenda strong { color:#2e7d8f; }
+  .leyenda .nota-item { margin-bottom:5px; padding:6px 10px; background:rgba(240,246,248,0.85); border-radius:8px; }
+  .nota-item .n { font-weight:800; font-size:13px; }
+  .nota-item .d { font-size:11px; color:#5a6b74; margin-top:1px; }
+  /* Aplicación */
+  .sprays { display:flex; gap:12px; }
+  .spray-card { flex:1; background:rgba(240,246,248,0.9); border-radius:10px; padding:7px 10px; text-align:center; }
+  .spray-card .k { font-size:11px; font-weight:600; color:#5a6b74; }
+  .spray-card .v { font-size:15px; font-weight:800; color:#1c2b33; margin-top:3px; }
+  /* Cita + QR */
+  .pie-row { display:flex; gap:16px; align-items:center; }
+  .cita { flex:1; font-size:13px; font-style:italic; color:#37474f; line-height:1.4; padding:9px 14px; background:rgba(255,255,255,0.75); border-radius:10px; border-left:4px solid #d9b26a; }
+  .cita .autor { display:block; font-style:normal; font-size:11px; color:#5a6b74; margin-top:4px; font-weight:600; }
+  .qr img { width:70px; height:70px; border-radius:10px; background:#fff; padding:5px; box-shadow:0 2px 10px rgba(0,0,0,0.15); }
+  .qr small { display:block; font-size:9px; color:#5a6b74; text-align:center; margin-top:3px; }
+  /* Pie */
+  .pie {
+    margin-top:10px; display:flex; justify-content:space-between; align-items:flex-end;
+    font-family:'Caveat',cursive; font-size:20px; color:#2c3e48;
+  }
+  .pie .nota { font-size:15px; color:#5a6b74; }
+  .sparkles { position:absolute; top:24px; left:48px; font-size:22px; opacity:0.7; z-index:2; }
+</style>
+</head>
+<body>
+  <div class="sparkles">✦ ✧ ✦</div>
+  <div class="sello">
+    ELECCIÓN<br>DEL LAB
+    <small>perfume del día</small>
+    <div class="fecha">20·08·2026</div>
+  </div>
+
+  <div class="cabecera">
+    <div class="hero-foto">
+      <img src="akdeniz_frasco.png" alt="AKDENIZ 100 ml">
+    </div>
+    <div class="hero-texto">
+      <div class="casa">Unique'e Luxury</div>
+      <h1>AKDENIZ</h1>
+      <div class="sub">Mar Egeo en un frasco · <span>aromático acuático</span></div>
+      <div class="chips">
+        <span class="chip">🌊 marino</span>
+        <span class="chip">🍋 cítrico</span>
+        <span class="chip">🌿 aromático</span>
+        <span class="chip">unisex</span>
+      </div>
+      <div class="clima">
+        <span class="chip">☁️ 22 °C · nublado</span>
+        <span class="chip">🌧️ 40-75% lluvia</span>
+        <span class="chip">🌿 verano</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cuerpo">
+    <div class="tarjeta">
+      <h2>Datos técnicos</h2>
+      <div class="datos-grid">
+        <div class="dato"><div class="k">Año</div><div class="v">2019</div></div>
+        <div class="dato"><div class="k">Concentración</div><div class="v">Extrait <small>EDP</small></div></div>
+        <div class="dato"><div class="k">Perfumista</div><div class="v">Erdoğmuş <small>serie 2019</small></div></div>
+        <div class="dato"><div class="k">Precio 100 ml</div><div class="v">217 € <small>oficial</small></div></div>
+        <div class="dato"><div class="k">Longevidad</div><div class="v">7 h</div></div>
+        <div class="dato"><div class="k">Estela</div><div class="v">Moderada</div></div>
+        <div class="dato"><div class="k">Familia</div><div class="v">Acuático</div></div>
+        <div class="dato"><div class="k">Origen</div><div class="v">Turquía</div></div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Si te gusta Akdeniz, prueba</h2>
+      <div class="datos-grid" style="grid-template-columns:repeat(4,1fr);">
+        <div class="dato"><div class="k">⭐ Nabeel Antar</div><div class="v" style="font-size:12px;">Nabeel · 20 notas <small>compartidas</small></div></div>
+        <div class="dato"><div class="k">⭐ Roja Oligarch</div><div class="v" style="font-size:12px;">Roja Dove · 17 notas <small>compartidas</small></div></div>
+        <div class="dato"><div class="k">⭐ Bahar</div><div class="v" style="font-size:12px;">Spirit of Dubai · 18 notas <small>compartidas</small></div></div>
+        <div class="dato"><div class="k">⭐ D&G Light Blue</div><div class="v" style="font-size:12px;">Asociado en Fragrantica <small>misma familia</small></div></div>
+      </div>
+      <div class="leyenda" style="font-size:12px; margin-top:8px;">
+        <strong>Fuente</strong>: Fragranova (similares por estructura de notas) y reseñas de Fragrantica ("si te gusta el Light Blue pero buscas más complejidad, Akdeniz merece atención"; florales blancos parecidos a Roja Elysium). La sección sale siempre de la comunidad, nunca de la colección del lab.
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Pirámide olfativa</h2>
+      <div class="piramide-wrap">
+        <div class="piramide">
+          <svg viewBox="0 0 340 330" width="340" height="330">
+            <!-- Salida (arriba, estrecha) -->
+            <polygon points="170,15 255,85 85,85" fill="#7fc4d6" stroke="#1c2b33" stroke-width="2"/>
+            <text x="170" y="62" text-anchor="middle" font-size="14" font-weight="700" fill="#0f2a35">SALIDA</text>
+            <text x="170" y="80" text-anchor="middle" font-size="11" fill="#0f2a35">Mar · Pomelo · Limón</text>
+            <!-- Corazón (medio) -->
+            <polygon points="85,105 255,105 290,195 50,195" fill="#5da8bb" stroke="#1c2b33" stroke-width="2"/>
+            <text x="170" y="140" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">CORAZÓN</text>
+            <text x="170" y="158" text-anchor="middle" font-size="11" fill="#fff">Piña · Tomillo · Mirto</text>
+            <text x="170" y="172" text-anchor="middle" font-size="11" fill="#fff">Manzana · Lavanda · Flores</text>
+            <!-- Fondo (abajo, ancho) -->
+            <polygon points="50,215 290,215 320,300 20,300" fill="#2e7d8f" stroke="#1c2b33" stroke-width="2"/>
+            <text x="170" y="248" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">FONDO</text>
+            <text x="170" y="266" text-anchor="middle" font-size="11" fill="#fff">Cuero · Cedro · Sándalo</text>
+            <text x="170" y="281" text-anchor="middle" font-size="11" fill="#fff">Ámbar · Almizcle</text>
+          </svg>
+        </div>
+        <div class="leyenda">
+          <div class="nota-item"><div class="n">🌊 Lo primero que huele</div><div class="d">Brisa salada del Egeo con pomelo y limón — frescor inmediato</div></div>
+          <div class="nota-item"><div class="n">🍍 El alma</div><div class="d">Piña, tomillo, mirto, manzana, lavanda y flores blancas — aromático y ligeramente dulce</div></div>
+          <div class="nota-item"><div class="n">🪵 Lo que queda</div><div class="d">Cuero, cedro, sándalo, ámbar y almizcle — fondo cálido y seco que dura horas</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Aplicación</h2>
+      <div class="sprays">
+        <div class="spray-card"><div class="k">En casa</div><div class="v">1-3 sprays</div></div>
+        <div class="spray-card"><div class="k">Trabajo / interior</div><div class="v">2-3 sprays</div></div>
+        <div class="spray-card"><div class="k">Exterior / calor</div><div class="v">3-5 sprays</div></div>
+        <div class="spray-card"><div class="k">Niños cerca</div><div class="v">Moderado</div></div>
+      </div>
+    </div>
+
+    <div class="tarjeta">
+      <h2>Comunidad</h2>
+      <div class="pie-row">
+        <div class="cita">
+          "El aroma llena la habitación en nada. Si temes los perfumes intensos, no lo temas: Akdeniz está tan bien equilibrado que le sentaría bien a cualquiera. La apertura tiene un toque acuático muy vivo que me transporta a la orilla del mar en cuanto cierro los ojos."
+          <span class="autor">— reseña en Fragrantica · 4.12/5 en Fragranova (2 clones y duplicados documentados)</span>
+        </div>
+        <div class="qr">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=86x86&data=https://www.fragrantica.com/perfume/Unique-e-Luxury/Akdeniz-58007.html" alt="QR Fragrantica">
+          <small>Fragrantica</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pie">
+    <div>Erandio · jueves 20 de agosto</div>
+    <div class="nota">fondo: arte generado con ComfyUI · SDXL local</div>
+  </div>
+</body>
+</html>

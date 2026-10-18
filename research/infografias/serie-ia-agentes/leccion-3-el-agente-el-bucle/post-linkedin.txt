@@ -1,0 +1,21 @@
+Le pedí el importe del pedido más caro sin darle la tabla. Contestó «0». En las seis tareas, las seis veces un dato inventado, y con el mismo tono seguro que usa cuando acierta.
+
+En la misma tanda, el mismo modelo en bucle pidió la tabla, la recibió, comparó y contestó con los números exactos: 5 de las 6 tareas cerradas, con 3 pasos y 2 herramientas por tarea. El número salió de mi código, no de su memoria.
+
+La diferencia entre las dos respuestas no era el modelo: era el bucle.
+
+En el carrusel de esta semana:
+
+· Qué es un agente: bucle (pensar → actuar → observar) + herramientas + memoria + un objetivo. La diferencia con un chatbot no es el modelo, es el bucle.
+· Cómo funciona por dentro, paso a paso: pensar qué necesita, ejecutar la acción en tu código, devolver el resultado como texto, repetir hasta cerrar (o hasta agotar los pasos).
+· Memoria a corto y a largo plazo: la conversación de la tarea frente a lo que se guarda fuera y se vuelve a leer.
+· La confusión típica: CoT (una vuelta, sin tocar nada) frente a ReAct (bucle sobre el entorno) y agente frente a chatbot. Y la frase que se oye siempre —«más autonomía = mejor modelo»— que la medición de esta semana no respalda.
+· La prueba: 6 tareas de varios pasos en 4 condiciones con el mismo modelo local —una vuelta sin herramientas, varias vueltas sin herramientas, bucle con herramientas a temperatura 0 y el control a 0,8—.
+
+La regla que me llevo: la autonomía no la da el modelo, la da el acceso. Sin entorno no llega el dato que no tiene, y las vueltas de más solo cuestan tokens; con herramientas, el bucle cierra la tarea y el número se puede comprobar.
+
+¿Tú has montado un bucle con herramientas, o usas la IA a una pregunta por vez?
+
+Esta es la pieza 6 de una serie donde estoy aprendiendo IA y agentes de lo básico a lo avanzado, con pruebas hechas en mi propio ordenador. Lección 3: el agente, el bucle.
+
+#IA #InteligenciaArtificial #LLM #AgentesIA #Automatización

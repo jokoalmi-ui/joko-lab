@@ -1,0 +1,95 @@
+========================================================================
+RESULTADO FINAL — GATE DEL LAB Y LATENCIA REAL (v3, 299 casos)
+Joko Lab · ~/joko-lab/instruments/laya-comparativa
+2026-09-23 22:45:44 CEST · 0 EUR · sin descargas
+========================================================================
+
+TRES MEDICIONES DEL MISMO SET, PARA PODER SEPARAR MODELO DE CONFIGURACION
+  (1) 20:44  LM Studio ocupaba ~9 GB de VRAM · num_ctx por defecto
+  (2) 22:23  VRAM libre (810 MiB) · num_ctx por defecto
+  (3) 22:45  VRAM libre · num_ctx=8192  <-- LA VALIDA
+  Ficheros: previaVRAM_* · vramlibre_* · numctx8192_*
+
+------------------------------------------------------------------------
+CONFIGURACION DE INFERENCIA (identica en los tres salvo lo indicado)
+------------------------------------------------------------------------
+  runner envia : temperature 0.0, seed 42, num_predict 64, salida JSON
+                 restringida por esquema
+  num_ctx      : NO lo enviaba. Cada modelo usaba el de su Modelfile:
+                   granite4.2:8b -> 131072     r1-14b -> 64000
+                   qwen2.5:7b    -> default de plantilla
+  Desde el 23-sep 22:37 el runner SI lo envia, via env LAYA_NUM_CTX
+  (default en codigo: 8192). Registrado en el meta de los resultados.
+
+------------------------------------------------------------------------
+HUELLA EN MEMORIA (lo que descubrio el problema) — /api/ps
+------------------------------------------------------------------------
+  modelo        con su num_ctx (1 y 2)        con num_ctx=8192 (3)
+  granite4.2:8b     vram 10,38 / total 18,05 GB   vram 6,05 / total 6,05 GB
+  r1-14b            vram 10,26 / total 16,27 GB   vram 9,52 / total 9,52 GB
+  qwen2.5:7b        vram  5,71 / total  5,71 GB   vram 4,91 / total 4,91 GB
+  Solo qwen cabia entero. Granite reservaba caché para 128K de contexto
+  para responder preguntas de ~60 tokens: 18 GB en una GPU de 12 GB.
+
+------------------------------------------------------------------------
+TABLA FINAL (medicion valida: los tres enteros en GPU)
+------------------------------------------------------------------------
+  modelo                          n     acc   Brier    ECE5   P50ms   P95ms  c.err
+  granite4.2:8b-q4_K_M          299  0.9164  0.0836  0.0836   473.7   683.4    11
+  qwen2.5:7b                    299  0.7993  0.1674  0.1701   273.1   449.3    34
+  deepseek-r1-distill-qwen-14b  299  0.8060  0.1908  0.1923   737.8   974.2    34
+
+  c.err = errores con p>=0,8 (equivocados CONVENCIDOS).
+  Discrepancias entre modelos: ver comparativa_numctx8192.txt
+
+------------------------------------------------------------------------
+LATENCIA: LO QUE COSTABA MI PROPIA CONFIGURACION
+------------------------------------------------------------------------
+  modelo        con num_ctx del Modelfile   con num_ctx=8192   ganancia
+  granite4.2:8b          2957,1 ms               473,7 ms       6,2x
+  r1-14b                 1997,4 ms               737,8 ms       2,7x
+  qwen2.5:7b              250,8 ms               273,1 ms       (ruido)
+  El cuello de botella NO era el modelo: era la caché KV. Y solo qwen
+  se libraba porque su default ya era pequeño.
+
+------------------------------------------------------------------------
+VEREDICTO DEL GATE (y por que es robusto)
+------------------------------------------------------------------------
+  Los 8 casos `trampa` son hechos FABRICADOS: la respuesta correcta es "falso".
+  granite4.2:8b los rechaza 8/8 en LAS TRES mediciones (invariante).
+  qwen2.5:7b  2/8 -> 1/8 -> 1/8   r1-14b  2/8 -> 2/8 -> 2/8
+  -> GATE DE VERACIDAD: granite4.2:8b, con num_ctx fijado.
+     Ahora cuesta 474 ms por decision, no 2957 ms.
+  -> qwen2.5:7b: solo filtrado barato de bajo riesgo. En trampas tiene
+     ECE 0,74 (se equivoca con seguridad alta).
+  -> r1-14b: sin ventaja. Peor calibracion, 9,52 GB de VRAM y 1,6x mas
+     lento que granite.
+  -> DEBIL EN LOS TRES: `cuantificador` (0,55 los tres). Esa decision
+     deberia resolverla codigo determinista, no un modelo.
+
+------------------------------------------------------------------------
+ESTABILIDAD DE LA MEDIDA (3 pasadas, mismo set, temp 0, seed 42)
+------------------------------------------------------------------------
+  accuracy de granite: 0,9264 -> 0,9197 -> 0,9164  (rango 1 punto)
+  Lo unico que cambiaba era el reparto GPU/CPU y el num_ctx. Como temp=0
+  y seed=42, la variacion apunta a que el reparto de capas altera tambien
+  la salida (no solo la velocidad). HIPOTESIS, no hecho: haria falta
+  repetir dos veces con reparto identico para confirmarlo.
+
+------------------------------------------------------------------------
+LIMITE DECLARADO
+------------------------------------------------------------------------
+  Laya SIGUE SIN MEDIR. Nada descargado: faltan numpy/torch/transformers
+  y los checkpoints (~2,5 GB los tres). El backend laya se bloquea limpio
+  (exit 5) y no toca la red. Con este v3 ya discriminando, medirlo tendria
+  sentido para acierto Y latencia.
+
+------------------------------------------------------------------------
+REPRODUCIR
+------------------------------------------------------------------------
+  cd ~/joko-lab/instruments/laya-comparativa
+  .venv/bin/python run_test.py --selftest
+  LAYA_NUM_CTX=8192 .venv/bin/python run_test.py --backend ollama --set v3 \
+      --modelo-ollama ibm/granite4.2:8b-q4_K_M
+  .venv/bin/python comparar_modelos.py numctx8192_granite_v3.json \
+      numctx8192_qwen_v3.json numctx8192_r1_v3.json

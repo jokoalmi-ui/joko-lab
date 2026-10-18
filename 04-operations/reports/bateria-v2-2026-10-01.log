@@ -1,0 +1,80 @@
+=== Bateria v2 · 7 modelos · salida /home/jokoalmi/joko-lab/04-operations/metrics/bateria_modelos_v2.jsonl ===
+
+--- [1/7] glm-4.6v-flash ---
+  [PASS] A1_razonamiento_numerico        19.1 s
+  [PASS] A2_razonamiento_restricciones    31.0 s
+  [PASS] B1_codigo_one_shot              26.8 s
+  [PASS] B2_corregir_bug                 10.7 s
+  [PASS] C1_tool_calling_json            13.7 s
+  [PASS] D1_espanol_requisitos           57.8 s
+  [PASS] E1_consistencia                  3.7 s
+  >>> 7/7 | 26.4 tok/s | 186 s de reloj | guardado
+
+--- [2/7] google/gemma-4-12b-qat ---
+  [PASS] A1_razonamiento_numerico        53.3 s
+  [PASS] A2_razonamiento_restricciones    15.9 s
+  [PASS] B1_codigo_one_shot              93.8 s
+  [PASS] B2_corregir_bug                 15.9 s
+  [PASS] C1_tool_calling_json             9.9 s
+  [PASS] D1_espanol_requisitos           50.9 s
+  [PASS] E1_consistencia                  5.3 s
+  >>> 7/7 | 15.4 tok/s | 272 s de reloj | guardado
+
+--- [3/7] granite-4.0-h-tiny ---
+  [PASS] A1_razonamiento_numerico        22.8 s
+  [PASS] A2_razonamiento_restricciones     1.0 s
+  [PASS] B1_codigo_one_shot              21.0 s
+  [PASS] B2_corregir_bug                 11.2 s
+  [PASS] C1_tool_calling_json             9.7 s
+  [PASS] D1_espanol_requisitos           22.0 s
+  [PASS] E1_consistencia                  3.1 s
+  >>> 7/7 | 12.9 tok/s | 105 s de reloj | guardado
+
+--- [4/7] lfm2.5-vl-3b ---
+  [PASS] A1_razonamiento_numerico         0.2 s
+  [FAIL] A2_razonamiento_restricciones     0.1 s
+  [PASS] B1_codigo_one_shot               8.1 s
+  [PASS] B2_corregir_bug                  1.4 s
+  [PASS] C1_tool_calling_json             0.4 s
+  [PASS] D1_espanol_requisitos            4.7 s
+  [PASS] E1_consistencia                  0.4 s
+  >>> 6/7 | 66.0 tok/s | 23 s de reloj | guardado
+
+--- [5/7] qwen3.5-9b-the-defiant-fable-uncensored-heretic-neo-imatrix-max-mtp ---
+  [PASS] A1_razonamiento_numerico        48.2 s
+  [PASS] A2_razonamiento_restricciones    20.4 s
+  [PASS] B1_codigo_one_shot              48.7 s
+  [PASS] B2_corregir_bug                 14.8 s
+  [PASS] C1_tool_calling_json             4.5 s
+  [PASS] D1_espanol_requisitos           57.1 s
+  [PASS] E1_consistencia                  4.7 s
+  >>> 7/7 | 21.0 tok/s | 219 s de reloj | guardado
+
+--- [6/7] qwen3.6-35b-a3b-mtp ---
+  [PASS] A1_razonamiento_numerico        29.3 s
+  [PASS] A2_razonamiento_restricciones    66.2 s
+  [PASS] B1_codigo_one_shot             142.2 s
+  [PASS] B2_corregir_bug                 34.0 s
+  [PASS] C1_tool_calling_json            12.3 s
+  [PASS] D1_espanol_requisitos          173.9 s
+  [PASS] E1_consistencia                 11.5 s
+  >>> 7/7 | 8.3 tok/s | 541 s de reloj | guardado
+
+--- [7/7] qwen3.6-35b-a3b_moe ---
+  [PASS] A1_razonamiento_numerico        29.9 s
+  [PASS] A2_razonamiento_restricciones    60.3 s
+  [PASS] B1_codigo_one_shot             127.5 s
+  [PASS] B2_corregir_bug                 41.6 s
+  [PASS] C1_tool_calling_json            50.1 s
+  [PASS] D1_espanol_requisitos          147.0 s
+  [PASS] E1_consistencia                 14.9 s
+  >>> 7/7 | 7.0 tok/s | 541 s de reloj | guardado
+
+=== Resumen de esta corrida ===
+  2026-10-01  glm-4.6v-flash                                 7/7  26.4 tok/s
+  2026-10-01  google/gemma-4-12b-qat                         7/7  15.4 tok/s
+  2026-10-01  granite-4.0-h-tiny                             7/7  12.9 tok/s
+  2026-10-01  lfm2.5-vl-3b                                   6/7  66.0 tok/s
+  2026-10-01  qwen3.5-9b-the-defiant-fable-uncensored-hereti 7/7  21.0 tok/s
+  2026-10-01  qwen3.6-35b-a3b-mtp                            7/7  8.3 tok/s
+  2026-10-01  qwen3.6-35b-a3b_moe                            7/7  7.0 tok/s

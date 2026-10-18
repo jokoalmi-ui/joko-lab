@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Plantilla Base Cuaderno — Joko Lab TFM</title>
+<link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Montserrat:wght@400;600;700;800&family=Caveat:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     PLANTILLA BASE "HOJA CUADERNO" — replicada de
+     tfm/slides/hoja-cuaderno-base.png (1824x2310, vertical)
+     Geometria MEDIDA del original (script /tmp/medir_radio.py):
+     - papel crema empieza en x=87 (fondo oscuro solo a la izquierda)
+     - 22 agujeros, paso ~106px, agujero ~30px dentro del papel
+     - el alambre SOBRESALE del borde del papel ~27px (arco amplio)
+     ============================================================ */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #141414;               /* fondo oscuro */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    padding: 2rem 2rem 2rem 5rem;      /* mas padding izq: espacio para la espiral */
+  }
+  /* ---- La hoja de cuaderno ---- */
+  .sheet {
+    position: relative;
+    width: 850px;
+    min-height: 1080px;
+    background: #FDF8E9;
+    background-image:
+      linear-gradient(rgba(150,140,110,0.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(150,140,110,0.16) 1px, transparent 1px);
+    background-size: 22px 22px;
+    border-radius: 8px;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.5);
+    padding: 46px 44px 46px 70px;       /* izq 70px: agujeros a ~31px + texto */
+  }
+  /* ---- Perforaciones: dentro del papel, centro a ~31px del borde ---- */
+  .holes {
+    position: absolute; left: 23px; top: 35px; bottom: 35px; width: 16px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    z-index: 3;
+  }
+  .hole {
+    width: 16px; height: 9px; border-radius: 50%;
+    background: #D9CBA2;
+    border: 1px solid rgba(90,70,30,0.25);
+    box-shadow: inset 0 2px 5px rgba(60,45,10,0.45),
+                inset 0 -1px 2px rgba(255,255,255,0.5);
+  }
+  /* ---- Espiral: el arco SOBRESALE del borde izq del papel ---- */
+  #spiral_svg {
+    position: absolute; left: -40px; top: 35px; width: 100px; height: 1040px;
+    z-index: 5; pointer-events: none;
+  }
+  /* ---- Lomo: sombra del borde del papel ---- */
+  .spine {
+    position: absolute; left: 0; top: 35px; bottom: 35px; width: 22px;
+    background: linear-gradient(to right,
+      rgba(60,45,10,0.30), rgba(60,45,10,0.12), transparent);
+    border-radius: 8px 0 0 8px;
+    z-index: 2;
+  }
+
+  /* ============================================================
+     ZONA DE CONTENIDO — cada slide rellena esto
+     ============================================================ */
+  .content { position: relative; z-index: 4; }
+
+  .badge {
+    display: inline-block;
+    background: #2D5D62;
+    color: #FDF8E9;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.32rem 0.95rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: 'Special Elite', serif;
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    color: #1e1e1e;
+    line-height: 1.04;
+    margin-bottom: 0.35rem;
+  }
+  h1 .accent { color: #2D5D62; }
+  .subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 21px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: #2D5D62;
+    margin-bottom: 1.1rem;
+  }
+  .dashed-box {
+    border: 2px dashed #333333;
+    border-radius: 14px;
+    padding: 0.9rem 1.4rem;
+    font-family: 'Caveat', cursive;
+    font-size: 23px;
+    font-weight: 600;
+    color: #333333;
+    text-align: center;
+    background: rgba(255,255,255,0.35);
+    margin-bottom: 1.2rem;
+  }
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 1.2rem;
+  }
+  .col {
+    background: rgba(232, 241, 242, 0.55);
+    border: 2px dashed #333333;
+    border-radius: 12px;
+    padding: 0.9rem 1rem;
+  }
+  .col h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #2D5D62;
+    margin-bottom: 0.6rem;
+    border-bottom: 2px dashed #D4A017;
+    padding-bottom: 0.35rem;
+  }
+  .col ul { list-style: none; }
+  .col li {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1A1A1A;
+    line-height: 1.4;
+    margin-bottom: 0.45rem;
+    padding-left: 1.3rem;
+    position: relative;
+  }
+  .col li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.3rem;
+    width: 8px; height: 8px;
+    background: #2D5D62;
+    border-radius: 2px;
+  }
+  .footer {
+    margin-top: 1.2rem;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #1A1A1A;
+  }
+  .stars { color: #D4A017; font-size: 1rem; letter-spacing: 0.35em; }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="spine"></div>
+  <div class="holes" id="holes"></div>
+  <svg id="spiral_svg" viewBox="0 0 100 1040" preserveAspectRatio="none">
+    <defs>
+      <linearGradient id="wireGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#5a5a5a"/>
+        <stop offset="35%" stop-color="#8a8a8a"/>
+        <stop offset="55%" stop-color="#3a3a3a"/>
+        <stop offset="100%" stop-color="#1a1a1a"/>
+      </linearGradient>
+      <filter id="softShadow" x="-50%" y="-50%" width="200%" height="200%">
+        <feGaussianBlur stdDeviation="1.6"/>
+      </filter>
+    </defs>
+  </svg>
+
+  <div class="content">
+    <!-- ============ CONTENIDO DE CADA SLIDE ============ -->
+    <span class="badge">Joko Lab · TFM Máster IA 2026</span>
+    <h1>PRUEBA DE <span class="accent">FORMATO</span></h1>
+    <p class="subtitle">Hoja cuaderno base · plantilla reutilizable</p>
+
+    <div class="dashed-box">Cada slide nueva copia esta base y solo cambia el contenido.</div>
+
+    <div class="cols">
+      <div class="col">
+        <h3>Qué incluye la base</h3>
+        <ul>
+          <li>Papel crema cuadriculado</li>
+          <li>Espiral wire-o negra</li>
+          <li>Perforaciones + lomo</li>
+          <li>Fondo oscuro</li>
+        </ul>
+      </div>
+      <div class="col">
+        <h3>Verificación</h3>
+        <ul>
+          <li>Render Chrome headless</li>
+          <li>Comparación con el PNG original</li>
+          <li>Revisión GLM 4.6V local</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="stars">★ ★</div>
+      plantilla-cuaderno-base.html · 08-ago-2026
+    </div>
+    <!-- ============ /CONTENIDO ============ -->
+  </div>
+</div>
+
+<script>
+  // Espiral wire-o fiel al original: 22 alambres, arcos ELIPTICOS que sobresalen
+  // Geometria: SVG left:-40, viewBox 0..100. Agujero en x=71 -> pantalla 31px
+  // (borde del papel en x=0 del sheet). Arco rx=50 -> el punto medio sobresale
+  // por la izquierda del agujero, fuera del papel.
+  const SVG_NS = "http://www.w3.org/2000/svg";
+  const N = 22, HOLE_X = 71, HOLE_TOP = 0, HOLE_BOTTOM = 1040;
+  const step = (HOLE_BOTTOM - HOLE_TOP) / (N - 1);
+  const ys = Array.from({length: N}, (_, i) => HOLE_TOP + i * step);
+
+  const holes = document.getElementById('holes');
+  for (let i = 0; i < N; i++) {
+    const hole = document.createElement('div');
+    hole.className = 'hole';
+    holes.appendChild(hole);
+  }
+
+  const svg = document.getElementById('spiral_svg');
+  for (let i = 0; i < N - 1; i++) {
+    // Sombra del alambre
+    const sh = document.createElementNS(SVG_NS, 'path');
+    sh.setAttribute('d', `M ${HOLE_X} ${ys[i]} A 60 25 0 0 0 ${HOLE_X} ${ys[i+1]}`);
+    sh.setAttribute('stroke', 'rgba(60,45,10,0.30)');
+    sh.setAttribute('stroke-width', '11');
+    sh.setAttribute('fill', 'none');
+    sh.setAttribute('filter', 'url(#softShadow)');
+    svg.appendChild(sh);
+    // Alambre delantero (sweep 0: arco hacia la IZQUIERDA, sobresale del borde)
+    const p = document.createElementNS(SVG_NS, 'path');
+    p.setAttribute('d', `M ${HOLE_X} ${ys[i]} A 60 25 0 0 0 ${HOLE_X} ${ys[i+1]}`);
+    p.setAttribute('stroke', 'url(#wireGrad)');
+    p.setAttribute('stroke-width', '8');
+    p.setAttribute('fill', 'none');
+    p.setAttribute('stroke-linecap', 'round');
+    svg.appendChild(p);
+  }
+  // Seccion del alambre por detras dentro de cada agujero
+  for (let i = 0; i < N; i++) {
+    const e = document.createElementNS(SVG_NS, 'ellipse');
+    e.setAttribute('cx', HOLE_X);
+    e.setAttribute('cy', ys[i]);
+    e.setAttribute('rx', 7);
+    e.setAttribute('ry', 5);
+    e.setAttribute('fill', '#1a1a1a');
+    svg.appendChild(e);
+  }
+</script>
+</body>
+</html>

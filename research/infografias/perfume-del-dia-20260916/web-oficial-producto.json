@@ -1,0 +1,102 @@
+{
+  "product": {
+    "id": 6542966751334,
+    "title": "Molecule 01 + Iris",
+    "body_html": "<p>Just like their Molecule siblings, our M+ fragrances zero in on aroma-chemicals. But if Molecules celebrate the molecules in their solitary glory, M+ pairs them with naturals, just as singular and at the same time entrancingly complex. </p>\n<p>Molecule 01 + Iris 100ml consists of Iso E Super + Iris.<br> <br>Iso E Super is an abstract synthetic molecule characterised as a cedarwood note with a warm,  velvety cocooning sensation.</p>\n<p> Iris is a natural extract from the root of several varieties of iris. </p>\n<p>M+ Iris 100ml is spring-fresh, sober and ephemeral. The robust routines of orris dances with the magnetic versatility of the molecule that started it all. </p>\n<p>Molecule 01 + Iris is the romance between iris absolue and Iso E Super. In this duo, the seductive quality of Iso E Super plays beautifully against the elegance of the iris. To add anything more would be to take away from their interplay. </p>\n<p>The beauty of M+ Iris lies in its balance of simplicity and complexity. Describing the scent of iris isn't straightforward, but its impact is undeniable. Smell a fragrance without it, then with it, and you'll instantly recognise what it brings—an elegant, creamy powderiness that adds depth and a tactile, almost physical dimension to the fragrance.</p>\n<p>\"I have had a long-standing love affair with iris. Every Escentric fragrance has an iris note somewhere in there. To me, iris is luxury. The iris pallida absolue I've used here is one of the most expensive ingredients in perfumery. You can find iris extracts for way less than that. But they do not have the great and subtle beauty of this absolue. It's radical to put this much in a fragrance. The sillage is fantastic. This is a bomb, but a subtle bomb,\" says Geza Schoen. </p>",
+    "vendor": "Escentric Molecules",
+    "product_type": "Fragrance",
+    "created_at": "2021-03-09T21:14:52+00:00",
+    "handle": "molecule-01-plus-iris-100ml",
+    "updated_at": "2026-09-16T08:15:38+01:00",
+    "published_at": "2021-03-11T15:58:25+00:00",
+    "template_suffix": "",
+    "published_scope": "global",
+    "tags": "M+, Molecule +, molecule 01 + iris",
+    "variants": [
+      {
+        "id": 39356480553062,
+        "product_id": 6542966751334,
+        "title": "100ml",
+        "price": "165.00",
+        "sku": "MPIRIS-100ML-UNIT",
+        "position": 1,
+        "inventory_policy": "deny",
+        "compare_at_price": "",
+        "fulfillment_service": "manual",
+        "inventory_management": "shopify",
+        "option1": "100ml",
+        "option2": null,
+        "option3": null,
+        "created_at": "2021-06-16T21:24:16+01:00",
+        "updated_at": "2026-09-16T08:15:38+01:00",
+        "taxable": true,
+        "barcode": "5060103310678",
+        "grams": 308,
+        "image_id": null,
+        "weight": 308.0,
+        "weight_unit": "g",
+        "inventory_quantity": 20,
+        "old_inventory_quantity": 20,
+        "tax_code": "",
+        "requires_shipping": true,
+        "quantity_rule": {
+          "min": 1,
+          "max": null,
+          "increment": 1
+        },
+        "price_currency": "EUR",
+        "compare_at_price_currency": "",
+        "quantity_price_breaks": []
+      }
+    ],
+    "options": [
+      {
+        "id": 8416002113638,
+        "product_id": 6542966751334,
+        "name": "Size",
+        "position": 1,
+        "values": [
+          "100ml"
+        ]
+      }
+    ],
+    "images": [
+      {
+        "id": 73630097342848,
+        "product_id": 6542966751334,
+        "position": 1,
+        "created_at": "2025-02-20T19:05:03+00:00",
+        "updated_at": "2025-02-25T12:05:48+00:00",
+        "alt": null,
+        "width": 1920,
+        "height": 1920,
+        "src": "https://cdn.shopify.com/s/files/1/0855/9220/files/M_01_Iris_100ml_Solo_St_On_Bottle_OnBaseLine.jpg?v=1740485148",
+        "variant_ids": []
+      },
+      {
+        "id": 73630097441152,
+        "product_id": 6542966751334,
+        "position": 2,
+        "created_at": "2025-02-20T19:05:03+00:00",
+        "updated_at": "2025-02-25T12:05:48+00:00",
+        "alt": null,
+        "width": 1920,
+        "height": 1920,
+        "src": "https://cdn.shopify.com/s/files/1/0855/9220/files/M_01_Iris_100ml_Bottle_Carton_St_On_OnBaseLine.jpg?v=1740485148",
+        "variant_ids": []
+      }
+    ],
+    "image": {
+      "id": 73630097342848,
+      "product_id": 6542966751334,
+      "position": 1,
+      "created_at": "2025-02-20T19:05:03+00:00",
+      "updated_at": "2025-02-25T12:05:48+00:00",
+      "alt": null,
+      "width": 1920,
+      "height": 1920,
+      "src": "https://cdn.shopify.com/s/files/1/0855/9220/files/M_01_Iris_100ml_Solo_St_On_Bottle_OnBaseLine.jpg?v=1740485148",
+      "variant_ids": []
+    }
+  }
+}
