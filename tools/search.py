@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """search.py - Busqueda semantica con re-ranking (BGE-M3 via LM Studio API o local)."""
-import os, sys, argparse, json, lancedb
+import os, sys, argparse, json, lancedb, importlib.util
 from pathlib import Path
 import urllib.request
 
@@ -107,6 +107,43 @@ def penalizacion_hub(path: str, n_chunks: int) -> float:
 if str(VAULT_PATH) not in sys.path:
     sys.path.insert(0, str(VAULT_PATH))
 
+# Carga de modulos hermanos por RUTA, no por paquete (fix 19-oct-2026, medido).
+# Si PYTHONPATH incluye ~/.hermes/hermes-agent, `from tools.X import ...` resuelve
+# al paquete tools/ del agente: es paquete REGULAR (tiene __init__.py) y gana al
+# tools/ del repo, que es namespace (sin __init__.py), aunque el del repo vaya
+# antes en sys.path. El ImportError resultante lo tragaba _check_api() y el
+# buscador degradaba al encoder local sin decir nada -> 0 resultados por rc=1.
+# Cargando el fichero del repo por ruta, el resultado no depende del entorno.
+_TOOLS_DIR = Path(__file__).resolve().parent
+
+
+def _cargar_modulo_local(nombre: str):
+    """Carga tools/<nombre>.py del propio repo y lo cachea en sys.modules."""
+    cachado = sys.modules.get(f"joko_tools_{nombre}")
+    if cachado is not None:
+        return cachado
+    fichero = _TOOLS_DIR / f"{nombre}.py"
+    spec = importlib.util.spec_from_file_location(f"joko_tools_{nombre}", fichero)
+    if spec is None or spec.loader is None:
+        raise ImportError(f"search.py: no se pudo cargar {fichero} (fail-closed)")
+    modulo = importlib.util.module_from_spec(spec)
+    sys.modules[f"joko_tools_{nombre}"] = modulo
+    spec.loader.exec_module(modulo)
+    return modulo
+
+
+def _avisar_tools_ajeno():
+    """Avisa si el paquete `tools` importable no es el del repo (entorno sucio)."""
+    ajeno = sys.modules.get("tools")
+    if ajeno is None:
+        return None
+    rutas = [Path(p).resolve() for p in getattr(ajeno, "__path__", [])]
+    if _TOOLS_DIR not in rutas:
+        print(f"  [aviso] paquete 'tools' importado desde {rutas or '?'} (no es el del repo); "
+              f"se usan modulos del repo por ruta", file=sys.stderr)
+        return ajeno
+    return None
+
 # Cache
 _encoder = None
 _reranker = None
@@ -151,14 +188,16 @@ def rerank_via_daemon(query: str, texts: list) -> list:
 
 
 def _check_api():
-    """Verifica si LM Studio API de embeddings está disponible."""
+    """Verifica si LM Studio API de embeddings está disponible.
+
+    Fail-closed (19-oct-2026): antes un `except Exception` silencioso convertia
+    cualquier fallo de importacion en "API no disponible" y el buscador degradaba
+    al encoder local sin avisar. Si esto falla ahora, se ve la traza.
+    """
     global _use_api
     if _use_api is None:
-        try:
-            from tools.lmstudio_embeddings import is_available
-            _use_api = is_available()
-        except Exception:
-            _use_api = False
+        _avisar_tools_ajeno()
+        _use_api = _cargar_modulo_local("lmstudio_embeddings").is_available()
     return _use_api
 
 
@@ -183,7 +222,7 @@ def _encode(text):
     """Codifica texto usando API o modelo local."""
     encoder = get_encoder()
     if encoder == "api":
-        from tools.lmstudio_embeddings import encode
+        encode = _cargar_modulo_local("lmstudio_embeddings").encode
         import numpy as np
         v = encode(text)
         # Normalizar como lo haría SentenceTransformer
