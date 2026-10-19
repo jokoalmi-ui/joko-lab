@@ -1361,3 +1361,14 @@ MARCA: via-apply-skill-pending-20261015
   - Decidido: canvas 1080x1440, registrado en design-tokens.yaml como 'DECIDIDO 2026-10-19'; 1080x1350 queda como legado sin migrar.
   - Falso ok corregido en el propio medidor: leía documentElement.scrollHeight con altura fija y daba overflow 0 en v3; ahora usa max(body, documentElement) y nombra el elemento culpable.
   - NO hecho: migrar las 6 skills con CSS duplicado; bucle automático render->visión->corrección; el contraste medido sobre píxeles del PNG no es comparable con la puerta 17/17.
+
+- 2026-10-19 12:36 - COLA DE SKILLS vaciada (6 batches, 11 parches, 5 skills) por SCRIPT, no por skill_manage: `apply_skill_pending(rec['payload'])` desde el venv de Hermes, autorizado por opcion elegida en un clarify (la doc exige eso, no un ok suelto). MARCA: COLA-SKILLS-20261019
+  - Medido (bytes antes -> despues, backups `SKILL.md.bak-20261019-cola` junto a cada una): medicion-aceleracion-inferencia-local 13474 -> 17850 (4 ops), seguimiento-empleo 36428 -> 37074, infografia-html 42432 -> 42832, perfume-del-dia 70929 -> 71952, joko-git-recibos 53302 -> 54002 (3 ops). Verificado 11/11 new_string presentes en disco, frontmatter YAML OK, cola vacia.
+  - Bug medido: `apply_skill_pending` devuelve un STRING JSON, no un dict; el primer script hizo `res.get()` y murio con AttributeError DESPUES de aplicar el batch 1345d606 (4 ops). Sin corrupcion: el segundo run detecto que ya estaba en disco y lo movio a applied/ sin re-aplicar. Si no, el reintento habria fallado por old_string no encontrado y habria hecho rollback del batch entero.
+  - Dato que contradice la referencia: `write-approval.md` dice que esta via deja la mutacion FUERA del curator ledger; medido hoy, el ledger registra las 11 mutaciones a las 12:20 con actor=agent.
+  - joko-git-recibos queda con la topologia real (origin HTTPS unico, sin `github` ni SSH) y la advertencia del bare; el parrafo viejo (origin = bare del SSD) ya no existe.
+
+- 2026-10-19 12:36 - BARE DEL SSD PRESERVADO como archivo historico: copia `cp -a` de /mnt/ssd_ia_datos/joko-lab.git a /mnt/ssd_ia_datos/backups/joko-lab-historia-168c-20261019.git. MARCA: BARE-ARCHIVO-20261019
+  - Verificado en la COPIA: 168 commits, master e5639ca (identico al origen), `git fsck` rc=0, 23 MB; origen intacto (master sigue e5639ca). NADA empujado: ni remoto anadido, ni push, ni merge.
+  - Motivo: el bare tiene 168 commits (raiz 24-sep-2026, ultimo e5639ca del 18-oct 07:50) y el repo local nace de un import plano de 2 commits (raiz 21dcc98, 18-oct 18:49); no hay ancestro comun, asi que empujar el local al bare no es fast-forward y borraria esos 168 commits.
+  - Pendiente: decidir si se unifican historias (`merge --allow-unrelated-histories` sobre ~2300 ficheros) o se deja el bare como archivo y el backup diario pasa a un bare nuevo. Mientras tanto, no se toca.
