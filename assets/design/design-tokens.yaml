@@ -1,0 +1,193 @@
+# design-tokens.yaml - FUENTE UNICA de diseno de Joko Lab
+#
+# Fase 0 del plan de design system (2026-10-19).
+# Todos los valores estan MEDIDOS: extraidos literalmente del bloque <style>
+# de fichas v5 que pasaron la puerta preenvio (17/17). Ningun valor inferido
+# ni copiado de una libreria externa.
+#
+# Consumidores previstos: infografia-html, render-html-a-imagen, sketch,
+# baoyu-infographic, linkedin-carrusel-lab, archify, perfume-del-dia.
+# Estado: draft. No se migra ninguna skill hasta validar este fichero.
+
+meta:
+  version: 0.1.0
+  status: draft
+  created: "2026-10-19 10:27"
+  method: "extraccion literal del <style> de 4 fichas v5 validadas; contraste y aire de vis.json"
+  scope: "piezas verticales 1080x1440 (ficha de perfume). Otras piezas (carrusel, deck 16:9) sin medir todavia"
+  measured_from:
+    - path: research/infografias/perfume-del-dia-20261019/ficha_d.html
+      css_bytes: 7039
+      css_md5: ad504a8139a39f89125f4d1f49d02489
+      canvas: 1080x1440
+    - path: research/infografias/perfume-del-dia-20261017/ficha_a_1440_klein.html
+      css_bytes: 6798
+      css_md5: 819b023806fa4d14ddce64252cdb35ec
+      canvas: 1080x1440
+    - path: research/infografias/perfume-del-dia-20261015-cherry/ficha_i.html
+      css_bytes: 6788
+      css_md5: 6cdc4007e92f6217a0e5f9a363359104
+      canvas: 1080x1350
+    - path: research/infografias/perfume-del-dia-20261014-hesperide/perfume_del_dia_v5_hesperide.html
+      css_bytes: 6791
+      css_md5: c3b69bd887b59c084f3c7579ab9c0446
+      canvas: 1080x1350
+  confidence:
+    color: "alta (unica fuente, valores identicos en las 4)"
+    typography: "alta (familias y escala identicas en las 4)"
+    geometry: "media (dos regimenes de altura conviven: 1350 y 1440)"
+    contrast: "medida por pieza, no fijada como objetivo"
+
+# ---------------------------------------------------------------------------
+canvas:
+  vigente:
+    id: ficha-3x4-1440
+    width: 1080
+    height: 1440
+    ratio: "3:4"
+    overflow: hidden
+    status: "DECIDIDO 2026-10-19: 1440 es el canvas canonico (eleccion del usuario)"
+  legado:
+    id: ficha-3x4-1350
+    width: 1080
+    height: 1350
+    status: legado
+    used_in: ["2026-10-14", "2026-10-15"]
+    note: "convive con el vigente; decidir cual se adopta antes de migrar skills"
+
+# ---------------------------------------------------------------------------
+color:
+  # Texto
+  ink: "#0b2f3f"           # h1, .alt-n, .pie .sprays
+  ink_soft: "#1d3a48"      # .dh, .pl .not
+  ink_body: "#12303d"      # .inspiracion p
+  muted: "#5a6a72"         # .fecha-sep, .r-meta, .alt-casa, .alt-motivo
+  muted_2: "#8a9aa3"       # .dh .f
+  muted_3: "#7d8e97"       # .fuente-line
+  hairline: "#9fb3bc"      # .dh .sep
+  cita: "#232f7a"          # .cita blockquote
+  cita_fuente: "#6b5bc0"   # .cita .fuente-line
+  pie: "#23404d"           # .pie .clima
+  # Acentos
+  accent_cyan: "#0d6b8c"   # .casa, .sello (color y borde)
+  accent_rust: "#b2452a"   # .sub, .caveat-pie, .sello b
+  accent_gold: "#c9971c"   # .r-num
+  accent_orange: "#c96f1c" # .alt-rt
+  # Superficie y bordes
+  paper: "rgb(255, 252, 248)"
+  qr_border: "#cfd8dc"
+  nota_fondo: "#93a1a8"
+  blanco: "#ffffff"
+  sombra_linea: "rgba(120, 140, 150, 0.35)"   # .pie border-top
+  # Velo sobre el fondo fotografico (degradado vertical)
+  velo:
+    vigente: ["rgba(255,252,248,0.18)", "rgba(255,252,248,0.26)", "rgba(255,252,248,0.40)"]
+    legado:  ["rgba(255,252,248,0.36)", "rgba(255,252,248,0.46)", "rgba(255,252,248,0.64)"]
+    note: "el velo decide el contraste del texto sobre el packshot; es un parametro de legibilidad, no estetico"
+
+# ---------------------------------------------------------------------------
+typography:
+  families:
+    display: "'Playfair Display', serif"   # pesos 600, 800; italica 500
+    script: "'Caveat', cursive"            # peso 600
+    sans: "'Inter', sans-serif"            # pesos 400, 600, 800
+  source: "Google Fonts (misma @import en las 4 fichas)"
+  scale_px: [9, 10, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 18, 19, 22, 28, 32, 72]
+  roles:
+    h1_nombre:      {family: display, size: 72, weight: 800, line_height: 1.0}
+    subtitulo:      {family: script,  size: 28, weight: 600}
+    caveat_pie:     {family: script,  size: 22, weight: 600}
+    rating_num:     {family: display, size: 32, weight: 800}
+    inspiracion:    {family: display, size: 18, weight: 500, style: italic, line_height: 1.30}
+    cita:           {family: display, size: 19, weight: 500, style: italic, line_height: 1.30}
+    casa:           {family: sans, size: 14.5, weight: 800, letter_spacing: 4.5, transform: uppercase}
+    datos_hero:     {family: sans, size: 14.5, weight: 600}
+    sec_title:      {family: sans, size: 13.5, weight: 800, letter_spacing: 2.5, transform: uppercase}
+    pie:            {family: sans, size: 13, weight: 700, line_height: 1.30}
+    fecha_sep:      {family: sans, size: 12.5, weight: 600, letter_spacing: 1.5}
+    sello:          {family: sans, size: 10, weight: 800, letter_spacing: 1.0, transform: uppercase}
+    fuente_line:    {family: sans, size: 10, weight: 600}
+    nota_fondo:     {family: sans, size: 9, style: italic}
+
+# ---------------------------------------------------------------------------
+layout:
+  padding:
+    x: 52
+    top: 45      # override vigente (el base declara 8 y luego se sobrescribe)
+    bottom: 50
+  indent:
+    bloques: 44  # .inspiracion, .alts, .cita
+  hero:
+    gap: 44
+    frasco_col_width: 300
+    figura_height: 450
+    sombra_suelo: {width: 330, height: 48}
+  sello:
+    size: 74
+    border: 2.5
+    radius: "50%"
+  seccion:
+    num_size: 32
+    head_gap: 12
+    rule_height: 1.5
+  piramide_3d:
+    svg: {width: 470, height: 220}
+    swatch: {width: 34, height: 20}
+  pie:
+    border_top: 2
+    gap: 18
+  qr:
+    size: 70
+    radius: 8
+  radii:
+    pill: 16
+    sm: 8
+    xs: 4
+    circle: "50%"
+
+# ---------------------------------------------------------------------------
+contrast_measured:
+  # Datos reales de la puerta de legibilidad; NO son objetivos, son lo que salio.
+  - date: 2026-10-19
+    piece: perfume-del-dia-20261019
+    fondo_L: 132.5
+    cap_top_ratio: 3.68
+    cuerpo_ratio: 2.54
+    claros_pct: 3.0
+    note: "cuerpo por debajo de 3:1; decision pendiente del usuario"
+  - date: 2026-10-17
+    piece: perfume-del-dia-20261017
+    cap_top_ratio: 3.92
+    cuerpo_ratio: 3.16
+  - date: 2026-10-18
+    piece: perfume-del-dia-20261018
+    cap_top_ratio: 2.07
+    cuerpo_ratio: 3.78
+
+# ---------------------------------------------------------------------------
+known_drift:
+  - "canvas: 1350 (14-15 oct) vs 1440 (17-19 oct) sin criterio escrito"
+  - "velo: dos juegos de opacidades; no hay regla de cuando usar cada uno"
+  - "densidad: overrides !important al final del CSS distintos por ficha (.sec-head, line-height, paddings)"
+  - "estilos duplicados en cada build_ficha.py; no hay import comun (este fichero es el primer intento)"
+
+open_questions:
+  - "canvas: RESUELTO 2026-10-19 -> 1440; 1350 queda como legado sin migrar"
+  - "ratio minimo aceptable para texto de cuerpo sobre packshot"
+  - "como consumen los tokens las skills: variables CSS generadas desde YAML o lectura en el script de build"
+
+# ---------------------------------------------------------------------------
+# Gate de variantes (fase 1). Medido sobre renders reales 1080x1440 con Chrome 155.
+# Los umbrales NO son a priori: salen de comparar la referencia aprobada (v1)
+# con una variante que cumple (v2) y otra que rompe (v3).
+gate_variantes:
+  criteria:
+    overflow_px: 0
+    pie_dentro_px: ">= 0"
+    contraste_min: 4.5
+    aire_px: ">= 24"
+  measured_2026_10_19:
+    v1_vigente: {overflow: 0, aire: 0, pie_dentro: -12, contraste_min: 4.97}
+    v2_compacto: {overflow: 0, aire: 64, pie_dentro: 0, contraste_min: 5.14, veredicto: "cumple"}
+    v3_banda: {overflow: 49, aire: 0, pie_dentro: -99, contraste_min: 4.95, veredicto: "descartada: el pie se sale del lienzo"}
+  method_note: "contraste medido sobre pixeles del PNG (percentil 5 vs 95 de luminancia en la caja del texto). NO es el mismo metodo que la puerta 17/17, que mide fondo vs color declarado: las cifras no son comparables entre si."

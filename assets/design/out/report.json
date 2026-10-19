@@ -1,0 +1,191 @@
+[
+  {
+    "variante": "v1_vigente",
+    "label": "V1 vigente (referencia 19-oct)",
+    "html_bytes": 24835,
+    "render_rc": 0,
+    "png": "/home/jokoalmi/joko-lab/assets/design/out/v1_vigente.png",
+    "scroll": 1440,
+    "body_scroll": 1440,
+    "overflow": 0,
+    "max_bottom": 1440,
+    "culprit": "div.content",
+    "last_bottom": 1326,
+    "pie_top": 1326,
+    "aire": 0,
+    "pie_dentro": -12,
+    "gaps": [
+      0,
+      0,
+      0
+    ],
+    "gap_min": 0,
+    "fuera": [
+      ".nota-fondo"
+    ],
+    "boxes": {
+      ".dh": [
+        396,
+        374,
+        1028,
+        391
+      ],
+      ".inspiracion p": [
+        96,
+        885,
+        1028,
+        1002
+      ],
+      ".cita blockquote": [
+        96,
+        1236,
+        1028,
+        1310
+      ],
+      ".alt-n": [
+        98,
+        1052,
+        147,
+        1071
+      ]
+    },
+    "fonts": "loading",
+    "wide_ok": false,
+    "png_size": [
+      1080,
+      1440
+    ],
+    "contraste": {
+      ".dh": 6.31,
+      ".inspiracion p": 6.09,
+      ".cita blockquote": 4.97,
+      ".alt-n": 5.73
+    }
+  },
+  {
+    "variante": "v2_compacto",
+    "label": "V2 compacto (menos frasco, mas aire de lectura)",
+    "html_bytes": 24893,
+    "render_rc": 0,
+    "png": "/home/jokoalmi/joko-lab/assets/design/out/v2_compacto.png",
+    "scroll": 1440,
+    "body_scroll": 1440,
+    "overflow": 0,
+    "max_bottom": 1440,
+    "culprit": "div.content",
+    "last_bottom": 1250,
+    "pie_top": 1314,
+    "aire": 64,
+    "pie_dentro": 0,
+    "gaps": [
+      0,
+      0,
+      0
+    ],
+    "gap_min": 0,
+    "fuera": [
+      ".nota-fondo"
+    ],
+    "boxes": {
+      ".dh": [
+        328,
+        333,
+        1028,
+        350
+      ],
+      ".inspiracion p": [
+        88,
+        797,
+        1028,
+        914
+      ],
+      ".cita blockquote": [
+        88,
+        1160,
+        1028,
+        1234
+      ],
+      ".alt-n": [
+        90,
+        970,
+        139,
+        989
+      ]
+    },
+    "fonts": "loading",
+    "wide_ok": false,
+    "png_size": [
+      1080,
+      1440
+    ],
+    "contraste": {
+      ".dh": 6.05,
+      ".inspiracion p": 6.32,
+      ".cita blockquote": 5.14,
+      ".alt-n": 6.3
+    }
+  },
+  {
+    "variante": "v3_banda",
+    "label": "V3 frasco en banda superior (packshot vertical)",
+    "html_bytes": 25141,
+    "render_rc": 0,
+    "png": "/home/jokoalmi/joko-lab/assets/design/out/v3_banda.png",
+    "scroll": 1440,
+    "body_scroll": 1489,
+    "overflow": 49,
+    "max_bottom": 1489,
+    "culprit": "div.pie",
+    "last_bottom": 1413,
+    "pie_top": 1413,
+    "aire": 0,
+    "pie_dentro": -99,
+    "gaps": [
+      0,
+      0,
+      0
+    ],
+    "gap_min": 0,
+    "fuera": [
+      ".nota-fondo"
+    ],
+    "boxes": {
+      ".dh": [
+        381,
+        593,
+        699,
+        610
+      ],
+      ".inspiracion p": [
+        52,
+        995,
+        1028,
+        1089
+      ],
+      ".cita blockquote": [
+        52,
+        1323,
+        1028,
+        1397
+      ],
+      ".alt-n": [
+        54,
+        1139,
+        103,
+        1158
+      ]
+    },
+    "fonts": "loading",
+    "wide_ok": false,
+    "png_size": [
+      1080,
+      1440
+    ],
+    "contraste": {
+      ".dh": 7.0,
+      ".inspiracion p": 6.23,
+      ".cita blockquote": 4.95,
+      ".alt-n": 7.53
+    }
+  }
+]
