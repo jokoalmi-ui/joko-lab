@@ -84,6 +84,48 @@ TIPOS = {
     "razonamiento": {"motor": "cloud", "verificable": False},  # complejo → cloud directo
 }
 
+TIPOS_VALIDOS = tuple(TIPOS)
+
+
+# --- Tipo declarado (paso 1, 19-oct-2026) --------------------------------
+# La cola/CLI puede declarar el tipo. Si no lo declara se usa la heuristica
+# de siempre, pero el ORIGEN queda etiquetado: un acierto heuristico y uno
+# declarado no son la misma evidencia.
+def tipo_efectivo(tarea: str, tipo_declarado: "str | None" = None) -> tuple:
+    """Devuelve (tipo, origen). origen ∈ {"cola", "heuristica"}."""
+    if tipo_declarado:
+        if tipo_declarado not in TIPOS:
+            raise SystemExit(f"Tipo desconocido: {tipo_declarado}. "
+                             f"Validos: {', '.join(TIPOS_VALIDOS)}")
+        return tipo_declarado, "cola"
+    return clasificar_tipo(tarea), "heuristica"
+
+
+def cargar_schema(ruta: "str | None" = None):
+    """Carga y valida (Draft-07) un schema JSON. Devuelve (schema, error).
+
+    error None = valido. "jsonschema_no_disponible" = schema cargado sin
+    poder validarlo (se degrada, no se falla en abierto en silencio).
+    """
+    if not ruta:
+        return None, None
+    p = Path(ruta)
+    if not p.exists():
+        return None, f"no_existe: {ruta}"
+    try:
+        sch = json.loads(p.read_text(encoding="utf-8"))
+    except Exception as e:
+        return None, f"json_invalido: {e}"
+    try:
+        import jsonschema
+        jsonschema.Draft7Validator.check_schema(sch)
+        return sch, None
+    except ImportError:
+        return sch, "jsonschema_no_disponible"
+    except Exception as e:
+        return None, f"schema_invalido: {str(e).splitlines()[0]}"
+
+
 # Heurística simple de clasificación (ampliable con RULE-PROC-005)
 KEY_RAZONAMIENTO = ["razona", "por qué", "explica", "compara", "decide", "planifica",
                     "diagnostica", "multi-causa", "estrategia", "diseña", "arregla",
@@ -340,18 +382,27 @@ def sugerir_motor(tipo: str) -> str:
 
 
 # --- Acciones ---
-def cmd_plan(tarea: str, as_json: bool) -> None:
-    tipo = clasificar_tipo(tarea)
+def cmd_plan(tarea: str, as_json: bool, tipo_declarado: "str | None" = None,
+             schema_path: "str | None" = None) -> None:
+    tipo, origen = tipo_efectivo(tarea, tipo_declarado)
     motor = sugerir_motor(tipo)
     est = _preestimar(tarea)  # tipo fino + modelo desde la tabla YAML (pipeline)
+    sch, sch_err = cargar_schema(schema_path)
     plan = {
         "tarea": tarea,
         "tipo": tipo,
+        "tipo_origen": origen,
         "tipo_fino": est.get("tipo", tipo),
         "modelo_estimado": est.get("modelo", "?"),
         "motor_planificado": motor,
         "motor_default": TIPOS[tipo]["motor"],
         "verificable": TIPOS[tipo]["verificable"],
+        "schema": {
+            "ruta": schema_path,
+            "valido": bool(schema_path) and sch_err is None,
+            "error": sch_err,
+            "requeridas": (sch or {}).get("required", []),
+        },
         "pasos": (["local(auto-preestima modelo) -> verifier -> cloud si falla"] if motor == "local"
                   else ["cloud directo"]),
         "coste_estimado": "0 USD (local)" if motor == "local" else "cloud flash",
@@ -360,11 +411,18 @@ def cmd_plan(tarea: str, as_json: bool) -> None:
         print(json.dumps(plan, ensure_ascii=False, indent=2))
     else:
         print(f"Tarea: {tarea}")
-        print(f"Tipo: {tipo} | motor planificado: {motor} (default {TIPOS[tipo]['motor']})")
-        print(f"Modelo fino estimado (pipeline YAML): {est.get('modelo', '?')} [tipo: {est.get('tipo', tipo)}]")
+        print(f"Tipo: {tipo} (origen: {origen}) | motor planificado: {motor} "
+              f"(default {TIPOS[tipo]['motor']})")
+        print(f"Modelo fino estimado (pipeline YAML): {est.get('modelo', '?')} "
+              f"[tipo: {est.get('tipo', tipo)}]")
+        if schema_path:
+            estado_sch = "OK" if sch_err is None else f"ERROR ({sch_err})"
+            req = ", ".join(plan["schema"]["requeridas"]) or "-"
+            print(f"Schema: {schema_path} -> {estado_sch} | requeridas: {req}")
         print(f"Verificable: {TIPOS[tipo]['verificable']}")
         print(f"Pasos: {plan['pasos'][0]}")
         print(f"Coste: {plan['coste_estimado']}")
+
 
 
 def cmd_run(tarea: str, force: bool) -> None:
@@ -449,15 +507,42 @@ def cmd_check() -> None:
         print(f"router check falló: {e}")
 
 
+def _norm_argv(argv):
+    """Normaliza el orden: flags delante, --plan/--run con su valor al final.
+
+    Motivo (19-oct-2026): con `--plan` de nargs="?", argparse no consume como
+    valor un token que empieza por '-', asi que `--plan --json "t"` respondia
+    "Falta la tarea". Con esto el orden deja de importar.
+    """
+    flags, resto = [], []
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a in ("--json", "-y"):
+            flags.append(a)
+            i += 1
+        elif a in ("--tipo", "--schema") and i + 1 < len(argv):
+            flags += [a, argv[i + 1]]
+            i += 2
+        else:
+            resto.append(a)
+            i += 1
+    return flags + resto
+
+
 def main():
     ap = argparse.ArgumentParser(description="Orquestador local-first con escalada (ESQUELETO)")
     ap.add_argument("--plan", nargs="?", const="", metavar="TAREA")
     ap.add_argument("--run", nargs="?", const="", metavar="TAREA")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("-y", action="store_true", help="confirmación explícita para --run")
+    ap.add_argument("--tipo", choices=TIPOS_VALIDOS, default=None,
+                    help="tipo declarado (cola v2); sin esto se usa la heurística")
+    ap.add_argument("--schema", metavar="FICHERO.json", default=None,
+                    help="schema Draft-07 de la salida esperada (solo --plan en el paso 1)")
     ap.add_argument("--stats", action="store_true")
     ap.add_argument("--check", action="store_true")
-    args = ap.parse_args()
+    args = ap.parse_args(_norm_argv(sys.argv[1:]))
 
     if args.check:
         cmd_check()
@@ -467,14 +552,19 @@ def main():
         if not args.plan:
             print("Falta la tarea para --plan")
             sys.exit(1)
-        cmd_plan(args.plan, args.json)
+        cmd_plan(args.plan, args.json, args.tipo, args.schema)
     elif args.run is not None:
         if not args.run:
             print("Falta la tarea para --run")
             sys.exit(1)
+        if args.tipo or args.schema:
+            # Fail-closed: no ignorar en silencio lo que aun no se aplica.
+            print("--tipo/--schema aun NO se aplican en --run (paso 1: solo --plan). Abortado.")
+            sys.exit(2)
         cmd_run(args.run, args.y)
     else:
         ap.print_help()
+
 
 
 if __name__ == "__main__":
