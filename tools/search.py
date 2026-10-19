@@ -24,7 +24,84 @@ DEVICE = "cpu"
 # coste ~0.6s/par). El rerank solo refina el top del retrieve; con 5 pares el
 # top-3 resultante es IDENTICO (verificado 05-ago: [0.738,0.413,0.799] igual) y
 # la latencia baja a ~3s. Los textos completos se siguen devolviendo en results.
-TOP_K_RETRIEVE = 5
+TOP_K_RETRIEVE = int(os.environ.get("JOKO_RAG_RETRIEVE", "5"))
+
+# --- Anti-hub y expansion de consulta (19-oct-2026) -------------------------
+# Medido con un banco de 20 consultas sobre este mismo buscador:
+#   recall@5 global 9/20 (45%): consultas con vocabulario del documento 9/10,
+#   consultas coloquiales con otro vocabulario 0/10. El gold SI esta indexado
+#   (con una frase literal del propio documento sale en top-3 en 10/10).
+#   Un solo fichero (04-operations/backlogs/2026-07-31-backlog.md, 889 KB)
+#   aparecia en 13 de los 20 top-10: masa estadistica, no relevancia.
+# El retrieve trae TOP_K_RETRIEVE=5 candidatos, asi que un hub ocupa huecos
+# reales y desplaza al documento correcto.
+HUB_KB = 120          # por encima de esto un fichero compite por tamano
+HUB_CHUNKS = 3        # chunks del mismo path en el candidate set
+HUB_PENALTY_MAX = 0.45
+
+# Expansion coloquial -> tecnico (0 tokens, 0 modelos): el usuario pregunta
+# "se me queda sin memoria" y la nota habla de "swap"/"VRAM".
+EXPANSION_QUERY = [
+    (("sin memoria", "queda sin memoria", "usa el disco", "usar el disco", "se queda sin memoria"),
+     "swap memoria virtual VRAM RAM offload memoria insuficiente"),
+    (("no estan en mis apuntes", "no esta en mis apuntes", "se inventa", "invente", "inventa datos"),
+     "alucinacion grounding fidelidad verificacion de fuentes"),
+    (("corrige respuestas", "modelo que corrige", "corrige", "evaluar respuestas"),
+     "llm-as-judge evaluador juez rubrica evaluacion"),
+    (("va mas rapido", "mas rapido", "por internet", "en la nube", "de pago"),
+     "latencia tokens por segundo rendimiento benchmark API cloud coste"),
+    (("sacar el texto", "pdf escaneado", "escanear", "escaneado"),
+     "OCR extraccion de texto pymupdf tesseract docling"),
+    (("cortar", "trozos", "trocear"),
+     "chunking chunk fragmentacion split"),
+    (("grafica", "tarjeta grafica", "cuanta grafica"),
+     "GPU VRAM CUDA memoria de video"),
+    (("por la noche", "trabaje solo", "solo sin que yo", "sin que yo este"),
+     "cron programado automatizacion batch nocturno"),
+    (("no recuerdo", "como llame", "buscador de apuntes"),
+     "busqueda semantica recuperacion embeddings RAG indice"),
+]
+
+
+def _norm_txt(s: str) -> str:
+    """Minusculas y sin acentos, para comparar claves coloquiales."""
+    import unicodedata
+    s = unicodedata.normalize("NFD", s.lower())
+    return "".join(c for c in s if unicodedata.category(c) != "Mn")
+
+
+def expandir_query(q: str) -> tuple:
+    """Devuelve (query_expandida, terminos_anadidos). Sin match, (q, [])."""
+    ql = _norm_txt(q)
+    extra = []
+    for claves, terminos in EXPANSION_QUERY:
+        if any(k in ql for k in claves):
+            extra.extend(terminos.split())
+    vistos, limpio = set(), []
+    for t in extra:
+        if t.lower() not in vistos:
+            vistos.add(t.lower()); limpio.append(t)
+    if not limpio:
+        return q, []
+    return q + " " + " ".join(limpio), limpio
+
+
+def penalizacion_hub(path: str, n_chunks: int) -> float:
+    """Penaliza documentos-hub por tamano y por masa de chunks."""
+    import math
+    p = 0.0
+    if n_chunks > HUB_CHUNKS:
+        p += 0.06 * math.log2(n_chunks / HUB_CHUNKS)
+    kb = 0.0
+    for cand in (os.path.join(str(VAULT_PATH), path), path):
+        try:
+            kb = os.path.getsize(cand) / 1024.0
+            break
+        except OSError:
+            continue
+    if kb > HUB_KB:
+        p += 0.10 * math.log2(kb / HUB_KB)
+    return round(min(p, HUB_PENALTY_MAX), 3)
 
 # Asegurar que joko-lab/ está en sys.path para importar tools.lmstudio_embeddings
 if str(VAULT_PATH) not in sys.path:
@@ -247,14 +324,21 @@ def _buscar_qs(db, qv, top_k: int = 3) -> list:
 
 
 def query_index(query_text: str, top_k: int = 3,
-                filtro_type: str = None, filtro_status: str = None):
+                filtro_type: str = None, filtro_status: str = None,
+                aplicar_hub: bool = True, aplicar_expand: bool = True,
+                retrieve: int = None, debug: bool = False):
     import time as _time
     _t0 = _time.time()
     if not DB_PATH.exists():
         print("ERROR: Base de datos no encontrada. Ejecuta indexer.py primero.", file=sys.stderr)
         sys.exit(1)
 
-    qv = _encode(query_text)
+    retrieve = retrieve or TOP_K_RETRIEVE
+    query_efectiva, terminos = expandir_query(query_text) if aplicar_expand else (query_text, [])
+    if debug:
+        print(f"  [expand] retrieve={retrieve} hub={aplicar_hub} "
+              f"terminos={terminos or 'ninguno'}", file=sys.stderr)
+    qv = _encode(query_efectiva)
     _t_embed = _time.time()
 
     db = lancedb.connect(str(DB_PATH))
@@ -262,12 +346,12 @@ def query_index(query_text: str, top_k: int = 3,
 
     # Búsqueda híbrida: FTS + vectorial + RRF (P3, 05-ago-2026)
     try:
-        results = _busqueda_hibrida(table, query_text, qv, TOP_K_RETRIEVE,
+        results = _busqueda_hibrida(table, query_efectiva, qv, retrieve,
                                     filtro_type=filtro_type, filtro_status=filtro_status)
     except Exception as e:
         # Fallback: solo vectorial (si falla FTS por cualquier motivo)
         print(f"  [hybrid] FTS fallo ({e}), usando solo vectorial...", file=sys.stderr)
-        results = table.search(qv).limit(TOP_K_RETRIEVE).to_pandas()
+        results = table.search(qv).limit(retrieve).to_pandas()
     _t_retrieve = _time.time()
 
     if results.empty:
@@ -275,11 +359,11 @@ def query_index(query_text: str, top_k: int = 3,
         return
 
     # Re-ranking: daemon persistente primero, carga local como fallback
-    pairs = [[query_text, row["text"]] for _, row in results.iterrows()]
+    pairs = [[query_efectiva, row["text"]] for _, row in results.iterrows()]
     texts = [row["text"] for _, row in results.iterrows()]
     if _daemon_disponible():
         try:
-            scores = rerank_via_daemon(query_text, texts)
+            scores = rerank_via_daemon(query_efectiva, texts)
         except Exception as e:
             print(f"  [reranker] Daemon fallo ({e}), usando carga local...", file=sys.stderr)
             reranker = get_reranker()
@@ -291,6 +375,17 @@ def query_index(query_text: str, top_k: int = 3,
 
     results["rerank_score"] = scores
     results = results.sort_values("rerank_score", ascending=False)
+
+    # Anti-hub (19-oct-2026): un fichero enorme o con muchos chunks gana huecos
+    # por masa, no por relevancia. La penalizacion se resta al rerank ANTES del
+    # dedupe por path (todos los chunks del mismo path reciben lo mismo).
+    results["hub_penalty"] = 0.0
+    if aplicar_hub:
+        n_chunks = results["path"].value_counts().to_dict()
+        results["hub_penalty"] = [penalizacion_hub(p, n_chunks.get(p, 1))
+                                  for p in results["path"]]
+        results["rerank_score"] = results["rerank_score"] - results["hub_penalty"]
+        results = results.sort_values("rerank_score", ascending=False)
     # Dedupe por path (07-ago): LanceDB guarda chunks; el mismo documento puede
     # entrar varias veces con scores distintos (verificado: ecosistema-gobernanza
     # x2, EXP-20260729-004 x2 en una misma consulta). Se mantiene el mejor y se
@@ -326,8 +421,27 @@ def query_index(query_text: str, top_k: int = 3,
             sim = 1 - sim
         else:
             sim = 0
+        try:
+            sim = float(sim)
+            sim = None if sim != sim else sim   # NaN (fila qs sin _distance)
+        except (TypeError, ValueError):
+            sim = None
         origen = row.get("_origen", "vec")
-        print(f"[{idx+1}] {row['path']}  (cos: {sim:.3f} | rerank: {row['rerank_score']:.3f} | {origen})")
+        pen = row.get("hub_penalty", 0.0)
+        try:
+            pen = float(pen) if pen is not None else 0.0
+        except (TypeError, ValueError):
+            pen = 0.0
+        pen = 0.0 if pen != pen else pen
+        try:
+            rr = float(row["rerank_score"])
+            rr = None if rr != rr else rr
+        except (TypeError, ValueError, KeyError):
+            rr = None
+        pen_txt = f" | hub: -{pen:.2f}" if pen > 0 else ""
+        sim_txt = f"{sim:.3f}" if sim is not None else "-"
+        rr_txt = f"{rr:.3f}" if rr is not None else "-"
+        print(f"[{idx+1}] {row['path']}  (cos: {sim_txt} | rerank: {rr_txt} | {origen}{pen_txt})")
         if row.get("tags"):
             print(f"    tags: {row['tags']}")
         text = row.get("text", "")
@@ -376,5 +490,11 @@ if __name__ == "__main__":
     parser.add_argument("--no-rerank", action="store_true", help="Saltar re-ranking")
     parser.add_argument("--type", default=None, help="Filtrar por type del frontmatter (ej: RULE, DEC, experimento)")
     parser.add_argument("--status", default=None, help="Filtrar por status (ej: activo, completado, superseded)")
+    parser.add_argument("--no-hub", action="store_true", help="Desactivar la penalizacion de documentos-hub")
+    parser.add_argument("--no-expand", action="store_true", help="Desactivar la expansion coloquial->tecnico de la consulta")
+    parser.add_argument("--retrieve", type=int, default=None, help="Candidatos a recuperar antes del rerank (defecto 5, env JOKO_RAG_RETRIEVE)")
+    parser.add_argument("--debug", action="store_true", help="Mostrar expansion y parametros efectivos")
     args = parser.parse_args()
-    query_index(args.query, args.top_k, filtro_type=args.type, filtro_status=args.status)
+    query_index(args.query, args.top_k, filtro_type=args.type, filtro_status=args.status,
+                aplicar_hub=not args.no_hub, aplicar_expand=not args.no_expand,
+                retrieve=args.retrieve, debug=args.debug)
