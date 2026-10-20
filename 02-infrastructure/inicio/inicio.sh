@@ -70,6 +70,7 @@ PASS=0
 WARN=0
 FAIL=0
 ANOMALIAS=""
+CAMBIOS=""
 
 echo -e "${AZUL}--- CHECKS ---${NC}"
 
@@ -287,7 +288,7 @@ if [ -f "$FINAL_JSON" ]; then
         echo -e "  ${VERDE}Sin diferencias detectadas.${NC}"
     else
         echo -e "  ${AMARILLO}Diferencias encontradas:${NC}$DIFFS"
-        ANOMALIAS="$ANOMALIAS
+        CAMBIOS="$CAMBIOS
 $DIFFS"
     fi
 else
@@ -295,7 +296,13 @@ else
 fi
 echo ""
 
-# --- REPORTAR ANOMALIAS ---
+# --- REPORTAR CAMBIOS (informativo: commits, actualizaciones, ficheros sin commitear) ---
+if [ -n "$CAMBIOS" ]; then
+    echo -e "${AZUL}--- CAMBIOS DESDE EL ULTIMO CIERRE ---${NC}$CAMBIOS"
+    echo ""
+fi
+
+# --- REPORTAR ANOMALIAS (solo WARN/FAIL reales de los checks) ---
 if [ -n "$ANOMALIAS" ]; then
     echo -e "${AMARILLO}--- ANOMALIAS DETECTADAS ---${NC}$ANOMALIAS"
     echo ""
