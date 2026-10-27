@@ -1372,3 +1372,342 @@ MARCA: via-apply-skill-pending-20261015
   - Verificado en la COPIA: 168 commits, master e5639ca (identico al origen), `git fsck` rc=0, 23 MB; origen intacto (master sigue e5639ca). NADA empujado: ni remoto anadido, ni push, ni merge.
   - Motivo: el bare tiene 168 commits (raiz 24-sep-2026, ultimo e5639ca del 18-oct 07:50) y el repo local nace de un import plano de 2 commits (raiz 21dcc98, 18-oct 18:49); no hay ancestro comun, asi que empujar el local al bare no es fast-forward y borraria esos 168 commits.
   - Pendiente: decidir si se unifican historias (`merge --allow-unrelated-histories` sobre ~2300 ficheros) o se deja el bare como archivo y el backup diario pasa a un bare nuevo. Mientras tanto, no se toca.
+
+- 2026-10-21 17:36 - OPENCODE 2.1.2: NO SUBIR (decision), con A/B medido y repetible si llega el caso. MARCA: OC-AB-2.1.2-20261021
+  - A/B con el MISMO prompt y el MISMO modelo (`opencode/deepseek-v4.1-flash-free`, el gratuito del catalogo): refactor de `legacy_report.py` (97 lineas) conservando stdout byte a byte, con `test_report.py` de 6 tests de contrato. 1.18.35 -> RC=0, 22 s, 6/6 tests, 133 lineas; 2.1.2 via `npx` con XDG aislado -> RC=0, 45 s, 6/6 tests, 151 lineas, y ademas comparo 411 casos de fidelidad contra el original con salida identica. Calidad: empate (n=1). El 2x de tiempo incluye el arranque del servicio nuevo, asi que NO es una medida limpia de rendimiento.
+  - Riesgo del upgrade, medido: 2.1.2 respeta `XDG_DATA_HOME`/`XDG_CONFIG_HOME` y NO toco la instalacion 1.18.35 (`~/.local/share/opencode/auth.json` 91 B, modo 600, md5 6ccd170a... identico antes y despues). En `run --help` desaparecen `--attach`, `--command`, `--dir`, `--pure`, `--share`, `--variant`, `-p/--port` y el corto `-m`; aparecen `--session`, `--continue`, `--server`, `--standalone`, `--wizard`, `--file`. `tools/opencode-local.sh` solo usa `--model` (sobrevive) y no hay plugins instalados, asi que el breaking de plugins v1 no aplica.
+  - LO QUE NO ESTA MEDIDO: el provider local de `~/.config/opencode/opencode.jsonc` declara el id `ollama-local`, mientras el catalogo 2.x ya trae `ollama/` nativo, y la 2.1.2 NO se probo con la config real -> efecto sobre el wrapper NO medido, no se da por bueno.
+  - HALLAZGO APARTE (bloquea el uso, en 1.x y en 2.x): la clave DeepSeek de `auth.json` (fecha 8-ago) devuelve HTTP 401 en `/user/balance` y `/models`. Hoy opencode solo funciona con modelos locales o con el gratuito de OpenCode. No hay otra clave DeepSeek utilizable fuera de ese fichero (`config.yaml` y `.env` dieron 401; el unit de `hermes-gateway` no la lleva).
+  - Escenario reproducible: `/tmp/oc-ab/{base,run1,run2}` + `/tmp/oc2/{data,config}`. `/tmp` es volatil: se rehace en ~15 min copiando `base` y lanzando los dos `run` con el prompt de refactor.
+  - Cuando revisar la decision: (a) si se renueva la clave DeepSeek -> repetir el A/B con `deepseek/deepseek-v4-flash`; (b) si la rama 1.x entra en EOL; (c) si aparece un fallo bloqueante que 2.x resuelva.
+
+- 2026-10-22 07:08 - HERMES BOT MODE: `message_agent` FUNCIONA en uso real (ida y vuelta entre dos bots). MARCA: BOT-MODE-DM-20261022
+  - Medido (07:01 CEST, BD en solo lectura): `research-bot` despacha `message_agent` a `@hermes` -> `queued`,
+    `delivery_id d151a18d…`; el `default` recibe el DM en su Bot Chat `20261008_194647_5f0ad9` a las 07:01:00 y contesta con
+    su PROPIO `message_agent` a las 07:01:04 (`e757c931…`, `to: @research-bot`); la respuesta llega a las 07:01:15.
+    Ida y vuelta = 15 s; `proc_d1c15cba2494` exit 0 a las 07:01:36. Gates verificados en codigo:
+    `is_bot_mode_managed=True`, `Bot Chat`, `ui_meta['hermes-bots']`, roster 3, seccion 1.630 chars.
+  - CAUSA del falso negativo 'no esta message_agent': la tool se INYECTA, no se registra — literal en
+    `tools/bot_mode_dm.py:68` '(injected, not registered)'. `tool_search_catalog.py` tiene 0 apariciones, asi que
+    el listado de 38 tools que el bot compone con `tool_search` NO puede verla. No es un fallo del gate ni del modelo:
+    es el diseno. Ver OBS-221.
+  - LO QUE NO ESTA MEDIDO: uso espontaneo (aqui hubo instruccion literal); fluidez entre dos bots locales
+    (turno de 40 s con ctx 131.072 -> ~80 s por intercambio).
+  - Registro de escritura: `pendientes.md` 322781 -> 324202 bytes, 1382 -> 1396 lineas; este bloque aporta 1420 B; md5 antes `411e635928b37d96fb0fa43ed3d15667`; backup `.bak-bot-mode-dm-20261022`.
+
+- 2026-10-22 07:45 - FICHA 2026-10-22 (Winter Palace): CONTRASTE ROTO, y el arreglo con placas RECHAZADO por estetica. MARCA: CONTRASTE-FICHA-20261022
+  - Medido con `tools/inventario_legibilidad.py` + `tools/medir_contraste_ficha.py` sobre el HTML y el PNG 1080x1440: 63 nodos de texto, 57 por debajo de 4,5:1 (AA normal) y 51 por debajo de 3:1 (AA grande); peor 1,03:1 ('CORAZON' de la leyenda), 'Fondo' 2,08:1, nota-fondo 1,78:1, titulo 'Winter Palace' 1,72:1, cita de comunidad 2,90:1.
+  - Arreglo probado (v6, sobre copia): placas `rgba(252,249,243,.86)` + halo de 3 capas + oscurecer los grises pequenos (#8a9aa3/#7d8e97/#93a1a8 -> #3b4850) y los acentos cortos (naranja #c96f1c -> #9c4a0d, verde #0e7c7b -> #07615f, azul #12789e -> #0d5f7d, dorado #c9971c -> #8a6410). Resultado medido: 0 nodos <3:1 y 7 <4,5:1 (los 7 entre 3,95 y 4,50), peor 3,95:1. VEREDICTO DEL USUARIO: 'ese fondo blanco ... rompe toda la armonia de la ficha inicial, ha ido a mucho peor' -> descartado.
+  - CAUSA FISICA (no es falta de ideas): el texto de la ficha es OSCURO (#0b2f3f, #8a9aa3) y el arte del palacio es OSCURO (L 80-105). Subir el contraste de texto oscuro exige aclarar lo que tiene detras: caja, placa o velo. Las tres rompen la composicion. La cuarta via no existe.
+  - Vias que NO tocan el fondo, y por que no se dan por buenas: (a) glow tipografico / drop-shadow: el instrumento mide contra el render SIN texto, asi que no captura el halo -> no hay cifra que acredite la mejora (RULE-021); (b) invertir a texto claro (crema + sombra oscura): sube a 6-8:1 pero cambia la paleta entera a modo nocturno y obliga a aclarar los 6 acentos de seccion -> es un rediseno, no un retoque.
+  - DECISION: la ficha publicada se queda como esta (v5 intacta, PNG md5 9986b859...). El problema se corrige en el ORIGEN: el arte de fondo debe salir mas claro o con menos peso en la zona de texto, y entonces el diseno actual funciona sin placas. La v6 NO se borra: queda como material descartado en el mismo directorio.
+  - NO HECHO: migrar las 6 skills con CSS duplicado al patron nuevo; medidor de halo tipografico (instrumento pendiente de validar antes de confiar en el, RULE-015).
+
+## 2026-10-22 15:27:01 CEST - CIERRE: bot local como worker y coste real de los crons de canales
+
+MARCA: cierre-bots-locales-20261022
+
+**Decision: OPCION 1 - `research-bot` APARCADO.** No se le asignan cards ni entra en el uso diario. Se reabre cuando el motor local supere ~25-30 tok/s con contexto real. El perfil no se borra: el coste de tenerlo es 0.
+
+- **Worker local descartado con 2 mediciones.** Card `t_98d5f589` = 2 comandos de solo lectura (`wc -l` y `stat -c%s` sobre este fichero; referencia 1.404 lineas / 326.370 B), `--assignee investigador --max-runtime 30m --goal-max-turns 2`. Creada 13:37:56, lanzada 13:38; a las 13:46:48 seguia `running`, log `~/.hermes/kanban/logs/t_98d5f589.log` con 1 linea (`Session: local-65a327db...`) y `attachments/t_98d5f589/` vacio. Sin entregable en 8 min 30 s para una tarea que en terminal cuesta 0 s.
+- **`hermes kanban cancel` NO EXISTE.** La card se cerro con `reclaim` (libera el claim y mata al worker; el pid paso a defunct) + `block` (evita que el dispatcher la relance, `dispatch_interval_seconds: 60`). Estado final verificado: `blocked`, sin proceso vivo.
+- **Hipotesis de slots DESCARTADA** (`/tmp/bench_slots.py`, mismo modelo/ctx, prompt de 6.488 tok, 3 reps por celda): `auto` TTFT 2,52 s / total 8,25 s (7,31 / 4,30 / 13,14); `--parallel 1` TTFT 3,99 s / 6,83 s (10,13 / 6,17 / 4,18); `--parallel 4` TTFT 3,14 s / 4,59 s (4,40 / 4,11 / 5,25). El motor registro `n_slots = 1` y `n_slots = 4` con `n_ctx_slot = 21504`: el flag surtio efecto. `--parallel 1` es MAS LENTO. Aviso metodologico: los totales no son comparables (respuestas de 31 / 46,7 / 56 tok); el dato comparable es TTFT.
+- **Causa real de la lentitud: tokens de salida, no el motor.** ~3 s de prefill (6.488-8.612 tok de entrada + 11 tools) + ~160 tok por turno (645 de razonamiento) a ~21 tok/s = ~7,6 s + overhead de Hermes = ~10,6-12,9 s.
+- **Coste real de los crons de canales (30 dias).** `vigilar-canales-ig` es el UNICO con LLM: 27 ejecuciones en 27 dias, 1.404.783 tok in / 469.617 tok out, 0,5752 USD = 0,0213 USD/dia = ~0,64 USD/mes (hoy: 35.081 in / 11.904 out / 0,0146 USD). `vigilar-canales-yt` corre `vigilar-yt.sh` y `vigilar-canales-tg` corre `vigilar-tg.sh` con `no_agent`: 0 tokens, 0 USD. Techo de ahorro al migrar al local: 0,64 USD/mes, a cambio de 25-50 min diarios de GPU (11.904 tok de salida a 4-8 tok/s) frente a los ~5 min actuales.
+- **SOUL de `research-bot`** reescrito (verificador de fuentes: devuelve URL + cita literal o `NO ENCONTRADO`): 963 B; backup `SOUL.md.bak-20261022-rol` (204 B, md5 `6297a92558c2`).
+- **Limite del dato.** `~/.hermes/cron/executions.db` solo retiene ~24 h (podado el 21-10 14:20). El historico largo sale de `state.db` (`sessions`, `source='cron'`) cruzando la hora de arranque contra las marcas de ejecucion de hoy (+-120 s); la ventana horaria (09:14-09:17 / 09:44-09:47 / 13:29-13:32) identifica el job, no un id.
+- **Material volatil en /tmp** (se pierde): `/tmp/bench_slots.py`, `/tmp/bench_slots_resumen.jsonl`, `/tmp/coste_canales.py`.
+## 2026-10-22 18:48:49 CEST - Empleo: envio diario automatico a las 3 personas
+
+MARCA: empleo-envio-diario-20261022
+
+- **Hueco cerrado**: el cron de las 18:00 solo preparaba informes; ahora `empleo-pipeline.sh` encadena `pipeline.py` y despues `enviar.py` para cada perfil de `sistema/personas/` (3 hoy). Si el pipeline falla, no se envia nada.
+- **Envio de hoy acreditado** (`logs/envios.log`): joseba a jkalbizua@gmail.com id `1a1647c5dc2f3bfe` 18:40:34; esti a egaranguren@hotmail.com id `1a1647c61b59c8de` 18:40:36; carmen a ccastellanosvs@gmail.com id `1a1647c67e75ccf7` 18:40:37. Lanzados a mano: el cron no los mando.
+- **Correcciones en el job**: `interpreter=/bin/sh` fijado en el cron (antes `None`: el interprete quedaba a criterio del scheduler) y `deliver`/`failure_deliver` movidos de `origin` (chat local del 2026-10-14, que ya no se lee) a `telegram:1052590045`, para que el resumen y los fallos lleguen al movil.
+- **Guardas del script**: POSIX sh (vale con sh o bash), rutas absolutas (RULE-021), interprete `~/.hermes/hermes-agent/venv/bin/python` con `env -u PYTHONPATH` (el python del sistema no tiene googleapiclient), y salto por idempotencia: si `logs/envios.log` ya tiene un `ENVIADO persona=<p>` de hoy, no reenvia. La fuente es el LOG y no `entregas` porque `match.py` hace `INSERT OR REPLACE` sobre esa tabla y una segunda pasada del pipeline dejaria la fila en pendiente. `EMPLEO_FORCE=1` reenvia a mano.
+- **Pruebas ejecutadas**: `sh -n` OK; dry-run de los 3 bajo dash; pasada sin dry salta los 3 (ya enviados hoy); `EMPLEO_FORCE=1 EMPLEO_DRY=1` atraviesa la guarda y muestra los 3; **cadena completa** `pipeline.py` + envios en dry bajo `/bin/sh`: rc=0 en 1 min 25 s, informes regenerados (joseba html 13.764 B / texto 3.806 B) y filas de `entregas` de hoy sin cambios (diff vacio).
+- **Backup del script anterior**: `empleo-pipeline.sh.bak-20261022-pre-envio`.
+- **No verificado todavia**: el envio real dentro de una ejecucion del cron; primera ventana 2026-10-23 18:00 (`next_run_at` comprobado). Tampoco se ha probado que el aviso de fallo llegue al movil: solo se ha fijado el destino.
+- **Anomalia menor**: `entregas.enviado_en` guarda UTC (16:40) mientras `logs/envios.log` anota hora local (18:40); dos relojes para el mismo hecho.
+- **Registro**: 329403 B / 1419 lineas (md5 01e6a516def50583a3ddf016b2bb06f7) pasa a 331783 B / 1432 lineas.
+## 2026-10-23 10:17:58 CEST — FUTURIBLE anotado: REA (Reverse Engineer Anything) como MCP de ingeniería inversa, conducido por opencode
+
+MARCA: futurible-rea-20261023
+
+- **Origen**: vídeo de Migue Baena IA «Probé la IA que permite clonar aplicaciones de pago (REA)» (`https://youtu.be/aAi_Tdbn5zo`, 16 min). Transcripción extraída con `fetch_transcript.py`: 510 líneas / 22.378 B, guardada en `~/.hermes/cache/scratch/rea_transcript.txt` (scratch: se poda a las 24 h).
+- **Qué es**: `morluto/rea` (MIT, paquete npm `rea-agents`) es un servidor MCP + CLI que da al agente herramientas para inspeccionar apps instaladas —JS/Electron, binarios ELF, .NET, APK, firmware, capturas de red y comportamiento de proceso— y reimplementar la función que interesa. En el vídeo sirve para rehacer Loom (grabador con cámara y teleprónter) y una herramienta de capturas con anotaciones.
+- **Por qué encaja**: Hermes ya habla MCP (lab-db, lancedb, animation-server) y `opencode` está instalado en `/home/jokoalmi/.npm-global/bin/opencode`; REA lista OpenCode como cliente soportado con el id `opencode` (`docs/installation.md`, tabla de clientes) y soporta Linux de forma explícita. No hace falta Claude Code.
+- **Bloqueo 1 — runtime**: `node -v` = `v22.23.0`; REA exige 22.x >= 22.23.4, 24.x >= 24.22.1 o >= 26.12.1. Falta subir Node; no se ha tocado nada.
+- **Bloqueo 2 — herramientas**: ausentes `java`, `javac`, `ghidra`, `jadx`, `binwalk`, `tshark`, `pwntools`; presentes `ps`, `objdump`, `strings`, `nm`, `gdb`, `strace`, `node`, `npm`, `npx`, `docker`. Para apps JS/Electron (el caso del vídeo) basta Node + npm + `ps`; APK y firmware quedan fuera hasta instalar JDK/JADX y binwalk.
+- **Límite**: probar la app resultante exige sesión gráfica (PipeWire/portal de pantalla + cámara). El 2026-10-23 `DISPLAY` y `WAYLAND_DISPLAY` estaban vacíos y la sesión en el greeter de lightdm: REA podría analizar y generar código, no verlo funcionar.
+- **Legal**: REA lee lo instalado, no el proyecto original ni el servidor del fabricante. Uso propio para aprender o reimplementar una función: margen; redistribuir un clon: ninguno.
+- **Estado**: solo anotado. Nada instalado, nada descargado, ninguna configuración de agente tocada.
+- **Señal de activación**: el día que haya una función concreta que reimplementar Y sesión gráfica. Primer paso propuesto ese día: subir Node y `npx rea-agents setup --client opencode --dry-run` (dry-run antes de escribir configuración).
+- **Registro de escritura**: `04-operations/backlogs/pendientes.md`, 331783 B y 1432 líneas antes (md5 `ffc5a78fb28ff3b0a118cbf8ee64c987`, backup `pendientes.md.bak-20261023-futurible-rea`) -> **334704 B** y 1446 líneas tras la entrada (bloque de **2921 B**). Solo se añade: 0 líneas eliminadas, membresía de todas las líneas del backup verificada. MARCA `futurible-rea-20261023`, que no aparecía antes en el fichero.
+
+- 2026-10-23 10:36 - PENDIENTE abierto por el futurible REA: el dia que haga falta opencode a ese nivel (reimplementar una funcion de una app instalada), la secuencia es (1) subir Node a >=22.23.4 o rama 24.x (hoy v22.23.0: REA no arranca), (2) `npx rea-agents setup --client opencode --dry-run` y leer el plan antes de aprobar nada, (3) JDK+JADX solo si el target es APK y binwalk solo si es firmware, (4) sesion grafica antes de intentar probar la app resultante (PipeWire/portal), (5) el modelo que conduce es opencode con DeepSeek, nunca uno local. No se instala nada hasta ese dia. MARCA: REA-OPENCODE-PEND-20261023
+
+- 2026-10-23 14:36 - LPA-REV-20261023 - CICLO SEMANAL LPA (acta lpa/incidentes/revision-fallos-2026-10-23.md, 20532 B; ledger de lecciones 22 -> 25 filas): 2 patrones nuevos promovidos a incubacion (CP-016 el vigilante que mide red reinicia un servicio sano y muere al notificarlo, 9039 B; CP-017 resolved mide la corrida siguiente y no la reparacion, y sobrescribe la ocurrencia anterior, 8422 B) + reexamen de CP-009/012/013/014/015. Ventana 17-23-10: 1001 ejecuciones (999 completed, 1 failed, 1 running), 20/20 incidentes resolved pero solo 3 cierres en la ventana y 2 de ellos NO son reparaciones. 52/52 jobs activos con failure_streak 0 (primera vez).
+  - PENDIENTE A, fecha tope 2026-10-23 (vigia de informes / falso ok) - CIERRA PARCIAL, se reabre con forma nueva: el falso ok del 15-10 sigue cerrado, pero esta ventana trae 3 dias (20, 21 y 23-10) con el informe mudo y el semaforo en verde (job 67d5fcc5b69e ok/streak 0 los 7 dias). El producto lo declara en su cabecera: '[SIN RESUMEN - GATE OMITIDO] (GATE_OMITIDO)', 'CALIDAD: omitido', '(resumen local no disponible)', y 04-operations/metrics/informe_descartes.jsonl tiene 3 filas router_fallo chars 0. El vigia busca fichero ausente o exit!=0, NO GATE_OMITIDO -> el producto avisa y nadie lo lee. PENDIENTE NUEVO 2026-10-30: (1) anadir a watchdog-informes-cron.py la lectura de la cabecera declarativa (GATE_OMITIDO / 'no disponible' / 'CALIDAD: omitido') como senal de fallo; (2) hipotesis a falsar sobre router_fallo: arranque en frio del motor tras el apagado nocturno (fallan 20-10 arranque 07:12, 21-10 08:10, 23-10 07:46; funciona 22-10 arranque 06:27) - NO es diagnostico, falta el log del router. Toca ~/.hermes/scripts/ -> NO ejecutado, requiere autorizacion explicita.
+  - PENDIENTE B, fecha tope 2026-10-23 (rag-reindex-daily, da39a2148b34) - CERRADO CON MATIZ, no con reparacion: la incidencia da39a2_563646c13b70 cerro el 17-10 08:01:30 sin que nadie tocara el script (rag-reindex.sh mtime 15-oct 17:46, anterior al first_seen 12-10 08:05). Cerro porque la corrida dejo de acercarse al limite de 300 s: '[ok] Sin cambios: 46745 fragmentos ya indexados' / '4236 documentos: 0 nuevos, 0 modificados'. Veredicto correcto: 'no reproducido desde 17-10', NO 'reparado'. HIPOTESIS ABIERTA, fecha tope 2026-10-30: el script no escala con el numero de documentos nuevos; condicion de disparo real = primer dia con >1 documento nuevo. No tocar el script sin autorizacion.
+  - PENDIENTE C, fecha tope 2026-10-23 (retrabajo_ledger.jsonl) - ESCALADO a 2026-10-30, 4o ciclo, 28 dias congelado (566 B, mtime 25-09). Decision del usuario, ninguna opcion ejecutada: (a) darle disparador automatico, (b) declararlo no-instrumento y retirarlo, (c) fijar fecha tope. Si el 30-10 no hay decision, el acta propone (b): un ledger que solo se mueve cuando un humano se acuerda no es un instrumento. Dato nuevo a favor de la critica: el failure_streak que este patron usaba como prueba desaparecio esta semana sin que este ciclo hiciera nada (lo arreglo tener consumidor).
+  - PENDIENTE D, fecha tope 2026-10-30 (CP-016, antídoto del watchdog): telegram-watchdog.sh reinicia hermes-gateway.service cuando el getMe de Telegram no da 200; en la ventana sin red (00:00-07:00) devuelve HTTP 000000 y reinicia un servicio sano cada 15 min. Medido: 4 reinicios nocturnos en 3 noches (18-10 00:06:00->00:09:03 y 00:25:16->00:28:20; 22-10 00:10:47->00:13:52; 23-10 00:03:56->00:07:02), ninguno coincide con arranque del host; el del 23-10 esta probado con artefacto (output/264c02dae003/2026-10-23_00-07-19.md, 'WARN: API Telegram no responde (HTTP 000000). Reiniciando gateway...') y fila de executions failed con 'Script exited with code 6'. Causa del exit 6: los curl sendMessage van sin || true bajo set -e (3 sendMessage, 0 protegidos; mismo defecto de forma en ceder-control.sh). Antidoto propuesto, NO ejecutado (toca ~/.hermes/scripts/): (1) distinguir 000/000000 de proceso inactive/failed, (2) proteger sendMessage con || true, (3) no correr el watchdog dentro de la ventana sin red. Requiere autorizacion explicita.
+  - PENDIENTE E, fecha tope 2026-10-30 (CP-017, criterio de cierre): el registro cron_incidents tiene 20 filas, 20 resolved, 0 abiertas, pero el cierre se concede con la siguiente corrida sana y al reabrir se reutiliza la misma fila y se sobrescribe closed_at. Prueba: 264c02_761c7f27bcb0 figuraba en el acta del 16-10 como cerrada el 13-10 06:13 y hoy la MISMA fila dice closed_at 2026-10-23 07:46:58 (36 s despues de uptime -s 07:46:12, script sin tocar, mtime 25-jul). Criterio aplicado desde hoy en las actas: mtime del productor posterior al first_seen_at + producto generado despues del cierre + aviso si la fila ya cerro antes. Falta: un campo de historico append-only de ocurrencias (no implementado, requiere decision).
+  - VERIFICACION CUMPLIDA (consolidador-sesiones, 9474f6f3d224): D5 del 16-10 se cierra bien. resumen-dia-2026-10-15..21 en 04-operations/metrics/sesiones/ (7 ficheros, 314 B, generados 16->22-10, contenido 'OK: 25 sesiones de 2026-10-21 | export del dia 42.6 MB'), failure_streak 0, proxima corrida 23-10 22:30.
+- Registro de escritura: pendientes.md ANTES 335326 B / 1448 lineas / md5 de453c877a7c504234815ac64e23bbb0 (== md5 del backup .bak-20261023, cuyos primeros 335326 B son identicos byte a byte al fichero final); DESPUES 340878 B / 1457 lineas (aporta 5552 B, bloque de 5 pendientes A-E + verificacion y 6 sub-lineas). Todo lo afirmado aqui sale de executions.db (solo lectura), journalctl --user y los artefactos citados; nada de memoria.
+## 2026-10-24 09:25:07 CEST - REFERENCIA anotada: reel de @0x584342 sobre Code Mode (Cloudflare) frente a MCP
+
+MARCA: reel-codemode-20261024
+
+- **Origen**: `https://www.instagram.com/reel/De1_auSMnjk/`, cuenta `@0x584342`. Leido hoy en sesion anonima (sin login) desde el navegador del host: metas `og:*`, cuerpo de la pagina y el JSON `shortcode_media` del propio `<script>`.
+- **Metricas leidas en la pagina**: 1.881 likes y 19 comentarios en el momento de la lectura (cifra monotona: vale como suelo, no como valor final). La pagina mostraba "Hace 14 horas" mientras `og:description` fecha el post el 22-10-2026; las dos cifras no se pueden conciliar sin el `taken_at`, que no aparece en lo extraido.
+- **Tesis**: Code Mode no sustituye a MCP; el agente sigue usando los mismos servidores, pero a traves del codigo que escribe.
+- **Matices que pone el propio autor** (lo que hace util la pieza): el 150.000 -> 2.000 tokens es el ejemplo de Anthropic (Drive -> Salesforce); una prueba independiente midio ~78 % de ahorro, no 99 %; el "millon de tokens" es una estimacion de Cloudflare suponiendo una tool por endpoint; ejecutar codigo del modelo exige sandbox cerrado y ya ha habido escapes; con una o pocas tools no compensa.
+- **Contrapeso en comentarios**: el mas votado (19 likes) sostiene que "los MCP eran APIs y code mode es basicamente un BFF"; otros dos: "nadie ha dejado de usar MCP" y "ah volvieron a las APIs".
+- **Lo que NO se puede afirmar**: no se han visto los frames ni oido el audio. `yt-dlp` no esta instalado en ninguna de las tres rutas probadas (`which` rc=1; sin modulo en `/usr/bin/python3` ni en `~/.venv/hermes-rag/bin/python3`), el `<video>` del DOM sirve un blob sin URL firmada y `vision_analyze` falla (`glm-4.6v-flash` no arranca porque LM Studio :1234 esta parado). Todo lo anterior sale del caption y de los comentarios de la pagina publica.
+- **Encaje en el lab**: misma tesis que el material de NTT Data ya leido (`Agent = Model + Harness`), aqui con cifras. El equivalente funcional ya existe: `execute_code` importa las tools como funciones y `tool_search`/`tool_describe` cargan esquema bajo demanda en vez de meter 50+ esquemas en contexto.
+- **Estado**: solo anotado como referencia. Nada instalado, ningun cron ni skill tocado.
+- **Registro de escritura**: `04-operations/backlogs/pendientes.md`, 340878 B y 1457 lineas antes (md5 78456cf7ad43b54fb72f6c5685616259, backup `pendientes.md.bak-20261024-reel-codemode`) -> **343467 B** y 1470 lineas tras el bloque (aporta 2589 B). Solo se anade: 0 lineas eliminadas. MARCA `reel-codemode-20261024`.
+
+## 2026-10-24 20:12:29 CEST - Notas de perfume: Parfumo ofusca la mayoria y las webs alternativas probadas hoy no sirven por HTTP plano
+
+MARCA: notas-parfumo-fuentes-20261024
+
+- **Escrito en la coleccion** (aplicado y verificado con consulta independiente en `mode=ro`): 102 pares en 13 perfumes; `perfume_notas` 1378 -> 1480; perfumes reales con notas 157 -> 170 de 328 (52 %); catalogo de notas 322 -> 330 (+8); pares con `tipo_fuente` declarada 9 -> 102. `PRAGMA integrity_check: ok`. Son 102 y no 104 porque la PK es `(perfume_id, nota_id)` y 2 notas aparecian en dos niveles de la misma piramide: el script las salta en vez de romper.
+- **Fallo previo, sin dano**: el primer `--apply` insertaba `top/heart/base` en `tipo_propio`, cuyo CHECK solo admite `salida|corazon|fondo|acorde`. Aborto con rollback (la base siguio con 322 notas y 1378 pares), se corrigio el mapeo con `TIPO_COL` y se repitio.
+- **Por que no se pueden rellenar los 171**: de las 58 fichas con piramide, **45 traen placeholders inventados** (19 nombres cripticos tipo `Quembrathosin` y 24 adjetivos+nota tipo `Abstract Ambrette` o `Suspended Saffron`); 69 fichas no tienen `pyramid_block` en el HTML (0 de 69 comprobadas) y 44 dan 404 por slug de casa. El filtro fail-closed `CRIP` aborta antes de escribir: si se hubiera colado `Abstract Ambrette`, el hueco de ambrette (0) que sostiene la recomendacion de Regent Leather habria quedado contaminado con un dato falso.
+- **Webs alternativas medidas hoy** (curl, UA Chrome, solo lectura, 24-10 entre 20:00 y 20:11): `fragrantica.com` robots 200 y home 200 pero su buscador devuelve **403** (bloqueo anti-bot); `luckyscent.com` 200 pero la ficha se renderiza por JS y `/products/<slug>.js` da 404; `parfumaria.com` sirve `sitemap.xml` 200 con **6.570 URLs de producto**, pero su ficha (`interlude-man-eau-de-parfum-100-ml`, 657.099 B) tiene **0 apariciones** de `Notas`, `Piramide`, `Bergamota` ni `notes`; `ausliebezumduft.de` buscador 404; `notino.es` **403**; `scentsplit.com` robots con 4 `Disallow` de producto; `thefragranceshop.co.uk` buscador 200 sin enlaces de producto; `firstinfragrance.com` sin respuesta (**000**); `basenotes.net` 301; `noseparis.com` 302; `escentual.com` 301.
+- **Conclusion de la medicion**: por HTTP plano la piramide solo aparece en las **webs de las propias casas** (muchas la publican en HTML estatico); los agregadores o la cargan por JavaScript o bloquean bots. Parfumaria queda como fuente de **precio y disponibilidad**, no de notas. Fragrantica, que es la fuente canonica, exige navegador real y no se va a iniciar sesion en ella.
+- **Via propuesta, NO ejecutada**: `google-chrome --headless --dump-dom` (ya instalado, no hay que instalar nada) sobre la ficha de la web oficial de cada casa, 1 peticion por perfume con pausa y el mismo gate anti-placeholder. Antes hay que mapear casa -> URL de ficha (unas 60 casas) y decidir si se hace por tandas de 40 como la extraccion de hoy.
+- **Pendientes aparte, sin tocar**: segunda pasada de los **44 slugs 404** (44 peticiones, ~4 min); los **23 `perfume_id` huerfanos** y los **1.369 pares sin `tipo_fuente`** siguen igual (eso seria DELETE/UPDATE, no INSERT: no se toca sin OK explicito).
+- **Lo que NO se ha medido**: no se ha probado `--dump-dom` sobre ninguna ficha real; no se sabe cuantas de las ~60 casas publican piramide; los 6.570 productos de Parfumaria no se han cruzado con la coleccion.
+- **Registro de escritura**: `04-operations/backlogs/pendientes.md`, 343467 B y 1470 lineas antes (md5 3fad80c1dadd4601e945af3d93a4d809, backup `pendientes.md.bak-20261024-notas-parfumo`) -> **347191 B** y 1484 lineas (aporta 3723 B). Solo se anade: 0 lineas eliminadas. MARCA `notas-parfumo-fuentes-20261024`.
+
+## 2026-10-26 17:38:07 CEST - LPA-REV-20261023 - DECISION C: fecha tope del retrabajo_ledger
+
+MARCA: LPA-REV-20261023-DECISION-C
+
+- **Decision (opcion c)**: se fija tope **2026-11-02** para `04-operations/metrics/retrabajo_ledger.jsonl`.
+- **Evidencia medida (26-10, 17:12 CET)**: 566 B, **1 linea** (unico asiento E6, 2026-09-25 13:29); mtime 25-09 -> **31 dias** sin escritura. El aviso del cron decia 28 dias: corregido por medicion.
+- **Productor**: `grep` sobre `tools/` y `~/.hermes/scripts/` -> **0 scripts** que escriban el ledger; no hay disparador automatico.
+- **Cumple si**: antes del **2026-11-02 23:59 CET** hay >=1 asiento nuevo y real (`sesion_id` + `causa_raiz`, no de relleno).
+- **Si no cumple**: caduca a la opcion (b) - declarar no-instrumento y retirarlo - sin reabrir el ciclo.
+- **Lo que NO se puede afirmar**: que ningun proceso externo al lab escriba ese fichero (solo se verifico `tools/` y `~/.hermes/scripts/`); ni el contenido del asiento E6 mas alla de su nombre.
+
+### B — rag-reindex-daily (`da39a2148b34`): CERRADO el 26-10-2026
+
+MARCA: LPA-REV-20261023-DECISION-B-CIERRE
+
+**Sintoma real medido** (no era "acercarse" al limite): **7 timeouts de 300 s** en el cron:
+05-09, 17-09, 28-09, 02-10, 07-10, 12-10 y **16-10**. Salida literal del 16-10:
+
+```
+**Status:** script failed
+Script timed out after 300s: /home/jokoalmi/.hermes/scripts/rag-reindex.sh
+```
+
+**Causa reconstruida** (fechas y codigo; NO reproducida en vivo):
+
+1. El QS (`index_query_summary.py`) re-embebia `joko_queries` (73.606 filas) + `joko_summaries` (4.255) en cada pasada.
+2. Sin flag compartido, el catchup horario (`174499853a8b`) hacia QS **y el daily lo repetia entero** encima del indexado y la compactacion.
+3. El **15-10-2026 17:46** se creo el flag compartido `/tmp/.rag-qs-today` (`rag-reindex.sh:8`, `reindex-catchup.sh:10,71`).
+4. Desde el **17-10** ninguna corrida pasa de 110 s (hoy: 08:00:38 -> fin 08:01:03). Ultima corrida lenta: 16-10, el dia siguiente al cambio.
+
+**Estado el 26-10**: `4255 documentos: 0 nuevos, 0 modificados`, `Sin cambios: 46874 fragmentos`, `QS OK`, `.lancedb` 1,5 GB compactado a 1 version por tabla (23 tablas).
+
+**Veredicto bajo CP-017 — las tres condiciones se cumplen:**
+
+- Productor cambiado despues del `first_seen`: mtime **15-10 17:46**.
+- Producto generado despues del cierre: **10 salidas limpias** (17-10 a 26-10).
+- Ocurrencia previa conservada: los **7 timeouts siguen en el historico** de `~/.hermes/cron/output/da39a2148b34/`.
+
+**Salvedad honesta**: la causa se infiere del cambio de codigo y las fechas; no se ha reproducido el fallo. Si reaparece un timeout de 300 s, o un `Sin cambios` acompanado de rc != 0, **se reabre sin discutir el cierre**.
+
+**Defecto hermano arreglado hoy** (mismo falso ok que el de A): `rag-reindex.sh:12` era
+`$VENV_PYTHON "$INDEXER" 2>&1 | tail -5` (el rc es el de `tail`, siempre 0) y el script terminaba en
+`exit 0` incondicional. Ahora se captura el rc real: si `indexer.py` falla, sale **exit 3**, no compacta
+y no marca el flag del dia (el catchup reintenta). Probado con stubs: fallo -> exit 3; exito -> exit 0,
+sin tocar LanceDB ni los flags reales. Backup: `rag-reindex.sh.bak-20261026-falso-ok` (md5 `45f12885`).
+
+**Proximo tope**: 02-11-2026 (junto con C), solo para verificar que no reaparece.
+
+_Anotado 2026-10-26 18:27:56 CEST. No reabre ciclo ni cambia el estado de A, C, D ni E._
+
+### PROPUESTA de RULE — eje «cambio de comportamiento vs salida normal» (26-10-2026)
+
+MARCA: PROPUESTA-RULE-EJE-COMPORTAMIENTO-20261026
+
+**Estado: PROPUESTA, no RULE.** No se ha creado ningún `RULE-*.yaml`; crearlo exige OK aparte.
+
+**Origen** — experimento del 26-10 sobre el clasificador de riesgo de una `AI Factory`
+(research: `analisis-ai-factory-eric-risco-20261026.md`). Dos instrumentos fallaron:
+
+- `git log` de 30 días: 9 commits, 18 ficheros, **0 en zona protegida** — las escrituras
+  sensibles del lab no se commitean (`coleccion.db`, `~/.hermes/scripts`, `SKILL.md`, crons).
+- `mtime` por ruta: R3 = 87 vivos + 77 backups, R2 = 78 + 85, R1 = 1.581 — pero esos 87 de R3
+  incluyen los informes diarios de empleo de joseba/esti/carmen, que **se generan solos**.
+
+**Fallo comun**: la rubrica clasifica por RUTA y no distingue la escritura automatica (producto de
+un cron) de la decision humana. Mete el producto normal en la zona de riesgo.
+
+**Regla propuesta:**
+
+> Una escritura es R3 (pide OK explicito) **solo si cambia el comportamiento** de un circuito
+> protegido: codigo, configuracion, cron, skill, esquema o datos persistentes.
+> Producir su salida normal **nunca** pide OK, aunque la ruta este en zona protegida.
+
+**Evidencia del mismo dia**: se pidio OK para `rag-reindex.sh` y `informe-diario-local.sh` (R2:
+cambian comportamiento); no se pidio para regenerar los 87 ficheros de salida de empleo.
+
+**Universo que deja**: del orden de 20-30 ficheros de codigo/config al mes, frente a las 1.900
+escrituras contadas por `mtime`. Esa es la magnitud de decisiones reales, y es manejable a mano:
+**no justifica** el clasificador automatico de 4 revisores del video, solo el eje.
+
+**Si se aprueba**: crear `RULE-0XX.yaml` con el esquema canonico y enlazarlo desde la skill del
+gate de autorizacion. **Si no**, se retira sin dejar rastro en las RULE.
+
+_Anotado 2026-10-26 22:41:22 CEST. Propuesta abierta; no modifica el comportamiento de nada._
+
+## Perfume del dia 2026-10-27 — desajuste BD de Basso (Sospiro, id 1012)
+
+**Dato corregido hoy**: `perfumes."año"` estaba vacio para id 1012; puesto a **2022** (Fragrantica y
+Parfumo coinciden), backup `coleccion.db.BACKUP.20261027_ficha`, verificado por lectura.
+
+**Pendiente de OK del usuario** (no se toca sin autorizacion):
+- `familias_olfativas` de Basso esta como **Floral**; las fuentes (Fragrantica: Woody Aromatic,
+  Sospiro: chipre citrico-amaderado) apuntan a **Amaderada**. Cambiar `familia_id` a Amaderada.
+- `temporada` = `primavera,verano`: encaja con el uso real (chipre citrico para tiempo templado),
+  pero es un valor COMPUESTO, formato que la norma del lab no considera valido.
+
+_Anotado 2026-10-27 durante la ficha del dia (Basso). No modifica el comportamiento de nada._
+## 2026-10-27 08:27:35 CET — Idea de proceso: corte vertical por incremento (planes A-E)
+
+**Origen**: video de HolaMundo `5JjuF1zpNbI` (23-10-2026) y el repo que entrega,
+`nschurmann/hola-ai` — licencia MIT, 144 estrellas, 40 forks, creado 2026-10-21T05:18:03Z,
+ultimo push 2026-10-21T05:25:23Z, 11 KB. Datos del repo medidos por el script que escribio esta
+entrada con `gh api repos/nschurmann/hola-ai` (no transcritos).
+
+**La idea, en una linea**: cada incremento de un plan tiene que dejar algo USABLE al
+terminar, no una capa interna. La critica del video a Spec Driven Development es que
+planifica por capas horizontales (BD -> API -> frontend -> seed) y nada funciona hasta
+el final, asi que te enteras tarde y revisas miles de lineas a ciegas.
+
+**Por que aplica al lab**: LPA-REV-20261023 esta planteado igual — cinco frentes A-E
+que solo se pueden juzgar cuando estan todos. A y B se cerraron sin declarar en ningun
+momento "que se puede usar con esto".
+
+**Evidencia propia del mismo dia**: el gate de la ficha daba 17/17 sin medir el canal
+alfa de la figura. El defecto (sombra del packshot dentro del recorte) salio publicado y
+exigio rehacer la imagen. PNG de correccion en la carpeta del dia: 2 (`_corr`,
+`_corr2`) mas el original `_a`. Es el "te enteras al final", con coste real de renders.
+
+**Que se propone (sin aplicar)**: al abrir cada frente pendiente con tope 02-11
+(B/C/D/E de LPA-REV-20261023), escribir en su cabecera una linea
+"al terminar se puede USAR: <accion concreta>". Si esa linea no se puede rellenar sin
+inventar, el frente es una capa interna y se parte en dos.
+
+**Que NO cambia**: no se adopta SDD, no se sustituye ninguna skill y no se activa nada
+del repo. Cobertura ya existente en el lab: `/story` cumple la skill `plan`; `/pair`
+cumple `test-driven-development` + RULE-010 (ceder el control); el commit por paso para
+detectar que se tocan los tests cumple `joko-git-recibos`; el "no toques el test para
+que pase" cumple RULE-021. La unica pieza sin equivalente es el criterio de corte
+vertical como puerta de aceptacion de un incremento.
+
+_MARCA: corte-vertical-por-incremento. Anotado 2026-10-27 08:27:35 CET. Registro de escritura: 353351 -> 355709 bytes (1582 -> 1616 lineas), md5 antes 9a6684a7cbdfc8a373ba749985bf0a0b, aporta 2358 B. No modifica el comportamiento de nada: es una idea en cola de decision._
+## 2026-10-27 08:32:00 CET — Plantilla de prompt: vision -> estructura -> requisitos (3 capas)
+
+**Origen**: video de MoureDev `2G4aeaCTsHc`, "Mi nuevo flujo con IA: Adios a los prompts
+complejos" (22-10-2026, 13:07, 115638 vistas en el momento de medirlo). Transcripcion leida
+completa (2345 palabras). Tiene venta encima — MoureDev Pro dos veces, a los 20 s y a
+mitad — asi que el marco se descuenta y se queda solo el esqueleto.
+
+**Que se anota**: no se copia el metodo entero, solo su esqueleto de conversacion para
+tareas nuevas del lab:
+1. **Vision**: soltar la intencion desordenada, sin formato y con las dudas dentro
+   ("no se si tirar de API o de scraping").
+2. **Estructura**: pedir modulos, orden de desarrollo y que se aprende en cada paso,
+   presentado en tabla y **sin codigo**.
+3. **Requisitos**: ya sobre el contexto construido en 1 y 2, ahi si implementar.
+
+**Mapeo al lab (para no duplicar lo que ya hay)**: capa 1 = `grill-idea`; capa 2 = `plan`
+(escribe el plan en `.hermes/plans`); capa 3 = ejecucion con `test-driven-development` +
+RULE-010. Lo que no estaba escrito en ningun sitio es la regla de la capa 2: **pedir la
+tabla sin codigo**. Eso es lo unico que se adopta; el resto ya existe con otro nombre.
+
+**Choque con una medicion propia (importante)**: el video afirma que "piensa paso a paso"
+ya es ruido. La skill `prompt-engineering` del lab, linea 72, dice que Claude aprecia
+razonamiento paso a paso, y su linea 298 tiene una **medicion real** ("Razona paso a
+paso" -> JSON valido, 47 s, 43,6 tok/s). No se refutan: el video habla de proveedores
+grandes que ya razonan por defecto, la medicion es con modelos locales pequenos donde el
+paso a paso ordena la salida. **No borrar esa seccion citando este video.**
+
+**Cifra NO adoptada**: el +/-35 % de oscilacion por pregunta y lo de que propina y
+amenazas no tienen efecto. El video lo atribuye a "Generative AI Labs" sin enlace ni
+paper; no esta verificado y no entra en ninguna decision hasta tener la fuente.
+
+**Cobertura previa**: la ingenieria de contexto ya esta en
+`research/analisis-context-engineering.md` (13-08) y en
+`analisis-gentleman-programming-ventana-contexto.md` (16-09). El ejemplo del video — bot
+de ofertas junior por API a Discord — es el circuito de empleo que el lab ya opera desde
+hace meses.
+
+_MARCA: plantilla-3-capas-prompt. Anotado 2026-10-27 08:32:00 CET. Registro de escritura: 355709 -> 358289 bytes (1616 -> 1654 lineas), md5 antes f87f7aa0522ab76c3647e0a42a793fb0, aporta 2580 B. No cambia el comportamiento actual: es una plantilla en cola de decision._
+## 2026-10-27 09:41:47 CET — LTX 2.5 en local: viabilidad medida y limites (sin descargar nada)
+
+**Origen**: video de NotFound (notfound404.es) `vTCGriHQjRE`, "Vídeos con IA gratis en tu PC: ComfyUI + LTX 2.5" (2026-10-26, 8:30, 467 vistas al medirlo). Transcripcion leida
+completa (1428 palabras). **No se ha descargado ningun modelo**: esto es una ficha de
+viabilidad, no una adopcion.
+
+**Que aportaria de verdad**: LTX 2.5 (Lightricks) genera **imagen y audio en la misma
+pasada**, acepta primer y ultimo fotograma y hace **multishot** (2-4 planos con
+continuidad de cara y ropa). El audio sale con **lip-sync**, probado en espanol. Para el
+lab eso tocaria el circuito de video: hoy se monta con slides + TTS y la sincronizacion se
+resuelve aparte; aqui vendria resuelta de origen.
+
+**Lo que NO es**: LTX 2.5 no es nuevo en el lab. La skill `creative/comfyui` tiene el
+template **LTX 2.3 T2V** validado y ComfyUI local ya trae **10 blueprints LTX** (2.0, 2.3
+y 2.5), entre ellos *Text to Video (LTX-2.5)*, *Image to Video (LTX-2.5)* y *First & Last
+Frame to Video (LTX-2.5)*. Lo nuevo es el **dato de que cabe en 8 GB** y los limites
+conocidos.
+
+**Requisitos y rendimiento del autor** (RTX 4060 Ti 8 GB, 32 GB de RAM, ~50 GB de disco):
+5 s de video en 1 min 30 s (primera vez 3 min 16 s); 10 s en 3 min; 5 s a 720p en 2 min
+14 s. VRAM clavada en 7,7/8 GB sin un solo OOM. Con la RAM llena (31 de 32) un paso de 5 s
+paso a tardar mas de 1 minuto: cuanto menos RAM, mas tira de disco.
+
+**Fallos que el propio autor reconoce**: con dos fotogramas muy distintos ignora el
+movimiento de camara y mete un corte; a 720 la cara deriva al final del clip; el audio sale
+bajito y hay que subirlo al editar; techo practico 10 s y 720p con 8 GB.
+
+**Estado real de la maquina en el momento de anotar** (medido por el script, no copiado):
+GPU **NVIDIA RTX A2000 12GB, 12282 MiB**; RAM total **30 GiB** con **23.0 GiB** disponible; swap usado **0.0 GiB** de
+**8.0 GiB**; disco libre en el SSD de datos **129 GB libres de 439 GB**. **No hay ningun modelo LTX ni sus
+text encoders** en ComfyUI; si hay `flux-2-klein-4b-fp8`, `sd_xl_base_1.0` y
+`qwen_image_2.1_int8`. Los ~50 GB que pide el flujo caben en el SSD de datos.
+
+**Riesgo principal**: la RAM del autor era 32 GB y se le lleno; aqui hay 30 GiB, 2 GiB menos.
+El swap esta limpio (0.0 GiB usados de 8.0 GiB), asi que no hay colchon ya gastado, pero el
+techo de RAM llega antes. El OOM no es teorico en este equipo: ya paso con ComfyUI fuera de
+cgroup. Segundo riesgo: licencias — **FLUX Context es NO comercial** y LTX solo es gratis
+para empresas que facturen menos de 10 M$ al ano.
+
+**Decision pendiente, sin ejecutar**: descargar ~50 GB al SSD de datos y probar un clip de
+5 s, o dejarlo aqui. No se ha bajado nada.
+
+_MARCA: ltx25-viabilidad-registrada. Anotado 2026-10-27 09:41:47 CET. Registro de escritura: 358.289 -> 361.277 bytes (1654 -> 1697 lineas), md5 antes 9702553d, aporta 2.988 B. Sin descarga y sin cambio de configuracion._
+
+## 2026-10-27 22:35 CET - A2A: de "decidido no activar" a PROBADO y activo en loopback
+
+**Hecho**: A2A se levanto y funciona en este lab. Bloque `platforms.a2a` (`enabled: true`, `port: 9900`) escrito en `~/.hermes/config.yaml` con `hermes config set` (el agente tiene bloqueada la escritura directa sobre config.yaml por diseno). Backup `config.yaml.bak-20261027-a2a`, 15.035 B, md5 `a7befca9907f37197830946c5c0e4aea`.
+
+**Medido**: `ss -ltnp` -> `LISTEN 127.0.0.1:9900` (solo loopback, no 0.0.0.0), pid 614160. `curl /.well-known/agent-card.json` -> HTTP 200, 7.705 B, `name: hermes-milinux`, `version: 1.0.0`, JSONRPC 1.0, `streaming` y `pushNotifications` true. Agent Card con **37 toolsets** anunciados (incluye `terminal`, `code_execution`, `file`, `cronjob`, `delegation`, `computer_use`). `securitySchemes`: AUSENTE.
+
+**Hallazgo**: el plugin ya estaba instalado y enabled (`~/.hermes/hermes-agent/plugins/platforms/a2a/`, stdlib only, 5 tools de cliente). Lo unico que faltaba era la seccion de config MAS un **reinicio completo del gateway**: el `reload` (SIGUSR1) recarga plugins pero NO levanta plataformas nuevas, y reiniciar el gateway desde dentro del propio gateway esta bloqueado por diseno (`hermes gateway restart` en shell externa).
+
+**Riesgo aceptado** (decision del usuario, opcion 1 de tres): sin token, cualquier proceso local que corra como `jokoalmi` puede enviar tareas y esas tareas se inyectan en la sesion viva con todos los toolsets. El confinamiento es solo la loopback. Apagarlo: `hermes config set platforms.a2a.enabled false` + `hermes gateway restart`.
+
+**Matiza la nota del 01-sep** (`research/investigacion-orquestacion-agentes-20260901.md`, fila "Mesh/A2A entre servicios | NO IMPLEMENTAR"): aquel veredicto era una DECISION por arquitectura (1 proceso + Docker = over-engineering), nunca una prueba. La frase vieja se conserva literal; esta entrada la corrige en el hecho, no en el motivo.
+
+**Lo que NO se puede afirmar**: no se ha probado un cliente A2A externo enviando una tarea real, ni se ha verificado el rechazo de pares sin token. La cola anuncia 37 toolsets pero no se ha ejercitado ninguna via A2A.
+
+_MARCA: a2a-loopback-9900-probado. Anotado 2026-10-27 22:35 CET. Registro de escritura: 361.278 -> 363.602 bytes (1.697 -> 1.713 lineas), md5 antes da16a79e, aporta 2.323 B._
