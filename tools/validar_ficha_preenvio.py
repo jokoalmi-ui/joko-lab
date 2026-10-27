@@ -8,6 +8,8 @@ Comprueba, sobre el HTML FINAL que se va a enviar:
   - ANTIFALLOS: assets locales que existan, que no se envia un resto
     .PRUEBA/.PROVISIONAL, factor de ampliacion del fondo, y que el precio
     lleve fecha de consulta
+  - A6 (27-oct-2026): la linea .donde del pie (donde aplicar + ocasion) existe,
+    cabe en UNA linea y no toca el QR; por encima de 52 caracteres avisa
 
 Uso:
   python3 validar_ficha_preenvio.py <ficha.html> [--limite 1440] [--json out.json]
@@ -18,7 +20,7 @@ from PIL import Image
 
 CLASSES = ['.casa', '.dh', '.sello', '.r-num', '.r-meta', '.alt-n', '.alt-casa',
            '.alt-motivo', '.lab', '.clima', '.pie', '.caveat-pie', '.sub',
-           '.fuente-line', '.nota-fondo', '.sec-title', '.sec-num', '.f', 'h1',
+           '.fuente-line', '.nota-fondo', '.sec-title', '.sec-num', '.f', '.donde', 'h1',
            'blockquote', '.precio', '.p']
 JS = r"""
 (function(){
@@ -42,7 +44,16 @@ JS = r"""
       if(r.height>2 && r.bottom>maxB) maxB=r.bottom;
       var op=parseFloat(cs.opacity); if(!isNaN(op) && op<0.5 && r.height>2) debiles.push(Math.round(r.bottom));
     });
-    var data={cls:cls,imgs:imgs,svg:svg,txt:norm(document.body.innerText),
+    var don=document.querySelector('.donde'), donInfo=null;
+    if(don){
+      var dr=don.getBoundingClientRect(), dcs=getComputedStyle(don);
+      var lh=parseFloat(dcs.lineHeight)||0, qr=document.querySelector('.pie .qr');
+      donInfo={txt:norm(don.innerText), w:Math.round(dr.width), h:Math.round(dr.height),
+        lineas:(lh>0?Math.max(1,Math.round(dr.height/lh)):0),
+        scrollW:don.scrollWidth, clientW:don.clientWidth,
+        huecoQR:qr?Math.round(qr.getBoundingClientRect().left-dr.right):null};
+    }
+    var data={cls:cls,imgs:imgs,svg:svg,txt:norm(document.body.innerText),donde:donInfo,
       scrollH:document.body.scrollHeight,scrollW:document.documentElement.scrollWidth,
       contentBottom:Math.round(maxB),
       pieBottom:pie?Math.round(pie.getBoundingClientRect().bottom):null,
@@ -253,6 +264,33 @@ def main():
             '%s · filo %d px · delta L %+.1f · visibles %.1f%% (%d px, %d muy visibles)'
             % (os.path.basename(_fig), _h['filo'], _h['delta'], _h['pct'], _h['v15'], _h['v30']),
             aviso=True)
+
+    # A6 (27-oct-2026): la linea de aplicacion/ocasion del pie (.donde) se
+    # documento en la plantilla v5 y no estaba en el gate: una ficha podia
+    # salir sin ella, o con el texto partido en dos lineas, sin que nadie lo
+    # dijera. Mide el DOM (lineas reales y hueco hasta el QR). Los 52
+    # caracteres son la regla de la plantilla, NO un limite fisico: por encima
+    # avisa, no bloquea (RULE-015: el criterio se decide con la medida).
+    _don = d.get('donde')
+    if not _don or not (_don.get('txt') or '').strip():
+        add(False, 'A6 Linea donde/ocasion', 'no hay <span class="donde"> en el pie')
+    else:
+        _dt = _don['txt']
+        _mal = []
+        if (_don.get('lineas') or 0) > 1:
+            _mal.append('se parte en %d lineas' % _don['lineas'])
+        if _don.get('scrollW', 0) > _don.get('clientW', 0) + 1:
+            _mal.append('desborda %d>%d px' % (_don['scrollW'], _don['clientW']))
+        if _don.get('huecoQR') is not None and _don['huecoQR'] < 12:
+            _mal.append('a %d px del QR' % _don['huecoQR'])
+        _det = '%d car · %s px · %s linea(s) · hueco QR %s px' % (
+            len(_dt), _don.get('w'), _don.get('lineas'), _don.get('huecoQR'))
+        if _mal:
+            add(False, 'A6 Linea donde/ocasion', '%s -> %s' % (_det, ', '.join(_mal)))
+        elif len(_dt) > 52:
+            add(True, 'A6 Linea donde/ocasion', '%s · pasa de 52 car (regla de plantilla)' % _det, aviso=True)
+        else:
+            add(True, 'A6 Linea donde/ocasion', _det)
 
     # --- estructura ---
     alto = max(d['scrollH'], d.get('contentBottom') or 0)
