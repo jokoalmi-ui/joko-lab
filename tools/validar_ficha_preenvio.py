@@ -91,6 +91,60 @@ def dump(html):
     raise SystemExit('chrome no devolvio datos de validacion')
 
 
+def _l(r, g, b):
+    return 0.299 * r + 0.587 * g + 0.114 * b
+
+
+def medir_halo_recorte(p, radio=6, fondo=102.0, paso=2):
+    """Mide el HALO VISIBLE del filo de una figura recortada (RGBA), sin numpy.
+
+    Un pixel del filo con alfa a y color L, compuesto sobre un fondo de L=fondo,
+    aporta delta = a*(L-fondo). Se cuenta solo donde el frasco es OSCURO cerca
+    (nucleo opaco con L<110): ahi una claridad en el filo es halo, no arte.
+    Devuelve dict con filo, delta medio, % de pixeles visibles y muy visibles.
+    Sin umbral: el numero se reporta, la decision no se automatiza (RULE-015).
+    """
+    with Image.open(p) as im0:
+        im = im0.convert('RGBA')
+    w, h = im.size
+    px = im.load()  # type: ignore[assignment]
+
+    def oscuro_cerca(x, y):
+        for dy in range(-radio, radio + 1, 2):
+            yy = y + dy
+            if yy < 0 or yy >= h:
+                continue
+            for dx in range(-radio, radio + 1, 2):
+                xx = x + dx
+                if xx < 0 or xx >= w:
+                    continue
+                v = px[xx, yy]
+                if v[3] > 250 and _l(v[0], v[1], v[2]) < 110:
+                    return True
+        return False
+
+    filo = v15 = v30 = 0
+    dsum = 0.0
+    for y in range(1, h - 1, paso):
+        for x in range(1, w - 1, paso):
+            v = px[x, y]
+            if v[3] < 26 or v[3] > 252:
+                continue
+            if not oscuro_cerca(x, y):
+                continue
+            delta = (v[3] / 255.0) * (_l(v[0], v[1], v[2]) - fondo)
+            filo += 1
+            dsum += delta
+            if delta > 15:
+                v15 += 1
+            if delta > 30:
+                v30 += 1
+    if not filo:
+        return {'filo': 0, 'delta': 0.0, 'pct': 0.0, 'v15': 0, 'v30': 0}
+    return {'filo': filo, 'delta': dsum / filo, 'pct': 100.0 * v15 / filo,
+            'v15': v15, 'v30': v30}
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('html')
@@ -176,6 +230,29 @@ def main():
         ('%s en la linea de precio: %s' % (_hoy.isoformat(), _fecha_hoy)) if _fecha_hoy else
         'la linea de precio no dice %s (formas validas: %s)' % (
             _hoy.isoformat(), ' | '.join(_formas[:3])), aviso=True)
+
+    # A5 (27-oct-2026): el gate daba 17/17 con el recorte lleno de halo blanco
+    # (ficha Basso: 75 % del filo visible brillaba sobre el cuerpo oscuro). No
+    # medía alfa. Ahora REPORTA la medida; no bloquea ni fija umbral (RULE-015):
+    # se junta evidencia y el criterio se decide con datos, no a priori.
+    _fig = None
+    for _u in locales:
+        _p = _u if os.path.isabs(_u) else os.path.join(os.path.dirname(html), _u)
+        try:
+            with Image.open(_p) as _im:
+                if _im.mode in ('RGBA', 'LA') or 'transparency' in _im.info:
+                    _fig = _p
+                    break
+        except Exception:
+            continue
+    if _fig is None:
+        add(False, 'A5 Recorte sin halo', 'ninguna imagen con canal alfa: no medible')
+    else:
+        _h = medir_halo_recorte(_fig)
+        add(True, 'A5 Recorte sin halo',
+            '%s · filo %d px · delta L %+.1f · visibles %.1f%% (%d px, %d muy visibles)'
+            % (os.path.basename(_fig), _h['filo'], _h['delta'], _h['pct'], _h['v15'], _h['v30']),
+            aviso=True)
 
     # --- estructura ---
     alto = max(d['scrollH'], d.get('contentBottom') or 0)
