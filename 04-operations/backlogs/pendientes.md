@@ -1711,3 +1711,46 @@ _MARCA: ltx25-viabilidad-registrada. Anotado 2026-10-27 09:41:47 CET. Registro d
 **Lo que NO se puede afirmar**: no se ha probado un cliente A2A externo enviando una tarea real, ni se ha verificado el rechazo de pares sin token. La cola anuncia 37 toolsets pero no se ha ejercitado ninguna via A2A.
 
 _MARCA: a2a-loopback-9900-probado. Anotado 2026-10-27 22:35 CET. Registro de escritura: 361.278 -> 363.602 bytes (1.697 -> 1.713 lineas), md5 antes da16a79e, aporta 2.323 B._
+
+## 2026-10-28 14:56:09 CET - Candidato: guardas para una cache semantica (post de learnbayofficial)
+
+**Origen**: post de Instagram de `learnbayofficial` detectado por el cron de canales
+el 2026-10-28 (informe de las 13:34; caption leida del HTML publico, sin login ni
+descarga de media). NO verificado por mi: las cifras son del proyecto del autor.
+
+**Lo que cuenta el post**: en un replay real, "Cancel my plan" y "Do not cancel" dan
+**0,94** de similitud coseno; con umbral de cache a **0,85** el sistema respondio
+"como pausar" a **47 clientes** que preguntaban como CANCELAR, en un solo dia. Las tres
+guardas que lo llevaron a **0**: (1) preguntas personales nunca pasan por cache;
+(2) palabras clave (`cancel`, `pause`, `not`, `refund`) tienen que coincidir aunque la
+similitud sea alta; (3) solo se cachean respuestas de FAQ. Mas routing por longitud y
+riesgo: "when in doubt, go large".
+
+**Medido en el lab (2026-10-28)**:
+- `tools/context_builder.py` (12.001 B) YA tiene cache **exacta**: clave = sha256 de
+  `query+top_k`, TTL 300 s, disco en `~/tmp/rag-cache` (lineas 18-36). Es la parte
+  barata y sin riesgo; ya esta hecha.
+- `tools/local_cloud_orchestrator.py`: **571 lineas, 0 lineas con `cach`** -> el
+  orquestador no cachea nada, ni exacto ni semantico.
+- `research/` + `04-operations/backlogs/`, patron `semantic cach`: **41 ficheros**, de
+  los cuales **2 vigentes** (`research/analisis-cron-ig-20260825.md` y
+  `04-operations/backlogs/2026-07-31-backlog.md`) y 39 en copias `.bak`/`.BACKUP`.
+  Ojo: el documento de 25-ago llama "semantic caching (context_builder TTL)" a lo que
+  en realidad es cache EXACTA por hash. La frase vieja se conserva literal; esta
+  entrada solo deja constancia del matiz, no la reescribe.
+
+**Veredicto**: no es tecnica nueva de RAG, es CONTROL DE RIESGO sobre una cache. Lo
+unico que aporta al lab son las tres guardas, y solo tienen sentido si algun dia se
+anade una capa semantica encima de la cache exacta que ya existe.
+
+**Orden que se propone (no ejecutado)**: (1) dejar la cache exacta como esta; (2) si se
+quiere reutilizar respuestas entre preguntas parecidas, implementar la capa semantica
+con las tres guardas DESDE el primer commit, nunca despues; (3) medir falsos positivos
+con un replay de consultas reales del lab antes de fijar cualquier umbral (RULE-015: el
+umbral no se elige a priori).
+
+**Lo que NO se puede afirmar**: la cifra 47->0 y el 0,94 no se han reproducido aqui;
+no existe medicion propia de falsos positivos de cache en el lab; y no se ha comprobado
+que el orquestador se beneficie de cache alguna (no hay conteo de consultas repetidas).
+
+_MARCA: candidato-cache-semantica-guardas-20261028. Anotado 2026-10-28 14:56:09 CET. Registro de escritura: 363.602 -> 366.413 bytes (1.713 -> 1.755 lineas), md5 antes d7680a86, aporta 2.810 B._
