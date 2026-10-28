@@ -122,6 +122,19 @@ def _recalcular_con_cierre(m, precio):
     return round(dd, 2), round(rec, 2), patron
 
 
+def rec_rango_pct(precio, high, low):
+    """Recorrido recuperado sobre el RANGO: (precio - valle) / (maximo - valle) * 100.
+
+    Es la unidad del metodo ("entrar a mitad de subida" = 50% del recorrido de
+    vuelta al maximo). NO es lo mismo que recovery_pct, que va sobre el valle:
+    para WDC el 28-oct-2026, 50% de rango = 440,28 USD y 50% sobre valle = 498,00
+    USD. Confundirlas convertia el umbral del 50% en una condicion mucho mas dura.
+    """
+    if not high or not low or high <= low:
+        return None
+    return round((precio - low) / (high - low) * 100, 2)
+
+
 def compute_metrics(series):
     """Métricas del método de Dani sobre serie diaria de cierre."""
     if len(series) < 30:
@@ -153,6 +166,7 @@ def compute_metrics(series):
         "low_30d": low_30d,
         "drawdown_pct": round(drawdown, 2),
         "recovery_pct": round(recovery, 2),
+        "recovery_rango_pct": rec_rango_pct(last, high_3m, low_30d),
         "patron": patron,
     }
 
@@ -189,6 +203,7 @@ def _escaneo_tickers(tickers, fromdate, todate, debug) -> tuple[dict, dict]:
                 if q:
                     m["live_close"] = q["close"]
                     m["live_date"] = q["date"]
+                    m["recovery_rango_live_pct"] = rec_rango_pct(q["close"], m["high_3m"], m["low_30d"])
                     if q["close"] != m["last"]:
                         dd, rec, pat = _recalcular_con_cierre(m, q["close"])
                         m["drawdown_live_pct"] = dd
@@ -236,7 +251,7 @@ def _formatear_tabla(resultados, errores) -> list[str]:
     vivos = [(t, m) for t, m in resultados.items() if m.get("patron_live")]
     if vivos:
         partes = [
-            f"{t} {m['live_close']:.2f} -> DD {m['drawdown_live_pct']:.2f}% REC {m['recovery_live_pct']:.2f}% {m['patron_live']}"
+            f"{t} {m['live_close']:.2f} -> DD {m['drawdown_live_pct']:.2f}% REC {m['recovery_live_pct']:.2f}% (RANGO {m.get('recovery_rango_live_pct')}%) {m['patron_live']}"
             for t, m in vivos
         ]
         lines.append("METRICAS CON EL CIERRE DEL DIA (sustituyen a la serie, que va con lag): " + "; ".join(partes))
@@ -255,6 +270,13 @@ def _formatear_tabla(resultados, errores) -> list[str]:
         if (m.get("patron_live") or m["patron"]) == "L-swing"
     ]
     lines.append("CANDIDATAS_L: " + (", ".join(cands) if cands else "(ninguna)"))
+    rl = [
+        f"{t} {m.get('recovery_rango_live_pct', m.get('recovery_rango_pct'))}%"
+        for t, m in resultados.items()
+        if (m.get("patron_live") or m["patron"]) == "L-swing"
+    ]
+    if rl:
+        lines.append("REC_RANGO_L (0%=valle, 100%=max 3m; umbral de entrada >=35%): " + "; ".join(rl))
     if any(m.get("patron_live") for m in resultados.values()):
         lines.append("* patron calculado con el CIERRE OFICIAL DEL DIA (quote/info), no con la serie con lag")
     return lines
