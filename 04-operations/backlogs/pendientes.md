@@ -1754,3 +1754,43 @@ no existe medicion propia de falsos positivos de cache en el lab; y no se ha com
 que el orquestador se beneficie de cache alguna (no hay conteo de consultas repetidas).
 
 _MARCA: candidato-cache-semantica-guardas-20261028. Anotado 2026-10-28 14:56:09 CET. Registro de escritura: 363.602 -> 366.413 bytes (1.713 -> 1.755 lineas), md5 antes d7680a86, aporta 2.810 B._
+
+## 2026-10-30 14:37:13 CET - LPA-REV-20261030 - CICLO SEMANAL LPA
+
+MARCA: LPA-REV-20261030
+
+Acta: `lpa/incidentes/revision-fallos-2026-10-30.md` (15.130 B). Ventana 23->30-10-2026.
+Registro de lecciones: 25 -> 27 filas (LEC-026, LEC-027). Patron nuevo: CP-018.
+
+**Estado (medido, no estimado)**:
+- 25 filas en `cron_incidents`: 21 `resolved` + **4 `detected`** (la semana pasada: 20 y 0).
+- Esas 4 `detected` son **UN solo defecto** contado cuatro veces: la firma de la incidencia incluye la fecha de la ruta (`CP-018`, nuevo). Contar filas ya no mide recurrencia.
+- 59 jobs (56 activos, 3 desactivados). 1 activo en `error` con `streak` 4: `informe-diario`.
+- 1.001 ejecuciones en 25 h 03 min (tope de 1.000 filas): 999 `completed`, 1 `failed`, 1 `running`.
+
+**Tres frentes que necesitan tu decision (no ejecutados)**:
+
+**A · `informe-diario` sin resumen 4 dias seguidos (27->30-10).** No es arranque en frio: el 27-10 el host arranco a las 07:07 y fallo; el 24, 25 y 26 funciono con el host encendido desde el 23-10. Lo que separa los dias buenos de los malos es **si la app de LM Studio sirve en `:1234`**. `lms server start` bajo demanda devuelve literal `Timed out waiting for LM Studio daemon to start`; el router **no tiene camino a Ollama** (que esta arriba, 200). Opciones: (a) respaldo a Ollama en el router cuando `:1234` no responde; (b) unidad de usuario que arranque el motor al inicio de sesion, acreditada en el puerto y no en el `rc`. Mientras tanto el job **no miente**: sale en rojo.
+
+**B · La firma de incidencia del nucleo de Hermes (CP-018).** `incidents.py:131` firma los primeros 200 caracteres normalizando solo duraciones. Toca el nucleo de Hermes -> RULE-016 + autorizacion explicita. Alternativa sin tocar el nucleo: **leer el registro contando firmas del mismo job+causa**, que es lo que hace el acta del 30-10. Se lleva a la mensual del 02-11.
+
+**C · `retrabajo_ledger.jsonl` sigue congelado.** 566 B, mtime 25-09 = **35 dias**. El plazo de retirada fijado el 26-10 vence el **02-11**. El curador de skills tambien esta pausado y su ledger no recibe escrituras desde el 21-10 (9 dias).
+
+**Cerrado y verificado en esta ventana**:
+- `empleo-pipeline` (`bbc1d8`): cierre **con reparacion real** (credencial OAuth renovada el 28-10). Segundo cierre verificado del lab.
+- `telegram-watchdog` (`CP-016`): antidoto aplicado el 26-10 17:45; **0 reinicios y 0 incidencias** en 7 dias; 2 noches de 10 con host encendido dentro de la ventana sin red, sin reinicio -> sigue E0 por falta de noches, no de mecanismo.
+- Falso ok del informe (`CP-015`): cerrado **por el productor** (exit 3 desde el 26-10 18:09). El vigia sigue sin leer la cabecera: cualquier otro job que degrade sin cambiar el exit code sigue invisible.
+
+**Observacion sin causa atribuida**: reinicio del gateway el 27-10 22:03:54 con **18 G de pico de memoria** y `Force-killed MCP process 4861 (lancedb) after SIGTERM timeout` 2 s antes. No hay linea de OOM en el journal consultado. Se anota para el ciclo siguiente; no se ha actuado.
+
+_Copia de seguridad RULE-008 de los 4 ficheros tocados: `.bak-20261030`. Ningun fichero de sistema modificado; lectura de la base siempre con `sqlite3 -readonly`._
+
+## 2026-10-30 17:30:00 CET - LPA-REV-20261030 - DECISION C (CERRADA): `retrabajo_ledger.jsonl` declarado no-instrumento
+
+**Decision (opcion b, elegida por el usuario el 30-10)**: `04-operations/metrics/retrabajo_ledger.jsonl` se declara **no-instrumento** y se retira del circuito de metricas. **No se borra, ni se mueve, ni se edita**: su 1 fila (566 B, mtime 25-09 13:29) queda como evidencia.
+
+- Nota de estado escrita junto al fichero: `04-operations/metrics/retrabajo_ledger.STATUS.md` (2319 B) con el veredicto, la evidencia, la **regla de lectura** ("prohibido citarlo como dato: 1 fila = sin instrumento, no = poco retrabajo") y la condicion para revivirlo (productor **y** consumidor, las dos a la vez).
+- **Medido hoy antes de decidir**: 1 fila · 35 dias congelado (mtime 25-09) · **0 productores** (`grep -rln retrabajo_ledger --include=*.py --include=*.sh` solo devuelve un script de investigacion del 30-09 que **cuenta filas** para un informe) · **0 consumidores** (ningun cron ni informe lo lee).
+- **Cierra** el pendiente C abierto el 23-10, reescalado el 26-10 (tope 02-11) y el 30-10. Deja de contar como deuda abierta. Base: **CP-009** (un instrumento sin disparador no se usa).
+- **Contraste que lo justifica**: el mismo dia, el productor del informe diario (con consumidores que se quejan a diario) se diagnostico y se reparo (respaldo a Ollama, commit `8b2404c`); este ledger, sin consumidor, llevaba 4 ciclos decidiendose sin moverse.
+- Backup RULE-008 previo al append: `pendientes.md.bak-20261030-retrabajo` (md5 `43d5d5dcadb61180f90055c33f171e31`).
