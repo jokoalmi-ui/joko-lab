@@ -39,6 +39,26 @@ LM_MODEL="${LM_MODEL:-openai/gpt-oss-20b}"
 LM_MODEL_FALLBACK="glm-4.6v-flash"
 TIMEOUT_S=300
 
+# ── Respaldo OLLAMA (30-oct-2026, LPA opcion A) ──
+# Motivacion medida: cuando la app de LM Studio no sirve en :1234 (p.ej.
+# 'lms server start' headless devuelve 'Timed out waiting for LM Studio daemon
+# to start'), el router devolvia 2 y el informe diario salia SIN resumen durante
+# dias. Ollama SI estaba arriba y respondiendo 200, pero el router no tenia
+# camino a el. Esto es SOLO un respaldo: no arranca, no reinicia ni reconfigura
+# Ollama; se limita a pedirle una completion si LM Studio no da motor.
+# Escape: RESPALDO_OLLAMA_OFF=1 (comportamiento antiguo: devolver 2).
+OLLAMA_API="${OLLAMA_API:-http://127.0.0.1:11434/api/chat}"
+OLLAMA_MODEL="${OLLAMA_MODEL:-qwen2.5:7b}"
+# num_ctx SIEMPRE explicito: el default de Ollama (131072) hincha la VRAM y
+# manda capas a CPU (medido en el lab). 8192 entra en GPU y va ~6x mas rapido.
+OLLAMA_NUM_CTX="${OLLAMA_NUM_CTX:-8192}"
+# En CPU un resumen de 1200 tokens puede pasar de 5 min: margen amplio.
+OLLAMA_TIMEOUT_S="${OLLAMA_TIMEOUT_S:-600}"
+# VRAM libre minima para intentar GPU. Por debajo se pide num_gpu=0 (CPU), que
+# es lento pero no compite con ComfyUI por los 12 GB.
+OLLAMA_VRAM_MIN_MIB="${OLLAMA_VRAM_MIN_MIB:-6500}"
+
+
 # Espejo local (11-oct-2026): cada consulta local anota sus tokens en
 # 04-operations/metrics/ahorro_local_ledger.jsonl para poder calcular
 # "USD evitados" con la tabla de tarifas de coste_ahorro.py. Es aditivo y
@@ -188,11 +208,17 @@ _llm_local() {
 
     # Si R1 no esta cargado, cargarlo bajo demanda (ya no falla ni usa fallback)
     if ! _cargar_si_falta "$model"; then
-        # Fallback: intentar GLM (VLM, sirve para texto) si esta cargado o se puede cargar
-        if _cargar_si_falta "$LM_MODEL_FALLBACK"; then
+        # Fallback: intentar GLM (VLM, sirve para texto) si esta cargado o se puede cargar.
+        # LMSTUDIO_ASEGURAR_OFF=1 en este segundo intento: el servidor se acaba de
+        # dar por caido, no se repiten los 150 s de 'lms server start' + espera.
+        if LMSTUDIO_ASEGURAR_OFF=1 _cargar_si_falta "$LM_MODEL_FALLBACK"; then
             model="$LM_MODEL_FALLBACK"
         else
-            return 2
+            # Ultimo recurso (30-oct-2026): Ollama. Antes se devolvia 2 y el
+            # informe diario salia mudo aunque Ollama estuviera arriba.
+            echo "  LM Studio sin motor (gpt-oss y GLM fallaron) — intentando respaldo OLLAMA" >&2
+            _llm_ollama "$prompt" "$sysmsg" "$max_tokens"
+            return $?
         fi
     fi
 
@@ -230,6 +256,9 @@ PYEOF
             >/dev/null 2>>"$LEDGER_LOG" || true
     fi
 
+    # Motor realmente usado (lo lee el informe diario para su cabecera)
+    echo "MOTOR_USADO=lmstudio:$model" >&2
+
     # Extraer content (y reasoning si content vacio)
     python3 - "$resp" <<'PYEOF'
 import json, sys
@@ -247,6 +276,115 @@ except Exception as e:
     print(sys.argv[1][:500], file=sys.stderr)
     sys.exit(1)
 PYEOF
+}
+
+# ── Respaldo: ejecutar el prompt en OLLAMA (30-oct-2026) ──
+# Se llama SOLO cuando LM Studio no da motor (ni gpt-oss ni GLM). No arranca ni
+# reinicia Ollama: si no responde, se dice con el puerto y se devuelve 2.
+_ollama_vivo() {
+    curl -s -m 3 "http://127.0.0.1:11434/api/tags" >/dev/null 2>&1
+}
+
+_ollama_tiene_modelo() {
+    local buscado="$1"
+    curl -s -m 5 "http://127.0.0.1:11434/api/tags" 2>/dev/null \
+        | python3 -c "
+import json, sys
+try:
+    d = json.load(sys.stdin)
+    for m in d.get('models', []):
+        if m.get('name') == '$buscado' or m.get('model') == '$buscado':
+            sys.exit(0)
+    sys.exit(1)
+except Exception:
+    sys.exit(1)
+"
+}
+
+_vram_libre_mib() {
+    nvidia-smi --query-gpu=memory.free --format=csv,noheader,nounits 2>/dev/null \
+        | head -1 | tr -d ' '
+}
+
+# Devuelve 0 con la respuesta por stdout; 2 si Ollama no esta; 3 si el motor
+# respondio con error (se imprime el error REAL, sin inventar la causa).
+_llm_ollama() {
+    local prompt="$1"
+    local sysmsg="${2:-Eres el asistente del lab. Responde SIEMPRE en español. NO mezcles otros idiomas ni caracteres no latinos. NO razones en voz alta, da la respuesta directa.}"
+    local max_tokens="${3:-${MAX_TOKENS:-600}}"
+
+    if [ "${RESPALDO_OLLAMA_OFF:-0}" = "1" ]; then
+        echo "ERROR: LM Studio sin motor y el respaldo a Ollama esta desactivado (RESPALDO_OLLAMA_OFF=1)" >&2
+        return 2
+    fi
+    if ! _ollama_vivo; then
+        echo "ERROR: LM Studio sin motor y Ollama tampoco responde en :11434 (no se arranca: solo lectura)" >&2
+        return 2
+    fi
+    local model="$OLLAMA_MODEL"
+    if ! _ollama_tiene_modelo "$model"; then
+        echo "ERROR: Ollama responde pero no tiene el modelo '$model' (revisar: curl :11434/api/tags)" >&2
+        return 2
+    fi
+
+    # GPU si hay VRAM libre suficiente; si no, CPU (no se toca ComfyUI ni se
+    # descarga nada ajeno para hacer sitio).
+    local libres num_gpu donde
+    libres="$(_vram_libre_mib || true)"
+    if [ -n "${libres:-}" ] && [ "$libres" -ge "$OLLAMA_VRAM_MIN_MIB" ] 2>/dev/null; then
+        num_gpu=99; donde="GPU (${libres} MiB libres)"
+    else
+        num_gpu=0; donde="CPU (${libres:-?} MiB libres < ${OLLAMA_VRAM_MIN_MIB})"
+    fi
+    echo "  respaldo OLLAMA: modelo=$model num_ctx=$OLLAMA_NUM_CTX num_gpu=$num_gpu → $donde" >&2
+
+    local payload
+    payload=$(python3 - "$model" "$sysmsg" "$prompt" "$max_tokens" "$num_gpu" "$OLLAMA_NUM_CTX" <<'PYEOF'
+import json, sys
+model, sysmsg, prompt, max_tokens, num_gpu, num_ctx = sys.argv[1:7]
+print(json.dumps({
+    "model": model,
+    "messages": [
+        {"role": "system", "content": sysmsg},
+        {"role": "user", "content": prompt}
+    ],
+    "stream": False,
+    "options": {"num_ctx": int(num_ctx), "num_gpu": int(num_gpu), "temperature": 0.3},
+    "keep_alive": "10m"
+}))
+PYEOF
+)
+
+    local resp t0 lat
+    t0=$(date +%s.%N)
+    resp=$(curl -s -m "$OLLAMA_TIMEOUT_S" -X POST "$OLLAMA_API" \
+        -H "Content-Type: application/json" \
+        -d "$payload") || true
+    lat=$(LC_NUMERIC=C awk -v a="$t0" -v b="$(date +%s.%N)" 'BEGIN{printf "%.2f", b-a}')
+
+    # Error real del motor, tal cual (Ollama lo devuelve en el campo 'error').
+    if printf '%s' "$resp" | python3 -c "import json,sys; d=json.load(sys.stdin); sys.exit(0 if d.get('error') else 1)" 2>/dev/null; then
+        echo "ERROR: Ollama devolvio un error: $(printf '%s' "$resp" | python3 -c "import json,sys; print(json.load(sys.stdin).get('error',''))" 2>/dev/null)" >&2
+        return 3
+    fi
+
+    # Espejo local: mismo ledger, motor 'ollama' (lee prompt_eval_count/eval_count).
+    if [ -f "$LEDGER_LOCAL" ]; then
+        printf '%s' "$resp" | python3 "$LEDGER_LOCAL" --desde-stdin --motor ollama \
+            --fuente "llm-router.sh:respaldo:${ROUTER_MODO:-?}" --latencia "$lat" \
+            >/dev/null 2>>"$LEDGER_LOG" || true
+    fi
+
+    echo "MOTOR_USADO=ollama:$model" >&2
+    printf '%s' "$resp" | python3 -c "
+import json, sys
+try:
+    d = json.load(sys.stdin)
+    print((d.get('message') or {}).get('content', '').strip() or '(respuesta vacia)')
+except Exception as e:
+    print(f'ERROR parseando respuesta de Ollama: {e}', file=sys.stderr)
+    sys.exit(1)
+"
 }
 
 # ── Router principal ──
@@ -306,6 +444,12 @@ case "${1:-}" in
             echo "Motor local batch: $LM_MODEL_FALLBACK (cargado, gpt-oss no) ⚠️"
         else
             echo "Motor local batch: NINGUNO cargado → se cargara bajo demanda al usar (lms load)"
+        fi
+        echo ""
+        if _ollama_vivo; then
+            echo "Respaldo Ollama : arriba en :11434, modelo $OLLAMA_MODEL $( _ollama_tiene_modelo "$OLLAMA_MODEL" && echo '(presente)' || echo '(NO presente)' )"
+        else
+            echo "Respaldo Ollama : NO responde en :11434 (el router devolvera 2 si LM Studio falla)"
         fi
         echo ""
         echo "  batch / resumen / clasificacion → LOCAL (auto-carga si falta)"

@@ -130,15 +130,21 @@ if [ -f "$JUEZ" ] && [[ "$RESUMEN" != "(resumen local no disponible"* ]]; then
     JUEZ_TAG=$(echo "$JUEZ_RESULT" | python3 -c "import json,sys; d=json.load(sys.stdin); print('CALIDAD: ' + d.get('veredicto','ERROR') + ' (' + str(d.get('promedio','?')) + ')')" 2>/dev/null || echo "CALIDAD: omitido")
 fi
 
+# ── 3.6. Motor REALMENTE usado (30-oct-2026, respaldo Ollama) ──
+# El router publica en stderr 'MOTOR_USADO=<motor>:<modelo>'. Sin esto la
+# cabecera afirmaba "gpt-oss LOCAL" aunque hubiera contestado otro motor.
+MOTOR_REAL=$(grep -o 'MOTOR_USADO=[^ ]*' "$ERR_ROUTER" 2>/dev/null | tail -1 | cut -d= -f2- || true)
+MOTOR_TAG="${MOTOR_REAL:-desconocido}"
+
 # ── 4. Guardar informe ──
 mkdir -p "$OUT_DIR"
 cat > "$OUT" <<EOF
 # Informe diario de Joko Lab — ${FECHA_LARGA}
-# Motor: gpt-oss LOCAL (llm-router.sh batch) — piloto local/cloud
+# Motor: ${MOTOR_TAG} (llm-router.sh batch) — piloto local/cloud
 # Gate de veracidad: ${ETIQUETA} (${VEREDICTO})
 # Juez de calidad: ${JUEZ_TAG}${NOTA_DESCARTE}
 
-## Resumen (gpt-oss local)
+## Resumen (${MOTOR_TAG})
 $RESUMEN
 
 ---
@@ -148,4 +154,15 @@ EOF
 
 echo "Informe guardado: $OUT"
 echo "---"
-cat "$OUT" | head -20
+head -20 "$OUT" || true
+
+# ── 5. Codigo de salida honesto (fix del falso ok, 26-10-2026) ──
+# Antes: el script terminaba siempre en 0 aunque el resumen fuera un placeholder,
+# y el cron daba verde 52 dias con el informe mudo. Ahora el placeholder es FALLO.
+case "${VEREDICTO:-ERROR}" in
+    GATE_OMITIDO|GATE_AUSENTE)
+        echo "FALLO: informe sin resumen verificado (${VEREDICTO}) — revisar $OUT" >&2
+        exit 3
+        ;;
+esac
+exit 0
