@@ -5,9 +5,12 @@ Origen : 04-operations/metrics/sesiones/sesiones-acumulado.jsonl (1,3 GB, JSONL)
 Destino: 04-operations/metrics/sesiones/tarjetas/*.md  (type: session)
 
 Por que asi: tools/indexer.py solo indexa .md/.yaml/.yml de ~/joko-lab, asi que
-las sesiones (JSONL) NUNCA entran al RAG. Una tarjeta es un resumen heuristico
-LOCAL (sin LLM, coste 0) de cada sesion, con frontmatter para poder filtrar
-`type: session` en la busqueda.
+el acumulado JSONL nunca entra al RAG (medido 31-oct-2026). Ojo: ya habia fuentes
+de sesion en .md — sesiones/raw/*.md (327 ficheros, 17.657 chunks) y
+resumen-dia-*.md (62) —, asi que esto NO estrena las sesiones en el indice:
+cubre las que no tenian .md y las resume de forma estructurada. Una tarjeta es un
+resumen heuristico LOCAL (sin LLM, coste 0) de cada sesion, con frontmatter para
+poder filtrar `type: session` en la busqueda.
 
 Uso:
   python3 sesiones_a_tarjetas.py --dry-run           # cuenta, no escribe
