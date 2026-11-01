@@ -173,7 +173,10 @@ _cargar_si_falta() {
     fi
     echo "Cargando modelo $model (bajo demanda)..." >&2
     local err_carga
-    if err_carga=$(timeout 180 lms load "$model" 2>&1); then
+    # --yes        : sin el, 'lms load' abre un selector interactivo si la carga
+    #                falla (visto 01-nov-2026); en cron sin tty se queda colgado.
+    # --parallel 1 : el default son 4 slots; 4 x ctx 8192 no caben en 12 GB de VRAM.
+    if err_carga=$(timeout 180 lms load "$model" --yes --parallel 1 2>&1); then
         sleep 2
         if _model_cargado "$model"; then
             echo "Modelo $model cargado ✅" >&2
@@ -204,7 +207,7 @@ except Exception:
     fi
     # Reintentar carga tras liberar VRAM (capturando su error real, RULE-021)
     local err_carga2
-    if err_carga2=$(timeout 180 lms load "$model" 2>&1); then
+    if err_carga2=$(timeout 180 lms load "$model" --yes --parallel 1 2>&1); then
         sleep 2
         if _model_cargado "$model"; then
             echo "Modelo $model cargado tras swap ✅" >&2
