@@ -1,6 +1,9 @@
 # modelos_por_tarea.yaml — Fuente única de decisión: tipo de tarea → modelo local
 # Cargado por tools/pipeline_seleccion_modelo.py y tools/llm-router.sh (NO hardcodear en código).
-# version: 4 · last_validated: 2026-11-01
+# version: 5 · last_validated: 2026-11-01
+# v5 (01-nov-2026): + bloque `respaldo_carga` (lfm2.5-vl-3b), que es el modelo de segundo
+#   intento del router cuando el pedido no se puede cargar. Antes lo tenía fijo a glm, del
+#   mismo tamaño que gemma, así que no servía en el escenario en que hace falta.
 # v4 (01-nov-2026): bucket `vision` pasa de glm-4.6v-flash a google/gemma-4-12b-qat.
 #   Motivo medido con tools/bench_vision.py (3 repeticiones, temp 0, material real del lab):
 #   gemma 4/4 en ficha y 8/8 en linea de tiempo en las 3 reps; GLM 3/4 porque inventa la
@@ -44,7 +47,7 @@
 #   `generacion_imagen` y `transcripcion` declaran los dos casos que antes caían en el bucket
 #   equivocado (una tarea de generación llegaba al VLM por la clave suelta `imagen`).
 
-version: 4
+version: 5
 last_validated: "2026-11-01"
 
 modelos_por_tarea:
@@ -145,6 +148,13 @@ fallback:
   modelo: openai/gpt-oss-20b
   motivo: "Tipo no detectado → gpt-oss-20b (rapido y validado); revisar si la tarea es de hechos → qwen3.6-35b-a3b_moe"
   alternativas: [granite-4.1-8b]
+
+# Respaldo de CARGA (no de tarea): a qué modelo caer cuando el elegido no se puede
+# cargar. Debe ser PEQUEÑO, para que quepa justo cuando el grande no cabe (otro motor
+# ocupando la VRAM, p.ej. ComfyUI con 8.080 MiB). Lo lee tools/llm-router.sh (_yaml_model).
+respaldo_carga:
+  modelo: lfm2.5-vl-3b
+  motivo: "2.666 MiB medidos (01-nov-2026): el único VLM que cabe junto a ComfyUI. Lee peor que gemma/GLM, pero evita dejar la consulta muda. Antes era glm-4.6v-flash, del mismo tamaño que gemma (8.970 MiB), y fallaba en el mismo escenario en que hace falta el respaldo."
 
 # Modelos instalados reales (02-oct-2026, API :1234/api/v0/models) — para validación del YAML.
 # 02-oct-2026: ya sin qwen3.6-35b-a3b-mtp ni qwen3.5-9b-the-defiant-... (borrados del disco).

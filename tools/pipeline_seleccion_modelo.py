@@ -91,6 +91,15 @@ def _normalizar(t):
 def detectar_tipo(texto, tabla):
     texto_l = " " + _normalizar(texto) + " "
     tipos = tabla.get("modelos_por_tarea", {})
+    # (01-nov-2026) Si el texto ES el nombre de un bucket ("vision", "redaccion_datos"),
+    # se respeta ese bucket. Antes "vision" a secas no casaba con ninguna clave de
+    # `cuando` y caia en fallback (gpt-oss), así que pedir el tipo por su nombre daba
+    # otro modelo que buscar la tarea con palabras. Se compara el texto completo, no
+    # una subcadena: "una vision general del proyecto" sigue siendo fallback.
+    pedido = _normalizar(texto).strip()
+    for tipo in tipos:
+        if _normalizar(tipo) == pedido:
+            return tipo, tipos[tipo]
     coincidencias = []
     for tipo, cfg in tipos.items():
         claves = cfg.get("cuando", [])

@@ -35,8 +35,28 @@ export PATH
 
 LM_API="http://localhost:1234/api/v0/chat/completions"
 LM_MODEL="${LM_MODEL:-openai/gpt-oss-20b}"
-# Modelo por defecto si el indicado no esta cargado (fallback razonable)
-LM_MODEL_FALLBACK="glm-4.6v-flash"
+
+# ── Lectura del YAML de decisión (fuente única: 01-knowledge/modelos_por_tarea.yaml) ──
+# $1 = bucket dentro de modelos_por_tarea, o clave de primer nivel (p.ej. respaldo_carga).
+# Imprime el modelo o nada. Cualquier fallo (sin PyYAML, fichero movido) → vacío y el
+# llamante usa su valor por defecto: nunca deja el router mudo.
+_yaml_model() {
+    python3 - "$1" <<'PY' 2>/dev/null || true
+import sys
+import yaml
+clave = sys.argv[1]
+t = yaml.safe_load(open("/home/jokoalmi/joko-lab/01-knowledge/modelos_por_tarea.yaml", encoding="utf-8")) or {}
+nodo = (t.get("modelos_por_tarea") or {}).get(clave) or t.get(clave) or {}
+print(nodo.get("modelo") or "")
+PY
+}
+
+# Modelo de segundo intento si el indicado no se puede cargar.
+# (01-nov-2026) Antes: glm-4.6v-flash. Medido: ocupa lo mismo que gemma (8.9 GB), así
+# que fallaba en el mismo escenario en que se necesita (otro motor ocupando la VRAM).
+# Ahora el respaldo es el VLM pequeño: 2.666 MiB, el único que cabe junto a ComfyUI.
+LM_MODEL_FALLBACK="$(_yaml_model respaldo_carga)"
+LM_MODEL_FALLBACK="${LM_MODEL_FALLBACK:-lfm2.5-vl-3b}"
 TIMEOUT_S=300
 
 # ── Respaldo OLLAMA (30-oct-2026, LPA opcion A) ──
@@ -408,11 +428,7 @@ case "${1:-}" in
         # Vision → modelo del bucket `vision` de modelos_por_tarea.yaml (v4, 01-nov-2026).
         # Antes estaba fijo a glm-4.6v-flash aquí, así que cambiar el YAML no cambiaba nada.
         # Presupuesto moderado (razonamiento + descripción).
-        vis_model=$(python3 -c '
-import yaml
-t = yaml.safe_load(open("/home/jokoalmi/joko-lab/01-knowledge/modelos_por_tarea.yaml", encoding="utf-8"))
-print((t["modelos_por_tarea"].get("vision") or {}).get("modelo") or "")
-' 2>/dev/null)
+        vis_model="$(_yaml_model vision)"
         ROUTER_MODO=vision LM_MODEL="${vis_model:-glm-4.6v-flash}" MAX_TOKENS=600 _llm_local "${2:?Uso: llm-router.sh vision <prompt>}"
         ;;
     auto)
@@ -460,7 +476,8 @@ print((t["modelos_por_tarea"].get("vision") or {}).get("modelo") or "")
         fi
         echo ""
         echo "  batch / resumen / clasificacion → LOCAL (auto-carga si falta)"
-        echo "  vision → GLM local (auto-carga si falta)"
+        echo "  vision → $(_yaml_model vision) (auto-carga si falta)"
+        echo "  respaldo de carga (si el modelo pedido no cabe/carga) → $LM_MODEL_FALLBACK"
         echo "  auto <prompt> → preestima modelo por tipo de tarea (tabla YAML) y ejecuta"
         echo "  interactivo / razonamiento complejo → CLOUD (deepseek)"
         ;;
