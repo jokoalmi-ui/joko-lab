@@ -1,6 +1,14 @@
 # modelos_por_tarea.yaml — Fuente única de decisión: tipo de tarea → modelo local
 # Cargado por tools/pipeline_seleccion_modelo.py y tools/llm-router.sh (NO hardcodear en código).
-# version: 5 · last_validated: 2026-11-01
+# version: 6 · last_validated: 2026-11-01
+# v6 (01-nov-2026): + `sub_tareas` dentro de `vision` — el reparto MEDIDO entre los dos VLM.
+#   A/B el mismo día, misma imagen (póster 1184x1568), mismo prompt, temp 0, API directa:
+#   contenido IDÉNTICO (52 de 53 líneas normalizadas iguales; la única diferencia es
+#   "indexes" vs "indices"). Lo que cambia es el coste: GLM 73,2 s y 1.039 tokens de salida
+#   frente a gemma 185,1 s y 1.931. → ficha de producto: gemma (no inventa la casa);
+#   OCR de texto denso: GLM (misma exactitud, 2,5x más rápido). OJO: el router NO lee
+#   `sub_tareas`; hoy sirve gemma para todo lo que entra por `vision`. Cablear el reparto es
+#   una decisión aparte, no un efecto de este cambio.
 # v5 (01-nov-2026): + bloque `respaldo_carga` (lfm2.5-vl-3b), que es el modelo de segundo
 #   intento del router cuando el pedido no se puede cargar. Antes lo tenía fijo a glm, del
 #   mismo tamaño que gemma, así que no servía en el escenario en que hace falta.
@@ -47,7 +55,7 @@
 #   `generacion_imagen` y `transcripcion` declaran los dos casos que antes caían en el bucket
 #   equivocado (una tarea de generación llegaba al VLM por la clave suelta `imagen`).
 
-version: 5
+version: 6
 last_validated: "2026-11-01"
 
 modelos_por_tarea:
@@ -65,10 +73,21 @@ modelos_por_tarea:
     descripcion: "Analizar imágenes, describir visual, OCR de imagen"
     modelo: google/gemma-4-12b-qat
     cuando: [foto, screenshot, captura, "analiza esta imagen", "analiza la imagen", "describe la imagen", "qué hay en", visual, gráfica, mirar la, packshot, "lee el texto de esta imagen", "extrae el texto de la imagen"]
-    evidencia: "MEDIDO 01-nov-2026 (tools/bench_vision.py, 3 repeticiones, temp 0, material real del lab): gemma 4/4 en la ficha y 8/8 en la linea de tiempo EN LAS TRES repeticiones, 8.970 MiB; GLM 3/4 y 8/8, 8.956 MiB, porque inventa la casa (dice Daniel Josier donde la ficha dice Lunio). Antes: RULE-014 (vision = GLM) + bateria lfm-vs-glm 21-ago + bateria v2 01-oct (GLM 7/7 en texto, 26,4 tok/s, 9.984 MiB), que no median lectura de imagen. Coste de gemma: 28,9 s en documento largo frente a 12,3 s de GLM; es la unica prueba donde GLM gana."
+    evidencia: "MEDIDO 01-nov-2026 (tools/bench_vision.py, 3 repeticiones, temp 0, material real del lab): gemma 4/4 en la ficha y 8/8 en la linea de tiempo EN LAS TRES repeticiones, 8.970 MiB; GLM 3/4 y 8/8, 8.956 MiB, porque inventa la casa (dice Daniel Josier donde la ficha dice Lunio). Antes: RULE-014 (vision = GLM) + bateria lfm-vs-glm 21-ago + bateria v2 01-oct (GLM 7/7 en texto, 26,4 tok/s, 9.984 MiB), que no median lectura de imagen. Coste de gemma: 28,9 s en documento largo frente a 12,3 s de GLM; es la unica prueba donde GLM gana. A/B 01-nov-2026 sobre UN póster real (1184x1568), mismo prompt y temp 0: contenido identico (52 de 53 lineas normalizadas; solo 'indexes' vs 'indices') pero gemma 185,1 s y 1.931 tokens de salida frente a 73,2 s y 1.039 de GLM (carga 5,7 s vs 18,3 s). Confirma el patron: gemma exacto en ficha y lento en texto denso; GLM igual de exacto y 2,5x mas rapido en texto denso."
     prioridad: balance
     max_tokens: 800
     alternativas: [glm-4.6v-flash, lfm2.5-vl-3b]
+    # OJO: `sub_tareas` es DOCUMENTACION, no configuración. tools/llm-router.sh y
+    # tools/pipeline_seleccion_modelo.py solo leen `cuando` y `modelo` del bucket; hoy
+    # cualquier tarea visual usa `modelo` (gemma). Sirve para no volver a discutir el
+    # reparto desde cero y para elegir a mano cuando la tarea es claramente de texto.
+    sub_tareas:
+      - tarea: "ficha / producto — identificar casa, frasco, nombre, notas"
+        modelo: google/gemma-4-12b-qat
+        evidencia: "4/4 campos en 3/3 repeticiones; GLM 3/4 porque inventa la casa (01-nov-2026)"
+      - tarea: "OCR de texto denso — póster, infografía, paper, documento escaneado"
+        modelo: glm-4.6v-flash
+        evidencia: "A/B 01-nov-2026: mismo contenido que gemma, 73,2 s frente a 185,1 s y 1.039 frente a 1.931 tokens de salida"
 
   codigo:
     descripcion: "Generar/revisar código, scripts, funciones, corregir bugs"
