@@ -105,3 +105,24 @@ Lo que sigue **corrige** la sección anterior en lo que la medición contradice.
 3. El acumulador de `tool_calls` guardaba fragmentos sueltos y los argumentos salían truncados. Fix: concatenar por `index`, que es lo que permite afirmar que los cuatro modelos llaman bien.
 
 **Estado del sistema al cerrar**: sin `llama-server` vivo, GPU a 109/12.282 MiB, ComfyUI **parado** (el usuario decide cuándo se rearranca).
+
+## Verificación con 3 repeticiones (01-nov-2026, cierre 10:40:39 CET)
+
+La primera batería tenía **una sola medida por prueba**. RULE-015 pide validar el instrumento antes de creerse la cifra, así que se repitió con `--repeticiones 3` sobre el medidor ya versionado (`tools/bench_vision.py`), mismo material, `temperature 0`, ctx 8192. Duración total de la tanda: 9 minutos para los 4 modelos.
+
+| modelo | VRAM pico | carga | ficha (mediana y rango) | acierto ficha | documento | acierto doc | tool+imagen | tool texto |
+|---|---|---|---|---|---|---|---|---|
+| GLM-4.6V-Flash | 8.956 MiB | 22,2 s | 13,98 s [13,9-14,1] | 3/4 en 3/3 reps | 12,34 s [12,3-12,5] | 8/8 en 3/3 | 4,22 s | 18,51 s |
+| gemma-4-12B-it | 8.970 MiB | 33,2 s | 8,12 s [8,1-9,2] | 4/4 en 3/3 reps | 28,91 s [28,6-30,0] | 8/8 en 3/3 | 5,84 s | 4,87 s |
+| LFM2.5-VL-3B | 2.666 MiB | 3,0 s | 0,65 s [0,65-2,27] | 2/4 en 3/3 reps | 1,30 s [1,29-3,24] | 2/8 en 3/3 | 0,65 s | 0,32 s |
+| granite-4.1-8B | 6.264 MiB | 6,0 s | sin visión | n/a | sin visión | n/a | sin visión | 0,97 s |
+
+Tool calling: correcto (nombre y argumentos válidos) en las 3 repeticiones de los tres modelos con visión, y también en granite.
+
+**Qué añade la repetición y qué no**
+- **Los aciertos no se mueven**: los cuatro modelos dan la misma nota en la 1.ª, 2.ª y 3.ª repetición. El fallo de GLM en la ficha y el de LFM en la línea de tiempo son **sistemáticos**, no ruido de muestreo. Ahí la pasada única ya decía la verdad.
+- **Los tiempos sí se mueven, y solo en LFM**: 2,27 s la primera repetición frente a 0,65 s la segunda y la tercera (arranque en frío del servidor). GLM y gemma son estables dentro de ±1 s. Con una sola medida se habría publicado el peor caso como si fuera el normal.
+- **La pasada única se reproduce exacta**: LFM 2/4 y 2/8, GLM 3/4 y 8/8, gemma 4/4 y 8/8. El instrumento queda validado contra sí mismo.
+- El orden de preferencia no cambia: **gemma lee mejor**, GLM gana en velocidad de documento y en tool calling con imagen, LFM es OCR barato y granite no tiene visión.
+
+**Estado del hardware al cerrar**: 115 MiB de 12.282 MiB en uso, 0 % de utilización, puerto 12345 libre, ningún `llama-server` vivo.
