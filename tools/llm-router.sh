@@ -405,8 +405,15 @@ case "${1:-}" in
             "Eres el asistente del lab. Devuelve SOLO JSON valido, sin markdown, sin explicaciones."
         ;;
     vision)
-        # Vision → GLM (VLM) — presupuesto moderado (razonamiento + descripción)
-        ROUTER_MODO=vision LM_MODEL="glm-4.6v-flash" MAX_TOKENS=600 _llm_local "${2:?Uso: llm-router.sh vision <prompt>}"
+        # Vision → modelo del bucket `vision` de modelos_por_tarea.yaml (v4, 01-nov-2026).
+        # Antes estaba fijo a glm-4.6v-flash aquí, así que cambiar el YAML no cambiaba nada.
+        # Presupuesto moderado (razonamiento + descripción).
+        vis_model=$(python3 -c '
+import yaml
+t = yaml.safe_load(open("/home/jokoalmi/joko-lab/01-knowledge/modelos_por_tarea.yaml", encoding="utf-8"))
+print((t["modelos_por_tarea"].get("vision") or {}).get("modelo") or "")
+' 2>/dev/null)
+        ROUTER_MODO=vision LM_MODEL="${vis_model:-glm-4.6v-flash}" MAX_TOKENS=600 _llm_local "${2:?Uso: llm-router.sh vision <prompt>}"
         ;;
     auto)
         # PREESTIMACIÓN AUTOMÁTICA (06-sep-2026): el pipeline clasifica la tarea

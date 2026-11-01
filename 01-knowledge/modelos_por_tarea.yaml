@@ -1,6 +1,11 @@
 # modelos_por_tarea.yaml — Fuente única de decisión: tipo de tarea → modelo local
 # Cargado por tools/pipeline_seleccion_modelo.py y tools/llm-router.sh (NO hardcodear en código).
-# version: 3 · last_validated: 2026-10-02
+# version: 4 · last_validated: 2026-11-01
+# v4 (01-nov-2026): bucket `vision` pasa de glm-4.6v-flash a google/gemma-4-12b-qat.
+#   Motivo medido con tools/bench_vision.py (3 repeticiones, temp 0, material real del lab):
+#   gemma 4/4 en ficha y 8/8 en linea de tiempo en las 3 reps; GLM 3/4 porque inventa la
+#   casa. GLM baja a alternativa 1. Lo unico donde GLM gana: documento largo (12,3 s vs
+#   28,9 s). El resto del YAML no cambia.
 # v3 (01-oct-2026): + campo `alternativas` en todos los buckets (respaldo si el modelo no
 #   carga) y + 2 buckets fuera de LM Studio (generacion_imagen, transcripcion). Se quitó la
 #   clave suelta `imagen` de `vision` (mandaba tareas de generación al VLM) y se corrigió el
@@ -39,8 +44,8 @@
 #   `generacion_imagen` y `transcripcion` declaran los dos casos que antes caían en el bucket
 #   equivocado (una tarea de generación llegaba al VLM por la clave suelta `imagen`).
 
-version: 3
-last_validated: "2026-10-02"
+version: 4
+last_validated: "2026-11-01"
 
 modelos_por_tarea:
 
@@ -55,12 +60,12 @@ modelos_por_tarea:
 
   vision:
     descripcion: "Analizar imágenes, describir visual, OCR de imagen"
-    modelo: glm-4.6v-flash
+    modelo: google/gemma-4-12b-qat
     cuando: [foto, screenshot, captura, "analiza esta imagen", "analiza la imagen", "describe la imagen", "qué hay en", visual, gráfica, mirar la, packshot, "lee el texto de esta imagen", "extrae el texto de la imagen"]
-    evidencia: "RULE-014 (vision = GLM local) + bateria de vision lfm-vs-glm 21-ago-2026 + Bateria v2 01-oct-2026: 7/7 en texto y 26,4 tok/s (2o mas rapido de los 7 nuevos). VRAM medida: 9.984 MiB (cabe justo en 12 GB)."
+    evidencia: "MEDIDO 01-nov-2026 (tools/bench_vision.py, 3 repeticiones, temp 0, material real del lab): gemma 4/4 en la ficha y 8/8 en la linea de tiempo EN LAS TRES repeticiones, 8.970 MiB; GLM 3/4 y 8/8, 8.956 MiB, porque inventa la casa (dice Daniel Josier donde la ficha dice Lunio). Antes: RULE-014 (vision = GLM) + bateria lfm-vs-glm 21-ago + bateria v2 01-oct (GLM 7/7 en texto, 26,4 tok/s, 9.984 MiB), que no median lectura de imagen. Coste de gemma: 28,9 s en documento largo frente a 12,3 s de GLM; es la unica prueba donde GLM gana."
     prioridad: balance
     max_tokens: 800
-    alternativas: [google/gemma-4-12b-qat, lfm2.5-vl-3b]
+    alternativas: [glm-4.6v-flash, lfm2.5-vl-3b]
 
   codigo:
     descripcion: "Generar/revisar código, scripts, funciones, corregir bugs"
