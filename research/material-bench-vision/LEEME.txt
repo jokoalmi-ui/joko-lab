@@ -1,0 +1,38 @@
+MATERIAL DE LA BATERÍA DE VISIÓN LOCAL (bench_vision.py)
+========================================================
+
+Por qué está esto versionado
+----------------------------
+El instrumento de medición de visión (tools/bench_vision.py) necesita material
+REAL del laboratorio y siempre el mismo. Si el material cambia, las cifras no
+se pueden comparar entre pasadas. Se versiona para que la medición sea
+reproducible (RULE-015: validar el instrumento antes de creerse la cifra).
+
+Contenido
+---------
+docp6-006.png
+    Página 6 del PDF de empleo, rasterizada a 110 dpi. Prueba de "documento":
+    línea de tiempo de la IA con 8 hitos conocidos (1943 McCulloch y Pitts,
+    1950 Turing, 1956 McCarthy, 1958 LISP, 1966 ELIZA, 1986 retropropagación,
+    1997 Deep Blue, 2022 ChatGPT).
+    sha256 2df363d3982dddcd3698877c9220431a72b061a15b7503b5fe3d7ad0174b6798
+    Procedencia: ~/joko-lab/research/material-bench-vision/ copiado del scratch
+    el 01-nov-2026 antes de que se podara.
+
+resultados-01nov-1pasada.json
+    Salida real de la primera batería (01-nov-2026, 10:10-10:14 CET), 1 pasada
+    por prueba, 4 modelos. Se conserva como referencia histórica: la pasada
+    múltiple (3 repeticiones) se guarda aparte, no la sobrescribe.
+
+La ficha de prueba (prueba "ficha") NO se copia aquí: se usa la ficha publicada
+del día, que ya está versionada en
+research/infografias/perfume-del-dia-20261101/perfume_del_dia_v5_indigo_suede_corr.png
+(verdad conocida: Indigo Suede / Lunio / 120 EUR / 100 ml).
+
+Cómo se lanza
+-------------
+    /usr/bin/python3 tools/bench_vision.py --listar
+    /usr/bin/python3 tools/bench_vision.py --repeticiones 3
+    /usr/bin/python3 tools/bench_vision.py --puntuar <ruta>/resultados.json
+
+Escribe solo en ~/.hermes/cache/scratch/bench-vision/ (o en --dir).
