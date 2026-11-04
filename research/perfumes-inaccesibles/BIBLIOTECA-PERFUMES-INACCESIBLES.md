@@ -6,6 +6,11 @@ type: research
 # BIBLIOTECA DE PERFUMES Y MARCAS NO ACCESIBLES DESDE ESPAÑA
 
 **Creado:** 06-ago-2026 · **Autor:** Hermes para Joseba (modo ocio/investigación)
+**Última pasada mensual:** 01-nov-2026 (ImSole, Shaikh Saeed, ToSummer, OGLIARI
+— detalle y comandos de BD pendientes en
+`~/.hermes/skills/joko-lab/perfumes-inaccesibles/references/expansion-20260820.md`,
+bloque final). Nota: China, Brasil y Filipinas no tienen ficha regional propia;
+sus marcas viven solo en `futuribles.db` + esa referencia.
 **Propósito:** catálogo de referencia de marcas y perfumes que NO se pueden
 comprar en España ni enviar a España (o solo con restricciones), con dónde se
 venden, precios, notas olfativas y cómo conseguir cada uno.

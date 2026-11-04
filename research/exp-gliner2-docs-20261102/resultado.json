@@ -1,0 +1,254 @@
+{
+  "modelo": "gliner2.5-multi-v1",
+  "n": 1789,
+  "distribucion": {
+    "lpa": 43,
+    "knowledge": 55,
+    "operations": 76,
+    "EXP": 14,
+    "session": 1160,
+    "docs": 10,
+    "research": 431
+  },
+  "baseline_mayoritaria": 0.6484,
+  "max_chars": 1200,
+  "vram_carga_mib": 565.2,
+  "configs": {
+    "A_simple": {
+      "accuracy": 0.6221,
+      "f1_macro": 0.2966,
+      "por_clase": {
+        "session": {
+          "precision": 0.9695,
+          "recall": 0.8491,
+          "f1": 0.9053,
+          "n": 1160
+        },
+        "research": {
+          "precision": 0.5467,
+          "recall": 0.1903,
+          "f1": 0.2823,
+          "n": 431
+        },
+        "knowledge": {
+          "precision": 0.0195,
+          "recall": 0.1091,
+          "f1": 0.0331,
+          "n": 55
+        },
+        "operations": {
+          "precision": 0.2353,
+          "recall": 0.0526,
+          "f1": 0.086,
+          "n": 76
+        },
+        "lpa": {
+          "precision": 0.3375,
+          "recall": 0.6279,
+          "f1": 0.439,
+          "n": 43
+        },
+        "EXP": {
+          "precision": 0.2222,
+          "recall": 0.5714,
+          "f1": 0.32,
+          "n": 14
+        },
+        "docs": {
+          "precision": 0.0055,
+          "recall": 0.1,
+          "f1": 0.0104,
+          "n": 10
+        }
+      },
+      "matriz": {
+        "session": {
+          "session": 985,
+          "research": 57,
+          "knowledge": 16,
+          "operations": 6,
+          "lpa": 21,
+          "EXP": 12,
+          "docs": 63
+        },
+        "research": {
+          "session": 16,
+          "research": 82,
+          "knowledge": 224,
+          "operations": 5,
+          "lpa": 22,
+          "EXP": 6,
+          "docs": 76
+        },
+        "knowledge": {
+          "session": 8,
+          "research": 0,
+          "knowledge": 6,
+          "operations": 2,
+          "lpa": 7,
+          "EXP": 2,
+          "docs": 30
+        },
+        "operations": {
+          "session": 6,
+          "research": 9,
+          "knowledge": 39,
+          "operations": 4,
+          "lpa": 2,
+          "EXP": 7,
+          "docs": 9
+        },
+        "lpa": {
+          "session": 1,
+          "research": 2,
+          "knowledge": 9,
+          "operations": 0,
+          "lpa": 27,
+          "EXP": 1,
+          "docs": 3
+        },
+        "EXP": {
+          "session": 0,
+          "research": 0,
+          "knowledge": 5,
+          "operations": 0,
+          "lpa": 0,
+          "EXP": 8,
+          "docs": 1
+        },
+        "docs": {
+          "session": 0,
+          "research": 0,
+          "knowledge": 8,
+          "operations": 0,
+          "lpa": 1,
+          "EXP": 0,
+          "docs": 1
+        }
+      },
+      "latencia_media_ms": 28.9,
+      "latencia_p95_ms": 32.5,
+      "docs_por_segundo": 34.65,
+      "erroneos": 0
+    },
+    "B_descripcion": {
+      "accuracy": 0.6814,
+      "f1_macro": 0.376,
+      "por_clase": {
+        "session": {
+          "precision": 0.9661,
+          "recall": 0.8362,
+          "f1": 0.8965,
+          "n": 1160
+        },
+        "research": {
+          "precision": 0.5496,
+          "recall": 0.4501,
+          "f1": 0.4949,
+          "n": 431
+        },
+        "knowledge": {
+          "precision": 0.066,
+          "recall": 0.3636,
+          "f1": 0.1117,
+          "n": 55
+        },
+        "operations": {
+          "precision": 0.075,
+          "recall": 0.0395,
+          "f1": 0.0517,
+          "n": 76
+        },
+        "lpa": {
+          "precision": 0.5641,
+          "recall": 0.5116,
+          "f1": 0.5366,
+          "n": 43
+        },
+        "EXP": {
+          "precision": 0.3913,
+          "recall": 0.6429,
+          "f1": 0.4865,
+          "n": 14
+        },
+        "docs": {
+          "precision": 0.037,
+          "recall": 0.1,
+          "f1": 0.0541,
+          "n": 10
+        }
+      },
+      "matriz": {
+        "session": {
+          "session": 970,
+          "research": 124,
+          "knowledge": 29,
+          "operations": 13,
+          "lpa": 7,
+          "EXP": 4,
+          "docs": 13
+        },
+        "research": {
+          "session": 25,
+          "research": 194,
+          "knowledge": 194,
+          "operations": 3,
+          "lpa": 4,
+          "EXP": 2,
+          "docs": 9
+        },
+        "knowledge": {
+          "session": 6,
+          "research": 1,
+          "knowledge": 20,
+          "operations": 21,
+          "lpa": 4,
+          "EXP": 3,
+          "docs": 0
+        },
+        "operations": {
+          "session": 3,
+          "research": 33,
+          "knowledge": 27,
+          "operations": 3,
+          "lpa": 2,
+          "EXP": 5,
+          "docs": 3
+        },
+        "lpa": {
+          "session": 0,
+          "research": 1,
+          "knowledge": 19,
+          "operations": 0,
+          "lpa": 22,
+          "EXP": 0,
+          "docs": 1
+        },
+        "EXP": {
+          "session": 0,
+          "research": 0,
+          "knowledge": 5,
+          "operations": 0,
+          "lpa": 0,
+          "EXP": 9,
+          "docs": 0
+        },
+        "docs": {
+          "session": 0,
+          "research": 0,
+          "knowledge": 9,
+          "operations": 0,
+          "lpa": 0,
+          "EXP": 0,
+          "docs": 1
+        }
+      },
+      "latencia_media_ms": 38.1,
+      "latencia_p95_ms": 46.4,
+      "docs_por_segundo": 26.26,
+      "erroneos": 0
+    }
+  },
+  "vram_pico_mib": 1463.6,
+  "fecha": "2026-11-02T14:33:00+0100"
+}

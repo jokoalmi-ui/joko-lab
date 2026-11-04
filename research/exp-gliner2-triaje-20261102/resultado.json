@@ -1,0 +1,104 @@
+{
+  "modelo": "fastino/gliner2.5-base-v1",
+  "n": 972,
+  "corpus": "/home/jokoalmi/joko-lab/04-operations/metrics/triaje_canales.jsonl",
+  "vram_carga_mib": 386.4,
+  "configs": {
+    "A_simple": {
+      "accuracy": 0.3467,
+      "f1_macro": 0.2241,
+      "por_clase": {
+        "prometedor": {
+          "precision": 0.0708,
+          "recall": 0.2989,
+          "f1": 0.1145,
+          "n": 87
+        },
+        "dudoso": {
+          "precision": 0.516,
+          "recall": 0.5542,
+          "f1": 0.5344,
+          "n": 554
+        },
+        "ruido": {
+          "precision": 0.4,
+          "recall": 0.0121,
+          "f1": 0.0235,
+          "n": 331
+        }
+      },
+      "matriz": {
+        "prometedor": {
+          "prometedor": 26,
+          "dudoso": 60,
+          "ruido": 1
+        },
+        "dudoso": {
+          "prometedor": 242,
+          "dudoso": 307,
+          "ruido": 5
+        },
+        "ruido": {
+          "prometedor": 99,
+          "dudoso": 228,
+          "ruido": 4
+        }
+      },
+      "n_errores_sin_clase": 0,
+      "latencia_total_s": 25.5,
+      "latencia_media_ms": 26.3,
+      "latencia_p50_ms": 25.2,
+      "latencia_p95_ms": 26.8,
+      "titulos_por_segundo": 38.05
+    },
+    "B_descripcion": {
+      "accuracy": 0.5206,
+      "f1_macro": 0.2676,
+      "por_clase": {
+        "prometedor": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "n": 87
+        },
+        "dudoso": {
+          "precision": 0.5696,
+          "recall": 0.8718,
+          "f1": 0.689,
+          "n": 554
+        },
+        "ruido": {
+          "precision": 0.3151,
+          "recall": 0.0695,
+          "f1": 0.1139,
+          "n": 331
+        }
+      },
+      "matriz": {
+        "prometedor": {
+          "prometedor": 0,
+          "dudoso": 75,
+          "ruido": 12
+        },
+        "dudoso": {
+          "prometedor": 33,
+          "dudoso": 483,
+          "ruido": 38
+        },
+        "ruido": {
+          "prometedor": 18,
+          "dudoso": 290,
+          "ruido": 23
+        }
+      },
+      "n_errores_sin_clase": 0,
+      "latencia_total_s": 24.5,
+      "latencia_media_ms": 25.2,
+      "latencia_p50_ms": 24.8,
+      "latencia_p95_ms": 27.5,
+      "titulos_por_segundo": 39.61
+    }
+  },
+  "vram_pico_mib": 928.4,
+  "fecha": "2026-11-02T14:24:12+0100"
+}

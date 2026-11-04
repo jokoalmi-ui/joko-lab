@@ -1,0 +1,503 @@
+{
+  "resumen": {
+    "modelo": "gliner2.5-multi-v1",
+    "n_docs": 15,
+    "entidades_lista": 36,
+    "ground_truth_total": 25,
+    "halladas": 8,
+    "recall": 0.32,
+    "predichas_total": 157,
+    "predichas_en_lista": 16,
+    "precision_estricta": 0.1019,
+    "latencia_media_ms": 131.8,
+    "vram_pico_mib": 1463.6,
+    "fecha": "2026-11-02T14:42:54+0100"
+  },
+  "detalle": [
+    {
+      "doc": "04-operations/backlogs/2026-07-31-backlog.md",
+      "gt": [
+        "lm studio"
+      ],
+      "halladas": [
+        "lm studio"
+      ],
+      "predichas": [
+        "knowledge_health.py",
+        "lm studio api",
+        "dec",
+        "dec",
+        "joko lab"
+      ],
+      "sobran": [
+        "knowledge_health.py",
+        "lm studio api",
+        "dec",
+        "dec",
+        "joko lab"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/2026-08-04-backlog.md",
+      "gt": [
+        "glm",
+        "meta"
+      ],
+      "halladas": [],
+      "predichas": [
+        "tools/observer.py",
+        "search.py",
+        "tools/evidence.py",
+        "activation_engine.py",
+        "kos",
+        "kos"
+      ],
+      "sobran": [
+        "tools/observer.py",
+        "search.py",
+        "tools/evidence.py",
+        "activation_engine.py",
+        "kos",
+        "kos"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/2026-08-06-backlog.md",
+      "gt": [
+        "grep",
+        "lm studio"
+      ],
+      "halladas": [
+        "lm studio"
+      ],
+      "predichas": [
+        "guia-joko-lab.md",
+        "guia-joko-lab.md",
+        "lm studio",
+        "gemini api",
+        "watchdog",
+        "qwen3-14b",
+        "llama-3.1-8b",
+        "gemma-4-e4b",
+        "dec-004",
+        "pattern-001"
+      ],
+      "sobran": [
+        "guia-joko-lab.md",
+        "guia-joko-lab.md",
+        "gemini api",
+        "watchdog",
+        "qwen3-14b",
+        "llama-3.1-8b",
+        "gemma-4-e4b",
+        "dec-004",
+        "pattern-001"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/2026-08-09-roadmap.md",
+      "gt": [
+        "glm"
+      ],
+      "halladas": [],
+      "predichas": [
+        "reasoning gate"
+      ],
+      "sobran": [
+        "reasoning gate"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/2026-08-14-backlog.md",
+      "gt": [],
+      "halladas": [],
+      "predichas": [
+        "strategy controller",
+        "scratchpad",
+        "scratchpad",
+        "strategy controller",
+        "self-consistency",
+        "tools/registrar_hel_diario.py",
+        "tools/verificar_hel.py",
+        "react c",
+        "tot",
+        "tot",
+        "c1",
+        "c3",
+        "c2",
+        "c2",
+        "c1",
+        "c3"
+      ],
+      "sobran": [
+        "strategy controller",
+        "scratchpad",
+        "scratchpad",
+        "strategy controller",
+        "self-consistency",
+        "tools/registrar_hel_diario.py",
+        "tools/verificar_hel.py",
+        "react c",
+        "tot",
+        "tot",
+        "c1",
+        "c3",
+        "c2",
+        "c2",
+        "c1",
+        "c3"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/bak-20260902-aivatika-roadmap.md",
+      "gt": [
+        "glm",
+        "sdxl"
+      ],
+      "halladas": [],
+      "predichas": [
+        "genai",
+        "genai",
+        "llm",
+        "linkedin",
+        "linkedin"
+      ],
+      "sobran": [
+        "genai",
+        "genai",
+        "llm",
+        "linkedin",
+        "linkedin"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/bak-20260902-dailydoseofds-finetuning.md",
+      "gt": [],
+      "halladas": [],
+      "predichas": [
+        "lora",
+        "lora",
+        "lora",
+        "lora",
+        "lora+",
+        "vera",
+        "vera",
+        "delta-lora",
+        "lora-fa",
+        "lora",
+        "vera",
+        "lora",
+        "lora",
+        "lora",
+        "lora",
+        "vera",
+        "llms",
+        "llms"
+      ],
+      "sobran": [
+        "lora",
+        "lora",
+        "lora",
+        "lora",
+        "lora+",
+        "vera",
+        "vera",
+        "delta-lora",
+        "lora-fa",
+        "lora",
+        "vera",
+        "lora",
+        "lora",
+        "lora",
+        "lora",
+        "vera",
+        "llms",
+        "llms"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/bak-20260902-mouredev-sdd.md",
+      "gt": [
+        "python"
+      ],
+      "halladas": [],
+      "predichas": [
+        "spec first",
+        "spec as source",
+        "spec anchored",
+        "spec driven development",
+        "ia",
+        "ia",
+        "ia",
+        "ia",
+        "sdd",
+        "sdd",
+        "sdd",
+        "sdd",
+        "mouredev",
+        "mouredev",
+        "mouredev"
+      ],
+      "sobran": [
+        "spec first",
+        "spec as source",
+        "spec anchored",
+        "spec driven development",
+        "ia",
+        "ia",
+        "ia",
+        "ia",
+        "sdd",
+        "sdd",
+        "sdd",
+        "sdd",
+        "mouredev",
+        "mouredev",
+        "mouredev"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/bak-20260902-nichonauta-qwen35-9b.md",
+      "gt": [
+        "glm",
+        "qwen"
+      ],
+      "halladas": [
+        "glm",
+        "qwen"
+      ],
+      "predichas": [
+        "qwen 3.5",
+        "gpt-oss-20b",
+        "deepseek-r1-14b",
+        "gemma-4-12b",
+        "glm"
+      ],
+      "sobran": [
+        "qwen 3.5",
+        "gpt-oss-20b",
+        "deepseek-r1-14b",
+        "gemma-4-12b"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/bak-20260902-shivabytes-vectorless.md",
+      "gt": [
+        "lancedb"
+      ],
+      "halladas": [
+        "lancedb"
+      ],
+      "predichas": [
+        "lancedb",
+        "thepracticai",
+        "ketan",
+        "linkedin"
+      ],
+      "sobran": [
+        "thepracticai",
+        "ketan",
+        "linkedin"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/bak-20260903-nichonauta-mcps.md",
+      "gt": [
+        "gemma",
+        "llama",
+        "qwen"
+      ],
+      "halladas": [
+        "qwen"
+      ],
+      "predichas": [
+        "bootstrap",
+        "bootstrap",
+        "playwright",
+        "playwright",
+        "bootstrap",
+        "context7",
+        "atomic ai",
+        "mcps",
+        "mcps",
+        "mcp",
+        "5.3.8",
+        "mcp",
+        "mcps",
+        "qwen 3.5 2b",
+        "nichonauta",
+        "nichonauta",
+        "nichonauta",
+        "nichonauta",
+        "nichonauta",
+        "opencode"
+      ],
+      "sobran": [
+        "bootstrap",
+        "bootstrap",
+        "playwright",
+        "playwright",
+        "bootstrap",
+        "context7",
+        "atomic ai",
+        "mcps",
+        "mcps",
+        "mcp",
+        "5.3.8",
+        "mcp",
+        "mcps",
+        "qwen 3.5 2b",
+        "nichonauta",
+        "nichonauta",
+        "nichonauta",
+        "nichonauta",
+        "nichonauta",
+        "opencode"
+      ]
+    },
+    {
+      "doc": "04-operations/backlogs/pendientes.md",
+      "gt": [],
+      "halladas": [],
+      "predichas": [
+        "ai_vatika",
+        "dailydoseofds_",
+        "shiva.bytes",
+        "lora",
+        "lora",
+        "vera",
+        "delta-lora",
+        "lora-fa",
+        "linkedin",
+        "linkedin",
+        "linkedin",
+        "linkedin"
+      ],
+      "sobran": [
+        "ai_vatika",
+        "dailydoseofds_",
+        "shiva.bytes",
+        "lora",
+        "lora",
+        "vera",
+        "delta-lora",
+        "lora-fa",
+        "linkedin",
+        "linkedin",
+        "linkedin",
+        "linkedin"
+      ]
+    },
+    {
+      "doc": "04-operations/checklist-upgrade-hermes-021-20260820.md",
+      "gt": [
+        "curl",
+        "grep",
+        "hermes",
+        "lancedb",
+        "python"
+      ],
+      "halladas": [
+        "hermes"
+      ],
+      "predichas": [
+        "a3",
+        "a2a",
+        "comando",
+        "mcps",
+        "a3",
+        "a3",
+        "bot mode",
+        "a2a",
+        "a2a",
+        "bot mode",
+        "hermes",
+        "hermes",
+        "hermes",
+        "hermes",
+        "hermes",
+        "hermes",
+        "hermes",
+        "hermes",
+        "hermes"
+      ],
+      "sobran": [
+        "a3",
+        "a2a",
+        "comando",
+        "mcps",
+        "a3",
+        "a3",
+        "bot mode",
+        "a2a",
+        "a2a",
+        "bot mode"
+      ]
+    },
+    {
+      "doc": "04-operations/diseno-memoria-episodica-20260820.md",
+      "gt": [
+        "hermes"
+      ],
+      "halladas": [],
+      "predichas": [
+        "lecciones_ledger",
+        "mel_ledger",
+        "operations_ledger",
+        "mel_ledger",
+        "operations_ledger",
+        "lecciones_ledger",
+        "local_cloud_ledger",
+        "local_cloud_ledger",
+        "shared-events",
+        "mep-001",
+        "joko-lab"
+      ],
+      "sobran": [
+        "lecciones_ledger",
+        "mel_ledger",
+        "operations_ledger",
+        "mel_ledger",
+        "operations_ledger",
+        "lecciones_ledger",
+        "local_cloud_ledger",
+        "local_cloud_ledger",
+        "shared-events",
+        "mep-001",
+        "joko-lab"
+      ]
+    },
+    {
+      "doc": "04-operations/handoff-20260820-telegram-a-cli.md",
+      "gt": [
+        "glm",
+        "gpt-oss",
+        "hermes",
+        "lm studio"
+      ],
+      "halladas": [
+        "hermes"
+      ],
+      "predichas": [
+        "telegram",
+        "instagram-monitor",
+        "telegram",
+        "hermes",
+        "hermes",
+        "hermes",
+        "hermes",
+        "telegram",
+        "cli",
+        "telegram"
+      ],
+      "sobran": [
+        "telegram",
+        "instagram-monitor",
+        "telegram",
+        "telegram",
+        "cli",
+        "telegram"
+      ]
+    }
+  ]
+}

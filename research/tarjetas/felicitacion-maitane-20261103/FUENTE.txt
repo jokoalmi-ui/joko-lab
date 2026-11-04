@@ -1,0 +1,22 @@
+Tarjeta de felicitación — Zorionak Maitane
+Generada: 2026-11-04
+Salida: tarjeta.png (1080x1350) | maqueta: tarjeta.html + fondo.jpg
+
+FOTO
+  Obra: "Anboto 4.jpg"
+  Autor: Tiia Monto
+  Licencia: CC BY-SA 3.0
+  Origen: Wikimedia Commons — https://commons.wikimedia.org/wiki/File:Anboto_4.jpg
+  Original: 5370x3522 px (descargada completa); recorte 4:5 y escalado a 2160x2700.
+
+TIPOGRAFÍA
+  Cormorant Garamond (SIL OFL), descargada de Google Fonts a ./fuentes/
+
+TEXTO
+  DURANGALDEA / Zorionak, / Maitane / ANBOTO · BIZKAIA
+  Crédito incrustado al pie (obligatorio por CC BY-SA).
+
+REGENERAR
+  /usr/bin/google-chrome-stable --headless=new --disable-gpu --hide-scrollbars \
+    --force-device-scale-factor=1 --virtual-time-budget=15000 \
+    --window-size=1080,1350 --screenshot=tarjeta.png "file://<ruta>/tarjeta.html"

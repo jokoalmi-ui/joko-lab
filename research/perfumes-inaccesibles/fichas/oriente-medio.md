@@ -35,9 +35,17 @@ NO cumplen el criterio y quedan descartadas.
 - **Tiendas con nombre (verificado 01-sep-2026):**
   - **Shaikh Saeed Perfumes** — casa emiratí "since 1954" con tienda en el
     Perfume Souk de Deira y e-commerce propio (shaikhsaeed.com). Precios
-    online en AED: EDP 100 ml AED 54,99-135 (~14-34€). Envío a España NO
-    verificado en esta pasada — si enviara, quedaría fuera del criterio de la
-    biblioteca; verificar antes de usarlo como referencia de compra online.
+    online en AED: EDP 100 ml AED 54,99-135 (~14-34€). Envío a España: **sigue
+    sin confirmar** (01-nov-2026). Su política de envío publica "we deliver our
+    products to **all countries** and primarily to the UAE" con tarifa
+    internacional en checkout (UAE AED 12 plano; fuera 4-10 días laborables),
+    pero la ficha de producto mantiene logística UAE/KSA ("UAE ONLY", aviso de
+    código postal saudí) y la tienda hermana shaikhsaeed.us dice "we ship
+    internationally to Canada only" → plantilla genérica vs operación real:
+    registrar como 🔄, no como canal válido todavía. Verificar en un checkout
+    real con dirección española antes de usarlo como vía de compra online.
+    Fuente: shaikhsaeed.com/policies/shipping-policy y
+    shaikhsaeed.com/products/rose-honey (01-nov-2026).
   - Oud Al Malik Perfumes (Deira) — mencionada en vídeos de TikTok; sin
     verificación de fuente sólida en esta pasada (referencia débil).
 - **Precios por grado/producto (verificado 01-sep-2026; tipo de cambio usado:

@@ -1,0 +1,124 @@
+{
+ "generado": "2026-11-02T11:42:22",
+ "empresas": 2,
+ "filas": [
+  {
+   "empresa": "Arteskola",
+   "dominio": "arteskola.eus",
+   "email": "",
+   "tipo": "",
+   "mismo_dominio": "",
+   "via": "",
+   "origen_url": "",
+   "mx_ok": true,
+   "mx_regs": "aspmx.l.google.com,alt4.aspmx.l.google.com,alt1.aspmx.l.google.com",
+   "motivo": "sin correo publicado en las páginas leídas"
+  },
+  {
+   "empresa": "Farmacia Indautxu",
+   "dominio": "farmaciaindautxu.com",
+   "email": "",
+   "tipo": "",
+   "mismo_dominio": "",
+   "via": "",
+   "origen_url": "",
+   "mx_ok": true,
+   "mx_regs": "mx01.dondominio.com",
+   "motivo": "sin correo publicado en las páginas leídas"
+  }
+ ],
+ "detalle": [
+  {
+   "empresa": "Arteskola",
+   "intentos": [
+    {
+     "url": "https://www.arteskola.eus",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.arteskola.eus/contacto",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.arteskola.eus/contact",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.arteskola.eus/contacto/",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.arteskola.eus/aviso-legal",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.arteskola.eus/legal",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.arteskola.eus/politica-de-privacidad",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.arteskola.eus/trabaja-con-nosotros",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.arteskola.eus/empleo",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.arteskola.eus/rrhh",
+     "motivo": "sin_conexion"
+    }
+   ],
+   "descartados": {}
+  },
+  {
+   "empresa": "Farmacia Indautxu",
+   "intentos": [
+    {
+     "url": "https://www.farmaciaindautxu.com",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.farmaciaindautxu.com/contacto",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.farmaciaindautxu.com/contact",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.farmaciaindautxu.com/contacto/",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.farmaciaindautxu.com/aviso-legal",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.farmaciaindautxu.com/legal",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.farmaciaindautxu.com/politica-de-privacidad",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.farmaciaindautxu.com/trabaja-con-nosotros",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.farmaciaindautxu.com/empleo",
+     "motivo": "sin_conexion"
+    },
+    {
+     "url": "https://www.farmaciaindautxu.com/rrhh",
+     "motivo": "sin_conexion"
+    }
+   ],
+   "descartados": {}
+  }
+ ]
+}

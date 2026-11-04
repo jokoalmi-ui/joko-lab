@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="eu"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:'Cormorant';src:url('fuentes/CormorantGaramond-600-normal.woff2') format('woff2');font-weight:600;font-style:normal}
+@font-face{font-family:'Cormorant';src:url('fuentes/CormorantGaramond-300-normal.woff2') format('woff2');font-weight:300;font-style:normal}
+@font-face{font-family:'Cormorant';src:url('fuentes/CormorantGaramond-300-italic.woff2') format('woff2');font-weight:300;font-style:italic}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1350px;overflow:hidden}
+.canvas{position:relative;width:1080px;height:1350px;overflow:hidden;background:#0b1a24}
+.foto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 42%}
+.velo{position:absolute;inset:0;background:
+  linear-gradient(180deg, rgba(7,18,26,.55) 0%, rgba(7,18,26,.14) 20%, rgba(7,18,26,0) 40%),
+  linear-gradient(0deg, rgba(5,13,20,.94) 0%, rgba(5,13,20,.80) 22%, rgba(5,13,20,.28) 46%, rgba(5,13,20,0) 62%)}
+.kicker{position:absolute;top:62px;left:0;right:0;text-align:center;font-family:'Cormorant',serif;font-weight:300;
+  font-size:23px;letter-spacing:10px;padding-left:10px;color:rgba(255,255,255,.85);text-transform:uppercase}
+.regla-sup{position:absolute;top:112px;left:50%;transform:translateX(-50%);width:70px;height:1px;background:rgba(255,255,255,.45)}
+.bloque{position:absolute;left:70px;right:70px;bottom:158px;text-align:center}
+.zorionak{font-family:'Cormorant',serif;font-style:italic;font-weight:300;font-size:96px;
+  line-height:1;color:#fff;letter-spacing:1px;text-shadow:0 2px 18px rgba(0,0,0,.75),0 0 42px rgba(0,0,0,.45)}
+.nombre{font-family:'Cormorant',serif;font-weight:600;font-size:172px;line-height:.98;color:#fff;
+  letter-spacing:0;margin-top:0;text-shadow:0 3px 26px rgba(0,0,0,.78),0 0 54px rgba(0,0,0,.5)}
+.regla{width:110px;height:1px;background:rgba(255,255,255,.55);margin:24px auto 0}
+.lugar{font-family:'Cormorant',serif;font-weight:300;font-size:24px;letter-spacing:7px;padding-left:7px;
+  color:rgba(255,255,255,.9);text-transform:uppercase;margin-top:20px}
+.credito{position:absolute;left:0;right:0;bottom:42px;text-align:center;font-family:'Cormorant',serif;
+  font-weight:300;font-size:16px;letter-spacing:1.4px;color:rgba(255,255,255,.72)}
+</style></head>
+<body><div class="canvas">
+  <img class="foto" src="fondo.jpg" alt="Anboto, Durangaldea">
+  <div class="velo"></div>
+  <div class="kicker">Durangaldea</div>
+  <div class="regla-sup"></div>
+  <div class="bloque">
+    <div class="zorionak">Zorionak,</div>
+    <div class="nombre">Maitane</div>
+    <div class="regla"></div>
+    <div class="lugar">Anboto · Bizkaia</div>
+  </div>
+  <div class="credito">Argazkia: Tiia Monto · CC BY-SA 3.0 · Wikimedia Commons</div>
+</div></body></html>
