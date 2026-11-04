@@ -227,3 +227,87 @@ git -C /home/jokoalmi/joko-lab/01-knowledge/references/ai-slop-detector pull
   clon: 5 ficheros sin `.git`, 1 `SKILL.md`, 120 patrones en `patterns.json`.
   La ruta queda ignorada en git (`01-knowledge/references/ai-slop-detector/`
   en `.gitignore`), igual que las otras tres bibliotecas.
+
+## superpowers/
+
+**Origen:** `https://github.com/obra/superpowers` · MIT · clon `--depth 1`
+2026-11-04 · HEAD `22f0b46` (03-nov-2026 14:17 -0800) · 236 ficheros sin
+`.git` · 3,3 MB · **15 `SKILL.md`** (conteo real con `find`, no del listado).
+
+**Contenido:** metodología de ingeniería para agentes, no catálogo de
+dominio. Las 15: `brainstorming`, `writing-plans`, `executing-plans`,
+`verification-before-completion`, `systematic-debugging`,
+`diagnosing-superpowers`, `test-driven-development`, `requesting-code-review`,
+`receiving-code-review`, `using-git-worktrees`, `finishing-a-development-branch`,
+`dispatching-parallel-agents`, `subagent-driven-development`, `writing-skills`,
+`using-superpowers`.
+
+**Ya cubierto en el lab:** cuatro de las quince tienen equivalente activo y
+reescrito — `systematic-debugging`, `test-driven-development`,
+`requesting-code-review` y `plan`. Portar esas cuatro sería duplicar.
+
+**Hueco real (candidatas, sin instalar):** `verification-before-completion`
+(encaja con RULE-021: el `ok` se acredita en el artefacto),
+`using-git-worktrees`, `dispatching-parallel-agents` y `writing-skills`
+(autoría de SKILL.md con validador).
+
+### Cómo consultar
+
+```bash
+ls ~/joko-lab/01-knowledge/references/superpowers/skills
+grep -ril "verificación\|verification" ~/joko-lab/01-knowledge/references/superpowers/skills/*/SKILL.md
+```
+
+### Reglas
+
+1. Biblioteca de consulta: **no** se copia a `~/.hermes/skills/` en bloque.
+2. Leer solo la skill concreta que haga falta, nunca el árbol entero.
+3. Comparar antes con la equivalente del lab: si ya existe, no se duplica.
+4. Actualización: `git -C ~/joko-lab/01-knowledge/references/superpowers pull --ff-only`.
+
+### Registro
+
+- 2026-11-04 15:42 CET — Clonada como biblioteca bajo demanda (opción A
+  pedida por el usuario: «Aplica las 3»). Conteo real 15 `SKILL.md` frente a
+  los «44» que anunciaba la infografía de la que salió el candidato.
+  Ruta ignorada en git (`01-knowledge/references/superpowers/`).
+
+## wshobson-agents/
+
+**Origen:** `https://github.com/wshobson/agents` · MIT · clon `--depth 1`
+2026-11-04 · HEAD `7e2fb55` (30-oct-2026 19:34 -0400) · 1.171 ficheros sin
+`.git` · 17 MB · **185 `SKILL.md`** (conteo real con `find`).
+
+**Contenido:** plugins temáticos en `plugins/<tema>/skills/`. Reparto real por
+prefijo: `python-development` 16, `developer-essentials` 11,
+`llm-finetuning` 10, `ui-design` 9, `backend-development` 9,
+`llm-application-dev` 8, `cloud-infrastructure` 8, `agent-teams` 6,
+`startup-business-analyst` 5, `security-scanning` 5, `pptx-deck-creation` 5,
+`reverse-engineering` 4.
+
+**Encaje en el lab:** el bloque que sí toca territorio propio es
+`llm-finetuning` (10) y `llm-application-dev` (8) — ajuste fino y despliegue
+de modelos, y `agent-teams` (6) — coordinación multi-agente, que es justo el
+grafo de delegación del lab. El resto (python, ui-design, cloud) solapa con
+skills propias.
+
+### Cómo consultar
+
+```bash
+find ~/joko-lab/01-knowledge/references/wshobson-agents/plugins -name SKILL.md | sed 's|.*/plugins/||' | cut -d/ -f1 | sort | uniq -c | sort -rn
+grep -ril "lora\|qlora" ~/joko-lab/01-knowledge/references/wshobson-agents/plugins/llm-finetuning
+```
+
+### Reglas
+
+1. Biblioteca de consulta bajo demanda; nunca activación en masa de 185.
+2. Filtrar primero por plugin, después por skill; leer una sola.
+3. Es material de terceros con licencia MIT: si se adapta algo, citar origen
+   en la skill resultante.
+4. Actualización: `git -C ~/joko-lab/01-knowledge/references/wshobson-agents pull --ff-only`.
+
+### Registro
+
+- 2026-11-04 15:42 CET — Clonada como biblioteca bajo demanda (opción B).
+  Conteo real 185 `SKILL.md` frente a los «84+ agentes / 56 skills» de la
+  infografía. Ruta ignorada en git.

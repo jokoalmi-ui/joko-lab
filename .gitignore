@@ -43,6 +43,8 @@ site-packages/
 01-knowledge/references/anthropic-cybersecurity-skills/
 01-knowledge/references/mattpocock-skills/
 01-knowledge/references/ai-slop-detector/
+01-knowledge/references/superpowers/
+01-knowledge/references/wshobson-agents/
 
 # --- Media y binarios: entregables regenerables desde su fuente (HTML/código) ---
 *.png

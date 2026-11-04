@@ -1820,3 +1820,27 @@ MARCA: EXP-ITER100-20261104
 - **Coste estimado**: 0 EUR (modelo local, GPU propia). Tiempo: 100 rondas x ~1-3 min = 1,5-5 h de GPU, a lanzar cuando el lab este libre.
 - **Estado**: pendiente a experimentar. No se ha ejecutado ninguna ronda. La web de partida del autor no se ha copiado.
 - Backup RULE-008 previo al append: `pendientes.md.bak-20261104-exp-iter100`.
+
+## 2026-11-04 CET - BIBLIOTECAS-EXT-20261104 - infografia «400+ agentes»: 2 clonadas, 4 descartadas
+
+- **Origen**: infografia estatica recibida por Telegram (pie «19 oct 2025», sin autor, sin enlace, sin precio). Seis bloques de repositorios.
+- **Verificacion con GitHub API + conteo real con `find`** (nunca contra el listado):
+  - `kitfullstack/agency-agents` -> **Not Found**. El repo real es `msitarzewski/agency-agents` (166.466 estrellas).
+  - `anthropics/skills`: anuncia «24+» -> real **20** `SKILL.md`.
+  - `obra/superpowers`: anuncia «44» -> real **15**.
+  - `wshobson/agents`: anuncia «84+ agentes / 56 skills» -> real **185**.
+  - `davila7/claude-code-templates`: anuncia «600+» -> real **923**.
+- **Opcion A aplicada**: clon `--depth 1` de `obra/superpowers` en `01-knowledge/references/superpowers` (HEAD `22f0b46`, 3,3 MB, 15 `SKILL.md`). Cuatro de las quince ya tienen equivalente activo en el lab (`systematic-debugging`, `test-driven-development`, `requesting-code-review`, `plan`); no se duplican.
+- **Opcion B aplicada**: clon `--depth 1` de `wshobson/agents` en `01-knowledge/references/wshobson-agents` (HEAD `7e2fb55`, 17 MB, 185 `SKILL.md`). Encaje real: `llm-finetuning` 10, `llm-application-dev` 8, `agent-teams` 6.
+- **Opcion C aplicada (descarte)**: `anthropics/skills`, `anthropics/claude-quickstarts`, `davila7/claude-code-templates` y `msitarzewski/agency-agents`. Motivo: plantillas de proyecto ajenas al lab o solape con skills propias ya reescritas.
+- **Estado**: 6 bibliotecas bajo demanda en `references/` (1+818+37+18+15+185 = **1.074** `SKILL.md`), las dos nuevas ignoradas en git (`.gitignore:46-47`). `references/README.md` 229 -> **313** lineas (+3.768 B), prefijo de 12.406 B identico al backup `README.md.bak-20261104-bibliotecas`.
+- **Candidatas sin instalar** (leer antes de portar): `verification-before-completion`, `using-git-worktrees`, `dispatching-parallel-agents`, `writing-skills`.
+
+## 2026-11-04 CET - EXP-ITER100 resultado de la ronda 1 (bloqueo, no regresion)
+
+- **Medido**: ronda 1 = **350,7 s**; norma **OK** (68 nodos, sin desborde), maqueta **OK**, gate **17/17 FALTA 0**. Las tres puertas pasaron.
+- **Defecto 1 — el modelo no escribe**: `sha256` de `ficha.html` identico a `ficha_v13.html` tras la ronda, mientras el modelo afirmo haber anadido la fuente Inter desde Google Fonts. Alucinacion de accion.
+- **Defecto 2 — el render no es determinista**: dos renders del MISMO html difieren en **37.458 px de 1.555.200** (2,4 %, delta maximo 200) porque el texto depende de fuentes web. El primer arranque de Chrome renderiza sin ellas (PNG 904 KB) y el siguiente con ellas (2,28 MB). La metrica de legibilidad mide ruido entre rondas.
+- **Defecto 3 — fallo propio de instrumentacion**: el criterio de la puerta 3 leia la ultima linea del `stdout` (la ruta del JSON) en vez de la clave del veredicto, y marco «FALLA» una ronda que paso 17/17. El bucle se detuvo por ese error, no por degradacion de la ficha.
+- **Correcciones pendientes antes de repetir**: embeber la fuente y renderizar sin red; leer el veredicto desde el JSON de la puerta; tratar «0 cambios» como ronda nula (no valida) en vez de ronda medida.
+- Backup previo a este append: `pendientes.md.bak-20261104-bibliotecas` (md5 `0363f4d83031f392bd267cc1259efd87`, 1822 lineas).
