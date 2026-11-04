@@ -66,3 +66,39 @@ Sería **FALSO** si, sobre **N=10 corridas** del lab que terminan sin escribir s
 
 **Fecha de revisión:** 2026-10-23 (ciclo semanal siguiente) y 2026-11-02 (mensual).
 **Justificación:** 3 ocurrencias (15 corridas sin informe con causa OOM verbatim; 2 falsos ok del mismo vigía; el punto ciego reconocido en el backlog el mismo día), en un instrumento de vigilancia del lab. El sesgo es estructural y explicable, lo que lo hace prometedor, pero la evidencia es de un solo job silencioso y un solo vigía → E0.
+
+---
+
+## Reexamen 2026-10-23 (ciclo semanal, ventana 17→23-10)
+
+**Semana limpia en el borde que el patrón describe: 0 ejecuciones `failed` sin artefacto.** 1001 ejecuciones en 25 h 05 min: **999 `completed`**, 1 `failed`, 1 `running` (este ciclo). La única `failed` (`2c54785d80…`, telegram-watchdog) **sí** dejó artefacto (`2026-10-23_00-07-19.md`, 248 B).
+
+**Ocurrencia nueva en el borde complementario: el falso ok.** Tres días (20, 21, 23-10) el job `67d5fcc5b69e` termina `ok` con `failure_streak` 0 y su producto existe — pero es un producto degradado que **declara su propia degradación en la cabecera** y nadie la lee:
+
+- `# Gate de veracidad: [SIN RESUMEN — GATE OMITIDO] (GATE_OMITIDO)`
+- `# Juez de calidad: CALIDAD: omitido`
+- `## Resumen (gpt-oss local)` → `(resumen local no disponible)`
+- y la fila correspondiente en `informe_descartes.jsonl`: `{"ts":"2026-10-20T09:01:22+02:00","motivo":"router_fallo","chars":0}` (más 21-10 y 23-10).
+
+El vigía de informes lee el artefacto buscando señales de fallo, no señales de degradación: `GATE_OMITIDO` no está en su lista. Tercera cara del mismo borde (ya eran: formato de fallo cambiado, y fallo que solo se ve en el consumidor). `24 % de días` de esta ventana con el producto mudo y el semáforo en verde — y **ningún ciclo anterior lo había reportado**, lo que además es un fallo de este informe, no del job.
+
+**Sin cambio de nivel (E0→E0).** Ya está en el límite: el patrón tiene 4 caras medidas y ninguna aplicación del antídoto; si el ciclo del 30-10 vuelve a encontrar un falso ok, la revisión mensual debe decidir ascenso a E1 o descarte, no otra prórroga.
+
+---
+
+## Reexamen 2026-10-30 (ciclo semanal, ventana 23→30-10)
+
+**La condición que quedó pendiente NO se disparó: la ventana 24→30-10 no tiene ningún falso ok nuevo.** Y hay un cambio de fondo: **el antídoto está aplicado en el productor**.
+
+`joko-lab/tools/informe-diario-local.sh` (mtime **2026-10-26 18:09:28**) ahora sale con **código 3** cuando el resumen local no está verificado:
+
+```text
+FALLO: informe sin resumen verificado (GATE_OMITIDO) — revisar …/20261030-informe-local.txt
+```
+
+Resultado medido: 4 días degradados (27→30-10) → **4 incidencias `detected` + 1 ejecución `failed`** con `Script exited with code 3`. Antes esas cuatro corridas se registraban como `ok` con `failure_streak` 0. **El borde «producto degradado con semáforo verde» ya no existe en este job.**
+
+**Lo que sigue abierto (y es la parte general del patrón):** el vigía `~/.hermes/scripts/watchdog-informes-cron.py` **no se ha tocado** (mtime 20-09) y sigue sin leer la cabecera. El borde no se cerró por el lado previsto en el §7 (hacer que el vigía lea la cabecera), sino por el lado del **productor** — que es el sitio correcto, pero solo cubre a los jobs que declaran la degradación con un exit code propio. **Cualquier job que degrade su producto sin cambiar el código de salida sigue invisible**, y no hay ningún instrumento que lo garantice.
+
+**Estado: E0 → E0, con antídoto verificado en 1 job.** No hay ascenso ni descarte: la condición escrita («otro falso ok») no se cumplió y el antídoto aplicado es evidencia **a favor** del patrón. Se lleva a la mensual del 02-11 con este resultado.
+

@@ -74,3 +74,16 @@ Segunda vía: si en la próxima ocurrencia el conteo de incidencias de la ventan
 
 **Fecha de revisión:** 2026-10-23 (ciclo semanal siguiente) y 2026-11-02 (mensual).
 **Justificación:** el mecanismo está medido con texto literal y con los cierres repartidos, y supera el umbral de 2 ocurrencias (4 filas / 3 jobs); pero **las 4 filas nacen de un solo evento raíz**, así que la evidencia de generalidad es débil por definición. Se declara E0 y se fija reexamen corto para buscar un segundo evento raíz independiente.
+
+---
+
+## Reexamen 2026-10-23 (ciclo semanal, ventana 17→23-10)
+
+**Sin ocurrencias esta semana. La cadena del informe diario no se rompió: se degradó en silencio, que es otro patrón.**
+
+- 0 filas de incidencia nuevas para los jobs de la cadena. `67d5fcc5b69e` (informe) `ok`/streak 0 los 7 días.
+- Pero el producto de **3 de los 7 días** (20, 21 y 23-10) lleva en su cabecera `GATE_OMITIDO` y `(resumen local no disponible)`, con `04-operations/metrics/informe_descartes.jsonl` apuntando `router_fallo, chars 0`. El 22-10 sí salió completo (`CALIDAD: PASA (4.33)`).
+- Esto **no** es CP-014: no hubo fallo registrado en ningún eslabón. Es un eslabón que contestó «no puedo» y el conjunto siguió como si nada. Se registra como borde de **CP-015** (artefacto presente que declara su degradación y nadie lo lee).
+- El caso de esta semana es el reverso exacto del patrón (el fallo se registró **en el productor**, no en el consumidor) y por eso cuenta como evidencia de la frontera, no como ocurrencia.
+
+**Sin cambio de nivel (E0→E0).**

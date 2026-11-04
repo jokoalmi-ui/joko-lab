@@ -87,3 +87,16 @@ Sería **FALSO** si, sobre **N=10 jobs con hora fija dentro de la ventana de apa
 - **Ráfaga de arranque: 10 jobs en 340 ms, todos `status: completed`.** Ningún `unknown` esta vez (el 09-10 hubo 2). Sin falsación de §6: el host no permanece encendido en esas horas ni el planificador recupera el calendario sin desplazar.
 - **Hallazgo nuevo — la composición de la ráfaga depende de la hora del apagado:** el 15-10 el host cayó a las 23:50, **después** de los jobs diarios de 22:15-22:35 (backups, consolidador), que sí corrieron dentro del día (113 filas en `executions` entre el 15-10 22:00 y 23:59) → la ráfaga del 16-10 contiene **solo jobs de intervalo**. La consecuencia operativa es que «cuántos jobs se desplazan» no es propiedad del patrón, sino de **dónde caiga el apagado** respecto al calendario diario.
 - **Borde nuevo (limitación del instrumento, no falsación):** la evidencia directa de este patrón —`last_dispatch.kind != 'on_time'` / `lateness_seconds > 600` en `jobs.json`— es **efímera**: medida hoy a las 14:38, 8 h después del arranque, devuelve **0 filas** en ambos filtros, porque el campo se sobrescribe en el siguiente despacho y los 10 jobs de la ráfaga son de intervalo (ya habían vuelto al calendario). `last_dispatch` sirve para diagnosticar **dentro** de la ventana del job; el histórico de la ventana muerta hay que reconstruirlo con `executions` por hora + `uptime -s` (lo que este ciclo hizo). No invalida el patrón: **invalida una de las dos formas de medirlo**.
+
+---
+
+## Reexamen 2026-10-23 (ciclo semanal, ventana 17→23-10)
+
+**Récord nuevo de ventana muerta: 7 h 30 min 49 s.** Y por primera vez el rebote medido al milisegundo.
+
+- Última ejecución antes del apagón: `00:16:06.020075` (23-10). Primera después: `07:46:55.217831`. Delta = **27.049,197 s = 7 h 30 min 49 s** (la ventana anterior eran 6 h 18 min 49 s).
+- `uptime -s` = `2026-10-23 07:46:12`: la primera ejecución sale **43 s** después del arranque del host.
+- **Ráfaga de recuperación:** 12 jobs despachados entre `07:46:55.217831` y `07:46:55.701131` = **483 ms**, los 12 `completed`, **0 `unknown`**.
+- `jobs.json`: 52 jobs activos, los 52 con `last_status` = `ok` y `failure_streak` = 0.
+
+**Sin cambio de nivel (E0→E0).** Tercer ciclo con el mismo mecanismo (corren todos juntos al arrancar, no a su hora) y primera medición de la ráfaga en sub-segundo. No hay todavía una ejecución que se **pierda** por la ventana: todas se recuperan al arrancar. La falsación sigue siendo la misma: encontrar un job que no rebote al volver el host, o que rebote tarde y rompa su cadencia diaria.

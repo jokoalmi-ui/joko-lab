@@ -93,3 +93,16 @@ Incubar (E0). Promovido el 2026-10-02 con **5 ocurrencias en 5 contextos distint
 - **Borde decisivo para §5:** un `unknown` puede estar **tapando un fallo real**. Hasta ahora la serie mostraba `unknown` por reinicio (incertidumbre benigna); este caso muestra que la misma etiqueta cubre un job muerto por el kernel. El antídoto «artefacto primero» sigue siendo válido (decide efectos) pero es **insuficiente como diagnóstico**: la causa vive en otra fuente (kernel/cgroup), no en el artefacto.
 - **Relación declarada, sin fusión: CP-015** (nuevo, 16-10) — cuando la corrida muere antes de escribir el artefacto, «efectos NO» es correcto **y** insuficiente a la vez: dice que no hay producto, no por qué. CP-012 conserva su antídoto; CP-015 nombra su límite.
 - **No se dispara la falsación de §5** (el artefacto no engañó al antídoto) y **sigue en incubación**; la generalidad mejora ligeramente: primer `unknown` de la serie con causa de fallo real y no de reinicio.
+
+---
+
+## Reexamen 2026-10-23 (ciclo semanal, ventana 17→23-10)
+
+**Ocurrencia nueva (5ª), y la más limpia hasta ahora: la incidencia se cerró en el mismo segundo en que el producto apareció.**
+
+- Fila `8bf412_369f79e3c051`, job `8bf412ac2ba3` (ficha-perfume-diaria), firma `unknown`, `first_seen_at` = `last_seen_at` = **2026-10-20T07:12:51.719474** (una sola vez), `closed_at` **2026-10-20T08:01:59.128127**.
+- Error literal: `Restart-safe cron worker exited with status 1 after adopting this execution, without writing a durable terminal state; whether side effects ran is unknown.`
+- El artefacto que resuelve el `unknown`: `~/.hermes/cron/output/8bf412ac2ba3/2026-10-20_08-01-59.md`, **79.753 B**, escrito a las **08:01:59** — el mismo timestamp que el `closed_at`. Los side effects **sí** corrieron.
+- `jobs.json`: `last_status` = `ok`, `failure_streak` = 0, `last_run_at` 2026-10-23T07:47:51.
+
+**Sin cambio de nivel (E0→E0).** La ocurrencia refuerza el mecanismo (el estado del registro no puede saber si hubo efectos; solo el artefacto lo dice) y añade una precisión útil: **el cierre y la aparición del producto pueden ser el mismo evento**, lo que convierte el `closed_at` en la pista para localizar el artefacto. Cuarta confirmación en un job distinto (antes: consolidador, informe, rag-reindex). Sigue sin haber un caso donde el artefacto **no** exista y el `unknown` fuera real — es la falsación pendiente.

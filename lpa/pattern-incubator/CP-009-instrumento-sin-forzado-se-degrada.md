@@ -102,3 +102,17 @@ Sería **FALSO** si, medido sobre **N=10 instrumentos nuevos** del lab (ledger/r
 - Cron del motor: el job `9474f6f3d224` (consolidador-sesiones) acumula **`failure_streak` = 15** con `last_run_at` de anoche y su producto no se generaba desde el **30-09**; el del 15-10 lo regeneró **un humano a mano** (16-10 07:03). Es la misma manifestación que el 09-10 (entonces streak 8), agravada: ningún mecanismo automático detectó las 15 noches.
 - **Contraste medido (lo que sí funciona):** el mismo día, el `informe-diario-joko-lab` (productor con consumidores que se quejan cada hora) se arregló y **se verificó** — 4 filas de incidencia cerradas y los 3 jobs de la cadena en `ok`. La diferencia no es la gravedad del fallo, es que **tiene consumidor**: el `retrabajo_ledger`, sin consumidor, lleva 21 días congelado. Refuerza el mecanismo (disparador externo > comprobación periódica) sin ampliar dominio.
 - **Nivel sin cambio (E1):** sigue siendo solo Experimento 004 (joko-lab).
+
+---
+
+## Reexamen 2026-10-23 (ciclo semanal, ventana 17→23-10)
+
+**4º ciclo consecutivo con el mismo mecanismo, y esta vez con una novedad estructural: uno de los dos instrumentos que se movían a mano se ha movido sin este ciclo.**
+
+- `retrabajo_ledger.jsonl`: **566 B, mtime 25-09** → **28 días congelado** (eran 21 el 09-10 y 21 el 16-10). Sigue sin disparador propio.
+- **`curator: PAUSED`** — `runs` 13, última ejecución hace **29 días**, último informe `20260923-170843`. Pero `~/.hermes/skills/.curator_ledger.jsonl` tiene **2242 filas** (eran 2203) y **39 filas nuevas en la ventana** (17:9, 18:5, 19:15, 21:10), todas `patch`, última `2026-10-21T12:35:57Z`. **6º ciclo** en que el estado que se lee en el CLI ("PAUSED, 29 días sin correr") contradice el ledger que crece: el que escribe es el agente en sesión, no el curador. Dos instrumentos con el mismo nombre midiendo cosas distintas.
+- `lecciones_ledger.jsonl`: **se descongela otra vez**, y otra vez por este ciclo (3 lecciones). **3ª vez consecutiva**: el disparador de facto del instrumento es este informe.
+- `[truncated]`: **4 ficheros**, sin cambios desde que se midió (`render-html-a-imagen/SKILL.md`, `validacion-instrumentos-medicion/SKILL.md` ×2 con `.bak`, `perfume-ia/references/capa-lpa-recomendacion.md`).
+- **Contraste nuevo y favorable:** el mecanismo del `failure_streak` que este patrón usaba como prueba **ha desaparecido** esta semana: 52 jobs con streak 0 (el 16-10 había uno con 15). Lo que lo arregló fue tener consumidor, exactamente como predecía el patrón.
+
+**Sin cambio de nivel (E1).** Sigue siendo solo Experimento 004. La novedad —un instrumento que se mueve por una vía y otro que dice «pausado»— no amplía dominio: es la misma degradación vista desde el nombre del instrumento.
