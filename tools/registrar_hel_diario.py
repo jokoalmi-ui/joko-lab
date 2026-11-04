@@ -4,14 +4,16 @@
 Detecta preguntas de estado del usuario en las sesiones de HOY y las registra
 en respuestas_hel.jsonl si no están ya. Cron diario sugerido: 22:30.
 
-Uso: python3 registrar_hel_diario.py [--fecha YYYY-MM-DD]
+Uso: python3 registrar_hel_diario.py [-fecha YYYY-MM-DD]
+  Sin argumentos: procesa hoy y los 2 dias anteriores (auto-backfill).
 """
 import json, os, re, sys
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta
+from zoneinfo import ZoneInfo
 
-SESIONES_DIR = '/home/jokoalmi/joko-lab/04-operations/metrics/sesiones'
-LEDGER = '/home/jokoalmi/joko-lab/04-operations/metrics/respuestas_hel.jsonl'
-TZ = timezone(timedelta(hours=2))
+SESIONES_DIR = os.environ.get('HEL_SESIONES_DIR', '/home/jokoalmi/joko-lab/04-operations/metrics/sesiones')
+LEDGER = os.environ.get('HEL_LEDGER', '/home/jokoalmi/joko-lab/04-operations/metrics/respuestas_hel.jsonl')
+TZ = ZoneInfo('Europe/Madrid')  # CET/CEST real; antes UTC+2 fijo (desfasaba 1 h en invierno)
 
 RUIDO = [
     r'^\$', r'jokoalmi@', r'^cd ', r'^ls ', r'^python3? ', r'^cat ', r'^grep ',
@@ -121,6 +123,19 @@ def _escanear_sesion(d: dict, hoy: str, t0: float, t1: float, existentes: set) -
             'contexto': f'instrumentado {hoy} sesion {d.get("id","?")} ({d.get("source","")})',
             'tipo_pregunta': 'estado',
             'descripcion': desc,
+            # QUE palabra disparo el match. Aditivo (03-nov-2026): permite
+            # auditar falsos positivos a posteriori sin cambiar el filtro,
+            # que se mantiene intacto para no romper la serie historica.
+            'match': next((k for k in KEYWORDS_ESTADO if k in desc.lower()), ''),
+            # Confianza del match (03-nov-2026). El filtro historico deja pasar
+            # texto que solo MENCIONA estado ('analiza', 'lab', 'revisa'): en el
+            # backfill 30-09..02-11 solo el 27% eran preguntas con '?'. No se
+            # cambia el filtro (romperia la serie); se estratifica al analizar.
+            'confianza_match': ('alta' if ('?' in desc or
+                                next((k for k in KEYWORDS_ESTADO if k in desc.lower()), '') in
+                                ('estado', 'pendiente', 'completo', 'fallo', 'error', 'funciona',
+                                 'terminado', 'resultado', 'avance', 'urgente'))
+                                else 'baja'),
             # C1 (14-ago-2026): activacion_declarada deja de escribirse como true fijo.
             # Auto-reporte != metrica (leccion KVC-001). Metrica primaria fase 2 =
             # activacion_verificada (rellenada por tools/verificar_hel.py, C3).
@@ -138,31 +153,135 @@ def _escanear_sesion(d: dict, hoy: str, t0: float, t1: float, existentes: set) -
         existentes.add(clave)
     return nuevas
 
-def main():
-    hoy, t0, t1 = _parsear_fecha()
+def _resolver_fichero(hoy: str):
+    """Devuelve (ruta|None, comprimido, motivo). Distingue 'sin sesiones hoy' de 'patron roto'."""
+    import glob
+    d = hoy.replace('-', '')
+    cands = [
+        (f'sesiones-delta-{d}.jsonl', False),
+        (f'sesiones-{d}.jsonl', False),
+        (f'sesiones-delta-{d}.jsonl.zst', True),
+        (f'sesiones-{d}.jsonl.zst', True),
+    ]
+    for name, comp in cands:
+        p = os.path.join(SESIONES_DIR, name)
+        if os.path.exists(p):
+            return p, comp, 'ok'
+    recientes = sorted(glob.glob(os.path.join(SESIONES_DIR, 'sesiones-delta-*.jsonl')))
+    if not recientes:
+        recientes = sorted(glob.glob(os.path.join(SESIONES_DIR, '*sesiones-*.jsonl*')))
+    if recientes:
+        return None, False, f'sin sesiones hoy (patron correcto; ultimo fichero: {os.path.basename(recientes[-1])})'
+    return None, False, 'PATRON_ROTO'
 
+
+def _sesiones_en_state_db(fecha: str) -> int:
+    """Cuantas sesiones hay en state.db para ese dia (fuente original)."""
+    import sqlite3
+    db = os.path.expanduser('~/.hermes/state.db')
+    if not os.path.exists(db):
+        return -1
+    t0 = datetime.strptime(fecha + ' 00:00', '%Y-%m-%d %H:%M').replace(tzinfo=TZ).timestamp()
+    t1 = datetime.strptime(fecha + ' 23:59', '%Y-%m-%d %H:%M').replace(tzinfo=TZ).timestamp()
+    try:
+        con = sqlite3.connect(f'file:{db}?mode=ro', uri=True, timeout=5)
+        n = con.execute('SELECT count(*) FROM sessions WHERE started_at >= ? AND started_at < ?',
+                        (t0, t1)).fetchone()[0]
+        con.close()
+        return n
+    except Exception:
+        return -1
+
+
+def _iter_lineas(fpath, comp):
+    """Itera lineas del fichero, descomprimiendo .zst con el binario zstd."""
+    import subprocess
+    if comp:
+        with subprocess.Popen(['zstd', '-dc', fpath], stdout=subprocess.PIPE,
+                              text=True, errors='ignore') as p:
+            for line in p.stdout:
+                yield line
+    else:
+        with open(fpath, errors='ignore') as f:
+            for line in f:
+                yield line
+
+
+def _procesar(hoy, t0, t1, fpath, comp) -> int:
+    antes = os.path.getsize(LEDGER) if os.path.exists(LEDGER) else 0
     existentes = cargar_existentes()
-    fname = f'sesiones-{hoy.replace("-", "")}.jsonl'
-    fpath = os.path.join(SESIONES_DIR, fname)
-    if not os.path.exists(fpath):
-        print(f'  {hoy}: sin sesiones (archivo {fname} no existe)')
-        return
 
     nuevas = []
-    with open(fpath) as f:
-        for line in f:
-            try:
-                d = json.loads(line)
-            except Exception:
-                continue
-            nuevas.extend(_escanear_sesion(d, hoy, t0, t1, existentes))
+    for line in _iter_lineas(fpath, comp):
+        try:
+            d = json.loads(line)
+        except Exception:
+            continue
+        nuevas.extend(_escanear_sesion(d, hoy, t0, t1, existentes))
 
     with open(LEDGER, 'a') as f:
         for e in nuevas:
             f.write(json.dumps(e, ensure_ascii=False) + '\n')
-    print(f'{hoy}: {len(nuevas)} nuevas respuestas de estado registradas')
+    despues = os.path.getsize(LEDGER)
+    print(f'{hoy}: {len(nuevas)} nuevas respuestas de estado registradas'
+          f' (fuente {os.path.basename(fpath)}; ledger {antes}->{despues} bytes)')
     for e in nuevas:
         print(f"  {e['ts'][:16]} | {e['descripcion'][:60]}")
+    return len(nuevas)
+
+
+def _rango(fecha: str) -> tuple:
+    t0 = datetime.strptime(fecha + ' 00:00', '%Y-%m-%d %H:%M').replace(tzinfo=TZ).timestamp()
+    t1 = datetime.strptime(fecha + ' 23:59', '%Y-%m-%d %H:%M').replace(tzinfo=TZ).timestamp()
+    return t0, t1
+
+
+def main():
+    """Por defecto procesa hoy y los 2 dias anteriores (auto-backfill).
+
+    Motivo: el consolidador escribe el delta del dia anterior a las 22:30 y este
+    job corre a las 22:35. Si el consolidador falla, el PC esta apagado o el
+    fichero llega tarde, el dia se perderia para siempre. Con 3 dias de ventana
+    el registro se autorrepara sin intervencion. --fecha sigue forzando UN dia.
+    """
+    if '--fecha' in sys.argv:
+        objetivo = [sys.argv[sys.argv.index('--fecha') + 1]]
+        estricto = True
+    else:
+        hoy = datetime.now(TZ).date()
+        objetivo = [(hoy - timedelta(days=k)).isoformat() for k in (2, 1, 0)]
+        estricto = False
+
+    total = 0
+    alerta = False
+    for fecha in objetivo:
+        t0, t1 = _rango(fecha)
+        fpath, comp, motivo = _resolver_fichero(fecha)
+        if fpath is None:
+            if motivo == 'PATRON_ROTO':
+                print(f'ERROR {fecha}: no existe ningun sesiones-delta-*.jsonl ni '
+                      f'sesiones-{fecha}.jsonl — el patron de fichero esta roto', file=sys.stderr)
+                sys.exit(1)
+            n = _sesiones_en_state_db(fecha) if fecha != datetime.now(TZ).strftime('%Y-%m-%d') else 0
+            if n > 0:
+                # El dato existe en la fuente pero no hay fichero consolidado:
+                # perdida silenciosa de consolidacion (paso del 01 al 15-oct-2026).
+                print(f'AVISO {fecha}: {motivo} PERO state.db tiene {n} sesiones '
+                      f'— falta consolidar (ver tools/mantenimiento/reconsolidar_rango.py)',
+                      file=sys.stderr)
+                alerta = True
+                continue
+            print(f'{fecha}: {motivo}')
+            continue
+        total += _procesar(fecha, t0, t1, fpath, comp)
+    if len(objetivo) > 1:
+        print(f'TOTAL ventana {objetivo[0]}..{objetivo[-1]}: {total} nuevas')
+    if alerta:
+        print('ALERTA: hay dias con sesiones en state.db y sin fichero consolidado', file=sys.stderr)
+        sys.exit(2)
+    if estricto and total == 0:
+        return
+
 
 if __name__ == '__main__':
     main()

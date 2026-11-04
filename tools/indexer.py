@@ -27,6 +27,41 @@ COLLECTION_NAME = "joko_notes"
 MODEL_NAME = "BAAI/bge-m3"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 HASH_SIDECAR = DB_PATH / "index_hashes.json"
+# Entidades (herramientas/modelos/organizaciones) extraidas por tools/extraer_entidades.py
+# con GLiNER2.5 en su propio venv. Aqui solo se LEE el JSON: el indexer no depende de
+# gliner2 ni de torch extra. Si el fichero no existe, la columna queda vacia.
+ENTITY_CACHE = DB_PATH / "entity_cache.json"
+
+
+def cargar_entidades() -> Dict[str, str]:
+    """{rpath: 'ent1, ent2, ...'} listo para la columna `entities`.
+
+    Filtra entidades-hub: las que aparecen en mas del 5% de los documentos no
+    discriminan nada (p.ej. `terminal`, `read_file`, `write_file`, que salen en
+    cada sesion). Se queda con las 8 mas raras de cada documento, que son las
+    que identifican de que habla.
+    """
+    if not ENTITY_CACHE.exists():
+        return {}
+    try:
+        data = json.loads(ENTITY_CACHE.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    docs = data.get("docs") or {}
+    if not docs:
+        return {}
+    df: Dict[str, int] = {}
+    for v in docs.values():
+        for e in set(v.get("ents") or []):
+            df[e] = df.get(e, 0) + 1
+    limite = max(3, int(len(docs) * 0.05))
+    validas = {e for e, n in df.items() if n <= limite}
+    salida = {}
+    for r, v in docs.items():
+        ents = [e for e in (v.get("ents") or []) if e in validas]
+        ents.sort(key=lambda e: df.get(e, 0))       # las mas especificas primero
+        salida[r] = ", ".join(ents[:8])
+    return salida
 
 
 def parse_frontmatter(content: str) -> tuple[Dict[str, Any], str]:
@@ -121,7 +156,7 @@ def _parsear_archivo(file: str, fpath: Path, raw: str) -> tuple:
     return meta, body, tipo, estado
 
 
-def _construir_documentos(splitter, rpath, fpath, meta, body, tipo, estado) -> list:
+def _construir_documentos(splitter, rpath, fpath, meta, body, tipo, estado, entidades="") -> list:
     chunks = splitter.split_text(body)
     docs = []
     for idx, chunk in enumerate(chunks):
@@ -132,6 +167,7 @@ def _construir_documentos(splitter, rpath, fpath, meta, body, tipo, estado) -> l
             "tags": ",".join(str(t) for t in meta.get("tags", [])) if isinstance(meta.get("tags"), list) else str(meta.get("tags", "")),
             "type": tipo,
             "status": estado,
+            "entities": entidades,
             "text": chunk
         })
     return docs
@@ -141,6 +177,9 @@ def load_notes_con_hash() -> tuple[List[Dict[str, Any]], Dict[str, str]]:
     """Devuelve (documents, {rpath: hash}) para TODOS los archivos indexables."""
     documents: List[Dict[str, Any]] = []
     hashes: Dict[str, str] = {}
+    entidades = cargar_entidades()
+    if entidades:
+        print(f"[*] Entidades cargadas para {len(entidades)} documentos.")
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1000, chunk_overlap=150,
         separators=["\n## ", "\n### ", "\n\n", "\n", " "]
@@ -161,7 +200,7 @@ def load_notes_con_hash() -> tuple[List[Dict[str, Any]], Dict[str, str]]:
                 raw = fpath.read_text(encoding="utf-8")
                 meta, body, tipo, estado = _parsear_archivo(file, fpath, raw)
                 hashes[rpath] = hash_documento(meta, body, fpath)
-                documents.extend(_construir_documentos(splitter, rpath, fpath, meta, body, tipo, estado))
+                documents.extend(_construir_documentos(splitter, rpath, fpath, meta, body, tipo, estado, entidades.get(rpath, "")))
             except Exception as e:
                 print(f"  Error en {rpath}: {e}")
     # Fuentes extra (biohacking) — con prefijo en la ruta para distinguirlas
@@ -181,7 +220,7 @@ def load_notes_con_hash() -> tuple[List[Dict[str, Any]], Dict[str, str]]:
                     raw = fpath.read_text(encoding="utf-8")
                     meta, body, tipo, estado = _parsear_archivo(file, fpath, raw)
                     hashes[rpath] = hash_documento(meta, body, fpath)
-                    documents.extend(_construir_documentos(splitter, rpath, fpath, meta, body, tipo, estado))
+                    documents.extend(_construir_documentos(splitter, rpath, fpath, meta, body, tipo, estado, entidades.get(rpath, "")))
                 except Exception as e:
                     print(f"  Error en {rpath}: {e}")
     return documents, hashes
@@ -233,13 +272,25 @@ def _recrear_indices(table) -> None:
         print(f"[!] No se pudieron recrear los indices ({e}) — busqueda solo vectorial hasta el proximo reindex.")
 
 
-def _conservar_sin_cambios(db, sin_cambios) -> list:
-    """Reutiliza los vectores de archivos sin cambios desde la tabla existente."""
+def _conservar_sin_cambios(db, sin_cambios, entidades=None) -> list:
+    """Reutiliza los vectores de archivos sin cambios desde la tabla existente.
+
+    Si hay cache de entidades, se rellena la columna `entities` tambien en las filas
+    conservadas: asi no hace falta un --force (que re-embebe 50k fragmentos) para
+    que la columna nueva quede poblada en todo el indice.
+    """
     df_existente = leer_tabla_existente(db)
     conservados = []
     if df_existente is not None and not df_existente.empty:
         mask = df_existente["path"].isin(sin_cambios)
         conservados = df_existente[mask].to_dict(orient="records")
+        if entidades:
+            rellenados = 0
+            for r in conservados:
+                if not r.get("entities"):
+                    r["entities"] = entidades.get(r["path"], "")
+                    rellenados += 1 if r["entities"] else 0
+            print(f"[*] Entidades rellenadas en {rellenados} fragmentos conservados.")
         print(f"[*] Conservando {len(conservados)} fragmentos sin cambios (vectores reutilizados).")
     return conservados
 
@@ -294,7 +345,7 @@ def build_index(force: bool = False, dry_run: bool = False, device: Optional[str
 
     # Conservar vectores de archivos sin cambios
     db = lancedb.connect(str(DB_PATH))
-    conservados = _conservar_sin_cambios(db, sin_cambios)
+    conservados = _conservar_sin_cambios(db, sin_cambios, cargar_entidades())
 
     # Solo re-embeder los que cambiaron o son nuevos
     docs_a_embedear = [d for d in docs if d["path"] in (nuevos | modificados)]

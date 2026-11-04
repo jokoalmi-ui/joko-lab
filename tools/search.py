@@ -504,6 +504,8 @@ def query_index(query_text: str, top_k: int = 3,
         print(f"[{idx+1}] {row['path']}  (cos: {sim_txt} | rerank: {rr_txt} | {origen}{pen_txt})")
         if row.get("tags"):
             print(f"    tags: {row['tags']}")
+        if row.get("entities"):
+            print(f"    ent: {row['entities']}")
         text = row.get("text", "")
         print(f"    {text[:200].strip()}{'...' if len(text)>200 else ''}")
         print()

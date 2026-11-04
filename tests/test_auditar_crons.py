@@ -239,8 +239,28 @@ class TestRecolectarYMain(unittest.TestCase):
                 os.environ.pop("AUDITOR_CRONS_DIR", None)
 
     def test_main_exit_0_base_limpia(self):
+        """El reloj se INYECTA: el fixture ya no caduca con el paso del tiempo."""
         with tempfile.TemporaryDirectory() as t:
             os.environ["AUDITOR_CRONS_DIR"] = str(self._base_limpia(t))
+            try:
+                self.assertEqual(ac.main(["--json"], ahora=AHORA), 0)
+            finally:
+                os.environ.pop("AUDITOR_CRONS_DIR", None)
+
+    def test_main_reloj_real_con_fixture_relativo(self):
+        """Contrapartida hermética: fixture relativo al reloj real -> exit 0.
+
+        Cubre el camino sin `ahora` (el que usa el cron) sin fechas absolutas.
+        """
+        with tempfile.TemporaryDirectory() as t:
+            base = Path(t) / "cron"
+            (base / "output" / "ok1").mkdir(parents=True)
+            futuro = datetime.now(timezone.utc) + timedelta(hours=2)
+            (base / "jobs.json").write_text(json.dumps({"jobs": [
+                {"id": "ok1", "name": "sano", "enabled": True, "last_status": "ok",
+                 "failure_streak": 0, "next_run_at": futuro.isoformat()},
+            ]}), encoding="utf-8")
+            os.environ["AUDITOR_CRONS_DIR"] = str(base)
             try:
                 self.assertEqual(ac.main(["--json"]), 0)
             finally:

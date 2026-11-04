@@ -286,7 +286,14 @@ def _base_por_defecto() -> Path:
                                str(Path.home() / ".hermes" / "cron")))
 
 
-def main(argv=None) -> int:
+def main(argv=None, ahora: datetime | None = None) -> int:
+    """Entry point del auditor. `ahora` permite INYECTAR el reloj (tests).
+
+    Sin `ahora` usa el reloj real (`_ahora()`). El parámetro existe porque el
+    test de la base limpia fijaba fechas absolutas y llamaba a main(): con el
+    reloj real, ese fixture caducó a los 7 días y la suite quedó roja sin que
+    hubiera cambiado una línea de código (19-oct-2026).
+    """
     ap = argparse.ArgumentParser(description="Auditor de salud de los crons (solo lectura).")
     ap.add_argument("--horas", type=int, default=48,
                     help="ventana para informes y entregas (por defecto 48)")
@@ -296,7 +303,7 @@ def main(argv=None) -> int:
     ap.add_argument("--base", default=None, help="directorio de cron (pruebas)")
     args = ap.parse_args(argv)
     datos = _recolectar(Path(args.base) if args.base else _base_por_defecto(),
-                        args.horas, args.retraso_min, _ahora())
+                        args.horas, args.retraso_min, ahora or _ahora())
     print(_json(datos) if args.json else _formatear(datos))
     return 1 if datos["hallazgos"] else 0
 

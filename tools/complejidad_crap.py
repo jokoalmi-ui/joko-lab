@@ -37,12 +37,27 @@ UMBRAL_MUY_COMPLEJO = 20
 
 
 def _decision_points(nodo) -> int:
-    """Cuenta puntos de decision (McCabe) en un subarbol AST."""
+    """Cuenta puntos de decision (McCabe) del cuerpo de UNA funcion.
+
+    NO desciende a funciones ni clases ANIDADAS: sus decisiones se miden en su
+    propia fila y atribuirlas tambien al padre inflaba la cifra (defecto de
+    instrumento medido el 02-nov-2026: 21 funciones de tools/ infladas, hasta
+    +10 en index_query_summary.build_qs 29->19 y +8 en
+    validar_ficha_preenvio.medir_halo_recorte 17->9). Un `lambda` si se
+    recorre: no tiene fila propia en el informe.
+    """
     puntos = 0
-    for hijo in ast.walk(nodo):
+    pendientes = list(ast.iter_child_nodes(nodo))
+    while pendientes:
+        hijo = pendientes.pop()
+        if isinstance(hijo, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            continue  # scope propio: se mide por separado
         if isinstance(hijo, (ast.If, ast.While, ast.For, ast.ExceptHandler,
-                             ast.Assert, ast.IfExp, ast.Match)):
+                             ast.Assert, ast.IfExp)):
             puntos += 1
+        elif isinstance(hijo, ast.Match):
+            # cada `case` es un camino distinto (radon cuenta los casos)
+            puntos += len(hijo.cases)
         elif isinstance(hijo, ast.BoolOp):
             # and/or: cada operador anadido suma 1 (len(operadores)-1)
             puntos += max(0, len(hijo.values) - 1)
@@ -51,6 +66,7 @@ def _decision_points(nodo) -> int:
             # cada clausula `if` dentro de la comprehension suma 1
             # (los ifs viven en cada nodo comprehension de .generators)
             puntos += sum(len(gen.ifs) for gen in hijo.generators)
+        pendientes.extend(ast.iter_child_nodes(hijo))
     return puntos
 
 

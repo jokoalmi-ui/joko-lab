@@ -22,6 +22,7 @@ import json
 import os
 import re
 import sys
+import unicodedata
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
@@ -31,6 +32,10 @@ from pathlib import Path
 # + Joaquín Ruiz / @jokioki (25-sep, canal técnico verificable — research/analisis-canal-jokiruiz-20260925.md)
 # + NotFound404 / @NOTFOUND404dev (09-oct-2026, tras analizar 4 vídeos —
 #   research/canal-notfound404-videos-20261009.md; ID verificado con su RSS el 09-oct)
+# + Eric Risco / @EricRiscoIA (26-oct-2026, canal de CRITERIO y no técnico:
+#   aporta ~1 de cada 4 vídeos y siempre como idea/validación, nunca herramienta.
+#   Entra con FILTRO_TITULO — research/analisis-ai-factory-eric-risco-20261026.md;
+#   ID verificado con su RSS el 26-oct)
 CANALES = {
     "Nichonauta": "UCz6Mu2Iv4-gitXurg9amisw",
     "IBM Technology": "UCKWaEZ-_VweaEx1j62do_vQ",
@@ -41,6 +46,21 @@ CANALES = {
     "Nick Saraev": "UCbo-KbSjJDG6JWQ_MTZ_rNA",
     "Joaquín Ruiz": "UCnZCS1XKBTi_RpM67O3DiRg",
     "NotFound404": "UCBYcKHnzmc9nkOXCRJ0VZJQ",
+    "Eric Risco": "UCCzFhEgRgG7wZhK5nUSg47g",
+}
+
+# Canales que solo entran si el título toca un tema del lab (26-oct-2026).
+# Motivo: son canales de opinión/novedades que publican 2-3 veces por semana;
+# sin filtro, el cron avisaría de todo. Se compara sin acentos y en minúsculas;
+# basta con que aparezca UN término. Un canal ausente de este dict no se filtra.
+FILTRO_TITULO = {
+    "UCCzFhEgRgG7wZhK5nUSg47g": (
+        "local", "skill", "habilidad", "agente", "agent", "rag", "buscador", "search",
+        "memoria", "memory", "contexto", "context", "mcp", "herramienta", "tool",
+        "despleg", "deploy", "hetzner", "vercel", "railway", "produccion", "production",
+        "servidor", "server",
+        "automatiz", "docker", "ollama", "n8n", "coste", "cost",
+    ),
 }
 STATE_FILE = Path(os.path.expanduser("~/.hermes/state/monitor_yt_state.json"))
 UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0 Safari/537.36"
@@ -166,6 +186,20 @@ def _guardar_state(state: dict) -> None:
     tmp.replace(STATE_FILE)
 
 
+def _sin_acentos(t: str) -> str:
+    return "".join(c for c in unicodedata.normalize("NFD", t.lower())
+                   if unicodedata.category(c) != "Mn")
+
+
+def _pasa_filtro(cid: str, titulo: str) -> bool:
+    """True si el canal no tiene filtro o si el título toca algún tema del lab."""
+    terminos = FILTRO_TITULO.get(cid)
+    if not terminos:
+        return True
+    t = _sin_acentos(titulo)
+    return any(_sin_acentos(x) in t for x in terminos)
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description="Monitor YouTube canales del lab")
     ap.add_argument("--reset", action="store_true", help="marca los actuales como vistos")
@@ -198,6 +232,12 @@ def main() -> int:
                             continue
                     except Exception:
                         pass
+                if not _pasa_filtro(cid, v["titulo"]):
+                    # Título fuera de tema: se marca como visto en silencio.
+                    if not args.check:
+                        state[v["id"]] = {"canal": canal, "titulo": v["titulo"],
+                                          "fecha": v["fecha"], "filtrado": True}
+                    continue
                 nuevos.append({**v, "canal": canal})
                 if not args.check:
                     state[v["id"]] = {"canal": canal, "titulo": v["titulo"], "fecha": v["fecha"]}
