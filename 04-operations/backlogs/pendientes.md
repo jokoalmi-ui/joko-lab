@@ -152,6 +152,15 @@ type: operations
   output») que no se llegó a ver. Re-medidas volcando a `/tmp/gh_stars1.txt` y leyéndolo: los valores correctos son los de arriba.
   Regla: no citar cifras desde salida truncada; volcar a fichero y leerlo.
 - 2026-09-20 07:55 — REGISTRO (ledger + pendientes): ledger 4495 → 6914 B (md5 `a57e4730fb4df3460858a11ef572ce97`, backup `aplicabilidad_ledger.jsonl.bak-20260920-ig-listas`); pendientes.md 55115 → 58440 B (este bloque aporta 3325 B, medido en bytes).
+- 2026-11-04 07:12 — CIERRE / DESCARTE con datos: `D4Vinci/Scrapling` **NO se adopta** como vía «live». Probado en venv aparte (`~/.venv-scrapling`,
+  borrado después) sobre 3 URLs con fallo real ya documentado en el lab: DuckDuckGo → 202 y **0 resultados** en curl, HTTP impersonado y stealth; Threads →
+  261 KB sin contenido con curl vs **719 KB con el texto del post** (`curl_cffi`, 1,3 s; única mejora, y ya se lograba con UA de Googlebot); pliego Interbiak →
+  245 B y, en stealth, 249 KB pero acaba en la **home** (301→302): la URL no existe, no era un muro. **0 de 3 casos nuevos**; ninguna página tenía Cloudflare,
+  así que el «bypass de Turnstile» no llegó a probarse. Sigue en Beta y su README remite a hypersolutions (pago) para protección «enterprise».
+  Solape: `browser_exec` ya cubre JS con sesión y cookies; los muros de login de Instagram son de cuenta, no de huella → Scrapling no los resuelve.
+  Estrellas 82.471 (20-sep) → **95.241** (04-nov, +15,5 % en 45 d); v0.5 el 17-oct. Limpieza verificada: venv + navegadores borrados (1.044 MB; comprobado
+  antes que ningún otro venv usaba playwright), libre 52 G → 53 G. Único hallazgo reutilizable: `curl_cffi` (41 MB) si aparece un sitio que exija huella TLS
+  de Chrome — NO instalado, queda como futurible de una línea. Backup previo: `pendientes.md.bak-20261104-scrapling` (1796 líneas, 371.184 B, md5 `e71aea1fa1c7…`).
 - 2026-09-20 08:14 — CORRECCIÓN (bug real en tool propio, no reportado por el usuario): `tools/saludo_perfume.py` NO era determinista por fecha, pese a lo que decían su docstring y la skill `perfume-del-dia`. Causa localizada en la línea 103: `rng = random.Random(_semilla(fecha) + hash(categoria) % 1000)` — Python aleatoriza el `hash()` de `str` por proceso (`PYTHONHASHSEED`), así que la semilla de la frase cambiaba en cada ejecución.
   Evidencia (3 ejecuciones seguidas, misma fecha y mismos argumentos): «cada día es una nota nueva» / «Hoy huele a oportunidad. Aprovéchala» / «Que el día sea tan bueno como su aroma».
   Fix aplicado: `import zlib` + `zlib.crc32(categoria.encode()) % 1000` + nota explicativa en el docstring. Verificado DESPUÉS del fix: 3 ejecuciones → 1 sola frase; 3 fechas (20/21/22-sep) → 3 saludos y 3 categorías distintas (inspiracional / humor / juego).
@@ -1794,3 +1803,20 @@ _Copia de seguridad RULE-008 de los 4 ficheros tocados: `.bak-20261030`. Ningun 
 - **Cierra** el pendiente C abierto el 23-10, reescalado el 26-10 (tope 02-11) y el 30-10. Deja de contar como deuda abierta. Base: **CP-009** (un instrumento sin disparador no se usa).
 - **Contraste que lo justifica**: el mismo dia, el productor del informe diario (con consumidores que se quejan a diario) se diagnostico y se reparo (respaldo a Ollama, commit `8b2404c`); este ledger, sin consumidor, llevaba 4 ciclos decidiendose sin moverse.
 - Backup RULE-008 previo al append: `pendientes.md.bak-20261030-retrabajo` (md5 `43d5d5dcadb61180f90055c33f171e31`).
+
+## 2026-11-04 12:26:45 CET - EXP-ITER100-20261104 - pendiente: reproducir el experimento de las 100 iteraciones con coste 0
+
+MARCA: EXP-ITER100-20261104
+
+- **Origen**: video de Nate Herk "I Told Claude to Make it better 100 Times" (YouTube `DByAR5Su1Yw`, publicado 2026-10-30, 518.504 vistas al leerlo el 04-11). Triaje hecho en el chat del 04-11. Veredicto: el video no entra como conocimiento, entra como experimento a replicar.
+- **Lo que MIDIO el autor** (declarado por el, no reproducido aqui): mismo prompt 100 veces sobre la misma web de partida, sesion limpia cada ronda (sin skills, sin CLAUDE.md, sin memoria). Sonnet 5.5: ~2 h, 29,93 USD de valor API, menos de 3.000 lineas, 11 imagenes + 2 videos. Opus 5.5: 8,5 h, ~137 USD, 21.000 lineas, 54 imagenes + 3 videos. Opus termino rompiendo su propio sitio (traductor al espanol que no traduce, seccion que deja de funcionar) y el autor lo llama "AI slop".
+- **Hallazgo del autor**: "el modelo pone el techo, el prompt pone la direccion" e "innovar sin vision se convierte en anadir". El dato que interesa aqui: tuvo que anadir al prompt "you must ship a change every time" porque sin eso los modelos paraban en la ronda 20-25 diciendo que ya no habia nada que hacer. Ese forzado es la causa declarada de la sobreingenieria.
+- **Por que se anota**: confirmacion externa de RULE-021 (el ok se acredita en el artefacto, no en el status). Forzar un cambio por ronda para poder decir "he avanzado" produce regresion estructural; el lab ya lo evita y este video aporta la cifra que lo respalda (21.000 lineas y ~137 USD para empeorar el producto).
+- **Experimento propuesto (acotado, coste 0)**: 100 rondas de "hazlo mejor" con `tools/opencode-local.sh` y modelo local, sobre una COPIA de `research/infografias/perfume-del-dia-20261104/ficha_v13.html`. El original publicado no se toca.
+- **Metrica (no hay que inventar instrumento: ya existe)**: en cada ronda se corre el trio `tools/norma_legibilidad.py` (CUMPLE/FALLA), `tools/qa_maqueta.py` (MAQUETA OK/FALLOS) y `tools/validar_ficha_preenvio.py` (FALTA 0). Se anota la PRIMERA ronda en que una de las tres deja de pasar, las lineas anadidas por ronda y cuantas rondas revirtieron.
+- **Hipotesis a falsar**: forzar un cambio por ronda hace que la primera regresion de puerta llegue antes de la ronda 100, y que las lineas crezcan de forma monotona mientras las puertas empeoran.
+- **Limite declarado**: el modelo local no es Sonnet ni Opus 5.5. No se replica la cifra del autor, se replica el MODO DE FALLO. La comparacion modelo grande vs local NO es el objetivo y no se publicara como tal.
+- **Lo que NO se puede afirmar**: la cifra de coste de Sonnet aparece dos veces en el video y no cuadra (29,93 USD en la vista de rondas frente a "about 22" en el resumen final); se anota tal cual, sin elegir una. Las cifras del autor son suyas, no medidas por el lab.
+- **Coste estimado**: 0 EUR (modelo local, GPU propia). Tiempo: 100 rondas x ~1-3 min = 1,5-5 h de GPU, a lanzar cuando el lab este libre.
+- **Estado**: pendiente a experimentar. No se ha ejecutado ninguna ronda. La web de partida del autor no se ha copiado.
+- Backup RULE-008 previo al append: `pendientes.md.bak-20261104-exp-iter100`.
