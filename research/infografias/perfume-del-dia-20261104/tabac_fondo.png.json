@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "warm still life on a dark walnut desk, cured tobacco leaves beside a worn leather notebook, amber morning light through a window, soft haze, muted brown ochre and deep green palette, shallow depth of field, photographic",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 44.0,
+  "bytes": 1637455
+}

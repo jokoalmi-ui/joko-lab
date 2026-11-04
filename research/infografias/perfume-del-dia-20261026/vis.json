@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261026/perfume_del_dia_v5_neroli_nostrum_a.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261026/figura_neroli_nostrum.png",
+ "rect": [
+  114,
+  116,
+  175,
+  450
+ ],
+ "fondo_L": 82.5502,
+ "tapon_L": 13.2218,
+ "cuerpo_L": 219.57999999999998,
+ "contraste_tapon": 2.505175891149581,
+ "contraste_cuerpo": 5.62644370145818,
+ "pct_claros": 19.602539682539682,
+ "min_claros": null,
+ "min_contraste": null
+}

@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Photographic still life background for an editorial perfume card: cool late autumn dawn light across a worn indigo suede cloth folded over a pale stone ledge, a few dried lavender stems and a thin curl of smoke from a snuffed candle, muted slate blue with warm taupe highlights, soft diffused shadows, fine film grain, plain unmarked fabric and blank stone surfaces, empty uncluttered area in the centre, shallow depth of field, 50mm lens",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 44.9,
+  "bytes": 1840223
+}

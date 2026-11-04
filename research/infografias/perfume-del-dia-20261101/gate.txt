@@ -1,0 +1,31 @@
+=== GATE PRE-ENVIO · perfume_del_dia_v5_indigo_suede_a.html ===
+[OK   ] 01 Titulo                        Indigo Suede
+[OK   ] 02 Casa                          LUNIO
+[OK   ] 03 Fecha                         dia/mes en la ficha
+[OK   ] 04 Anio                          2026
+[OK   ] 05 Concentracion                 etiqueta presente
+[OK   ] 06 Genero                        etiqueta presente
+[OK   ] 07 Familia                       cuero
+[OK   ] 08 Perfumista                    fila presente (permite "no revelado")
+[OK   ] 09 Rating comunidad              3,68 · votos
+[OK   ] 10 Piramide completa             svg=6 lab=3
+[OK   ] 11 Longevidad                    horas presentes
+[OK   ] 12 Estela                        )
+[OK   ] 13 Precio 100 ml                 120,00 € / 100 ml
+[OK   ] 14 Si te gusta, prueba           3 alternativas
+[OK   ] 15 Cita comunidad                “Indigo Suede es la conjunción per...
+[OK   ] 16 QR Fragrantica                qr_fragrantica_indigo_suede.png
+[OK   ] 17 Pie completo                  9,6–15,7 °C · media · lluvia · nota fondo
+[OK   ] A1 Assets existen                4 locales, 0 ausentes []
+[OK   ] A2 Sin restos de prueba          ninguno referenciado
+[AVISO] A3 Fondo ampliado x1.41          indigo_suede_fondo.png 1024x1024 -> sin ampliacion notable
+[AVISO] A4 Precio con fecha de consulta  2026-11-01 en la linea de precio: 01-11-2026
+[AVISO] A5 Recorte sin halo              indigo_suede_figura.png · filo 395 px · delta L +50.4 · visibles 87.8% (347 px, 313 muy visibles)
+[OK   ] A6 Linea donde/ocasion           44 car · 274 px · 1 linea(s) · hueco QR 169 px
+[OK   ] E1 Altura (contenido real)       1440 px (body 1440, borde real 1440, fuentes loaded, img 3/3)  [limite 1440]
+[OK   ] E2 Pie dentro de la tarjeta      pie bottom 1390 px · aire 50 px
+
+campos            : 17/17
+FALTA             : 0   []
+AVISO             : 3   ['A3 Fondo ampliado x1.41', 'A4 Precio con fecha de consulta', 'A5 Recorte sin halo']
+veredicto         : ENVIAR (con avisos)

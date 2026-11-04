@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Abstract editorial backdrop for a luxury perfume card: mid-tone antique taupe stone surface, warm grey beige with soft sage hints, thin horizontal strata, subtle warm amber light from upper right, matte tactile texture, painterly microcontrast, calm elegant, empty centre",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 38.0,
+  "bytes": 1762807
+}

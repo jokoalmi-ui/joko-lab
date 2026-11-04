@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Moody still life backdrop, dark walnut wood and aged brass tones, faint amber bokeh lights far away, delicate steam curling, deep shadows in the corners, warm amber glow on one side, painterly texture, empty unmarked surfaces",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1424260
+}

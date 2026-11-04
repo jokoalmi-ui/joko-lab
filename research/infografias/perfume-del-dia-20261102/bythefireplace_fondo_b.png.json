@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Interior photograph of a quiet study at dusk: bare weathered oak table top with warm grain filling the lower part of the frame, empty smooth table surface, soft blurred fireplace glow and faint embers far in the background, textured linen curtain, warm taupe cream and deep brown palette, gentle directional light, shallow depth of field, editorial photographic texture, high detail, calm elegant atmosphere",
+  "negativo_no_aplicado": "",
+  "seed": 7,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 40.0,
+  "bytes": 1702426
+}

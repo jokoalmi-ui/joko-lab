@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "extreme close-up of large cured tobacco leaves resting on aged dark walnut wood, warm amber morning light from the left, soft haze, muted brown ochre and deep green tones, shallow depth of field, macro photography, abstract organic textures",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1723032
+}

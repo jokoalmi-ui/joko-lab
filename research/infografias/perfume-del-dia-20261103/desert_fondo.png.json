@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Soft abstract Saharan desert background at dusk: smooth ochre and pale terracotta sand dunes, a gently blurred horizon under a hazy amber sky, delicate drifting sand grains, a few dry golden grasses along the very bottom edge, warm diffused evening light, shallow depth of field, fine film grain, photographic, minimalist empty composition with wide open sand across the middle",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 44.0,
+  "bytes": 1717018
+}

@@ -1,0 +1,68 @@
+Traceback (most recent call last):
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/edge_tts/communicate.py", line 566, in stream
+    async for message in self.__stream():
+        yield message
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/edge_tts/communicate.py", line 435, in __stream
+    ) as session, session.ws_connect(
+                  ~~~~~~~~~~~~~~~~~~^
+        f"{WSS_URL}&ConnectionId={connect_id()}"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        ssl=ssl_ctx,
+        ^^^^^^^^^^^^
+    ) as websocket:
+    ^
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/aiohttp/client.py", line 1693, in __aenter__
+    self._resp: _RetType_co = await self._coro
+                              ^^^^^^^^^^^^^^^^
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/aiohttp/client.py", line 1266, in _ws_connect
+    raise WSServerHandshakeError(
+    ...<5 lines>...
+    )
+aiohttp.client_exceptions.WSServerHandshakeError: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=01ba1c20d5c54afa8c6b42af85d9c7da&Sec-MS-GEC=8814750361D67A3C8CB19B35A6024CDA0C9D761A6629EC97B5074E0C72CB6F4C&Sec-MS-GEC-Version=1-143.0.3650.75'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/bin/edge-tts", line 12, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/edge_tts/util.py", line 141, in main
+    asyncio.run(amain())
+    ~~~~~~~~~~~^^^^^^^^^
+  File "/home/jokoalmi/.hermes/tools/python-3.14.7+20260901-linux-x64/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/home/jokoalmi/.hermes/tools/python-3.14.7+20260901-linux-x64/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/jokoalmi/.hermes/tools/python-3.14.7+20260901-linux-x64/lib/python3.14/asyncio/base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/edge_tts/util.py", line 136, in amain
+    await _run_tts(args)
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/edge_tts/util.py", line 73, in _run_tts
+    async for chunk in communicate.stream():
+    ...<3 lines>...
+            submaker.feed(chunk)
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/edge_tts/communicate.py", line 573, in stream
+    async for message in self.__stream():
+        yield message
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/edge_tts/communicate.py", line 435, in __stream
+    ) as session, session.ws_connect(
+                  ~~~~~~~~~~~~~~~~~~^
+        f"{WSS_URL}&ConnectionId={connect_id()}"
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        ssl=ssl_ctx,
+        ^^^^^^^^^^^^
+    ) as websocket:
+    ^
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/aiohttp/client.py", line 1693, in __aenter__
+    self._resp: _RetType_co = await self._coro
+                              ^^^^^^^^^^^^^^^^
+  File "/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/lib/python3.14/site-packages/aiohttp/client.py", line 1266, in _ws_connect
+    raise WSServerHandshakeError(
+    ...<5 lines>...
+    )
+aiohttp.client_exceptions.WSServerHandshakeError: 403, message='Invalid response status', url='wss://speech.platform.bing.com/consumer/speech/synthesize/readaloud/edge/v1?TrustedClientToken=6A5AA1D4EAFF4E9FB37E23D68491D6F4&ConnectionId=e1c55394db564efaa1fd19871d7edc09&Sec-MS-GEC=8814750361D67A3C8CB19B35A6024CDA0C9D761A6629EC97B5074E0C72CB6F4C&Sec-MS-GEC-Version=1-143.0.3650.75'

@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "editorial still-life backdrop for an elegant perfume card: matte white plaster wall with a soft wash of deep ultramarine blue pigment in the upper right, pale oak table edge at the bottom, a few fallen dry vine leaves, cool late October morning light from the left, long soft shadows, fine film grain, muted palette of chalk white, cool grey and deep blue, shallow depth of field, quiet Spanish atelier mood",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1779599
+}

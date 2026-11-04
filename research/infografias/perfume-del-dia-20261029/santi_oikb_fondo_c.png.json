@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "macro photograph of weathered white plaster with ultramarine blue pigment powder drifting across it, powdery mineral texture, cool overcast morning light, soft gradients from white to deep blue, shallow depth of field, elegant minimal background, muted tones",
+  "negativo_no_aplicado": "",
+  "seed": 7,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 38.0,
+  "bytes": 1604541
+}

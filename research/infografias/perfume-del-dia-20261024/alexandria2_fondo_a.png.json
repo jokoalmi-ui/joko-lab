@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "empty stone terrace at dusk in autumn, aged walnut wood table, warm amber low sunlight raking across, deep soft shadows, linen and plaster textures, quiet luxurious still life, shallow depth of field, muted earthy palette",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 48.0,
+  "bytes": 1743309
+}

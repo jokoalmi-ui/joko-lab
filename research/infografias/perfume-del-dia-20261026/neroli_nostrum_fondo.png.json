@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Mediterranean bitter orange grove at dawn, dense deep olive foliage in shadow, white neroli blossoms and pale amber light filtering through leaves, painterly botanical editorial background, muted dark olive green and warm ochre palette, rich texture, shallow depth of field",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 46.7,
+  "bytes": 1902095
+}

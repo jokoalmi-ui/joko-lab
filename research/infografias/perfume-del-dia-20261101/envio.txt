@@ -1,0 +1,3 @@
+caption exacto: Buenos días. domingo huele a Indigo Suede y a buenas decisiones. MEDIA:/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261101/perfume_del_dia_v5_indigo_suede_corr.png
+destino       : telegram:-1003968087263
+sent

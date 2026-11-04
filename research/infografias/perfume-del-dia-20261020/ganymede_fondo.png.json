@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "abstract mineral still life photography, polished flint and pale limestone slabs, soft diffused morning light from the left, faint saltwater sheen, cold metallic reflections, muted ivory, slate grey and pale gold palette, fine film grain, shallow depth of field, serene editorial composition",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 49.3,
+  "bytes": 1754742
+}

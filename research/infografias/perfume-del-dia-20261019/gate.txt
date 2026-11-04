@@ -1,0 +1,29 @@
+=== GATE PRE-ENVIO · ficha.html ===
+[OK   ] 01 Titulo                        Town & Country
+[OK   ] 02 Casa                          CLIVE CHRISTIAN
+[OK   ] 03 Fecha                         dia/mes en la ficha
+[OK   ] 04 Anio                          2026
+[OK   ] 05 Concentracion                 etiqueta presente
+[OK   ] 06 Genero                        etiqueta presente
+[OK   ] 07 Familia                       Aromátic
+[OK   ] 08 Perfumista                    fila presente (permite "no revelado")
+[OK   ] 09 Rating comunidad              4,22 · votos
+[OK   ] 10 Piramide completa             svg=6 lab=3
+[OK   ] 11 Longevidad                    horas presentes
+[OK   ] 12 Estela                        6
+[OK   ] 13 Precio 100 ml                 589,66 € / 100 ml
+[OK   ] 14 Si te gusta, prueba           3 alternativas
+[OK   ] 15 Cita comunidad                “Un perfume estupendo y muy fácil ...
+[OK   ] 16 QR Fragrantica                qr_fragrantica.png
+[OK   ] 17 Pie completo                  8,4 – 14,6 °C · media · lluvia · nota fondo
+[OK   ] A1 Assets existen                4 locales, 0 ausentes []
+[OK   ] A2 Sin restos de prueba          ninguno referenciado
+[AVISO] A3 Fondo ampliado x1.41          towncountry_fondo_c.png 1024x1024 -> sin ampliacion notable
+[AVISO] A4 Precio con fecha de consulta  2026-10-19 en la linea de precio: 19-10-2026
+[OK   ] E1 Altura (contenido real)       1440 px (body 1440, borde real 1440, fuentes loaded, img 3/3)  [limite 1440]
+[OK   ] E2 Pie dentro de la tarjeta      pie bottom 1402 px · aire 38 px
+
+campos            : 17/17
+FALTA             : 0   []
+AVISO             : 2   ['A3 Fondo ampliado x1.41', 'A4 Precio con fecha de consulta']
+veredicto         : ENVIAR (con avisos)

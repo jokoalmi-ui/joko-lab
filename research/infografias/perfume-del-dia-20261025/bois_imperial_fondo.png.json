@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Vertical editorial still-life backdrop for a perfume card, warm mid-tone taupe stone surface, weathered light oak planks, a sprig of fresh green basil and scattered timut peppercorns, dry grasses, muted earth tones with soft natural window light from the left, fine film grain, shallow depth of field, soft bokeh, generous empty space in the centre, elegant minimal photography",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.1,
+  "bytes": 1838776
+}

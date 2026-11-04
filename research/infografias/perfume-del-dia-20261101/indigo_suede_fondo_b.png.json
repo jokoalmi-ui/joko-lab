@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Bright airy still life background for an editorial perfume card: pale silver limestone ledge in soft morning fog, light warm grey suede cloth folded loosely, a few dried lavender stems, gentle cool light from the left, high-key muted palette of pale grey blue and warm ivory, soft haze, fine film grain, plain unmarked surfaces with no markings, open empty area in the centre, shallow depth of field, 50mm lens",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 36.1,
+  "bytes": 1576619
+}

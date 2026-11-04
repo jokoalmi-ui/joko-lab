@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "warm autumn morning interior in soft golden light, beige and honey marble surfaces, hazy cream atmosphere, delicate almond blossom branches out of focus, subtle equestrian bronze silhouette far in the blurred background, empty illuminated space in the middle, editorial still-life backdrop, photography, shallow depth of field",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1451682
+}

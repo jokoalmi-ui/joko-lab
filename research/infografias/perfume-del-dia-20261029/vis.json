@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261029/perfume_del_dia_v5_oikb.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261029/santi_oikb_figura.png",
+ "rect": [
+  48,
+  84,
+  309,
+  450
+ ],
+ "fondo_L": 113.4974,
+ "tapon_L": 66.7832,
+ "cuerpo_L": 223.2126,
+ "contraste_tapon": 2.04869954660413,
+ "contraste_cuerpo": 3.6434812799094463,
+ "pct_claros": 9.326141675656238,
+ "min_claros": null,
+ "min_contraste": null
+}

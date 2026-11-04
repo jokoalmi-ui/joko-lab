@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261101/perfume_del_dia_v5_indigo_suede_corr.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261101/indigo_suede_figura.png",
+ "rect": [
+  117,
+  116,
+  169,
+  450
+ ],
+ "fondo_L": 101.90259999999999,
+ "tapon_L": 67.2046,
+ "cuerpo_L": 235.9664,
+ "contraste_tapon": 1.7150565455694804,
+ "contraste_cuerpo": 4.86596213866315,
+ "pct_claros": 46.19329388560158,
+ "min_claros": null,
+ "min_contraste": null
+}

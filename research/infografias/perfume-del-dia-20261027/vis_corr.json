@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261027/perfume_del_dia_v5_basso_corr.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261027/basso_figura_limpia.png",
+ "rect": [
+  74,
+  116,
+  255,
+  450
+ ],
+ "fondo_L": 126.0166,
+ "tapon_L": 30.696599999999997,
+ "cuerpo_L": 211.0682,
+ "contraste_tapon": 4.075141642184178,
+ "contraste_cuerpo": 2.7131417546392944,
+ "pct_claros": 2.056644880174292,
+ "min_claros": null,
+ "min_contraste": null
+}

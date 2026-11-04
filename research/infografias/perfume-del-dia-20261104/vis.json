@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261104/perfume_del_dia_v5_tabac_nomade.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261104/tabac_figura.png",
+ "rect": [
+  44,
+  84,
+  317,
+  450
+ ],
+ "fondo_L": 126.88939999999998,
+ "tapon_L": 23.497400000000003,
+ "cuerpo_L": 233.996,
+ "contraste_tapon": 4.449361795842437,
+ "contraste_cuerpo": 3.333265358722816,
+ "pct_claros": 43.25972660357518,
+ "min_claros": null,
+ "min_contraste": null
+}

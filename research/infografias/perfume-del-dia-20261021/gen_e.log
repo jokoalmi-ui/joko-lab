@@ -1,0 +1,3 @@
+ComfyUI 0.37.0
+prompt_id 7d40d828-3718-46c2-a9b5-fb290762973e
+{"modelo": "flux-2-klein-4b-fp8.safetensors", "clip": "qwen_3_4b_fp4_flux2.safetensors", "vae": "flux2-vae.safetensors", "prompt": "still life backdrop of a mid tone warm taupe limewash wall, quiet morning light from the left, muted greige and soft clay tones, plain unmarked surfaces, empty middle area, photographic", "negativo_no_aplicado": "", "seed": 42, "steps": 20, "px": "1024x1024", "segundos": 38.0, "bytes": 1478977}
