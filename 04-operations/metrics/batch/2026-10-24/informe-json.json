@@ -1,0 +1,32 @@
+{
+  "ts": "2026-10-24T12:01:42+02:00",
+  "modo": "diario",
+  "id": "informe-json",
+  "runner": "orquestador",
+  "fuente": "/home/jokoalmi/joko-lab/04-operations/reports/20261024-informe-local.txt",
+  "estado": "escalado_cloud",
+  "segundos": 3.93,
+  "exit_code": 0,
+  "stdout": "Motor cloud (razonamiento/complejo) -> DeepSeek v4 flash.\n--- SALIDA ---\n{\"fecha\":\"2026-10-24 09:00 CEST\",\"tests_ok\":false,\"servicios_activos\":3,\"gpu_mem_usado_mb\":1014,\"gpu_temp_c\":41,\"problemas\":[\"1 test caducable (exit 1)\",\"alta complejidad de código: 39 funciones complejas y 28 muy complejas\",\"INT-003 Revisar uso Gemini pendiente hasta 2026-09-03\"]}\n",
+  "stderr": "",
+  "ledger": [
+    {
+      "ts": "2026-10-24T12:01:39+02:00",
+      "tarea": "Extrae en JSON estricto (solo JSON, sin markdown ni texto alrededor) un objeto con estas claves exactas: fecha, tests_ok",
+      "tipo": "batch-json",
+      "motor": "cloud",
+      "intento_local": false,
+      "local_ok": false,
+      "escalo_cloud": false,
+      "motivo": "cloud_directo",
+      "latencia_s": null,
+      "cloud_result": {
+        "ok": true,
+        "salida": "{\"fecha\":\"2026-10-24 09:00 CEST\",\"tests_ok\":false,\"servicios_activos\":3,\"gpu_mem_usado_mb\":1014,\"gpu_temp_c\":41,\"problemas\":[\"1 test caducable (exit 1)\",\"alta complejidad de código: 39 funciones complejas y 28 muy complejas\",\"INT-003 Revisar uso Gemini pendiente hasta 2026-09-03\"]}",
+        "stderr": "",
+        "latencia_s": 3.86,
+        "cloud": true
+      }
+    }
+  ]
+}

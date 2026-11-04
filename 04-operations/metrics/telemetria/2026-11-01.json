@@ -1,0 +1,113 @@
+{
+  "fecha": "2026-11-01",
+  "decisiones": {
+    "total": 3154,
+    "por_politica": {
+      "Disponibilidad": 2668,
+      "Horario": 428,
+      "Gpu": 44,
+      "Privacidad": 14
+    },
+    "por_dia": {
+      "2026-10-23": 34,
+      "2026-10-24": 49,
+      "2026-10-25": 51,
+      "2026-10-26": 49,
+      "2026-10-27": 34,
+      "2026-10-28": 36,
+      "2026-10-29": 33,
+      "2026-10-30": 34,
+      "2026-10-31": 35,
+      "2026-11-01": 46
+    },
+    "fallback_rate": 0.8459
+  },
+  "activaciones": {
+    "total": 70,
+    "por_rule": {},
+    "por_politica_activada": {
+      "POLICY-001": 70,
+      "POLICY-002": 70
+    },
+    "blocks": {
+      "RULE-004": 18
+    },
+    "model_selection": {
+      "RULE-003": 22,
+      "RULE-002": 7,
+      "RULE-009": 5,
+      "RULE-001": 1,
+      "RULE-011": 1
+    },
+    "reglas_conocidas": 22,
+    "reglas_nunca_activadas": [
+      "RULE-005",
+      "RULE-006",
+      "RULE-007",
+      "RULE-008",
+      "RULE-010",
+      "RULE-012",
+      "RULE-013",
+      "RULE-014",
+      "RULE-015",
+      "RULE-016",
+      "RULE-017",
+      "RULE-018",
+      "RULE-019",
+      "RULE-020",
+      "RULE-021",
+      "RULE-022"
+    ]
+  },
+  "rag": {
+    "total_consultas": 752,
+    "paths_top": {
+      "04-operations/backlogs/2026-07-31-backlog.md": 349,
+      "04-operations/backlogs/pendientes.md": 104,
+      "GUIA-JOKO-LAB.md": 99,
+      "GUIA-APRENDIZAJE-JOKO-LAB.md": 80,
+      "01-knowledge/experiments/EXP-20260730-005/resultados.md": 49,
+      "research/linkedin-lab/serie-la-ia-que-yo-uso-guion-maestro.md": 49,
+      "01-knowledge/experiments/EXP-20261009-008-moe-cache-mib/diseno.md": 45,
+      "research/analisis-hermes-020-gerald.md": 35,
+      "04-operations/metrics/modelos-locales/2026-10-18-moe-cache-expertos.md": 34,
+      "research/analisis-techyybanda-ai-agents-20260914.md": 29,
+      "research/analisis-techwithram-chunking-rag.md": 28,
+      "research/reel-DeFOltJDOXe/analisis-cerebro-claude-code-20261009.md": 27,
+      "research/analisis-agentes-desde-telefono-gentleman.md": 25,
+      "01-knowledge/experiments/EXP-20260729-004/resultados.md": 23,
+      "research/analisis-thinklab-chunking-rag.md": 23
+    },
+    "kos_conocidos": 35,
+    "kos_nunca_recuperados": [
+      "DEC-003",
+      "DEC-004",
+      "DEC-005",
+      "DEC-GAIPRO-001",
+      "POLICY-001",
+      "POLICY-003",
+      "PRED-001",
+      "PRED-002",
+      "RULE-005",
+      "RULE-007",
+      "RULE-010",
+      "RULE-012",
+      "RULE-013",
+      "RULE-014",
+      "RULE-015",
+      "RULE-016",
+      "RULE-017",
+      "RULE-018",
+      "RULE-019",
+      "RULE-020",
+      "RULE-021",
+      "RULE-022"
+    ],
+    "no_recuperados_por_tipo": {
+      "DEC": 4,
+      "POLICY": 2,
+      "PRED": 2,
+      "RULE": 14
+    }
+  }
+}

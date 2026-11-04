@@ -1,0 +1,114 @@
+{
+  "fecha": "2026-10-19",
+  "decisiones": {
+    "total": 2648,
+    "por_politica": {
+      "Disponibilidad": 2162,
+      "Horario": 428,
+      "Gpu": 44,
+      "Privacidad": 14
+    },
+    "por_dia": {
+      "2026-10-10": 30,
+      "2026-10-11": 32,
+      "2026-10-12": 49,
+      "2026-10-13": 48,
+      "2026-10-14": 37,
+      "2026-10-15": 35,
+      "2026-10-16": 35,
+      "2026-10-17": 35,
+      "2026-10-18": 38,
+      "2026-10-19": 31
+    },
+    "fallback_rate": 0.8165
+  },
+  "activaciones": {
+    "total": 70,
+    "por_rule": {},
+    "por_politica_activada": {
+      "POLICY-001": 70,
+      "POLICY-002": 70
+    },
+    "blocks": {
+      "RULE-004": 18
+    },
+    "model_selection": {
+      "RULE-003": 22,
+      "RULE-002": 7,
+      "RULE-009": 5,
+      "RULE-001": 1,
+      "RULE-011": 1
+    },
+    "reglas_conocidas": 22,
+    "reglas_nunca_activadas": [
+      "RULE-005",
+      "RULE-006",
+      "RULE-007",
+      "RULE-008",
+      "RULE-010",
+      "RULE-012",
+      "RULE-013",
+      "RULE-014",
+      "RULE-015",
+      "RULE-016",
+      "RULE-017",
+      "RULE-018",
+      "RULE-019",
+      "RULE-020",
+      "RULE-021",
+      "RULE-022"
+    ]
+  },
+  "rag": {
+    "total_consultas": 376,
+    "paths_top": {
+      "04-operations/backlogs/2026-07-31-backlog.md": 150,
+      "GUIA-JOKO-LAB.md": 56,
+      "01-knowledge/experiments/EXP-20260730-005/resultados.md": 47,
+      "04-operations/backlogs/pendientes.md": 41,
+      "GUIA-APRENDIZAJE-JOKO-LAB.md": 33,
+      "01-knowledge/experiments/EXP-20260729-004/resultados.md": 23,
+      "01-knowledge/objects/RULE-001.yaml": 19,
+      "01-knowledge/patterns/inference-patterns/large-creative-model.md": 16,
+      "lpa/constitucion/normas-jl.md": 16,
+      "research/linkedin-lab/serie-la-ia-que-yo-uso-guion-maestro.md": 14,
+      "research/analisis-techyybanda-ai-agents-20260914.md": 12,
+      "01-knowledge/experiments/EXP-20261009-008-moe-cache-mib/diseno.md": 12,
+      "research/analisis-hermes-020-gerald.md": 12,
+      "01-knowledge/objects/RULE-003.yaml": 11,
+      "research/reel-DeFOltJDOXe/analisis-cerebro-claude-code-20261009.md": 11
+    },
+    "kos_conocidos": 35,
+    "kos_nunca_recuperados": [
+      "DEC-003",
+      "DEC-004",
+      "DEC-005",
+      "DEC-GAIPRO-001",
+      "POLICY-001",
+      "POLICY-003",
+      "PRED-001",
+      "PRED-002",
+      "RULE-005",
+      "RULE-007",
+      "RULE-010",
+      "RULE-011",
+      "RULE-012",
+      "RULE-013",
+      "RULE-014",
+      "RULE-015",
+      "RULE-016",
+      "RULE-017",
+      "RULE-018",
+      "RULE-019",
+      "RULE-020",
+      "RULE-021",
+      "RULE-022"
+    ],
+    "no_recuperados_por_tipo": {
+      "DEC": 4,
+      "POLICY": 2,
+      "PRED": 2,
+      "RULE": 15
+    }
+  }
+}

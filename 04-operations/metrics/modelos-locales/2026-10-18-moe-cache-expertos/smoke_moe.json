@@ -1,0 +1,19 @@
+[
+  {
+    "moe_cache_mib": 0,
+    "arranque_ok": true,
+    "arranque_s": 58.0,
+    "vram_mib": 4077,
+    "rondas": [
+      {
+        "tok_s": 6.7,
+        "n_pred": 64,
+        "prompt_tok_s": 0.53,
+        "wall_s": 127.55
+      }
+    ],
+    "tok_s_media": 6.7,
+    "moe_cache_lineas": [],
+    "vram_final": 4096
+  }
+]

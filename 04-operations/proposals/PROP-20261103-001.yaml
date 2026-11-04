@@ -1,0 +1,9 @@
+id: PROP-20261103-001
+fecha: 2026-11-03T08:45:25
+tipo: conocimiento
+id: "RULE-006"
+problema: próxima a expirar (2026-12-03)
+accion_sugerida: revisar
+fuente: knowledge_health
+estado: propuesta
+decision: pendiente
