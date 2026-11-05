@@ -1,6 +1,14 @@
 ---
 title: "Análisis — Infografía: 7 Types of AI Agent Memory (shiva.bytes)"
 type: research
+data_as_of: 2026-08-06
+last_validated: 2026-11-05
+next_review: 2027-02-05
+superseded_by: []
+invalidated:
+  - claim: "Memoria prospective sin formalizar (fila 7 de la tabla)"
+    since: 2026-08-07
+    evidence: "04-operations/prospective-memory.md"
 ---
 
 # Análisis — Infografía: 7 Types of AI Agent Memory (shiva.bytes)
