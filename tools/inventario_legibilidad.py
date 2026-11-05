@@ -28,8 +28,18 @@ JS = r"""
     var r=document.createRange(); r.selectNodeContents(n);
     var b=r.getBoundingClientRect();
     if(b.width<1||b.height<1) continue;
+    var bg=null,q=e,conImg=false;
+    while(q){
+      var qs=getComputedStyle(q);
+      if(qs.backgroundImage&&qs.backgroundImage!=='none'){conImg=true;break;}
+      var mm=(qs.backgroundColor||'').match(/rgba?\(([^)]+)\)/);
+      if(mm){var pp=mm[1].split(',').map(Number);var al=(pp.length>3?pp[3]:1);
+             if(al>0.99){bg=qs.backgroundColor;break;}}
+      q=q.parentElement;
+    }
+    if(conImg) bg=null;   /* fondo con imagen: no hay par declarado medible */
     out.push({t:t.slice(0,80),px:parseFloat(cs.fontSize),w:Math.round(b.width),
-      h:Math.round(b.height),x:Math.round(b.x),y:Math.round(b.y),color:cs.color,
+      h:Math.round(b.height),x:Math.round(b.x),y:Math.round(b.y),color:cs.color,bg:bg,
       fill:(e.getAttribute&&e.getAttribute('fill'))||cs.fill||'',
       weight:cs.fontWeight,tag:e.tagName.toLowerCase(),
       cls:(e.className||'').toString().replace(/\s+/g,'.').slice(0,44)});
