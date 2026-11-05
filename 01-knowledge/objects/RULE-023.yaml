@@ -1,0 +1,86 @@
+id: RULE-023
+type: RULE
+decision_origin: directriz_usuario
+status: activo
+version: 1
+created: '2026-11-05'
+last_validated: '2026-11-05'
+next_review: '2026-12-05'
+expires: '2027-02-05'
+generated:
+  at: 2026-11-05T09:55:00Z
+  by: machine:hermes
+stale_after: 2026-12-05T00:00:00Z
+verified:
+  - by: human:jokoalmi
+    at: 2026-11-05T09:55:00Z
+  - by: machine:hermes
+    at: 2026-11-05T09:55:00Z
+sources:
+  - resource: tools/revisar_vigencia.py
+  - resource: research/analisis-7-tipos-memoria-agentes.md
+  - resource: 04-operations/prospective-memory.md
+  - resource: 01-knowledge/objects/RULE-022.yaml
+title: "Un hecho caducado se marca, no se borra: vigencia declarada en el frontmatter y lector que la mide"
+desc: >-
+  Norma de vigencia del conocimiento del lab. (1) TODO analisis nuevo de
+  research/ nace con tres campos en el frontmatter: data_as_of (fecha en que se
+  midio el dato), last_validated (ultima comprobacion contra el mundo) y
+  next_review (fecha en que caduca y hay que re-medirlo; por defecto a 90 dias).
+  (2) Un fichero vivo cuyos datos se han quedado viejos NO se reescribe ni se
+  poda: se le anade invalidated con la lista de afirmaciones caducadas, cada una
+  con claim, since y evidence (ruta o fichero que lo desmiente). Igual que
+  superseded_by cuando lo que caduca es el fichero entero. (3) El lector
+  tools/revisar_vigencia.py es de solo lectura y exit 0 siempre: informa de
+  CADUCADOS, INVALIDADOS y SIN FECHAR. Un fichero sin campos no es un error, es
+  deuda contable. (4) Un dato con next_review vencido no puede citarse como
+  vigente sin volver a medirlo; citarlo es el fallo, no que el fichero este
+  viejo. Los campos replican el esquema que ya usan las RULE (last_validated,
+  next_review, superseded_by) para no inventar un vocabulario paralelo.
+  Alcance: research/ y 01-knowledge/objects/. No-retrofit: los 404 analisis sin
+  fechar NO se rellenan a posteriori con el mtime, porque el mtime es la fecha de
+  la ultima edicion, no la del dato, y produciria fechas falsas con apariencia de
+  verificadas.
+confidence: 0.7
+confidence_label: MEDIA
+evidence:
+- 'Directriz del usuario (05-nov-2026): «Siempre tenemos la mayor parte de los problemas en LAB en la memoria (no la fisica), que nuevas tecnicas existen para mejorarla?» y eleccion del punto 1 de tres propuestos («1»), tras descartar instalar Mem0/Zep: el estudio IEEE de Bennati/Wolff mide Mem0/RAG/full-context 77-81% frente a Graphiti/cognee 55-56% en LoCoMo, con un RAG estandar igualando al mejor grupo a 8,4x menos coste'
+- 'Caso que origino la norma: research/analisis-7-tipos-memoria-agentes.md (06-ago-2026) afirmaba «Prospective memory: NO lo tiene formalizado» y el gap estaba cerrado desde el 07-ago-2026 en 04-operations/prospective-memory.md (status active, formato INT-NNN con deadline, script prospective.sh). El fichero afirmaba 6/7 cuando la cobertura real era 7/7, y siguio citandose como pendiente durante ~3 meses'
+- 'Instrumento y control negativo (RULE-015): tools/revisar_vigencia.py sobre research/ real devuelve REVISADOS 405, con campos 1, CADUCADOS 0, INVALIDADOS 1 (el de 7-tipos) y SIN FECHAR 404. Sobre dos ficheros de prueba en /tmp con next_review 2026-01-01 y un invalidated, devuelve CADUCADOS 1 e INVALIDADOS 1; el fichero sin campos se cuenta como deuda y no rompe el script'
+- 'El esquema no es nuevo: RULE-022 ya usa last_validated, next_review, expires, stale_after y superseded_by. La norma extiende ese vocabulario a research/ en vez de inventar otro'
+dependencies:
+- RULE-012
+- RULE-013
+- RULE-015
+- RULE-021
+contradicts: []
+superseded_by: null
+domain: conocimiento
+scope: research_y_knowledge_objects
+monitoring:
+  metric: analisis_con_campos_de_vigencia
+  baseline: 1
+  current: 1
+  last_checked: '2026-11-05'
+  log_file: 04-operations/reports
+  indicador: >-
+    tools/revisar_vigencia.py --dias 30 sobre research/: el numero «con campos de
+    vigencia» debe subir con cada analisis nuevo y «CADUCADOS» debe estar a cero
+    tras cada revision. baseline 1/405 el 05-nov-2026 (solo el de 7 tipos). Si
+    CADUCADOS crece y nadie re-mide, la norma no se esta aplicando aunque los
+    campos existan.
+history:
+- date: '2026-11-05'
+  event: created
+  note: >-
+    Nace de un fallo concreto, no de una idea general: el analisis de 7 tipos de
+    memoria seguia declarando un pendiente que se cerro al dia siguiente de
+    escribirse. La pregunta del usuario fue por tecnicas de memoria; el repaso de
+    la literatura (Mem0, Zep/Graphiti, Letta, sleep-time compute, context
+    engineering) dejo dos aplicables y una conclusion: el lab no necesita otra
+    capa de memoria, necesita saber que dato caduco. De ahi el frontmatter de
+    vigencia y el lector. Confidence 0.7 y no mas alta porque el mecanismo solo
+    lleva un dia de uso y el retrofit queda explicitamente fuera: los 404 sin
+    fechar son deuda declarada, no deuda oculta. Revision 05-dic-2026: comprobar
+    cuantos analisis nuevos han nacido con los tres campos y si algun CADUCADO se
+    ha citado sin re-medir.
