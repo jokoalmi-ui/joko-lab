@@ -58,3 +58,32 @@ con el camino recorrido del lab.
 **Candidato a estudio:** formalizar Prospective Memory (intenciones/sprints
 activos inyectados al inicio de cada sesión — el file bus de team-context podría
 ser el vehículo).
+
+---
+
+## 🔄 ACTUALIZACIÓN 05-11-2026 — el gap del tipo 7 está cerrado
+
+La fila 7 de la tabla («Prospective: ❌ NO lo tiene formalizado») **ya no es cierta**.
+Medido en disco el 05-11-2026:
+
+- `04-operations/prospective-memory.md` — creado **07-08-2026**, `status: active`,
+  formato `- [ ] INT-NNN | descripción | deadline: YYYY-MM-DD | fuente: <ruta>`.
+- Lo gestiona `~/.hermes/scripts/prospective.sh`.
+- Su propio encabezado lo dice: «tipo 7 de memoria de agentes — el que faltaba formalizar».
+
+Cobertura real del lab a fecha de hoy: **7 de 7**, no 6 de 7.
+
+### Por qué se anota
+
+El 05-11 llegó un reel de `codewithbrij` (04-11-2026, shortcode `DfWO9ZMuoQI`) repitiendo
+la misma lista de siete, atribuyendo la idea a Neo Kim. **No aporta nada nuevo**: esta
+infografía del 06-08 ya cubría la taxonomía completa, y `analisis-memoria-agentes-3-tipos.md`
+(13-08) la superaba en profundidad al traer implementación real (langgraph + SQLite +
+sentence-transformers + ablaciones). Veredicto del reel: reempaquetado, sin entrada.
+
+**Lo que sí quedó demostrado** es que este análisis estaba desfasado: el futurible que
+proponía («formalizar Prospective Memory») se ejecutó al día siguiente de escribirse.
+Lección de proceso: un futurible registrado aquí caduca y hay que re-medirlo antes de
+volver a citarlo (misma regla que `triaje-contenido-externo`).
+
+**Fuente:** disco (`04-operations/prospective-memory.md`, `mtime` 2026-08-19 18:44, 2.191 B).
