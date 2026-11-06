@@ -1,0 +1,556 @@
+{
+ "ok": true,
+ "nodos": 68,
+ "chicos": [],
+ "duros": [],
+ "avisos": [],
+ "resumen_avisos": "ninguno",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 6.96,
+   "ratio_px": 6.96,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 7.63,
+   "ratio_px": 7.63,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 7.92,
+   "ratio_px": 7.92,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 7.42,
+   "ratio_px": 7.42,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "All Yours · consultado 05-11-2026 · dura",
+   "cls": "f"
+  },
+  {
+   "ratio": 12.23,
+   "ratio_px": 12.23,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "637 votos · 86 reseñas · Fragrantica",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 10.5,
+   "ratio_px": 10.5,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 10.83,
+   "ratio_px": 10.83,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 10.2,
+   "ratio_px": 10.2,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "manzana, pomelo rosado y bergamota — la ",
+   "cls": "not"
+  },
+  {
+   "ratio": 3.57,
+   "ratio_px": 3.57,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 10.92,
+   "ratio_px": 10.92,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 9.2,
+   "ratio_px": 9.2,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuero, cedro, geranio y jazmín — aquí se",
+   "cls": "not"
+  },
+  {
+   "ratio": 12.07,
+   "ratio_px": 12.07,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 8.94,
+   "ratio_px": 8.94,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "pachulí, maderas ambaradas, frambuesa y ",
+   "cls": "not"
+  },
+  {
+   "ratio": 9.45,
+   "ratio_px": 9.45,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Notas: pirámide oficial (Isolée) · comun",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 4.76,
+   "ratio_px": 4.76,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 11.22,
+   "ratio_px": 11.22,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Casa Jeroboam · inspiración oficial [t",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 12.06,
+   "ratio_px": 12.06,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Creed · 2010",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 9.15,
+   "ratio_px": 9.15,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,31/5 · 29.008 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 6.18,
+   "ratio_px": 6.18,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el ancestro frutal-leñoso del que Vesper",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 11.3,
+   "ratio_px": 11.3,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Tom Ford · 2018",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 9.14,
+   "ratio_px": 9.14,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,31/5 · 19.229 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 6.11,
+   "ratio_px": 6.11,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el cuero directo, sin la fruta de arriba",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 11.51,
+   "ratio_px": 11.51,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "M. Micallef · 2015",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 9.47,
+   "ratio_px": 9.47,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,18/5",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 6.08,
+   "ratio_px": 6.08,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la comparativa directa: cuero y fruta a ",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 10.88,
+   "ratio_px": 10.88,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Asociaciones: Fragrantica · comparativa ",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 8.63,
+   "ratio_px": 8.63,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Comentario de comunidad en Fragrantica",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 11.17,
+   "ratio_px": 11.17,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · trabajo y tardeo · mode",
+   "cls": "donde"
+  },
+  {
+   "ratio": 3.02,
+   "ratio_px": 3.02,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 8.63,
+   "ratio_px": 8.63,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "JUEVES · 05 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 12.1,
+   "ratio_px": 12.1,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 11.87,
+   "ratio_px": 11.87,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "mañana (8,2 °C) ·",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 11.49,
+   "ratio_px": 11.49,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "tarde (13,5 °C)",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 10.96,
+   "ratio_px": 10.96,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Ventana 08-18: 4,7–14,3 °C · media 11,1 ",
+   "cls": "clima"
+  },
+  {
+   "ratio": 11.82,
+   "ratio_px": 11.82,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 10,1 °C · amaderado de rango an",
+   "cls": "clima"
+  },
+  {
+   "ratio": 12.69,
+   "ratio_px": 12.69,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 11.87,
+   "ratio_px": 11.87,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 12.15,
+   "ratio_px": 12.15,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 12.29,
+   "ratio_px": 12.29,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 7.76,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 9.8,
+   "ratio_px": 9.8,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Jeroboam",
+   "cls": "casa"
+  },
+  {
+   "ratio": 13.4,
+   "ratio_px": 13.4,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2017",
+   "cls": ""
+  },
+  {
+   "ratio": 13.09,
+   "ratio_px": 13.09,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Extrait de Parfum",
+   "cls": "dh"
+  },
+  {
+   "ratio": 13.47,
+   "ratio_px": 13.47,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Masculino",
+   "cls": "dh"
+  },
+  {
+   "ratio": 13.47,
+   "ratio_px": 13.47,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Fougère oriental",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.79,
+   "ratio_px": 12.79,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumista:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 14.0,
+   "ratio_px": 14.0,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Vanina Muracciole",
+   "cls": ""
+  },
+  {
+   "ratio": 11.51,
+   "ratio_px": 11.51,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 13.27,
+   "ratio_px": 13.27,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~6-8 h",
+   "cls": ""
+  },
+  {
+   "ratio": 13.21,
+   "ratio_px": 13.21,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 14.14,
+   "ratio_px": 14.14,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "intensa",
+   "cls": ""
+  },
+  {
+   "ratio": 14.36,
+   "ratio_px": 14.36,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "250 €",
+   "cls": ""
+  },
+  {
+   "ratio": 12.61,
+   "ratio_px": 12.61,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 100 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.04,
+   "ratio_px": 12.04,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "MANZANA · POMELO · BERGAMOTA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 4.81,
+   "ratio_px": 4.81,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "CUERO · CEDRO · GERANIO · JAZMÍN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 6.97,
+   "ratio_px": 6.97,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "PACHULÍ · ÁMBAR · ALMIZCLE · FRAMBUESA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 9.63,
+   "ratio_px": 9.63,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Aventus",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 10.04,
+   "ratio_px": 10.04,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Ombré Leather (2018)",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 10.33,
+   "ratio_px": 10.33,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Royal Vintage",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 9.25,
+   "ratio_px": 9.25,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "“Dedicado a los dandis urbanos nocturnos",
+   "cls": ""
+  },
+  {
+   "ratio": 8.05,
+   "ratio_px": 8.05,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“Vespero es mi perfume insignia para sal",
+   "cls": ""
+  },
+  {
+   "ratio": 3.21,
+   "ratio_px": 3.21,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "que dure hasta la noche",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 4.42,
+   "ratio_px": 4.42,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "el dandi de las noches urbanas",
+   "cls": "sub"
+  },
+  {
+   "ratio": 8.32,
+   "ratio_px": 8.32,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "4,15",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 11.58,
+   "ratio_px": 11.58,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "Vespero",
+   "cls": ""
+  }
+ ]
+}
