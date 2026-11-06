@@ -122,6 +122,33 @@ Este documento lista afirmaciones sobre LPA que tienen evidencia. No contiene hi
 - **Falsación (citada de CP-010, 2026-10-02):** «Sería **FALSO** si, sobre **N=10 instrumentos** del lab usados para decidir durante **2 ciclos LPA consecutivos**, comparados contra su patrón oro, **al menos 9** devuelven la cifra correcta (dentro de la tolerancia declarada) **sin** validación previa ni etiqueta de validez.»
 - **Última revisión:** 2026-10-02
 
+### E1-009: El estado documentado diverge del estado real, y la divergencia no se detecta sin muestreo
+
+- **Experimentos:** joko-lab (Experimento 004)
+- **Origen:** CP-008 (`pattern-incubator/CP-008-estado-real-vs-documentado.md`) → E1 en la revisión mensual del **2026-11-06** (acta `incidentes/revision-mensual-2026-11.md`).
+- **Observación:** **13 ocurrencias** (12 del recuento original de la ficha + 1 en la ventana 25-09→02-10) en 8+ dominios del lab, en 3 fechas distintas: 8 el **2026-09-02** (systemd, kanban, docs canónicos, salud del conocimiento, repo git, memoria, config, logs), 2 el **2026-09-18** (cadencia doc↔motor y BD↔registro) y 2 el **2026-09-25** (registro de lecciones declarado vs real; resumen del curador vs su ledger de 703 operaciones), más 4 correcciones ya anotadas en el backlog. En todos los casos el documento afirmaba un estado que la fuente desmentía, y la divergencia solo apareció al muestrear: nadie la había detectado leyendo el documento.
+- **No sabemos:** con qué frecuencia la divergencia es inocua frente a la que induce una acción incorrecta; ni si un muestreo periódico doc↔fuente la mantiene a raya (el antídoto está propuesto, no medido). **Limitación declarada:** las 13 ocurrencias son del mismo experimento (joko-lab) → E1 «patrón observado»; no habilita reglas estructurales hasta tener un segundo experimento.
+- **Falsación (citada de CP-008, 2026-11-06):** «Sería FALSO si: durante 2 ciclos LPA consecutivos (2 meses), un muestreo de 10 afirmaciones de estado extraídas de documentos del lab contra su fuente real NO encuentra ninguna divergencia relevante (que hubiera llevado a una acción incorrecta de haber actuado sobre el documento).»
+- **Última revisión:** 2026-11-06
+
+### E1-010: El estado `unknown` no se resuelve en el motor: se resuelve en el artefacto
+
+- **Experimentos:** joko-lab (Experimento 004)
+- **Origen:** CP-012 (`pattern-incubator/CP-012-estado-unknown-se-resuelve-en-el-artefacto.md`) → E1 en la revisión mensual del **2026-11-06**.
+- **Observación:** 5 ocurrencias en 5 jobs distintos (**2026-10-02**) y tres reexámenes posteriores que **no dispararon la falsación**: 09-10 (dos `unknown` resueltos en las dos direcciones: producto presente y producto ausente), 16-10 (el `unknown` del consolidador tapaba un **OOM real** del worker en su cgroup de 4 GiB, no un reinicio) y 20-10 (incidencia cerrada en el mismo segundo en que apareció el producto, 79.753 B). La serie empezó con `unknown` por reinicio del planificador (incertidumbre benigna) y ganó un segundo mecanismo con el OOM.
+- **No sabemos:** cuántos `unknown` quedan sin resolver porque el artefacto tarda más que la ventana de revisión; y el antídoto decide **efectos**, no **causa** (límite compartido con CP-015). **Limitación declarada:** un solo experimento (joko-lab) → E1 «patrón observado».
+- **Falsación (citada de CP-012, 2026-11-06):** «Sería FALSO si, sobre N=10 ejecuciones que terminan en `unknown` en el lab y durante 2 ciclos LPA consecutivos, 8 o más se resuelven consultando únicamente el estado del motor (sin ir al artefacto) con un veredicto correcto (efectos sí / efectos no) verificado después contra el producto.»
+- **Última revisión:** 2026-11-06
+
+### E1-011: `resolved` mide la corrida siguiente, no la reparación
+
+- **Experimentos:** joko-lab (Experimento 004)
+- **Origen:** CP-017 (`pattern-incubator/CP-017-resolved-mide-la-corrida-siguiente-no-la-reparacion.md`) → E1 en la revisión mensual del **2026-11-06**.
+- **Observación:** 3 ocurrencias en 2 jobs distintos y 4 fechas: dos cierres sin reparación (23-10); el historial sobrescrito de la fila `264c02_761c7f27bcb0` (leída el 13-10, el 23-10 y el 26-10 con tres estados distintos de la misma incidencia); y la reapertura del 01-11 que volvió a cerrar el 02-11 **sobrescribiendo** el `closed_at` del 28-10. Con **2 contraejemplos** declarados, cierres sí respaldados por reparación verificable: `bbc1d8` (28-10, OAuth renovado) y `da39a2` (26-10, mtime del productor + 10 salidas limpias).
+- **No sabemos:** cuántas incidencias del histórico tienen `resolved` sin reparación detrás, porque la tabla no conserva ocurrencias (el borrado es parte del defecto). **Limitación declarada:** un solo registro (`cron_incidents`) → E1 «patrón observado».
+- **Falsación (citada de CP-017, 2026-11-06):** «Sería FALSO si, sobre 10 incidencias cerradas del lab en 2 ciclos consecutivos, en 8 o más el cierre coincidiera con un cambio verificable en el productor (script/config con mtime posterior al `first_seen_at` y producto generado después) y el registro conservara el histórico de ocurrencias (reabrir no borra el cierre anterior). También lo falsaría que el lab no usara nunca `resolved` como prueba de reparación.»
+- **Última revisión:** 2026-11-06
+
 ---
 
 ## Nivel E0 — Observación
@@ -157,9 +184,12 @@ Este documento lista afirmaciones sobre LPA que tienen evidencia. No contiene hi
 | E4 — Principio | 0 |
 | E3 — Validación | 2 |
 | E2 — Hipótesis | 4 |
-| E1 — Patrón | 8 |
+| E1 — Patrón | 11 |
 | E0 — Observación | 3 |
 | E∅ — Revocado | 0 |
+| **Total** | **20** |
+
+*Actualizado en la revisión mensual del 2026-11-06 (acta `incidentes/revision-mensual-2026-11.md`): E1-009 (ex CP-008), E1-010 (ex CP-012), E1-011 (ex CP-017).*
 
 ---
 

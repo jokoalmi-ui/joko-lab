@@ -100,3 +100,14 @@ Sería **FALSO** si, sobre **10 noches con la ventana sin red y el host encendid
 
 **Estado: E0 → E0 (antídoto verificado).** La falsación pide 10 noches con ventana sin red y host encendido; hay 2. Falta evidencia, no mecanismo.
 
+
+
+---
+
+## Actualización 2026-11-06 (ciclo semanal LPA, ventana 30-10 → 06-11)
+
+- **Evidencia a favor:** **0** líneas `Reiniciando gateway` en todos los artefactos de `~/.hermes/cron/output/264c02dae003/` de octubre y noviembre de 2026. En la ventana hubo **8 vidas del gateway** y ninguna fue reiniciada por el vigilante (antes: 4 reinicios en 3 noches).
+- **Nivel: sin cambio (sigue E0).** No se ha verificado que el vigilante llegara a **detectar** red caída con el host encendido en la franja 00–07: esa franja se solapa con los apagados nocturnos (10 salidas `exited UNCLEANLY` en 7 días, todas con `suspected_oom=False` y heartbeat ~23:00), así que «no reinició» puede significar «no llegó a comprobar».
+- **Pista, no evidencia:** la noche del 01→02-11 el host estuvo encendido hasta las 11:54 (boot `-7`), sin reinicio del vigilante registrado.
+- **Falsación:** si en una noche con host encendido y red caída aparece una línea `Reiniciando gateway`, el patrón se reactiva y sube de nivel con esa prueba.
+- **Acta:** `incidentes/revision-fallos-2026-11-06.md` (F5, D5). Backup: `.bak-20261106`.

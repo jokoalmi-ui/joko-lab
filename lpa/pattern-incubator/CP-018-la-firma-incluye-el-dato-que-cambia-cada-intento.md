@@ -114,3 +114,14 @@ También lo debilitaría (no lo falsa) que las 4 filas de (1) respondieran a cau
 1. Normalizar antes de firmar: fechas (`\d{4}-?\d{2}-?\d{2}`) → `{fecha}`, contadores de intento (`intento N/M`) → `{intento}`, ids de ejecución y rutas temporales → `{id}` / `{path}`.
 2. Añadir a la fila un campo de ocurrencias (`occurrence_count`) que se incremente al reencontrar la firma, para que el historial sobreviva a la normalización.
 3. Mientras no se toque el núcleo: **leer el registro contando firmas del mismo job + misma causa**, no contando filas (es lo que hace el acta del 30-10).
+
+
+---
+
+## Actualización 2026-11-06 (ciclo semanal LPA, ventana 30-10 → 06-11)
+
+- **Nueva ocurrencia (7ª):** `67d5fc_438985bd1afe`, job `67d5fcc5b69e`, `first_seen` 2026-11-02 09:00:58, cerrada 2026-11-03 09:02:05. Error real: `exit 3 — FALLO: informe sin resumen verificado (GATE_OMITIDO)`.
+- **Dato acumulado:** el job acumula **7 incidencias con 7 firmas distintas** (`count(*)=7`, `count(distinct error_sig)=7`), es decir el 100 % de las firmas son únicas para un único defecto.
+- **Cierre en bloque:** las 4 filas del 27, 28, 29 y 30-10 se cerraron todas a la misma hora, `2026-10-31 09:03:06`, lo que confirma que se cierran por producto y no por causa.
+- **Falsación (recordatorio):** si una firma deja de crear fila nueva con la fecha cambiada, el patrón deja de aplicar en ese job.
+- **Acta:** `incidentes/revision-fallos-2026-11-06.md` (F1, D1). Backup de este expediente: `.bak-20261106`.

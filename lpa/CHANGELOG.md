@@ -69,4 +69,44 @@ Ver `KNOWN.md` para la asignación completa. Esta primera pasada es provisional 
 
 ---
 
+## 2026-11-06 — Revisión MENSUAL del incubator (primer ciclo mensual; deuda del 02-11 cerrada)
+
+Ejecutada el 2026-11-06 17:40 CET (nominal 02-11 13:30, catch-up de 4 días; el job `b2c498369692` existía sin ejecuciones previas). Acta: `incidentes/revision-mensual-2026-11.md`.
+
+### Añadidos
+
+- `KNOWN.md` **E1-009**: «El estado documentado diverge del estado real, y la divergencia no se detecta sin muestreo» — ascenso de **CP-008** con 13 ocurrencias en 8+ dominios y 3 fechas (02-09, 18-09, 25-09). Falsación citada de CP-008.
+- `KNOWN.md` **E1-010**: «El estado `unknown` no se resuelve en el motor: se resuelve en el artefacto» — ascenso de **CP-012** con 5 ocurrencias en 5 jobs y 3 reexámenes sin disparo (09-10, 16-10 con OOM real, 20-10). Falsación citada de CP-012.
+- `KNOWN.md` **E1-011**: «`resolved` mide la corrida siguiente, no la reparación» — ascenso de **CP-017** con 3 ocurrencias en 2 jobs y 2 contraejemplos declarados. Falsación citada de CP-017.
+
+### Niveles actualizados
+
+- E1 pasa de 8 a **11** afirmaciones (total del documento: **20**).
+
+### Limitación declarada en los ascensos
+
+- Los tres se apoyan **solo** en el Experimento 004 (joko-lab) o en un único registro (`cron_incidents`) → **E1 «patrón observado»**, sin reglas estructurales hasta el segundo experimento. Las condiciones de falsación quedan copiadas para poder caer.
+
+### Sin cambios (15 fichas mantenidas, ninguna fusión, ningún descarte)
+
+- **CP-001, CP-002, CP-003, CP-00X**: nunca reexaminados desde julio (revisión 2026-08-01 sin ejecutar); **tope 2026-12-02**, y CP-00X a renumerar como CP-020.
+- **CP-004, CP-005**: su propia condición de ascenso no se cumple (2+ dominios / >20 DECs con conflictos).
+- **CP-006, CP-007**: 3 ocurrencias cada uno, pero todas en un mismo día (24 h) → contextos distintos, no ocasiones distintas. **Tope 2026-12-02**.
+- **CP-011**: 2 ocurrencias pero sin denominador (hueco de instrumento).
+- **CP-013, CP-014, CP-015**: un solo host / un solo evento raíz / un solo vigía.
+- **CP-016**: antídoto aplicado y 0 reinicios en 7 días, pero su falsación pide 10 noches y los artefactos del vigilante retienen ~21 h.
+- **CP-018**: un solo registro; el antídoto exige tocar el núcleo de Hermes (RULE-016).
+- **CP-019** (creado hoy): 9 noches de fallo de entrega, causa raíz no asignada.
+
+### Contexto de instrumentos (medido)
+
+- `executions`: 1.001 filas, 2026-11-05T16:15 → 2026-11-06T17:55 (**~1 día**). Artefactos del vigilante `264c02dae003`: 50 ficheros, 05-11 20:57 → 06-11 17:55 (**~21 h**). Ninguna revisión puede reconstruir el mes con esas dos fuentes.
+- Deudas: cerrada la verificación de B (`rag-reindex`, 0 `timed out` posteriores al 16-10 en 50 artefactos) y D (CP-016). Vencidas: revisión mensual del 02-11 (se cierra con esta acta), asiento del `retrabajo_ledger` (llegó el 03-11 07:39, 7 h 40 min tarde) y el vigía de informes (sigue sin leer la cabecera declarativa).
+
+### Backups
+
+- RULE-008 `.bak-20261106` de `KNOWN.md`, `CHANGELOG.md`, `CP-008`, `CP-012` y `CP-017`. Sin commit.
+
+---
+
 FIN DEL CHANGELOG

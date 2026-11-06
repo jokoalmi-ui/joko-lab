@@ -1,7 +1,8 @@
 ---
 type: lpa
 subtype: pattern
-status: incubating
+status: promoted
+promoted_to: E1-009
 tags: [lpa, pattern]
 created: 2026-09-02
 ---
@@ -69,12 +70,22 @@ Sería FALSO si: durante 2 ciclos LPA consecutivos (2 meses), un muestreo de 10 
 
 Incubar (E0). Primera revisión en la revisión periódica del ciclo LPA (mensual).
 
-- [ ] Asciende a KNOWN.md como E1
+- [x] Asciende a KNOWN.md como E1 — **PROMOVIDO el 2026-11-06 como E1-009** (revisión mensual; 12 ocurrencias en 8+ dominios y 3 fechas distintas; limitación declarada: un solo experimento)
 - [ ] Asciende a procedures/ como procedimiento LPA
-- [x] Sigue en incubación (falta evidencia) — **revisado el 2026-10-02**: sigue, con **+1 ocurrencia** en la ventana 25-09→02-10. `hermes curator status` declaraba `PAUSED` mientras el ledger del curador sumaba 703 operaciones en 7 días (el documento de estado y la fuente real divergen), y D9 del acta 25-09 ya había corregido la fecha de esta revisión (doc: «lunes» / motor: viernes 14:30). Su antídoto (muestreo periódico documento↔fuente) sigue siendo distinto del de CP-009 (disparador) y CP-010 (etiqueta de validez) → **no se fusiona**
+- [ ] Sigue en incubación (falta evidencia) *— cerrado el 2026-11-06: asciende a E1-009* — **revisado el 2026-10-02**: sigue, con **+1 ocurrencia** en la ventana 25-09→02-10. `hermes curator status` declaraba `PAUSED` mientras el ledger del curador sumaba 703 operaciones en 7 días (el documento de estado y la fuente real divergen), y D9 del acta 25-09 ya había corregido la fecha de esta revisión (doc: «lunes» / motor: viernes 14:30). Su antídoto (muestreo periódico documento↔fuente) sigue siendo distinto del de CP-009 (disparador) y CP-010 (etiqueta de validez) → **no se fusiona**
 - [ ] Se descarta (no sobrevive a otro dominio / fue falseado)
 - [ ] Se fusiona con otro patrón (candidato: SVP / CP-007 audit-before-acting / **CP-009 instrumento-sin-forzado** — solape parcial: CP-008 cubre la divergencia documento↔sistema, CP-009 cubre el mecanismo que nadie dispara. **Añadido 18-09: CP-010 instrumento-no-validado-miente** — CP-008 compara documento↔sistema; CP-010 dice que el MEDIDOR que produce el número también puede estar roto)
 
 **Fecha de revisión:** 2026-11-02 (próxima mensual)
 **Última revisión:** 2026-10-02 — sin ascenso: 13 ocurrencias pero **un solo experimento** y el antídoto sin medir (D10 del acta `revision-fallos-2026-10-02.md`).
 **Justificación:** 8 ocurrencias en un solo día (02-09) + 2 verificadas el 18-09 (cadencia doc vs motor; BD vs registro) + **2 nuevas el 25-09** (el registro de lecciones declarado vs el que realmente recibe; el resumen de estado del curador vs su ledger de actividad) + 4 correcciones previas del backlog (mismo patrón) + regla SVP vigente = **12 ocurrencias**. Requiere validar el antídoto: watchdog periódico del estado (health, repo sucio, servicios failed).
+
+## 9. Decisión mensual 2026-11-06
+
+MARCA: CP-008-PROMOVIDO-E1-20261106
+
+- **Ascendido a `KNOWN.md` como E1-009** en la revisión mensual del 2026-11-06 (acta `incidentes/revision-mensual-2026-11.md`, §3.1). Criterio aplicado: ≥2 ocurrencias en contextos distintos (13, en 8+ dominios) + condición de falsación escrita (§6) + sin hueco declarado de instrumento.
+- **Limitación declarada:** 13 ocurrencias del mismo experimento (joko-lab) → E1 «patrón observado»; no habilita reglas estructurales hasta un segundo experimento.
+- **Antídoto sigue sin medido:** el muestreo periódico documento↔fuente no está implantado; el ascenso es de evidencia, no de procedimiento.
+- **Fecha de revisión 2026-11-02:** cumplida el 2026-11-06 (catch-up de 4 días). Próxima revisión: **2026-12-02**.
+- Backup: `CP-008-estado-real-vs-documentado.md.bak-20261106`.

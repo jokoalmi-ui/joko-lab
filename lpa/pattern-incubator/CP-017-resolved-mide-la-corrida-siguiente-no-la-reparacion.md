@@ -1,9 +1,10 @@
 ---
 type: candidate_pattern
 id: CP-017
-status: incubating
+status: promoted
 created: 2026-10-23
-confidence: E0 (3 ocurrencias: 2 cierres sin reparación + 1 historial sobrescrito, en 2 jobs distintos)
+confidence: E1 (promovido 2026-11-06; era E0 con 3 ocurrencias en 2 jobs distintos)
+promoted_to: E1-011
 domain: gobernanza-del-conocimiento / observabilidad
 ---
 
@@ -72,9 +73,9 @@ Sería **FALSO** si, sobre **10 incidencias cerradas** del lab en **2 ciclos con
 
 ## 7. Decisión
 
-- [ ] Asciende a KNOWN.md como E1 (falta: medir cierres en 2 ciclos más y decidir la fusión con CP-010)
+- [x] Asciende a KNOWN.md como E1 — **PROMOVIDO el 2026-11-06 como E1-011** (3 ocurrencias en 2 jobs y 4 fechas, con 2 contraejemplos declarados). La fusión con CP-010 se descarta: objetos distintos (regla de cierre vs instrumento cualquiera)
 - [ ] Asciende a procedures/ como procedimiento LPA (el antídoto «`resolved` es hipótesis; exigir mtime del productor + producto posterior + histórico de ocurrencias» **ya se aplica en este ciclo**, ver D1/D4 del acta del 23-10, pero sin documento propio)
-- [x] Sigue en incubación
+- [ ] Sigue en incubación *— cerrado el 2026-11-06: asciende a E1-011*
 - [ ] Se descarta
 - [ ] Se fusiona con otro patrón (candidato declarado: **CP-010**, misma familia de instrumento)
 
@@ -115,3 +116,32 @@ Tres lecturas, tres valores, un solo `id`. El historial no se conserva: cada rea
 
 **Estado: E0 → E0.** Ya hay 2 cierres con reparación (contraejemplos) y 3 sobrescritos; lo que falta no es evidencia del mecanismo, sino decidir si el criterio del §8 **asciende a procedimiento** en la revisión mensual del 02-11. La fusión con CP-010 sigue sobre la mesa.
 
+
+
+---
+
+## Actualización 2026-11-06 (ciclo semanal LPA, ventana 30-10 → 06-11)
+
+- **Reapertura medida:** el cierre aceptado el 28-10 con las 3 condiciones **no se sostuvo**. La misma fila (`bbc1d8_a5731c9ceec0`, job `bbc1d841e8a7`) registra `last_seen_at = 2026-11-01 18:01:55`, cuatro días después del cierre, y un nuevo `closed_at = 2026-11-02 18:02:39`. El `closed_at` anterior quedó sobrescrito.
+- **Lectura:** la corrida siguiente como prueba de reparación funciona como *tregua*, no como reparación. El criterio de las 3 condiciones no incluye el tiempo.
+- **Propuesta de criterio (no aplicada, decisión del usuario):** cierre válido = **7 días sin recurrencia** o **cambio de causa demostrado**; toda reapertura se registra como fila/nota nueva y no reescribe el `closed_at` anterior.
+- **Acta:** `incidentes/revision-fallos-2026-11-06.md` (F3, D3). Backup: `.bak-20261106`.
+
+## 9. Decisión mensual 2026-11-06
+
+MARCA: CP-017-PROMOVIDO-E1-20261106
+
+- **Ascendido a `KNOWN.md` como E1-011** en la revisión mensual del 2026-11-06 (acta `incidentes/revision-mensual-2026-11.md`, §3.3). Criterio: 3 ocurrencias en 2 jobs distintos y 4 fechas + falsación escrita (§5) + 2 contraejemplos declarados. El registro es uno solo (`cron_incidents`) → E1 «patrón observado».
+- **Fusión con CP-010 descartada:** objetos distintos (regla de cierre frente a cualquier instrumento). Se mantiene la relación declarada con CP-018 (la firma incluye la fecha, así que la misma causa se cuenta como nueva).
+- **Pendiente de decisión del usuario (no se ha escrito nada):** si el criterio del §8 (3 condiciones + **7 días sin recurrencia** + `closed_at` append-only, propuesto tras la reapertura del 01-11) asciende a `procedures/` como procedimiento de cierre. El ascenso a E1 **no** implica escribir el procedimiento.
+- Backup: `CP-017-resolved-mide-la-corrida-siguiente-no-la-reparacion.md.bak-20261106`.
+
+
+## 10. Procedimiento escrito 2026-11-06
+
+MARCA: CP-017-PROCEDIMIENTO-ESCRITO-20261106
+
+- El criterio del §8, ampliado con la permanencia (7 días sin recurrencia o cambio de causa demostrado) y el registro append-only, queda escrito como **`lpa/procedures/cierre-de-incidencia.md`** (v1, 2026-11-06), con estados `open` / `resolved-sin-prueba` / `resolved` / `reabierto`.
+- Se escribió a petición del usuario tras la revisión mensual del 2026-11-06. El ascenso a `procedures/` no cambia el nivel de evidencia del patrón (sigue E1-011): documenta el criterio, no lo valida.
+- El procedimiento declara explícitamente que la condición de 7 días **no es observable** con las retenciones medidas (`executions` ~1 día, artefactos del vigilante ~21 h), y que en ese caso el cierre no puede ser `resolved`.
+- Backup de este fichero: `.bak-20261106-proc`.

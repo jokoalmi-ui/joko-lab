@@ -1,9 +1,10 @@
 ---
 type: candidate_pattern
 id: CP-012
-status: incubating
+status: promoted
 created: 2026-10-02
-confidence: E0 (2+ ocurrencias en contextos distintos)
+confidence: E1 (promovido 2026-11-06; era E0 con 2+ ocurrencias en contextos distintos)
+promoted_to: E1-010
 domain: procesos-del-lab / automatizacion
 ---
 
@@ -78,9 +79,9 @@ Segunda vía de falsación (más probable): si en la próxima ventana aparece un
 
 Incubar (E0). Promovido el 2026-10-02 con **5 ocurrencias en 5 contextos distintos** (supera el umbral de 2), pero **un solo mecanismo raíz** (reinicio del planificador) y un solo experimento (joko-lab): no asciende todavía.
 
-- [ ] Asciende a KNOWN.md como E1 (falta un segundo experimento y un `unknown` resuelto por artefacto que no sea del mismo mecanismo)
+- [x] Asciende a KNOWN.md como E1 — **PROMOVIDO el 2026-11-06 como E1-010**: el segundo mecanismo ya existe (el `unknown` del 16-10 tapaba un OOM real, no un reinicio) y la falsación no se ha disparado en 3 reexámenes (09-10, 16-10, 20-10). Limitación declarada: un solo experimento
 - [ ] Asciende a procedures/ como procedimiento LPA (el antídoto «artefacto primero» ya se aplica en el ciclo, pero no está medido)
-- [x] Sigue en incubación
+- [ ] Sigue en incubación *— cerrado el 2026-11-06: asciende a E1-010*
 - [ ] Se descarta (no sobrevive a otro dominio / fue falseado)
 - [ ] Se fusiona con otro patrón (candidato declarado: **CP-010** — si el artefacto también engaña; y **CP-009** — el registro real que nadie lee. Antídoto propio y distinto: comprobar el producto)
 
@@ -106,3 +107,13 @@ Incubar (E0). Promovido el 2026-10-02 con **5 ocurrencias en 5 contextos distint
 - `jobs.json`: `last_status` = `ok`, `failure_streak` = 0, `last_run_at` 2026-10-23T07:47:51.
 
 **Sin cambio de nivel (E0→E0).** La ocurrencia refuerza el mecanismo (el estado del registro no puede saber si hubo efectos; solo el artefacto lo dice) y añade una precisión útil: **el cierre y la aparición del producto pueden ser el mismo evento**, lo que convierte el `closed_at` en la pista para localizar el artefacto. Cuarta confirmación en un job distinto (antes: consolidador, informe, rag-reindex). Sigue sin haber un caso donde el artefacto **no** exista y el `unknown` fuera real — es la falsación pendiente.
+
+## 9. Decisión mensual 2026-11-06
+
+MARCA: CP-012-PROMOVIDO-E1-20261106
+
+- **Ascendido a `KNOWN.md` como E1-010** en la revisión mensual del 2026-11-06 (acta `incidentes/revision-mensual-2026-11.md`, §3.2). Criterio: 5 ocurrencias en 5 jobs distintos + falsación escrita (§5) + 3 reexámenes que **no la dispararon** (09-10, 16-10, 20-10). El segundo mecanismo que faltaba el 02-10 ya existe: el `unknown` del 16-10 tapaba un **OOM real** del worker, no un reinicio benigno.
+- **Limitación declarada:** un solo experimento (joko-lab) → E1 «patrón observado». El antídoto decide **efectos**, no **causa**; esa frontera sigue nombrada en CP-015 y no se ha movido.
+- **La falsación pendiente del párrafo anterior sigue pendiente** (un `unknown` real sin artefacto): el ascenso no la resuelve, solo la deja escrita para que pueda caer.
+- **Fecha de revisión 2026-11-02:** cumplida el 2026-11-06 (catch-up de 4 días). Próxima revisión: **2026-12-02**.
+- Backup: `CP-012-estado-unknown-se-resuelve-en-el-artefacto.md.bak-20261106`.
