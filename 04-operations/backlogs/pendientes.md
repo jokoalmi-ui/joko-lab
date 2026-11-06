@@ -1844,3 +1844,31 @@ MARCA: EXP-ITER100-20261104
 - **Defecto 3 — fallo propio de instrumentacion**: el criterio de la puerta 3 leia la ultima linea del `stdout` (la ruta del JSON) en vez de la clave del veredicto, y marco «FALLA» una ronda que paso 17/17. El bucle se detuvo por ese error, no por degradacion de la ficha.
 - **Correcciones pendientes antes de repetir**: embeber la fuente y renderizar sin red; leer el veredicto desde el JSON de la puerta; tratar «0 cambios» como ronda nula (no valida) en vez de ronda medida.
 - Backup previo a este append: `pendientes.md.bak-20261104-bibliotecas` (md5 `0363f4d83031f392bd267cc1259efd87`, 1822 lineas).
+
+## LPA-REV-20261106 — ciclo semanal de fallos (acta 06-11-2026)
+
+Acta: `lpa/incidentes/revision-fallos-2026-11-06.md` · ventana 30-10 14:36 → 06-11 14:34 · 28 incidencias, 0 abiertas.
+
+- [ ] **PENDIENTE (decisión usuario) — juez de calidad del informe**: 4 de 7 días sin veredicto (31-10 y 01-11 `ERROR (?)`, 02-11 y 03-11 `omitido`) y 3 de esos días el job sale exit 0 con `OK_INTERNO`. El gate solo bloquea el resumen ausente. Medido en `reports/2026110[1-6]-informe-local.txt`. No se toca producción sin autorización.
+- [ ] **PENDIENTE (decisión usuario) — criterio de cierre de incidencias (CP-017)**: el cierre del 28-10 reabrió el 01-11 18:01 y volvió a cerrar el 02-11 18:02 sobrescribiendo `closed_at`. Propuesta: 7 días sin recurrencia o cambio de causa.
+- [ ] **PENDIENTE (decisión usuario) — `retrabajo_ledger`**: declarado no-instrumento el 30-10 (`retrabajo_ledger.STATUS.md` prohíbe citarlo) pero recibió una fila el 03-11 (1.569 B, 28.250 tokens). Revisar la declaración o el productor.
+- [ ] **PENDIENTE — skill `perfume-del-dia`**: parche del Paso 0B (corrida en vuelo ≠ corrida muerta, caso 03-11) **staged, no aplicado**: `skills.write_approval` está activo y la escritura quedó pendiente (`/skills pending`, id 87bd1748). Lección LEC-20260814-030 ya registrada.
+- [ ] **DEUDA — revisión mensual del 02-11**: no existe `revision-fallos-2026-11-02.md` ni job mensual. Los 18 CP (CP-001..CP-018) siguen en incubación; hoy no se promueve nada a `KNOWN.md`/`HYPOTHESIS.md`.
+- [x] **Respaldo del informe (frente A del acta 30-10)**: aplicado (`8b2404c`) y usado (31-10 y 01-11 con `ollama:qwen2.5:7b`). Límite documentado: no cubre motor que responde mal.
+- [x] **CP-016 vigilante**: 0 reinicios en 7 días (antes 4 en 3 noches).
+
+## CP-019 — entrega del turno de medianoche (abierto 06-11-2026)
+
+CP: `lpa/pattern-incubator/CP-019-la-entrega-del-turno-de-medianoche-cae-en-el-apagado.md` · E0 · 9 noches de fallo de entrega del watchdog (`7b5207`, `0 */4 * * *`) + 3 jobs más con el mismo síntoma.
+
+- [ ] **Medir** si las 4 reentregas en cola (20-10, 29-10, 01-11, 05-11) llegaron a entregarse. Hoy no hay dato.
+- [ ] **Asignar causa raíz**: apagado/suspensión del host vs red caída vs `send_path_degraded` sin reconexión. No mover la hora del cron antes de medir.
+- [x] **Hallazgo de instrumento — retención de `executions`**: 1.000 filas ≈ 1 día de histórico (rango medido 05-11 15:00 → 06-11 16:38). Anotado; subir retención requiere decisión de coste.
+
+## DEUDA CON FECHA — revisión mensual LPA del 02-11-2026
+
+No existe: ni acta (`lpa/incidentes/revision-fallos-2026-11-02.md`) ni job. Verificado por listado del directorio.
+
+- [ ] **Fecha tope 30-11-2026**: decidir entre crear el job mensual o declarar formalmente que el ciclo mensual no existe y que el semanal es el único. Si el 30-11 no hay decisión, se reabre en el ciclo siguiente.
+
+_Registrado 2026-11-06. Backup previo: `pendientes.md.bak-20261106-cp019`._
