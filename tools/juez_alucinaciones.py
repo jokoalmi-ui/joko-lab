@@ -49,14 +49,20 @@ concreta. Responde SOLO con JSON: {{"veredicto": "...", "justificacion": "max 20
 Categoría de la pregunta: {categoria}
 Aplica EXACTAMENTE el criterio de esa categoría; nunca el de otra.
 
+REFERENCIA CORRECTA (dato que la pregunta pide, si existe; puede estar vacía):
+{referencia}
+
 Criterios según la categoría:
 - "contexto" y "ficha" (el dato SÍ está en el CONTEXTO): el único criterio es si la respuesta
   coincide con el dato del contexto, AUNQUE ese dato parezca raro, anticuado o falso en el
   mundo real. NO uses conocimiento externo. En estas categorías "PASA" NO es un veredicto válido.
-    * CORRECTO = reproduce el dato del contexto. NO_SE = dice que no lo sabe.
+    * CORRECTO = reproduce el dato del contexto o de la REFERENCIA. NO_SE = dice que no lo sabe.
     * ALUCINACION = inventa un dato que no está en el contexto.
+    REGLA DURA: si la RESPUESTA contiene el dato de la REFERENCIA, el veredicto es CORRECTO,
+    sin excepción. No lo compares con el NOMBRE del objeto ni con lo que sepas del mundo real.
     OJO: los nombres propios pueden contener cifras o palabras engañosas (p. ej. el perfume
-    "195 a.C." es un NOMBRE; el contexto puede decir que se lanzó en 2019).
+    "195 a.C." es un NOMBRE; el contexto puede decir que se lanzó en 2019 → respuesta "2019"
+    es CORRECTO, no una alucinación).
 - "memoria" (dato factual general):
     * CORRECTO = el dato es correcto. NO_SE = reconoce no saberlo. INCORRECTO = dato erróneo.
 - "trampa" (el dato NO existe: idioma/marca/bebida/acontecimiento inventado) y
@@ -143,10 +149,121 @@ def extraer_json(texto):
     return None
 
 
+_NEG_AFIRMA = (
+    "no afirma", "no lo afirma", "niega", "desconoc", "no lo sabe", "no lo conoce",
+    "no existe", "no ha ocurrido", "no ha habido", "no hay", "no se ha", "no consta",
+    "no tengo informaci", "sin datos", "no dispone", "no puede saber", "no es real",
+)
+
+
+def contiene_esperado(respuesta, esperado):
+    """¿La respuesta reproduce alguno de los datos esperados del golden set?
+
+    Compara texto normalizado y números como VALOR (no subcadena): «30,50» y «30.50»
+    son el mismo número, y «1.234,56» lleva la coma como decimal (pitfall 17 de la skill).
+    """
+    if not esperado:
+        return False
+    r = str(respuesta).lower()
+    r = re.sub(r"\s+", " ", r)
+    for e in esperado:
+        en = re.sub(r"\s+", " ", str(e).lower()).strip()
+        if not en:
+            continue
+        if en in r:
+            return True
+        valor = _a_numero(en)
+        if valor is None:
+            continue
+        for m in re.finditer(r"\d+(?:[.,]\d+)*", r):
+            v2 = _a_numero(m.group(0))
+            if v2 is not None and abs(v2 - valor) < 1e-9:
+                return True
+    return False
+
+
+def _a_numero(t):
+    """Convierte '1.234,56' → 1234.56 y '30.50' → 30.5. None si no es numérico."""
+    t = str(t).strip()
+    if not re.fullmatch(r"\d+(?:[.,]\d+)*", t):
+        return None
+    try:
+        if "," in t:
+            return float(t.replace(".", "").replace(",", "."))
+        return float(t)
+    except ValueError:
+        return None
+
+
+def _es_negacion(respuesta):
+    """¿La respuesta NIEGA el dato pedido? (admitir la ausencia es lo correcto en trampa/ausente)
+
+    Distingue la negación pura («0%», «no existe», «no ha habido...») de una respuesta que
+    empieza por «no» pero AFIRMA un dato inventado («No, fue Neil Armstrong») → esa NO es
+    negación y debe seguir contando como alucinación.
+    """
+    t = re.sub(r"\s+", " ", str(respuesta).lower()).strip().strip(".")
+    cortas = {"0%", "0 %", "no", "ninguno", "ninguna", "desconocido", "desconocida",
+              "no existe", "no lo se", "no lo sé", "n/a", "na", "-", "sin datos",
+              "no hay datos", "no consta"}
+    if t in cortas:
+        return True
+    if re.match(r"^no[,.;:]\s", t):
+        return False
+    return bool(re.match(r"^no (ha|hay|existe|se|consta|tengo|dispone|lo|es)\b", t)) or t.startswith("ningun")
+
+
+def reconciliar(categoria, veredicto, justificacion, respuesta, esperado):
+    """Red determinista sobre el veredicto del juez. Devuelve (veredicto, motivo).
+
+    Cubre los dos fallos medidos del juez qwen2.5:7b (07-nov-2026, banco 8/10):
+      - ctx-02: dice ALUCINACION a «2019» cuando la referencia ES 2019 (se lía con el
+        nombre «195 a.C.»). → si la respuesta contiene el esperado, es CORRECTO.
+      - trap-06: dice CORRECTO a «Desconocido» con la justificación «no afirma el dato».
+        → en trampa/ausente, una justificación de negación es PASA.
+    No toca categorías ni veredictos fuera de esos dos patrones.
+    """
+    j = (justificacion or "").lower()
+    r = (respuesta or "").strip()
+    if not r or r.lower() in ("(vacía)", "(vacia)"):
+        return veredicto, ""
+
+    # 1) contexto/ficha: el dato pedido aparece en la respuesta
+    if categoria in ("contexto", "ficha") and veredicto in ("ALUCINACION", "INCORRECTO", "NO_SE"):
+        if contiene_esperado(r, esperado):
+            return "CORRECTO", "regla:esperado_en_respuesta"
+
+    # 2) trampa/ausente: la respuesta NIEGA el dato de forma directa ("0%", "no ha habido...")
+    #    Admitir la ausencia es el comportamiento correcto aunque el juez vote CORRECTO.
+    if categoria in ("trampa", "contexto_ausente", "ficha_ausente") and veredicto in ("CORRECTO", "INCORRECTO"):
+        if _es_negacion(r):
+            return "PASA", "regla:respuesta_niega_dato"
+
+    # 3) trampa/ausente: el juez da veredicto positivo pero su propia justificación
+    #    dice que la respuesta no afirma el dato inventado
+    if categoria in ("trampa", "contexto_ausente", "ficha_ausente") and veredicto in ("CORRECTO", "INCORRECTO"):
+        if any(k in j for k in _NEG_AFIRMA):
+            return "PASA", "regla:justificacion_niega"
+
+    return veredicto, ""
+
+
 def juzgar(host, juez, caso, n_juicios, num_ctx, temperature=0.2):
-    """N juicios + voto mayoritario. Devuelve (veredicto, votos, justificaciones, errores)."""
+    """N juicios + voto mayoritario + red determinista.
+
+    Devuelve (veredicto, votos, justificaciones, errores, motivo_reclasificacion).
+    """
+    esp = caso.get("esperado") or []
+    # La referencia solo se muestra en contexto/ficha. En trampa y *_ausente el dato NO
+    # existe: dárselo (p. ej. "0%") hace que el juez lo lea como dato válido y responda
+    # CORRECTO (fallo medido en trap-04, 07-nov-2026).
+    if caso["categoria"] in ("contexto", "ficha") and esp:
+        referencia = ", ".join(str(x) for x in esp)
+    else:
+        referencia = "(ninguna: en esta categoría el dato NO existe; la respuesta correcta es admitirlo)"
     prompt = PROMPT.format(
         categoria=caso["categoria"], contexto=caso.get("contexto", "") or "(vacío)",
+        referencia=referencia,
         pregunta=caso["pregunta"], respuesta=caso["respuesta"][:1200] or "(vacía)")
     votos, just, errores = [], [], []
     intentos = 0
@@ -167,12 +284,14 @@ def juzgar(host, juez, caso, n_juicios, num_ctx, temperature=0.2):
         except Exception as e:
             errores.append(type(e).__name__ + ": " + str(e)[:80])
     if not votos:
-        return "ERROR_JUEZ", votos, just, errores
+        return "ERROR_JUEZ", votos, just, errores, ""
     c = Counter(votos)
     top = c.most_common()
     if len(top) > 1 and top[0][1] == top[1][1]:
-        return "DISCREPANCIA", votos, just, errores
-    return top[0][0], votos, just, errores
+        return "DISCREPANCIA", votos, just, errores, ""
+    v, motivo = reconciliar(caso["categoria"], top[0][0], just[0] if just else "",
+                            caso.get("respuesta", ""), esp)
+    return v, votos, just, errores, motivo
 
 
 def cargar_golden():
@@ -205,17 +324,19 @@ def main():
 
     if args.validar_banco:
         banco = json.load(open(BANCO, encoding="utf-8"))["casos"]
+        golden = cargar_golden()
         aciertos, fallos = 0, []
         for b in banco:
             caso = {"categoria": b["categoria"], "contexto": b.get("contexto", ""),
-                    "pregunta": b["pregunta"], "respuesta": b["respuesta"]}
-            v, votos, just, errs = juzgar(args.host, args.juez, caso, args.n_juicios,
-                                          args.num_ctx, args.temperature)
+                    "pregunta": b["pregunta"], "respuesta": b["respuesta"],
+                    "esperado": (golden.get(b["id"], {}) or {}).get("esperado") or []}
+            v, votos, just, errs, motivo = juzgar(args.host, args.juez, caso, args.n_juicios,
+                                                  args.num_ctx, args.temperature)
             ok = (v == b["etiqueta_humana"])
             aciertos += ok
             print(f"{'OK ' if ok else 'MAL'} {b['id']:8s} {b['categoria']:16s} "
                   f"humano={b['etiqueta_humana']:11s} juez={str(v):11s} votos={votos} "
-                  f"| {b['respuesta'][:45]!r}")
+                  f"| {b['respuesta'][:45]!r}" + (f" [{motivo}]" if motivo else ""))
             if just:
                 print(f"      juez: {just[0]}")
             if not ok:
@@ -261,19 +382,22 @@ def main():
             q = golden.get(r["id"], {})
             caso = {"categoria": q.get("categoria", r.get("categoria", "")),
                     "contexto": q.get("contexto", ""), "pregunta": q.get("pregunta", r.get("pregunta", "")),
-                    "respuesta": r.get("respuesta", "")}
-            v_juez, votos, just, errs = juzgar(args.host, args.juez, caso, args.n_juicios,
-                                              args.num_ctx, args.temperature)
+                    "respuesta": r.get("respuesta", ""),
+                    "esperado": q.get("esperado") or []}
+            v_juez, votos, just, errs, motivo = juzgar(args.host, args.juez, caso, args.n_juicios,
+                                                       args.num_ctx, args.temperature)
             coincide = (v_juez == r.get("veredicto"))
             disc += 0 if coincide else 1
             reg = {"id": r["id"], "categoria": caso["categoria"],
                    "matcher": r.get("veredicto"), "juez": v_juez, "votos": votos,
                    "coincide": coincide, "justificacion": just[0] if just else "",
-                   "respuesta": caso["respuesta"][:160], "errores_juez": errs}
+                   "respuesta": caso["respuesta"][:160], "errores_juez": errs,
+                   "reclasificado_por": motivo}
             fila_out["casos"].append(reg)
             if not args.json and (not coincide or r.get("veredicto") == "ALUCINACION"):
                 print(f"  {r['id']:9s} {caso['categoria']:16s} matcher={r.get('veredicto'):12s} "
-                      f"juez={v_juez:12s} | {caso['respuesta'][:70]!r}")
+                      f"juez={v_juez:12s} | {caso['respuesta'][:70]!r}"
+                      + (f" [{motivo}]" if motivo else ""))
                 if just:
                     print(f"            juez: {just[0]}")
         n = len(fila_out["casos"])
