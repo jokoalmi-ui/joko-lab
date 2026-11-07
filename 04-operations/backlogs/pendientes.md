@@ -1872,3 +1872,13 @@ No existe: ni acta (`lpa/incidentes/revision-fallos-2026-11-02.md`) ni job. Veri
 - [ ] **Fecha tope 30-11-2026**: decidir entre crear el job mensual o declarar formalmente que el ciclo mensual no existe y que el semanal es el único. Si el 30-11 no hay decisión, se reabre en el ciclo siguiente.
 
 _Registrado 2026-11-06. Backup previo: `pendientes.md.bak-20261106-cp019`._
+
+## 2026-11-07 06:37 CET - DEUDA CON FECHA: la medicion de alucinaciones esta fria (07-11-2026)
+
+Instrumento medido hoy: `04-operations/metrics/alucinaciones_ledger.jsonl` con **23 filas**, **5 modelos** (deepseek/deepseek-r1-distill-qwen-14b, gpt-oss-20b, ibm/granite4.2:8b-q4_K_M, openai/gpt-oss-20b, qwen3.6-35b-a3b_moe) y ultima pasada el **2026-09-14** -> **54 dias sin medir**. El banco (`tools/golden_set_alucinaciones.json`, 27 preguntas), el evaluador y el juez existen; lo que faltaba era la cadencia.
+
+- [x] **Cron semanal creado**: `alucinaciones-revision-semanal` (`750c6d48fd1a`), sabado 18:45, skill `evaluar-alucinaciones`, entrega al chat. Pinneado a `deepseek-v4-flash`/`deepseek` para que un cambio de modelo global no lo apague en silencio (precedente: informe diario, 12 dias de SKIPPED sin aviso).
+- [ ] **Fecha tope 30-11-2026**: comprobar que el ledger tiene **al menos 2 filas nuevas** posteriores al 07-11 (la de la prueba de hoy y la del sabado 14-11). Si no, revisar motor y scheduler y decirlo; la cifra no se hereda.
+- [ ] **Regla de cita**: hasta que exista fila nueva, la respuesta a "tasa de alucinacion actual" es **"sin medicion posterior al 2026-09-14"**. No se presenta 2026-09-14 como el numero de hoy.
+
+_Registrado 2026-11-07 06:37 CET. Backup previo: `pendientes.md.bak-20261107-alucinaciones`. Marca: DEUDA-ALUCINACIONES-20261107._
