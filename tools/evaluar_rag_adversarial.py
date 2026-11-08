@@ -27,6 +27,15 @@ from pathlib import Path
 
 DB_PATH = Path.home() / "joko-lab/.lancedb"
 
+# Umbral de cercanía (distancia coseno). Calibrado el 08-nov-2026 con el banco v2
+# de evaluar_rag.py: los documentos objetivo caen a 0,36 de media y los controles
+# negativos a 0,48-0,65. No es un valor a priori: si el corpus o el modelo cambian,
+# se recalibra midiendo ambos lados (RULE-015).
+UMBRAL_CERCA = 0.45
+
+# Capa del corpus: conocimiento propio del lab vs bibliotecas externas importadas.
+PREFIJO_EXTERNO = "01-knowledge/references/"
+
 # A) OUT-OF-SCOPE: temas que el lab NO conoce (el recall esperado es 0)
 OUT_OF_SCOPE = [
     "receta de paella valenciana tradicional con marisco",
@@ -37,11 +46,18 @@ OUT_OF_SCOPE = [
     "receta de pan de masa madre con harina de espelta",
 ]
 
-# B) TRAMPA SEMÁNTICA: suenan al dominio pero piden algo que el lab NO tiene
-# (palabra clave que NO debería aparecer en top-5)
+# B) TRAMPA SEMÁNTICA: suenan al dominio pero piden algo que el lab NO usa como
+# herramienta propia. Se comprueba si el top-k devuelve material PROPIO que
+# afirme el tema, o si solo aparece en la biblioteca externa importada
+# (01-knowledge/references/), que es otra cosa: el RAG no debe presentar
+# material ajeno como conocimiento del lab.
+# OJO al verificar ausencia: `rg` respeta .gitignore y 01-knowledge/references/
+# está ignorado, así que un `rg` limpio NO prueba que la clave no esté en el
+# corpus. Comprobar contra el índice LanceDB, que es lo que consulta el RAG.
 TRAMPAS = [
-    ("configuracion del router de LangChain para agentes en produccion",
-     "langchain"),
+    ("despliegue de un endpoint de inferencia con autoscaling en AWS SageMaker",
+     "sagemaker"),
+    ("poner un modelo en Vertex AI con cuotas por proyecto", "vertex"),
     ("mejores prompts de ChatGPT para ventas de inmobiliarias",
      "inmobiliaria"),
     ("como usar ChromaDB como base vectorial para documentos legales",
@@ -95,6 +111,7 @@ def main():
     print("    distancia baja = falso positivo: afirma con confianza un tema ajeno al lab)")
     total_a = 0
     dist_a = []
+    externos_a = 0
     for q in OUT_OF_SCOPE:
         vec = model.encode(q, normalize_embeddings=True)
         res = tabla.search(vec).limit(k).to_list()
@@ -102,6 +119,8 @@ def main():
         dist = float(top1.get("_distance", 1.0))
         dist_a.append(dist)
         path = str(top1.get("path", "") or "")
+        if path.startswith(PREFIJO_EXTERNO):
+            externos_a += 1
         # con cosine: distancia < 0.45 = similar; < 0.35 = muy similar
         fp = dist < 0.45
         total_a += 1 if fp else 0
@@ -109,10 +128,13 @@ def main():
         if args.detalle or fp:
             print(f"  {estado} | {q[:50]} -> {path[:60]} | dist={dist:.2f}")
     print(f"  falso-positivos: {total_a}/{len(OUT_OF_SCOPE)} | distancia media top-1: {sum(dist_a)/len(dist_a):.2f}")
+    print(f"  top-1 en biblioteca externa: {externos_a}/{len(OUT_OF_SCOPE)}")
 
     # B) TRAMPA SEMÁNTICA
     print(f"\n=== B) TRAMPA SEMÁNTICA ({len(TRAMPAS)} consultas, top-{k}) ===")
     print("    (correcto = la palabra clave ajena NO aparece en top-k como respuesta)")
+    print(f"    mezcla = clave presente Y distancia < {UMBRAL_CERCA} (cerca); si la clave")
+    print("    aparece en un chunk lejano es coincidencia léxica, no mezcla.")
     print("    mención-contraste ('no usa X', 'vs X', 'en lugar de X') NO es mezcla")
     total_b = 0
     for q, clave in TRAMPAS:
@@ -120,28 +142,35 @@ def main():
         res = tabla.search(vec).limit(k).to_list()
         mezcla = False
         contexto = ""
+        dist_cerca = None
         for r in res:
             texto = r.get("text", "") or ""
             t_norm = _normalizar(texto)
             if _normalizar(clave) in t_norm:
+                dist = float(r.get("_distance", 1.0))
                 # ¿es mención-contraste (el lab NO usa esa tecnología)?
                 t_baja = texto.lower()
                 contraste = any(m in t_baja for m in ["no usa", "no utiliz", "en lugar de", "en vez de", " vs ", "versus", "no depende", "alternativa a", "no es", "equivalente en el lab", "mapeo", "mapa con el lab", "concepto del reel", "comparativa", "diferencia"])
                 if contraste:
                     contexto = "mención-contraste (el lab NO usa esa tecnología)"
-                else:
+                elif dist < UMBRAL_CERCA and str(r.get("path", "")).startswith(PREFIJO_EXTERNO):
+                    contexto = f"material externo en el top-k (dist {dist:.2f}) - no es conocimiento propio"
+                elif dist < UMBRAL_CERCA:
                     mezcla = True
-                    contexto = "mezcla real"
+                    contexto = f"mezcla real (dist {dist:.2f})"
+                    dist_cerca = dist
+                else:
+                    contexto = f"clave en chunk lejano (dist {dist:.2f}): coincidencia léxica"
                 break
         total_b += 1 if mezcla else 0
         if mezcla:
             estado = "⚠️ MEZCLA REAL"
         elif contexto:
-            estado = "✅ mención-contraste (no es mezcla)"
+            estado = f"✅ {contexto}"
         else:
             estado = "✅ no mezcla"
         if args.detalle or mezcla:
-            print(f"  {estado} | {q[:50]} (clave '{clave}') {('| ' + contexto) if contexto else ''}")
+            print(f"  {estado} | {q[:50]} (clave '{clave}')")
     print(f"  mezclas reales: {total_b}/{len(TRAMPAS)}")
 
     # C) PROMPT INJECTION (comprobación de que no hay chunks peligrosos)
