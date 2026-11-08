@@ -265,6 +265,73 @@ def main():
             % (os.path.basename(_fig), _h['filo'], _h['delta'], _h['pct'], _h['v15'], _h['v30']),
             aviso=True)
 
+    # A7 (07-nov-2026): el frasco no se entrega "a sangre". En la ficha Overdose
+    # el recorte llevaba contenido opaco hasta x=0 porque el crop se hizo por
+    # umbral sobre la silueta entera; en el render el frasco se veia pegado y
+    # cortado. Bloqueante: si hay pixeles con alfa > 8 en una banda de 8 px de
+    # cualquier borde, la figura no tiene aire y hay que recortar con pad.
+    if _fig is not None:
+        with Image.open(_fig) as _im:
+            _al = _im.convert('RGBA').split()[-1]
+            _W, _H = _al.size
+            _pix = _al.load()
+            assert _pix is not None
+            _m = 8
+            _bordes = {'izq': 0, 'der': 0, 'arr': 0, 'aba': 0}
+            for _y in range(_H):
+                for _x in range(_m):
+                    if _pix[_x, _y] > 8:
+                        _bordes['izq'] += 1
+                    if _pix[_W - 1 - _x, _y] > 8:
+                        _bordes['der'] += 1
+            for _x in range(_W):
+                for _y in range(_m):
+                    if _pix[_x, _y] > 8:
+                        _bordes['arr'] += 1
+                    if _pix[_x, _H - 1 - _y] > 8:
+                        _bordes['aba'] += 1
+            _sucio = {k: v for k, v in _bordes.items() if v}
+            if _sucio:
+                add(False, 'A7 Figura no a sangre',
+                    '%s %dx%d · opacos en margen %d px: %s (recortar con PAD >= 16)'
+                    % (os.path.basename(_fig), _W, _H, _m,
+                       ' '.join('%s=%d' % (k, v) for k, v in _sucio.items())))
+            else:
+                add(True, 'A7 Figura no a sangre',
+                    '%s %dx%d · margen %d px limpio en los 4 lados'
+                    % (os.path.basename(_fig), _W, _H, _m))
+
+    # A8 (07-nov-2026): la ficha no lleva reflejo ni sombra de suelo en el
+    # frasco. `.reflejo` es un espejo del packshot (scaleY(-1)) recortado a
+    # 16 px de alto: en el render el usuario lo lee como una SEGUNDA BOTELLA.
+    # `.sombra-suelo` (radial-gradient) y los `drop-shadow` de
+    # `.frasco-figura` son el halo que se describe como "sombra". Bloqueante.
+    _reglas = {}
+    for _mm in re.finditer(r'\.([a-z][\w-]*)\s*\{([^}]*)\}', src, re.I):
+        _reglas.setdefault(_mm.group(1).lower(), []).append(_mm.group(2))
+    _css_mal = []
+    for _c in ('reflejo', 'sombra-suelo'):
+        _bloques = _reglas.get(_c, [])
+        if not _bloques:
+            # 08-nov-2026: la AUSENCIA tambien es fallo. Hasta hoy una ficha sin
+            # ninguna de las dos declaraciones pasaba A8 con "0/2 declarados":
+            # el gate solo veia la regla escrita y activa, nunca la que falta.
+            _css_mal.append('.%s sin declarar' % _c)
+            continue
+        for _b in _bloques:
+            if 'display:none' not in _b.replace(' ', ''):
+                _css_mal.append('.%s activo' % _c)
+                break
+    for _b in _reglas.get('frasco-figura', []):
+        _bb = _b.replace(' ', '')
+        if 'drop-shadow' in _bb and 'filter:none' not in _bb:
+            _css_mal.append('drop-shadow en .frasco-figura')
+            break
+    add(not _css_mal, 'A8 Sin reflejo ni sombra CSS',
+        ', '.join(_css_mal) if _css_mal else
+        'reflejo y sombra-suelo ocultos (%d/%d declarados), sin drop-shadow'
+        % (sum(1 for _c in ('reflejo', 'sombra-suelo') if _reglas.get(_c)), 2))
+
     # A6 (27-oct-2026): la linea de aplicacion/ocasion del pie (.donde) se
     # documento en la plantilla v5 y no estaba en el gate: una ficha podia
     # salir sin ella, o con el texto partido en dos lineas, sin que nadie lo
