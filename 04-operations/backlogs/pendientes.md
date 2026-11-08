@@ -1882,3 +1882,51 @@ Instrumento medido hoy: `04-operations/metrics/alucinaciones_ledger.jsonl` con *
 - [ ] **Regla de cita**: hasta que exista fila nueva, la respuesta a "tasa de alucinacion actual" es **"sin medicion posterior al 2026-09-14"**. No se presenta 2026-09-14 como el numero de hoy.
 
 _Registrado 2026-11-07 06:37 CET. Backup previo: `pendientes.md.bak-20261107-alucinaciones`. Marca: DEUDA-ALUCINACIONES-20261107._
+
+## 2026-11-07 07:01:14 CET - DECISION: no actualizar Hermes hasta que exista version estable
+
+MARCA: DECISION-UPDATE-HERMES-20261107
+
+- **Decision del usuario (07-11-2026)**: la actualizacion de Hermes y su plan se ejecutan **cuando exista una version estable a la que actualizar**. Mientras, no se toca Hermes.
+- **Estado medido**: repo `~/.hermes/hermes-agent` en `main` con ultimo commit `bb834a2cb3` (18-oct-2026); `.update_check` del 30-sep dice `0.21.3` y `11711` commits por detras (dato de hace 38 dias, no es el estado de hoy). La version exacta instalada no esta acreditada: se calcula al arrancar (`hermes --version`) y no se ha ejecutado.
+- **Version disponible**: `v0.23.0` (The Hearth Release), publicada 05-nov-2026 21:32; no prerelease, 2 dias de vida.
+- **Criterios para considerarla estable**: (1) tag no prerelease; (2) 5 dias o mas desde su publicacion; (3) 5 dias seguidos sin salidas `UNCLEANLY` del gateway en la revision LPA; (4) si sale antes una 0.23.1 / 0.24.0 de parche, cuenta como candidata y reinicia los dos relojes.
+- **Evidencia RULE-016 (por que no ahora)**: revision de fallos del 06-11 registra 10 salidas `UNCLEANLY` del gateway en 7 dias consecutivos (una por dia, `suspected_oom=False` en las 10) mas la incidencia del 03-11 (`Restart-safe cron worker exited with status -15 ... durable terminal state` desconocido). El requisito de 5 dias sin incidencias no se cumple.
+- **Riesgo del salto 0.21.x -> 0.23.0**: cambio de arquitectura (un gateway dueno de cada sesion, Webapp en navegador, plugins con autoactualizacion, delegacion pluggable, set de skills reducido). Afecta a los 66 jobs de cron, 168 skills, hooks y `hermes-gateway.service`.
+- **Lo que NO se hace sin nueva autorizacion**: `hermes update`, reinicio de `hermes-gateway.service`, ni cambios en el repo instalado.
+- **Disparador de revision**: al publicarse la siguiente release no prerelease con 5 dias de vida y con 5 dias sin `UNCLEANLY`; se revisa en la revision semanal LPA y, como muy tarde, cuando aparezca una 0.23.x de parche.
+
+_Registrado 2026-11-07 07:01:14 CET por append aditivo con backup previo. Marca: DECISION-UPDATE-HERMES-20261107._
+
+## 2026-11-07 - PENDIENTE: apagado programado del equipo a las 23:00
+
+MARCA: PENDIENTE-APAGADO-2300-20261107
+
+- **Peticion del usuario (07-11-2026)**: apagar el equipo todos los dias a las 23:00. "Anota y lo hacemos manana."
+- **Equipo**: HP EliteDesk 800 G5 y es el MISMO PC del lab (confirmado por el usuario). Apagarlo para n8n, Docker, Hermes y el gateway de Telegram.
+- **Encendido**: lo pone la BIOS, `Advanced > Scheduled Power-On` (dias de la semana + hora, formato 24 h). No existe apagado programado en BIOS; el apagado va por timer de systemd.
+- **Ficheros preparados, SIN instalar**: `~/.hermes/cache/scratch/apagado-2300/apagado-diario.service` y `apagado-diario.timer` (`OnCalendar=*-*-* 23:00:00`, `Persistent=false`, `shutdown -h +1` con aviso y margen de cancelacion).
+- **Comprobacion previa pendiente**: `systemctl list-timers --all --no-pager` y los crons de Hermes con horario >= 23:00, para no cortar un job a media escritura. El consolidador arranca a las 22:30 y deberia terminar antes.
+- **Instalacion pendiente** (sudo, no ejecutada): copiar los dos ficheros a `/etc/systemd/system/`, `daemon-reload` y `enable --now apagado-diario.timer`.
+- **No hecho en la sesion del 07-11**: nada instalado, BIOS sin tocar, ningun apagado programado. Hora de registro no verificada con `date` en ese turno.
+
+_Registrado 2026-11-07 por append aditivo. Backup previo: pendientes.md.bak-20261107-apagado. Marca: PENDIENTE-APAGADO-2300-20261107._
+
+## 2026-11-08 - IMPLEMENTADO: reflejo/sombra del frasco desactivados en la plantilla canónica
+
+- **Qué**: `templates/plantilla-ficha-v5.html` de la skill `perfume-del-dia` — `.reflejo { display:none }`, `.sombra-suelo { display:none }` y `filter:none` en `.frasco-figura`. Backup al lado: `plantilla-ficha-v5.html.bak-20261108`.
+- **Por qué**: la regla del 07-11-2026 («la ficha no lleva reflejo ni sombra de suelo») estaba aplicada a mano en cada HTML; el gate A8 de `validar_ficha_preenvio.py` la exige en el bloque CSS de la PLANTILLA y la busca con el patrón `.clase {`, así que una regla combinada (`.reflejo, .sombra-suelo { display:none }`) en el CSS v8 NO la satisface: hay que tocar el bloque original.
+- **Verificado**: `validar_ficha_preenvio.py --fecha 2026-11-08` → 17/17, FALTA 0, `A8` en verde (antes bloqueaba con `[FALTA] A8`).
+- **Coste medido**: al quitar el `drop-shadow` el cuerpo del frasco cae a 1,95:1 (Mefisto es blanco lechoso, L 229) con el tapón a 4,40:1 y el fondo a L 165,3.
+
+_Registrado 2026-11-08 por append aditivo con backup previo. Marca: IMPLEMENTADO-REflejo-SOMBRA-20261108._
+
+## 2026-11-08 - CERRADO: HyDE descartado como estrategia de recuperacion
+
+- **Que**: `tools/experimento_hyde.py` ejecutado completo con `glm-4.6v-flash` en LM Studio, banco v2 (6 consultas, ground truth por ruta, top-5, embeddings BGE-M3 locales en GPU).
+- **Resultado medido**: clasico **6/6** recall | HyDE **4/6**. Mejoras 0, empeora 2, iguales 4. Latencia media clasico **2,2 s** (la primera, 12,1 s, incluye la carga del modelo) frente a **65,3 s** de HyDE.
+- **Por que falla**: en las dos consultas donde pierde, el VLM inventa el documento hipotetico — un "Resumen de Resultados" de EXP-HEL que no existe, y literalmente "Documento Ficticio: Seguridad del Sistema de Mesa Redonda Inteligente Sophia". La hipotesis alucinada desplaza el embedding fuera del documento real.
+- **Decision**: HyDE NO se adopta. El clasico ya esta en 6/6; no queda margen que HyDE pueda recuperar y cuesta ~30x mas.
+- **Verificado**: log `~/.hermes/cache/scratch/hyde-full.log` con `EXIT=0` y el resumen del propio script (no de un informe intermedio).
+
+_Registrado 2026-11-08 por append aditivo con backup previo. Marca: DEC-HYDE-DESCARTADO-20261108._

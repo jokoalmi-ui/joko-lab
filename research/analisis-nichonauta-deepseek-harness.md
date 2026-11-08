@@ -54,3 +54,30 @@ valida el patrón (agente + modelo local + telemetría) que el lab ya implementa
 *Dato útil reutilizable: la telemetría de cache/tokens que muestra el Harness es
 exactamente lo que el proxy :9911 ya registra en el lab (TTFB, tokens, coste) —
 validación externa de la dirección de observabilidad del lab.*
+
+## Delta 2026-11-08 — la UI como plugin (post @ia.blu)
+
+**Marca:** `DELTA-DSH-UI-PLUGIN-20261108`
+**Fuente:** instagram.com/p/Dfe0pEOHSzC (@ia.blu, 08-nov-2026, 32 likes, 0 comentarios).
+Caption verificado por doble vía (`og:description` + `body.innerText`).
+
+**Lo nuevo respecto a este análisis:** en el vídeo de agosto el «modo creador» se
+documentó como estilo OpenCode/P-agent. Ahora el creador **escribe plugins que
+modifican la app, incluida su propia interfaz** — demos del canal: temporizador de
+cuenta regresiva, juego de mundo abierto jugable, visor interactivo de modelos 3D,
+editor de vídeo, panel de estadísticas y lector de papers.
+
+**Verificado en fuente primaria** (README del repo + web oficial, 08-nov-2026):
+arquitectura `everything-is-a-plugin` sobre Cordis; licencia **MIT**; **developer
+preview** con el aviso literal «THERE WILL BE COMPATIBILITY-BREAKING CHANGES»;
+arranque con `npx @deepseek-ai/dsh web` en `http://127.0.0.1:3080`. Si la UI es un
+plugin más, que un agente la reescriba por conversación es consecuencia de la
+arquitectura, no una función aparte.
+
+**NO verificado:** los seis ejemplos concretos ni el «varias rondas de ajustes»
+(demos de terceros, sin artefacto que inspeccionar). El cierre del caption
+(«comenta NEWSLETTER y te enviamos el enlace») es captación, no contenido.
+
+**Veredicto sin cambio: BAJO para el lab.** Hermes ya cubre plugins, skills, temas
+y hooks; no hay nada que portar. El delta se anota para no re-analizar el recurso
+una tercera vez por el mismo motivo.
