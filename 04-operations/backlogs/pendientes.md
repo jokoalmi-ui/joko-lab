@@ -1930,3 +1930,28 @@ _Registrado 2026-11-08 por append aditivo con backup previo. Marca: IMPLEMENTADO
 - **Verificado**: log `~/.hermes/cache/scratch/hyde-full.log` con `EXIT=0` y el resumen del propio script (no de un informe intermedio).
 
 _Registrado 2026-11-08 por append aditivo con backup previo. Marca: DEC-HYDE-DESCARTADO-20261108._
+
+## 2026-11-09 - NOTA DE ESTADO: la deuda de cache ya estaba abierta desde el 28-10; el post del 09-11 no la cambia
+
+MARCA: DEUDA-CACHE-LLM-20261109
+
+- **Correccion de mi propio triaje (09-11)**: al triar el post `@theagenticaiengineer` <<6 Ways to Reduce LLM Costs>> afirme que la cache no aparecia en este fichero. Es **falso**: `grep -in -E cach` devuelve 39 lineas. El primer grep uso una clase de caracteres con un no-ASCII dentro y no caso nada; el patron valido es sin acentos. La entrada ya existia: `2026-10-28 14:56:09 CET - Candidato: guardas para una cache semantica` (linea 1724, MARCA `candidato-cache-semantica-guardas-20261028`).
+- **Lo ya medido alli (se conserva literal, no se reescribe)**: `tools/context_builder.py` tiene cache **exacta** (sha256 de `query+top_k`, TTL 300 s, disco en `~/tmp/rag-cache`); `tools/local_cloud_orchestrator.py` no cachea nada; y falta el conteo de consultas repetidas y la medicion de falsos positivos.
+- **Que aporta el post del 09-11**: nada. Su punto 3 (caching) es exactamente lo ya anotado el 28-10, sin cifras, sin guardas y sin mecanismo. Los otros cinco puntos ya estan cubiertos en el lab (`skill-compaction`, `ai-router`, RAG 61.733 filas, `least-privilege-lab`, proxy `:9911`).
+- **Estado del pendiente (sin cambios)**: sigue pendiente solo el paso de **medir** (replay de consultas reales del lab) antes de fijar cualquier umbral, tal como pedia la entrada del 28-10 (RULE-015). No se implementa nada y no se toca ni `context_builder.py` ni el orquestador.
+- **No hecho**: ninguna modificacion de codigo, ningun cambio de umbral, ningun commit.
+
+_Registrado 2026-11-09 07:55:04 CET por append aditivo con backup previo. Marca: DEUDA-CACHE-LLM-20261109._
+
+## 2026-11-09 - HALLAZGO: tres tools de ASR con el mismo modelo y etiquetas que no cuadran
+
+MARCA: ASR-3TOOLS-20261109
+
+- **Origen**: triaje del post de `@damienbenveniste` (08-11-2026) sobre decodificadores ASR (CTC vs transducers vs seq2seq con atencion). El post no aporta tecnica implementable: el lab transcribe offline, no hace streaming, y el post no trae cifras ni repo propio. Los tres hallazgos salen del cruce con el codigo, no del post.
+- **Hallazgo 1 - tres implementaciones del mismo trabajo**: `tools/analizar_reel_completo.py`, `tools/transcribir_youtube_fallback.py` y `tools/extraer_audio_y_transcribir.py` cargan todas `faster-whisper` con el modelo **small** y `beam_size=5`; `float16` en CUDA e `int8` en CPU. Ninguna referencia desde `~/.hermes/skills/` (grep sobre skills, scripts y cron: solo aparecen en backlogs y tarjetas de sesion) -> estan sin documentar en la skill `video-transcription`.
+- **Hallazgo 2 - etiquetas que mienten (verificado por linea)**: `tools/transcribir_youtube_fallback.py:55` imprime <<Whisper base en GPU>> y la linea 56 carga `small`; `tools/extraer_audio_y_transcribir.py:7` dice <<modelo base ~142MB ya instalado>> y las lineas 68/71 cargan `small`. En la cache HF hay dos modelos: base (142 MB) y small (464 MB).
+- **Hallazgo 3 - el parametro que domina el coste es `beam_size=5`**: Whisper es seq2seq con decoder autoregresivo (un paso por token, x5 con beam search). Si algun dia se quiere acelerar, el orden es bajar `beam_size` y medirlo antes que cambiar de motor. **No medido**: no hay cifras de duracion de transcripcion en este lab.
+- **Que NO se hace**: no se consolida nada, no se borra ninguna tool, no se cambia ningun modelo ni `beam_size`. Consolidar exige decidir cual de las tres queda y verificar quien la usa de verdad.
+- **Pendiente propuesto (no ejecutado)**: (1) leer las tres y quedarse con una, la que tenga rodaje real reciente; (2) corregir los dos mensajes/docstrings que dicen <<base>>; (3) documentar la superviviente en la skill `video-transcription`.
+
+_Registrado 2026-11-09 08:01:52 CET por append aditivo con backup previo. Marca: ASR-3TOOLS-20261109._
