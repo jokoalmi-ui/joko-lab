@@ -1955,3 +1955,103 @@ MARCA: ASR-3TOOLS-20261109
 - **Pendiente propuesto (no ejecutado)**: (1) leer las tres y quedarse con una, la que tenga rodaje real reciente; (2) corregir los dos mensajes/docstrings que dicen «base»; (3) documentar la superviviente en la skill `video-transcription`.
 
 _Registrado 2026-11-09 08:01:52 CET por append aditivo con backup previo. Marca: ASR-3TOOLS-20261109._
+
+## 2026-11-09 18:25:24 CEST - Listado trabajo/oficina de la colección con evidencia externa
+
+MARCA: oficina-evidencia-20261109
+
+- **Qué se hizo**: cruzar las 302 fichas del inventario unificado (botellas + decants)
+  contra 67 URLs descargadas (50 útiles >20 KB con HTTP 200) y 8 hilos de foro
+  (Fragrantica ES, Fragrantica COM, Parfumo) más Reddit r/fragrance, r/Colognes,
+  r/ScentHeads y listas editoriales de blogs. Fuente de datos: BD
+  `/home/jokoalmi/perfume-ia/data/coleccion.db` (solo lectura).
+- **Criterio de inclusión**: mención EXPRESA en contexto de oficina/trabajo.
+  Se descartaron las coincidencias de barras laterales de «más populares» y las
+  anti-recomendaciones.
+
+**22 perfumes de la colección citados como aptos para trabajo/oficina**
+
+Fuerza alta (cita directa):
+- Encre Noire Sport, Lalique, botella — «la versión más pulcra y formal de la línea…
+  me la pongo para ir a la oficina» (fragrantica.es)
+- Individuel, Montblanc, botella — «olor no intrusivo y a limpio» (fragrantica.es)
+- Reflection Man, Amouage, botella — «estas son las que yo uso en oficina» (fragrantica.es)
+- Oud Wood, Tom Ford, botella — «yo uso en oficina» / «for meetings in fall winter»
+- Bravo Monsieur, El Ganso, botella — lista «perfumes para trabajo oficina otoño-invierno»
+- Dior Homme (2005), Dior, botella — «la uso a diario para la oficina» + honorable mention
+  del artículo Best in Show: Workplace (Fragrantica)
+- Ambre Khandjar, Une Nuit Nomade, decant — «office friendly» (Parfumo)
+- Esencia, Loewe, decant — «le pegaría más a un oficinista o banquero» (fragrantica.es)
+
+Fuerza media (lista editorial de oficina o comentario de trabajo):
+- Acqua di Giò pour Homme EDT, Armani, botella+decant — 10 listas; foro ES: «limpia»
+- L'Homme, Prada, botella — 10 listas de oficina
+- Acqua di Giò Profumo, Armani, decant — 6 listas de oficina
+- L'Homme Intense, Prada, botella — lista «perfume trabajo» + thelastspritz
+- Luna Rossa Carbon, Prada, botella — «the refined option… clean metallic lavender»
+- Voyage, Nautica, botella — «the cheapest safe answer… fresh, clean»
+- Silver Mountain Water, Creed, botella — lista office (thefragranceprofile)
+- Burlington 1819, Roja Parfums, decant — misma lista office
+- Carved Oud, Thameen, botella+decant — «ideal for starting your workday»
+- Ganymede, Marc-Antoine Barrois, botella — «office-friendly powerhouse» (Reddit)
+- Body Kouros, YSL, botella — «samples I wore to work that got compliments»
+- Molecule 01 + Iris, Escentric, decant — Top 10 office; OJO: variante +Iris, no el original
+
+Fuerza baja (una sola mención):
+- Etruscan Water, Francesca Bianchi, botella — en lista de un post de oficina, sin frase propia
+- Mefisto Gentiluomo, Casamorati, botella — una lista argentina de «perfumes para entrevistas»
+
+**Lo que las fuentes NO respaldan**
+- De las 87 fichas con `situaciones = oficina` en la BD, solo 6 coinciden con cita externa
+  (Reflection Man, Bravo Monsieur, Encre Noire Sport, L'Homme, Carved Oud, Oud Wood).
+  Las otras 81 son criterio propio, no de foros: quedan anotadas como listado pendiente.
+- Citados en el corpus pero como ejemplo de lo CONTRARIO (proyectan demasiado):
+  Baccarat Rouge 540, y Bois Imperial / By the Fireplace / Naxos / Vibrato que solo
+  aparecen en barras de «populares», no como recomendación de oficina.
+
+**Límite del método**: el cruce es por nombre normalizado (sin tildes, sin tokens de
+concentración) e incluye revisión manual de los fragmentos; el riesgo de falso positivo
+por nombre parcial (Sauvage vs Sauvage Elixir) no está medido con control negativo.
+
+**Decisión de uso (09-11)**: probar los primeros días y decidir después qué ponerse.
+No se escribe nada en la BD de la colección.
+
+## 2026-11-09 18:42:06 CEST - Pipeline imagen→3D local (Z-Image-Turbo + TRELLIS.2): nodos ya instalados, faltan pesos
+
+MARCA: zimage-trellis-20261109
+
+Origen: vídeo de Nichonauta «Buenos gráficos en Juegos Indie con IA — Cómo Mejorar Modelos 3D usando Blender»
+(youtu.be/2TngB8nJiMs, ~11 min). Serie: juego indie en Godot con OpenCode + MCP a Blender.
+
+**Lo que propone el vídeo (método, no opinión)**
+- Pide un plan en un `.md` y lo ejecuta fase por fase (fase 0, 1, 2), nunca todo de golpe.
+- Mejoró modelos 3D dejando que el modelo abriera los assets en Blender y los rehiciera.
+- Aviso del autor: el LLM no usa Blender como un humano; a veces mete modelos dentro de otros.
+- Alternativa sin Blender: **Z-Image-Turbo** genera una imagen que simula el modelo 3D y
+  **TRELLIS.2** la convierte en malla 3D real. Ambos open weights y en local.
+- Comparativa de modelos: Qwen 3.8 Flash Next resolvió bien el uso de Blender; Qwen 3.8 27B
+  se inventaba problemas de malla y no apuntaba la cámara. Falla en la HERRAMIENTA, no en la tarea.
+- Tesis final: al juego le falta jugabilidad, no gráficos.
+
+**Estado real en este lab (verificado 09-11)**
+- `~/ComfyUI/comfy_extras/nodes_zimage.py` y `nodes_trellis2.py` YA existen: soporte nativo,
+  sin custom nodes. Blueprints incluidos: Text to Image (Z-Image-Turbo/Base), ControlNet,
+  Depth, Canny, Pose, Image Upscale.
+- Pesos NO descargados: `models/checkpoints` solo tiene `sd_xl_base_1.0.safetensors`.
+- Blender NO instalado (`which blender` vacío): la vía Blender-vía-MCP no es replicable tal cual.
+
+**Tamaños reales en HuggingFace (API de árbol, 09-11)**
+- `Comfy-Org/Z-Image-Turbo` (9,7 M descargas): UNet bf16 12,31 GB / int8 6,20 GB / nvfp4 4,51 GB;
+  text encoder qwen_3_4b 8,04 GB bf16 / 5,63 fp8_mixed / 3,48 fp4_mixed. Repo 40,67 GB.
+- `Comfy-Org/TRELLIS.2`: 10,34 GB bf16 / 5,25 GB int8, + dino_v3_vit_l 1,21 GB + VAE shape 1,10 GB + VAE texture 0,95 GB.
+- Combinación mínima viable en 12 GB: Z-Image int8 6,20 + text encoder fp4 3,48 = 9,68 GB;
+  TRELLIS int8 5,25 + 1,21 + 1,10 + 0,95 = 8,51 GB.
+
+**Restricción de disco (bloqueante)**
+- `/` tiene 468 GB con **28 GB libres (94 % usado)** y los 48 GB de modelos de ComfyUI ya viven en `/home`.
+- `/mnt/ssd_ia_datos` tiene **128 GB libres (70 %)**.
+- Antes de descargar nada: mover el destino de modelos de ComfyUI al SSD vía `extra_model_paths.yaml`.
+- Descarga total estimada de la combinación mínima: ~18 GB.
+
+**Decisión**: no se descarga nada todavía. Queda como futurible con los pesos elegidos y el
+orden de operaciones (mover modelos al SSD → descargar int8/fp4 → probar Z-Image solo → añadir TRELLIS).
