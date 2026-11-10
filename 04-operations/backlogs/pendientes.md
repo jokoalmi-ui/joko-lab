@@ -2055,3 +2055,28 @@ Origen: vídeo de Nichonauta «Buenos gráficos en Juegos Indie con IA — Cómo
 
 **Decisión**: no se descarga nada todavía. Queda como futurible con los pesos elegidos y el
 orden de operaciones (mover modelos al SSD → descargar int8/fp4 → probar Z-Image solo → añadir TRELLIS).
+
+## 2026-11-09 22:19:28 CEST — TRELLIS.2 con el frasco de la ficha 915: geometría buena, textura sin etiqueta
+
+MARCA: TRELLIS-VAMBER-20261109
+
+- **Hecho**: ejemplo imagen→3D con el frasco de Clive Christian V: Amber Fougère (ficha 09-11, id 915). Entrada `vamber_figura_cuadro.png` (632x1634 escalado a 950 px de alto sobre lienzo blanco 1024x1024, 430.426 B). Sin BiRefNet: el PNG de la ficha ya trae alfa útil.
+- **Medido**: GLB `trellis_full_00003_.glb` 51.820.832 B, glTF v2 con tamaño declarado = real, 1 malla / 1 material, 451.644 vértices / 699.320 triángulos, 4 mapas PBR (baseColor 4096, metallicRoughness 4096, normal 4096, occlusion 2048). prompt_id `401a89a9`, 970,4 s de reloj / 968,9 s de ejecución. VRAM al arrancar 1.964 / 12.282 MiB.
+- **Mapas extraídos**: `MeshTextureToImage` (nodo 911, prompt_id `a0d1104a`, 9,0 s con los 36 nodos en caché) → `vamber_map_0_basecolor` 4096x4096 9.832.691 B, `_1_metal` 4096, `_2_rough` 4096, `_3_normal` 4096, `_4_occlusion` 2048.
+- **Verificación visual** (glm-4.6v-flash por API directa en `:1234`; `vision_analyze` apunta a `google/gemma-4-12b-qat`, que no estaba cargado). Foto real: cuerpo rectangular de bordes redondeados, vidrio marrón, tapón CORONA DORADO, etiqueta presente y legible. Render texturizado: mismo cuerpo, cristal ámbar, tapón descrito como cristal translúcido con ornamento y bola, SIN etiqueta visible. Render sólido: malla cerrada, sin agujeros ni fusiones, corona con esferas. Atlas UV: formas abstractas, sin texto ni logos.
+- **Causa**: el color no se proyecta desde la foto, se infiere. `comfy_extras/nodes_trellis2.py:462` codifica la imagen en `global_512` y `global_1024` y `BakeTextureFromVoxel` hornea esa deducción a 4096. El mapa grande no aporta información nueva: el texto pequeño y los metales brillantes se pierden antes del bake.
+- **Métrica descriptiva** (no validada, sin umbral a priori): en el atlas UV, baseColor ocupación 100 % (no hay zona vacía), gradiente medio 0,00993, contraste std 0,0712; normal ocupación 49,1 %, gradiente 0,01621, contraste 0,3369. El color es 4,7x más plano que el relieve.
+- **Mejorable, con coste declarado**: (A) segundo material dorado para el tapón segmentando por altura, script propio sobre el GLB, barato; (B) proyectar la foto en ortográfica frontal sobre la UV para recuperar la etiqueta, script propio porque en ComfyUI no hay nodo de proyección (`Painter` es de UI). **NO mejora**: subir `texture_size` a 8192 (ya está en 4096 y solo amplía), bajar a 150.000 triángulos (quita relieve), más pasos de sampler.
+- **Lo que NO se puede afirmar**: que (B) funcione sin escribirlo y medirlo; que la figura de la ficha sea foto real y no una ilustración (el VLM dice tapón dorado y etiqueta legible, sin fuente externa); que 699.320 triángulos y los tiempos 970,4 s / 9,0 s sean estables entre ejecuciones.
+
+## 2026-11-10 20:20:07 CEST — RAG: el índice ANN, no el documento, causaba los fallos de recall
+
+MARCA: HALLAZGO-RAG-ANN-20261110
+
+- **Hallazgo**: el índice vectorial de `.lancedb` (IvfHnswFlat, 62.088 filas, creado hoy 07:01 por el reindex) busca en modo aproximado con `ef` por defecto y se deja el documento correcto. No es el troceado ni el documento: EXP-HEL-001 tiene 13 fragmentos indexados y con `k=20` sale primero.
+- **Medido (mismo embedding, banco v2, k=5)**: sin `refine_factor` → 5/6 aciertos, MRR 0,542, foco 3,5, 110 ms. Con `refine_factor(20)` → 6/6, MRR 0,708, foco 3,75, 97 ms. Repetido 3/3 veces: sin refine el objetivo no aparece en el top-5; con refine sale en posición 1.
+- **Adversarial tras el cambio**: 0/6 falsos positivos out-of-scope (distancia media top-1 0,56; 4/6 en biblioteca externa), 0/5 mezclas semánticas, 0/3 inyecciones. Comparativa: el 24-ago marcaba 0/6 + 0/4 + 0/3 → sin regresión; el banco B creció de 4 a 5 consultas.
+- **Consecuencia**: el servidor MCP del RAG (`~/mcp-lancedb/server/lancedb_mcp.py`, línea 53) buscaba sin `refine_factor`: el RAG de uso diario servía resultados aproximados. Parcheado.
+- **Cambios aplicados**: `tools/evaluar_rag.py` (REFINE=20 + MRR@k + foco + nota de por qué no se implementa precision@k), `tools/evaluar_rag_adversarial.py` (2 búsquedas), `~/mcp-lancedb/server/lancedb_mcp.py` (1 búsqueda). Backups: `tools/*.py.bak-20261110` y `lancedb_mcp.py.bak-20261110`.
+- **Pendiente**: los 3 procesos del MCP siguen vivos con el código anterior (13 h de uptime); el cambio entra en el próximo arranque. No se reiniciaron.
+- **Lo que NO se puede afirmar**: el efecto medido extremo a extremo a través del MCP (se deduce de su código, no se ejecutó contra él); el valor de `ef` por defecto de esta versión de LanceDB (no se leyó de la librería). Sin commit.

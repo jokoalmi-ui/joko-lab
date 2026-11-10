@@ -114,7 +114,8 @@ def main():
     externos_a = 0
     for q in OUT_OF_SCOPE:
         vec = model.encode(q, normalize_embeddings=True)
-        res = tabla.search(vec).limit(k).to_list()
+        # refine_factor: el ANN con ef por defecto infravalora el top-1 (medido 10-11)
+        res = tabla.search(vec).refine_factor(20).limit(k).to_list()
         top1 = res[0] if res else {}
         dist = float(top1.get("_distance", 1.0))
         dist_a.append(dist)
@@ -139,7 +140,7 @@ def main():
     total_b = 0
     for q, clave in TRAMPAS:
         vec = model.encode(q, normalize_embeddings=True)
-        res = tabla.search(vec).limit(k).to_list()
+        res = tabla.search(vec).refine_factor(20).limit(k).to_list()
         mezcla = False
         contexto = ""
         dist_cerca = None
