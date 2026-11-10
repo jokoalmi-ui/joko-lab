@@ -2080,3 +2080,15 @@ MARCA: HALLAZGO-RAG-ANN-20261110
 - **Cambios aplicados**: `tools/evaluar_rag.py` (REFINE=20 + MRR@k + foco + nota de por qué no se implementa precision@k), `tools/evaluar_rag_adversarial.py` (2 búsquedas), `~/mcp-lancedb/server/lancedb_mcp.py` (1 búsqueda). Backups: `tools/*.py.bak-20261110` y `lancedb_mcp.py.bak-20261110`.
 - **Pendiente**: los 3 procesos del MCP siguen vivos con el código anterior (13 h de uptime); el cambio entra en el próximo arranque. No se reiniciaron.
 - **Lo que NO se puede afirmar**: el efecto medido extremo a extremo a través del MCP (se deduce de su código, no se ejecutó contra él); el valor de `ef` por defecto de esta versión de LanceDB (no se leyó de la librería). Sin commit.
+
+## 2026-11-10 20:46:51 CET — Cierre del bloque RAG-ANN: commit hecho, ciclo del gateway bloqueado desde dentro
+
+MARCA: CIERRE-RAG-ANN-20261110
+
+- **Commit**: `3da598a` (árbol `a9f9d8673722…`), gate `[joko-rdd] OK — recibo válido (aprobado por: joseba)`. 3 ficheros, 48 inserciones, 5 borrados. **Sin push**: `origin/master...master` deja el commit por delante.
+- **Qué entró**: `tools/evaluar_rag.py` (REFINE=20, MRR@k, foco, nota de por qué no se implementa precision@k), `tools/evaluar_rag_adversarial.py` (2 búsquedas) y este `pendientes.md`. El diff trae DOS bloques: el TRELLIS-VAMBER del 09-11, que seguía sin commitear, y el HALLAZGO-RAG-ANN del 10-11.
+- **Corrige una línea del bloque anterior**: allí decía «Sin commit»; el commit es `3da598a`. Se deja la línea original y esta la enmienda (RULE-023: lo caducado se marca, no se borra).
+- **Ciclo del gateway: NO ejecutado.** El runtime lo bloquea desde dentro del propio gateway con el argumento de que el SIGTERM del servicio propagaría a los procesos hijos antes de terminar la tarea. Se intentó por dos vías (unidad de usuario y script lanzado en cgroup propio); el guardarraíl inspecciona también el script referenciado y bloquea ambas. La orden de ciclo hay que lanzarla desde una shell fuera del gateway, o con los comandos de barra del chat.
+- **Por qué hacía falta**: los 3 procesos del MCP (`lancedb_mcp.py`, PIDs 4005 / 5610 / 5694, 13 h 40 min de uptime) son hijos del gateway (MainPID 2544, arrancado hoy 07:04:31). Mientras no se relancen, el RAG de uso diario sigue sirviendo resultados aproximados.
+- **Vía menos invasiva**: `/reload-mcp` en el chat recarga solo los servidores MCP, que es lo único que hace falta para que el `refine_factor` entre en efecto y sin cortar la sesión. La alternativa es el comando de barra de ciclo del gateway, que drena las ejecuciones activas antes.
+- **Lo que NO se puede afirmar**: que `/reload-mcp` relance los 3 procesos con el código nuevo (no ejecutado); que el ciclo completo del gateway deje el servicio limpio (no ejecutado).
