@@ -135,6 +135,12 @@ def guardar_sidecar(hashes: Dict[str, str]) -> None:
 def _excluir_directorio(root: str, d: str) -> bool:
     return (d.startswith(".") or d == "node_modules" or
             (root.endswith("04-operations") and d == "decisions") or
+            # Sesiones fuera del RAG de conocimiento (11-nov-2026): 20.548 de las
+            # 62.110 filas eran transcripciones que copaban el top-k sin responder
+            # a consultas documentales. Las filas ya indexadas caen solas en
+            # `eliminados` de _clasificar_cambios (sidecar - hashes actuales).
+            # Para buscar en sesiones: session_search (FTS sobre la propia BD).
+            (root.endswith("04-operations/metrics") and d == "sesiones") or
             d == "verification" or
             d.endswith(".BACKUP") or
             ".bak" in d)
