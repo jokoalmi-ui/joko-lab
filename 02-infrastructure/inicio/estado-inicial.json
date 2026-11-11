@@ -1,7 +1,7 @@
 {
-  "timestamp": "2026-11-06T18:12:47+01:00",
-  "fecha": "2026-11-06",
-  "hora": "18:12:48 CET",
+  "timestamp": "2026-11-11T17:00:58+01:00",
+  "fecha": "2026-11-11",
+  "hora": "17:00:59 CET",
   "checks": {
     "total": 8,
     "pass": 8,
@@ -15,8 +15,8 @@
   },
   "git_joko": {
     "branch": "master",
-    "commit": "3ce6e7d",
-    "dirty_files": 41
+    "commit": "ad96d3d",
+    "dirty_files": 49
   },
   "docker": {
     "running": 4,
@@ -27,17 +27,17 @@
     "uv_installed": 1,
     "cargo_installed": 1,
     "node_installed": 1,
-    "python_version": "Python 3.14.7"
+    "python_version": "Python 3.14.9"
   },
   "path": {
     "has_local_bin": 1,
     "has_cargo_bin": 1,
-    "full": "/home/jokoalmi/.cargo/bin:/home/jokoalmi/.local/bin:/home/jokoalmi/.hermes/tools/npm-12.0.2-linux-x64/bin:/home/jokoalmi/.hermes/tools/node-26.7.0-linux-x64/bin:/home/jokoalmi/.hermes/tools/agent-browser-0.26.0-linux-x64/bin:/home/jokoalmi/.hermes/tools/cua-driver-0.21.0-linux-x64:/home/jokoalmi/.hermes/tools/ffmpeg-9.0.1-linux-x64/bin:/home/jokoalmi/.hermes/tools/npm-12.0.2-linux-x64/bin:/home/jokoalmi/.hermes/tools/node-26.7.0-linux-x64/bin:/home/jokoalmi/.hermes/tools/ripgrep-15.2.0-linux-x64:/home/jokoalmi/.hermes/tools/python-3.14.7+20260901-linux-x64/bin:/home/jokoalmi/.hermes/hermes-agent/.hermes/bin:/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/7c2fe9a7a0d44a48b27d6d4b0aa87980/venv/bin:/home/jokoalmi/.local/bin:/home/jokoalmi/bin:/home/jokoalmi/.local/bin:/home/jokoalmi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/jokoalmi/.lmstudio/bin:/home/jokoalmi/.lmstudio/bin:/home/jokoalmi/.lmstudio/bin"
+    "full": "/home/jokoalmi/.cargo/bin:/home/jokoalmi/.local/bin:/home/jokoalmi/.hermes/hermes-agent/.hermes/bin:/home/jokoalmi/.hermes/installs/c9e9ca5c7004e192/environments/5b6f6290f7c64f6eb9f84ddb56a9da0e/venv/bin:/home/jokoalmi/.hermes/hermes-agent/node_modules/.bin:/home/jokoalmi/.hermes/node/bin:/home/jokoalmi/.local/bin:/home/jokoalmi/.cargo/bin:/home/jokoalmi/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/jokoalmi/.hermes/tools/python-3.14.9+20261021-linux-x64/bin:/home/jokoalmi/.hermes/tools/cua-driver-0.21.0-linux-x64:/home/jokoalmi/.hermes/tools/ffmpeg-9.0.1-linux-x64/bin:/home/jokoalmi/.hermes/tools/npm-12.0.2-linux-x64/bin:/home/jokoalmi/.hermes/tools/node-26.12.1-linux-x64/bin:/home/jokoalmi/.hermes/tools/ripgrep-15.2.0-linux-x64:/snap/bin:/home/jokoalmi/.lmstudio/bin"
   },
   "system": {
-    "kernel": "7.0.0-42-generic",
+    "kernel": "7.0.0-43-generic",
     "nvidia_driver": "595.99.02",
     "cuda_version": ""
   },
-  "lm_studio_models": ["text-embedding-bge-m3", "hunyuanocr", "qwen3.6-35b-a3b_moe", "lfm2.5-vl-3b", "openai/gpt-oss-20b", "lfm2.5-2.6b", "granite-4.0-h-tiny", "granite-4.1-8b", "deepseek/deepseek-r1-distill-qwen-14b", "dolphin3.0-llama3.1-8b-cyber-lora-test-v0.2", "glm-4.6v-flash", "google/gemma-4-12b-qat", "text-embedding-nomic-embed-text-v1.5"]
+  "lm_studio_models": ["hunyuanocr", "qwen3.6-35b-a3b_moe", "lfm2.5-vl-3b", "openai/gpt-oss-20b", "lfm2.5-2.6b", "text-embedding-bge-m3", "granite-4.0-h-tiny", "granite-4.1-8b", "deepseek/deepseek-r1-distill-qwen-14b", "dolphin3.0-llama3.1-8b-cyber-lora-test-v0.2", "glm-4.6v-flash", "google/gemma-4-12b-qat", "text-embedding-nomic-embed-text-v1.5"]
 }

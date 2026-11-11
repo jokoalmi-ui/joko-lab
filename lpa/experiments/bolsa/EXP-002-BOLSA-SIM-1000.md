@@ -206,6 +206,32 @@ recalcular a mano las métricas del cierre del día.
   comprobable (CDP 9222/9224 sin sesión de Skool): referencia = lección 5 del
   07-sep. Capital virtual intacto: 1.000 EUR, sin posiciones.
 
+- 09-nov-2026 (lunes): `no_operar` (61ª del juego; la ficha no se actualizó entre el
+  21-sep y hoy, el registro diario completo vive en `ledger-operaciones.jsonl` y en
+  `estado-juego.json`). Primera pasada desde el 04-nov con candidatas L: **WDC**
+  (289,78; +9,86%; REC_RANGO 9,55%), **MRVL** (154,60; +9,49%; 13,72%) y **PLTR**
+  (169,20; +5,50%; 26,29%), las tres por debajo del 35% y en el primer día de rebote
+  desde el valle. Gatillos: 359,06 / 187,26 / 173,91 USD. Rebote de mercado (S&P +2,41%
+  a 7.554,67; Nasdaq +2,67%; SOX +6%) con NVDA -4,27% por la investigación del consejo
+  sobre Jensen Huang (resultados 17-nov). Guardarraíl geopolítico ACTIVO (15ª sesión):
+  propuesta interina iraní para Ormuz ya en la Casa Blanca, sin firma; Brent 93,68 USD.
+  Capital virtual intacto: 1.000 EUR, sin posiciones.
+
+- 10-nov-2026 (martes): `no_operar` (62ª del juego). Tres patrones L por segundo día
+  consecutivo, los tres en el primer tercio del rango y con el valle fijado el 6-nov:
+  **WDC** (289,20; -0,20%; REC_RANGO 9,34%; upside 85,34%), **MRVL** (154,39; -0,14%;
+  13,58%; 85,90%) y **PLTR** (168,82; -0,22%; 25,58%; 23,83%). Gatillos: ~359 / ~187 /
+  173,91 USD. Hallazgo de instrumento: la venta de la apertura por el CPI caliente
+  (SNDK -5%, STX y WDC -3%, MRVL -3,06%) se absorbió al cierre y todo quedó plano —
+  simétrico al 6-nov, cuando el rebote intradía se devolvió: el intradía no sirve en
+  ninguna dirección. Único movimiento que aguantó: **NVDA -5,53%** (168,80, plano en
+  after-hours) por la investigación del consejo sobre Jensen Huang, con resultados el
+  17-nov. CPI de octubre 0,4%/0,3% (vs 0,3%/0,2%), Waller abre la puerta a 50 pb y la
+  subida de diciembre pasa a ~100% (CME FedWatch); Nasdaq -1,6%. Guardarraíl ACTIVO
+  (16ª sesión): Qatar desmintió la propuesta interina y Rubio la calificó de
+  "outrageous"; Brent <90 USD descontando un acuerdo que no está firmado. Capital
+  virtual intacto: 1.000 EUR, sin posiciones.
+
 ---
 
 ## Artefactos

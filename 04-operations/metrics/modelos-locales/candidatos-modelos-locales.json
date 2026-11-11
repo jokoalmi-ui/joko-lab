@@ -2,7 +2,7 @@
   "schema": 1,
   "descripcion": "Registro persistente de candidatos a modelo local (12GB VRAM). Es la MEMORIA del cron investigacion-modelos-locales-semanal: si un candidato esta aqui, NO se re-investiga ni se re-lista cada semana. Cada entrada nueva lleva avisado=false; el watchdog aviso-modelos-locales-novedades avisa UNA vez y lo pone en true.",
   "creado": "2026-09-14",
-  "actualizado": "2026-11-02",
+  "actualizado": "2026-11-09",
   "fuentes_de_verdad": [
     "/home/jokoalmi/joko-lab/01-knowledge/modelos_por_tarea.yaml",
     "/home/jokoalmi/joko-lab/04-operations/metrics/alucinaciones_ledger.jsonl",
@@ -789,7 +789,7 @@
         "https://www.mindstudio.ai/blog/liquid-ai-lfm3-1-7b-local-agent-model (28-oct-2026: test independiente en ~1GB; pasa JSON, instrucciones, grounding, mate y tool calling; falla bug-fix, HTML/JS y traduccion)",
         "https://api.github.com/search/issues?q=repo:ggml-org/llama.cpp+is:pr+is:merged (verificado 02-nov: PR #31431 'model : enable tensor split for LFM3' merged en la ventana)"
       ],
-      "avisado": false
+      "avisado": true
     },
     {
       "nombre": "LiquidAI d1-2B / d1-Omni-2B (decision, generacion LFM3)",
@@ -803,7 +803,7 @@
         "https://huggingface.co/LiquidAI/d1-2B-GGUF (verificado con ?blobs=true: created 2026-10-27, 17.167 descargas; Q4_K_M 1,1GB + mmproj 0,2GB)",
         "https://huggingface.co/LiquidAI/d1-Omni-2B-GGUF (verificado con ?blobs=true: created 2026-10-27, 16.408 descargas; BF16 3,47GB / Q8_0 1,85GB + mmproj 0,33GB)"
       ],
-      "avisado": false
+      "avisado": true
     },
     {
       "nombre": "NVIDIA Nemotron-3.5-Transcribe-30B-A4B",
@@ -816,7 +816,7 @@
         "https://huggingface.co/AtomicChat/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B-GGUF (verificado con ?blobs=true: created 2026-10-28, 50.291 descargas; Q2_0_M 13,57GB ... Q8_0 35,0GB; encoder F16 1,67GB; DFlash2 1,15GB)",
         "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B (verificado por API: created 2026-10-07, 639 likes, 32.439 descargas, automatic-speech-recognition)"
       ],
-      "avisado": false
+      "avisado": true
     },
     {
       "nombre": "Bucket otros detectados (26-oct a 02-nov): sin cabida, sin rol o procedencia no verificable",
@@ -830,6 +830,97 @@
         "https://huggingface.co/engmauriciodias33/aura-fleet-gguf-part1 (created 2026-10-28, 51.190 descargas, 0 likes; README devuelve 'Entry not found')",
         "https://localllm.az-arte.com/en/models/new (consultado 02-nov: listado de primeros GGUF de los ultimos 30 dias)",
         "https://huggingface.co/models?library=gguf (listado consultado 02-nov: Cyber-Tiel-Coder-35B-A3B, Qwen3.8-Flash-Next, kaitchup Qwen3.8-27B-SLQ, ccore GLB-3D-Coder)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "PLaMo 3 Translate (familia 0.8B / 2B / 8B / 31B)",
+      "estado": "PENDIENTE",
+      "veredicto_actual": "PROBAR",
+      "rol": "traduccion (redaccion_datos: es<->en de documentos y cards)",
+      "primera_aparicion": "2026-11-09",
+      "ultima_mencion": "2026-11-09",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Preferred Networks (PFN), pesos publicados el 05-nov-2026 en 4 tamanos (0.8B / 2B / 8B / 31B) con GGUF y MLX oficiales; los repos GGUF se crearon el 27-oct (primera publicacion, dentro de la ventana de 2 semanas) y se actualizaron el 09-nov. Licencia PLaMo Community: uso personal/no comercial gratis y sin registro; comercial gratis hasta 1.000 M JPY de facturacion con registro previo. Modelo especializado SOLO en traduccion (53 idiomas, la card lista 'es' explicitamente en 'language'), acepta contexto circundante y glosarios, max 32.768 tokens entrada+salida en entrenamiento (pide trocear lo mas largo). Tamanos verificados con ?blobs=true: 0.8b Q4_K_M 0,57GB (Q2_K 0,41 / Q3_K_M 0,49 / Q4_0 0,55); 2b Q4_K_M 1,81GB (Q2_K 1,23 / Q3_K_M 1,50 / Q4_0 1,70); 8b Q4_K_M 5,28GB (Q2_K 3,45 / Q3_K_M 4,31); 31b Q4_K_M 19,50GB -> no cabe. Descargas en la consulta: 0.8b 25.670, 2b 16.886, 8b 15.046. VRAM a 8K segun el estimador de terceros localllm (NO medida en la A2000): 1,36GB / 2,72GB / 6,25GB para 0.8b / 2b / 8b. tok/s en A2000: no publicado. Calidad: la casa afirma que incluso el 0.8B supera a LLMs especializados en traduccion con mas de 30x parametros en ja<->en y ja<->otros idiomas; son cifras del vendor sin reproduccion independiente y NO hay ninguna publicada para es<->en. Motivo de cola: es el test de traduccion mas barato del lab (2B = 1,81GB); medir un lote es<->en y en<->es de documentos del lab contra el modelo que hoy hace redaccion. Si el 2B no bate al actual, no se escala a 8B.",
+      "evidencia": [
+        "https://huggingface.co/pfnet/plamo-3-translate-2b-GGUF (verificado con ?blobs=true: created 2026-10-27, updated 2026-11-09, 16.886 descargas; Q2_K 1,23GB / Q3_K_M 1,50GB / Q4_0 1,70GB / Q4_K_M 1,81GB)",
+        "https://huggingface.co/pfnet/plamo-3-translate-0.8b-GGUF y /plamo-3-translate-8b-GGUF (verificados con ?blobs=true: 0.8b Q4_K_M 0,57GB 25.670 descargas; 8b Q4_K_M 5,28GB 15.046 descargas)",
+        "https://huggingface.co/pfnet/plamo-3-translate-2b (card leida 09-nov: language: es, 53 idiomas, 32.768 tokens entrada+salida, PLaMo Community License)",
+        "https://www.preferred.jp/en/blog/tech/plamo-3-translate-weight-release (05-nov-2026: 4 tamanos, GGUF+MLX, AutoRound, '0.8B outperforms translation-specialized LLMs with more than 30x params' en ja<->en y ja<->otros; condiciones de la licencia)",
+        "https://localllm.az-arte.com/en/models/new (consultado 09-nov: primer GGUF de los 4 tamanos el 27-oct; VRAM estimada a 8K 1,36 / 2,72 / 6,25 GB)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "Microsoft Mage-VL-Cowork (4B, computer-use)",
+      "estado": "OBSERVAR",
+      "veredicto_actual": "SIN ROL ASIGNADO",
+      "rol": "computer_use / GUI + bash (el lab NO tiene bucket para esto)",
+      "primera_aparicion": "2026-11-09",
+      "ultima_mencion": "2026-11-09",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Microsoft, pesos 30-oct-2026: 4B parametros, Apache-2.0, VLM de computer-use que alterna acciones de GUI y bash en una sola politica; 66,0% en OSWorld-Verified (cifra de la casa, sin reproduccion independiente). Cambio material DENTRO de la ventana: el GGUF oficial de ggml-org se creo el 07-nov (antes habia Hansda 30-oct con 7.232 descargas, pratikgx MLX 4-bit 31-oct y litert-community 04-nov). Tamanos verificados con ?blobs=true en ggml-org/Mage-VL-Cowork-GGUF: Q4_K_M 2,72GB, Q8_0 4,69GB, BF16 8,83GB, + mmproj Q8_0 0,35GB / BF16 0,66GB -> ~4GB de VRAM a 8K (estimacion propia, NO medida en la A2000). tok/s en A2000: no publicado. Encaje: cabe de sobra y es el primer modelo de la ventana pensado para operar escritorio, pero modelos_por_tarea.yaml no tiene bucket computer_use y el lab no tiene harness de captura de pantalla ni de acciones, asi que hoy no sustituye a nadie -> OBSERVAR, no entra en cola. Riesgo si algun dia se prueba: da shell y control de GUI, lo que choca de frente con la regla del lab de no ejecutar acciones sin confirmacion.",
+      "evidencia": [
+        "https://huggingface.co/ggml-org/Mage-VL-Cowork-GGUF (verificado con ?blobs=true: created 2026-11-07, 571 descargas; Q4_K_M 2,72GB / Q8_0 4,69GB / BF16 8,83GB; mmproj Q8_0 0,35GB / BF16 0,66GB)",
+        "https://huggingface.co/microsoft/Mage-VL-Cowork (created 2026-10-30, 3.714 descargas, 215 likes, Apache-2.0)",
+        "https://www.llm-releases.com/changelog (consultado 09-nov: '4B Apache-2.0 computer-use VLM that switches between GUI actions and bash in one policy; lab-reported 66.0% on OSWorld-Verified', 30-oct-2026)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "webAI TwIL-8B",
+      "estado": "OBSERVAR",
+      "veredicto_actual": "NO USABLE EN PRODUCCION (licencia)",
+      "rol": "razonamiento matematico / code (licencia no comercial)",
+      "primera_aparicion": "2026-11-09",
+      "ultima_mencion": "2026-11-09",
+      "semanas_sin_ejecutar": 0,
+      "nota": "webAI, liberado 08-nov-2026: 8,79B densos, post-entrenado sobre IBM Granite 4.2 8B (SFT + RL GRPO/DAPO) para matematicas, codigo e instrucciones, contexto 131K, variantes 'balanced' y 'verbose'. GGUF oficial en el mismo repo, verificado con ?blobs=true: TwIL-8B-Q4_K_M-balanced 5,35GB (=4,98GiB, lo que dice la card), Q4_K_M-verbose 5,35GB, Q8_0-verbose 9,35GB, F16 17,59GB -> ~7GB de VRAM a 8K (estimacion propia). tok/s en A2000: no publicado. 34.546 descargas y 244 likes en ~1 dia. Calidad: MATH-500 98,2 en la variante balanced y AIME 2025, todo cifra del vendor (la card compara con 96,6 de otro modelo del mismo tamano), sin evaluacion independiente. Por que NO entra en cola: licencia webAI Non-Commercial v1.0 -> excluye el uso comercial, y el lab produce trabajo remunerado (infografias/tarjeta), asi que no puede ser motor de produccion; ademas su ventaja es la traza larga ('verbose'), que en la A2000 va contra el requisito de velocidad del bucket code (dolphin). Queda como referencia si algun dia se busca un razonador matematico de uso estrictamente personal.",
+      "evidencia": [
+        "https://huggingface.co/webAI-Official/TwIL-8B (verificado con ?blobs=true + README: updated 2026-11-08, 34.546 descargas, 244 likes; license_name webai-non-commercial-license-ver.-1.0; Q4_K_M 5,35GB, Q8_0 9,35GB, F16 17,59GB; '4.98 GiB Q4_K_M'; MATH-500 98.2)",
+        "https://www.llm-releases.com/changelog (consultado 09-nov: 08-nov-2026, 8.79B dense post-trained from Granite 4.2 8B, 131K, webAI Non-Commercial License, MATH-500 98.2 balanced)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "NousResearch Arete-27B",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-11-09",
+      "ultima_mencion": "2026-11-09",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Nous Research, 06-nov-2026: SFT Apache-2.0 sobre Qwen3.8-27B (encoder de vision congelado) para reducir el sesgo pro-chino: respuestas de propaganda 22% -> 0,9% en su eval de 803 prompts, con Hermes Bench practicamente igual (65,77% -> 65,60%). Pesos, datos y eval publicos. GGUF bartowski/NousResearch_Arete-27B-GGUF creado el 06-nov (37.886 descargas), verificado con ?blobs=true: Q4_K_M 17,20GB / Q3_K_M 13,17GB / Q2_K 10,58GB / IQ2_XS 8,85GB / IQ2_XXS 8,64GB. Motivos de descarte: (1) tamano: el primer quant con calidad util (Q3_K_M) ya son 13,17GB > 12GB y a eso hay que sumar KV y mmproj; Q2_K/IQ2 caben raspando pero dejan ~1GB para contexto a 8K; (2) la via sub-2bpw para este mismo modelo base ya esta en cola con Qwen3.8-27B-GSQ-RCO (PENDIENTE desde 07-sep); (3) el propio vendor dice que la capacidad no mejora, solo el alineamiento politico, que no es una tarea del lab.",
+      "evidencia": [
+        "https://huggingface.co/api/models/bartowski/NousResearch_Arete-27B-GGUF (verificado con ?blobs=true: created 2026-11-06, 37.886 descargas; Q4_K_M 17,20GB / Q3_K_M 13,17GB / Q2_K 10,58GB / IQ2_XS 8,85GB)",
+        "https://huggingface.co/NousResearch/Arete-27B (created 2026-11-06, apache-2.0, 2.407 descargas, 326 likes)",
+        "https://www.llm-releases.com/changelog (consultado 09-nov: 'propaganda answers falling from 22% to 0.9% ... Hermes Bench essentially unchanged (65.77% to 65.60%)')"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "Kakao Kanana-2-v-decide-3b-2611 (decision multimodal)",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-11-09",
+      "ultima_mencion": "2026-11-09",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Kakao, pesos publicos el 06-nov-2026 (repo creado 26-oct, actualizado 09-nov): 3,67B multimodal que devuelve PROBABILIDADES para preguntas de eleccion tipada, si/no y puntuacion en vez de generar texto; pipeline zero-shot-classification, libreria transformers, licencia Kanana Open. Sin GGUF: la busqueda de repos 'kanana-2-v-decide' solo devuelve el repo original en safetensors, y la arquitectura es propia (configuration_kanana_v_decide.py + decision_kanana_v_decide.py), no soportada por llama.cpp ni LM Studio. Descarte: no genera texto y no hay motor local que lo cargue; ademas el lab no tiene bucket de decision (tools/decision_router.py es rule-based) y ya acumula 5 modelos de decision en OBSERVAR (d1-3B, d1-2B, clef-flash, h2o-lightning-4b, OpenJev).",
+      "evidencia": [
+        "https://huggingface.co/api/models/kakaocorp/kanana-2-v-decide-3b-2611 (verificado 09-nov: created 2026-10-26, 683 descargas, 27 likes, pipeline zero-shot-classification, ficheros configuration_kanana_v_decide.py y decision_kanana_v_decide.py, sin .gguf)",
+        "https://www.llm-releases.com/changelog (consultado 09-nov: 06-nov-2026, '3.67B multimodal decision model that returns probabilities ... instead of generating text')"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "Bucket otros detectados (02-nov a 09-nov): sin cabida, sin rol o sin pesos",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-11-09",
+      "ultima_mencion": "2026-11-09",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Bucket 02-nov a 09-nov para no volver a investigarlos. Fuera de rango por tamano: Kimi K3.1 Pro (2,8T totales / 104B activos, MXFP4 QAT, licencia propia), Ripple-65B Preview (65B densos, 1M ctx, Apache), Hydrogen-1.0 (753B post-entrenado de GLM-5.3, MIT), ERNIE 5.5 Flash Base (280B/14B, checkpoint de pre-entrenamiento sin post-entrenar), LongCat-2.5 (1,6T/~48B, solo API al lanzamiento), Ling-3.2-flash (560B/25B, API), Inkling 2 Small (594B/17B, pesos cerrados en Tinker), Mistral Large 4 (1T/52B), Particle-1 (solo API, sobre DeepSeek V4.1 Flash), Clover-35B-A3B-Preview (MoE 35B/3B de difusion, Apache, GGUF oficial con 65.620 descargas: cabria solo con offload de ~9-10GB a RAM y es Preview con metricas del vendor), Hy4 (solo API, pesos 'en los proximos dias'), SWE-2 Flash (pesos retenidos para socios), EKA-1 (26,3B anunciado, sin pesos publicos, lista de espera), Endeavor 1.1 (sin pesos, despliegue gestionado). Sin rol en el lab: Dhi r 2B y Dhi r 5B MoE (ingles + 10 idiomas de India, sin espanol), SenseNova 6.8 Flash (pesos cerrados), SenseNova-Loop-9B-Preview (Apache, ~9B, cabe y tiene GGUF de terceros con 17.306 descargas, pero es Preview con decodificador en bucle -mas computo por token- y sin eval independiente: la cola tool_calling ya tiene 6 pendientes), Idol (image->3D Gaussian splatting, 7,2GB VRAM, no es LLM), surya-ocr-2.5 (0,6B OCR, Q8_0 0,63GB, primer GGUF 26-oct: el pipeline PDF del lab usa stirling-pdf + vision GLM), Qwen3.6-35B-A3B-BE (variante big-endian para IBM Z, inutil en x86), DeepSeek-V4-Pro-Qwen3.5-9B-heretic (repack uncensored de familia ya descartada). Tamanos de los no citados: tomados de los listados de primeros-GGUF y del changelog, no re-verificados fichero a fichero.",
+      "evidencia": [
+        "https://www.llm-releases.com/changelog (consultado 09-nov: items 02-nov a 05-nov-2026 y 29-oct a 30-oct; pesos/tamanos/estado de publicacion de cada uno)",
+        "https://huggingface.co/api/models?search=SenseNova-Loop-9B (AtomicChat 17.306 descargas, lavendercomputing GSQ-RCO, guideboardlabs 8.931: hay GGUF de terceros, no oficial)",
+        "https://huggingface.co/api/models?search=Clover-35B-A3B (Diffuspace/Clover-35B-A3B-Preview-GGUF 65.620 descargas)",
+        "https://localllm.az-arte.com/en/models/new (consultado 09-nov: primeros GGUF de los ultimos 30 dias y tamano Q4_K_M/VRAM 8K de cada uno)"
       ],
       "avisado": false
     }
