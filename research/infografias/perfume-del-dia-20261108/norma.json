@@ -1,0 +1,556 @@
+{
+ "ok": true,
+ "nodos": 68,
+ "chicos": [],
+ "duros": [],
+ "avisos": [],
+ "resumen_avisos": "ninguno",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 9.24,
+   "ratio_px": 9.24,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 9.8,
+   "ratio_px": 9.8,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 9.87,
+   "ratio_px": 9.87,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 6.58,
+   "ratio_px": 6.58,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "xerjoff.com · consultado 08-11-2026 · du",
+   "cls": "f"
+  },
+  {
+   "ratio": 10.53,
+   "ratio_px": 10.53,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4.429 votos · 437 reseñas · Fragrantica",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 11.61,
+   "ratio_px": 11.61,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 9.6,
+   "ratio_px": 9.6,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 9.36,
+   "ratio_px": 9.36,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "limón de Calabria, pomelo, bergamota y l",
+   "cls": "not"
+  },
+  {
+   "ratio": 3.55,
+   "ratio_px": 3.55,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 9.7,
+   "ratio_px": 9.7,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 9.48,
+   "ratio_px": 9.48,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "iris florentino y rosa — el ramo que lo ",
+   "cls": "not"
+  },
+  {
+   "ratio": 11.52,
+   "ratio_px": 11.52,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 9.36,
+   "ratio_px": 9.36,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "ámbar, cedro, almizcle y sándalo — la ca",
+   "cls": "not"
+  },
+  {
+   "ratio": 9.45,
+   "ratio_px": 9.45,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Notas: pirámide oficial de la casa (xerj",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 4.77,
+   "ratio_px": 4.77,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.99,
+   "ratio_px": 7.99,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Casa Xerjoff / Casamorati 1888 · descr",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 8.75,
+   "ratio_px": 8.75,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Casamorati 1888 · 2018",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 8.82,
+   "ratio_px": 8.82,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,35/5 · 1.812 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.78,
+   "ratio_px": 4.78,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la relectura de la casa: más floral y má",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 8.38,
+   "ratio_px": 8.38,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Acqua di Parma · 1916",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 10.52,
+   "ratio_px": 10.52,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,13/5 · 4.340 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 5.88,
+   "ratio_px": 5.88,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el arquetipo del cítrico italiano, más s",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 7.1,
+   "ratio_px": 7.1,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Dior · 1966",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 9.85,
+   "ratio_px": 9.85,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,22/5 · 6.595 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 5.44,
+   "ratio_px": 5.44,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el cítrico-aromático clásico: más herbal",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 8.32,
+   "ratio_px": 8.32,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Asociaciones: reseñas Fragrantica · Parf",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 10.07,
+   "ratio_px": 10.07,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Reseña en Fragrantica · [traducida del",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 11.91,
+   "ratio_px": 11.91,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · calle y sobremesa · tem",
+   "cls": "donde"
+  },
+  {
+   "ratio": 7.75,
+   "ratio_px": 7.75,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 11.32,
+   "ratio_px": 11.32,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "DOMINGO · 08 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 12.32,
+   "ratio_px": 12.32,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 12.21,
+   "ratio_px": 12.21,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "mañana (15,5 °C) ·",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 12.35,
+   "ratio_px": 12.35,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "tarde (18,4 °C)",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 10.57,
+   "ratio_px": 10.57,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Ventana 08-18: 13,3–19,4 °C · media 17,1",
+   "cls": "clima"
+  },
+  {
+   "ratio": 9.56,
+   "ratio_px": 9.56,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 6,8 °C · cítrico aromático de r",
+   "cls": "clima"
+  },
+  {
+   "ratio": 10.3,
+   "ratio_px": 10.3,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 10.58,
+   "ratio_px": 10.58,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 9.17,
+   "ratio_px": 9.17,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 11.97,
+   "ratio_px": 11.97,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 8.2,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 8.55,
+   "ratio_px": 8.55,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Casamorati 1888",
+   "cls": "casa"
+  },
+  {
+   "ratio": 10.82,
+   "ratio_px": 10.82,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2009",
+   "cls": ""
+  },
+  {
+   "ratio": 12.0,
+   "ratio_px": 12.0,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Eau de Parfum",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.7,
+   "ratio_px": 11.7,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Masculino",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.72,
+   "ratio_px": 11.72,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Cítrica aromática",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.6,
+   "ratio_px": 11.6,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumista:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.14,
+   "ratio_px": 12.14,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "no revelado por la casa",
+   "cls": ""
+  },
+  {
+   "ratio": 11.06,
+   "ratio_px": 11.06,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.01,
+   "ratio_px": 12.01,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~8 h",
+   "cls": ""
+  },
+  {
+   "ratio": 11.85,
+   "ratio_px": 11.85,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.4,
+   "ratio_px": 12.4,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "moderada",
+   "cls": ""
+  },
+  {
+   "ratio": 12.58,
+   "ratio_px": 12.58,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "270,00 €",
+   "cls": ""
+  },
+  {
+   "ratio": 11.02,
+   "ratio_px": 11.02,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 100 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.3,
+   "ratio_px": 12.3,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "LIMÓN · POMELO · LAVANDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 4.72,
+   "ratio_px": 4.72,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "IRIS · ROSA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 6.92,
+   "ratio_px": 6.92,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "ÁMBAR · CEDRO · SÁNDALO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.73,
+   "ratio_px": 7.73,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Gentiluomo",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 7.32,
+   "ratio_px": 7.32,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Colonia",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 7.16,
+   "ratio_px": 7.16,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Eau Sauvage",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 8.62,
+   "ratio_px": 8.62,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "“Orígenes que se remontan a más de un si",
+   "cls": ""
+  },
+  {
+   "ratio": 6.28,
+   "ratio_px": 6.28,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“Es esencialmente Silver Mountain Water,",
+   "cls": ""
+  },
+  {
+   "ratio": 3.46,
+   "ratio_px": 3.46,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "que dure hasta la noche",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 4.01,
+   "ratio_px": 4.01,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "limón, iris y lavanda: la Italia limpia",
+   "cls": "sub"
+  },
+  {
+   "ratio": 9.35,
+   "ratio_px": 9.35,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "4,23",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 10.09,
+   "ratio_px": 10.09,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "Mefisto",
+   "cls": ""
+  }
+ ]
+}

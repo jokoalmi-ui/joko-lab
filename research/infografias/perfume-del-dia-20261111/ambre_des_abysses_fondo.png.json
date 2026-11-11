@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Photorealistic still life photograph, empty dark walnut desk surface beside a rain-streaked window, overcast morning light from the left, small water droplets on the glass, a closed leather-bound notebook and a stoneware cup of black coffee at the edges out of focus, fine film grain, shallow depth of field, muted teal shadows with warm amber highlights, generous empty space in the middle",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1751858
+}

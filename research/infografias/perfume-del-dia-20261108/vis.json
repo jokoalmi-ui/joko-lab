@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261108/ficha_mefisto_v8.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261108/mefisto_figura.png",
+ "rect": [
+  58,
+  99,
+  288,
+  450
+ ],
+ "fondo_L": 165.294,
+ "tapon_L": 61.425,
+ "cuerpo_L": 229.1446,
+ "contraste_tapon": 4.396072463329341,
+ "contraste_cuerpo": 1.9512878506299987,
+ "pct_claros": 3.1396604938271606,
+ "min_claros": null,
+ "min_contraste": null
+}

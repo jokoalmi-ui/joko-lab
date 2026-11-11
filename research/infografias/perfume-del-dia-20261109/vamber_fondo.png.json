@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "editorial photograph of a dark oak tabletop beside a tall window on an overcast autumn morning, warm amber light falling from the left, folded cream linen and a small brass bowl of smoking frankincense resin out of focus in the background, rich wood grain, muted warm browns and soft grey daylight, shallow depth of field, fine film grain, empty surface in the foreground",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.1,
+  "bytes": 1812740
+}

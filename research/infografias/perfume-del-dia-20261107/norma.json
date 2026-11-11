@@ -1,0 +1,556 @@
+{
+ "ok": true,
+ "nodos": 68,
+ "chicos": [],
+ "duros": [],
+ "avisos": [],
+ "resumen_avisos": "ninguno",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 9.86,
+   "ratio_px": 9.86,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 9.81,
+   "ratio_px": 9.81,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 9.48,
+   "ratio_px": 9.48,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 6.79,
+   "ratio_px": 6.79,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Duración: Fragrantica/Parfumo — Perfumer",
+   "cls": "f"
+  },
+  {
+   "ratio": 10.6,
+   "ratio_px": 10.6,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "560 votos · 78 reseñas · Fragrantica",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 10.87,
+   "ratio_px": 10.87,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 10.21,
+   "ratio_px": 10.21,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 8.7,
+   "ratio_px": 8.7,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "ocho cítricos con pimienta negra, azafrá",
+   "cls": "not"
+  },
+  {
+   "ratio": 9.64,
+   "ratio_px": 9.64,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 8.89,
+   "ratio_px": 8.89,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "jazmín, lirio, azahar, salvia e higo — e",
+   "cls": "not"
+  },
+  {
+   "ratio": 3.61,
+   "ratio_px": 3.61,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 6.14,
+   "ratio_px": 6.14,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "ámbar gris, vetiver, sándalo y pachulí —",
+   "cls": "not"
+  },
+  {
+   "ratio": 11.46,
+   "ratio_px": 11.46,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 7.54,
+   "ratio_px": 7.54,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Notas: pirámide oficial de la casa (oman",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 4.59,
+   "ratio_px": 4.59,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 9.11,
+   "ratio_px": 9.11,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Casa Omanluxury · descripción oficial ",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 9.99,
+   "ratio_px": 9.99,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "BDK Parfums · 2020",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 10.03,
+   "ratio_px": 10.03,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "3,73/5 · 1.091 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.68,
+   "ratio_px": 4.68,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "vetiver, pachulí y neroli: mismo esquele",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 8.9,
+   "ratio_px": 8.9,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Louis Vuitton · 2019",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 10.26,
+   "ratio_px": 10.26,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,39/5 · 5.462 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.95,
+   "ratio_px": 4.95,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "naranja y ámbar gris sin especias: el cí",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 8.57,
+   "ratio_px": 8.57,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Tauer Perfumes · 2010",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 9.36,
+   "ratio_px": 9.36,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "3,73/5 · 998 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 7.97,
+   "ratio_px": 7.97,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "azahar, mandarina y ámbar gris: el cítri",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 12.2,
+   "ratio_px": 12.2,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Asociaciones: reseñas Fragrantica · frag",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 8.3,
+   "ratio_px": 8.3,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Reseña en Fragrantica · [traducido del",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 10.98,
+   "ratio_px": 10.98,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · trabajo y calle · día f",
+   "cls": "donde"
+  },
+  {
+   "ratio": 5.81,
+   "ratio_px": 5.81,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 9.51,
+   "ratio_px": 9.51,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "SÁBADO · 07 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 11.69,
+   "ratio_px": 11.69,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 11.37,
+   "ratio_px": 11.37,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "mañana (10,8 °C) ·",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 10.1,
+   "ratio_px": 10.1,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "tarde (16,3 °C)",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 10.02,
+   "ratio_px": 10.02,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Ventana 08-18: 8,7–18,2 °C · media 13,8 ",
+   "cls": "clima"
+  },
+  {
+   "ratio": 10.08,
+   "ratio_px": 10.08,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 10,8 °C · cítrico-especiado de ",
+   "cls": "clima"
+  },
+  {
+   "ratio": 9.67,
+   "ratio_px": 9.67,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 9.43,
+   "ratio_px": 9.43,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 12.29,
+   "ratio_px": 12.29,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 10.25,
+   "ratio_px": 10.25,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 7.75,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.26,
+   "ratio_px": 10.26,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Omanluxury",
+   "cls": "casa"
+  },
+  {
+   "ratio": 13.2,
+   "ratio_px": 13.2,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2020",
+   "cls": ""
+  },
+  {
+   "ratio": 13.34,
+   "ratio_px": 13.34,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Eau de Parfum",
+   "cls": "dh"
+  },
+  {
+   "ratio": 13.91,
+   "ratio_px": 13.91,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Unisex",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.64,
+   "ratio_px": 11.64,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Cítrica floral amaderada",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.44,
+   "ratio_px": 12.44,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumista:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 13.94,
+   "ratio_px": 13.94,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Philippe Paparella-Paris",
+   "cls": ""
+  },
+  {
+   "ratio": 11.28,
+   "ratio_px": 11.28,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.36,
+   "ratio_px": 12.36,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~7 h",
+   "cls": ""
+  },
+  {
+   "ratio": 12.96,
+   "ratio_px": 12.96,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 13.65,
+   "ratio_px": 13.65,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "moderada",
+   "cls": ""
+  },
+  {
+   "ratio": 12.52,
+   "ratio_px": 12.52,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "189,00 €",
+   "cls": ""
+  },
+  {
+   "ratio": 10.59,
+   "ratio_px": 10.59,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 100 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.06,
+   "ratio_px": 12.06,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "CÍTRICOS · PIMIENTA · AZAFRÁN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 4.78,
+   "ratio_px": 4.78,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "JAZMÍN · LIRIO · AZAHAR",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 6.92,
+   "ratio_px": 6.92,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "ÁMBAR GRIS · VETIVER · SÁNDALO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 8.71,
+   "ratio_px": 8.71,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Citrus Riviera",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 9.05,
+   "ratio_px": 9.05,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Afternoon Swim",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 10.28,
+   "ratio_px": 10.28,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "09 Orange Star",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 6.16,
+   "ratio_px": 6.16,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "“Una sobredosis de frescura cítrica enri",
+   "cls": ""
+  },
+  {
+   "ratio": 8.83,
+   "ratio_px": 8.83,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“No hagan caso a los comentarios malos: ",
+   "cls": ""
+  },
+  {
+   "ratio": 3.33,
+   "ratio_px": 3.33,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "que aguante hasta la noche",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 4.46,
+   "ratio_px": 4.46,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "la felicidad, en sobredosis",
+   "cls": "sub"
+  },
+  {
+   "ratio": 9.9,
+   "ratio_px": 9.9,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "3,26",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 11.85,
+   "ratio_px": 11.85,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "Overdose",
+   "cls": ""
+  }
+ ]
+}

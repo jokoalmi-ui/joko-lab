@@ -1,0 +1,2 @@
+INSERT INTO uso_diario (perfume_id, fecha, clima_temp, clima_desc, animo, ocasion, nota_personal, created_at)
+VALUES (915, '2026-11-09', 19.4, 'ventana 08-18: 17.8-21.5 C sens, media 19.4; dia 18.3-22.4 C; lluvia 28%', 'tranquilo', 'trabajo', 'ficha del dia; [VAL: sin respuesta aun | ventana 08-18]; eleccion: banda medio rango_termico, 0 usos previos, estela moderada 7 h; vis medido fondo L 92.8 - tapon 26.1 (2.63:1) - cuerpo 214.8 (4.58:1); gate 17/17 con avisos A3/A4/A5; animo asumido (no declarado); enviada 09-11-2026', datetime('now'));

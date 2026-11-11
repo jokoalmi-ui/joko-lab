@@ -1,0 +1,581 @@
+{
+ "ok": true,
+ "nodos": 68,
+ "chicos": [],
+ "duros": [],
+ "avisos": [
+  {
+   "ratio": 4.15,
+   "ratio_px": 4.15,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "jazmín y ámbar, con miel y tabaco",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 4.32,
+   "ratio_px": 4.32,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fougère de romero y cuero, más seca",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 4.19,
+   "ratio_px": 4.19,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "ámbar especiado con más dulzor",
+   "cls": "alt-motivo"
+  }
+ ],
+ "resumen_avisos": "jazmín y ámbar, co [alt-motivo] 4.15:1 12px; fougère de romero [alt-motivo] 4.32:1 12px; ámbar especiado co [alt-motivo] 4.19:1 12px",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 7.32,
+   "ratio_px": 7.32,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 7.75,
+   "ratio_px": 7.75,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 8.78,
+   "ratio_px": 8.78,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 5.7,
+   "ratio_px": 5.7,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "houbigant-parfum.com · consultado 11-11-",
+   "cls": "f"
+  },
+  {
+   "ratio": 9.55,
+   "ratio_px": 9.55,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "699 votos · 70 reseñas · Fragrantica",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 11.42,
+   "ratio_px": 11.42,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 6.85,
+   "ratio_px": 6.85,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 7.39,
+   "ratio_px": 7.39,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "bergamota, azahar y hojas de menta — fre",
+   "cls": "not"
+  },
+  {
+   "ratio": 3.55,
+   "ratio_px": 3.55,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.15,
+   "ratio_px": 7.15,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 7.42,
+   "ratio_px": 7.42,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "romero, geranio, jazmín, pachulí y ámbar",
+   "cls": "not"
+  },
+  {
+   "ratio": 8.51,
+   "ratio_px": 8.51,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 7.74,
+   "ratio_px": 7.74,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "vainilla, haba tonka, musgo de roble y c",
+   "cls": "not"
+  },
+  {
+   "ratio": 8.84,
+   "ratio_px": 8.84,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Notas: houbigant-parfum.com (oficial) — ",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 4.43,
+   "ratio_px": 4.43,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 9.77,
+   "ratio_px": 9.77,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Houbigant · concepto oficial y declara",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 8.72,
+   "ratio_px": 8.72,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Xerjoff · 2015",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 10.14,
+   "ratio_px": 10.14,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,49/5 · 21.908 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.15,
+   "ratio_px": 4.15,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "jazmín y ámbar, con miel y tabaco",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 8.93,
+   "ratio_px": 8.93,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Penhaligon's · 2010",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 10.29,
+   "ratio_px": 10.29,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,26/5 · 2.920 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.32,
+   "ratio_px": 4.32,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fougère de romero y cuero, más seca",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 9.55,
+   "ratio_px": 9.55,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Parfums de Marly · 2016",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 9.93,
+   "ratio_px": 9.93,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,44/5 · 19.792 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.19,
+   "ratio_px": 4.19,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "ámbar especiado con más dulzor",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 10.16,
+   "ratio_px": 10.16,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Asociaciones en reseñas de Fragrantica y",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 10.18,
+   "ratio_px": 10.18,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— OlfactoryGentleman en Fragrantica · [t",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 11.31,
+   "ratio_px": 11.31,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · oficina y calle · templ",
+   "cls": "donde"
+  },
+  {
+   "ratio": 7.78,
+   "ratio_px": 7.78,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 12.63,
+   "ratio_px": 12.63,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "MIÉRCOLES · 11 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 11.85,
+   "ratio_px": 11.85,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 11.4,
+   "ratio_px": 11.4,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "interior ·",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 11.64,
+   "ratio_px": 11.64,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "exterior",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 10.54,
+   "ratio_px": 10.54,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Ventana 08-18: 17,2–20,6 °C · media 18,9",
+   "cls": "clima"
+  },
+  {
+   "ratio": 11.17,
+   "ratio_px": 11.17,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 3,3 °C · humedad 60 % · ambarad",
+   "cls": "clima"
+  },
+  {
+   "ratio": 8.63,
+   "ratio_px": 8.63,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 8.04,
+   "ratio_px": 8.04,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 10.3,
+   "ratio_px": 10.3,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 9.54,
+   "ratio_px": 9.54,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 8.2,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 9.84,
+   "ratio_px": 9.84,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Houbigant",
+   "cls": "casa"
+  },
+  {
+   "ratio": 11.55,
+   "ratio_px": 11.55,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2023",
+   "cls": ""
+  },
+  {
+   "ratio": 10.51,
+   "ratio_px": 10.51,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Eau de Parfum",
+   "cls": "dh"
+  },
+  {
+   "ratio": 10.21,
+   "ratio_px": 10.21,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Unisex",
+   "cls": "dh"
+  },
+  {
+   "ratio": 10.64,
+   "ratio_px": 10.64,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Ambarada oriental",
+   "cls": "dh"
+  },
+  {
+   "ratio": 10.63,
+   "ratio_px": 10.63,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumistas:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.23,
+   "ratio_px": 11.23,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Luca Maffei y Antoine Lie",
+   "cls": ""
+  },
+  {
+   "ratio": 10.22,
+   "ratio_px": 10.22,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.45,
+   "ratio_px": 11.45,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~9 h",
+   "cls": ""
+  },
+  {
+   "ratio": 10.47,
+   "ratio_px": 10.47,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.3,
+   "ratio_px": 11.3,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "moderada",
+   "cls": ""
+  },
+  {
+   "ratio": 12.01,
+   "ratio_px": 12.01,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "200,00 €",
+   "cls": ""
+  },
+  {
+   "ratio": 9.23,
+   "ratio_px": 9.23,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 100 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.51,
+   "ratio_px": 12.51,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "MENTA · BERGAMOTA · AZAHAR",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 4.71,
+   "ratio_px": 4.71,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "ROMERO · GERANIO · JAZMÍN · ÁMBAR",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.17,
+   "ratio_px": 7.17,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "VAINILLA · TONKA · MUSGO · CUERO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 8.16,
+   "ratio_px": 8.16,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Naxos",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 8.33,
+   "ratio_px": 8.33,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Sartorial",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 8.11,
+   "ratio_px": 8.11,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Layton",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 8.89,
+   "ratio_px": 8.89,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "«Quisimos capturar la tensión entre la l",
+   "cls": ""
+  },
+  {
+   "ratio": 9.71,
+   "ratio_px": 9.71,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“Básicamente es Le Male con matices añad",
+   "cls": ""
+  },
+  {
+   "ratio": 3.26,
+   "ratio_px": 3.26,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "que llegue a la tarde sin invadir",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 3.43,
+   "ratio_px": 3.43,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "menta fresca sobre ámbar y cuero",
+   "cls": "sub"
+  },
+  {
+   "ratio": 8.36,
+   "ratio_px": 8.36,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "4,36",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 9.9,
+   "ratio_px": 9.9,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "Ambre des Abysses",
+   "cls": ""
+  }
+ ]
+}

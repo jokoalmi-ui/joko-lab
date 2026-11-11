@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "photograph of a matte grey slate tabletop with a soft grey linen wall behind, overcast daylight coming from a rain-streaked window on the left, gentle shadow deepening toward the edges, faint curl of incense smoke rising, scattered cardamom pods, a piece of cedar bark and dried iris petals on the slate, blurred autumn foliage outside the glass, 50mm lens, shallow depth of field, natural film grain, muted earthy palette, medium-low exposure",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 38.0,
+  "bytes": 1773121
+}

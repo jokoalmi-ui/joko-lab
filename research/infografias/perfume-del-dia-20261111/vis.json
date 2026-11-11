@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261111/ficha_ambredesabysses_v8.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261111/frasco_ambre_des_abysses.png",
+ "rect": [
+  42,
+  99,
+  321,
+  450
+ ],
+ "fondo_L": 135.825,
+ "tapon_L": 23.497400000000003,
+ "cuerpo_L": 233.8862,
+ "contraste_tapon": 5.021712795299508,
+ "contraste_cuerpo": 2.95039836208269,
+ "pct_claros": 46.07130494980962,
+ "min_claros": null,
+ "min_contraste": null
+}

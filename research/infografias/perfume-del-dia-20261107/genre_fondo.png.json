@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Fine art still life photograph, cold November morning on a wet slate ledge, scattered grapefruit peel curls and mandarin segments, saffron threads and whole black peppercorns, one small fig leaf, soft fog, diffuse grey dawn light, deep teal shadows with warm amber highlights, shallow depth of field, cinematic editorial backdrop, generous empty space in the centre",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1600768
+}

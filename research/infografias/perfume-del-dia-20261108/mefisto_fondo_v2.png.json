@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Late-autumn courtyard in northern Italy: a deep terracotta wall in soft shadow, a lemon branch with ripe lemons entering from the left edge, pale iris flowers at the right edge, folded linen cloth on a stone ledge, warm mid-tone palette of clay, olive green and cream, moody diffused afternoon light, the centre of the frame kept as quiet soft shadow with no objects, painterly cinematic shallow depth of field",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 38.0,
+  "bytes": 1638782
+}

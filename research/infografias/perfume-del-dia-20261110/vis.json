@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261110/perfume_del_dia_v5_bois_mystique.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261110/bois_mystique_figura.png",
+ "rect": [
+  42,
+  99,
+  321,
+  450
+ ],
+ "fondo_L": 119.49459999999999,
+ "tapon_L": 9.999999999999998,
+ "cuerpo_L": 234.39959999999996,
+ "contraste_tapon": 4.4522340028641345,
+ "contraste_cuerpo": 3.7097690336335307,
+ "pct_claros": 40.92557978539287,
+ "min_claros": null,
+ "min_contraste": null
+}

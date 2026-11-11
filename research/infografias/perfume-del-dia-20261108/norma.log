@@ -1,0 +1,9 @@
+NORMA LEGIBILIDAD v8 (sin cajas) — ficha_mefisto_v8.html
+  nodos medidos       68   (inventario 68)
+  R1 px < 12          0
+  R2 bajo 3,0:1       0
+  R3 avisos 3-4,5:1   0
+  R4 alto             NO MEDIDO aqui -> lo comprueba validar_ficha_preenvio.py
+  peor nodo           3.46:1  22.0px  que dure hasta la noche  [caveat-pie]
+  AVISOS 3-4,5:1      ninguno
+VEREDICTO NORMA CUMPLE

@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261109/perfume_del_dia_v5_vamber_fougere.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261109/vamber_figura.png",
+ "rect": [
+  112,
+  99,
+  179,
+  450
+ ],
+ "fondo_L": 92.78399999999999,
+ "tapon_L": 26.0734,
+ "cuerpo_L": 214.7532,
+ "contraste_tapon": 2.632403267572698,
+ "contraste_cuerpo": 4.5792234420261755,
+ "pct_claros": 5.049037864680323,
+ "min_claros": null,
+ "min_contraste": null
+}

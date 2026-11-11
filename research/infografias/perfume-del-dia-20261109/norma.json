@@ -1,0 +1,581 @@
+{
+ "ok": true,
+ "nodos": 68,
+ "chicos": [],
+ "duros": [],
+ "avisos": [
+  {
+   "ratio": 3.92,
+   "ratio_px": 3.92,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "mismo incienso especiado, con tabaco y m",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 4.23,
+   "ratio_px": 4.23,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "“es este con cuero”, dicen sus reseñas",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 4.39,
+   "ratio_px": 4.39,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "ámbar herbal y resinoso: el primo cálido",
+   "cls": "alt-motivo"
+  }
+ ],
+ "resumen_avisos": "mismo incienso esp [alt-motivo] 3.92:1 12px; “es este con cuero [alt-motivo] 4.23:1 12px; ámbar herbal y res [alt-motivo] 4.39:1 12px",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 7.35,
+   "ratio_px": 7.35,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 7.78,
+   "ratio_px": 7.78,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 8.32,
+   "ratio_px": 8.32,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 6.62,
+   "ratio_px": 6.62,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "desde 410,00 € / 50 ml (formato único) ·",
+   "cls": "f"
+  },
+  {
+   "ratio": 10.75,
+   "ratio_px": 10.75,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "234 votos · 43 reseñas · Fragrantica",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 11.35,
+   "ratio_px": 11.35,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 9.24,
+   "ratio_px": 9.24,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 9.7,
+   "ratio_px": 9.7,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "pimienta negra, bergamota y elemi — el a",
+   "cls": "not"
+  },
+  {
+   "ratio": 11.93,
+   "ratio_px": 11.93,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 3.61,
+   "ratio_px": 3.61,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 11.2,
+   "ratio_px": 11.2,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "olibano, pimienta blanca y rosa — el air",
+   "cls": "not"
+  },
+  {
+   "ratio": 15.01,
+   "ratio_px": 15.01,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 12.59,
+   "ratio_px": 12.59,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "vetiver ahumado, ámbar y bálsamo de abet",
+   "cls": "not"
+  },
+  {
+   "ratio": 10.43,
+   "ratio_px": 10.43,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Notas: pirámide oficial de la casa (eu.c",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 4.65,
+   "ratio_px": 4.65,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 12.21,
+   "ratio_px": 12.21,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Casa Clive Christian · descripción ofi",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 10.0,
+   "ratio_px": 10.0,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Amouage · 2014",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 12.03,
+   "ratio_px": 12.03,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "8,1/10 · 904 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 3.92,
+   "ratio_px": 3.92,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "mismo incienso especiado, con tabaco y m",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 9.74,
+   "ratio_px": 9.74,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Memo Paris · 2013",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 12.17,
+   "ratio_px": 12.17,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "3,99/5 · 3.687 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.23,
+   "ratio_px": 4.23,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "“es este con cuero”, dicen sus reseñas",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 9.83,
+   "ratio_px": 9.83,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Serge Lutens · 1993",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 12.05,
+   "ratio_px": 12.05,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,17/5 · 8.281 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.39,
+   "ratio_px": 4.39,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "ámbar herbal y resinoso: el primo cálido",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 11.66,
+   "ratio_px": 11.66,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Asociaciones: similares de Parfumo · res",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 11.16,
+   "ratio_px": 11.16,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Reseña de BigNoseT en Parfumo · [tradu",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 13.18,
+   "ratio_px": 13.18,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · oficina y calle · templ",
+   "cls": "donde"
+  },
+  {
+   "ratio": 8.24,
+   "ratio_px": 8.24,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 7.91,
+   "ratio_px": 7.91,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "LUNES · 09 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 14.08,
+   "ratio_px": 14.08,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 12.7,
+   "ratio_px": 12.7,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "interior ·",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 13.37,
+   "ratio_px": 13.37,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "exterior",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 12.66,
+   "ratio_px": 12.66,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Ventana 08-18: 17,8–21,5 °C · media 19,4",
+   "cls": "clima"
+  },
+  {
+   "ratio": 12.92,
+   "ratio_px": 12.92,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 5,0 °C · fougère de incienso pa",
+   "cls": "clima"
+  },
+  {
+   "ratio": 10.51,
+   "ratio_px": 10.51,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 8.62,
+   "ratio_px": 8.62,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 11.03,
+   "ratio_px": 11.03,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 11.07,
+   "ratio_px": 11.07,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 8.2,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 11.42,
+   "ratio_px": 11.42,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Clive Christian",
+   "cls": "casa"
+  },
+  {
+   "ratio": 13.43,
+   "ratio_px": 13.43,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2017",
+   "cls": ""
+  },
+  {
+   "ratio": 11.79,
+   "ratio_px": 11.79,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Eau de Parfum (20 %)",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.13,
+   "ratio_px": 12.13,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Masculino",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.33,
+   "ratio_px": 12.33,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Fougère oriental",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.48,
+   "ratio_px": 12.48,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumista:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 13.3,
+   "ratio_px": 13.3,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Christian Provenzano",
+   "cls": ""
+  },
+  {
+   "ratio": 11.43,
+   "ratio_px": 11.43,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.9,
+   "ratio_px": 12.9,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~7 h",
+   "cls": ""
+  },
+  {
+   "ratio": 12.29,
+   "ratio_px": 12.29,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.64,
+   "ratio_px": 12.64,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "moderada",
+   "cls": ""
+  },
+  {
+   "ratio": 12.94,
+   "ratio_px": 12.94,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "820,00 €",
+   "cls": ""
+  },
+  {
+   "ratio": 10.18,
+   "ratio_px": 10.18,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 100 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.53,
+   "ratio_px": 12.53,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "PIMIENTA · BERGAMOTA · ELEMI",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 4.73,
+   "ratio_px": 4.73,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "OLIBANO · PIMIENTAS · ROSA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.12,
+   "ratio_px": 7.12,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "VETIVER · ÁMBAR · ABETO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 9.49,
+   "ratio_px": 9.49,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Journey Man",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 9.41,
+   "ratio_px": 9.41,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Irish Leather",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 9.38,
+   "ratio_px": 9.38,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Ambre Sultan",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 10.32,
+   "ratio_px": 10.32,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "“Un fougère reconstruido”: la casa lo de",
+   "cls": ""
+  },
+  {
+   "ratio": 4.9,
+   "ratio_px": 4.9,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“Pimienta y, justo detrás del espray, ol",
+   "cls": ""
+  },
+  {
+   "ratio": 3.74,
+   "ratio_px": 3.74,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "que llegue a la tarde sin gritar",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 4.46,
+   "ratio_px": 4.46,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "pimienta, olibano y vetiver ahumado",
+   "cls": "sub"
+  },
+  {
+   "ratio": 9.5,
+   "ratio_px": 9.5,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "4,04",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 12.01,
+   "ratio_px": 12.01,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "V: Amber Fougère",
+   "cls": ""
+  }
+ ]
+}

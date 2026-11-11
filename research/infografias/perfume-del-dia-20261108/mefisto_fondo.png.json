@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Soft morning light on a quiet Italian coastal terrace in late autumn: a small lemon tree with ripe lemons in a terracotta pot, pale linen cloth on a stone table, a ceramic vase of pale iris flowers, distant hazy Mediterranean sea and pale sky, warm cream, sage green and soft gold palette, painterly cinematic shallow depth of field, calm and clean composition with empty space in the centre",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1621876
+}
