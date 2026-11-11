@@ -135,7 +135,7 @@ def _cargar_cerrados() -> dict:
 
 
 def _detectar_outliers(videos: list, suscriptores: int | None,
-                       min_views: int = 100, n_baseline: int = 15) -> list:
+                       min_views: int = 100) -> list:
     """outlierScore = views ÷ mediana baseline (excluye candidato). Método Apify.
 
     min_views 1000 -> 100 (09-oct-2026, decidido por el usuario): con 1000 el
@@ -150,6 +150,11 @@ def _detectar_outliers(videos: list, suscriptores: int | None,
     (mediana de breakouts sub-100k = 12,89x — el discriminante real es
     outlierScore >= 10x). La condición viral queda como dato informativo,
     no como disparador.
+
+    El baseline es la mediana de TODOS los demás vídeos del feed (el feed
+    trae ~15 por canal), sin recorte por parámetro. El antiguo n_baseline se
+    retiró el 11-nov-2026: estaba declarado en la firma y nunca se usaba, y
+    ninguna llamada lo pasaba por nombre; quitarlo no cambia el resultado.
     """
     if not videos:
         return []
