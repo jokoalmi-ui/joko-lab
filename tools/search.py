@@ -439,22 +439,6 @@ def query_index(query_text: str, top_k: int = 3,
                 results.loc[es_sesion, "rerank_score"] * peso_sesion)
             results.loc[es_sesion, "peso_fuente"] = peso_sesion
             results = results.sort_values("rerank_score", ascending=False)
-
-    # Peso por RUTA (11-nov-2026): el factor anterior mira el frontmatter type=session,
-    # pero en el indice solo 2.819 de las 20.548 filas bajo sesiones/ llevan
-    # type='session'; 17.700 lo llevan vacio, asi que las transcripciones raw se
-    # libraban del peso y copaban el top. OPT-IN: JOKO_RAG_PESO_RUTA_SESION
-    # (defecto 1.0 = sin efecto; el comportamiento actual no cambia).
-    peso_ruta = float(os.environ.get("JOKO_RAG_PESO_RUTA_SESION", "1.0"))
-    if peso_ruta != 1.0:
-        es_ruta_sesion = results["path"].astype(str).str.startswith(
-            "04-operations/metrics/sesiones/")
-        if es_ruta_sesion.any():
-            results.loc[es_ruta_sesion, "rerank_score"] = (
-                results.loc[es_ruta_sesion, "rerank_score"] * peso_ruta)
-            results.loc[es_ruta_sesion, "peso_fuente"] = (
-                results.loc[es_ruta_sesion, "peso_fuente"] * peso_ruta)
-            results = results.sort_values("rerank_score", ascending=False)
     # Dedupe por path (07-ago): LanceDB guarda chunks; el mismo documento puede
     # entrar varias veces con scores distintos (verificado: ecosistema-gobernanza
     # x2, EXP-20260729-004 x2 en una misma consulta). Se mantiene el mejor y se
