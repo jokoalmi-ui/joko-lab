@@ -1,0 +1,82 @@
+DISENO DEL A/B - RECUPERACION LOCAL: GREP AGENTICO vs LANCEDB (joko_notes)
+Joko Lab - 04-operations/metrics - 2026-11-11 14:34 CET
+Origen: TOP 1 pendiente del informe valor-canales-diario (job 7b2c0cddb324, 11-11 13:45 CET).
+Estado: diseno escrito ANTES de medir. Los resultados van en fichero aparte.
+
+1) PREGUNTA
+Sobre las 12 consultas congeladas del banco GEO, que metodo de recuperacion LOCAL
+devuelve mas senal util: (A) grep agentico por codigo sobre el arbol del lab, o
+(B) busqueda vectorial en LanceDB (indice joko_notes, el que usa tools/search.py)?
+
+2) SET CONGELADO
+Fichero: GEO-baseline-v1-queries.txt
+sha256: 6c3ec4b558abad9e2e1622abc0a547a0eac61c829392c7d8c4cdfac5bf2c34b7
+Verificado coincidente con el que uso F1 (2026-09-22): si, mismo hash.
+12 lineas: E1-E4 (entidad), T1-T5 (tecnica), C1-C2 (nombre de repo/URL), C3 (control negativo).
+No se modifica ni se anade ninguna consulta.
+
+3) CORPUS
+Unico arbol: /home/jokoalmi/joko-lab (7148 ficheros .md/.yaml/.yml fuera de .lancedb).
+Ambos metodos trabajan sobre el MISMO arbol. No se incluyen ~/.hermes/skills:
+el indice vectorial del lab no las indexa, y comparar corpus distintos invalidaria el A/B.
+
+4) METODO A - GREP AGENTICO
+Definicion operativa (determinista y replicable, no "lo que al agente le parezca"):
+  a) Terminos: palabras de la consulta con >=4 caracteres, sin stopwords ES/EN,
+     sin signos. Busqueda con rg -l -i -F por termino (literal, sin regex).
+  b) Puntuacion por fichero: +1 por cada termino distinto presente.
+     Bonus +2 si aparece la frase contigua de >=2 terminos de la consulta.
+  c) Pasada 2 (la parte agentica): mapa declarado consulta -> sinonimos tecnicos
+     (p.ej. "sin nube" -> local, offline, on-premise; "alucinaciones" -> golden set,
+     grounding, verificacion). Mismo algoritmo, puntuacion sumada al ranking de la pasada 1.
+  d) Top-5 por puntuacion desc; desempate por ruta mas corta (menos anidada).
+El mapa de sinonimos se declara en el informe, consulta por consulta, para que sea auditable
+y repetible. Es la unica parte con criterio del agente y queda escrita.
+
+5) METODO B - LANCEDB
+Comando: cd /home/joko-lab && env -u PYTHONPATH ~/.venv/hermes-rag/bin/python3 tools/search.py -q "<consulta>" -k 5
+Se usa la configuracion vigente del script (hibrido + rerank + REFINE=20, sin cambios).
+Se registra el modelo de embeddings realmente servido por LM Studio (pitfall P6 de F1).
+
+6) METRICAS DECLARADAS
+M1 recall@5 de ENTIDAD (solo E4, C1, C2). Gold objetivo y exhaustivo: ficheros que
+   contienen la cadena exacta (rg -l -F). recall = |top5 & gold| / |gold|.
+   No es juicio: lo recalcula cualquiera con el mismo comando.
+M2 pureza@5 (las 12). Fraccion de los 5 resultados que son documentacion PROPIA del lab,
+   por regla de directorio: clase P = raiz *.md, docs/, 01-knowledge (salvo references/),
+   02-infrastructure/, 03-automation/, 05-inference/, 04-operations/ (salvo metrics/sesiones/),
+   instruments/, lpa/, verification/, tools/.
+   Clases de ruido: R1 01-knowledge/references/ (material de terceros),
+   R2 04-operations/metrics/sesiones/ (transcripciones), R3 .BACKUP*, R4 research/ (analisis de contenido externo).
+M3 cobertura lexica@5 (E1-E4, T1-T5, C1, C2). Fraccion de los terminos de contenido de la
+   consulta que aparecen en el texto concatenado de los 5 resultados. Mide si el top-5
+   "habla del tema", no si es el documento correcto.
+M4 coste: segundos de pared por consulta y operaciones de herramienta por consulta.
+M5 control negativo C3: numero de resultados devueltos. Referencia: en F1, un termino
+   inventado devolvio 5 fuentes citadas en un motor generativo. Aqui se mide igual.
+M6 solapamiento: Jaccard del top-5 entre A y B por consulta (son complementarios o redundantes).
+
+7) LO QUE ESTAS METRICAS NO MIDEN (declarado antes, no excusa posterior)
+No hay gold humano de relevancia para E1-E4/T1-T5, asi que NO se puede afirmar
+"este metodo recupera el documento correcto" en las tematicas. M2 y M3 miden senal/ruido
+y cobertura lexica, no correccion. Solo M1 mide acierto con gold objetivo, y solo en 3 consultas.
+Si se quisiera M1 en las 9 restantes haria falta un gold anotado a mano: decision aparte, no se improvisa aqui.
+
+8) CONDICIONES DE INVALIDEZ (antes de medir)
+I1. Si B falla por error tecnico (no por ausencia) en >=2 consultas, el A/B no es valido: se repite.
+I2. Si C3 devuelve >=5 resultados con puntuacion alta en AMBOS metodos, el instrumento no
+    discrimina y la comparacion se declara NULA (no "empate").
+I3. Si el top-5 de un metodo queda dominado (>3/5) por R1 o R2, se registra como propiedad
+    del corpus. No se filtra a posteriori para mejorar la cifra.
+I4. Se registra el modelo de embeddings servido realmente, no el pedido.
+I5. Ninguna cifra se publica sin su control negativo y sin el comando que la produce.
+
+9) ALCANCE Y RIESGO
+Solo lectura sobre el corpus y sobre el indice. 0 escrituras en la BD, 0 cambios de servicio,
+0 descargas. Escrituras: este diseno y el informe de resultados, ambos nuevos en 04-operations/metrics/.
+Sin commit ni push (no autorizados en esta tarea).
+
+10) QUE DECISION HABILITA
+Si A y B son redundantes (Jaccard alto) no hay nada que enrutar: se queda el vectorial, que ya esta integrado.
+Si son complementarios, el resultado alimenta la decision de un router de recuperacion
+(entidad/agregacion -> codigo; tema abierto -> vectorial), que hoy no existe.

@@ -1,0 +1,134 @@
+INFORME DEL A/B - RECUPERACION LOCAL: GREP AGENTICO vs LANCEDB (joko_notes)
+Joko Lab - 04-operations/metrics - 2026-11-11
+Ejecutado: 2026-11-11, entre las 14:34 y las 15:02 CET.
+Set congelado: GEO-baseline-v1-queries.txt (sha256 6c3ec4b5...2c34b7, verificado igual al de F1).
+Diseno declarado antes de medir: GEO-baseline-v1-AB-grep-vs-lancedb-diseno.txt.
+Salidas crudas: /tmp/ab_results.json (pasada 1), /tmp/ab_results_clean.json (pasada 2 limpia),
+/tmp/ab_run.py y /tmp/ab_run2.py (codigo exacto). /tmp no es persistente.
+
+1) VEREDICTO
+Los dos metodos NO son redundantes (Jaccard medio 0,134): recuperan cosas distintas.
+Sobre este corpus, el grep agentico devuelve casi el doble de documentacion propia
+(pureza@5 0,883 vs 0,236) y es 48 veces mas rapido (1,37 s vs 66,48 s las 12 consultas).
+El vectorial devuelve, en 26 de sus 55 resultados, TRANSCRIPCIONES DE SESIONES: responde
+"donde se hablo del tema", no "que documento lo define". Esa es la diferencia que mide el A/B,
+y no es una diferencia de calidad de texto: es una diferencia de QUE se esta recuperando.
+No se puede concluir cual "acierta mas": no hay gold humano para 9 de las 12 consultas
+(declarado antes de medir). Lo que si queda medido es la composicion de la respuesta.
+
+2) CORPUS (medido, y cambia la lectura de todo)
+Arbol unico /home/jokoalmi/joko-lab: 7148 ficheros .md/.yaml/.yml.
+  01-knowledge/references/  6935  (97,0 %)  material de TERCEROS
+  research/                   505  ( 7,1 %)  analisis de contenido externo
+  04-operations/metrics/sesiones/ 1650 (23,1 %) transcripciones de sesiones
+  resto (docs propios)        ~150
+Verificado que el indice vectorial SI indexa references/ (consulta de prueba sobre
+"wshobson agents plugins observability distributed trace" devuelve 5/5 rutas de
+01-knowledge/references/). Por tanto ambos metodos operan sobre el mismo corpus: la
+comparacion es valida en ese punto y no se puede atribuir la diferencia a corpus distintos.
+
+3) METODO A - GREP AGENTICO (implementado)
+rg -l -i -F por cada termino de contenido de la consulta (>=4 caracteres, sin stopwords),
++1 por termino distinto presente, +2 por frase contigua de dos terminos, y una segunda
+pasada con sinonimos tecnicos declarados por consulta (escritos en el informe final, ver 9).
+Desempate por ruta mas corta. Desviacion respecto al diseno: no se normalizaron acentos;
+se comprobo antes que NINGUN termino de contenido del banco lleva tilde, asi que no afecta.
+Sesgo declarado: el desempate por ruta corta favorece la documentacion propia frente a
+las transcripciones. Es una decision metodologica, no un hallazgo.
+
+4) METODO B - LANCEDB (sin cambios)
+tools/search.py -q "<consulta>" -k 5, configuracion vigente del lab (hibrido + rerank,
+REFINE=20). Modelo de embeddings servido: text-embedding-bge-m3 (el pedido, coincide).
+Pitfall P6 de F1 no se activo esta vez.
+
+5) RESULTADOS POR CONSULTA (A limpio | B)
+Consulta  cand.A  purezaA purezaB jaccard  observacion
+E1 Que es Joko Lab          1287  1,0  0,4  0,25  B mete 3 tarjetas de sesion
+E2 Joko Lab Hermes Agent    1640  1,0  0,0  0,00  B: 5/5 transcripciones
+E3 lab local Ollama/LM Studio 1431  0,8  0,75 0,12  unico caso donde B esta a la par
+E4 jokoalmi en GitHub        434  1,0  0,0  0,00  gold no medible (n=434)
+T1 RAG LanceDB BGE-M3       1238  1,0  0,2  0,11  B: 2 transcripciones en top-5
+T2 evaluar alucinaciones    1068  0,8  0,0  0,00  B: 4/5 transcripciones
+T3 ComfyUI RTX A2000         654  1,0  0,33 0,14  B devuelve 3 resultados, no 5
+T4 n8n self-hosted           246  0,4  0,25 0,50  A: 3/5 son analisis de research/
+T5 observabilidad pipeline  1690  0,6  0,5  0,29  el mas solapado
+C1 jokoalmi-ui/joko-lab        1  1,0  0,2  0,20  gold n=1: A 1/1, B 1/1
+C2 URL del repo                1  1,0  0,2  0,00  gold n=1: A 1/1, B 0/1
+C3 control negativo           61  1,0  0,0  0,00  ver apartado 6
+Medias: pureza A 0,883 | pureza B 0,236 | Jaccard 0,134.
+Composicion de los slots devueltos (A 52 slots, B 55):
+  A: documentacion propia 45 | research 7 | sesiones 0 | terceros 0
+  B: documentacion propia 12 | sesiones 26 | research 11 | terceros 6
+
+6) CONTROL NEGATIVO C3 - INCIDENCIA Y CORRECCION DE METRICA
+El termino inventado "Zarandona Quantimetrics Suite" se comporto asi:
+  - Con la metrica que declare (numero de resultados devueltos): A 61, B 5. Segun la
+    condicion I2 el A/B quedaria NULO. Se activo, y se investigo antes de decidir.
+  - Causa en A: los terminos "zarandona" y "quantimetrics" NO existen en el corpus (0
+    ficheros). Los 61 candidatos entran solo por el termino generico "suite".
+  - Causa en B: el vectorial no se abstiene nunca; devuelve los 5 vecinos mas cercanos
+    aunque la entidad no exista (5 rutas de 01-knowledge/references/, sin relacion).
+  - Con la metrica CORREGIDA segun el pitfall P2 de F1 (la entidad debe aparecer EN la
+    fuente, no basta con que el sistema devuelva algo): A 0/5, B 0/5. Ambos pasan.
+Conclusion: el numero de resultados devueltos no discrimina -ya lo avisaba F1 con los
+motores generativos y vuelve a pasar en local-. La metrica valida es aparicion de entidad
+en la fuente. Con esa metrica el A/B es valido; con la otra, nulo. Se publican las dos.
+Corolario util: NINGUNO de los dos metodos sabe decir "no lo se" sin un umbral externo.
+
+7) HALLAZGOS
+H1. El vectorial responde con conversaciones. 26 de 55 resultados son transcripciones de
+    sesiones, que son el 23 % del corpus pero el 45 % de su top-5. No es ruido aleatorio:
+    es masa documental. El indice no distingue "aqui se hablo de X" de "aqui se documenta X".
+H2. El grep agentico no mete ni una transcripcion en el top-5 (0 de 52). Su punto debil es
+    otro: cuando un termino es generico, mete analisis de research/ (7 de 52) y, en T4,
+    llega a 3 de 5.
+H3. Son complementarios (Jaccard 0,134). Solo T4 (0,50) y T5 (0,29) se solapan de forma
+    apreciable. Un router por tipo de consulta tendria base empirica, no intuicion.
+H4. Coste: A 1,37 s para las 12 consultas; B 66,48 s (5,5 s por consulta, con arranque de
+    proceso y rerank). En uso interactivo la diferencia baja, pero el orden de magnitud es real.
+H5. El rerank del vectorial apenas discrimina: en la consulta de prueba, cos 1,000 en los 5
+    resultados y rerank entre 0,244 y 0,390. Cinco resultados casi indistinguibles.
+H6. El corpus es 97 % material de terceros (6935 de 7148). El "RAG del lab" es hoy, sobre
+    todo, una biblioteca de referencia ajena. Cualquier metrica de recuperacion sobre este
+    arbol mide en gran parte como se navega esa biblioteca, no la documentacion propia.
+H7. Autocontaminacion del banco (fallo propio, corregido): el diseno se escribio dentro del
+    arbol medido y contiene literalmente las 12 consultas. En la pasada 1 aparecia en el
+    top-5 de T1 (puesto 3), C1 y C2 (puesto 2) y T2 (puesto 2). La pasada 2 excluye
+    04-operations/metrics/GEO-baseline-v1-*; las cifras publicadas son las de la pasada 2.
+    Leccion: un banco de evaluacion no puede vivir dentro del corpus que evalua.
+
+8) LO QUE NO SE PUEDE CONCLUIR
+- Que metodo recupera el documento correcto en E1-E4 y T1-T5. No hay gold anotado.
+- Que el grep sea "mejor": mide otra cosa. Gana en pureza y coste, no en correccion probada.
+- Nada sobre calidad de las respuestas del LLM: aqui no hay generacion, solo recuperacion.
+- E4 no es medible con recall@5: su gold son 434 ficheros (6 % del corpus); 5/434 = 0,012
+  no significa nada. Se retira.
+- M3 (cobertura lexica) se retira por techo: 1,0 en 11 de 12 consultas en AMBOS metodos.
+  No discrimina y no se publica como resultado.
+
+9) SINONIMOS DECLARADOS (pasada agentica, auditable)
+E1 joko lab, laboratorio | E2 hermes, agent | E3 lm studio, ollama, local | E4 jokoalmi
+T1 offline, on-premise, local | T2 golden set, grounding, verificacion, evaluacion
+T3 sdxl, difusion, vram | T4 n8n, docker | T5 telemetria, trazas, metricas
+C1/C2 jokoalmi-ui/joko-lab | C3 zarandona, quantimetrics
+
+10) QUE DECISION HABILITA (y cual no)
+No habilita construir un router de recuperacion: 12 consultas y 2 de ellas con gold medible
+no sostienen esa decision. Lo que si sostiene es una mejora concreta y verificable sobre el
+instrumento que ya existe: penalizar o excluir del top-k las transcripciones de sesiones
+cuando la consulta pide documentacion, porque hoy ocupan el 45 % de los resultados. Eso se
+mide con el mismo banco antes y despues, sin gold humano: basta pureza@5 y composicion.
+Segunda mejora, tambien medible: umbral de abstencion, porque hoy el vectorial siempre
+devuelve 5 resultados aunque la entidad no exista (C3).
+
+11) REPRODUCIBILIDAD
+Los dos scripts estan en /tmp/ab_run.py y /tmp/ab_run2.py y son ejecutables tal cual:
+  /usr/bin/python3 /tmp/ab_run.py   (pasada 1, con el banco dentro)
+  /usr/bin/python3 /tmp/ab_run2.py  (pasada 2, banco excluido; cifras publicadas)
+Si /tmp se pierde, el codigo no esta en el repo: si se quiere conservar, hay que copiarlo
+a tools/ (decision aparte, no tomada en esta tarea).
+
+12) COSTE REAL
+0 GPU, 0 descargas, 0 modelos cargados, 0 cambios de servicio, 0 escrituras en BD.
+Escrituras: este informe y el diseno, ambos nuevos en 04-operations/metrics/.
+Sin commit ni push.
