@@ -1,0 +1,85 @@
+TOP 1 DEL INFORME valor-canales-diario (12-11) - VERIFICACION DEL FILTRO DE SESIONES
+Joko Lab - 04-operations/metrics - 2026-11-12
+Origen: TOP 1 del informe de valor de hoy: "aplicar el filtro de transcripciones de forma
+verificable (tools/search.py; medir pureza@5 antes/despues con el mismo banco)".
+Ejecutado en sesion interactiva, autorizado por el usuario ("Aplica Top 1").
+
+1) LO QUE SE PIDIO Y LO QUE HABIA
+El informe daba por hecho que el filtro estaba revertido y que el 45 % de ruido seguia en el
+top-5, con esta evidencia: `grep sesiones tools/search.py` = 0 lineas. Esa evidencia solo
+prueba que no hay codigo de filtro en el buscador; no prueba que haya ruido. Se comprobo el
+origen antes de escribir codigo.
+
+2) HECHO VERIFICADO: EL FILTRO YA ESTA APLICADO, Y EN ORIGEN
+- tools/indexer.py:142-143 excluye explicitamente el directorio al recorrer el arbol:
+    (root.endswith("04-operations/metrics") and d == "sesiones")
+  Es exclusion por RUTA en la indexacion, no reordenacion en la busqueda. Commit c0f2594
+  (11-11 17:07), "rag: sesiones fuera de joko_notes (el corpus documental manda)".
+- Indice joko_notes medido hoy: 41.578 filas -> references 31.832 | propio/resto 5.577 |
+  research 4.169 | SESIONES 0.
+- Por eso se retiro el peso por ruta en search.py (85177bc, 11-11 17:38): no tenia sujeto.
+  Volver a anadirlo seria reintroducir codigo muerto.
+
+3) MEDICION PEDIDA: PUREZA@5 ANTES / DESPUES, MISMO BANCO
+Banco: GEO-baseline-v1-queries.txt, sha256 6c3ec4b558abad9e2e1622abc0a547a0eac61c829392c7d8c4cdfac5bf2c34b7
+(identico al de F1 y al del A/B; verificado por sha256 en esta ejecucion).
+Configuracion: tools/search.py -k 5, hibrido + rerank, REFINE=20. Metrica M2 del diseno.
+Script: ~/.hermes/cache/scratch/medir_pureza_top1.py (fuera del repo; no se copia a tools/).
+
+cons  n  pureza  composicion  primer resultado
+E1    5  1.000   PPPPP        README.md
+E2    4  1.000   PPPP         GUIA-APRENDIZAJE-JOKO-LAB.md
+E3    4  0.500   PPRR         research/analisis-ia-local-lmstudio-vs-ollama.md
+E4    3  1.000   PPP          GUIA-APRENDIZAJE-JOKO-LAB.md
+T1    5  0.000   RRRRR        research/analisis-notebooklm-hermes.md
+T2    4  0.000   RRRR         research/analisis-techyybanda-ai-agents-20260914.md
+T3    4  0.500   PPRR         research/analisis-modelos-locales-12gb-20261101.md
+T4    3  0.333   PRR          research/analisis-fullstackparody-n8n-agents.md
+T5    4  0.500   PPRR         research/analisis-observabilidad-pipelines-vs-lab.md
+C1    5  0.600   PPPRR        README.md
+C2    5  0.800   PPPPR        README.md
+C3    5  0.000   RRRRR        01-knowledge/references/.../distributed-tracing/references/details.md
+
+P = documentacion propia | R1 = 01-knowledge/references/ | R2 = metrics/sesiones/ |
+R3 = .BACKUP | R4 = research/  (regla M2 del diseno, sin cambios)
+
+COMPARACION CON LA LINEA BASE DEL A/B (misma metrica, mismo banco, misma config)
+                          antes (11-11 A/B)      ahora (12-11)
+pureza@5 media@consulta   0,236                  0,519    (x2,2)
+pureza@5 global por slot  0,218 (12/55)          0,510 (26/51)
+slots de sesion (R2)      26 de 55 (45 %)         0 de 51 (0 %)
+slots research (R4)       11 de 55 (20 %)         18 de 51 (35 %)
+slots references (R1)      6 de 55 (11 %)          7 de 51 (14 %)
+documentacion propia      12 de 55 (22 %)         26 de 51 (51 %)
+slots devueltos           55                      51 (dedupe por path deja 9 huecos)
+
+4) QUE SIGNIFICA
+- El efecto que pedia el TOP 1 esta conseguido y es mas fuerte que el que se buscaba: no se
+  penaliza el ruido, se elimina en la fuente. 0 slots de sesion en 51.
+- La pureza se ha mas que duplicado con el mismo banco. Es la primera metrica del lab que
+  mejora por un cambio hecho a proposito y se remide con el instrumento congelado.
+- El ruido que queda ya NO es R2: es R4 research/ (35 %) y R1 references/ (14 %).
+  En T1 y T2 la pureza es 0: el top-5 entero son analisis de research/. Eso no es un fallo
+  de orden, es composicion del corpus: para esas dos consultas el lab no tiene documento
+  propio, solo el analisis de un contenido externo. Coincide con la conclusion del A/B:
+  el problema esta en el corpus, no en el ranking.
+
+5) LO QUE NO SE PUEDE CONCLUIR
+- Que 0,519 sea "bueno": no hay gold humano. Mide que hay mas documento propio en el top-5,
+  no que sea el documento correcto.
+- Que el ruido R4 sea eliminable: en T1/T2 research/ es lo unico que existe del tema.
+  Penalizarlo dejaria el top-5 vacio, que es peor que un resultado ajeno bien etiquetado.
+- C3 sigue devolviendo 5 resultados para una entidad inventada (0/5 con entidad en la fuente,
+  segun la metrica corregida del A/B). El vectorial no se abstiene: sigue abierto.
+- 9 slots de 60 no se devuelven (dedupe por path). No se ha medido si eso oculta documentos
+  distintos con el mismo path.
+
+6) DECISION TOMADA
+No se toca tools/search.py. El filtro pedido ya existe en tools/indexer.py:142-143 y
+reintroducir el peso por ruta repetiria el error de 85177bc (codigo sin sujeto).
+Escrituras: este fichero. 0 cambios de codigo, 0 cambios de indice, 0 servicios tocados.
+Sin commit ni push (no autorizado en esta tarea).
+
+7) SIGUIENTE PASO MEDIBLE (no ejecutado)
+Umbral de abstencion para C3: hoy devuelve 5 resultados sin entidad en la fuente. Es la
+segunda mejora que el A/B dejo declarada como medible y sigue sin hacerse.

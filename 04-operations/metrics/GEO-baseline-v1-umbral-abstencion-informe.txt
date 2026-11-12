@@ -1,0 +1,58 @@
+UMBRAL DE ABSTENCION EN tools/search.py - IMPLEMENTACION Y MEDICION
+Joko Lab - 04-operations/metrics - 2026-11-12
+Origen: segunda mejora declarada como medible en el A/B de 11-11 ("ninguno de los dos
+metodos sabe decir no lo se sin un umbral externo") y punto 7 del informe
+GEO-baseline-v1-TOP1-filtro-sesiones-verificacion.txt. Autorizado por el usuario ("Hazlo").
+
+1) PROBLEMA MEDIDO ANTES DE TOCAR CODIGO
+El vectorial y el FTS siempre devuelven top_k. Con la entidad inventada C3 del banco
+congelado ("Zarandona Quantimetrics Suite") devolvia 5 resultados con 0/5 apariciones de
+la entidad en la fuente. Mejor rerank de cada consulta, medido hoy (banco sha256
+6c3ec4b558abad9e2e1622abc0a547a0eac61c829392c7d8c4cdfac5bf2c34b7, k=5, hibrido+rerank):
+
+  E1 0.999 | E2 0.990 | E3 0.950 | E4 0.797 | T1 0.966 | T2 0.916
+  T3 0.958 | T4 0.980 | T5 0.644 | C1 0.874 | C2 0.926
+  C3 0.002   <-- control negativo
+
+Valle medido: 0.002 -> 0.644. Separacion de 2 ordenes de magnitud.
+
+2) QUE SE IMPLEMENTO
+tools/search.py, bloque "ABSTENCION" justo antes del bucle de impresion. Mira el MEJOR
+rerank de la lista ya ordenada; si no llega al minimo, no imprime resultados y devuelve.
+  - Variable: JOKO_RAG_MIN_RERANK, defecto 0.02 (=0 desactiva).
+  - No reordena ni filtra filas: si algo pasa el umbral, la salida es identica a antes.
+  - Mensaje literal cuando se abstiene:
+    [ABSTENCION] Ningun resultado supera el minimo de relevancia (mejor rerank 0.002 <
+    0.020). El corpus no parece contener la respuesta a esta consulta.
+  - stderr: "--- Recuperados: 0 de 5 (abstencion) ---"
+Backup: tools/search.py.bak-20261112-abstencion, md5 9adc98d9eb8cd2ef56ce6eb0c2fffcb2
+(identico al documentado en ad96d3d). Fichero tras el cambio: ver seccion 5.
+
+3) VERIFICACION (mismo banco, antes vs despues, paths comparados en orden)
+cons  antes  despues  paths identicos
+E1-E4, T1-T5, C1, C2: 51 -> 51 slots, 11 de 11 consultas con la MISMA lista y el mismo
+orden. Diferencia en 0 de 11.
+C3: 5 -> 0 slots, con abandono por umbral.
+Control de mecanismo (no de resultado): C3 con JOKO_RAG_MIN_RERANK=0 vuelve a devolver 5.
+Es el umbral el que actua, no otro cambio. py_compile OK.
+
+4) LIMITES, DICHOS CLAROS
+- El umbral se fijo DESPUES de ver los datos, no a priori. Con 12 consultas y 1 solo
+  control negativo no hay informacion para elegir un valor optimo: cualquier valor entre
+  ~0.01 y ~0.6 da el mismo resultado en este banco. 0.02 se elige por margen (10x sobre
+  C3, 32x bajo el peor caso real), no por ajuste fino. No esta calibrado con mas casos.
+- Una consulta real sobre un tema que el corpus no cubre tambien se abstendra. Eso es lo
+  deseable, pero no se ha medido con ningun caso de ese tipo: el banco no lo tiene.
+- El rerank puede dar valores altos a documentos del mismo dominio aunque no respondan
+  (C3 lo evitaba por ser una entidad sin relacion). El umbral no sustituye a un juez de
+  correccion; solo impide responder a lo que el reranker puntua como ajeno.
+- La abstencion NO queda registrada en rag-query-ledger.jsonl (el return es anterior a
+  _log_query). Si se quiere medir frecuencia de abstenciones en uso real, hay que mover el
+  registro. Pendiente declarado, no hecho.
+- Cambia el comportamiento por defecto de todo lo que usa search.py, incluido el tool MCP
+  lancedb.buscar_rag: puede devolver 0 resultados donde antes devolvia 5. Es el objetivo,
+  pero es un cambio de contrato visible.
+
+5) ESTADO
+Codigo modificado y verificado. 0 cambios de indice, 0 servicios tocados, 0 descargas.
+Sin commit (no autorizado en esta tarea).

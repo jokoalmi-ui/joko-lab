@@ -468,6 +468,33 @@ def query_index(query_text: str, top_k: int = 3,
     except Exception as e:
         print(f"  [qs] Tablas QS no disponibles ({e}) — buscando solo joko_notes.", file=sys.stderr)
 
+    # ABSTENCION (12-nov-2026): ninguno de los dos metodos sabia decir "no lo se".
+    # Medido con el banco congelado GEO-baseline-v1 (sha256 6c3ec4b5..., 12 consultas):
+    # el control negativo C3 (entidad inventada "Zarandona Quantimetrics Suite") devuelve
+    # 5 resultados con mejor rerank 0.002, mientras las 11 consultas reales dan entre
+    # 0.644 y 0.999. Valle medido: 0.002 -> 0.644. Umbral por defecto 0.02: 10x por
+    # encima del valor inventado y 32x por debajo del peor caso real. Se mira el MEJOR
+    # rerank de la lista: si no hay ningun resultado que pase, se abstiene entera.
+    # No reordena nada: si alguna fila pasa el umbral, la salida es identica a antes.
+    # Desactivable: JOKO_RAG_MIN_RERANK=0
+    try:
+        min_rerank = float(os.environ.get("JOKO_RAG_MIN_RERANK", "0.02"))
+    except ValueError:
+        min_rerank = 0.02
+    if min_rerank > 0 and not results.empty and "rerank_score" in results.columns:
+        mejor = results["rerank_score"].max()
+        try:
+            mejor = float(mejor)
+        except (TypeError, ValueError):
+            mejor = None
+        if mejor is not None and mejor == mejor and mejor < min_rerank:
+            print(f"[ABSTENCION] Ningun resultado supera el minimo de relevancia "
+                  f"(mejor rerank {mejor:.3f} < {min_rerank:.3f}). El corpus no parece "
+                  f"contener la respuesta a esta consulta.")
+            print(f"--- Recuperados: 0 de {TOP_K_RETRIEVE} (abstencion) ---",
+                  file=sys.stderr)
+            return
+
     for idx, (_, row) in enumerate(results.iterrows()):
         sim = row.get("_distance", 0)
         if sim is not None:
