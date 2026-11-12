@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261112/perfume_del_dia_v5_encrenoiresport.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261112/encre_noire_sport_frasco.png",
+ "rect": [
+  37,
+  99,
+  329,
+  450
+ ],
+ "fondo_L": 215.66140000000001,
+ "tapon_L": 51.36099999999999,
+ "cuerpo_L": 146.86759999999998,
+ "contraste_tapon": 8.788548089673464,
+ "contraste_cuerpo": 2.1520286290958577,
+ "pct_claros": 4.450523471800068,
+ "min_claros": null,
+ "min_contraste": null
+}

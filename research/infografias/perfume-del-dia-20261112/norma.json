@@ -1,0 +1,573 @@
+{
+ "ok": true,
+ "nodos": 68,
+ "chicos": [],
+ "duros": [],
+ "avisos": [
+  {
+   "ratio": 3.99,
+   "ratio_px": 3.99,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "ciprés e incienso, más seco y terroso",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 3.93,
+   "ratio_px": 3.93,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "acuático limpio, la raíz del género",
+   "cls": "alt-motivo"
+  }
+ ],
+ "resumen_avisos": "ciprés e incienso, [alt-motivo] 3.99:1 12px; acuático limpio, l [alt-motivo] 3.93:1 12px",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 9.55,
+   "ratio_px": 9.55,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 9.23,
+   "ratio_px": 9.23,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 9.42,
+   "ratio_px": 9.42,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 8.05,
+   "ratio_px": 8.05,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fr.lalique.com · consultado 12-11-2026",
+   "cls": "f"
+  },
+  {
+   "ratio": 12.12,
+   "ratio_px": 12.12,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "7.413 votos · 959 reseñas · Fragrantica",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 11.34,
+   "ratio_px": 11.34,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 11.3,
+   "ratio_px": 11.3,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 12.47,
+   "ratio_px": 12.47,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "pomelo, bergamota, ciprés y lavanda — cí",
+   "cls": "not"
+  },
+  {
+   "ratio": 3.55,
+   "ratio_px": 3.55,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 11.69,
+   "ratio_px": 11.69,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 12.51,
+   "ratio_px": 12.51,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "notas acuáticas, nuez moscada y vetiver ",
+   "cls": "not"
+  },
+  {
+   "ratio": 9.24,
+   "ratio_px": 9.24,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "vetiver de Haití y bourbon, cachemira y ",
+   "cls": "not"
+  },
+  {
+   "ratio": 13.48,
+   "ratio_px": 13.48,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 4.4,
+   "ratio_px": 4.4,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 13.66,
+   "ratio_px": 13.66,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Notas: lalique.com (oficial) — contrasta",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 12.34,
+   "ratio_px": 12.34,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Lalique · inspiración oficial [traduci",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 14.02,
+   "ratio_px": 14.02,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Chanel · 2008",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 13.25,
+   "ratio_px": 13.25,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,35/5 · 3.464 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.82,
+   "ratio_px": 4.82,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el mismo vetiver de ciprés, más solemne",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 12.74,
+   "ratio_px": 12.74,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Aesop · 2017",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 13.17,
+   "ratio_px": 13.17,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,15/5 · 1.749 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 3.99,
+   "ratio_px": 3.99,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "ciprés e incienso, más seco y terroso",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 12.76,
+   "ratio_px": 12.76,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Issey Miyake · 1994",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 13.4,
+   "ratio_px": 13.4,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "4,17/5 · 20.810 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 3.93,
+   "ratio_px": 3.93,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "acuático limpio, la raíz del género",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 13.23,
+   "ratio_px": 13.23,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Asociaciones en Fragrantica, Parfumo y O",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 12.93,
+   "ratio_px": 12.93,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Reseña en Fragrantica · comunidad [tra",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 9.53,
+   "ratio_px": 9.53,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · oficina y lluvia · disc",
+   "cls": "donde"
+  },
+  {
+   "ratio": 3.41,
+   "ratio_px": 3.41,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 13.6,
+   "ratio_px": 13.6,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "JUEVES · 12 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 10.16,
+   "ratio_px": 10.16,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 9.43,
+   "ratio_px": 9.43,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "interior ·",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 9.46,
+   "ratio_px": 9.46,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "exterior",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 15.27,
+   "ratio_px": 15.27,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Ventana 08-18: 15,1–16,2 °C · media 15,6",
+   "cls": "clima"
+  },
+  {
+   "ratio": 15.22,
+   "ratio_px": 15.22,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 2,6 °C · humedad 79 % · amadera",
+   "cls": "clima"
+  },
+  {
+   "ratio": 15.29,
+   "ratio_px": 15.29,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 13.72,
+   "ratio_px": 13.72,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 14.42,
+   "ratio_px": 14.42,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 15.16,
+   "ratio_px": 15.16,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 8.2,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.73,
+   "ratio_px": 10.73,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Lalique",
+   "cls": "casa"
+  },
+  {
+   "ratio": 14.34,
+   "ratio_px": 14.34,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2013",
+   "cls": ""
+  },
+  {
+   "ratio": 13.94,
+   "ratio_px": 13.94,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Eau de Toilette",
+   "cls": "dh"
+  },
+  {
+   "ratio": 14.56,
+   "ratio_px": 14.56,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Masculino",
+   "cls": "dh"
+  },
+  {
+   "ratio": 13.59,
+   "ratio_px": 13.59,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Amaderada acuática",
+   "cls": "dh"
+  },
+  {
+   "ratio": 13.71,
+   "ratio_px": 13.71,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumista:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 14.62,
+   "ratio_px": 14.62,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Nathalie Lorson",
+   "cls": ""
+  },
+  {
+   "ratio": 13.3,
+   "ratio_px": 13.3,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 15.0,
+   "ratio_px": 15.0,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~7 h",
+   "cls": ""
+  },
+  {
+   "ratio": 13.4,
+   "ratio_px": 13.4,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 14.25,
+   "ratio_px": 14.25,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "moderada",
+   "cls": ""
+  },
+  {
+   "ratio": 14.25,
+   "ratio_px": 14.25,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "96,00 €",
+   "cls": ""
+  },
+  {
+   "ratio": 12.92,
+   "ratio_px": 12.92,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 100 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.58,
+   "ratio_px": 12.58,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "POMELO · BERGAMOTA · CIPRÉS",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 4.78,
+   "ratio_px": 4.78,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "ACUÁTICO · NUEZ MOSCADA · VETIVER",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 6.96,
+   "ratio_px": 6.96,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "VETIVER · CACHEMIRA · ALMIZCLE",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 11.51,
+   "ratio_px": 11.51,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Sycomore",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 12.14,
+   "ratio_px": 12.14,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Hwyl",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 12.19,
+   "ratio_px": 12.19,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "L'Eau d'Issey",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 11.24,
+   "ratio_px": 11.24,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "«Elegante y dinámico, el masculino emble",
+   "cls": ""
+  },
+  {
+   "ratio": 8.25,
+   "ratio_px": 8.25,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“Encre Noire Sport huele a estar tumbado",
+   "cls": ""
+  },
+  {
+   "ratio": 3.43,
+   "ratio_px": 3.43,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "que llegue a la tarde sin invadir",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 4.81,
+   "ratio_px": 4.81,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "vetiver, ciprés y pomelo bajo la lluvia",
+   "cls": "sub"
+  },
+  {
+   "ratio": 10.32,
+   "ratio_px": 10.32,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "4,15",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 12.2,
+   "ratio_px": 12.2,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "Encre Noire Sport",
+   "cls": ""
+  }
+ ]
+}
