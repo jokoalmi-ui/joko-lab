@@ -30,21 +30,30 @@ type: research
 | Salto | Single-hop | Multi-source | Self-correcting |
 | Flujo | Embed→VectorDB→Top-K→LLM | Entity extraction→Knowledge Graph→LLM | Reasoning Agent→Web Search→LLM→Self-Eval |
 
-## 🔴 Conexión con el LAB
+## 🔴 Conexión con el LAB — estado a 19-nov-2026 (revalidado)
 
-| Arquitectura | Estado en el lab |
-|---|---|
-| **Hybrid RAG (RRF)** | 🔵 **FUTURIBLE YA ANOTADO** (19-ago: "RRF + búsqueda híbrida — señal: RAG con producto real") — este post lo valida como el siguiente nivel |
-| Graph RAG | ⚪ No (lab: RAG clásico + reranker; graph = skills, no grafo de conocimiento) |
-| Agentic RAG | ⚪ No (el lab itera con gate + revisor manual, no agente RAG) |
-| CRAG (correctivo) | 🟡 Parcial — el gate de veracidad del lab ES un evaluador correctivo manual |
-| Multimodal RAG | ⚪ No (LanceDB es texto; visión GLM es on-demand, no RAG) |
+| Arquitectura | Estado en el lab (19-nov-2026) | Evidencia en disco |
+|---|---|---|
+| **Hybrid RAG (RRF)** | ✅ **IMPLEMENTADO** (en ago era solo futurible) | `tools/search.py`: `_calcular_rrf(fts_ids, vec_ids, K=60)`, líneas 280-336 |
+| Graph RAG | ⚪ No — el grafo del lab son skills, no un knowledge graph de entidades | `codebase-memory` indexa código, no documentos |
+| **Agentic RAG** | ✅ **IMPLEMENTADO** (en ago era ⚪) | `tools/agentic_loop.py` (evaluación determinista del loop) + `tools/medir_agentic.py` |
+| CRAG (correctivo) | 🟡 **PARCIAL — hueco real** | `tools/evaluar_rag_adversarial.py` (10-nov) hace el *grading* de documentos; **falta** reescritura de query y fallback automático |
+| Multimodal RAG | ⚪ No — LanceDB es texto; la visión (GLM) es on-demand, fuera del índice | — |
+
+**Lectura:** de las cinco arquitecturas, el lab ya ejecuta dos (híbrida+RRF y agéntica) y tiene media tercera. Lo que queda por construir, si se quiere completar el eje, es **CRAG completo** (evaluator → rewrite/fallback), no volver a discutir híbrida.
 
 ## Veredicto
 
 - El carrusel **valida el camino del lab**: RAG clásico sólido (LanceDB 19.894 filas, recall@5 100%) + el siguiente paso natural es **Hybrid RAG con RRF** (ya anotado)
 - CRAG valida conceptualmente el **gate de veracidad** (evaluar → corregir → repetir) — el lab lo hace manual, no automático
 - No hay nada que implementar NUEVO hoy: es confirmación de la dirección
+
+## Revalidación 19-nov-2026 — repost del mismo temario
+
+- **Fuente nueva:** https://www.instagram.com/p/Df7HNY0Neof/ — `julianvelez1997`, 19-nov-2026, con etiqueta «Pb @codewithbrij». Es **re-publicación del mismo contenido** de `DcNJAfgDq07` (19-ago-2026): Hybrid, GraphRAG, Agentic, Corrective y Multimodal. Sin material nuevo.
+- **Método:** caption íntegro por `og:description` (verificado). El JSON embebido dio `carousel_media_count = 7`, pero sus `accessibility_caption` eran de posts ajenos del feed («Video by WEB DESIGN», «Photo by Sangram Singh Yadav») → **nº de láminas: no verificado**; no se usó ese bloque ni se descargaron imágenes.
+- **Corrección al análisis original:** la fila «Agentic RAG ⚪ No» y la fila «Hybrid 🔵 futurible» quedaron obsoletas; ambas están implementadas (ver tabla de arriba).
+- **Hueco vigente:** CRAG sin reescritura de query ni fallback automático.
 
 ## Nota honesta
 
