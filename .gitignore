@@ -1,7 +1,10 @@
 # Joko Lab — .gitignore
-# Repo LOCAL, SIN REMOTO (decidido 2026-09-24). Alcance: sólo texto y código.
-# Justificación medida: el árbol completo son ~20,7 GiB / 41.000 ficheros; con este
-# filtro el repo se queda en el texto y el código útil (decenas de MiB).
+# Remoto: origin = git@github.com:jokoalmi-ui/joko-lab.git, rama master (primer fetch
+# 2026-10-18). Corrige la nota anterior «repo LOCAL, SIN REMOTO (decidido 2026-09-24)»,
+# que quedo obsoleta: RULE-023, el hecho se actualiza, no se borra.
+# Alcance: solo texto y codigo. Medido 2026-11-22: el arbol son 24 GiB / 92.934
+# ficheros; versionados 3.223 ficheros / 66,2 MiB. Cifras anteriores (20,7 GiB /
+# 41.000) quedaron obsoletas.
 
 # --- Copias y respaldos (RULE-008: los .bak NO se versionan) ---
 *.bak
