@@ -1,0 +1,556 @@
+{
+ "ok": true,
+ "nodos": 68,
+ "chicos": [],
+ "duros": [],
+ "avisos": [],
+ "resumen_avisos": "ninguno",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 11.6,
+   "ratio_px": 11.6,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 11.65,
+   "ratio_px": 11.65,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 11.52,
+   "ratio_px": 11.52,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 6.57,
+   "ratio_px": 6.57,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "marcantoinebarrois.com · formato único ·",
+   "cls": "f"
+  },
+  {
+   "ratio": 12.55,
+   "ratio_px": 12.55,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "851 votos · Fragrantica · consultado 12-",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 11.54,
+   "ratio_px": 11.54,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.75,
+   "ratio_px": 7.75,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 7.83,
+   "ratio_px": 7.83,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el mordisco: manzana verde, pimienta neg",
+   "cls": "not"
+  },
+  {
+   "ratio": 3.03,
+   "ratio_px": 3.03,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.69,
+   "ratio_px": 7.69,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 8.63,
+   "ratio_px": 8.63,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el giro: oud de Laos, safraleine y hoja ",
+   "cls": "not"
+  },
+  {
+   "ratio": 9.45,
+   "ratio_px": 9.45,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 8.52,
+   "ratio_px": 8.52,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la estela: pachulí, sándalo y vainilla —",
+   "cls": "not"
+  },
+  {
+   "ratio": 8.43,
+   "ratio_px": 8.43,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Notas: Fragrantica (ficha oficial) · rep",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 4.4,
+   "ratio_px": 4.4,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 11.22,
+   "ratio_px": 11.22,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Marc-Antoine Barrois · ficha oficial [",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 11.26,
+   "ratio_px": 11.26,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Barrois · 2016",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 11.05,
+   "ratio_px": 11.05,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "7,7/10 · 528 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.9,
+   "ratio_px": 4.9,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el original, más fresco y sin oud",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 11.43,
+   "ratio_px": 11.43,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Barrois · 2019",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 10.97,
+   "ratio_px": 10.97,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "8,0/10 · 4.064 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.89,
+   "ratio_px": 4.89,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "misma casa, más aire y menos cuero",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 11.61,
+   "ratio_px": 11.61,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Lattafa · 2024",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 11.45,
+   "ratio_px": 11.45,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "8,4/10 · 591 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 4.82,
+   "ratio_px": 4.82,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la vía asequible: manzana y cuero dulce",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 11.51,
+   "ratio_px": 11.51,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Similitudes: Parfumo «smells similar» y ",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 12.07,
+   "ratio_px": 12.07,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Reseña en Parfumo · comunidad [traduci",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 12.73,
+   "ratio_px": 12.73,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · oficina y calle · discr",
+   "cls": "donde"
+  },
+  {
+   "ratio": 11.49,
+   "ratio_px": 11.49,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 9.13,
+   "ratio_px": 9.13,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "VIERNES · 13 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 13.5,
+   "ratio_px": 13.5,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 11.46,
+   "ratio_px": 11.46,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "· bajar a",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 12.96,
+   "ratio_px": 12.96,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "si la tarde pasa de 17 °C",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 13.45,
+   "ratio_px": 13.45,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Ventana 08-18: 14,3–17,3 °C · media 15,5",
+   "cls": "clima"
+  },
+  {
+   "ratio": 14.07,
+   "ratio_px": 14.07,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 4,5 °C · humedad 79 % · especia",
+   "cls": "clima"
+  },
+  {
+   "ratio": 10.72,
+   "ratio_px": 10.72,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 11.2,
+   "ratio_px": 11.2,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 13.05,
+   "ratio_px": 13.05,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 13.29,
+   "ratio_px": 13.29,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 8.2,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 11.05,
+   "ratio_px": 11.05,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Marc-Antoine Barrois",
+   "cls": "casa"
+  },
+  {
+   "ratio": 11.82,
+   "ratio_px": 11.82,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2020",
+   "cls": ""
+  },
+  {
+   "ratio": 14.68,
+   "ratio_px": 14.68,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Extrait de Parfum",
+   "cls": "dh"
+  },
+  {
+   "ratio": 14.81,
+   "ratio_px": 14.81,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Unisex",
+   "cls": "dh"
+  },
+  {
+   "ratio": 14.41,
+   "ratio_px": 14.41,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Especiada cuero amaderada",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.62,
+   "ratio_px": 11.62,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumista:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 14.93,
+   "ratio_px": 14.93,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Quentin Bisch",
+   "cls": ""
+  },
+  {
+   "ratio": 9.98,
+   "ratio_px": 9.98,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.59,
+   "ratio_px": 12.59,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~8 h",
+   "cls": ""
+  },
+  {
+   "ratio": 13.44,
+   "ratio_px": 13.44,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 14.1,
+   "ratio_px": 14.1,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "intensa",
+   "cls": ""
+  },
+  {
+   "ratio": 15.14,
+   "ratio_px": 15.14,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "275,00 €",
+   "cls": ""
+  },
+  {
+   "ratio": 13.94,
+   "ratio_px": 13.94,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 50 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.51,
+   "ratio_px": 12.51,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "MANZANA · PIMIENTA · COMINO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 3.99,
+   "ratio_px": 3.99,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "OUD · SAFRALEINE · VIOLETA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.01,
+   "ratio_px": 7.01,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "PACHULÍ · SÁNDALO · VAINILLA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 10.72,
+   "ratio_px": 10.72,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "B683 EDP",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 10.72,
+   "ratio_px": 10.72,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Ganymede",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 10.86,
+   "ratio_px": 10.86,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Angham",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 9.6,
+   "ratio_px": 9.6,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "«Más que una nueva intensidad, B683 EXTR",
+   "cls": ""
+  },
+  {
+   "ratio": 5.88,
+   "ratio_px": 5.88,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“En conjunto es una mezcla algo especiad",
+   "cls": ""
+  },
+  {
+   "ratio": 4.59,
+   "ratio_px": 4.59,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "extrait del 40 %: poco ya es mucho",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 4.78,
+   "ratio_px": 4.78,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "manzana verde, oud de Laos y cuero",
+   "cls": "sub"
+  },
+  {
+   "ratio": 7.42,
+   "ratio_px": 7.42,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "4,07",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 12.54,
+   "ratio_px": 12.54,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "B683 Extrait",
+   "cls": ""
+  }
+ ]
+}

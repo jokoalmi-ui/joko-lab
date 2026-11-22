@@ -1,0 +1,540 @@
+{
+ "ok": true,
+ "nodos": 66,
+ "chicos": [],
+ "duros": [],
+ "avisos": [],
+ "resumen_avisos": "ninguno",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 6.08,
+   "ratio_px": 6.08,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 6.72,
+   "ratio_px": 6.72,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 7.12,
+   "ratio_px": 7.12,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 4.89,
+   "ratio_px": 4.89,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "isolee.com · consultado 18-11-2026 · fic",
+   "cls": "f"
+  },
+  {
+   "ratio": 7.04,
+   "ratio_px": 7.04,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "1.186 votos · Fragrantica · consultado 1",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 11.62,
+   "ratio_px": 11.62,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.39,
+   "ratio_px": 7.39,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 6.79,
+   "ratio_px": 6.79,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la chispa: elemí, cilantro y semilla de ",
+   "cls": "not"
+  },
+  {
+   "ratio": 3.05,
+   "ratio_px": 3.05,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.61,
+   "ratio_px": 7.61,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 7.21,
+   "ratio_px": 7.21,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el alma: papiro, pimienta negra y sándal",
+   "cls": "not"
+  },
+  {
+   "ratio": 9.39,
+   "ratio_px": 9.39,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 6.82,
+   "ratio_px": 6.82,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la estela: tonka, hoja de tabaco, incien",
+   "cls": "not"
+  },
+  {
+   "ratio": 7.67,
+   "ratio_px": 7.67,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Pirámide: maisoncrivelli.com + isolee.co",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 4.43,
+   "ratio_px": 4.43,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 10.91,
+   "ratio_px": 10.91,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Casa Maison Crivelli · nota oficial [t",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 10.98,
+   "ratio_px": 10.98,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Le Labo · 2011",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 8.02,
+   "ratio_px": 8.02,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "7,3/10 · 1.652 votos · Parfumo",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 5.29,
+   "ratio_px": 5.29,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el referente: mismo papiro, más denso",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 11.99,
+   "ratio_px": 11.99,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Commodity · 2018",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 8.12,
+   "ratio_px": 8.12,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "6,4/10 · 231 votos · Parfumo",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 6.76,
+   "ratio_px": 6.76,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "tu botella: cedro y ámbar, más verde",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 12.02,
+   "ratio_px": 12.02,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Similitudes: “Smells similar” de Parfumo",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 9.08,
+   "ratio_px": 9.08,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Ceesie en Parfumo · comunidad [traduci",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 8.57,
+   "ratio_px": 8.57,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · oficina y calle · no en",
+   "cls": "donde"
+  },
+  {
+   "ratio": 3.86,
+   "ratio_px": 3.86,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 11.17,
+   "ratio_px": 11.17,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "JUEVES · 19 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 9.57,
+   "ratio_px": 9.57,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 8.5,
+   "ratio_px": 8.5,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "oficina ·",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 8.88,
+   "ratio_px": 8.88,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "calle",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 12.43,
+   "ratio_px": 12.43,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "08-18 h:",
+   "cls": "clima"
+  },
+  {
+   "ratio": 12.16,
+   "ratio_px": 12.16,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "9,9–15,4 °C",
+   "cls": ""
+  },
+  {
+   "ratio": 11.14,
+   "ratio_px": 11.14,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "· media 12,7 · 3 % lluvia",
+   "cls": "clima"
+  },
+  {
+   "ratio": 12.1,
+   "ratio_px": 12.1,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 5,5 °C · amaderado especiado pa",
+   "cls": "clima"
+  },
+  {
+   "ratio": 8.2,
+   "ratio_px": 8.2,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 10.18,
+   "ratio_px": 10.18,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 13.44,
+   "ratio_px": 13.44,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 14.14,
+   "ratio_px": 14.14,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 8.2,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 9.77,
+   "ratio_px": 9.77,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Maison Crivelli",
+   "cls": "casa"
+  },
+  {
+   "ratio": 11.72,
+   "ratio_px": 11.72,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2020",
+   "cls": ""
+  },
+  {
+   "ratio": 8.61,
+   "ratio_px": 8.61,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Eau de Parfum",
+   "cls": "dh"
+  },
+  {
+   "ratio": 8.73,
+   "ratio_px": 8.73,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Unisex",
+   "cls": "dh"
+  },
+  {
+   "ratio": 8.25,
+   "ratio_px": 8.25,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Amaderado especiado",
+   "cls": "dh"
+  },
+  {
+   "ratio": 8.69,
+   "ratio_px": 8.69,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumista:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 9.44,
+   "ratio_px": 9.44,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Leslie Girard",
+   "cls": ""
+  },
+  {
+   "ratio": 8.42,
+   "ratio_px": 8.42,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 7.36,
+   "ratio_px": 7.36,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~7 h",
+   "cls": ""
+  },
+  {
+   "ratio": 8.24,
+   "ratio_px": 8.24,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 9.28,
+   "ratio_px": 9.28,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "moderada",
+   "cls": ""
+  },
+  {
+   "ratio": 8.83,
+   "ratio_px": 8.83,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "190,00 €",
+   "cls": ""
+  },
+  {
+   "ratio": 7.35,
+   "ratio_px": 7.35,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 100 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.44,
+   "ratio_px": 12.44,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "ELEMÍ · CILANTRO · ZANAHORIA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 3.98,
+   "ratio_px": 3.98,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "PAPIRO · PIMIENTA · AMYRIS",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.22,
+   "ratio_px": 7.22,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "TONKA · TABACO · INCIENSO · CUERO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 10.65,
+   "ratio_px": 10.65,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Santal 33",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 11.72,
+   "ratio_px": 11.72,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Book",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 10.0,
+   "ratio_px": 10.0,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "Thibaud Crivelli encontró el polvo de ra",
+   "cls": ""
+  },
+  {
+   "ratio": 11.31,
+   "ratio_px": 11.31,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“Hay sándalo, pero pasa a un segundo pla",
+   "cls": ""
+  },
+  {
+   "ratio": 5.06,
+   "ratio_px": 5.06,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "papel, especias y un humo frío",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 8.34,
+   "ratio_px": 8.34,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "papiro, pimienta y tabaco seco",
+   "cls": "sub"
+  },
+  {
+   "ratio": 7.05,
+   "ratio_px": 7.05,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "3,94",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 10.49,
+   "ratio_px": 10.49,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "Papyrus Moléculaire",
+   "cls": ""
+  }
+ ]
+}

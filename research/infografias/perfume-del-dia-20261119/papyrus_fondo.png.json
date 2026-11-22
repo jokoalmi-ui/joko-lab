@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "A close-up still life photograph on a dark walnut wooden desk beside a window on a grey November morning: scattered dry papyrus stems and curled sepia paper sheets, a small brass dish of coriander seeds, a folded beige linen cloth, soft directional daylight raking from the left, warm muted brown and olive tones, shallow depth of field with the background falling into soft shadow, visible wood grain and paper texture, fine film grain, natural realistic photography, clean empty surface in the middle",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1744496
+}

@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261120/ficha_20261120.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261120/fougere_figura.png",
+ "rect": [
+  41,
+  99,
+  321,
+  450
+ ],
+ "fondo_L": 63.278,
+ "tapon_L": 23.497400000000003,
+ "cuerpo_L": 234.822,
+ "contraste_tapon": 1.70167128239262,
+ "contraste_cuerpo": 8.781316700288137,
+ "pct_claros": 40.78573901003808,
+ "min_claros": null,
+ "min_contraste": null
+}

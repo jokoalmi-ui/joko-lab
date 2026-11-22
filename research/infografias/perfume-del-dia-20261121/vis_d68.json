@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261121/perfume_del_dia_v5_ambre_tabac_d68.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261121/ambre_figura.png",
+ "rect": [
+  51,
+  99,
+  302,
+  450
+ ],
+ "fondo_L": 131.6522,
+ "tapon_L": 66.93180000000001,
+ "cuerpo_L": 206.5084,
+ "contraste_tapon": 2.6356913820019083,
+ "contraste_cuerpo": 2.4000679927244093,
+ "pct_claros": 9.974245768947755,
+ "min_claros": null,
+ "min_contraste": null
+}

@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261118/ficha_20261118.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261118/vibrato_figura.png",
+ "rect": [
+  70,
+  99,
+  264,
+  450
+ ],
+ "fondo_L": 89.3462,
+ "tapon_L": 19.811,
+ "cuerpo_L": 212.387,
+ "contraste_tapon": 2.648499696519439,
+ "contraste_cuerpo": 4.718339896062524,
+ "pct_claros": 5.421717171717172,
+ "min_claros": null,
+ "min_contraste": null
+}

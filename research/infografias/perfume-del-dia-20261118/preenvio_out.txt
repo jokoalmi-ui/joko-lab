@@ -1,0 +1,33 @@
+=== GATE PRE-ENVIO · ficha_20261118.html ===
+[OK   ] 01 Titulo                        Vibrato
+[OK   ] 02 Casa                          SOSPIRO
+[OK   ] 03 Fecha                         dia/mes en la ficha
+[OK   ] 04 Anio                          2026
+[OK   ] 05 Concentracion                 etiqueta presente
+[OK   ] 06 Genero                        etiqueta presente
+[OK   ] 07 Familia                       Cítric
+[OK   ] 08 Perfumista                    fila presente (permite "no revelado")
+[OK   ] 09 Rating comunidad              4,54 · votos
+[OK   ] 10 Piramide completa             svg=6 lab=3
+[OK   ] 11 Longevidad                    horas presentes
+[OK   ] 12 Estela                        b
+[OK   ] 13 Precio 100 ml                 249,95 € / 100 ml
+[OK   ] 14 Si te gusta, prueba           3 alternativas
+[OK   ] 15 Cita comunidad                “Fresco y veraniego. Sabe a verde,...
+[OK   ] 16 QR Fragrantica                qr_fragrantica.png
+[OK   ] 17 Pie completo                  15,6–19,3 °C · media · lluvia · nota fondo
+[OK   ] A1 Assets existen                4 locales, 0 ausentes []
+[OK   ] A2 Sin restos de prueba          ninguno referenciado
+[AVISO] A3 Fondo ampliado x1.41          vibrato_fondo.png 1024x1024 -> sin ampliacion notable
+[AVISO] A4 Precio con fecha de consulta  2026-11-18 en la linea de precio: 18-11-2026
+[AVISO] A5 Recorte sin halo              vibrato_figura.png · filo 1490 px · delta L -3.0 · visibles 25.4% (378 px, 310 muy visibles)
+[OK   ] A7 Figura no a sangre            vibrato_figura.png 563x958 · margen 8 px limpio en los 4 lados
+[OK   ] A8 Sin reflejo ni sombra CSS     reflejo y sombra-suelo ocultos (2/2 declarados), sin drop-shadow
+[OK   ] A6 Linea donde/ocasion           48 car · 278 px · 1 linea(s) · hueco QR 103 px
+[OK   ] E1 Altura (contenido real)       1440 px (body 1440, borde real 1440, fuentes loaded, img 3/3)  [limite 1440]
+[OK   ] E2 Pie dentro de la tarjeta      pie bottom 1390 px · aire 50 px
+
+campos            : 17/17
+FALTA             : 0   []
+AVISO             : 3   ['A3 Fondo ampliado x1.41', 'A4 Precio con fecha de consulta', 'A5 Recorte sin halo']
+veredicto         : ENVIAR (con avisos)

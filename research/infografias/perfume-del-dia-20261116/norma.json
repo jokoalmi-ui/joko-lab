@@ -1,0 +1,572 @@
+{
+ "ok": true,
+ "nodos": 70,
+ "chicos": [],
+ "duros": [],
+ "avisos": [],
+ "resumen_avisos": "ninguno",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 7.46,
+   "ratio_px": 7.46,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 7.93,
+   "ratio_px": 7.93,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 8.37,
+   "ratio_px": 8.37,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 5.64,
+   "ratio_px": 5.64,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "perfumerialaura.com · consultado 15-11-2",
+   "cls": "f"
+  },
+  {
+   "ratio": 8.57,
+   "ratio_px": 8.57,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "8,1/10 · 109 votos · Parfumo · consultad",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 11.48,
+   "ratio_px": 11.48,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 8.4,
+   "ratio_px": 8.4,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la chispa: pomelo siciliano, grosella ne",
+   "cls": "not"
+  },
+  {
+   "ratio": 12.3,
+   "ratio_px": 12.3,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 3.05,
+   "ratio_px": 3.05,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 12.04,
+   "ratio_px": 12.04,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 12.28,
+   "ratio_px": 12.28,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el alma: tuberosa, magnolia e iris — nat",
+   "cls": "not"
+  },
+  {
+   "ratio": 8.8,
+   "ratio_px": 8.8,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la estela: sándalo, cedro, pachulí y vet",
+   "cls": "not"
+  },
+  {
+   "ratio": 14.25,
+   "ratio_px": 14.25,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 4.43,
+   "ratio_px": 4.43,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 12.26,
+   "ratio_px": 12.26,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Pirámide: parfumo.com (pirámide de la ca",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 12.09,
+   "ratio_px": 12.09,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Casa Tiziana Terenzi · colección Comet",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 10.0,
+   "ratio_px": 10.0,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Tiziana Terenzi",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 12.12,
+   "ratio_px": 12.12,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "8,1/10 · 1.180 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 5.81,
+   "ratio_px": 5.81,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "misma casa, más cítrico y rotundo",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 9.48,
+   "ratio_px": 9.48,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Afnan · 2021",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 11.48,
+   "ratio_px": 11.48,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "8,1/10 · 4.057 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 6.03,
+   "ratio_px": 6.03,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "mismo ADN cítrico, ya en tu colección",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 10.17,
+   "ratio_px": 10.17,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Sospiro · 2022",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 10.58,
+   "ratio_px": 10.58,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "8,8/10 · 2.951 votos",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 5.87,
+   "ratio_px": 5.87,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "pomelo y jengibre, más fresco",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 11.06,
+   "ratio_px": 11.06,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Similitudes: Parfumo «smells similar» · ",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 9.14,
+   "ratio_px": 9.14,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Jaular en Parfumo · comunidad [traduci",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 10.58,
+   "ratio_px": 10.58,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · oficina y calle · no en",
+   "cls": "donde"
+  },
+  {
+   "ratio": 8.53,
+   "ratio_px": 8.53,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 12.31,
+   "ratio_px": 12.31,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "LUNES · 16 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 10.32,
+   "ratio_px": 10.32,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 10.98,
+   "ratio_px": 10.98,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "oficina ·",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 9.8,
+   "ratio_px": 9.8,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "calle",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 12.43,
+   "ratio_px": 12.43,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "08-18 h:",
+   "cls": "clima"
+  },
+  {
+   "ratio": 12.42,
+   "ratio_px": 12.42,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "14,3–16,9 °C",
+   "cls": ""
+  },
+  {
+   "ratio": 11.75,
+   "ratio_px": 11.75,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "· media 15,6 · 13 % lluvia",
+   "cls": "clima"
+  },
+  {
+   "ratio": 12.42,
+   "ratio_px": 12.42,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 5,1 °C · frutal amaderada para ",
+   "cls": "clima"
+  },
+  {
+   "ratio": 14.37,
+   "ratio_px": 14.37,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 14.5,
+   "ratio_px": 14.5,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 11.33,
+   "ratio_px": 11.33,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 12.8,
+   "ratio_px": 12.8,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 8.2,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.85,
+   "ratio_px": 7.85,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Tiziana Terenzi",
+   "cls": "casa"
+  },
+  {
+   "ratio": 12.33,
+   "ratio_px": 12.33,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2021",
+   "cls": ""
+  },
+  {
+   "ratio": 10.53,
+   "ratio_px": 10.53,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Extrait de Parfum",
+   "cls": "dh"
+  },
+  {
+   "ratio": 10.13,
+   "ratio_px": 10.13,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Unisex",
+   "cls": "dh"
+  },
+  {
+   "ratio": 9.26,
+   "ratio_px": 9.26,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Frutal amaderada",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.19,
+   "ratio_px": 11.19,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumista:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.21,
+   "ratio_px": 11.21,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Paolo Terenzi",
+   "cls": ""
+  },
+  {
+   "ratio": 10.4,
+   "ratio_px": 10.4,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 10.8,
+   "ratio_px": 10.8,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~8 h",
+   "cls": ""
+  },
+  {
+   "ratio": 10.32,
+   "ratio_px": 10.32,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.01,
+   "ratio_px": 11.01,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "intensa",
+   "cls": ""
+  },
+  {
+   "ratio": 11.25,
+   "ratio_px": 11.25,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "425,00 €",
+   "cls": ""
+  },
+  {
+   "ratio": 8.98,
+   "ratio_px": 8.98,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 100 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.54,
+   "ratio_px": 12.54,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "POMELO · GROSELLA NEGRA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 3.89,
+   "ratio_px": 3.89,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "TUBEROSA · MAGNOLIA · IRIS",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.15,
+   "ratio_px": 7.15,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "SÁNDALO · CEDRO · PACHULÍ · VETIVER",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 9.47,
+   "ratio_px": 9.47,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Rosso Pompei",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 10.26,
+   "ratio_px": 10.26,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Turathi Blue",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 7.9,
+   "ratio_px": 7.9,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Vibrato",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 10.37,
+   "ratio_px": 10.37,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "Tuttle es un cometa que vuelve: la casa ",
+   "cls": ""
+  },
+  {
+   "ratio": 9.07,
+   "ratio_px": 9.07,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“Puedo decir con firmeza que es mi descu",
+   "cls": ""
+  },
+  {
+   "ratio": 3.4,
+   "ratio_px": 3.4,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "fruta luminosa que deja rastro",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 3.45,
+   "ratio_px": 3.45,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "pomelo, melocotón y ámbar gris",
+   "cls": "sub"
+  },
+  {
+   "ratio": 8.66,
+   "ratio_px": 8.66,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "8,1",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 9.47,
+   "ratio_px": 9.47,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "Tuttle",
+   "cls": ""
+  }
+ ]
+}

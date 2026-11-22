@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261116/perfume_del_dia_v5_tuttle_d70.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261116/tuttle_figura.png",
+ "rect": [
+  62,
+  99,
+  280,
+  450
+ ],
+ "fondo_L": 139.0734,
+ "tapon_L": 66.74980000000001,
+ "cuerpo_L": 223.32399999999998,
+ "contraste_tapon": 2.918079602706811,
+ "contraste_cuerpo": 2.5620238950435974,
+ "pct_claros": 3.8373015873015874,
+ "min_claros": null,
+ "min_contraste": null
+}

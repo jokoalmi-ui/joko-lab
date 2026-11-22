@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261122/perfume_del_dia_v5_encre_noire_extreme.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261122/encre_noire_extreme_figura.png",
+ "rect": [
+  52,
+  99,
+  300,
+  450
+ ],
+ "fondo_L": 75.1874,
+ "tapon_L": 35.0,
+ "cuerpo_L": 186.69920000000002,
+ "contraste_tapon": 1.8069274832900004,
+ "contraste_cuerpo": 4.515970577491927,
+ "pct_claros": 0.0,
+ "min_claros": null,
+ "min_contraste": null
+}

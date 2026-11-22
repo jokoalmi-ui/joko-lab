@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<title>Peaje vs carretera — coste anual</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:#000;color:#f2f2f2;font-family:"DejaVu Sans",sans-serif;-webkit-font-smoothing:antialiased}
+  .w{width:1080px;padding:46px 40px 34px}
+  .kick{font-size:17px;letter-spacing:5px;color:#7a7a7a;text-transform:uppercase;margin-bottom:14px}
+  h1{font-size:47px;line-height:1.1;font-weight:700;letter-spacing:-.6px}
+  h1 b{color:#3ddc84;font-weight:700}
+  .sub{margin-top:16px;font-size:19px;line-height:1.45;color:#a8a8a8;padding-bottom:26px;border-bottom:1px solid #262626}
+  table{width:100%;border-collapse:collapse;margin-top:6px}
+  th,td{padding:17px 10px;vertical-align:middle;border-bottom:1px solid #1e1e1e}
+  thead th{font-size:16px;line-height:1.3;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;text-align:right;padding-top:26px;padding-bottom:18px;border-bottom:1px solid #3a3a3a}
+  thead th:first-child{text-align:left;color:#6f6f6f;font-size:14px;letter-spacing:2px}
+  thead th .tag{display:block;font-size:12px;letter-spacing:1px;font-weight:400;color:#6f6f6f;text-transform:none;margin-top:5px}
+  th.c1{color:#3ddc84} th.c2{color:#ffb020} th.c3{color:#8fb4c9}
+  td{font-size:22px;text-align:right;font-variant-numeric:tabular-nums;color:#dcdcdc}
+  td.k{text-align:left;font-size:18px;color:#9c9c9c;letter-spacing:.2px;width:34%}
+  td small{display:block;font-size:13px;color:#5e5e5e;margin-top:3px;letter-spacing:.2px}
+  td.k small{display:block;font-size:13px;color:#5e5e5e;margin-top:3px;letter-spacing:.2px}
+  tr.tot td{background:#0c0c0c;font-weight:700;color:#fff;font-size:24px}
+  tr.tot td.k{color:#e8e8e8;font-weight:700}
+  tr.tot.cur td.c1{color:#3ddc84}
+  .band{margin-top:30px;padding-top:24px;border-top:1px solid #262626}
+  .band .row{display:flex;gap:18px;align-items:baseline;padding:9px 0;font-size:20px;line-height:1.35;color:#cfcfcf}
+  .band .row .n{font-size:15px;color:#5e5e5e;min-width:26px;font-variant-numeric:tabular-nums}
+  .band .row b{color:#fff}
+  .band .row .v{color:#3ddc84;font-weight:700}
+  .pie{margin-top:26px;font-size:14px;line-height:1.5;color:#6a6a6a;border-top:1px solid #1a1a1a;padding-top:14px}
+</style></head><body>
+<div class="w">
+  <div class="kick">Erandio · Amorebieta · 5 días por semana</div>
+  <h1>Autopista de peaje o <b>carretera sin peaje</b>:<br>lo que cuesta cada una al año</h1>
+  <div class="sub">520 tránsitos al año · diésel 8 l/100 a 1,45 €/l · tarifa Interbiak 2026 (1,05 € por trayecto) · tope mensual de Bidesaria</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Concepto</th>
+        <th class="c1">AP-8 + Vía-T<span class="tag">con Bidesaria</span></th>
+        <th class="c2">AP-8 en cabina<span class="tag">sin alta en Bidesaria</span></th>
+        <th class="c3">N-637 + N-634<span class="tag">sin peaje</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="k">Distancia<small>por trayecto</small></td><td>30,0 km</td><td>30,0 km</td><td>36,3 – 41,3 km</td></tr>
+      <tr><td class="k">Tiempo<small>por trayecto</small></td><td>31 min</td><td>31 min</td><td>44 – 48 min</td></tr>
+      <tr><td class="k">Peaje al año<small>tope de Bidesaria: 39,46 €/mes × 12</small></td><td>473,5 €</td><td>545,6 €</td><td>0 €</td></tr>
+      <tr><td class="k">Dispositivo Vía-T<small>emisión 23 € — no se paga pasando de 72 tránsitos</small></td><td>0 €<small>1.er año</small></td><td>—</td><td>—</td></tr>
+      <tr><td class="k">Cuota del Vía-T<small>mantenimiento anual</small></td><td>0 € → 20–30 €<small>1.er año → siguientes</small></td><td>—</td><td>—</td></tr>
+      <tr><td class="k">Gasoil al año<small>8 l/100 · 1,45 €/l</small></td><td>1.810 €</td><td>1.810 €</td><td>2.190 – 2.491 €</td></tr>
+      <tr class="tot cur"><td class="k">TOTAL 2026<small>peaje + dispositivo + cuota + gasoil</small></td><td class="c1">2.283 €</td><td>2.356 €</td><td>2.190 – 2.491 €</td></tr>
+      <tr class="tot"><td class="k">TOTAL desde 2027<small>peaje a 35 €/mes + cuota 20–30 € + gasoil</small></td><td class="c1">2.250 – 2.260 €</td><td>2.356 €</td><td>2.190 – 2.491 €</td></tr>
+      <tr><td class="k">Horas al volante<small>520 trayectos</small></td><td>269 h</td><td>269 h</td><td>381 – 416 h</td></tr>
+    </tbody>
+  </table>
+
+  <div class="band">
+    <div class="row"><span class="n">1</span><div><b>Diferencia 2026:</b> la autopista gana hasta <span class="v">208 €/año</span> y pierde hasta <b>94 €/año</b>. Según sea tu ruta libre. Empate técnico.</div></div>
+    <div class="row"><span class="n">2</span><div><b>Umbral exacto:</b> si tu camino sin peaje pasa de <span class="v">38,2 km</span>, la autopista ya es más barata hoy mismo.</div></div>
+    <div class="row"><span class="n">3</span><div><b>El Vía-T solo paga si abres Bidesaria:</b> más de <span class="v">10 tránsitos al mes</span>. Con 43 al mes, su cuota se amortiza en 3–5 meses.</div></div>
+    <div class="row"><span class="n">4</span><div><b>Lo que compras de verdad:</b> <span class="v">113 horas al año</span> menos de coche, en cualquier escenario.</div></div>
+  </div>
+
+  <div class="pie">Distancias medidas con OSRM el 15-11-2026 desde Altzaga, Antonio Trueba 17. Peaje según Decreto Foral de peajes 2026 (Interbiak, IVA incluido). Tope de Bidesaria 39,46 €/mes hasta 31-12-2026 y 35 €/mes desde 01-01-2027. Bidesaria no tiene cuota propia en la documentación revisada: ese tope es el peaje que se paga al mes, no una suscripción aparte (confirmar en el alta). Los totales suman peaje + dispositivo + cuota + gasoil. Consumo y precio del gasoil declarados por el usuario, no medidos en esta pieza. Falta confirmar los km reales de la ruta por N-637 para cerrar la horquilla.</div>
+</div>
+</body></html>

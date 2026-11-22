@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Editorial still life photograph for a fragrance advertisement, empty middle of a weathered pale oak table, soft directional morning window light coming from the upper left, a few grapefruit halves and a sliced peach resting at the far edges slightly out of focus, delicate white tuberose and magnolia blossoms and a sprig of green leaves on the left, warm taupe linen cloth folded at the right edge, cool misty autumn morning light through a window in the background, natural soft shadows on the wood grain, shallow depth of field, fine film grain, muted warm cream amber and soft grey tones, calm and cinematic, photographic realism, clean unmarked surfaces",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 44.0,
+  "bytes": 1724004
+}

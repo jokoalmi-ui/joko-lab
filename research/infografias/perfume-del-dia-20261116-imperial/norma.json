@@ -1,0 +1,572 @@
+{
+ "ok": true,
+ "nodos": 70,
+ "chicos": [],
+ "duros": [],
+ "avisos": [],
+ "resumen_avisos": "ninguno",
+ "alto": null,
+ "desborda": false,
+ "rows": [
+  {
+   "ratio": 8.9,
+   "ratio_px": 8.9,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Elección",
+   "cls": ""
+  },
+  {
+   "ratio": 9.52,
+   "ratio_px": 9.52,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "del Lab",
+   "cls": ""
+  },
+  {
+   "ratio": 9.61,
+   "ratio_px": 9.61,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "2026",
+   "cls": ""
+  },
+  {
+   "ratio": 6.24,
+   "ratio_px": 6.24,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "parfinity.com · consultado 15-11-2026 · ",
+   "cls": "f"
+  },
+  {
+   "ratio": 9.27,
+   "ratio_px": 9.27,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "8,0/10 · 259 votos · Parfumo · consultad",
+   "cls": "r-meta"
+  },
+  {
+   "ratio": 11.8,
+   "ratio_px": 11.8,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "SALIDA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 6.82,
+   "ratio_px": 6.82,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la chispa: lavanda, palo de rosa y abedu",
+   "cls": "not"
+  },
+  {
+   "ratio": 9.74,
+   "ratio_px": 9.74,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Salida",
+   "cls": "lab"
+  },
+  {
+   "ratio": 3.03,
+   "ratio_px": 3.03,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "CORAZÓN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 6.91,
+   "ratio_px": 6.91,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el alma: rosa, geranio, fresia y jazmín ",
+   "cls": "not"
+  },
+  {
+   "ratio": 10.09,
+   "ratio_px": 10.09,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Corazón",
+   "cls": "lab"
+  },
+  {
+   "ratio": 12.33,
+   "ratio_px": 12.33,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Fondo",
+   "cls": "lab"
+  },
+  {
+   "ratio": 10.06,
+   "ratio_px": 10.06,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "la estela: oud, cuero, sándalo y ámbar —",
+   "cls": "not"
+  },
+  {
+   "ratio": 4.76,
+   "ratio_px": 4.76,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "FONDO",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 10.3,
+   "ratio_px": 10.3,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Pirámide: boadiceaperfume.com · consulta",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 10.01,
+   "ratio_px": 10.01,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— Casa Boadicea the Victorious · descrip",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 8.64,
+   "ratio_px": 8.64,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Tom Ford · 2007",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 9.42,
+   "ratio_px": 9.42,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "el mismo ADN de oud limpio",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 9.1,
+   "ratio_px": 9.1,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "más caro y mucho más visto",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 8.39,
+   "ratio_px": 8.39,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Creed · 2011",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 9.17,
+   "ratio_px": 9.17,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "citado como similar en Parfumo",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 5.97,
+   "ratio_px": 5.97,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "más seco y menos floral",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 8.8,
+   "ratio_px": 8.8,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Tom Ford · 2020",
+   "cls": "alt-casa"
+  },
+  {
+   "ratio": 9.7,
+   "ratio_px": 9.7,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "citado como similar en Parfumo",
+   "cls": "alt-rt"
+  },
+  {
+   "ratio": 6.25,
+   "ratio_px": 6.25,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "lavanda y barbería, sin oud",
+   "cls": "alt-motivo"
+  },
+  {
+   "ratio": 8.95,
+   "ratio_px": 8.95,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "Similitudes: Parfumo «smells similar» · ",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 10.08,
+   "ratio_px": 10.08,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "— JackHunter33 en Parfumo · comunidad [t",
+   "cls": "fuente-line"
+  },
+  {
+   "ratio": 11.21,
+   "ratio_px": 11.21,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "cuello y pecho · oficina y calle · no en",
+   "cls": "donde"
+  },
+  {
+   "ratio": 3.41,
+   "ratio_px": 3.41,
+   "ratio_css": null,
+   "px": 12.0,
+   "t": "fondo: arte generado con ComfyUI · FLUX.",
+   "cls": "nota-fondo"
+  },
+  {
+   "ratio": 10.53,
+   "ratio_px": 10.53,
+   "ratio_css": null,
+   "px": 12.5,
+   "t": "LUNES · 16 NOVIEMBRE 2026",
+   "cls": "fecha-sep"
+  },
+  {
+   "ratio": 11.81,
+   "ratio_px": 11.81,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "Sprays:",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 11.79,
+   "ratio_px": 11.79,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "oficina ·",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 11.65,
+   "ratio_px": 11.65,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "calle",
+   "cls": "sprays"
+  },
+  {
+   "ratio": 10.52,
+   "ratio_px": 10.52,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "08-18 h:",
+   "cls": "clima"
+  },
+  {
+   "ratio": 10.8,
+   "ratio_px": 10.8,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "14,1–16,6 °C",
+   "cls": ""
+  },
+  {
+   "ratio": 11.3,
+   "ratio_px": 11.3,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "· media 15,3 · 3 % lluvia",
+   "cls": "clima"
+  },
+  {
+   "ratio": 11.03,
+   "ratio_px": 11.03,
+   "ratio_css": null,
+   "px": 13.0,
+   "t": "amplitud 5,6 °C · amaderada oriental par",
+   "cls": "clima"
+  },
+  {
+   "ratio": 10.96,
+   "ratio_px": 10.96,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Pirámide olfativa — en capas",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 13.54,
+   "ratio_px": 13.54,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Inspiración",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 13.27,
+   "ratio_px": 13.27,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "Si te gusta, prueba",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 10.93,
+   "ratio_px": 10.93,
+   "ratio_css": null,
+   "px": 13.5,
+   "t": "La comunidad dice",
+   "cls": "sec-title"
+  },
+  {
+   "ratio": 7.34,
+   "ratio_px": 8.2,
+   "ratio_css": 7.34,
+   "px": 14.0,
+   "t": "01",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.47,
+   "ratio_px": 8.49,
+   "ratio_css": 7.47,
+   "px": 14.0,
+   "t": "02",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 7.0,
+   "ratio_px": 7.95,
+   "ratio_css": 7.0,
+   "px": 14.0,
+   "t": "03",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 10.11,
+   "ratio_px": 11.19,
+   "ratio_css": 10.11,
+   "px": 14.0,
+   "t": "04",
+   "cls": "sec-num"
+  },
+  {
+   "ratio": 8.63,
+   "ratio_px": 8.63,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Boadicea the Victorious",
+   "cls": "casa"
+  },
+  {
+   "ratio": 13.23,
+   "ratio_px": 13.23,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "2012",
+   "cls": ""
+  },
+  {
+   "ratio": 11.49,
+   "ratio_px": 11.49,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Eau de Parfum",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.95,
+   "ratio_px": 11.95,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Unisex",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.45,
+   "ratio_px": 11.45,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Amaderada oriental",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.56,
+   "ratio_px": 12.56,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Perfumista:",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.08,
+   "ratio_px": 12.08,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Christian Provenzano",
+   "cls": ""
+  },
+  {
+   "ratio": 10.82,
+   "ratio_px": 10.82,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Longevidad",
+   "cls": "dh"
+  },
+  {
+   "ratio": 11.3,
+   "ratio_px": 11.3,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "~10 h",
+   "cls": ""
+  },
+  {
+   "ratio": 10.25,
+   "ratio_px": 10.25,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "Estela",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.34,
+   "ratio_px": 12.34,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "intensa",
+   "cls": ""
+  },
+  {
+   "ratio": 12.35,
+   "ratio_px": 12.35,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "355,00 €",
+   "cls": ""
+  },
+  {
+   "ratio": 10.35,
+   "ratio_px": 10.35,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "/ 100 ml",
+   "cls": "dh"
+  },
+  {
+   "ratio": 12.39,
+   "ratio_px": 12.39,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "LAVANDA · PALO DE ROSA",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 3.94,
+   "ratio_px": 3.94,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "ROSA · GERANIO · JAZMÍN",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 7.15,
+   "ratio_px": 7.15,
+   "ratio_css": null,
+   "px": 14.5,
+   "t": "OUD · CUERO · SÁNDALO · ÁMBAR",
+   "cls": "[object.SVGAnimatedString]"
+  },
+  {
+   "ratio": 13.23,
+   "ratio_px": 13.23,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Oud Wood",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 9.88,
+   "ratio_px": 9.88,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Royal Oud",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 8.43,
+   "ratio_px": 8.43,
+   "ratio_css": null,
+   "px": 15.0,
+   "t": "Beau de Jour",
+   "cls": "alt-n"
+  },
+  {
+   "ratio": 8.81,
+   "ratio_px": 8.81,
+   "ratio_css": null,
+   "px": 18.0,
+   "t": "La casa describe Imperial como una salva",
+   "cls": ""
+  },
+  {
+   "ratio": 6.34,
+   "ratio_px": 6.34,
+   "ratio_css": null,
+   "px": 19.0,
+   "t": "“Se abre con lavanda fresca y especiada ",
+   "cls": ""
+  },
+  {
+   "ratio": 3.22,
+   "ratio_px": 3.22,
+   "ratio_css": null,
+   "px": 22.0,
+   "t": "madera fría que aguanta la jornada",
+   "cls": "caveat-pie"
+  },
+  {
+   "ratio": 3.83,
+   "ratio_px": 3.83,
+   "ratio_css": null,
+   "px": 28.0,
+   "t": "lavanda, abedul y oud",
+   "cls": "sub"
+  },
+  {
+   "ratio": 9.71,
+   "ratio_px": 9.71,
+   "ratio_css": null,
+   "px": 32.0,
+   "t": "8,0",
+   "cls": "r-num"
+  },
+  {
+   "ratio": 10.27,
+   "ratio_px": 10.27,
+   "ratio_css": null,
+   "px": 72.0,
+   "t": "Imperial",
+   "cls": ""
+  }
+ ]
+}

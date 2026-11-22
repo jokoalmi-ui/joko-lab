@@ -1,0 +1,18 @@
+OK lavish_figura.png (976, 1400)
+silueta 938x1362 | eje 488 | izq 470 der 468 | asimetria -0.4%
+perfil anchura por filas:
+  y=  19 (  0%) ancho   56  x  540.. 595
+  y= 127 (  8%) ancho  394  x  291.. 684
+  y= 236 ( 16%) ancho  282  x  346.. 627
+  y= 345 ( 24%) ancho  230  x  374.. 603
+  y= 454 ( 32%) ancho  315  x  338.. 652
+  y= 563 ( 40%) ancho  660  x  160.. 819
+  y= 672 ( 48%) ancho  824  x   77.. 900
+  y= 781 ( 56%) ancho  914  x   34.. 947
+  y= 890 ( 64%) ancho  938  x   19.. 956
+  y= 998 ( 72%) ancho  912  x   31.. 942
+  y=1107 ( 80%) ancho  833  x   70.. 902
+  y=1216 ( 88%) ancho  679  x  147.. 825
+  y=1325 ( 96%) ancho  567  x  206.. 772
+huecos alpha>128: 0 | mayores []
+opacos 834138 px | bbox imagen (976, 1400)

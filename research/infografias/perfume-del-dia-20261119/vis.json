@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261119/ficha_20261119.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261119/papyrus_figura.png",
+ "rect": [
+  102,
+  99,
+  200,
+  450
+ ],
+ "fondo_L": 161.3176,
+ "tapon_L": 68.4974,
+ "cuerpo_L": 239.35420000000002,
+ "contraste_tapon": 3.754746366642116,
+ "contraste_cuerpo": 2.2454968282612255,
+ "pct_claros": 44.81333333333333,
+ "min_claros": null,
+ "min_contraste": null
+}

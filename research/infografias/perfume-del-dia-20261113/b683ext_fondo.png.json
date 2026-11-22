@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Photorealistic editorial still life photograph, cool overcast November daylight entering from a tall window on the left, pale limestone ledge with subtle veining, folded oatmeal linen cloth and a small dark walnut bowl with dried eucalyptus branches at the right edge, faint raindrops on the window glass blurred in the background, muted palette of pale stone grey warm beige and deep green, soft directional light with natural shadows, shallow depth of field, fine film grain, calm uncluttered middle ground, vertical 3:4 composition",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 36.0,
+  "bytes": 1694019
+}

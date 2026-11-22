@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261114/ficha_20261114.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261114/prada_figura.png",
+ "rect": [
+  108,
+  99,
+  188,
+  450
+ ],
+ "fondo_L": 119.7722,
+ "tapon_L": 3.0,
+ "cuerpo_L": 206.0,
+ "contraste_tapon": 4.6563113880292875,
+ "contraste_cuerpo": 2.814558245537655,
+ "pct_claros": 0.7919621749408984,
+ "min_claros": null,
+ "min_contraste": null
+}

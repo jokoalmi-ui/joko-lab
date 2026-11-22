@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Editorial still-life photograph of an old apothecary table in soft overcast morning light. Mid-tone taupe and muted olive palette. Aged walnut wood surface with a folded natural linen runner, dried lavender sprigs, loose oakmoss and a piece of bark, a small matte ceramic dish slightly out of focus in the background, gentle directional light from the left with soft falloff into a darker corner on the right, shallow depth of field, fine film grain, calm quiet autumn mood, photorealistic.",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1755204
+}

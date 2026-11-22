@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Plan B · entrar por web · AXIS IP Utility</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1080px;height:1920px}
+  body{
+    font-family:"Inter","Noto Sans","DejaVu Sans",sans-serif;
+    background:#f5f0e8;color:#1b2a33;padding:46px 54px 40px;
+    display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;
+  }
+  .kicker{font-size:15px;letter-spacing:3.4px;text-transform:uppercase;color:#8a7b63;font-weight:700}
+  h1{font-size:56px;line-height:1.03;font-weight:800;letter-spacing:-1.5px;margin:12px 0 10px}
+  h1 em{font-style:normal;color:#c0563c}
+  .sub{font-size:21px;color:#4d5f6b;line-height:1.35;max-width:920px}
+  .rule{height:3px;background:#1b2a33;margin:24px 0 0}
+
+  .diag{margin-top:20px;background:#eef4f8;border-radius:14px;padding:16px 22px 8px}
+  .diag h2{font-size:15px;letter-spacing:2.6px;text-transform:uppercase;color:#2b6cb0;font-weight:800}
+
+  .pasos{margin-top:20px;display:flex;flex-direction:column;gap:13px}
+  .paso{display:flex;gap:18px;align-items:flex-start;padding:14px 18px;background:#fffdf8;border-left:6px solid #c0563c;border-radius:8px}
+  .paso .n{font-size:34px;font-weight:800;color:#c0563c;line-height:.95;min-width:38px}
+  .paso .tx{font-size:20px;line-height:1.3}
+  .paso .tx b{font-weight:700}
+  .paso .tx .d{display:block;font-size:17px;color:#5a6b76;margin-top:4px}
+  code{font-family:"DejaVu Sans Mono","Consolas",monospace;font-size:17px;background:#eef4f8;padding:2px 7px;border-radius:4px;font-weight:700;color:#1b4f72;display:inline-block;margin-top:5px}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:6px}
+  .vs .c{background:#fdf3e7;border-radius:6px;padding:8px 11px}
+  .vs .c .h{font-size:15px;font-weight:800;color:#a8541f;margin-bottom:3px}
+  .vs .c code{margin-top:2px;font-size:16px;background:#fffdf8}
+
+  .bloque{margin-top:16px;background:#fffdf8;border-radius:10px;padding:16px 20px}
+  .bloque h3{font-size:15px;letter-spacing:2px;text-transform:uppercase;font-weight:800;color:#2a9d5f;margin-bottom:7px}
+  .bloque p{font-size:17px;line-height:1.33;color:#33434d}
+  .bloque p+p{margin-top:6px}
+
+  .chk{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:16px}
+  .chk .i{border-top:4px solid #2a9d5f;padding-top:9px}
+  .chk .t{font-size:16px;font-weight:800;color:#1f7a4a;line-height:1.2;margin-bottom:4px}
+  .chk .q{font-size:15.5px;line-height:1.3;color:#4d5f6b}
+  .avisos{margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .av{border-top:4px solid #e08b1e;padding-top:9px}
+  .av .t{font-size:16px;font-weight:800;color:#a8541f;line-height:1.2;margin-bottom:5px}
+  .av .q{font-size:15.5px;line-height:1.3;color:#4d5f6b}
+
+  .pie{margin-top:auto;padding-top:16px;border-top:2px solid #d8ccb8;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+  .pie .src{font-size:14.5px;line-height:1.5;color:#6d7a83}
+  .pie .src b{color:#33434d}
+  .pie .tag{font-size:14px;font-weight:800;letter-spacing:2px;color:#8a7b63;text-transform:uppercase;text-align:right;line-height:1.6}
+</style>
+</head>
+<body>
+
+  <div class="kicker">Cámaras IP Axis · cuando IP Utility no la encuentra</div>
+  <h1>Plan B: entrar por web<br><em>poniendo el portátil en su rango</em></h1>
+  <div class="sub">La cámara se ha puesto una IP de otra subred. Le das al portátil una segunda dirección de esa subred, entras por navegador y desde dentro le pones la IP buena.</div>
+  <div class="rule"></div>
+
+  <div class="diag">
+    <h2>Por qué no se ven</h2>
+    <svg width="920" height="230" viewBox="0 0 920 230" role="img" aria-label="Comparación de dos subredes distintas frente a la misma subred">
+      <!-- ESCENARIO A -->
+      <rect x="0" y="6" width="446" height="212" rx="10" fill="none" stroke="#c0563c" stroke-width="2" stroke-dasharray="7 5"/>
+      <text x="16" y="30" font-family="Inter,DejaVu Sans,sans-serif" font-size="14" font-weight="800" fill="#c0563c">ASÍ NO</text>
+      <rect x="16" y="46" width="140" height="88" rx="7" fill="#fffdf8" stroke="#33434d" stroke-width="2"/>
+      <text x="86" y="76" text-anchor="middle" font-family="Inter,DejaVu Sans,sans-serif" font-size="15" font-weight="700" fill="#1b2a33">portátil</text>
+      <text x="86" y="100" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-size="13" fill="#33434d">192.168.1.24</text>
+      <text x="86" y="120" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-size="13" fill="#33434d">/24</text>
+      <line x1="162" y1="90" x2="262" y2="90" stroke="#c0563c" stroke-width="3"/>
+      <text x="212" y="80" text-anchor="middle" font-family="Inter,DejaVu Sans,sans-serif" font-size="19" font-weight="800" fill="#c0563c">✕</text>
+      <text x="212" y="112" text-anchor="middle" font-family="Inter,DejaVu Sans,sans-serif" font-size="13" fill="#c0563c">no se ven</text>
+      <rect x="268" y="46" width="162" height="88" rx="7" fill="#fffdf8" stroke="#33434d" stroke-width="2"/>
+      <text x="349" y="76" text-anchor="middle" font-family="Inter,DejaVu Sans,sans-serif" font-size="15" font-weight="700" fill="#1b2a33">cámara</text>
+      <text x="349" y="100" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-size="13" fill="#33434d">169.254.18.7</text>
+      <text x="349" y="120" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-size="13" fill="#33434d">/16</text>
+      <text x="16" y="176" font-family="Inter,DejaVu Sans,sans-serif" font-size="14" fill="#5a6b76">Dos subredes distintas y ningún router en medio:</text>
+      <text x="16" y="196" font-family="Inter,DejaVu Sans,sans-serif" font-size="14" fill="#5a6b76">el cable no basta, no se pueden dirigir.</text>
+
+      <!-- ESCENARIO B -->
+      <rect x="474" y="6" width="446" height="212" rx="10" fill="none" stroke="#2a9d5f" stroke-width="2" stroke-dasharray="7 5"/>
+      <text x="490" y="30" font-family="Inter,DejaVu Sans,sans-serif" font-size="14" font-weight="800" fill="#2a9d5f">ASÍ SÍ</text>
+      <rect x="490" y="46" width="150" height="88" rx="7" fill="#fffdf8" stroke="#2a9d5f" stroke-width="2"/>
+      <text x="565" y="72" text-anchor="middle" font-family="Inter,DejaVu Sans,sans-serif" font-size="15" font-weight="700" fill="#1b2a33">portátil</text>
+      <text x="565" y="94" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-size="12.5" fill="#33434d">192.168.1.24</text>
+      <text x="565" y="114" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-size="12.5" fill="#2a9d5f">169.254.1.10</text>
+      <line x1="646" y1="90" x2="742" y2="90" stroke="#2a9d5f" stroke-width="3"/>
+      <text x="694" y="80" text-anchor="middle" font-family="Inter,DejaVu Sans,sans-serif" font-size="18" font-weight="800" fill="#2a9d5f">✓</text>
+      <text x="694" y="112" text-anchor="middle" font-family="Inter,DejaVu Sans,sans-serif" font-size="13" fill="#2a9d5f">se ven</text>
+      <rect x="748" y="46" width="156" height="88" rx="7" fill="#fffdf8" stroke="#2a9d5f" stroke-width="2"/>
+      <text x="826" y="76" text-anchor="middle" font-family="Inter,DejaVu Sans,sans-serif" font-size="15" font-weight="700" fill="#1b2a33">cámara</text>
+      <text x="826" y="100" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-size="13" fill="#33434d">169.254.18.7</text>
+      <text x="826" y="120" text-anchor="middle" font-family="DejaVu Sans Mono,monospace" font-size="13" fill="#33434d">/16</text>
+      <text x="490" y="176" font-family="Inter,DejaVu Sans,sans-serif" font-size="14" fill="#5a6b76">El portátil mantiene su IP de siempre y añade una</text>
+      <text x="490" y="196" font-family="Inter,DejaVu Sans,sans-serif" font-size="14" fill="#5a6b76">del rango de la cámara. No pierdes internet.</text>
+    </svg>
+  </div>
+
+  <div class="pasos">
+    <div class="paso"><span class="n">1</span><span class="tx"><b>Mira qué IP tiene tu portátil</b> y el nombre de la interfaz del cable.
+      <span class="d">Linux: <code>ip -br a</code> · Windows: <code>ipconfig</code>. Apunta algo como <b>eno1</b>.</span></span></div>
+
+    <div class="paso"><span class="n">2</span><span class="tx"><b>Añade una segunda IP del rango de la cámara.</b> No borres la que tienes.
+      <span class="d">Elige el bloque según la versión de AXIS OS (lo viste en la hoja 1):</span>
+      <div class="vs">
+        <div class="c"><div class="h">AXIS OS 12.0 o posterior · 169.254.x.x</div><code>sudo ip addr add 169.254.1.10/16 dev eno1</code></div>
+        <div class="c"><div class="h">AXIS OS 11.11 o anterior · 192.168.0.90</div><code>sudo ip addr add 192.168.0.10/24 dev eno1</code></div>
+      </div>
+      <span class="d">En Windows: IPv4 del adaptador → <b>169.254.1.10</b> máscara <b>255.255.0.0</b>, o <b>192.168.0.10</b> / <b>255.255.255.0</b>.</span></span></div>
+
+    <div class="paso"><span class="n">3</span><span class="tx"><b>Abre la web de la cámara con http:// delante.</b>
+      <span class="d">La IP exacta te la dice la lista de IP Utility aunque no puedas reasignarla. Si no la ves, prueba <code>192.168.0.90</code> a <code>.95</code>.</span></span></div>
+
+    <div class="paso"><span class="n">4</span><span class="tx"><b>Dentro de la cámara, ponle la IP de tu red real</b> (y gateway y DNS) en su configuración de red IPv4. Guarda.
+      <span class="d">Después limpia la dirección temporal: <code>sudo ip addr del 169.254.1.10/16 dev eno1</code></span></span></div>
+  </div>
+
+  <div class="bloque">
+    <h3>Comprueba antes de entrar</h3>
+    <p><code>ping -c 3 169.254.18.7</code> — si responde, el camino está bien. Si no responde, no te bloquees: hay cámaras que ignoran el ping y abren igual en el navegador. Prueba la web antes de dar nada por roto.</p>
+  </div>
+
+  <div class="chk">
+    <div class="i"><div class="t">Ya dentro: IP buena</div><div class="q">IP fija de tu red, gateway y DNS. Guarda y reconecta.</div></div>
+    <div class="i"><div class="t">Contraseña nueva</div><div class="q">La que creaste en el primer acceso. Nada de dejarla por defecto.</div></div>
+    <div class="i"><div class="t">Hora por NTP</div><div class="q">Sin hora correcta, las marcas de tiempo no sirven.</div></div>
+  </div>
+
+  <div class="bloque" style="margin-top:16px">
+    <h3>Si el portátil es Windows</h3>
+    <p>Configuración → Red e Internet → Ethernet → <b>Asignación de IP</b> → Editar → Manual → IPv4: <b>169.254.1.10</b> con máscara <b>255.255.0.0</b> (o <b>192.168.0.10</b> / <b>255.255.255.0</b>). Al terminar, vuelve a <b>Automático (DHCP)</b>.</p>
+  </div>
+
+  <div class="avisos">
+    <div class="av"><div class="t">Siempre por cable</div><div class="q">Por Wi-Fi el link-local es inconsistente. Ethernet del portátil o adaptador USB-C a RJ45.</div></div>
+    <div class="av"><div class="t">Si conectas directo, inyector activo</div><div class="q">Portátil ↔ cámara sin switch necesita inyector 802.3af/at. El PoE <b>pasivo</b> puede quemar el puerto.</div></div>
+    <div class="av"><div class="t">Devuelve el adaptador a DHCP</div><div class="q">Al terminar, quita la IP temporal o vuelve a automático. Si no, te quedas sin internet.</div></div>
+  </div>
+
+  <div class="pie">
+    <div class="src">
+      <b>Fuente:</b> documentación oficial de Axis, «How to assign an IP address and access your device» (abril 2026)<br>
+      AXIS OS 12.0 y posteriores → subred link-local 169.254.0.0/16 · AXIS OS 11.11 y anteriores → 192.168.0.90/24 (0.90–0.95)<br>
+      Comentario de tu amigo incorporado como hoja 2. Consultada 17-11-2026.
+    </div>
+    <div class="tag">Joko Lab<br>Guía rápida · 2/2</div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+=== GATE PRE-ENVIO · ficha_20261119_d15.html ===
+[OK   ] 01 Titulo                        Papyrus Moléculaire
+[OK   ] 02 Casa                          MAISON CRIVELLI
+[OK   ] 03 Fecha                         dia/mes en la ficha
+[OK   ] 04 Anio                          2026
+[OK   ] 05 Concentracion                 etiqueta presente
+[OK   ] 06 Genero                        etiqueta presente
+[OK   ] 07 Familia                       Amaderad
+[OK   ] 08 Perfumista                    fila presente (permite "no revelado")
+[OK   ] 09 Rating comunidad              3,94 · votos
+[OK   ] 10 Piramide completa             svg=6 lab=3
+[OK   ] 11 Longevidad                    horas presentes
+[OK   ] 12 Estela                        6
+[OK   ] 13 Precio 100 ml                 190,00 € / 100 ml
+[OK   ] 14 Si te gusta, prueba           2 alternativas
+[OK   ] 15 Cita comunidad                “Hay sándalo, pero pasa a un segun...
+[OK   ] 16 QR Fragrantica                qr_fragrantica.png
+[OK   ] 17 Pie completo                  9,9–15,4 °C · media · lluvia · nota fondo
+[OK   ] A1 Assets existen                4 locales, 0 ausentes []
+[OK   ] A2 Sin restos de prueba          ninguno referenciado
+[AVISO] A3 Fondo ampliado x1.41          papyrus_fondo_d15.png 1024x1024 -> sin ampliacion notable
+[AVISO] A4 Precio con fecha de consulta  2026-11-19 en la linea de precio: 19-11-2026
+[AVISO] A5 Recorte sin halo              papyrus_figura.png · filo 5550 px · delta L -1.1 · visibles 32.1% (1784 px, 1393 muy visibles)
+[OK   ] A7 Figura no a sangre            papyrus_figura.png 1123x2525 · margen 8 px limpio en los 4 lados
+[OK   ] A8 Sin reflejo ni sombra CSS     reflejo y sombra-suelo ocultos (2/2 declarados), sin drop-shadow
+[OK   ] A6 Linea donde/ocasion           48 car · 278 px · 1 linea(s) · hueco QR 107 px
+[OK   ] E1 Altura (contenido real)       1440 px (body 1440, borde real 1440, fuentes loaded, img 3/3)  [limite 1440]
+[OK   ] E2 Pie dentro de la tarjeta      pie bottom 1390 px · aire 50 px
+
+campos            : 17/17
+FALTA             : 0   []
+AVISO             : 3   ['A3 Fondo ampliado x1.41', 'A4 Precio con fecha de consulta', 'A5 Recorte sin halo']
+veredicto         : ENVIAR (con avisos)

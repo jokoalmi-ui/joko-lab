@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Photorealistic editorial still life photograph, empty pale limestone slab with fine natural veining as the surface, soft autumn morning daylight entering from a tall window on the left, a folded oatmeal linen cloth and a small brushed steel dish holding a sprig of dried lavender at the right edge, pale plaster wall softly out of focus in the background, muted palette of warm stone beige ivory and soft grey, gentle directional light with a long natural shadow falling to the right, shallow depth of field, fine film grain, calm uncluttered middle ground, vertical 3:4 composition",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 42.0,
+  "bytes": 1692527
+}

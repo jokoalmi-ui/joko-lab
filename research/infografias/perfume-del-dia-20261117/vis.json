@@ -1,0 +1,18 @@
+{
+ "png": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261117/perfume_del_dia_v5_jubilation.png",
+ "figura": "/home/jokoalmi/joko-lab/research/infografias/perfume-del-dia-20261117/jubilation_figura.png",
+ "rect": [
+  84,
+  99,
+  236,
+  450
+ ],
+ "fondo_L": 76.42240000000001,
+ "tapon_L": 66.5364,
+ "cuerpo_L": 234.74739999999997,
+ "contraste_tapon": 1.1682556685351335,
+ "contraste_cuerpo": 7.1391703816495795,
+ "pct_claros": 46.37570621468927,
+ "min_claros": null,
+ "min_contraste": null
+}

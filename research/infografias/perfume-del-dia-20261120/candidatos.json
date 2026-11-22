@@ -1,0 +1,5372 @@
+{
+ "fecha": "2026-11-20",
+ "estacion_efectiva": "otono",
+ "origen": "calendario",
+ "media": 14.8,
+ "elegibles": [
+  {
+   "id": 935,
+   "nombre": "Fougère Royale (2010) (Eau de Parfum)",
+   "casa": "Houbigant",
+   "temporada": "primavera,otoño",
+   "estaciones_norm": [
+    "primavera",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.3125,
+   "ultimo_uso": "2026-09-19",
+   "decant": null,
+   "dias_desde_uso": 62
+  },
+  {
+   "id": 903,
+   "nombre": "Lavish",
+   "casa": "Boadicea the Victorious",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.15,
+   "ultimo_uso": "2026-08-04",
+   "decant": "disponible",
+   "dias_desde_uso": 108
+  },
+  {
+   "id": 1052,
+   "nombre": "Bogoss Vibrant Leather",
+   "casa": "Zara",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.425,
+   "ultimo_uso": "2026-07-19",
+   "decant": null,
+   "dias_desde_uso": 124
+  },
+  {
+   "id": 1019,
+   "nombre": "Carved Oud (Extrait de Parfum)",
+   "casa": "Thameen",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.42500000000000004,
+   "ultimo_uso": "2026-07-17",
+   "decant": "disponible",
+   "dias_desde_uso": 126
+  },
+  {
+   "id": 1182,
+   "nombre": "#All Night Long",
+   "casa": "Ramón Monegal",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.375,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1183,
+   "nombre": "#Sunset Café",
+   "casa": "Ramón Monegal",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.41999999999999993,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 986,
+   "nombre": "2. Nawab of Oudh Intensivo",
+   "casa": "Ormonde Jayne",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.42500000000000004,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 987,
+   "nombre": "4. Montabaco Intensivo",
+   "casa": "Ormonde Jayne",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.425,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1207,
+   "nombre": "Agape Special",
+   "casa": "Thauy",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.45,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1184,
+   "nombre": "Agar Musk",
+   "casa": "Ramón Monegal",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.4,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1160,
+   "nombre": "Al Bashiq",
+   "casa": "Nabeel",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5666666666666668,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 996,
+   "nombre": "Alhambra Oud",
+   "casa": "Ramón Monegal",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.42500000000000004,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1237,
+   "nombre": "Althair (Parfums de Marly)",
+   "casa": "Parfums de Marly",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1021,
+   "nombre": "Amber Chocolat",
+   "casa": "The Lab",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.3875,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1094,
+   "nombre": "Ambra Gadir",
+   "casa": "Darkbeat",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.625,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1214,
+   "nombre": "Ambre Khandjar",
+   "casa": "Une Nuit Nomade",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 919,
+   "nombre": "Ambre Tabac (Eau de Parfum)",
+   "casa": "Daniel Josier",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1875,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1111,
+   "nombre": "Anniversary",
+   "casa": "Farmacia SS. Annunziata",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.6,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1189,
+   "nombre": "Antidote",
+   "casa": "Régalien",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.4000000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1227,
+   "nombre": "Aqua Regia",
+   "casa": "Xerjoff",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "frio",
+   "indice": -0.7,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1107,
+   "nombre": "Aquila Absolute",
+   "casa": "Electimuss",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.35,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1205,
+   "nombre": "Au Coeur du Désert",
+   "casa": "Tauer Perfumes",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.62,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1179,
+   "nombre": "Battito d'Ali",
+   "casa": "Profumum Roma",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.625,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1089,
+   "nombre": "Black Tie",
+   "casa": "Celine",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.44000000000000006,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1161,
+   "nombre": "Blamage",
+   "casa": "Nasomatto",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.62,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1123,
+   "nombre": "Blessed Baraka",
+   "casa": "Initio",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "agotado",
+   "banda": "calido",
+   "indice": 0.6599999999999999,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1090,
+   "nombre": "Book",
+   "casa": "Commodity",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.49999999999999994,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 939,
+   "nombre": "Boss Bottled Elixir",
+   "casa": "Hugo Boss",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1625,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1220,
+   "nombre": "Brun",
+   "casa": "V Canto",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5750000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1193,
+   "nombre": "Burlington 1819",
+   "casa": "Roja Parfums",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.575,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 907,
+   "nombre": "CH Men Africa",
+   "casa": "Carolina Herrera",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1285714285714286,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1127,
+   "nombre": "Cherry on Top",
+   "casa": "Joterc",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "agotado",
+   "banda": "medio",
+   "indice": -0.05000000000000002,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1037,
+   "nombre": "Chypre Toscano",
+   "casa": "Unique'e Luxury",
+   "temporada": "primavera,verano,otoño",
+   "estaciones_norm": [
+    "primavera",
+    "verano",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.27499999999999997,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1130,
+   "nombre": "Clandestine Rendez-vous",
+   "casa": "Les Sœurs de Noé",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.375,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1116,
+   "nombre": "Cocoa Morado",
+   "casa": "French Avenue",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.7000000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1216,
+   "nombre": "Crush On Me",
+   "casa": "Unique'e Luxury",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.024999999999999994,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1067,
+   "nombre": "Cuir-Curcuma",
+   "casa": "Affinessence",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.575,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1169,
+   "nombre": "Cuoium",
+   "casa": "Orto Parisi",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "agotado",
+   "banda": "medio",
+   "indice": -0.22500000000000003,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1096,
+   "nombre": "Dark Note",
+   "casa": "Darkbeat",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1213,
+   "nombre": "Delox",
+   "casa": "Tiziana Terenzi",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.42500000000000004,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 927,
+   "nombre": "Divine Vanille",
+   "casa": "Essential Parfums",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.3375,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1233,
+   "nombre": "Dolce & Gabbana Pour Homme Intenso",
+   "casa": "Dolce & Gabbana",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1147,
+   "nombre": "Dominus",
+   "casa": "Memoize",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6199999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1164,
+   "nombre": "Encens Cuivre",
+   "casa": "Ojar",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 955,
+   "nombre": "Encre Noire à L'Extrême",
+   "casa": "Lalique",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1077,
+   "nombre": "Epoque",
+   "casa": "Botanicae Expressions",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.050000000000000044,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1057,
+   "nombre": "Etruscan Water",
+   "casa": "Francesca Bianchi",
+   "temporada": "Primavera/Verano/Otoño",
+   "estaciones_norm": [
+    "primavera",
+    "verano",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.2333333333333333,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 897,
+   "nombre": "Fall of Phaeton",
+   "casa": "Argos",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1186,
+   "nombre": "Faïsa",
+   "casa": "Ramón Monegal",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "frio",
+   "indice": -0.425,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1056,
+   "nombre": "Firma 1",
+   "casa": "FIRMA",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5499999999999999,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1103,
+   "nombre": "French Lover / Bois d'Orage",
+   "casa": "Editions de Parfums Frédéric Malle",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.55,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1210,
+   "nombre": "Fuego Futuro",
+   "casa": "Thomas De Monaco",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6599999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1176,
+   "nombre": "GoldFawn",
+   "casa": "Perroy",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.55,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1117,
+   "nombre": "Goudh",
+   "casa": "Fugazzi",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.475,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 920,
+   "nombre": "Green Leather",
+   "casa": "Daniel Josier",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.325,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1190,
+   "nombre": "Hammam",
+   "casa": "Régalien",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.02500000000000005,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1108,
+   "nombre": "Hangover Meditation",
+   "casa": "Emil Élise",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.41999999999999993,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1080,
+   "nombre": "Highlands",
+   "casa": "Botanicae Expressions",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1209,
+   "nombre": "Hypnotizing Fire",
+   "casa": "The Harmonist",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.625,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 902,
+   "nombre": "Imperial",
+   "casa": "Boadicea the Victorious",
+   "temporada": "primavera,otoño",
+   "estaciones_norm": [
+    "primavera",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.06250000000000001,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1148,
+   "nombre": "Infinity",
+   "casa": "Montale",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.525,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1166,
+   "nombre": "Infusion Velours",
+   "casa": "Ojar",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5399999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1145,
+   "nombre": "Instant Crush",
+   "casa": "Mancera",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.625,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1059,
+   "nombre": "Interlude Man",
+   "casa": "Amouage",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.575,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1138,
+   "nombre": "Iris Malikhân",
+   "casa": "Maison Crivelli",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "frio",
+   "indice": -0.44999999999999996,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1070,
+   "nombre": "Journey Man",
+   "casa": "Amouage",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6200000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 966,
+   "nombre": "Kismet Magic",
+   "casa": "Maison Alhambra",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1097,
+   "nombre": "L'Myrrhe",
+   "casa": "Darkbeat",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.45000000000000007,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1100,
+   "nombre": "La Tacita de Café",
+   "casa": "Day Three Fragrances",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.7000000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1202,
+   "nombre": "La couche du diable",
+   "casa": "Serge Lutens",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5399999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 904,
+   "nombre": "Le Gemme - Kobraa",
+   "casa": "Bvlgari",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.049999999999999996,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 905,
+   "nombre": "Le Gemme - Orom",
+   "casa": "Bvlgari",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.4875,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1225,
+   "nombre": "Limited 71 - 2022 Edition",
+   "casa": "Widian",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.4800000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1088,
+   "nombre": "Lira",
+   "casa": "Casamorati",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.525,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1226,
+   "nombre": "London",
+   "casa": "Widian",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.675,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1113,
+   "nombre": "Lucius",
+   "casa": "Fragrance Du Bois",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1074,
+   "nombre": "Majnoon",
+   "casa": "Azman",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.35,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1236,
+   "nombre": "Molton Brown Fiery Pink Pepper",
+   "casa": "Molton Brown",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1104,
+   "nombre": "Musc Ravageur",
+   "casa": "Editions de Parfums Frédéric Malle",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.55,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1208,
+   "nombre": "Nakht",
+   "casa": "Thauy",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.07500000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1135,
+   "nombre": "Nayssabour",
+   "casa": "Loumari",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5666666666666668,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1086,
+   "nombre": "Octubre",
+   "casa": "Bravanariz",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.09999999999999998,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 894,
+   "nombre": "Opus XIV - Royal Tobacco",
+   "casa": "Amouage",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.25,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1173,
+   "nombre": "Otimo",
+   "casa": "pernoire",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.6,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1125,
+   "nombre": "Oud",
+   "casa": "Javier Fernández",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.52,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1098,
+   "nombre": "Oud Al'Andalus",
+   "casa": "Darkbeat",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5199999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 983,
+   "nombre": "Oud Aquilaria",
+   "casa": "Omanluxury",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.42500000000000004,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1139,
+   "nombre": "Oud Cadenza",
+   "casa": "Maison Crivelli",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.47500000000000003,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1140,
+   "nombre": "Oud Maracujá",
+   "casa": "Maison Crivelli",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "agotado",
+   "banda": "calido",
+   "indice": 0.35,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1114,
+   "nombre": "Oud Noir Intense",
+   "casa": "Fragrance Du Bois",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 936,
+   "nombre": "Oud Or",
+   "casa": "Houbigant",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.125,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1191,
+   "nombre": "Oud Rain Tropical Storm",
+   "casa": "Renier Perfumes",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.20000000000000004,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1115,
+   "nombre": "Oud Rouge Intense",
+   "casa": "Fragrance Du Bois",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5599999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1063,
+   "nombre": "Oud Satin Mood (Eau de Parfum)",
+   "casa": "Maison Francis Kurkdjian",
+   "temporada": "otoño, invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1033,
+   "nombre": "Oud Wood (Eau de Parfum)",
+   "casa": "Tom Ford",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.42500000000000004,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1199,
+   "nombre": "Oud de Burgas",
+   "casa": "Santi Burgas",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.4600000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 940,
+   "nombre": "Oud for Greatness (Eau de Parfum)",
+   "casa": "Initio",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.42500000000000004,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1168,
+   "nombre": "Paramour",
+   "casa": "Omanluxury",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.375,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1068,
+   "nombre": "Patchouli",
+   "casa": "Ajmal",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.525,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 923,
+   "nombre": "Promise / ??????? (Parfum)",
+   "casa": "Editions de Parfums Frédéric Malle",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.275,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 910,
+   "nombre": "Quattro Pizzi",
+   "casa": "Casamorati",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.21250000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1211,
+   "nombre": "Raw Gold",
+   "casa": "Thomas De Monaco",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5666666666666668,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1212,
+   "nombre": "Raw Gold",
+   "casa": "Thomas De Monaco",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.36,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1229,
+   "nombre": "Richwood",
+   "casa": "Xerjoff",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.6000000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1102,
+   "nombre": "Ruby N Vanilla Oud",
+   "casa": "EBK",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.48,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1016,
+   "nombre": "Shaghaf Oud Royale",
+   "casa": "Swiss Arabian",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.42500000000000004,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1120,
+   "nombre": "Silky Woods Elixir",
+   "casa": "Goldfield & Banks",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.575,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1219,
+   "nombre": "Singular Oud",
+   "casa": "Urban Scents",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.475,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1143,
+   "nombre": "Somnia 517",
+   "casa": "Maison Noir",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.12500000000000006,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1099,
+   "nombre": "Spice Leather",
+   "casa": "Darkbeat",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5750000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1146,
+   "nombre": "Star for Men",
+   "casa": "Mauboussin",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6199999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1206,
+   "nombre": "Sundowner",
+   "casa": "Tauer Perfumes",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.625,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1029,
+   "nombre": "Tabaco Blanco",
+   "casa": "The Lab",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.425,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1121,
+   "nombre": "Tobacco Honey",
+   "casa": "Guerlain",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.65,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1085,
+   "nombre": "Tramonte",
+   "casa": "Botanicae Expressions",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 898,
+   "nombre": "Triumph of Bacchus (Eau de Parfum)",
+   "casa": "Argos",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.2375,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1221,
+   "nombre": "Valentino Uomo Born In Roma Coral Fantasy",
+   "casa": "Valentino",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.725,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1122,
+   "nombre": "Vanille Impériale",
+   "casa": "Houbigant",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.7000000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1222,
+   "nombre": "Versace pour Homme Oud Noir",
+   "casa": "Versace",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.575,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1203,
+   "nombre": "Vicebomb",
+   "casa": "Simone Andreoli",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.45000000000000007,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1181,
+   "nombre": "Victrix",
+   "casa": "Profumum Roma",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1149,
+   "nombre": "Vision",
+   "casa": "Morph",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.425,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1112,
+   "nombre": "Whisky Nobile",
+   "casa": "Farmacia SS. Annunziata",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1167,
+   "nombre": "Wood Whisper",
+   "casa": "Ojar",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.5750000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1042,
+   "nombre": "Woud & Mood Absolute",
+   "casa": "Unique'e Luxury",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.42500000000000004,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 916,
+   "nombre": "X for Men",
+   "casa": "Clive Christian",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.13749999999999998,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1162,
+   "nombre": "Zek",
+   "casa": "Necalli",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.47500000000000003,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1218,
+   "nombre": "Zen'gi",
+   "casa": "Unique'e Luxury",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.4000000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1144,
+   "nombre": "Cacao²",
+   "casa": "Maison Tahité",
+   "temporada": "invierno",
+   "estaciones_norm": [
+    "invierno"
+   ],
+   "compat": 1,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1197,
+   "nombre": "Flaming Red",
+   "casa": "Santi Burgas",
+   "temporada": "invierno",
+   "estaciones_norm": [
+    "invierno"
+   ],
+   "compat": 1,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.675,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1165,
+   "nombre": "Halwa Kiss",
+   "casa": "Ojar",
+   "temporada": "invierno",
+   "estaciones_norm": [
+    "invierno"
+   ],
+   "compat": 1,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.7,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1228,
+   "nombre": "Kemi",
+   "casa": "Xerjoff",
+   "temporada": "invierno",
+   "estaciones_norm": [
+    "invierno"
+   ],
+   "compat": 1,
+   "posee": "decant",
+   "banda": "frio",
+   "indice": -0.525,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1163,
+   "nombre": "Scoville",
+   "casa": "Obvious",
+   "temporada": "invierno",
+   "estaciones_norm": [
+    "invierno"
+   ],
+   "compat": 1,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.475,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1118,
+   "nombre": "Sugardaddy",
+   "casa": "Fugazzi",
+   "temporada": "invierno",
+   "estaciones_norm": [
+    "invierno"
+   ],
+   "compat": 1,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1188,
+   "nombre": "Terra",
+   "casa": "Rayhaan",
+   "temporada": "invierno",
+   "estaciones_norm": [
+    "invierno"
+   ],
+   "compat": 1,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.25,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  }
+ ],
+ "bloqueados_temporada": [
+  {
+   "id": 912,
+   "nombre": "1872 for Men",
+   "casa": "Clive Christian",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.33749999999999997,
+   "ultimo_uso": "2026-10-04",
+   "decant": null,
+   "dias_desde_uso": 47,
+   "ficha_en_disco": "2026-10-04"
+  },
+  {
+   "id": 913,
+   "nombre": "20: Iconic Masculine / 20: The Masculine Perfume of an Iconic Pair",
+   "casa": "Clive Christian",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.2,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1062,
+   "nombre": "40 Knots",
+   "casa": "Xerjoff",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": "frio",
+   "indice": -0.625,
+   "ultimo_uso": "2026-08-23",
+   "decant": "disponible",
+   "dias_desde_uso": 89
+  },
+  {
+   "id": 957,
+   "nombre": "7 Plata",
+   "casa": "Loewe",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": "2026-09-28",
+   "decant": null,
+   "dias_desde_uso": 53
+  },
+  {
+   "id": 1018,
+   "nombre": "? 02 - L'Air du Désert Marocain (Eau de Toilette Intense)",
+   "casa": "Tauer Perfumes",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": "2026-11-03",
+   "decant": null,
+   "dias_desde_uso": 17
+  },
+  {
+   "id": 1061,
+   "nombre": "A Grove by the Sea",
+   "casa": "Arquiste",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.625,
+   "ultimo_uso": "2026-08-17",
+   "decant": "agotado",
+   "dias_desde_uso": 95
+  },
+  {
+   "id": 1119,
+   "nombre": "Acqua di Giò Profumo",
+   "casa": "Giorgio Armani",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.04999999999999996,
+   "ultimo_uso": "2026-09-21",
+   "decant": "disponible",
+   "dias_desde_uso": 60
+  },
+  {
+   "id": 931,
+   "nombre": "Acqua di Giò pour Homme (Eau de Toilette)",
+   "casa": "Giorgio Armani",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": "2026-09-04",
+   "decant": "disponible",
+   "dias_desde_uso": 77
+  },
+  {
+   "id": 1178,
+   "nombre": "Acqua di Sale",
+   "casa": "Profumum Roma",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "agotado",
+   "banda": "frio",
+   "indice": -0.6749999999999999,
+   "ultimo_uso": "2026-09-02",
+   "decant": "agotado",
+   "dias_desde_uso": 79
+  },
+  {
+   "id": 959,
+   "nombre": "Adam & Eve's Dress",
+   "casa": "Lorenzo Pazzaglia",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 896,
+   "nombre": "Adonis Awakens",
+   "casa": "Argos",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.11666666666666668,
+   "ultimo_uso": "2026-08-21",
+   "decant": "disponible",
+   "dias_desde_uso": 91
+  },
+  {
+   "id": 1064,
+   "nombre": "Afternoon Swim",
+   "casa": "Louis Vuitton",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5,
+   "ultimo_uso": "2026-09-15",
+   "decant": "disponible",
+   "dias_desde_uso": 66
+  },
+  {
+   "id": 891,
+   "nombre": "Agua de Colonia Concentrada - Eau Fraîche",
+   "casa": "Alvarez Gómez",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.19999999999999998,
+   "ultimo_uso": "2026-07-27",
+   "decant": null,
+   "dias_desde_uso": 116
+  },
+  {
+   "id": 1035,
+   "nombre": "Akdeniz",
+   "casa": "Unique'e Luxury",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": "2026-09-24",
+   "decant": "disponible",
+   "dias_desde_uso": 57,
+   "ficha_en_disco": "2026-09-24"
+  },
+  {
+   "id": 890,
+   "nombre": "Alvarez",
+   "casa": "Alexandria Fragrances",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.05,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1124,
+   "nombre": "Andaluiza",
+   "casa": "J.U.S - Joyau Unique & Sensoriel",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.15000000000000002,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 948,
+   "nombre": "Angels' Share (Eau de Parfum)",
+   "casa": "Kilian",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 979,
+   "nombre": "Ani X",
+   "casa": "Nishane",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.12000000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1043,
+   "nombre": "Aquafortis",
+   "casa": "Wilgermain",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.2875,
+   "ultimo_uso": "2026-10-12",
+   "decant": null,
+   "dias_desde_uso": 39,
+   "ficha_en_disco": "2026-10-12"
+  },
+  {
+   "id": 1174,
+   "nombre": "Arancia di Sicilia",
+   "casa": "Perris Monte Carlo",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.425,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 980,
+   "nombre": "B-612",
+   "casa": "Nishane",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": "2026-10-21",
+   "decant": null,
+   "dias_desde_uso": 30
+  },
+  {
+   "id": 1141,
+   "nombre": "Baccarat Rouge 540",
+   "casa": "Maison Francis Kurkdjian",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.575,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1142,
+   "nombre": "Baccarat Rouge 540",
+   "casa": "Maison Francis Kurkdjian",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.65,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1095,
+   "nombre": "Barber Note",
+   "casa": "Darkbeat",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5666666666666668,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 892,
+   "nombre": "Barberia - Agua de Colonia Concentrada",
+   "casa": "Alvarez Gómez",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.19999999999999998,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1012,
+   "nombre": "Basso",
+   "casa": "Sospiro",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.02000000000000001,
+   "ultimo_uso": "2026-10-27",
+   "decant": null,
+   "dias_desde_uso": 24
+  },
+  {
+   "id": 961,
+   "nombre": "Bella Trinacria",
+   "casa": "Lunio",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.13333333333333333,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1215,
+   "nombre": "Beril",
+   "casa": "Unique'e Luxury",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.49999999999999994,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1075,
+   "nombre": "Beso Dorado",
+   "casa": "Beso Beach",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.725,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1036,
+   "nombre": "Beverly Hills Exclusive",
+   "casa": "Unique'e Luxury",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 949,
+   "nombre": "Black Phantom - Memento Mori",
+   "casa": "Kilian",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.16666666666666663,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 960,
+   "nombre": "Black Sea",
+   "casa": "Lorenzo Pazzaglia",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.2875,
+   "ultimo_uso": "2026-09-30",
+   "decant": null,
+   "dias_desde_uso": 51
+  },
+  {
+   "id": 1126,
+   "nombre": "Blissful Charm",
+   "casa": "Joterc",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.18,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1049,
+   "nombre": "Body Kouros (Eau de Toilette)",
+   "casa": "Yves Saint Laurent",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 924,
+   "nombre": "Bravo Monsieur",
+   "casa": "El Ganso",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1875,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1022,
+   "nombre": "C'est la vie",
+   "casa": "The Lab",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.016666666666666677,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1129,
+   "nombre": "Call Me Iris",
+   "casa": "Les Sœurs de Noé",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.39999999999999997,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1076,
+   "nombre": "Chan Chan",
+   "casa": "Botanicae Expressions",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.32499999999999996,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 962,
+   "nombre": "Cherry Fever",
+   "casa": "Lunio",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.21666666666666665,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1185,
+   "nombre": "Cherry Musk",
+   "casa": "Ramón Monegal",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.375,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1053,
+   "nombre": "Cities Collection - Seoul 532-8 Sinsa Dong Gangnam-Gu",
+   "casa": "Zara",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.11666666666666668,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 975,
+   "nombre": "Coconut Lagoon",
+   "casa": "Ministry of Gourmand",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1092,
+   "nombre": "Continental",
+   "casa": "CRA-YON",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.58,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1030,
+   "nombre": "Dubai - Bahar (Eau de Parfum)",
+   "casa": "The Spirit of Dubai",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1196,
+   "nombre": "Eau Dadà",
+   "casa": "Santi Burgas",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.22500000000000003,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1194,
+   "nombre": "Elysium Eau Intense",
+   "casa": "Roja Parfums",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": "calido",
+   "indice": 0.5,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 901,
+   "nombre": "Energizer",
+   "casa": "Boadicea the Victorious",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.16250000000000003,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1131,
+   "nombre": "Esencia",
+   "casa": "Loewe",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.525,
+   "ultimo_uso": "2026-09-26",
+   "decant": "disponible",
+   "dias_desde_uso": 55,
+   "ficha_en_disco": "2026-09-26"
+  },
+  {
+   "id": 925,
+   "nombre": "Essential",
+   "casa": "El Ganso",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1078,
+   "nombre": "Euria",
+   "casa": "Botanicae Expressions",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.55,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1110,
+   "nombre": "Exit the King",
+   "casa": "Etat Libre d'Orange",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6200000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1150,
+   "nombre": "Exotic",
+   "casa": "Mr. Waldron",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.32500000000000007,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1000,
+   "nombre": "Fattan pour Homme",
+   "casa": "Rasasi",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 997,
+   "nombre": "Flamenco (Eau de Parfum)",
+   "casa": "Ramón Monegal",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": "2026-09-20",
+   "decant": "disponible",
+   "dias_desde_uso": 61
+  },
+  {
+   "id": 998,
+   "nombre": "Flamenco (Extrait de Parfum)",
+   "casa": "Ramón Monegal",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.24,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1172,
+   "nombre": "Flash0021",
+   "casa": "Perfume.Sucks",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5249999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1079,
+   "nombre": "Flower Cafe",
+   "casa": "Botanicae Expressions",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.19999999999999998,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1024,
+   "nombre": "Fresh Vetiver",
+   "casa": "The Lab",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 971,
+   "nombre": "Ganymede (Eau de Parfum)",
+   "casa": "Marc-Antoine Barrois",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": "2026-10-20",
+   "decant": null,
+   "dias_desde_uso": 31
+  },
+  {
+   "id": 928,
+   "nombre": "Giardino",
+   "casa": "Essential Parfums",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1060,
+   "nombre": "Gntonic",
+   "casa": "M. Micallef",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "agotado",
+   "banda": "frio",
+   "indice": -0.5333333333333333,
+   "ultimo_uso": "2026-08-07",
+   "decant": "agotado",
+   "dias_desde_uso": 105
+  },
+  {
+   "id": 968,
+   "nombre": "Grand Soir (Eau de Parfum)",
+   "casa": "Maison Francis Kurkdjian",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 944,
+   "nombre": "Hayat",
+   "casa": "Kemi",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.16000000000000003,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 981,
+   "nombre": "Hespéridé Colognisé",
+   "casa": "Nishane",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.18000000000000002,
+   "ultimo_uso": "2026-08-04",
+   "decant": null,
+   "dias_desde_uso": 108
+  },
+  {
+   "id": 1013,
+   "nombre": "Il Padrino",
+   "casa": "Sospiro",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "ambos",
+   "banda": "medio",
+   "indice": -0.13999999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 963,
+   "nombre": "Indigo Suede",
+   "casa": "Lunio",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.13333333333333333,
+   "ultimo_uso": "2026-11-01",
+   "decant": null,
+   "dias_desde_uso": 19
+  },
+  {
+   "id": 976,
+   "nombre": "Individuel (Eau de Toilette)",
+   "casa": "Montblanc",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 991,
+   "nombre": "Infusion d'Iris (Eau de Parfum) (2007)",
+   "casa": "Prada",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.3,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1002,
+   "nombre": "Insurrection II Wild",
+   "casa": "Reyane Tradition",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.16666666666666666,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1187,
+   "nombre": "Invisible But Cool",
+   "casa": "Ramón Monegal",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": "medio",
+   "indice": -0.12500000000000006,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1072,
+   "nombre": "Irida Extrait",
+   "casa": "Angelos Créations Olfactives",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.39999999999999997,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 973,
+   "nombre": "Irish Leather (Eau de Parfum)",
+   "casa": "Memo Paris",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.10000000000000002,
+   "ultimo_uso": "2026-10-10",
+   "decant": null,
+   "dias_desde_uso": 41
+  },
+  {
+   "id": 1038,
+   "nombre": "Istanbul",
+   "casa": "Unique'e Luxury",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": "2026-08-22",
+   "decant": "disponible",
+   "dias_desde_uso": 90
+  },
+  {
+   "id": 1039,
+   "nombre": "Izmir",
+   "casa": "Unique'e Luxury",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1073,
+   "nombre": "Jardin de Giverny",
+   "casa": "Arte Profumi",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.42500000000000004,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 943,
+   "nombre": "Joop! Homme (Eau de Toilette)",
+   "casa": "Joop!",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1051,
+   "nombre": "Just Rock! pour Lui",
+   "casa": "Zadig & Voltaire",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1025,
+   "nombre": "Karma",
+   "casa": "The Lab",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 945,
+   "nombre": "Kenzo Air (Eau de Toilette)",
+   "casa": "Kenzo",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 946,
+   "nombre": "Kenzo Homme (Eau de Toilette Intense)",
+   "casa": "Kenzo",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": "2026-11-15",
+   "decant": "disponible",
+   "dias_desde_uso": 5
+  },
+  {
+   "id": 1040,
+   "nombre": "Kutay",
+   "casa": "Unique'e Luxury",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 992,
+   "nombre": "L'Homme",
+   "casa": "Prada",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 2.7755575615628914e-17,
+   "ultimo_uso": "2026-09-22",
+   "decant": null,
+   "dias_desde_uso": 59
+  },
+  {
+   "id": 990,
+   "nombre": "Layton",
+   "casa": "Parfums de Marly",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.24000000000000005,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1054,
+   "nombre": "Lisboa",
+   "casa": "Zara",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.20000000000000004,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1235,
+   "nombre": "Loewe 7 Plata",
+   "casa": "Loewe",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1026,
+   "nombre": "Lotto Cocoon",
+   "casa": "The Lab",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.275,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 994,
+   "nombre": "Luna Rossa Carbon (Eau de Toilette)",
+   "casa": "Prada",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1093,
+   "nombre": "Magnolia",
+   "casa": "Daniel Josier",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.19999999999999998,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1011,
+   "nombre": "Malibù - Party in the Bay",
+   "casa": "Simone Andreoli",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.033333333333333354,
+   "ultimo_uso": "2026-08-24",
+   "decant": "disponible",
+   "dias_desde_uso": 88
+  },
+  {
+   "id": 1223,
+   "nombre": "Mango Skin",
+   "casa": "Vilhelm Parfumerie",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.525,
+   "ultimo_uso": "2026-09-05",
+   "decant": "disponible",
+   "dias_desde_uso": 76
+  },
+  {
+   "id": 1217,
+   "nombre": "Mashumaro",
+   "casa": "Unique'e Luxury",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 908,
+   "nombre": "Mefisto",
+   "casa": "Casamorati",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.04999999999999999,
+   "ultimo_uso": "2026-11-08",
+   "decant": null,
+   "dias_desde_uso": 12
+  },
+  {
+   "id": 909,
+   "nombre": "Mefisto Gentiluomo",
+   "casa": "Casamorati",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.04999999999999999,
+   "ultimo_uso": "2026-10-06",
+   "decant": null,
+   "dias_desde_uso": 45,
+   "ficha_en_disco": "2026-10-06"
+  },
+  {
+   "id": 1170,
+   "nombre": "Megamare",
+   "casa": "Orto Parisi",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "agotado",
+   "banda": "frio",
+   "indice": -0.7666666666666666,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1175,
+   "nombre": "Mimosa Tanneron",
+   "casa": "Perris Monte Carlo",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1198,
+   "nombre": "Miss Betty Vair",
+   "casa": "Santi Burgas",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.4800000000000001,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1109,
+   "nombre": "Molecule 01 + Iris",
+   "casa": "Escentric Molecules",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.30000000000000004,
+   "ultimo_uso": "2026-09-16",
+   "decant": "disponible",
+   "dias_desde_uso": 65
+  },
+  {
+   "id": 1069,
+   "nombre": "Nautilus",
+   "casa": "Almah Parfums 1948",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.525,
+   "ultimo_uso": "2026-08-19",
+   "decant": "disponible",
+   "dias_desde_uso": 93
+  },
+  {
+   "id": 1027,
+   "nombre": "Neroli Negro",
+   "casa": "The Lab",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 964,
+   "nombre": "Neroli Nostrum",
+   "casa": "Lunio",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1,
+   "ultimo_uso": "2026-10-26",
+   "decant": null,
+   "dias_desde_uso": 25
+  },
+  {
+   "id": 951,
+   "nombre": "Nerotic",
+   "casa": "Laboratorio Olfattivo",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.15000000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1241,
+   "nombre": "Niche Emarati Hayaam",
+   "casa": "Lattafa Perfumes",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 889,
+   "nombre": "Nobility",
+   "casa": "Alexandria Fragrances",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.15000000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1066,
+   "nombre": "Note di Colonia IV",
+   "casa": "Acqua di Parma",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.6499999999999999,
+   "ultimo_uso": "2026-09-01",
+   "decant": "disponible",
+   "dias_desde_uso": 80
+  },
+  {
+   "id": 1028,
+   "nombre": "OMG",
+   "casa": "The Lab",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.3333333333333333,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1041,
+   "nombre": "Ocean The Rive",
+   "casa": "Unique'e Luxury",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.2875,
+   "ultimo_uso": "2026-10-15",
+   "decant": null,
+   "dias_desde_uso": 36,
+   "ficha_en_disco": "2026-10-15"
+  },
+  {
+   "id": 1081,
+   "nombre": "Onda",
+   "casa": "Botanicae Expressions",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.725,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1180,
+   "nombre": "Orangea",
+   "casa": "Profumum Roma",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5249999999999999,
+   "ultimo_uso": "2026-09-25",
+   "decant": "disponible",
+   "dias_desde_uso": 56,
+   "ficha_en_disco": "2026-09-25"
+  },
+  {
+   "id": 1234,
+   "nombre": "Oud for Greatness NEO",
+   "casa": "Initio",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 984,
+   "nombre": "Overdose",
+   "casa": "Omanluxury",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.12500000000000003,
+   "ultimo_uso": "2026-11-07",
+   "decant": "disponible",
+   "dias_desde_uso": 13,
+   "ficha_en_disco": "2026-11-07"
+  },
+  {
+   "id": 1133,
+   "nombre": "Pacific Chill",
+   "casa": "Louis Vuitton",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.58,
+   "ultimo_uso": "2026-10-02",
+   "decant": "agotado",
+   "dias_desde_uso": 49,
+   "ficha_en_disco": "2026-10-02"
+  },
+  {
+   "id": 1128,
+   "nombre": "Pacific Mist",
+   "casa": "Joterc",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.7999999999999999,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 932,
+   "nombre": "Pacific Rock Moss",
+   "casa": "Goldfield & Banks",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.2125,
+   "ultimo_uso": "2026-08-17",
+   "decant": null,
+   "dias_desde_uso": 95
+  },
+  {
+   "id": 1091,
+   "nombre": "Paper",
+   "casa": "Commodity",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5666666666666668,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 941,
+   "nombre": "Paragon",
+   "casa": "Initio",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 977,
+   "nombre": "Pardon (Extrait de Parfum)",
+   "casa": "Nasomatto",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.3666666666666667,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1082,
+   "nombre": "Patio",
+   "casa": "Botanicae Expressions",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.55,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1058,
+   "nombre": "Pegasus",
+   "casa": "Parfums de Marly",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": "medio",
+   "indice": -1.850371707708594e-17,
+   "ultimo_uso": "2026-10-31",
+   "decant": "disponible",
+   "dias_desde_uso": 20,
+   "ficha_en_disco": "2026-10-31"
+  },
+  {
+   "id": 1171,
+   "nombre": "Perseus",
+   "casa": "Parfums de Marly",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "agotado",
+   "banda": "frio",
+   "indice": -0.44000000000000006,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1083,
+   "nombre": "Petit",
+   "casa": "Botanicae Expressions",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.55,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1240,
+   "nombre": "Polo Sport (Ralph Lauren)",
+   "casa": "Ralph Lauren",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": "2026-09-07",
+   "decant": "disponible",
+   "dias_desde_uso": 74
+  },
+  {
+   "id": 1136,
+   "nombre": "Porthole",
+   "casa": "Loumari",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.6749999999999999,
+   "ultimo_uso": "2026-10-03",
+   "decant": "disponible",
+   "dias_desde_uso": 48,
+   "ficha_en_disco": "2026-10-03"
+  },
+  {
+   "id": 1238,
+   "nombre": "Prada Luna Rossa Sport",
+   "casa": "Prada",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1177,
+   "nombre": "Punks In Paradise",
+   "casa": "Philly & Phill",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.44000000000000006,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 895,
+   "nombre": "Reflection Man",
+   "casa": "Amouage",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.025,
+   "ultimo_uso": "2026-10-11",
+   "decant": "agotado",
+   "dias_desde_uso": 40,
+   "ficha_en_disco": "2026-10-11"
+  },
+  {
+   "id": 1101,
+   "nombre": "Rosarine",
+   "casa": "Dusita",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.39999999999999997,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1006,
+   "nombre": "Rosendo Mateu Nº 1 - Bergamot, Tea Leaf, Sandalwood",
+   "casa": "Rosendo Mateu - Olfactive Expressions",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": "2026-09-29",
+   "decant": null,
+   "dias_desde_uso": 52
+  },
+  {
+   "id": 982,
+   "nombre": "Safran Colognisé",
+   "casa": "Nishane",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.04000000000000001,
+   "ultimo_uso": "2026-10-18",
+   "decant": null,
+   "dias_desde_uso": 33
+  },
+  {
+   "id": 929,
+   "nombre": "Salaria",
+   "casa": "Giardino Benessere",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.3125,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": 48,
+   "ficha_en_disco": "2026-10-03"
+  },
+  {
+   "id": 1201,
+   "nombre": "Sapna",
+   "casa": "?asva",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.17500000000000007,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1204,
+   "nombre": "Seda",
+   "casa": "Somens",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.45,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1009,
+   "nombre": "Shanthi",
+   "casa": "?asva",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.23750000000000002,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 947,
+   "nombre": "Shiyaaka for Men / Shiyaaka Silver",
+   "casa": "Khadlaj",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.18571428571428572,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 999,
+   "nombre": "Siesta",
+   "casa": "Ramón Monegal",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.03333333333333335,
+   "ultimo_uso": "2026-10-09",
+   "decant": null,
+   "dias_desde_uso": 42,
+   "ficha_en_disco": "2026-10-09"
+  },
+  {
+   "id": 1232,
+   "nombre": "Silence des Calanques",
+   "casa": "Æmium",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.675,
+   "ultimo_uso": null,
+   "decant": "agotado",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 917,
+   "nombre": "Silver Mountain Water",
+   "casa": "Creed",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.2833333333333334,
+   "ultimo_uso": "2026-09-06",
+   "decant": null,
+   "dias_desde_uso": 75
+  },
+  {
+   "id": 1137,
+   "nombre": "Soleil Passion",
+   "casa": "M. Micallef",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.7000000000000001,
+   "ultimo_uso": "2026-09-12",
+   "decant": "disponible",
+   "dias_desde_uso": 69
+  },
+  {
+   "id": 1084,
+   "nombre": "Stereo",
+   "casa": "Botanicae Expressions",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1132,
+   "nombre": "Summer Hammer",
+   "casa": "Lorenzo Pazzaglia",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.6,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1134,
+   "nombre": "Symphony",
+   "casa": "Louis Vuitton",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.475,
+   "ultimo_uso": "2026-09-27",
+   "decant": "disponible",
+   "dias_desde_uso": 54,
+   "ficha_en_disco": "2026-09-27"
+  },
+  {
+   "id": 1105,
+   "nombre": "Synthetic Nature / Synthetic Jungle",
+   "casa": "Editions de Parfums Frédéric Malle",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.425,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1224,
+   "nombre": "Tea & Rock'n Roll",
+   "casa": "Voyages Imaginaires",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.475,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1106,
+   "nombre": "The Original / Eight & Bob",
+   "casa": "Eight & Bob",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.020000000000000018,
+   "ultimo_uso": "2026-11-06",
+   "decant": "disponible",
+   "dias_desde_uso": 14
+  },
+  {
+   "id": 1008,
+   "nombre": "Torroella de Montgrí",
+   "casa": "Santi Burgas",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.2875,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1065,
+   "nombre": "Tropical Mirage",
+   "casa": "Joterc",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.6,
+   "ultimo_uso": "2026-08-26",
+   "decant": "disponible",
+   "dias_desde_uso": 86
+  },
+  {
+   "id": 886,
+   "nombre": "Turathi (Blue)",
+   "casa": "Afnan Perfumes",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.012500000000000011,
+   "ultimo_uso": "2026-10-05",
+   "decant": null,
+   "dias_desde_uso": 46,
+   "ficha_en_disco": "2026-10-05"
+  },
+  {
+   "id": 965,
+   "nombre": "Turmeric Latte (Perfume)",
+   "casa": "Lush",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.6,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1032,
+   "nombre": "Tuttle",
+   "casa": "Tiziana Terenzi",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.01666666666666666,
+   "ultimo_uso": "2026-11-16",
+   "decant": null,
+   "dias_desde_uso": 4,
+   "ficha_en_disco": "2026-11-16"
+  },
+  {
+   "id": 952,
+   "nombre": "Vanagloria",
+   "casa": "Laboratorio Olfattivo",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.32499999999999996,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 953,
+   "nombre": "Vanhera",
+   "casa": "Laboratorio Olfattivo",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "calido",
+   "indice": 0.32857142857142857,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1200,
+   "nombre": "Verdant Delirivm",
+   "casa": "Santi Burgas",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.35000000000000003,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 942,
+   "nombre": "Vespero",
+   "casa": "Jeroboam",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 3.96508223080413e-18,
+   "ultimo_uso": "2026-11-05",
+   "decant": null,
+   "dias_desde_uso": 15,
+   "ficha_en_disco": "2026-11-05"
+  },
+  {
+   "id": 1014,
+   "nombre": "Vibrato",
+   "casa": "Sospiro",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.24,
+   "ultimo_uso": "2026-11-18",
+   "decant": null,
+   "dias_desde_uso": 2,
+   "ficha_en_disco": "2026-11-18"
+  },
+  {
+   "id": 1071,
+   "nombre": "Vis",
+   "casa": "Angela Ciampagna",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.7,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 978,
+   "nombre": "Voyage (Eau de Toilette)",
+   "casa": "Nautica",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.175,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1231,
+   "nombre": "Y",
+   "casa": "Yves Saint Laurent",
+   "temporada": "verano",
+   "estaciones_norm": [
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.225,
+   "ultimo_uso": "2026-09-11",
+   "decant": "disponible",
+   "dias_desde_uso": 70
+  },
+  {
+   "id": 1195,
+   "nombre": "Yesterday",
+   "casa": "Room 1015",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.5,
+   "ultimo_uso": "2026-09-18",
+   "decant": "disponible",
+   "dias_desde_uso": 63
+  },
+  {
+   "id": 1230,
+   "nombre": "Zefiro",
+   "casa": "Xerjoff",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "decant",
+   "banda": "frio",
+   "indice": -0.725,
+   "ultimo_uso": "2026-09-10",
+   "decant": "disponible",
+   "dias_desde_uso": 71
+  },
+  {
+   "id": 1192,
+   "nombre": "ZirYab",
+   "casa": "Ricardo Ramos - Perfumes de Autor",
+   "temporada": "primavera",
+   "estaciones_norm": [
+    "primavera"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "frio",
+   "indice": -0.44000000000000006,
+   "ultimo_uso": null,
+   "decant": "disponible",
+   "dias_desde_uso": null
+  },
+  {
+   "id": 1007,
+   "nombre": "ÔIKB",
+   "casa": "Santi Burgas",
+   "temporada": "primavera,verano",
+   "estaciones_norm": [
+    "primavera",
+    "verano"
+   ],
+   "compat": 0,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.07142857142857144,
+   "ultimo_uso": "2026-10-29",
+   "decant": null,
+   "dias_desde_uso": 22,
+   "ficha_en_disco": "2026-10-29"
+  }
+ ],
+ "excluidos_por_uso": [
+  {
+   "id": 887,
+   "nombre": "195 a.C.",
+   "casa": "Agatho",
+   "temporada": "primavera,otoño",
+   "estaciones_norm": [
+    "primavera",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1,
+   "ultimo_uso": "2026-10-28",
+   "decant": null,
+   "dias_desde_uso": 23
+  },
+  {
+   "id": 888,
+   "nombre": "Fauno",
+   "casa": "Agatho",
+   "temporada": "primavera,otoño",
+   "estaciones_norm": [
+    "primavera",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.07500000000000001,
+   "ultimo_uso": "2026-10-01",
+   "decant": "agotado",
+   "dias_desde_uso": 50,
+   "ficha_en_disco": "2026-10-01"
+  },
+  {
+   "id": 893,
+   "nombre": "Jubilation XXV Man",
+   "casa": "Amouage",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.15000000000000002,
+   "ultimo_uso": "2026-11-17",
+   "decant": null,
+   "dias_desde_uso": 3
+  },
+  {
+   "id": 914,
+   "nombre": "Town & Country",
+   "casa": "Clive Christian",
+   "temporada": "primavera,otoño",
+   "estaciones_norm": [
+    "primavera",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1375,
+   "ultimo_uso": "2026-10-19",
+   "decant": null,
+   "dias_desde_uso": 32,
+   "ficha_en_disco": "2026-10-09"
+  },
+  {
+   "id": 915,
+   "nombre": "V: Amber Fougere",
+   "casa": "Clive Christian",
+   "temporada": "primavera,verano,otoño",
+   "estaciones_norm": [
+    "primavera",
+    "verano",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.2625,
+   "ultimo_uso": "2026-11-09",
+   "decant": null,
+   "dias_desde_uso": 11
+  },
+  {
+   "id": 921,
+   "nombre": "Dior Homme (2005)",
+   "casa": "Dior",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.21250000000000002,
+   "ultimo_uso": "2026-10-25",
+   "decant": "disponible",
+   "dias_desde_uso": 26
+  },
+  {
+   "id": 926,
+   "nombre": "Bois Impérial (Eau de Parfum)",
+   "casa": "Essential Parfums",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": "2026-10-25",
+   "decant": null,
+   "dias_desde_uso": 26
+  },
+  {
+   "id": 933,
+   "nombre": "Ambre des Abysses",
+   "casa": "Houbigant",
+   "temporada": "otoño",
+   "estaciones_norm": [
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.1285714285714286,
+   "ultimo_uso": "2026-11-11",
+   "decant": null,
+   "dias_desde_uso": 9
+  },
+  {
+   "id": 934,
+   "nombre": "Bois Mystique (Eau de Parfum)",
+   "casa": "Houbigant",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.06250000000000001,
+   "ultimo_uso": "2026-11-10",
+   "decant": null,
+   "dias_desde_uso": 10
+  },
+  {
+   "id": 937,
+   "nombre": "Tabac Nomade",
+   "casa": "Houbigant",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.1375,
+   "ultimo_uso": "2026-11-04",
+   "decant": null,
+   "dias_desde_uso": 16,
+   "ficha_en_disco": "2026-11-04"
+  },
+  {
+   "id": 954,
+   "nombre": "Encre Noire (Eau de Toilette)",
+   "casa": "Lalique",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": "2026-10-17",
+   "decant": null,
+   "dias_desde_uso": 34
+  },
+  {
+   "id": 956,
+   "nombre": "Encre Noire Sport",
+   "casa": "Lalique",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": "2026-11-12",
+   "decant": null,
+   "dias_desde_uso": 8
+  },
+  {
+   "id": 969,
+   "nombre": "By the Fireplace",
+   "casa": "Maison Margiela",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.033333333333333354,
+   "ultimo_uso": "2026-11-02",
+   "decant": null,
+   "dias_desde_uso": 18
+  },
+  {
+   "id": 970,
+   "nombre": "B683 (Extrait de Parfum)",
+   "casa": "Marc-Antoine Barrois",
+   "temporada": "otono,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.09999999999999999,
+   "ultimo_uso": "2026-11-13",
+   "decant": "disponible",
+   "dias_desde_uso": 7
+  },
+  {
+   "id": 974,
+   "nombre": "Winter Palace",
+   "casa": "Memo Paris",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.0625,
+   "ultimo_uso": "2026-10-22",
+   "decant": null,
+   "dias_desde_uso": 29,
+   "ficha_en_disco": "2026-10-22"
+  },
+  {
+   "id": 993,
+   "nombre": "L'Homme Intense",
+   "casa": "Prada",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": "2026-11-14",
+   "decant": null,
+   "dias_desde_uso": 6
+  },
+  {
+   "id": 1003,
+   "nombre": "Apex (Eau de Parfum)",
+   "casa": "Roja Parfums",
+   "temporada": "primavera,verano,otoño",
+   "estaciones_norm": [
+    "primavera",
+    "verano",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.27499999999999997,
+   "ultimo_uso": "2026-10-30",
+   "decant": null,
+   "dias_desde_uso": 21
+  },
+  {
+   "id": 1004,
+   "nombre": "Elysium pour Homme (Parfum)",
+   "casa": "Roja Parfums",
+   "temporada": "primavera,verano,otoño",
+   "estaciones_norm": [
+    "primavera",
+    "verano",
+    "otono"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.27499999999999997,
+   "ultimo_uso": "2026-10-13",
+   "decant": "disponible",
+   "dias_desde_uso": 38
+  },
+  {
+   "id": 1044,
+   "nombre": "Alexandria II (Parfum)",
+   "casa": "Xerjoff",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": "2026-10-24",
+   "decant": "disponible",
+   "dias_desde_uso": 27
+  },
+  {
+   "id": 1045,
+   "nombre": "Naxos",
+   "casa": "Xerjoff",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "ambos",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": "2026-10-23",
+   "decant": "disponible",
+   "dias_desde_uso": 28,
+   "ficha_en_disco": "2026-10-08"
+  },
+  {
+   "id": 1046,
+   "nombre": "Renaissance",
+   "casa": "Xerjoff",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": "2026-10-14",
+   "decant": null,
+   "dias_desde_uso": 37,
+   "ficha_en_disco": "2026-10-14"
+  },
+  {
+   "id": 1047,
+   "nombre": "Torino21",
+   "casa": "Xerjoff",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": "2026-10-16",
+   "decant": null,
+   "dias_desde_uso": 35,
+   "ficha_en_disco": "2026-10-16"
+  },
+  {
+   "id": 1055,
+   "nombre": "Bois Imperial",
+   "casa": "Essential Parfums",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": 0.037500000000000006,
+   "ultimo_uso": "2026-10-07",
+   "decant": null,
+   "dias_desde_uso": 44,
+   "ficha_en_disco": "2026-10-07"
+  },
+  {
+   "id": 1087,
+   "nombre": "D600",
+   "casa": "Carner",
+   "temporada": "otoño-invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "botella",
+   "banda": "medio",
+   "indice": -0.07500000000000001,
+   "ultimo_uso": "2026-10-25",
+   "decant": "disponible",
+   "dias_desde_uso": 26,
+   "ficha_en_disco": "2026-09-23"
+  },
+  {
+   "id": 1239,
+   "nombre": "Papyrus Moléculaire",
+   "casa": "Maison Crivelli",
+   "temporada": "otoño,invierno",
+   "estaciones_norm": [
+    "otono",
+    "invierno"
+   ],
+   "compat": 2,
+   "posee": "decant",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": "2026-11-19",
+   "decant": "disponible",
+   "dias_desde_uso": 1
+  }
+ ],
+ "sin_temporada": [
+  {
+   "id": 1242,
+   "nombre": "Firma 2",
+   "casa": "FIRMA",
+   "temporada": null,
+   "estaciones_norm": [],
+   "compat": null,
+   "posee": "botella",
+   "banda": null,
+   "indice": null,
+   "ultimo_uso": null,
+   "decant": null,
+   "dias_desde_uso": null
+  }
+ ]
+}

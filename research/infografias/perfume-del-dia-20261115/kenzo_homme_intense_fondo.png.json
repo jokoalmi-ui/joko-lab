@@ -1,0 +1,12 @@
+{
+  "modelo": "flux-2-klein-4b-fp8.safetensors",
+  "clip": "qwen_3_4b_fp4_flux2.safetensors",
+  "vae": "flux2-vae.safetensors",
+  "prompt": "Editorial still-life photograph on a cold autumn morning: a wet slate ledge with fine mineral texture, pale misty sea softly out of focus behind, soft directional daylight entering from the upper left, cool grey-blue and pale sand palette, gentle contact shadow on the stone, shallow depth of field, subtle film grain, empty centre space, realistic photography, high detail",
+  "negativo_no_aplicado": "",
+  "seed": 42,
+  "steps": 20,
+  "px": "1024x1024",
+  "segundos": 45.3,
+  "bytes": 1668334
+}

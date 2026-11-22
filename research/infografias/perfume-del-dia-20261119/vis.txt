@@ -1,0 +1,12 @@
+geometria del DOM  : .frasco-figura -> x 102 y 99 w 200 h 450 (CSS)  x1.00 = 102,99,200,450 px del PNG
+=== VISIBILIDAD DEL FRASCO (medido) ===
+ficha              : ficha_20261119.png  (1080x1440)
+figura             : papyrus_figura.png  (1123x2525)  [203841 px tapon / 1609116 px cuerpo]
+rect del frasco    : x 102-302  y 99-549  (200x450)
+fondo contiguo     : L mediana 161.3
+tapon              : L 68.5  -> contraste 3.75:1
+cuerpo             : L 239.4  -> contraste 2.25:1
+pixeles claros     : 40332 de 90000  -> 44.8 %  (L>225 dentro del rect)
+
+(sin umbrales: esto es medicion, no veredicto; usa --min-claros / --min-contraste)
+json -> vis.json
