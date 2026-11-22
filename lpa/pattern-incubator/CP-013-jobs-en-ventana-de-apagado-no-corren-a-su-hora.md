@@ -100,3 +100,21 @@ Sería **FALSO** si, sobre **N=10 jobs con hora fija dentro de la ventana de apa
 - `jobs.json`: 52 jobs activos, los 52 con `last_status` = `ok` y `failure_streak` = 0.
 
 **Sin cambio de nivel (E0→E0).** Tercer ciclo con el mismo mecanismo (corren todos juntos al arrancar, no a su hora) y primera medición de la ráfaga en sub-segundo. No hay todavía una ejecución que se **pierda** por la ventana: todas se recuperan al arrancar. La falsación sigue siendo la misma: encontrar un job que no rebote al volver el host, o que rebote tarde y rompa su cadencia diaria.
+
+
+## Reexamen 2026-11-13 (ciclo semanal LPA, ventana 06-11 → 13-11)
+
+Acta: `lpa/incidentes/revision-fallos-2026-11-13.md` (F6/D4). Backup de este documento: `.bak-20261113`.
+
+**Cuarto ciclo con el mismo mecanismo, y por primera vez el fallo está contado por el propio sistema.** La tabla `executions` (`~/.hermes/cron/executions.db`, solo lectura) tiene ahora un estado **`missed`** que antes no aparecía en ninguna acta: **19 filas en 2 noches, sobre 9 jobs distintos**, todas con `claimed_at` igual al arranque del host.
+
+| Noche apagada | Jobs marcados `missed` | Franja de los turnos perdidos |
+|---|---|---|
+| 11-11 → 12-11 (host apagado 21:52 → 07:05) | 9 | 22:12 → 23:00 |
+| 12-11 → 13-11 (host apagado 21:52 → 17:22) | 10 | 20:52 → 23:00 |
+
+**Asimetría medida y no explicada:** el mismo día 13-11 el host estuvo apagado de 00:00 a 17:22, así que se perdieron también los turnos diurnos (`informe-diario` 09:00, `ficha-perfume` 10:00). Esos **no** se marcaron `missed`: se **re-ejecutaron** en la ráfaga de arranque de las 17:23–17:26 (el informe del 13-11 lleva cabecera `2026-11-13 17:23 CET`). Es decir: **la misma causa (host apagado a la hora programada) produce dos registros distintos según la hora** — `missed` para los turnos nocturnos, «corrida tardía» silenciosa para los diurnos. Quien mida turnos perdidos solo con `missed` subestima el doble.
+
+**Lo que el estado `missed` aporta al patrón:** el borde «el turno perdido no deja rastro» **se cierra para los nocturnos** (ya no hay que reconstruirlo con `journalctl --list-boots`). Lo que **no** se cierra: la cadencia. Un job diario de la mañana ejecutado a las 17:23 entrega un informe con la fecha del día pero mirando un estado de hace 8 horas, y nadie lo declara en el producto.
+
+**Estado: E0 → E0.** Sin ascenso: el patrón sigue siendo «corre tarde», no «no corre», y la falsación escrita sigue sin cumplirse (no hay job que no rebote al volver el host). Se añade a la lista de comprobación semanal: **contar `missed` y contar re-ejecuciones tardías por separado**.

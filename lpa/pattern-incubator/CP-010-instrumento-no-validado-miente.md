@@ -80,3 +80,35 @@ Sería **FALSO** si, sobre **N=10 instrumentos** del lab usados para decidir dur
 - **7ª ocurrencia (misma forma, cifras nuevas):** `hermes curator status` sigue en **`PAUSED`, `runs: 13`, `last run: 22d ago`**, con `last report` = `~/.hermes/logs/curator/20260923-170843`, mientras `.curator_ledger.jsonl` acumula **64 filas nuevas** en la ventana (**11-10: 35 · 12-10: 9 · 13-10: 4 · 15-10: 3 · 16-10: 13**) y **2.203 filas** en total (por actor: `curator` 1.667 / `agent` 536). Última fila: `2026-10-16T08:39:01.417998+00:00`, acción `patch` sobre `seguimiento-empleo`. El medidor declarado lleva 22 días sin ejecutarse y el ledger que mide trabajo real no ha parado ningún día.
 - **8ª ocurrencia (forma nueva: la etiqueta `resolved` del registro de incidencias):** `cron_incidents` = **17 de 19 filas en `resolved`**, y `resolved` mide «hubo una corrida sana de ese job después», **no** «la causa está reparada». Dos pruebas medidas el mismo día: (a) `da39a2_fae825d0fe36` (rag-reindex, `timeout`) se cerró el **08-10** tras **33 días** abierta y **4 días después reaparece la misma firma** (`da39a2_563646c13b70`, `timeout 300 s`, `alerted`, abierta a 16-10) → el cierre no reparó nada; (b) las dos filas del `380a80273240` (Orquestador recuperación horaria) se cerraron a la vez el **15-10 15:15:37**, cuando el productor no se arregló hasta las **15:47** y el producto se regeneró a las **15:49** → cierre y causa desalineados en 31 min. Es exactamente el mecanismo del patrón: **la etiqueta promete más de lo que el instrumento mide.**
 - **Nivel sin cambio (E1-008):** 3er ciclo semanal consecutivo sin cambio de nivel; la ocurrencia nueva **no amplía dominio** (sigue en el Experimento 004) pero sí amplía **familia de instrumento** (del estado de salud y del ledger al contador de incidencias resueltas).
+
+
+## Reexamen 2026-11-13 (ciclo semanal LPA, ventana 06-11 → 13-11)
+
+Acta: `lpa/incidentes/revision-fallos-2026-11-13.md` (F3/D5). Backup de este fichero: `.bak-20261113`.
+
+**9ª ocurrencia (familia nueva: el respaldo de carga sustituye el instrumento y el producto sale sin veredicto).** Medido en los 7 informes diarios de la ventana (`04-operations/reports/2026110[7-9]`, `2026111[0-3]-informe-local.txt`):
+
+| Fecha | Motor citado en la cabecera | Juez de calidad |
+|---|---|---|
+| 07-11 | `lmstudio:openai/gpt-oss-20b` | `CALIDAD: omitido` |
+| 08-11 | `lmstudio:openai/gpt-oss-20b` | `PASA (5.0)` |
+| 09-11 | `lmstudio:openai/gpt-oss-20b` | `PASA (5.0)` |
+| 10-11 | `lmstudio:lfm2.5-vl-3b` | `ERROR (?)` |
+| 11-11 | `lmstudio:openai/gpt-oss-20b` | `PASA (4.73)` |
+| 12-11 | `lmstudio:lfm2.5-vl-3b` | `ERROR (?)` |
+| 13-11 (catch-up 17:23) | `lmstudio:openai/gpt-oss-20b` | `CALIDAD: omitido` |
+
+- **3 de 7 informes sin veredicto de calidad** (43 %), y **los 2 días en que el router cayó al respaldo `lfm2.5-vl-3b` el veredicto es `ERROR (?)` en los dos**. El respaldo de carga (`respaldo_carga` en `joko-lab/01-knowledge/modelos_por_tarea.yaml`, por defecto `lfm2.5-vl-3b` en `tools/llm-router.sh:58-59`) es un modelo de **visión** de 3B sirviendo como motor de **texto** de resumen: el producto sale, pero el juez no puede puntuarlo y la comparación entre días deja de tener sentido.
+- **Lo que esto añade al patrón:** el instrumento (juez) no miente por sí mismo: **le cambian el sustrato**. Un juez validado contra `gpt-oss-20b` no está validado contra otro motor, y la cabecera del producto declara el motor pero nadie compara esa declaración con la tabla de motores validados.
+- **Nivel sin cambio (E1-008):** la ocurrencia no amplía dominio (sigue Experimento 004) y el mecanismo es una variante de «la etiqueta promete más de lo que el instrumento mide». Sí amplía la familia: del contador de incidencias y del estado de salud al **veredicto de calidad bajo motor sustituido**.
+
+**Nota de instrumento:** el informe del 13-11 se generó a las 17:23 (catch-up tras arranque), no a las 09:00 — ver CP-013.
+
+---
+
+## Reexamen 2026-11-20 (semanal, ventana 13→20-11)
+
+- **10ª ocurrencia, proporción a la baja:** **1 de 7** informes diarios (14→20-11) se generó con el respaldo `lfm2.5-vl-3b` — el del **16-11** — y es **el único** con `CALIDAD: ERROR (?)`. Los otros 6, con `openai/gpt-oss-20b`: 4,8 · 5,0 · 4,53 · 5,0 · 4,8 · 5,0, todos `OK_INTERNO`. Era 4 de 7 en la ventana anterior.
+- **El mecanismo no cambia:** el respaldo de carga (`respaldo_carga`, por defecto `lfm2.5-vl-3b` en `tools/llm-router.sh`) es un modelo de **visión** de 3B sirviendo como motor de **texto** y el juez no puede puntuar ese sustrato. La cabecera del producto declara el motor; nadie compara esa declaración con la tabla de motores validados.
+- **Lo que añade:** la caída al respaldo es **intermitente y no se anuncia**. Un día de cada siete el producto sale con un veredicto que no es comparable con el resto, y la serie diaria no lo marca como hueco. El patrón no miente en el valor: miente en la **comparabilidad**.
+- **Nivel:** sin cambio (E1-008). Misma familia, mismo dominio (Experimento 004). Sin ascenso: 1 ocurrencia por ventana no amplía el respaldo empírico.

@@ -102,3 +102,20 @@ Resultado medido: 4 días degradados (27→30-10) → **4 incidencias `detected`
 
 **Estado: E0 → E0, con antídoto verificado en 1 job.** No hay ascenso ni descarte: la condición escrita («otro falso ok») no se cumplió y el antídoto aplicado es evidencia **a favor** del patrón. Se lleva a la mensual del 02-11 con este resultado.
 
+
+
+## Reexamen 2026-11-13 (ciclo semanal LPA, ventana 06-11 → 13-11)
+
+Acta: `lpa/incidentes/revision-fallos-2026-11-13.md` (F7/D6). Backup: `.bak-20261113`.
+
+**Novena ocurrencia, y la primera con el artefacto de 0 bytes como prueba física.** Ficha de perfume del **07-11**:
+
+- 08:33:43 → corrida buena, artefacto de 76.310 B (`2026-11-07_08-33-45.md`).
+- **10:21:56** → el gateway mata el proceso de MCP (`Force-killed MCP process 9487 (lancedb) after SIGTERM timeout`); **10:21:58** systemd `Stopped hermes-gateway.service`; **10:23:10** vuelve a arrancar.
+- **10:24:13** → el planificador despacha una ejecución que muere adoptada: artefacto **`2026-11-07_10-24-13.md` de 0 bytes**, incidencia `8bf412_a4b094b52ae0` con `error = "interrupted"`, estado `closed` a las 12:17:05 del mismo día.
+
+**Lo que confirma:** una corrida adoptada y matada deja **un fichero vacío**, no ningún fichero. Un vigía que solo comprueba «existe artefacto» aprueba esa corrida. El propio registro de incidencias sí lo detectó (`interrupted`), pero el cierre fue 1 h 53 min después y **sin causa asignada** (`failure_type=unknown`).
+
+**Lo que añade:** el par (0 bytes + `interrupted`) es una firma barata y fiable de este borde; hoy nadie la usa como criterio. Se propone como comprobación del ciclo: **artefacto de 0 B = corrida muerta, nunca «producto vacío»**.
+
+**Estado: E0 → E0.** El antídoto sigue verificado en un solo job (el productor que declara degradación con exit code propio). Este caso es del otro lado: la corrida no llegó a declarar nada.

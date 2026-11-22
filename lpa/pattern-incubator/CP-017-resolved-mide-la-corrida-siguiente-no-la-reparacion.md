@@ -145,3 +145,34 @@ MARCA: CP-017-PROCEDIMIENTO-ESCRITO-20261106
 - Se escribió a petición del usuario tras la revisión mensual del 2026-11-06. El ascenso a `procedures/` no cambia el nivel de evidencia del patrón (sigue E1-011): documenta el criterio, no lo valida.
 - El procedimiento declara explícitamente que la condición de 7 días **no es observable** con las retenciones medidas (`executions` ~1 día, artefactos del vigilante ~21 h), y que en ese caso el cierre no puede ser `resolved`.
 - Backup de este fichero: `.bak-20261106-proc`.
+
+
+## Reexamen 2026-11-13 (ciclo semanal LPA, ventana 06-11 → 13-11)
+
+Acta: `lpa/incidentes/revision-fallos-2026-11-13.md` (F5/D2). Backup: `.bak-20261113`.
+
+**Segundo cierre «verificado» que se rompe, y con la misma forma que el primero.** Cronología medida en `cron_incidents` para el job `bbc1d841e8a7` (`empleo-pipeline-diario`, `0 18 * * *`):
+
+| Evento | Fecha | Fila |
+|---|---|---|
+| Cierre nº 1 (3 condiciones) | 28-10 | `bbc1d8_a5731c9ceec0` |
+| Reapertura | 01-11 18:01 | misma fila, `last_seen` actualizado |
+| Cierre nº 2 | 02-11 18:02 | mismo id, `closed_at` **sobrescrito** |
+| **Reapertura (2 fallos el mismo día)** | **11-11 18:05:52 y 19:37:18** | `bbc1d8_aba390737219` (`timeout`) + `a5731c9ceec0` (`script`) |
+| Cierre nº 3 | 12-11 18:05:17 | **las dos filas a la vez**, mismo `closed_at` |
+
+- **El cierre nº 2 duró 9 días** (02-11 → 11-11) y el nº 1 duró 4 (28-10 → 01-11). El criterio escrito en `procedures/cierre-de-incidencia.md` exige **7 días sin recurrencia**; el nº 2 lo habría cumplido **por dos días** y aun así se rompió. Es la primera medición que muestra que **7 días tampoco basta** como umbral general (RULE-015: el umbral no se fija a priori).
+- **Los dos fallos del 11-11 son de naturaleza distinta y se cerraron juntos:** (a) `Script timed out after 300s` a las 18:05:52 (artefacto de 229 B, solo la cabecera); (b) re-ejecución a las 19:37:18 que **produjo un artefacto de 16.044 B** y aun así terminó `exit 1`, con `stderr` que solo contiene un `FutureWarning` de `google-api-core` sobre Python 3.11. Un cierre en bloque de dos causas distintas es exactamente el defecto que este patrón describe: `resolved` mide «hubo una corrida sana después», no «la causa está reparada».
+- **Nuevo borde detectado en (b):** un `FutureWarning` en `stderr` no debería producir `exit 1`; o el script traduce un aviso en fallo, o el código de salida viene de otro sitio que el `stderr` no muestra. El artefacto grande y el exit 1 conviven → **el producto existe y el semáforo está rojo**, el caso inverso al falso ok habitual y también engañoso (un rojo que no señala nada).
+- **Nivel sin cambio (E1-011):** el patrón está confirmado, no ampliado. Afecta al procedimiento, no al nivel: el umbral de 7 días queda **sin respaldo empírico** y debe reformularse como «N días observados con retención suficiente», no como una cifra fija.
+
+---
+
+## Reexamen 2026-11-20 (semanal, ventana 13→20-11)
+
+- **Tercer mecanismo de cierre falso, distinto de los dos anteriores: cerrar por salida de ventana.** El hueco del **12-11** (45 sesiones en `state.db`, sin `sesiones-delta-20261112.jsonl`) produjo **3 alertas** (`41a1a4_3c4b8c91fffb` 13-11 17:23; `41a1a4_6472980b291b` 13-11 22:35; `41a1a4_2288feb11262` 14-11 22:35) y las 3 se cerraron **a la vez** el **15-11 22:35:02.515752**. El hueco no se reparó: **salió de la ventana de 3 días** que mira `registrar_hel_diario.py` (`objetivo = [hoy-2, hoy-1, hoy]`). El job salió `ok` porque dejó de mirar, no porque el dato estuviera.
+- **Causa raíz localizada en código (verificada):** el consumidor busca el fichero **nombrado por el día consolidado** (`registrar_hel_diario.py:160-165`, `sesiones-delta-<dd>.jsonl`) y el productor escribe el delta **nombrado por el día en que corre** (`consolidador_sesiones.py:121`, `sesiones-delta-{hoy}`). Un día rellenado hacia atrás **nunca tendrá delta con su propio nombre** → la alerta es segura. Prueba de que la consolidación sí se hizo: `resumen-dia-2026-11-12.md` existe (mtime 13-11 22:30:50) con «Sesiones del dia 2026-11-12: 45».
+- **Precisión del recuento:** de las 3 alertas, **1 fue verdadera** (13-11 17:23: el resumen aún no existía, se creó a las 22:30) y **2 fueron falsas** (13-11 22:35 y 14-11 22:35: el resumen llevaba 4 minutos escrito). Es **una causa con alertas repetidas**, no dos ocurrencias en contextos distintos.
+- **Cierre nº 3 roto:** el cierre del 12-11 18:05 duró **7 días exactos** y el pipeline de empleo volvió a fallar el **19-11 18:05** (`invalid_grant` de Gmail, ver acta 2026-11-20, F2) **sin abrir fila en `cron_incidents`**. Segunda medición que invalida la cifra fija de 7 días como umbral general.
+- **Regla operativa que se añade a la revisión:** ante cualquier cierre, comprobar si coincide con **un cambio de causa** o con **un cambio de ventana/retención**. En esta ventana, 3 de 3 cierres coinciden con lo segundo.
+- **Nivel:** sin cambio (E1-011). El patrón se confirma por tercera vía; lo que falta sigue siendo un criterio de cierre con respaldo empírico, no una cifra a priori (RULE-015).
