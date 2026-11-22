@@ -102,3 +102,6 @@ __pycache__/
 *.safetensors
 *.onnx
 05-inference/models/
+
+# --- Locks de proceso (estado efímero, no contenido) — 2026-11-22 ---
+**/.lock
