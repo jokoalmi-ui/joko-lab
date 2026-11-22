@@ -2152,3 +2152,102 @@ MARCA: ANALISIS-VIDEO-xFGolsBNMZs-20261113
 - **Lo que NO se puede afirmar**: coste, duración y aciertos (sin repo ni capturas publicadas); los nombres propios dictados por voz (Sonnet 5.5, TaskFlow, Médula, Gas Town) pueden venir deformados por el ASR; ninguna fuente escrita independiente fue localizada en esta sesión. Los otros cinco vídeos del informe quedaron triados sin transcribir; el de IBM Technology (`hvnPWgfmvyI`) se leyó y no genera ficha: divulgación conceptual sin cifras.
 - **Artefactos efímeros**: `/tmp/tr_xFGolsBNMZs.txt` (12.162 B), `/tmp/tr_hvnPWgfmvyI.txt` (9.245 B), `/tmp/tr_both.txt`, `/tmp/canales.txt`, `/tmp/meta2.txt`, `/tmp/gate_run.txt`. Coste 0: sin GPU, sin modelos cargados, sin descargas.
 - **Registro de escritura**: ANALISIS-VIDEO-xFGolsBNMZs-20261113 · bytes 417504 → 420812 · líneas 2138 → 2153 · md5 antes 3da3628cecc4b64a11f6d9ea480ac928 · md5 después c659ab4b9bc308e227ecf14ce4411c6b · 3308 B de bloque · sin commit y sin push · fecha del asiento 2026-11-13 17:37:36 .
+
+## 2026-11-16 16:09:46 CET — [ANÁLISIS] Post viral «The End of Harness Engineering»: ese paper no existe; los reales son Harness² y Self-Harness
+
+MARCA: harness-automejora-post-ig-20261116
+
+- **Qué se ha leído**: post de Instagram `https://www.instagram.com/p/Dfvyri2DKFq/` (@0xsojalsec, 14-11-2026, «98 likes, 0 comments» en el HTML). Es copia del hilo de @Mr_Buzzoni del 13-11; no aporta nada propio.
+- **Verificado contra fuente primaria**: la API de arXiv devuelve `totalResults: 0` para el título exacto «The End of Harness Engineering». No existe ese paper.
+- **Paper 1**: `arXiv 2610.14224v1` — Harness²: Recursive Agent Harnessing for an Open World (9-oct-2026; Xu, Chen, CuiZhu, Dalvi Mishra, Ming, Yu, Han, Lee, Pfister; afiliación dominante Google Research). Sin verificador con verdad de referencia: «contrastive Propose-Probe-Compose step». GLM-5 y Gemini 3.5 Flash congelados. +11,5 puntos WorkBuddy-Bench, +4,5 JobBench, +11,8 pp LAB.
+- **Paper 2**: `arXiv 2606.09498v3` — Self-Harness: Harnesses That Improve Themselves (8-jun-2026; Shanghai AI Lab). Minería de debilidades → propuesta → «Proposal Validation» con regression testing. Mejora held-in y held-out, hasta +132 % relativo, sin ingenieros humanos ni agentes externos más fuertes.
+- **Falso o no verificado en el post**: el «modelo 4B» y las «8 ediciones» no aparecen en ningún abstract (negativo medido); «Claude Fable 5.2» no es el modelo de los papers; la autoría china corresponde a Self-Harness, no al paper de los 11,5 puntos; el título es inventado.
+- **Pendiente propuesto, NO ejecutado**: partición **held-out** reservada en el golden set de `evaluar-alucinaciones`, que no se consulte al proponer la mejora, y aceptar una edición de skill solo si no baja ahí. Hoy se propone y se evalúa con el mismo conjunto, así que una mejora puede estar sobreajustada al caso que la motivó. Coincide con RULE-015 (el examen malo genera un falso ok).
+- **Ficha**: `research/analisis-harness-automejora-20261116.md` — 7748 B, md5 `e4c05672e23f884c1f0cda717528f2b6`.
+- **Registro de escritura**: `pendientes.md` 421112 B → 423456 B, 2154 → 2167 líneas, md5 `248ef8360887bb41f29409e93b84c7e7` → el que imprime el volcado; copia previa `pendientes.md.bak-20261116-anexo-harness` con md5 `248ef8360887bb41f29409e93b84c7e7`.
+
+## 2026-11-16 17:50:09 CET — [DESCARTE] Infografía «How To Start Learning AI Agents» de @networkyy
+
+MARCA: descarte-post-networkyy-20261116
+
+- **Qué se ha leído**: `https://www.instagram.com/p/DfzUF7zo1v0/` — @networkyy, 16-11-2026, «11 likes, 0 comments» en el HTML, leído tres horas después de publicarse. El caption es solo el título, sin texto de apoyo. Imagen única de 1296×1456 px.
+- **Contenido**: roadmap de IA generativa a agentes en tres niveles, numerado del 1 al 25, con un faro dibujado a la izquierda y los bloques alineados por color. Level 1 «GenAI & RAG Basics» (1–9: genAI, LLMs, prompting, preprocesado, RAG, bases vectoriales, API wrappers, tool integration); Level 2 «AI Agent Essentials» (10–20: qué es un agente, frameworks, primer agente, workflows, memoria, evaluación, razonamiento multi-paso, multiagente, planificación, guardrails); Level 3 «Advanced Agent Skills» (21–25: integración con Slack/Notion/Gmail, bucles autónomos, toolkits propios, rendimiento, despliegue).
+- **Fiabilidad de la lectura**: los títulos se leen bien, la numeración de la propia pieza no. En el nivel 2 los ítems van 20, 19, 12, 13, 14, 15, 16, 17, 11 y 10; el 11 aparece duplicado con dos descripciones distintas y el 5 y el 18 no se leen. No se registra la lista completa como dato verificado.
+- **Veredicto: DESCARTE.** No hay una sola cifra, ni fuentes, ni material propio: los nombres de herramienta son los de siempre (LangChain, CrewAI, AutoGen, Pinecone, Chroma, LlamaIndex). Cuenta pequeña. Lo único aprovechable era el formato «escalera de tres niveles» como pieza visual única, y eso ya lo cubre `infografia-html`.
+- **Nota de herramienta**: `vision_analyze` volvió a responder este día; el error 400 «Failed to load m…» de las jornadas anteriores era del servicio, no de las imágenes.
+- **Registro de escritura**: `pendientes.md` 423456 B → 425517 B, 2167 → 2178 líneas, md5 `1d6a81d5e05350c21f26aa84a02a3ffc`; copia previa `pendientes.md.bak-20261116-descarte-networkyy` con el mismo md5.
+
+## 2026-11-16 18:29:22 CET — [ESTUDIO] Infografía «Open-Source Honeypots» de @dan_nanni: 12 herramientas, 7 verificadas contra T-Pot
+
+MARCA: estudio-post-dan_nanni-honeypots-20261116
+
+- **Fuente**: `https://www.instagram.com/p/DfyMtk6PCQ4/` — @dan_nanni (Learn Tech with Dan). El `datetime` del post es `2026-11-16T13:00:13Z` (14:00 CET); el `og:description` dice «November 15» y se descarta por la hora del propio elemento. «250 likes, 1 comments» leídos en el HTML el mismo día. Imagen única de 2400×2400 con la infografía «Open-Source Honeypots» y una caja de autor: «Created by Dan Nanni — study-notes.org».
+- **Qué contiene**: rejilla de 12 herramientas, cada una con logo, nombre e iconos de sistema operativo compatible. Leídos: Beelzebub (Linux), Conpot (Linux), Cowrie (Linux+macOS), DShield, Glutton, HellPot, Mailoney, OpenCanary, PhantomFS, SentryPeer, uno **ilegible** y T-Pot.
+- **Verificación cruzada** contra la lista de honeypots que dockeriza `telekom-security/tpotce`: aparecen **beelzebub, conpot, cowrie, glutton, hellpot, mailoney y sentrypeer** — 7 de los 12; T-Pot es la propia plataforma. **OpenCanary** y **DShield** son proyectos reales pero no están en T-Pot, así que esa fuente no los valida. **PhantomFS** y el duodécimo no se han podido verificar: el nombre se leyó «shesesame» en una pasada y «cachecore» en otra, ninguna palabra real, y el logo es una ventana de terminal con una vaina de cacao.
+  - **Corrección de una cifra propia**: en el primer veredicto se dijo «once de los doce coinciden con T-Pot». Falso. Son siete.
+- **Caption** (texto real del post, correcto en lo conceptual): clasifica los honeypots por lo que capturan — SSH y Telnet (fuerza bruta y comandos ejecutados), servidores web (escaneo y exploits), malware (recolección de payloads), email (spam y phishing), servicios de red (sondeo de debilidades), sistemas industriales (infraestructura crítica), ficheros y credenciales trampa que disparan alertas, y análisis del comportamiento del atacante. Cierra con un enlace a study-notes.org, donde el autor vende PDFs de sus infografías.
+- **Valor para el lab**: es material de estudio real y verificable para la unidad de ciberseguridad del FP. T-Pot es un Compose con más de 20 honeypots y panel propio, así que montarlo es un ejercicio completo de despliegue, segmentación de red y análisis de logs.
+- **Aviso de seguridad**: un honeypot se monta en VM aislada o contenedor sin salida a la LAN. En este host conviven n8n, la BD de perfumes y los datos del lab; exponer puertos trampa desde esta máquina no se hace.
+- **Registro de escritura**: `pendientes.md` 425517 B → 428346 B, 2178 → 2191 líneas, md5 `199325f07036b12645e9e1ebe3e8f77c`; copia previa `pendientes.md.bak-20261116-estudio-honeypots` con el mismo md5.
+
+## 2026-11-16 18:38:06 CET — [DOC] Plano «CONJUNT DIAGRAMA DE COMPONENTS CAIXER-VTP» (00436-03103, Oliva Torras) guardado para la app de averías
+
+MARCA: doc-plano-caixer-vtp-00436-03103
+
+- **Origen**: PDF enviado por el usuario. 1.373.152 B, una página de 612×792 pt, generado con PDFCreator 0.9.3 + Ghostscript 8.54 y fechado en 2013. **No tiene capa de texto**: `pdftotext` devuelve 1 byte y `pdfimages -list` no lista ninguna imagen, así que el dibujo es vectorial con el texto convertido a curvas.
+- **Identificación leída en el cajetín a 400 dpi**: fabricante **Oliva Torras**, denominación **CONJUNT DIAGRAMA DE COMPONENTS CAIXER-VTP**, plano **00436-03103**, dibuja **J. Martinez**, fecha **22-Nov-12**. Escala, revisión, verifica y aprueba quedan en blanco.
+- **Contenido**: esquema de conexionado del cajero de peaje VTP-R. Fuentes `SP-200 24V MEYPAR`, `CN1 PID-250 36V 5V MEYPAR`, `HLG 320H 12V ABERTIS`, `HLG 320H 12V MEYPAR`, `HLG 240H 24V ABERTIS / MEYPAR`; cuadro eléctrico con borneras `BT B1 BP BE1 BE2 BPE BPS`; módulos hopper aspirador, bloque aspirador, clasificador, hoppers de reciclaje, lectora de tarjetas, ticket printer y PC; detalle de conexionado del PC; mazos `00436-02780`, `00436-02781`, `00436-02782` y `00436-03102` hacia `CN1 (INX-01..04)`; nota «Mangueras 2x1,5 existentes en F.A. — Rojo VCC / Negro GND»; remite al **plano 00436-03097**.
+- **Guardado en**: `~/averias-autopista/docs/equipos/` — el PDF original (sha256 `e5c5a9b18b327ec04aea64d416c0d590bd82d62988c8fec7052c4e341a2e424f`), un PNG a 400 dpi de 3400×4400 px y la ficha `CAIXER-VTP-R_00436-03103.md`.
+- **Sin tocar la base de datos**: la tabla `adjuntos` exige `averia_id` y esto es documentación del equipo, no de una avería; no hay tabla de documentos de equipo. Para consultarlo desde la interfaz haría falta una tabla `docs_equipo` y una ruta que sirva los ficheros.
+- **Corrección de la primera lectura** (a 150 dpi se leía mal): la nota remite al plano **00436-03097**, no a «0504-13-0007», y la empresa es **Oliva Torras**, no «Olima For».
+- **Registro de escritura**: `pendientes.md` 428346 B → 430613 B, 2191 → 2203 líneas, md5 `8f6ec85cbe7ff1087fd44ec5e8c494d6`; copia previa `pendientes.md.bak-20261116-doc-plano-caixer`.
+
+- 2026-11-16 22:27 — ✅ COLA DE SKILLS PENDIENTES APROBADA (autorización expresa del usuario: «te autorizo a aprobar todas las skills pendientes»). 11 pendientes revisados uno a uno con dry-run antes de aplicar. APLICADOS 10: `40bf6af1` + `92501e3e` + `edae2c24` (seguimiento-empleo, 4 bloques nuevos: radio/provincias_completas, informe_siempre, Emprego Galicia/Xunta), `632f0c69` + `7bb8fcb0` (refactor-seguro), `85ffcb02` + `ec0833c0` (perfume-del-dia; el segundo es el punto 6bis del filo blanco del cristal: umbral 252, banda 4 px, sin MinFilter/MaxFilter, delta L +34,4 → +15,2), `9ca06b6e` (hermes-cron-jobs), `a265274b` (vigilancia-canales-youtube), `cbf3ef5f` (crea skill `diarizar-directos` + 2 scripts). NO APLICADO 1: `0a268b49`, patch huérfano (su `old_string` no existe en la skill creada después) → archivado en `~/.hermes/pending/skills/obsoletos-20261116/` con MOTIVO.md, no borrado (RULE-023). Verificación: frontmatter YAML válido en las 6 skills tocadas (perfume-del-dia 74.919 B, seguimiento-empleo 56.415 B, refactor-seguro 72.999 B, hermes-cron-jobs 46.675 B, vigilancia-canales-youtube 45.741 B, diarizar-directos 4.830 B) y contenido comprobado por grep (líneas 476/491/508/723 de seguimiento-empleo). Backups: `SKILL.md.bak-20261116-autoapprove` en cada skill y cola completa en `~/.hermes/pending/skills.bak-20261116-autoapprove`. Script: `~/.hermes/cache/scratch/aprobar_pendientes.py`. Sin commit.
+
+## 2026-11-17 15:01 — Filtro de temporada en la ficha del perfume (CORREGIDO)
+
+- **Síntoma**: la ficha del 18-11 propuso Vibrato (`primavera,verano`) en noviembre. El flujo elegía por clima + anti-repetición 60 d y **no miraba la temporada**.
+- **Medición** (solo lectura, `uso_diario` con clima): **64 de 137 usos (47 %)** caen fuera de la temporada declarada del perfume (Carved Oud `otoño,invierno` a 35 °C el 04-jul-2026). Conclusión: el campo sirve para bloquear la mitad opuesta, **no** para exigir coincidencia exacta.
+- **Instrumento nuevo**: `~/joko-lab/tools/candidatos_ficha.py` (solo lectura de `coleccion.db`). Salidas: `elegibles` (2 = estación del día, 1 = misma mitad del año), `bloqueados_temporada` (0), `excluidos_por_uso` (<60 d) y `sin_temporada`. Normaliza los valores sucios (`otoño, invierno`, `otono,invierno`, `Primavera/Verano/Otoño`, `otoño-invierno`).
+- **Regla de mitades**: cálida = primavera+verano · fría = otoño+invierno. La matriz de "adyacencia" se descartó por inútil (Vibrato pasaba como adyacente a otoño → compat 1, no bloqueado).
+- **Estación efectiva**: calendario astronómico corregido por temperatura (media <12 °C en primavera/otoño ⇒ invierno; >26 °C ⇒ verano).
+- **Verificación 18-11-2026 (media 17,7 °C)**: elegibles 136 · bloqueados 160 · en exclusión 24 · sin temporada 1 (suma 321 = total). Vibrato aparece en `bloqueados_temporada`. Controles: 25-jun-2027 → Vibrato elegible y Carved Oud bloqueado; 15-ene-2027 → Vibrato bloqueado.
+- **Gate de skills**: la regla entra como nueva sección «Paso 1bis — FILTRO DE TEMPORADA» en `perfume-del-dia`, **pendiente de aprobación** (`pending_id 4bc4acf8`). El cron `8bf412ac2ba3` ya carga esa skill, así que no se toca su prompt.
+- Sin commit.
+
+## 2026-11-17 19:28:25 — [PENDIENTE] Manual del CAIXER y esquema del bus de campo: pedirlos a Meypar
+
+MARCA: CAIXER-MANUAL-MEYPAR-20261117
+
+- **Estado**: ABIERTO. Los documentos pueden llegar por otra vía, así que no se descarta ni se cierra; queda registrado el estado real de la búsqueda para no repetirla.
+- **Hecho 1 (corrección del usuario, 17-11)**: Abertis NO es el interlocutor. Abertis perdió el contrato frente a la empresa del usuario; por eso es normal que no facilite documentación. La vía correcta es Meypar como fabricante y proveedor actual.
+- **Hecho 2 (fabricante identificado)**: el CAIXER es de **Meypar**, unidad de negocio de Oliva Torras Grup (Sant Cugat del Vallès). Su web describe «soluciones… para estacionamientos… y estaciones de peaje de autopistas». Coherente con el plano `00436-03103`: las fuentes de alimentación llevan rótulo `MEYPAR` junto a `ABERTIS` (el segundo es cliente histórico del plano de 22-11-2012, no fabricante).
+- **Hecho 3 (búsqueda web hecha el 17-11)**: 12 búsquedas y extracciones contra `meypar.com` y `olivatorras.com`. No hay apartado de manuales, descargas ni documentación técnica: solo catálogo comercial, ISO 9001 y folletos `221net.pdf` / `373basic.pdf`. Ni «CAIXER VTP-R», ni «PLUS 455», ni «Bus 165» aparecen en abierto. Un «Manual de Operador Versión 2.01» de Scribd no es verificable (sin vista previa, sin autor) y NO se cuenta como fuente.
+- **Hecho 4 (búsqueda local)**: `grep` de `Bus 165|PLUS ?455|Plus 455|placa PIC` en `~/averias-autopista` y `~/joko-lab/01-knowledge` sin resultados útiles. En `~/averias-autopista/docs/equipos/` solo está el plano (`_400dpi.png`, 3400×4400), su `_conjunto.pdf` (sin capa de texto: `pdftotext` → 1 byte) y la ficha `.md`.
+- **Datos de la incidencia que hay que citar al pedirlos**: dispositivo `PIC4`, fecha/hora `18:21:53 - 17/11`, bus `165`; mensaje «El hardware no responde. No hay comunicación con la placa PIC».
+- **Qué pedir, en concreto** (no «el manual» a secas): (1) esquema del bus de campo; (2) tabla de direcciones de nodo del Bus 165; (3) referencia de fabricante de la placa PIC y su función; (4) procedimiento de sustitución y direccionamiento de la placa.
+- **Contacto del fabricante**: `info@meypar.com` · +34 93 544 29 33 · Meypar, Sant Cugat del Vallès.
+- **Puertas, por orden**: (1) expediente de reversión de contrato de la propia empresa —en una reversión suele entregarse el inventario técnico y los manuales de los equipos en servicio—; (2) Meypar como proveedor; (3) el técnico que ya conoce la máquina.
+- **Aviso operativo**: sin la tabla de direcciones, cambiar una placa PIC puede dejar el bus mudo o peor. La incidencia se desactiva sola al recuperar comunicación (watchdog de bus), así que un silencio no equivale a arreglo.
+- **Lo que NO se puede afirmar**: que el manual no exista en absoluto (solo se ha comprobado la web pública y dos rutas locales); que el Bus 165 sea RS-485 (inferencia por el par A/B y el terminador, sin documento); que «PLUS 455» sea un modelo de placa o de máquina.
+- **Evidencia**: plano `~/averias-autopista/docs/equipos/CAIXER-VTP-R_00436-03103_400dpi.png`; `meypar.com` (catálogo, sin manuales); `olivatorras.com/unitats-negoci.php?c=meypar`. Fecha de la anotación medida con `date`.
+- Sin commit.
+
+- 2026-11-18 19:38 — STARIX (AP-68): sin manual de ninguna versión. Pendiente pedir la documentación al soporte del tramo. [STARIX-SOLICITUD-20261118]
+  - Verificado: sistema de gestión integral de peajes de Autopistas C.E.S.A. (ACESA, grupo Abertis), proyecto 1995-1999; sustituyó a NEPA sobre UNIX (PC de vía + servidores SUN); software de vías migrado a Linux según el informe anual de Abertis de 2005 ("REESTRUCTURACIÓN SOFTWARE VÍAS LINUX"); desarrollo en C/C++ todavía activo en 2022-2023. No es Pegaso: Starix gobierna máquinas y cobro; Pegaso es explotación/tráfico.
+  - No verificado: que la versión instalada sea 7.0.x.x (dicho el 18-11 "diría que") y el contenido de los menús de diagnóstico. Búsquedas: PDF, "versión 5/6", site:abertis.com, registro de propiedad intelectual → cero manuales de cualquier versión.
+  - Entregable escrito: ~/averias-autopista/docs/solicitud-soporte-starix.txt (6 bloques; incluye texto formal, versión para teléfono, mapa de las cinco familias de diagnóstico y protocolo de reconocimiento sin tocar nada).
+  - Siguiente paso: ejecutarlo el usuario cuando esté delante de la vía. Interlocutor según tramo: Bizkaia → Interbiak vía UTE Abertis Gestión Viaria + Asfaltos Uribe; Álava → Arabat (Autopistas + Gertek + Altuna); La Rioja/Navarra/Aragón → estatal en desmantelamiento.
+
+- 2026-11-22 07:51 — HERMES 0.23.3: análisis completo pendiente, fecha tope 2026-11-25. [HERMES-0233-20261125]
+  - Instalada: `v0.22.2+8170.g2bd378e` (base 2026.9.24), git, Python 3.14.9. El binario avisa «Update available».
+  - Última estable: `v0.23.3` publicada 2026-11-20T00:34Z. Anteriores: 0.23.2 (16-11), 0.23.1 (10-11), 0.23.0 (05-11, «The Hearth Release»), y 0.22.3–0.22.7. Los canary diarios no cuentan.
+  - RULE-016: elegible el **2026-11-25** (5 días post-publicación). El usuario autoriza el análisis completo ese día (22-11, «si»).
+  - Falta verificar antes de decidir: `_config_version` objetivo de 0.23.3 y salto desde v52; requisito de Node del tag; bugs de migración abiertos (state.db/WAL, platforms, cron).
+  - Referencia externa: FrontierHarness Eval **v1.1** (commit 17-11, merge 20-11) midió Hermes **0.22.5**: $1,16 por acierto, 59,9 % de acierto, caché 93,0 %, 58m26s → puesto 11/22 por coste y 5º por acierto. Registro: `research/analisis-super-agent-deepseek-marfil-20261122.md` (md5 `aad5b222…`).
+  - Watchdog de versiones: ya notificó `v0.23.3`.
+  - Ejecución: **sin cron creado** (requiere OK explícito del usuario). Sin commit.
+
+- 2026-11-22 08:21 — BROWSER TOOLS: remapeo aplicado en 12 SKILL.md (cabecera "Remapeo de tools de navegador"); 80 ficheros / 264 referencias quedan pendientes de reescritura fina. Hecho verificado: en v0.22.2 sólo existen browser_exec, browser_cdp, browser_dialog y browser_vault; las diez tools antiguas ya NO existen (no es riesgo de 0.23.x). Inventario y plan: hermes-lab/informes/2026-11-22-browser-tools-remapeo.md (9.795 B, md5 1bb8f334fd2b). Backups: *.bak-20261122-browser-exec. Sin commit. [BROWSER-REMAPEO-20261122]
+
+- 2026-11-22 08:32 CET — BROWSER TOOLS 2ª PASADA: cuerpos reescritos en 27 ficheros (0 refs antiguas en los SKILL.md principales). Estado global 92/360 -> 64 ficheros/276 refs, todas en references de crónica. 3 dobles backticks corregidos; frontmatter validado en 10 skills. Backups *.bak-20261122-cuerpo. Sin commit. [BROWSER-REMAPEO-20261122-2]
