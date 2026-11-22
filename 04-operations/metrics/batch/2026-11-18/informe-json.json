@@ -1,0 +1,32 @@
+{
+  "ts": "2026-11-18T13:02:13+02:00",
+  "modo": "diario",
+  "id": "informe-json",
+  "runner": "orquestador",
+  "fuente": "/home/jokoalmi/joko-lab/04-operations/reports/20261118-informe-local.txt",
+  "estado": "escalado_cloud",
+  "segundos": 52.21,
+  "exit_code": 0,
+  "stdout": "❌ Verifier: json_invalido: Unterminated string starting at: line 1 column 123 (char 122) → escalando a cloud...\nEscalado a cloud completado; resultado local descartado.\n",
+  "stderr": "",
+  "ledger": [
+    {
+      "ts": "2026-11-18T13:01:21+02:00",
+      "tarea": "Extrae en JSON estricto (solo JSON, sin markdown ni texto alrededor) un objeto con estas claves exactas: fecha, tests_ok",
+      "tipo": "batch-json",
+      "motor": "local",
+      "intento_local": true,
+      "local_ok": false,
+      "escalo_cloud": true,
+      "motivo": "json_invalido: Unterminated string starting at: line 1 column 123 (char 122)",
+      "latencia_s": 49.0,
+      "cloud_result": {
+        "ok": true,
+        "salida": "{\"fecha\":\"2026-11-18\",\"tests_ok\":false,\"servicios_activos\":3,\"gpu_mem_usado_mb\":112,\"gpu_temp_c\":38,\"problemas\":[\"Test de salida exit 1 indica 1 test caducable; se requiere revisión inmediata.\",\"Complejidad de código alta: 1120 funciones, 56 complejas (11-20), 37 muy complejas (>20).\"]}",
+        "stderr": "",
+        "latencia_s": 3.14,
+        "cloud": true
+      }
+    }
+  ]
+}

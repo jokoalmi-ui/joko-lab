@@ -1,0 +1,7 @@
+{
+  "ts": "2026-11-13T18:24:26+02:00",
+  "id": "informe-json",
+  "estado": "aplazada",
+  "motivo": "fuente_ausente: no existe /home/jokoalmi/joko-lab/04-operations/reports/20261113-informe-local.txt",
+  "intentos_consumidos": 0
+}

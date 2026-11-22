@@ -2,7 +2,7 @@
   "schema": 1,
   "descripcion": "Registro persistente de candidatos a modelo local (12GB VRAM). Es la MEMORIA del cron investigacion-modelos-locales-semanal: si un candidato esta aqui, NO se re-investiga ni se re-lista cada semana. Cada entrada nueva lleva avisado=false; el watchdog aviso-modelos-locales-novedades avisa UNA vez y lo pone en true.",
   "creado": "2026-09-14",
-  "actualizado": "2026-11-09",
+  "actualizado": "2026-11-16",
   "fuentes_de_verdad": [
     "/home/jokoalmi/joko-lab/01-knowledge/modelos_por_tarea.yaml",
     "/home/jokoalmi/joko-lab/04-operations/metrics/alucinaciones_ledger.jsonl",
@@ -849,7 +849,7 @@
         "https://www.preferred.jp/en/blog/tech/plamo-3-translate-weight-release (05-nov-2026: 4 tamanos, GGUF+MLX, AutoRound, '0.8B outperforms translation-specialized LLMs with more than 30x params' en ja<->en y ja<->otros; condiciones de la licencia)",
         "https://localllm.az-arte.com/en/models/new (consultado 09-nov: primer GGUF de los 4 tamanos el 27-oct; VRAM estimada a 8K 1,36 / 2,72 / 6,25 GB)"
       ],
-      "avisado": false
+      "avisado": true
     },
     {
       "nombre": "Microsoft Mage-VL-Cowork (4B, computer-use)",
@@ -865,7 +865,7 @@
         "https://huggingface.co/microsoft/Mage-VL-Cowork (created 2026-10-30, 3.714 descargas, 215 likes, Apache-2.0)",
         "https://www.llm-releases.com/changelog (consultado 09-nov: '4B Apache-2.0 computer-use VLM that switches between GUI actions and bash in one policy; lab-reported 66.0% on OSWorld-Verified', 30-oct-2026)"
       ],
-      "avisado": false
+      "avisado": true
     },
     {
       "nombre": "webAI TwIL-8B",
@@ -880,7 +880,7 @@
         "https://huggingface.co/webAI-Official/TwIL-8B (verificado con ?blobs=true + README: updated 2026-11-08, 34.546 descargas, 244 likes; license_name webai-non-commercial-license-ver.-1.0; Q4_K_M 5,35GB, Q8_0 9,35GB, F16 17,59GB; '4.98 GiB Q4_K_M'; MATH-500 98.2)",
         "https://www.llm-releases.com/changelog (consultado 09-nov: 08-nov-2026, 8.79B dense post-trained from Granite 4.2 8B, 131K, webAI Non-Commercial License, MATH-500 98.2 balanced)"
       ],
-      "avisado": false
+      "avisado": true
     },
     {
       "nombre": "NousResearch Arete-27B",
@@ -894,7 +894,7 @@
         "https://huggingface.co/NousResearch/Arete-27B (created 2026-11-06, apache-2.0, 2.407 descargas, 326 likes)",
         "https://www.llm-releases.com/changelog (consultado 09-nov: 'propaganda answers falling from 22% to 0.9% ... Hermes Bench essentially unchanged (65.77% to 65.60%)')"
       ],
-      "avisado": false
+      "avisado": true
     },
     {
       "nombre": "Kakao Kanana-2-v-decide-3b-2611 (decision multimodal)",
@@ -907,7 +907,7 @@
         "https://huggingface.co/api/models/kakaocorp/kanana-2-v-decide-3b-2611 (verificado 09-nov: created 2026-10-26, 683 descargas, 27 likes, pipeline zero-shot-classification, ficheros configuration_kanana_v_decide.py y decision_kanana_v_decide.py, sin .gguf)",
         "https://www.llm-releases.com/changelog (consultado 09-nov: 06-nov-2026, '3.67B multimodal decision model that returns probabilities ... instead of generating text')"
       ],
-      "avisado": false
+      "avisado": true
     },
     {
       "nombre": "Bucket otros detectados (02-nov a 09-nov): sin cabida, sin rol o sin pesos",
@@ -921,6 +921,84 @@
         "https://huggingface.co/api/models?search=SenseNova-Loop-9B (AtomicChat 17.306 descargas, lavendercomputing GSQ-RCO, guideboardlabs 8.931: hay GGUF de terceros, no oficial)",
         "https://huggingface.co/api/models?search=Clover-35B-A3B (Diffuspace/Clover-35B-A3B-Preview-GGUF 65.620 descargas)",
         "https://localllm.az-arte.com/en/models/new (consultado 09-nov: primeros GGUF de los ultimos 30 dias y tamano Q4_K_M/VRAM 8K de cada uno)"
+      ],
+      "avisado": true
+    },
+    {
+      "nombre": "Qwen3.6-35B-A3B MACaQ-R (cuantizacion del modelo EN_USO)",
+      "estado": "PENDIENTE",
+      "rol": "veracidad_critica (sustitucion directa de cuantizacion, no modelo nuevo)",
+      "primera_aparicion": "2026-11-16",
+      "ultima_mencion": "2026-11-16",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Huawei CSL publico MACaQ el 10-nov-2026 (github.com/huawei-csl/MACaQ, apache-2.0, arXiv 2611.10649) y el 11-nov el primer GGUF refinado con MACaQ-R: huawei-csl/Qwen3.6-35B-A3B-MACaQ-R-GGUF, apache-2.0, un unico pack Q4_K_XL de 22,36GB (22.360.455.968 bytes verificados con ?tree/main y ?blobs=true), carga con llama.cpp estandar ('llama cli' / 'llama serve') y sin bloque MTP. Es el MISMO Qwen3.6-35B-A3B que el lab tiene en EN_USO para veracidad_critica: la baza es que al mismo tamano exacto declara menos distorsion -KL a FP16 0,013367 frente a 0,015731 del UD-Q4_K_XL de Unsloth, ambos con 22,36GB en la propia tabla del repo-, es decir ~15% menos KL sin coste de VRAM. No cabe entero en 12GB: necesita el mismo offload que el fichero actual, por eso la prueba es barata y comparable (solo cambia el fichero, no el motor ni la config). Aviso: la tabla KL es del publicador; no hay medida independiente ni tok/s en A2000. No se descarga ni se prueba sin OK del usuario.",
+      "evidencia": [
+        "https://huggingface.co/api/models/huawei-csl/Qwen3.6-35B-A3B-MACaQ-R-GGUF/tree/main (verificado 16-nov: created 2026-11-11T23:28Z, 2.291 descargas, 13 likes; Qwen3.6-35B-A3B-MACaQ-R-Q4_K_XL.gguf = 22.360.455.968 bytes)",
+        "https://huggingface.co/huawei-csl/Qwen3.6-35B-A3B-MACaQ-R-GGUF/raw/main/README.md (tabla de calidad leida 16-nov: Unsloth UD-Q4_K_XL 22,36GB KL 0,015731 vs MACaQ-R Q4_K_XL 22,36GB KL 0,013367; 'Load the model with standard llama.cpp')",
+        "https://arxiv.org/abs/2611.10649 (metodo MACaQ, citado por el repo)",
+        "https://toolhalla.ai/news (consultado 16-nov: 'llama.cpp hits v1.0.0' 13-nov y nota MACaQ del 12-nov)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "QVAC BotPsy-0.8B (tool calling on-device)",
+      "estado": "PENDIENTE",
+      "rol": "tool_calling / json (tramo sub-1B, al final de la cola)",
+      "primera_aparicion": "2026-11-16",
+      "ultima_mencion": "2026-11-16",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Tether AI Research (QVAC), pesos el 10-nov-2026 (repo creado 2026-11-10T03:10Z; verificado por API: 26 likes y 887 descargas del safetensors, 22 likes y 3.931 del GGUF), apache-2.0, 0,8B segun el vendor, base Qwen3.5-0.8B, ctx nativo 262.144 (cabecera GGUF). Pensado para encadenar varias tool calls y para NEGARSE cuando ninguna herramienta sirve. GGUF oficial para llama.cpp verificado con ?tree/main: botpsy-0.8b-q4_k_m-imat.gguf 529.296.960 B = 0,53GB / q8_0 0,81GB / bf16 1,52GB. Cifras del vendor (replicadas por prensa, NO reproducidas de forma independiente): BFCL v4 44,0 frente a 23,4 del base y 37,7 de Qwen3.5-2B; ToolSandbox 64,6 frente a 30,5; media 45,0 en 6 benchmarks; el propio vendor avisa de que es para dificultad baja/media y no para decisiones criticas. Encaje: el rol tool_calling ya tiene 3 PENDIENTES (MiniCPM5-2B 21-sep, Nemotron-3.5-Bolt-E4B 26-oct, LFM3-1.7B 02-nov), asi que entra al FINAL de la cola; se justifica porque es el candidato mas barato de la cola (0,53GB) y el unico de la ventana con tabla de tool-use publicada. No se descarga sin OK del usuario.",
+      "evidencia": [
+        "https://huggingface.co/api/models/qvac/BotPsy-0.8B-GGUFs/tree/main (verificado 16-nov: q4_k_m-imat 529.296.960 B, q8_0 811.843.040 B, bf16 1.516.744.160 B; lastModified 2026-11-11T06:25Z)",
+        "https://huggingface.co/api/models/qvac/BotPsy-0.8B-GGUFs?blobs=true (architecture qwen35, context_length 262144, license apache-2.0)",
+        "https://tether.io/news/tethers-800m-ai-agent-beats-models-2-5x-its-size-on-everyday-phone-tasks/ (11-nov-2026: BFCL v4 44,0 vs 23,4 base; ACEBench 58,7; 6 benchmarks)",
+        "https://www.llm-releases.com/changelog?s=latest (consultado 16-nov: item 12-nov Decider Flash v1.3 y cierre de la ventana 09-16 nov)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "MiniMax-H3-Image (DiT 33,1B, GGUF podado)",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-11-16",
+      "ultima_mencion": "2026-11-16",
+      "semanas_sin_ejecutar": 0,
+      "nota": "MiniMax, pesos el 03-nov-2026 (verificado por API: 1.244 likes y 609.130 descargas; Comfy-Org 08-nov con 2.294.065 descargas; GGUF de Abiray 10-nov con 155.475). DiT single-stream de 33,1B para texto-a-imagen y edicion multirreferencia hasta 16MP (4096x4096 a 6272x2688) en 6 pasos destilados sin CFG; usa el encoder de texto de MiniMax-H3 sin cambios. GGUF del denoiser podado, verificados con ?tree/main: Q2_K 6,88GB / Q3_K_M 8,91GB / Q4_K_S y Q4_K_M 11,57GB / Q5_K_M 14,08GB; cargan en ComfyUI-GGUF estandar. Motivos de descarte: (1) el propio cuantizador pone Q3_K_M en '12 GB VRAM' y Q4 en '12-16 GB', y esas cifras son SOLO del denoiser: el encoder de texto H3 va aparte, asi que en 12GB no entra el conjunto; (2) 33,1B a 16MP en una A2000 es coste de minutos por imagen, y el rol imagen_infografias ya tiene Qwen-Image-2.1 PENDIENTE desde el 21-sep y SDXL en uso, con tipografia legible como requisito (la baza de H3-Image es fotorrealismo, no rotulos); (3) licencia MiniMax-H3-Image Community, no apache.",
+      "evidencia": [
+        "https://huggingface.co/Abiray/MiniMax-H3-Image-GGUF/tree/main (verificado 16-nov: Q2_K 6.876.632.704 B, Q3_K_M 8.911.771.264 B, Q4_K_S y Q4_K_M 11.573.106.304 B, Q5_K_M 14.077.892.224 B)",
+        "https://huggingface.co/Abiray/MiniMax-H3-Image-GGUF/raw/main/README.md (leido 16-nov: '33.1B parameter single-stream DiT', tabla de VRAM recomendada por quant, '6 distilled sampling steps')",
+        "https://huggingface.co/MiniMaxAI/MiniMax-H3-Image/raw/main/README.md (leido 16-nov: 'uses the MiniMax-H3 text encoder unchanged', 16MP, license minimax-h3-image-community-license-agreement)",
+        "https://huggingface.co/api/models?search=MiniMax-H3-Image&limit=20 (16-nov: createdAt base 2026-11-03, Comfy-Org 2026-11-08, Abiray 2026-11-10)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "IBM Granite 4.1 8B / 3B LLMON Preview (anti prompt-injection)",
+      "estado": "OBSERVAR",
+      "rol": "json / clasificacion (resistencia a inyeccion de prompt)",
+      "primera_aparicion": "2026-11-16",
+      "ultima_mencion": "2026-11-16",
+      "semanas_sin_ejecutar": 0,
+      "nota": "IBM, anuncio el 12-nov-2026 (los repos se crearon el 01-oct; el lanzamiento y los primeros GGUF son de la ventana), apache-2.0, finetunes de granite-4.1-8b-base y granite-4.1-3b-base. Entrenados en markup LLMON: el harness separa explicitamente instrucciones de datos no confiables, de modo que el texto de una web, PDF o email entra marcado como dato y no como orden. GGUF de terceros verificados por API el 12-13-nov: lidon-ai/granite-4.1-8b-llmon-preview-GGUF (creado 2026-11-12, 275 descargas) y -imatrix-GGUF (13-nov, 522), mas el equivalente en 3B. Por que no entra en cola: sigue en Preview, no hay eval independiente de resistencia a inyeccion y, sobre todo, el markup no lo genera el modelo sino el codigo que lo llama: sin adaptar el harness (n8n, MCP, lectores de PDF) no aporta nada. Condicion de revisita: version estable con card de evaluacion; seria el primer 8B que ataca un riesgo real del lab, porque los documentos que entran al pipeline son texto no confiable.",
+      "evidencia": [
+        "https://www.llm-releases.com/changelog?s=latest (consultado 16-nov: 12-nov-2026 'IBM releases Granite 4.1 8B LLMON Preview ... trained on LLMON markup that separates instructions from untrusted data to resist prompt injection')",
+        "https://huggingface.co/api/models?search=llmon&filter=gguf&limit=10 (verificado 16-nov: lidon-ai/granite-4.1-8b-llmon-preview-GGUF created 2026-11-12T22:23Z 275 descargas; -imatrix-GGUF 2026-11-13T05:32Z 522; 3B equivalentes)",
+        "https://huggingface.co/api/models?search=LLMON&limit=20 (16-nov: ibm-granite/granite-4.1-8b-llmon-preview y -3b-llmon-preview, licencia apache-2.0, base granite-4.1-*-base)"
+      ],
+      "avisado": false
+    },
+    {
+      "nombre": "Bucket otros detectados (09-nov a 16-nov): sin cabida, sin rol o ya cubiertos",
+      "estado": "DESCARTADO",
+      "primera_aparicion": "2026-11-16",
+      "ultima_mencion": "2026-11-16",
+      "semanas_sin_ejecutar": 0,
+      "nota": "Bucket 09-nov a 16-nov para no volver a investigarlos. Sin cabida por tamano: Agnes 2.5 Pro Theta (~187,8B MoE, BF16 ~375,5GB, Apache), Inkling 2 Small (paso a Apache 2.0 el 12-nov en NVFP4/MXFP8, pero 594B/17B y 500GB de VRAM agregada: sigue sin caber; el cambio material es de licencia, no de encaje), Qwen4-Max (2,4T/71B, propietario), Hy4 flash (224B/12B, solo API con pesos prometidos), LongCat-2.5 (1,6T/48B, MIT pero fuera de rango), Ling 3.1 Flash y Nemotron 3.5 Super VL (servidos, tamano de datacenter), Praxis-1 (27B MoE de accion para robots: el lab no tiene bucket y no es un LLM de texto), Edge0-145B y Edge0-120B (derivados de Qwen3.8-Flash-Next, 29GB de pico declarado y motor CUDA propio; la familia ya esta en el bucket Edge0-35B-A3B-preview). Sin rol en el lab: Perplexity Decider v1.3 (27B sobre Qwen3.8-27B, no cabe) y Decider Flash v1.3 (4B sobre Qwen3.5-4B, Apache, GGUF de terceros el 14-nov con 1.058 descargas del repo vblanco: cabria, pero la cola de decision ya acumula 6 modelos en OBSERVAR y el router del lab es rule-based), HeyGen Decision 1 (solo API), Translated Lara Mini Base (7,2B/0,6B MoE, 45 idiomas, checkpoint BASE sin instruct, gated y CC BY-NC-SA 4.0), plamo-3-0.8b/8b-fin-instruct (japones financiero), Salience-27B-R6 (27B denso multimodal, primer quant util por encima de 12GB), TheDrummer Orion-26B-A4B-v1.1 (finetune creativo), Axion-1.0-35B, qwen-concept-27b, Drama-3-Japanese-34,7B, gemma-4-31B-it-ARA-heretic, Qwen3.8-27B-Ultimate-Heretic, nova-uncensored-qwen3-swallow-8b (repacks y finetunes sin evaluacion): todos por encima de 12GB o sin rol. No son modelos: llama.cpp y ggml v1.0.0 (13-nov, solo compromiso de versionado, mismo commit que b15259/b12359), MoEShift (runtime alpha para Mac con expertos en SSD), llama-modchip (parches de kernel para MoE en RAM sin GPU), Claris Harbor (app de Mac), Exact (framework de apps de Expo). Tamanos de los no citados con cifra: tomados de los listados de llm-releases y de los primeros GGUF, no re-verificados fichero a fichero.",
+      "evidencia": [
+        "https://www.llm-releases.com/changelog?s=latest (consultado 16-nov: items 12-nov a 16-nov-2026)",
+        "https://toolhalla.ai/news (consultado 16-nov: llama.cpp v1.0.0, Edge0-145B/120B, MACaQ, MoEShift, llama-modchip, Claris Harbor, Exact)",
+        "https://localmodelwatch.tsuchitsuchi.com/en/category/weekly-roundup/ (consultado 16-nov: sin edicion posterior al 12-nov; la ultima es del 05-oct, la fuente no cubre la ventana)",
+        "https://huggingface.co/api/models?search=decider&sort=createdAt&direction=-1&limit=20 (16-nov: fxoz y vblanco con GGUF de pplx-decider-flash-v1.3 creados 2026-11-14; PsychoLogic pplx-decider-v1.3-27B IQ3_M)",
+        "https://huggingface.co/api/models?filter=gguf&sort=createdAt&direction=-1&limit=40 (16-nov: repasados los GGUF mas nuevos; sin lanzamiento grande con cabida en 12GB)"
       ],
       "avisado": false
     }

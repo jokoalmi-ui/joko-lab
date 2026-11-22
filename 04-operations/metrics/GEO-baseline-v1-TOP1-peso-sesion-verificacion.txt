@@ -1,0 +1,92 @@
+TOP 1 DEL INFORME valor-canales-diario (13-11/14-11) - PESO DE SESION EN search.py
+Joko Lab - 04-operations/metrics - 2026-11-14
+Origen: TOP 1 del informe de valor de hoy: "medir pureza@5 del peso de sesion (0,90 vs
+1,0) - sigue sin ejecutar". Ejecutado en sesion interactiva, autorizado por el usuario
+("Las 2": retirar el bloque y guardar este informe).
+
+1) LO QUE SE PIDIO Y LO QUE HABIA
+`tools/search.py:429-440` aplicaba un factor multiplicativo JOKO_RAG_PESO_SESION=0,90 a
+las filas con type='session', con este fundamento (31-oct-2026): "las tarjetas de sesion
+son evidencia secundaria, no norma". La pregunta era si ese factor sigue haciendo algo.
+
+2) HECHO VERIFICADO ANTES DE MEDIR: NO HAY SUJETO EN EL CORPUS
+Indice joko_notes medido hoy: 41.658 filas, 4.853 paths unicos,
+  type=session ....... 0 filas
+  paths metrics/sesiones/ ... 0
+Causa ya documentada: tools/indexer.py:142-143 excluye el directorio al indexar
+(commit c0f2594). No es que el peso no module: es que no hay ninguna fila a la que
+aplicarse. Mismo caso que el peso por ruta retirado en 85177bc.
+
+3) MEDICION PEDIDA: PUREZA@5 CON 0,90 vs 1,0, MISMO BANCO
+Banco: GEO-baseline-v1-queries.txt, sha256 6c3ec4b558abad9e2e1622abc0a547a0eac61c829392c7d8c4cdfac5bf2c34b7
+(verificado en esta ejecucion). Config: query_index(top_k=5), hibrido + rerank, REFINE
+por defecto. Metrica M2 del diseno A/B (pureza por regla de directorio).
+Medidor: ~/.hermes/cache/scratch/medir_peso_sesion.py (fuera del repo; no se copia a tools/).
+
+cons  n  P  pureza  composicion   (identico en 0,90 y en 1,0)
+E1    5  5  1.000   PPPPP
+E2    4  3  0.750   PPPR4
+E3    4  3  0.750   PPR4P
+E4    4  4  1.000   PPPP
+T1    5  0  0.000   R4R4R4R4R4
+T2    4  0  0.000   R4R4R4R4
+T3    4  2  0.500   R4PPR4
+T4    3  1  0.333   PR4R4
+T5    4  2  0.500   R4PPR4
+C1    6  3  0.500   PPR1R4R4P
+C2    5  4  0.800   PPR1PP
+C3    0  0  0.000   (abstencion)
+
+                       A (0,90)      B (1,0)
+pureza@5 media@consulta  0,511        0,511
+pureza@5 global por slot 27/48=0,562  27/48=0,562
+composicion              P 27 | R4 19 | R1 2 | R2 0 | R3 0  (igual en ambas)
+consultas con top-5 distinto: 0 de 12
+marcas "sesion x0.90" en el top-5: 0 de 24 ejecuciones
+
+CONTROL: la rama 429-440 nunca se ejecuto (0 filas type=session vistas en las 24
+consultas, 0 marcas de penalizacion) y el indice confirma 0 filas del tipo.
+
+4) INCIDENCIA DEL INSTRUMENTO (v1 de esta misma medicion)
+La v1 dio "IDENTICO" con 0 slots en las 24 ejecuciones: query_index() imprime por
+pantalla y NO devuelve nada (return None), asi que el medidor midio el vacio y el veredicto
+era un falso ok. Lo detecto el contador de slots (48 != 0). La v2 captura el stdout y parsea
+las lineas "[n] path". Se registra porque es el fallo tipico de este instrumento: EXIT=0 no
+es exito, y un "identico" sobre cero resultados no demuestra nada.
+
+5) RETIRADA Y VERIFICACION POSTERIOR
+- Backup: tools/search.py.bak-20261114-peso-sesion (md5 60cf31b359e72091e39de252ddc54c44).
+- Retirado el bloque de calculo (429-440) y el de presentacion (peso/sesion x0.90).
+- search.py: 589 -> 579 lineas, md5 d0dd253f0c73be169843f21a6c3a05e1, py_compile OK.
+- Remedicion con el mismo banco TRAS la retirada: resultados identicos, consulta por
+  consulta, a la medicion previa (media 0,511 / global 27 de 48 / misma composicion /
+  C3 sigue absteniendose). La retirada no cambia ninguna busqueda: era codigo sin sujeto.
+
+6) COMPARACION CON LA LINEA BASE
+                        12-11 (filtro sesiones)   14-11 (hoy)
+pureza media@consulta   0,519                     0,511
+pureza global por slot  0,510 (26/51)             0,562 (27/48)
+slots devueltos         51                        48
+abstenciones C3         0 (devolvia 5)            1 (0 resultados de 5)
+La diferencia NO viene del peso (es no-op): viene de C3, que hoy se abstiene y retira sus 5
+slots R4 del denominador global. La media@consulta apenas se mueve. No se ha investigado
+por que C3 se abstiene hoy y no el 12-11: no forma parte de este TOP.
+
+7) QUE NO SE PUEDE CONCLUIR
+- Que la rama 429-440 estuviera mal escrita: no se ha probado con sujeto. No hay control
+  positivo posible hoy (0 filas type=session); si vuelven a indexarse sesiones, reimplantar
+  CON medicion previa y no a ojo.
+- Que 0,511 sea "bueno": no hay gold humano. Mide composicion del top-5, no acierto.
+- Que el ruido restante sea atacable por ranking: R4 research/ ocupa 19 de 48 slots porque
+  en T1 y T2 es lo unico que existe del tema. El cuello esta en el corpus.
+
+8) DECISION TOMADA
+Retirado el peso de sesion de tools/search.py (no-op demostrado) y documentado en el propio
+codigo con puntero a este fichero. 0 cambios de indice, 0 servicios tocados, 0 cambios de
+configuracion. Sin commit ni push (no autorizado en esta tarea).
+
+9) SIGUIENTE PASO MEDIBLE (no ejecutado)
+- Ledger de aplicabilidad: 23 filas, ultima del 05-nov, frente a 1.322 triajes. 9 dias
+  triando sin veredicto real. Es escritura: decide el usuario.
+- Outliers YT: 8/8 IDs identicos tres dias seguidos; el score premia canal pequeno
+  (baseline 973), no novedad. Toca tools/monitor_yt.py.
