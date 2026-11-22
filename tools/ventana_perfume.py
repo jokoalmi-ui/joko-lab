@@ -23,7 +23,12 @@ guarda la ventana real: el sistema la aprende del cierre de la ficha
 haya >=10 ventanas registradas (RULE-015).
 
 Uso:
-  python3 ventana_perfume.py [--ventana 08-18] [--lat 43.3054] [--lon -2.9754] [--json]
+  python3 ventana_perfume.py [--ventana 08-18] [--lat 43.3054] [--lon -2.9754] [--json] [--fecha AAAA-MM-DD]
+
+--fecha (12-nov-2026): el perfume se usa DIA D+1 y la ficha se entrega la vispera.
+  Sin --fecha pide forecast_days=1 (hoy, comportamiento historico intacto);
+  con --fecha pide start_date=end_date=<fecha> y filtra las horas de ese dia.
+  Dato de mañana = PRONOSTICO a 1 dia, no observacion: la ficha debe declararlo.
 
 Solo LECTURA: no escribe en BD, ni en el lab, ni publica nada. No toca la GPU.
 Fail-closed: si la API falla o la ventana no tiene datos, imprime AVISO y sale 2
@@ -81,10 +86,15 @@ def horas_ventana(ini: int, fin: int):
     return set(range(ini, 24)) | set(range(0, fin + 1))
 
 
-def consulta(lat: float, lon: float, url: str):
-    q = ("%s?latitude=%s&longitude=%s&hourly=temperature_2m,relative_humidity_2m,"
-         "apparent_temperature,precipitation_probability&timezone=%s&forecast_days=1"
-         % (url, lat, lon, TZ.replace("/", "%2F")))
+def consulta(lat: float, lon: float, url: str, fecha: str | None = None):
+    base = ("latitude=%s&longitude=%s&hourly=temperature_2m,relative_humidity_2m,"
+            "apparent_temperature,precipitation_probability&timezone=%s"
+            % (lat, lon, TZ.replace("/", "%2F")))
+    if fecha:
+        base += "&start_date=%s&end_date=%s" % (fecha, fecha)
+    else:
+        base += "&forecast_days=1"
+    q = "%s?%s" % (url, base)
     with urllib.request.urlopen(q, timeout=30) as r:
         return json.load(r)
 
@@ -96,7 +106,17 @@ def main() -> int:
     ap.add_argument("--lat", type=float, default=43.3054, help="defecto Erandio")
     ap.add_argument("--lon", type=float, default=-2.9754)
     ap.add_argument("--json", action="store_true", help="salida JSON")
+    ap.add_argument("--fecha", default=None,
+                    help="AAAA-MM-DD del dia de USO (defecto: hoy). Para la ficha de vispera se pasa el dia siguiente")
     a = ap.parse_args()
+
+    fecha = a.fecha
+    if fecha:
+        try:
+            datetime.strptime(fecha, "%Y-%m-%d")
+        except ValueError:
+            print("AVISO ventana_perfume: --fecha invalida %r (formato AAAA-MM-DD)" % fecha)
+            return 2
 
     try:
         ini, fin = parse_ventana(a.ventana)
@@ -106,7 +126,7 @@ def main() -> int:
 
     url = os.environ.get("VENTANA_API_URL", API_DEFECTO)
     try:
-        d = consulta(a.lat, a.lon, url)
+        d = consulta(a.lat, a.lon, url, fecha)
     except Exception as e:
         print("AVISO ventana_perfume: no se pudo leer el clima (%s: %s). "
               "NO emitir recomendacion anclada a una temperatura de memoria."
@@ -125,7 +145,8 @@ def main() -> int:
         return 2
 
     hs = horas_ventana(ini, fin)
-    i_ven = [i for i, t in enumerate(tiempos) if int(t[11:13]) in hs and sens[i] is not None]
+    i_ven = [i for i, t in enumerate(tiempos)
+             if int(t[11:13]) in hs and sens[i] is not None and (not fecha or t[:10] == fecha)]
     if not i_ven:
         print("AVISO ventana_perfume: la ventana %s no tiene horas validas en la "
               "respuesta." % a.ventana)
@@ -179,8 +200,9 @@ def main() -> int:
 
     res = {
         "ventana": a.ventana,
+        "fecha": fecha or tiempos[0][:10],
         "coords": [a.lat, a.lon],
-        "consultado": datetime.now(timezone(timedelta(hours=2))).strftime("%Y-%m-%d %H:%M:%S %Z"),
+        "consultado": datetime.now().astimezone().strftime("%Y-%m-%d %H:%M:%S %Z%z"),
         "fuente": "open-meteo hourly apparent_temperature",
         "sens_min": round(s_min, 1),
         "sens_media": round(s_med, 1),
@@ -206,8 +228,8 @@ def main() -> int:
         print(json.dumps(res, ensure_ascii=False, indent=2))
         return 0
 
-    print("VENTANA %s (%.4f/%.4f) · fuente: open-meteo · %s"
-          % (a.ventana, a.lat, a.lon, res["consultado"]))
+    print("VENTANA %s · FECHA CONSULTADA %s (dia de uso) · fuente: open-meteo · generado %s"
+          % (a.ventana, res["fecha"], res["consultado"]))
     print("sensacion ventana: min %.1f | MEDIA %.1f | max %.1f"
           % (s_min, s_med, s_max))
     print("dia: min %.1f (%s) | max %.1f (%s) | amplitud %.1f C | amplitud sensacion %.1f C"

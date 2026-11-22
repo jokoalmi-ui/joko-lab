@@ -426,19 +426,16 @@ def query_index(query_text: str, top_k: int = 3,
         results["rerank_score"] = results["rerank_score"] - results["hub_penalty"]
         results = results.sort_values("rerank_score", ascending=False)
 
-    # Peso de fuente (31-oct-2026): las tarjetas de sesion (type: session) son
-    # evidencia secundaria, no norma. Factor MULTIPLICATIVO para que no copen los
-    # huecos cuando existe documento canonico (RULE/DEC/nota). Medido sin factor:
-    # 11/30 slots del top-3. Desactivable: JOKO_RAG_PESO_SESION=1.0.
-    results["peso_fuente"] = 1.0
-    peso_sesion = float(os.environ.get("JOKO_RAG_PESO_SESION", "0.90"))
-    if peso_sesion != 1.0 and "type" in results.columns:
-        es_sesion = results["type"].astype(str).str.strip().str.lower() == "session"
-        if es_sesion.any():
-            results.loc[es_sesion, "rerank_score"] = (
-                results.loc[es_sesion, "rerank_score"] * peso_sesion)
-            results.loc[es_sesion, "peso_fuente"] = peso_sesion
-            results = results.sort_values("rerank_score", ascending=False)
+    # Peso de fuente por sesion RETIRADO el 14-nov-2026 (no-op demostrado): el indice
+    # no tiene ninguna fila type='session' (41.658 filas, 0 session; 0 paths
+    # metrics/sesiones), asi que JOKO_RAG_PESO_SESION=0.90 no tenia sujeto.
+    # Medido con el banco congelado (sha256 6c3ec4b5...): 0 de 12 consultas cambia el
+    # top-5 frente a 1.0 y ninguna marca la penalizacion; pureza@5 0,511 / 27 de 48
+    # slots en ambas configuraciones. Mismo caso que el peso por ruta retirado en
+    # 85177bc (codigo sin sujeto). Evidencia y comando:
+    # 04-operations/metrics/GEO-baseline-v1-TOP1-peso-sesion-verificacion.txt
+    # Si algun dia vuelven a indexarse sesiones, reimplantar CON medicion previa.
+
     # Dedupe por path (07-ago): LanceDB guarda chunks; el mismo documento puede
     # entrar varias veces con scores distintos (verificado: ecosistema-gobernanza
     # x2, EXP-20260729-004 x2 en una misma consulta). Se mantiene el mejor y se
@@ -519,13 +516,6 @@ def query_index(query_text: str, top_k: int = 3,
         except (TypeError, ValueError, KeyError):
             rr = None
         pen_txt = f" | hub: -{pen:.2f}" if pen > 0 else ""
-        peso = row.get("peso_fuente", 1.0)
-        try:
-            peso = float(peso)
-        except (TypeError, ValueError):
-            peso = 1.0
-        if peso < 1.0:
-            pen_txt += f" | sesion x{peso:.2f}"
         sim_txt = f"{sim:.3f}" if sim is not None else "-"
         rr_txt = f"{rr:.3f}" if rr is not None else "-"
         print(f"[{idx+1}] {row['path']}  (cos: {sim_txt} | rerank: {rr_txt} | {origen}{pen_txt})")
